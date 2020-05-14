@@ -24,10 +24,23 @@
   font-size: 24px;
 }
 
+#menu{
+  vertical-align: middle;
+  display: inline-block;
+  font-size: 28px;
+  color: #303030;
+  margin: 25px;
+  margin-top: 50px;
+}
+
+#menu a{
+  color: #303030;
+}
+
 /* All */
 
 *{
-  font-family: sans-serif;
+  font-family: 'Open Sans', sans-serif;
 }
 
 *:not(strong){
@@ -50,7 +63,6 @@ header{
 
 header .left{
   float: left;
-  display: inline;
 }
 
 header .right{

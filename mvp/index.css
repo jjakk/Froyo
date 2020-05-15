@@ -2,10 +2,10 @@
 /* Ids */
 
 #icon{
-  width: 100px;
-  height: 100px;
-  margin: 25px;
-  border-radius: 20px;
+  width: 75px;
+  height: 75px;
+  margin: 15px;
+  border-radius: 15px;
   display: inline;
   vertical-align: middle;
 }
@@ -13,7 +13,7 @@
 #title{
   display: inline-block;
   vertical-align: middle;
-  line-height: 100%;
+  line-height: 75%;
 }
 
 #title h1{
@@ -29,11 +29,27 @@
   display: inline-block;
   font-size: 28px;
   color: #303030;
-  margin: 50px;
+  margin: 30px;
 }
 
 #menu a{
   color: #303030;
+}
+
+#feed h2{
+  text-align: center;
+}
+
+/* Classes */
+
+.post{
+  width: 750px;
+  height: 500px;
+  border: 1px solid #e3e3e3;
+  border-radius: 15px;
+  background: white;
+  margin: auto;
+  margin-bottom: 50px;
 }
 
 /* All */
@@ -66,4 +82,16 @@ header .left{
 
 header .right{
   float: right;
+}
+
+/* Mobile */
+
+@media (max-width: 850px) {
+  #title h1{
+    font-size: 24px;
+  }
+
+  #title h2{
+    font-size: 18px;
+  }
 }

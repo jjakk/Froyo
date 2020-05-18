@@ -47,10 +47,6 @@
   margin-bottom: 25px;
 }
 
-#postSort{
-  vertical-align: middle;
-}
-
 /* Classes */
 
 .post{
@@ -99,6 +95,7 @@ header .right{
 /* Mobile */
 
 @media (max-width: 850px) {
+
   #title h1{
     font-size: 24px;
   }
@@ -106,4 +103,9 @@ header .right{
   #title h2{
     font-size: 18px;
   }
+
+  #menu{
+    float: none;
+  }
+
 }

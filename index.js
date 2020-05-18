@@ -7,5 +7,5 @@ app.listen(port, () => {
 });
 
 app.get('/', (req, res) => {
-  res.send('Froyo');
+  res.send('<h1>Froyo</h1><h2>A non-addictive social media platform</h2>');
 });

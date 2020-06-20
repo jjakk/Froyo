@@ -5,3 +5,4 @@ Froyo is still just a concept, I haven't started building it yet.
 - Session timers
 - Minimal notifications
 - Finite scrolling
+### Concept drawings

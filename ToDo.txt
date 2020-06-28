@@ -2,4 +2,4 @@ ToDo
 -MVP
 -Actual App
 -Learn MERN Stack
--Blueprints
+-UI Blueprints

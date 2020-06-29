@@ -1,5 +1,5 @@
 #ToDo
-*MVP
-*Actual App
-*Learn MERN Stack
-*UI Blueprints
+-MVP
+-Actual App
+-Learn MERN Stack
+-UI Blueprints

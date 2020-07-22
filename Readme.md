@@ -8,5 +8,5 @@ Froyo is still just a concept, I haven't started building it yet.
 ### Concept drawings
 <div>
   <img alt='Messages' src='./Blueprints/Messages.png' width='400' height='840' style='margin-right: 25px'/>
-  <img alt='Feed' src='./Blueprints/Feed.png' width='400' height='840'/>
+  <img alt='Feed' src='./Blueprints/Feed.png' width='400' height='840' style='margin-left: 25px'/>
 </div>

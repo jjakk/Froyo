@@ -7,3 +7,4 @@ Froyo is still just a concept, I haven't started building it yet.
 - Finite scrolling
 ### Concept drawings
 <img alt='Messages' src='./Blueprints/Messages.png'/>
+<img alt='Feed' src='./Blueprints/Feed.png'/>

@@ -6,4 +6,4 @@ Froyo is still just a concept, I haven't started building it yet.
 - Minimal notifications
 - Finite scrolling
 ### Concept drawings
-<img alt='Messages' src='./Blueprints/Messages'/>
+<img alt='Messages' src='./Blueprints/Messages.png'/>

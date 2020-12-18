@@ -7,40 +7,40 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   inkscape:export-ydpi="96"
-   inkscape:export-xdpi="96"
-   inkscape:export-filename="C:\Users\Jak\Desktop\github\Froyo\img\icon.png"
-   width="500"
-   height="500"
-   viewBox="0 0 132.29166 132.29167"
-   version="1.1"
-   id="svg8"
+   sodipodi:docname="icon.svg"
    inkscape:version="1.0 (4035a4fb49, 2020-05-01)"
-   sodipodi:docname="icon.svg">
+   id="svg8"
+   version="1.1"
+   viewBox="0 0 132.29166 132.29167"
+   height="500"
+   width="500"
+   inkscape:export-filename="C:\Users\Jak\Desktop\github\Froyo\img\icon.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96">
   <defs
      id="defs2" />
   <sodipodi:namedview
-     id="base"
-     pagecolor="#ffffff"
-     bordercolor="#666666"
-     borderopacity="1.0"
-     inkscape:pageopacity="0.0"
-     inkscape:pageshadow="2"
-     inkscape:zoom="1.0210045"
-     inkscape:cx="155.96288"
-     inkscape:cy="219.31039"
-     inkscape:document-units="px"
-     inkscape:current-layer="layer2"
-     inkscape:document-rotation="0"
-     showgrid="false"
-     units="px"
-     inkscape:showpageshadow="false"
-     inkscape:pagecheckerboard="true"
-     inkscape:window-width="1920"
-     inkscape:window-height="1017"
-     inkscape:window-x="-8"
+     inkscape:window-maximized="1"
      inkscape:window-y="-8"
-     inkscape:window-maximized="1" />
+     inkscape:window-x="-8"
+     inkscape:window-height="1017"
+     inkscape:window-width="1920"
+     inkscape:pagecheckerboard="true"
+     inkscape:showpageshadow="false"
+     units="px"
+     showgrid="false"
+     inkscape:document-rotation="0"
+     inkscape:current-layer="layer1"
+     inkscape:document-units="px"
+     inkscape:cy="290.47644"
+     inkscape:cx="265.53692"
+     inkscape:zoom="0.72943097"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     borderopacity="1.0"
+     bordercolor="#666666"
+     pagecolor="#ffffff"
+     id="base" />
   <metadata
      id="metadata5">
     <rdf:RDF>
@@ -54,32 +54,32 @@
     </rdf:RDF>
   </metadata>
   <g
-     inkscape:label="Background"
+     id="layer1"
      inkscape:groupmode="layer"
-     id="layer1">
+     inkscape:label="Background">
     <rect
-       inkscape:export-ydpi="96"
-       inkscape:export-xdpi="96"
-       style="fill:#685dcf;fill-opacity:1;stroke:none;stroke-width:2.24686;stroke-linecap:round"
-       id="rect834"
-       width="132.29167"
-       height="132.29167"
+       y="0"
        x="0"
-       y="0" />
+       height="132.29167"
+       width="132.29167"
+       id="rect834"
+       style="fill:#50cc7b;fill-opacity:1;stroke:none;stroke-width:2.24686;stroke-linecap:round"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
   </g>
   <g
-     inkscape:groupmode="layer"
+     inkscape:label="Icon"
      id="layer2"
-     inkscape:label="Icon">
+     inkscape:groupmode="layer">
+    <path
+       id="rect836"
+       style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:2.6458333;stroke-linecap:round;stroke-opacity:1;stroke-linejoin:round"
+       d="M 33.072916,71.437498 H 99.218744 L 85.989584,104.51042 H 46.302085 Z"
+       sodipodi:nodetypes="ccccc" />
     <path
        sodipodi:nodetypes="ccccc"
-       d="M 33.072916,71.437498 H 99.218744 L 85.989584,104.51042 H 46.302085 Z"
-       style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:2.6458333;stroke-linecap:round;stroke-opacity:1;stroke-linejoin:round"
-       id="rect836" />
-    <path
-       style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:2.6458333;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1"
-       d="M 33.072916,64.822918 H 99.218749 C 94.370833,46.730248 80.79954,31.707699 66.145832,27.78125 c 0,9.880609 -6.71769,12.851965 -16.536458,18.520833 -7.536416,4.351152 -14.478411,10.840098 -16.536458,18.520835 z"
        id="path854"
-       sodipodi:nodetypes="ccccc" />
+       d="M 33.072916,64.822918 H 99.218749 C 94.370833,46.730248 80.79954,31.707699 66.145832,27.78125 c 0,9.880609 -6.71769,12.851965 -16.536458,18.520833 -7.536416,4.351152 -14.478411,10.840098 -16.536458,18.520835 z"
+       style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:2.6458333;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1" />
   </g>
 </svg>

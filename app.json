@@ -4,7 +4,7 @@
     "slug": "froyo",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/logo/Logo.png",
+    "icon": "./assets/logo/Logo-Background.png",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
@@ -21,9 +21,10 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/logo/Logo.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.protosapps.froyo"
     },
     "web": {
       "favicon": "./assets/favicon.png"

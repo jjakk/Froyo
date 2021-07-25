@@ -6,6 +6,7 @@ import {
 } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
+import { useFonts } from 'expo-font';
 // Navigation
 import { setNavigator } from './src/navigationRef';
 // Context
@@ -56,9 +57,18 @@ const switchNavigator = createSwitchNavigator({
 const App = createAppContainer(switchNavigator);
 
 export default () => {
+  // Import custom fonts
+  const [loaded] = useFonts({
+    'Nunito': require('./assets/fonts/Nunito/Nunito-Regular.ttf'),
+    'Nunito-Bold': require('./assets/fonts/Nunito/Nunito-Bold.ttf'),
+    'Nunito-Light': require('./assets/fonts/Nunito/Nunito-Light.ttf'),
+  });
+
   return (
-    <AuthProvider>
-      <App ref={(navigator) => { setNavigator(navigator) }} />
-    </AuthProvider>
+    loaded ? (
+        <AuthProvider>
+          <App ref={(navigator) => { setNavigator(navigator) }} />
+        </AuthProvider>
+      ) : null
   );
 }

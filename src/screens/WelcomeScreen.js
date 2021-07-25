@@ -1,11 +1,15 @@
 import React from 'react';
-import { Text, View, StyleSheet } from 'react-native';
+import { Text, StyleSheet } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
 
 const WelcomeScreen = () => {
     return (
-        <View style={styles.container}>
-            <Text>Welcome</Text>
-        </View>
+        <LinearGradient
+            colors={['#3EC7A6', '#41CA78']}
+            style={styles.container}
+        >
+            <Text style={{fontFamily: 'Nunito', fontSize: 42, color: 'white'}}>Froyo</Text>
+        </LinearGradient>
     );
 };
 

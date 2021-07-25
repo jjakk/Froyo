@@ -1,13 +1,17 @@
 import React from 'react';
-import { View, Image, Text, StyleSheet, SafeAreaView } from 'react-native';
+import { View, Image, Text, StyleSheet, SafeAreaView, StatusBar } from 'react-native';
 import { Button } from 'react-native-elements';
 import { LinearGradient } from 'expo-linear-gradient';
 
 const WelcomeScreen = () => {
     return (
         <SafeAreaView style={{flex:1}}>
+            <StatusBar
+                style='dark-content'
+                backgroundColor='#37B899'
+            />
             <LinearGradient
-                colors={['#3EC7A6', '#41CA78']}
+                colors={['#37B899', '#41CA78']}
                 style={styles.container}
             >
                 <View style={styles.header}>
@@ -78,6 +82,7 @@ const styles = StyleSheet.create({
     },
     primaryText: {
         color: '#41CA99',
+        fontFamily: 'Nunito',
         fontSize: 28,
     },
     secondary: {
@@ -90,6 +95,7 @@ const styles = StyleSheet.create({
     },
     secondaryText: {
         color: 'white',
+        fontFamily: 'Nunito',
         fontSize: 28,
     }
 });

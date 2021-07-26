@@ -1,12 +1,12 @@
 {
   "expo": {
-    "name": "froyo",
-    "slug": "froyo",
+    "name": "Froyo",
+    "slug": "Froyo",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/logo/Logo-Background.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/logo/Splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -27,7 +27,7 @@
       "package": "com.protosapps.froyo"
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/logo/Logo-Background.png"
     }
   }
 }

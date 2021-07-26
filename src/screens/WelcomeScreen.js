@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Image, Text, StyleSheet, SafeAreaView, StatusBar } from 'react-native';
-import { Button } from 'react-native-elements';
+import Button from '../components/Button';
 import { LinearGradient } from 'expo-linear-gradient';
 
 const WelcomeScreen = () => {
@@ -27,13 +27,15 @@ const WelcomeScreen = () => {
                 <View style={styles.authOptions}>
                     <Button
                         title='Sign in'
+                        color='white'
+                        type='primary'
                         buttonStyle={styles.primary}
-                        titleStyle={styles.primaryText}
                     />
                     <Button
                         title='Sign up'
+                        color='white'
+                        type='secondary'
                         buttonStyle={styles.secondary}
-                        titleStyle={styles.secondaryText}
                     />
                 </View>
             </LinearGradient>
@@ -71,33 +73,15 @@ const styles = StyleSheet.create({
     },
     authOptions: {
         position: 'absolute',
-        bottom: 100
+        bottom: 75
     },
     primary: {
-        backgroundColor: 'white',
-        borderRadius: 15,
-        padding: 15,
         width: 300,
         marginBottom: 25
     },
-    primaryText: {
-        color: '#41CA99',
-        fontFamily: 'Nunito',
-        fontSize: 28,
-    },
     secondary: {
-        backgroundColor: 'transparent',
-        borderColor: 'white',
-        borderWidth: 2,
-        borderRadius: 15,
-        padding: 15,
         width: 300
     },
-    secondaryText: {
-        color: 'white',
-        fontFamily: 'Nunito',
-        fontSize: 28,
-    }
 });
 
 export default WelcomeScreen;

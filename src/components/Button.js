@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 import { Button as DefaultButton } from 'react-native-elements';
 
 const Button = (props) => {
-    const { color, type } = props;
+    const { color, textColor, type } = props;
 
     const styles = StyleSheet.create({
         button: {
@@ -28,7 +28,7 @@ const Button = (props) => {
             color: (
                 (type === 'secondary')
                     ? 'white'
-                    : '#41CA99'
+                    : textColor || '#41CA99'
             )
         },
     });

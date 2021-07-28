@@ -4,42 +4,41 @@ import Button from '../components/Button';
 import { LinearGradient } from 'expo-linear-gradient';
 
 const WelcomeScreen = () => {
-    return (
-        <SafeAreaView style={{flex:1}}>
-            <StatusBar
-                style='dark-content'
-                backgroundColor='#37B899'
-            />
-            <LinearGradient
-                colors={['#37B899', '#41CA78']}
-                style={styles.container}
-            >
-                <View style={styles.header}>
-                    <Image
-                        source={require('../../assets/logo/Logo-White.png')}
-                        style={styles.logo}
-                    />
-                    <Text>
-                        <Text style={styles.title}>Froyo</Text>
-                        <Text style={styles.subTitle}>{'\n'}Ethical Social Media</Text>
-                    </Text>
-                </View>
-                <View style={styles.authOptions}>
-                    <Button
-                        title='Sign in'
-                        color='white'
-                        type='primary'
-                        buttonStyle={styles.primary}
-                    />
-                    <Button
-                        title='Sign up'
-                        color='white'
-                        type='secondary'
-                        buttonStyle={styles.secondary}
-                    />
-                </View>
-            </LinearGradient>
-        </SafeAreaView>
+    return (  
+        <LinearGradient
+            colors={['#37B899', '#41CA78']}
+            style={styles.container}
+        >
+            <SafeAreaView>
+                <StatusBar backgroundColor="#37B899" barStyle="light-content" />
+            </SafeAreaView>
+            <View style={styles.header}>
+                <Image
+                    source={require('../../assets/logo/Logo-White.png')}
+                    style={styles.logo}
+                />
+                <Text>
+                    <Text style={styles.title}>Froyo</Text>
+                    <Text style={styles.subTitle}>{'\n'}Ethical Social Media</Text>
+                </Text>
+            </View>
+            <View style={styles.authOptions}>
+                <Button
+                    title='Sign in'
+                    color='white'
+                    textColor='#41CA99'
+                    type='primary'
+                    buttonStyle={styles.primary}
+                />
+                <Button
+                    title='Sign up'
+                    color='white'
+                    type='secondary'
+                    buttonStyle={styles.secondary}
+                />
+            </View>
+        </LinearGradient>
+        
     );
 };
 

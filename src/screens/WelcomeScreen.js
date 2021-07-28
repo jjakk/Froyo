@@ -1,7 +1,6 @@
 import React from 'react';
 import { View, Image, StyleSheet, SafeAreaView, StatusBar } from 'react-native';
-import Text from '../components/Text';
-import Button from '../components/Button';
+import { Button, Text } from '../components/froyo-elements';
 import { LinearGradient } from 'expo-linear-gradient';
 
 const WelcomeScreen = ({ navigation }) => {

@@ -1,10 +1,6 @@
 import React from 'react';
 import { SafeAreaView, View, StyleSheet, StatusBar } from 'react-native';
-import Button from '../../components/Button';
-import Text from '../../components/Text';
-import Input from '../../components/Input';
-import Spacer from '../../components/Spacer';
-import Link from '../../components/Link';
+import { Button, Text, Input, Link, Spacer } from '../../components/froyo-elements';
 
 const SignInScreen = ({ navigation }) => {
     return (

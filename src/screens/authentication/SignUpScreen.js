@@ -1,19 +1,41 @@
 import React from 'react';
-import { SafeAreaView, View, StyleSheet, TouchableOpacity } from 'react-native';
-import { Input } from 'react-native-elements';
+import { SafeAreaView, View, StyleSheet, StatusBar } from 'react-native';
+import Input from '../../components/Input';
 import Text from '../../components/Text';
+import Link from '../../components/Link';
+import Spacer from '../../components/Spacer';
+import Button from '../../components/Button';
 
 const SignUpScreen = ({ navigation }) => {
     return (
-        <SafeAreaView style={styles.container}>
-            <View>
+        <View style={styles.container}>
+            <SafeAreaView>
+                <StatusBar backgroundColor="#F2F2F2" barStyle="dark-content" />
+            </SafeAreaView>
+            <View style={styles.auth}>
                 <Text style={styles.header}>Sign up</Text>
+                <Spacer>
+                    <Input style={styles.input} placeholder='Email' />
+                </Spacer>
+                <Spacer>
+                    <Input style={styles.input} placeholder='Password' secureTextEntry />
+                </Spacer>
+                <Spacer>
+                    <Input style={styles.input} placeholder='Confirm Password' secureTextEntry />
+                </Spacer>
+                <Spacer>
+                    <Button
+                        title='Sign up'
+                        color='#41CA99'
+                        textColor='white'
+                        type='primary'
+                        buttonStyle={styles.submit}
+                    />
+                </Spacer>
                 <Text>Already have an account?</Text>
-                <TouchableOpacity onPress={() => navigation.navigate('SignIn')}>
-                    <Text style={{alignSelf: 'center', color: '#41CA99'}}>Sign up</Text>
-                </TouchableOpacity>
+                <Link color='#41CA99' onPress={() => navigation.navigate('SignIn')}>Sign in</Link>
             </View>
-        </SafeAreaView>
+        </View>
     );
 };
 
@@ -27,8 +49,20 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
+    auth: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginBottom: 100
+    },
     header: {
-        fontSize: 48
+        fontSize: 48,
+        marginBottom: 15
+    },
+    input: {
+        width: 300,
+    },
+    submit: {
+        width: 300
     }
 });
 

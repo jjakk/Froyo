@@ -9,7 +9,8 @@ const Text = (props) => {
 
 const styles = StyleSheet.create({
     text: {
-        fontFamily: 'Nunito'
+        fontFamily: 'Nunito',
+        fontSize: 18
     }
 });
 

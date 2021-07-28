@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, Image, Text, StyleSheet, SafeAreaView, StatusBar } from 'react-native';
+import { View, Image, StyleSheet, SafeAreaView, StatusBar } from 'react-native';
+import Text from '../components/Text';
 import Button from '../components/Button';
 import { LinearGradient } from 'expo-linear-gradient';
 
@@ -36,6 +37,7 @@ const WelcomeScreen = ({ navigation }) => {
                     color='white'
                     type='secondary'
                     buttonStyle={styles.secondary}
+                    onPress={() => navigation.navigate('SignUp')}
                 />
             </View>
         </LinearGradient>

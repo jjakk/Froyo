@@ -8,7 +8,7 @@ const Button = (props) => {
     const styles = StyleSheet.create({
         button: {
             borderRadius: 15,
-            padding: 15,
+            padding: 10,
             borderWidth: 2,
             backgroundColor: (
                 (type === 'secondary')

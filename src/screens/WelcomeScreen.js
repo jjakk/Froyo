@@ -3,7 +3,7 @@ import { View, Image, Text, StyleSheet, SafeAreaView, StatusBar } from 'react-na
 import Button from '../components/Button';
 import { LinearGradient } from 'expo-linear-gradient';
 
-const WelcomeScreen = () => {
+const WelcomeScreen = ({ navigation }) => {
     return (  
         <LinearGradient
             colors={['#37B899', '#41CA78']}
@@ -29,6 +29,7 @@ const WelcomeScreen = () => {
                     textColor='#41CA99'
                     type='primary'
                     buttonStyle={styles.primary}
+                    onPress={() => navigation.navigate('SignIn')}
                 />
                 <Button
                     title='Sign up'

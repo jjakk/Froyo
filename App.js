@@ -18,16 +18,21 @@ import ResolveAuthScreen from './src/screens/authentication/ResolveAuthScreen';
 import SignInScreen from './src/screens/authentication/SignInScreen';
 import SignUpScreen from './src/screens/authentication/SignUpScreen';
 import ResetPasswordScreen from './src/screens/authentication/ResetPasswordScreen';
+import createAnimatedSwitchNavigator from 'react-navigation-animated-switch';
 
 const switchNavigator = createSwitchNavigator({
   ResolveAuth: ResolveAuthScreen,
-  Welcome: WelcomeScreen,
-  authFlow: createStackNavigator({
-    SignIn: SignInScreen,
-    SignUp: SignUpScreen,
-    ResetPasswordScreen: ResetPasswordScreen
-  }),
-  /*mainFlow: createBottomTabNavigator({
+  appFlow: createAnimatedSwitchNavigator({
+    Welcome: WelcomeScreen,
+    authFlow: createStackNavigator({
+      SignIn: SignInScreen,
+      SignUp: SignUpScreen,
+      ResetPasswordScreen: ResetPasswordScreen
+    }),
+  })
+});
+
+/*mainFlow: createBottomTabNavigator({
     conversationsFlow: {
       screen: createStackNavigator({
         Conversations: ConversationsScreen
@@ -52,7 +57,6 @@ const switchNavigator = createSwitchNavigator({
       }
     }
   })*/
-});
 
 const App = createAppContainer(switchNavigator);
 

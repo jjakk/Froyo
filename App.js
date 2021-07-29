@@ -27,7 +27,7 @@ const switchNavigator = createSwitchNavigator({
     authFlow: createStackNavigator({
       SignIn: SignInScreen,
       SignUp: SignUpScreen,
-      ResetPasswordScreen: ResetPasswordScreen
+      ResetPassword: ResetPasswordScreen
     }),
   })
 });

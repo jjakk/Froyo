@@ -1,4 +1,3 @@
-import react from 'react';
 import Button from './elements/Button';
 import Input from './elements/Input';
 import Link from './elements/Link';

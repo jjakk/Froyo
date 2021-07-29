@@ -1,37 +1,39 @@
 import React from 'react';
-import { SafeAreaView, View, StyleSheet, StatusBar } from 'react-native';
+import { SafeAreaView, View, StyleSheet, StatusBar, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { Button, Text, Input, Link, Spacer } from '../../components/froyo-elements';
 
 const SignUpScreen = ({ navigation }) => {
     return (
-        <View style={styles.container}>
-            <SafeAreaView>
-                <StatusBar backgroundColor="#F2F2F2" barStyle="dark-content" />
-            </SafeAreaView>
-            <View style={styles.auth}>
-                <Text style={styles.header}>Sign up</Text>
-                <Spacer>
-                    <Input style={styles.input} placeholder='Email' />
-                </Spacer>
-                <Spacer>
-                    <Input style={styles.input} placeholder='Password' secureTextEntry />
-                </Spacer>
-                <Spacer>
-                    <Input style={styles.input} placeholder='Confirm Password' secureTextEntry />
-                </Spacer>
-                <Spacer>
-                    <Button
-                        title='Sign up'
-                        color='#41CA99'
-                        textColor='white'
-                        type='primary'
-                        buttonStyle={styles.submit}
-                    />
-                </Spacer>
-                <Text>Already have an account?</Text>
-                <Link color='#41CA99' onPress={() => navigation.navigate('SignIn')}>Sign in</Link>
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+            <View style={styles.container}>
+                <SafeAreaView>
+                    <StatusBar backgroundColor="#F2F2F2" barStyle="dark-content" />
+                </SafeAreaView>
+                <View style={styles.auth}>
+                    <Text style={styles.header}>Sign up</Text>
+                    <Spacer>
+                        <Input style={styles.input} placeholder='Email' />
+                    </Spacer>
+                    <Spacer>
+                        <Input style={styles.input} placeholder='Password' secureTextEntry />
+                    </Spacer>
+                    <Spacer>
+                        <Input style={styles.input} placeholder='Confirm Password' secureTextEntry />
+                    </Spacer>
+                    <Spacer>
+                        <Button
+                            title='Sign up'
+                            color='#41CA99'
+                            textColor='white'
+                            type='primary'
+                            buttonStyle={styles.submit}
+                        />
+                    </Spacer>
+                    <Text>Already have an account?</Text>
+                    <Link color='#41CA99' onPress={() => navigation.navigate('SignIn')}>Sign in</Link>
+                </View>
             </View>
-        </View>
+        </TouchableWithoutFeedback>
     );
 };
 

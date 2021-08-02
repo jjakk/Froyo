@@ -9,7 +9,13 @@ const ResetPasswordScreen = () => {
                 <View style={styles.form}>
                     <Text style={styles.header} >Reset Password</Text>
                     <Input style={styles.input} placeholder='Email' />
-                    <Button style={styles.submit} title='Reset Password' type='primary' color='#41CA99' textColor='white' />
+                    <Button
+                        buttonStyle={styles.submit}
+                        title='Reset Password'
+                        type='primary'
+                        color='#41CA99'
+                        textColor='white'
+                    />
                 </View>
             </SafeAreaView>
         </TouchableWithoutFeedback>

@@ -20,6 +20,14 @@ const SignInScreen = ({ navigation }) => {
     const { signIn, clearErrorMessage, state: { errorMessage } } = useContext(AuthContext);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [loading, setLoading] = useState(false);
+
+    const handleSubmit = async () => {
+        //setLoading(true);
+        Keyboard.dismiss()
+        signIn({ email, password });
+        //setLoading(false);
+    };
 
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -42,11 +50,9 @@ const SignInScreen = ({ navigation }) => {
                             color='#41CA99'
                             textColor='white'
                             type='primary'
+                            loading={loading}
                             buttonStyle={styles.submit}
-                            onPress={() => {
-                                Keyboard.dismiss()
-                                signIn({ email, password });
-                            }}
+                            onPress={handleSubmit}
                         />
                     </Spacer>
                     <Text style={{fontSize: 18}}>Don't have an account?</Text>

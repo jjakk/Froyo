@@ -6,7 +6,6 @@ import { navigate } from '../navigationRef';
 const authReducer = (state, action) => {
     switch(action.type){
         case 'add_error':
-            console.log(action.payload);
             return { ...state, errorMessage: action.payload };
         case 'sign_in':
             return { ...state, token: action.payload, errorMessage: '' };
@@ -22,7 +21,6 @@ const authReducer = (state, action) => {
 const signIn = (dispatch) => async ({ email, password }) => {
     try{
         const response = await froyoApi.post('/signin', { email, password });
-        console.log(response.data.token)
         await AsyncStorage.setItem('token', response.data.token);
         dispatch({ type: 'sign_in', payload: response.data.token });
         navigate('mainFlow');
@@ -65,7 +63,7 @@ const signUp = (dispatch) => async ({ email, username, password, passwordConfirm
 
 const signOut = (dispatch) => async () => {
     await AsyncStorage.removeItem('token');
-    dispatch({ type: 'signout' });
+    dispatch({ type: 'sign_out' });
     navigate('Welcome');
 };
 

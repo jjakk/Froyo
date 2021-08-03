@@ -30,7 +30,7 @@ const Button = (props) => {
                     ? 'white'
                     : textColor || '#41CA99'
             )
-        },
+        }
     });
 
     return (
@@ -44,6 +44,10 @@ const Button = (props) => {
                 props.titleStyle,
                 styles.title
             ]}
+            loadingProps={{
+                color: textColor,
+                size: 31
+            }}
         />
     );
 };

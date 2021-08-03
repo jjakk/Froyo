@@ -28,8 +28,14 @@ const signIn = (dispatch) => async ({ email, password }) => {
         navigate('mainFlow');
     }
     catch(err){
-        console.log(`Error Occured: ${err}`);
-        dispatch({ type: 'add_error', payload: err });
+        let message;
+        if(err.response){
+            message = err.response.data;
+        }
+        else{
+            message = err.message;
+        }
+        dispatch({ type: 'add_error', payload: message });
     }
 };
 
@@ -44,9 +50,15 @@ const signUp = (dispatch) => async ({ email, username, password, passwordConfirm
             dispatch({ type: 'sign_in', payload: response.data.token });
             navigate('mainFlow');
         }
-        catch(err){          
-            console.log(`Error Occured: ${err}`);  
-            dispatch({ type: 'add_error', payload: `An error occurred: ${err}` });
+        catch(err){
+            let message;
+            if(err.response){
+                message = err.response.data;
+            }
+            else{
+                message = err.message;
+            }
+            dispatch({ type: 'add_error', payload: message });
         }
     }
 };
@@ -69,7 +81,6 @@ const getUserInfo = (dispatch) => async () => {
         dispatch({ type: 'get_user_info', payload: { username, email } });
     }
     catch(err){
-        console.log('An error occured: ' + err);
         dispatch({ type: 'add_error', payload: `Ran into an error: ${err}` })
     }
 }
@@ -85,14 +96,18 @@ const checkSignedIn = (dispatch) => async () => {
         navigate('mainFlow');
     }
     catch(err){
-        dispatch({ type: 'add_error', payload: `Ran into an error: ${err}` });
+        console.log("Couldn't autheticate");
         navigate('Welcome');
     }
 }
 
+const clearErrorMessage = (dispatch) => () => {
+    dispatch({ type: 'add_error', payload: '' });
+}
+
 export const { Provider, Context } = createDataContext(
     authReducer,
-    { signIn, signUp, checkSignedIn, signOut, getUserInfo },
+    { signIn, signUp, checkSignedIn, signOut, getUserInfo, clearErrorMessage },
     { /*isSignedIn: false,*/ user: {}, errorMessage: '' }
 );
 

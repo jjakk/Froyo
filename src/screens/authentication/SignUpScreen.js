@@ -1,8 +1,28 @@
-import React from 'react';
-import { SafeAreaView, View, StyleSheet, StatusBar, TouchableWithoutFeedback, Keyboard } from 'react-native';
-import { Button, Text, Input, Link, Spacer } from '../../components/froyo-elements';
+import React, { useContext, useState } from 'react';
+import {
+    SafeAreaView,
+    View,
+    StyleSheet,
+    StatusBar,
+    TouchableWithoutFeedback,
+    Keyboard
+} from 'react-native';
+import {
+    Button,
+    Text,
+    Input,
+    Link,
+    Spacer
+} from '../../components/froyo-elements';
+import { Context as AuthContext } from '../../context/AuthContext';
 
 const SignUpScreen = ({ navigation }) => {
+    const { signUp, clearErrorMessage, state: { errorMessage } } = useContext(AuthContext);
+    const [email, setEmail] = useState('');
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [passwordConfirm, setPasswordConfirm] = useState('');
+
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
             <View style={styles.container}>
@@ -12,13 +32,16 @@ const SignUpScreen = ({ navigation }) => {
                 <View style={styles.auth}>
                     <Text style={styles.header}>Sign up</Text>
                     <Spacer>
-                        <Input style={styles.input} placeholder='Email' />
+                        <Input style={styles.input} placeholder='Email' onChangeText={setEmail} />
                     </Spacer>
                     <Spacer>
-                        <Input style={styles.input} placeholder='Password' secureTextEntry />
+                        <Input style={styles.input} placeholder='Username' onChangeText={setUsername} />
                     </Spacer>
                     <Spacer>
-                        <Input style={styles.input} placeholder='Confirm Password' secureTextEntry />
+                        <Input style={styles.input} placeholder='Password' onChangeText={setPassword} secureTextEntry />
+                    </Spacer>
+                    <Spacer>
+                        <Input style={styles.input} placeholder='Confirm Password' onChangeText={setPasswordConfirm} secureTextEntry />
                     </Spacer>
                     <Spacer>
                         <Button
@@ -27,10 +50,26 @@ const SignUpScreen = ({ navigation }) => {
                             textColor='white'
                             type='primary'
                             buttonStyle={styles.submit}
+                            onPress={() => {
+                                signUp({email, username, password, passwordConfirm});
+                            }}
                         />
                     </Spacer>
                     <Text>Already have an account?</Text>
-                    <Link color='#41CA99' onPress={() => navigation.navigate('SignIn')}>Sign in</Link>
+                    <Link
+                        color='#41CA99'
+                        onPress={() => {
+                            clearErrorMessage();
+                            navigation.navigate('SignIn')
+                        }}
+                    >
+                        Sign in
+                    </Link>
+                    {
+                        errorMessage !== ''
+                            ? <Text style={styles.error}>{errorMessage}</Text>
+                            : null
+                    }
                 </View>
             </View>
         </TouchableWithoutFeedback>
@@ -43,14 +82,12 @@ SignUpScreen.navigationOptions = {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
+        flex: 1
     },
     auth: {
         alignItems: 'center',
         justifyContent: 'center',
-        marginBottom: 100
+        marginTop: 100
     },
     header: {
         fontSize: 48,
@@ -61,6 +98,14 @@ const styles = StyleSheet.create({
     },
     submit: {
         width: 300
+    },
+    error: {
+        color: '#FB1C1C',
+        opacity: 0.5,
+        marginTop: 25,
+        fontSize: 22,
+        width: 300,
+        textAlign: 'center'
     }
 });
 

@@ -1,8 +1,26 @@
-import React from 'react';
-import { SafeAreaView, View, StyleSheet, StatusBar, TouchableWithoutFeedback, Keyboard } from 'react-native';
-import { Button, Text, Input, Link, Spacer } from '../../components/froyo-elements';
+import React, { useContext, useState } from 'react';
+import {
+    SafeAreaView,
+    View,
+    StyleSheet,
+    StatusBar,
+    TouchableWithoutFeedback,
+    Keyboard
+} from 'react-native';
+import {
+    Button,
+    Text,
+    Input,
+    Link,
+    Spacer
+} from '../../components/froyo-elements';
+import { Context as AuthContext } from '../../context/AuthContext';
 
 const SignInScreen = ({ navigation }) => {
+    const { signIn, clearErrorMessage, state: { errorMessage } } = useContext(AuthContext);
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
             <View style={styles.container}>
@@ -12,10 +30,10 @@ const SignInScreen = ({ navigation }) => {
                 <View style={styles.auth}>
                     <Text style={styles.header}>Sign in</Text>
                     <Spacer>
-                        <Input style={styles.input} placeholder='Email' />
+                        <Input style={styles.input} placeholder='Email' onChangeText={setEmail} />
                     </Spacer>
                     <Spacer>
-                        <Input style={styles.input} placeholder='Password' secureTextEntry />
+                        <Input style={styles.input} placeholder='Password' onChangeText={setPassword} secureTextEntry />
                         <Link color='#41CA99' style={styles.forgotPassword} onPress={() => navigation.navigate('ResetPassword')}>Forgot password?</Link>
                     </Spacer>
                     <Spacer>
@@ -25,10 +43,27 @@ const SignInScreen = ({ navigation }) => {
                             textColor='white'
                             type='primary'
                             buttonStyle={styles.submit}
+                            onPress={() => {
+                                Keyboard.dismiss()
+                                signIn({ email, password });
+                            }}
                         />
                     </Spacer>
                     <Text style={{fontSize: 18}}>Don't have an account?</Text>
-                    <Link color='#41CA99' onPress={() => navigation.navigate('SignUp')}>Sign up</Link>
+                    <Link
+                        color='#41CA99'
+                        onPress={() => {
+                            clearErrorMessage();
+                            navigation.navigate('SignUp')
+                        }}
+                    >
+                        Sign up
+                    </Link>
+                    {
+                        errorMessage !== ''
+                            ? <Text style={styles.error}>{errorMessage}</Text>
+                            : null
+                    }
                 </View>
             </View>
         </TouchableWithoutFeedback>
@@ -42,13 +77,11 @@ SignInScreen.navigationOptions = {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center'
     },
     auth: {
         alignItems: 'center',
         justifyContent: 'center',
-        marginBottom: 100
+        marginTop: 100
     },
     header: {
         fontSize: 48,
@@ -62,6 +95,14 @@ const styles = StyleSheet.create({
     },
     input: {
         width: 300,
+    },
+    error: {
+        color: '#FB1C1C',
+        opacity: 0.5,
+        marginTop: 25,
+        fontSize: 22,
+        width: 300,
+        textAlign: 'center'
     }
 });
 

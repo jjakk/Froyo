@@ -5,7 +5,6 @@ import Text from './Text';
 
 const Link = (props) => {
     const {
-        onPress,
         children,
         style,
         color

@@ -17,8 +17,7 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true,
-      "bundleIdentifier": "com.protosapps.froyo"
+      "supportsTablet": true
     },
     "android": {
       "adaptiveIcon": {

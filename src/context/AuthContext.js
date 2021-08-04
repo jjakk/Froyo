@@ -46,7 +46,7 @@ const signUp = (dispatch) => async ({ email, username, password, passwordConfirm
             const response = await froyoApi.post('/signup', { email, username, password });
             await AsyncStorage.setItem('token', response.data.token);
             dispatch({ type: 'sign_in', payload: response.data.token });
-            navigate('mainFlow');
+            navigate('Home');
         }
         catch(err){
             let message;

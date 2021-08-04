@@ -29,38 +29,36 @@ import { Feather } from '@expo/vector-icons';
 
 const switchNavigator = createSwitchNavigator({
   ResolveAuth: ResolveAuthScreen,
-  appFlow: createAnimatedSwitchNavigator({
-    Welcome: WelcomeScreen,
-    authFlow: createStackNavigator({
-      SignIn: SignInScreen,
-      SignUp: SignUpScreen,
-      ResetPassword: ResetPasswordScreen
-    }),
-    mainFlow: createBottomTabNavigator({
-      homeFlow: {
-        screen: createStackNavigator({
-          Home: HomeScreen
-        }),
-        navigationOptions: {
-          tabBarLabel: 'Home',
-          tabBarIcon: (({ tintColor }) => (
-            <Entypo name='home' color={tintColor} size={24} />
-          ))
-        }
-      },
-      accountFlow: {
-        screen: createStackNavigator({
-          AccountView: AccountViewScreen,
-          AccountEdit: AccountEditScreen
-        }),
-        navigationOptions: {
-          tabBarLabel: 'Account',
-          tabBarIcon: (({ tintColor }) => (
-            <Feather name='user' color={tintColor} size={24} />
-          ))
-        }
+  Welcome: WelcomeScreen,
+  authFlow: createStackNavigator({
+    SignIn: SignInScreen,
+    SignUp: SignUpScreen,
+    ResetPassword: ResetPasswordScreen
+  }),
+  mainFlow: createBottomTabNavigator({
+    homeFlow: {
+      screen: createStackNavigator({
+        Home: HomeScreen
+      }),
+      navigationOptions: {
+        tabBarLabel: 'Home',
+        tabBarIcon: (({ tintColor }) => (
+          <Entypo name='home' color={tintColor} size={24} />
+        ))
       }
-    })
+    },
+    accountFlow: {
+      screen: createStackNavigator({
+        AccountView: AccountViewScreen,
+        AccountEdit: AccountEditScreen
+      }),
+      navigationOptions: {
+        tabBarLabel: 'Account',
+        tabBarIcon: (({ tintColor }) => (
+          <Feather name='user' color={tintColor} size={24} />
+        ))
+      }
+    }
   })
 });
 

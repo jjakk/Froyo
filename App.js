@@ -14,6 +14,7 @@ import { Provider as AuthProvider } from './src/context/AuthContext';
 // Screens
 import WelcomeScreen from './src/screens/WelcomeScreen';
 import HomeScreen from './src/screens/HomeScreen';
+import PostScreen from './src/screens/PostScreen';
 // Authentication Screens
 import ResolveAuthScreen from './src/screens/authentication/ResolveAuthScreen';
 import SignInScreen from './src/screens/authentication/SignInScreen';
@@ -41,9 +42,16 @@ const switchNavigator = createSwitchNavigator({
         Home: HomeScreen
       }),
       navigationOptions: {
-        tabBarLabel: 'Home',
         tabBarIcon: (({ tintColor }) => (
-          <Entypo name='home' color={tintColor} size={24} />
+          <Entypo name='home' color={tintColor} size={32} />
+        ))
+      }
+    },
+    PostScreen: {
+      screen: PostScreen,
+      navigationOptions: {
+        tabBarIcon: (({ tintColor }) => (
+          <Entypo name='home' color={tintColor} size={32} />
         ))
       }
     },
@@ -53,12 +61,16 @@ const switchNavigator = createSwitchNavigator({
         AccountEdit: AccountEditScreen
       }),
       navigationOptions: {
-        tabBarLabel: 'Account',
         tabBarIcon: (({ tintColor }) => (
-          <Feather name='user' color={tintColor} size={24} />
+          <Feather name='user' color={tintColor} size={32} />
         ))
       }
     }
+  }, {
+    tabBarOptions: {
+      showLabel: false,
+      activeTintColor: '#41CA99'
+    },
   })
 });
 

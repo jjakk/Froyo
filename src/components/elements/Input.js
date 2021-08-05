@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
     },
     text: {
         fontFamily: 'Nunito',
-        fontSize: 24
+        fontSize: 20
     }
 });
 

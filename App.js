@@ -4,6 +4,7 @@ import {
   createAppContainer,
   createSwitchNavigator
 } from 'react-navigation';
+import { SafeAreaProvider, initialWindowMetrics } from 'react-native-safe-area-context';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { useFonts } from 'expo-font';
@@ -13,20 +14,20 @@ import { setNavigator } from './src/navigationRef';
 import { Provider as AuthProvider } from './src/context/AuthContext';
 // Screens
 import WelcomeScreen from './src/screens/WelcomeScreen';
-import HomeScreen from './src/screens/HomeScreen';
+import FeedScreen from './src/screens/FeedScreen';
 import PostScreen from './src/screens/PostScreen';
 // Authentication Screens
 import ResolveAuthScreen from './src/screens/authentication/ResolveAuthScreen';
 import SignInScreen from './src/screens/authentication/SignInScreen';
 import SignUpScreen from './src/screens/authentication/SignUpScreen';
 import ResetPasswordScreen from './src/screens/authentication/ResetPasswordScreen';
-import createAnimatedSwitchNavigator from 'react-navigation-animated-switch';
 //Acccount Screens
 import AccountViewScreen from './src/screens/account/AccountViewScreen';
 import AccountEditScreen from './src/screens/account/AccountEditScreen';
 // Icons
 import { Entypo } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
 
 const switchNavigator = createSwitchNavigator({
   ResolveAuth: ResolveAuthScreen,
@@ -39,7 +40,7 @@ const switchNavigator = createSwitchNavigator({
   mainFlow: createBottomTabNavigator({
     homeFlow: {
       screen: createStackNavigator({
-        Home: HomeScreen
+        Feed: FeedScreen
       }),
       navigationOptions: {
         tabBarIcon: (({ tintColor }) => (
@@ -51,7 +52,7 @@ const switchNavigator = createSwitchNavigator({
       screen: PostScreen,
       navigationOptions: {
         tabBarIcon: (({ tintColor }) => (
-          <Entypo name='home' color={tintColor} size={32} />
+          <AntDesign name='pluscircle' color={tintColor} size={32} />
         ))
       }
     },
@@ -87,9 +88,11 @@ export default () => {
 
   return (
     loaded ? (
-        <AuthProvider>
-          <App ref={(navigator) => { setNavigator(navigator) }} />
-        </AuthProvider>
+        <SafeAreaProvider initialMetrics={initialWindowMetrics}>
+          <AuthProvider>
+            <App ref={(navigator) => { setNavigator(navigator) }} />
+          </AuthProvider>
+        </SafeAreaProvider>
       ) : null
   );
 }

@@ -33,7 +33,7 @@ const SignInScreen = ({ navigation }) => {
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
             <View style={styles.container}>
                 <SafeAreaView>
-                    <StatusBar backgroundColor="#F2F2F2" barStyle="dark-content" />
+                    <StatusBar backgroundColor='#F2F2F2' barStyle='dark-content' />
                 </SafeAreaView>
                 <View style={styles.auth}>
                     <Text style={styles.header}>Sign in</Text>

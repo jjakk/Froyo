@@ -5,7 +5,7 @@ import Post from '../components/Post';
 const FeedScreen = () => {
     return (
         <SafeAreaView>
-            <StatusBar backgroundColor='white' barStyle='dark-content' />
+            <StatusBar backgroundColor='#F2F2F2' barStyle='dark-content' />
             <ScrollView>
                 <Post
                     author='Jak Moden'

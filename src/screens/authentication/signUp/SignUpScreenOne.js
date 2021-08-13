@@ -11,8 +11,8 @@ import {
     Text,
     Input,
     Link,
-    Spacer,
-    Button
+    Button,
+    DatePicker
 } from '../../../components/froyo-elements';
 import { Context as AuthContext } from '../../../context/AuthContext';
 
@@ -20,7 +20,6 @@ const SignUpScreenOne = ({ navigation }) => {
     const { signUp, clearErrorMessage, state: { errorMessage } } = useContext(AuthContext);
     const [email, setEmail] = useState('');
     const [username, setUsername] = useState('');
-    const [dateOfBirth, setDateOfBirth] = useState('');
 
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -41,7 +40,10 @@ const SignUpScreenOne = ({ navigation }) => {
                         autoCapitalize='none'
                         autoCorrect={false}
                     />
-                    <Input style={styles.input} placeholder='Date of birth' onChangeText={setDateOfBirth} />
+                    <DatePicker
+                        buttonStyle={{width: 300}}
+                        containerStyle={styles.submitContainer}
+                    />
                     <Button
                         title='Continue'
                         color='#41CA99'

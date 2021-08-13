@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 import { Button as DefaultButton } from 'react-native-elements';
 
 const Button = (props) => {
-    const { color, textColor, type } = props;
+    const { color, textColor, type, textAlign } = props;
 
     const styles = StyleSheet.create({
         button: {
@@ -20,16 +20,13 @@ const Button = (props) => {
                 (type !== 'secondary')
                     ? 'transparent'
                     : color
-            )
+            ),
+            justifyContent: (textAlign === 'left' ? 'flex-start' : 'center')
         },
         title: {
             fontFamily: 'Nunito',
             fontSize: 24,
-            color: (
-                (type === 'secondary')
-                    ? 'white'
-                    : textColor || '#41CA99'
-            )
+            color: (textColor || 'white'),
         }
     });
 
@@ -37,12 +34,12 @@ const Button = (props) => {
         <DefaultButton
             {...props}
             buttonStyle={[
-                props.buttonStyle,
-                styles.button
+                styles.button,
+                props.buttonStyle
             ]}
             titleStyle={[
-                props.titleStyle,
-                styles.title
+                styles.title,
+                props.titleStyle
             ]}
             loadingProps={{
                 color: textColor,

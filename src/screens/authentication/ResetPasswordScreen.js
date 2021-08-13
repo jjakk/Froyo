@@ -31,7 +31,7 @@ const ResetPasswordScreen = ({ navigation }) => {
                         <Input style={styles.input} placeholder='Email' />
                         <Button
                             buttonStyle={styles.submit}
-                            title='Reset Password'
+                            title='Reset'
                             type='primary'
                             color='#41CA99'
                             textColor='white'
@@ -61,11 +61,11 @@ const styles = StyleSheet.create({
     },
     input: {
         width: 300,
-        margin: 20
+        margin: 10
     },
     submit: {
         width: 300,
-        margin: 20
+        margin: 10
     },
     back: {
         margin: 15

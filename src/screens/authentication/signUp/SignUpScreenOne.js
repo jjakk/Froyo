@@ -24,51 +24,55 @@ const SignUpScreenOne = ({ navigation }) => {
 
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-            <View style={styles.container}>
-                <SafeAreaView>
-                    <StatusBar backgroundColor="#F2F2F2" barStyle="dark-content" />
-                </SafeAreaView>
+            <SafeAreaView style={styles.container}>
                 <View style={styles.auth}>
                     <Text style={styles.header}>Sign up</Text>
-                    <Spacer>
-                        <Input style={styles.input} placeholder='Email' onChangeText={setEmail} />
-                    </Spacer>
-                    <Spacer>
-                        <Input style={styles.input} placeholder='Username' onChangeText={setUsername} />
-                    </Spacer>
-                    <Spacer>
-                        <Input style={styles.input} placeholder='Date of birth' onChangeText={setDateOfBirth} />
-                    </Spacer>
-                    <Spacer>
-                        <Button
-                            title='Continue'
-                            color='#41CA99'
-                            textColor='white'
-                            type='primary'
-                            buttonStyle={styles.submit}
-                            onPress={() => {
-                                clearErrorMessage();
-                                navigation.navigate('SignUpTwo')
-                            }}
-                        />
-                    </Spacer>
-                    <Text>Already have an account?</Text>
-                    <Link
+                    <Input
+                        style={styles.input}
+                        placeholder='Email'
+                        onChangeText={setEmail}
+                        autoCapitalize='none'
+                        autoCorrect={false}
+                    />
+                    <Input
+                        style={styles.input}
+                        placeholder='Username'
+                        onChangeText={setUsername}
+                        autoCapitalize='none'
+                        autoCorrect={false}
+                    />
+                    <Input style={styles.input} placeholder='Date of birth' onChangeText={setDateOfBirth} />
+                    <Button
+                        title='Continue'
                         color='#41CA99'
+                        textColor='white'
+                        type='primary'
+                        buttonStyle={styles.submit}
+                        containerStyle={styles.submitContainer}
                         onPress={() => {
                             clearErrorMessage();
-                            navigation.navigate('SignIn')
+                            navigation.navigate('SignUpTwo')
                         }}
-                    >
-                        Sign in
-                    </Link>
-                    {
-                        errorMessage !== ''
-                            ? <Text style={styles.error}>{errorMessage}</Text>
-                            : null
-                    }
+                    />
+                    <View style={styles.bottomText}>
+                        <Text>Already have an account?</Text>
+                        <Link
+                            color='#41CA99'
+                            onPress={() => {
+                                clearErrorMessage();
+                                navigation.navigate('SignIn')
+                            }}
+                        >
+                            Sign in
+                        </Link>
+                        {
+                            errorMessage !== ''
+                                ? <Text style={styles.error}>{errorMessage}</Text>
+                                : null
+                        }
+                    </View>
                 </View>
-            </View>
+            </SafeAreaView>
         </TouchableWithoutFeedback>
     );
 };
@@ -92,9 +96,18 @@ const styles = StyleSheet.create({
     },
     input: {
         width: 300,
+        margin: 10,
     },
     submit: {
-        width: 300
+        width: 300,
+    },
+    submitContainer: {
+        margin: 10
+    },
+    bottomText: {
+        margin: 10,
+        alignItems: 'center',
+        justifyContent: 'center'
     },
     error: {
         color: '#FB1C1C',

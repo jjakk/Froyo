@@ -19,8 +19,7 @@ import PostScreen from './src/screens/PostScreen';
 // Authentication Screens
 import ResolveAuthScreen from './src/screens/authentication/ResolveAuthScreen';
 import SignInScreen from './src/screens/authentication/SignInScreen';
-import SignUpScreenOne from './src/screens/authentication/SignUpScreenOne';
-import SignUpScreenTwo from './src/screens/authentication/SignUpScreenTwo';
+import SignUpScreen from './src/screens/authentication/SignUpScreen';
 import ResetPasswordScreen from './src/screens/authentication/ResetPasswordScreen';
 //Acccount Screens
 import AccountViewScreen from './src/screens/account/AccountViewScreen';
@@ -35,8 +34,7 @@ const switchNavigator = createSwitchNavigator({
   Welcome: WelcomeScreen,
   authFlow: createStackNavigator({
     SignIn: SignInScreen,
-    SignUpOne: SignUpScreenOne,
-    SignUpTwo: SignUpScreenTwo,
+    SignUp: SignUpScreen,
     ResetPassword: ResetPasswordScreen
   }),
   mainFlow: createBottomTabNavigator({

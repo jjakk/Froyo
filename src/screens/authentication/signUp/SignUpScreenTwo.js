@@ -2,24 +2,25 @@ import React, { useContext, useState } from 'react';
 import {
     SafeAreaView,
     View,
-    StyleSheet,
     StatusBar,
     TouchableWithoutFeedback,
-    Keyboard
+    Keyboard,
+    StyleSheet,
+    TouchableOpacity
 } from 'react-native';
 import {
-    Button,
     Text,
     Input,
-    Link,
-    Spacer
-} from '../../components/froyo-elements';
-import { Context as AuthContext } from '../../context/AuthContext';
+    Spacer,
+    Button
+} from '../../../components/froyo-elements';
+import { Context as AuthContext } from '../../../context/AuthContext';
+import { Ionicons } from '@expo/vector-icons';
 
-const SignUpScreen = ({ navigation }) => {
+const SignUpScreenTwo = ({ navigation }) => {
     const { signUp, clearErrorMessage, state: { errorMessage } } = useContext(AuthContext);
-    const [email, setEmail] = useState('');
-    const [username, setUsername] = useState('');
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
     const [password, setPassword] = useState('');
     const [passwordConfirm, setPasswordConfirm] = useState('');
 
@@ -29,13 +30,16 @@ const SignUpScreen = ({ navigation }) => {
                 <SafeAreaView>
                     <StatusBar backgroundColor="#F2F2F2" barStyle="dark-content" />
                 </SafeAreaView>
+                <TouchableOpacity style={styles.back} onPress={() => navigation.navigate('SignUpOne')}>
+                    <Ionicons name="arrow-back" size={52} color="black" />
+                </TouchableOpacity>
                 <View style={styles.auth}>
                     <Text style={styles.header}>Sign up</Text>
                     <Spacer>
-                        <Input style={styles.input} placeholder='Email' onChangeText={setEmail} />
+                        <Input style={styles.input} placeholder='First name' onChangeText={setFirstName} />
                     </Spacer>
                     <Spacer>
-                        <Input style={styles.input} placeholder='Username' onChangeText={setUsername} />
+                        <Input style={styles.input} placeholder='Last name' onChangeText={setLastName} />
                     </Spacer>
                     <Spacer>
                         <Input style={styles.input} placeholder='Password' onChangeText={setPassword} secureTextEntry />
@@ -50,21 +54,9 @@ const SignUpScreen = ({ navigation }) => {
                             textColor='white'
                             type='primary'
                             buttonStyle={styles.submit}
-                            onPress={() => {
-                                signUp({email, username, password, passwordConfirm});
-                            }}
+                            onPress={() => {}}
                         />
                     </Spacer>
-                    <Text>Already have an account?</Text>
-                    <Link
-                        color='#41CA99'
-                        onPress={() => {
-                            clearErrorMessage();
-                            navigation.navigate('SignIn')
-                        }}
-                    >
-                        Sign in
-                    </Link>
                     {
                         errorMessage !== ''
                             ? <Text style={styles.error}>{errorMessage}</Text>
@@ -76,7 +68,7 @@ const SignUpScreen = ({ navigation }) => {
     );
 };
 
-SignUpScreen.navigationOptions = {
+SignUpScreenTwo.navigationOptions = {
     headerShown: false
 };
 
@@ -87,7 +79,7 @@ const styles = StyleSheet.create({
     auth: {
         alignItems: 'center',
         justifyContent: 'center',
-        marginTop: 100
+        marginTop: 25
     },
     header: {
         fontSize: 48,
@@ -106,8 +98,12 @@ const styles = StyleSheet.create({
         fontSize: 22,
         width: 300,
         textAlign: 'center'
+    },
+
+    back: {
+        margin: 15
     }
 });
 
-export default SignUpScreen;
+export default SignUpScreenTwo;
 

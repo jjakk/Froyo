@@ -6,7 +6,9 @@ import {
     TouchableWithoutFeedback,
     Keyboard,
     StyleSheet,
-    TouchableOpacity
+    TouchableOpacity,
+    KeyboardAvoidingView,
+    Platform
 } from 'react-native';
 import {
     Text,
@@ -25,8 +27,12 @@ const SignUpScreenTwo = ({ navigation }) => {
     const [passwordConfirm, setPasswordConfirm] = useState('');
 
     return (
-        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-            <View style={styles.container}>
+        <TouchableWithoutFeedback style={{flex: 1}} onPress={Keyboard.dismiss}>
+            <KeyboardAvoidingView
+                behavior={Platform.OS === "ios" ? "padding" : "height"}
+                style={styles.container}
+                keyboardVerticalOffset={350}
+            >
                 <SafeAreaView>
                     <StatusBar backgroundColor="#F2F2F2" barStyle="dark-content" />
                 </SafeAreaView>
@@ -63,7 +69,7 @@ const SignUpScreenTwo = ({ navigation }) => {
                             : null
                     }
                 </View>
-            </View>
+            </KeyboardAvoidingView>
         </TouchableWithoutFeedback>
     );
 };
@@ -74,7 +80,7 @@ SignUpScreenTwo.navigationOptions = {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1
+        flex: 1,
     },
     auth: {
         alignItems: 'center',

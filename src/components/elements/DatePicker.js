@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import DateTimePicker from '@react-native-community/datetimepicker';
-import { View, Platform, StyleSheet } from 'react-native';
+import { View, Platform, StyleSheet, TouchableWithoutFeedback } from 'react-native';
 import Button from './Button';
 
 const DatePicker = (props) => {
@@ -52,6 +52,7 @@ const DatePicker = (props) => {
                     type='secondary'
                     textAlign='left'
                     titleStyle={styles.buttonText}
+                    TouchableComponent={TouchableWithoutFeedback}
                     {...props}
                 />
             </View>
@@ -61,8 +62,13 @@ const DatePicker = (props) => {
                     value={date}
                     mode={'date'}
                     is24Hour={true}
-                    display="default"
-                    onChange={onChange}
+                    display={Platform.OS === 'ios' ? 'spinner' : 'default'}
+                    onChange={() => {
+                        if(!dateFocused){
+                            setDateFocused(true);
+                        }
+                        onChange();
+                    }}
                 />
             )}
         </View>

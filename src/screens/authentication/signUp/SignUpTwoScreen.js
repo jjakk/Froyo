@@ -20,6 +20,9 @@ import { Context as AuthContext } from '../../../context/AuthContext';
 import { Ionicons } from '@expo/vector-icons';
 
 const SignUpTwoScreen = ({ navigation }) => {
+    const email = navigation.getParam('email');
+    const username = navigation.getParam('username');
+    const dob = navigation.getParam('dob');
     const { signUp, clearErrorMessage, state: { errorMessage } } = useContext(AuthContext);
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
@@ -34,7 +37,13 @@ const SignUpTwoScreen = ({ navigation }) => {
                     style={styles.container}
                 >
                     <View style={{flex: 1}}>
-                        <TouchableOpacity style={styles.back} onPress={() => navigation.navigate('SignUpOne')}>
+                        <TouchableOpacity
+                            style={styles.back}
+                            onPress={() => {
+                                clearErrorMessage();
+                                navigation.navigate('SignUpOne')
+                            }}
+                        >
                             <Ionicons name="arrow-back" size={52} color="black" />
                         </TouchableOpacity>
                         <View style={styles.auth}>
@@ -50,7 +59,9 @@ const SignUpTwoScreen = ({ navigation }) => {
                                 type='primary'
                                 buttonStyle={styles.submit}
                                 containerStyle={styles.submitContainer}
-                                onPress={() => {}}
+                                onPress={() => {
+                                    signUp({ email, username, dob, firstName, lastName, password, passwordConfirm });
+                                }}
                             />
                             {
                                 errorMessage !== ''

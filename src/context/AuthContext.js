@@ -54,7 +54,7 @@ const continueSignUp = (dispatch) => async ({ email, username, dob }) => {
         }
         const response = await froyoApi.post('/auth/verifyInfo', { email, username, dob });
         console.log(response);
-        navigate('SignUpTwo');
+        navigate('SignUpTwo', { email, username, dob });
     }
     catch(err){
         let message;
@@ -68,27 +68,27 @@ const continueSignUp = (dispatch) => async ({ email, username, dob }) => {
     }
 };
 
-const signUp = (dispatch) => async ({ email, username, password, passwordConfirm }) => {
-    if(password !== passwordConfirm){
-        dispatch({ type: 'add_error', payload: 'Passwords must match' });
+const signUp = (dispatch) => async (info) => {
+    try{
+        const { email, username, dob, firstName, lastName, password, passwordConfirm } = info;
+        if(password !== passwordConfirm){
+            dispatch({ type: 'add_error', payload: 'Passwords must match' });
+            return;
+        }
+        const response = await froyoApi.post('/auth/signup', info);
+        await AsyncStorage.setItem('token', response.data.token);
+        dispatch({ type: 'sign_in', payload: response.data.token });
+        navigate('homeFlow');
     }
-    else{
-        try{
-            const response = await froyoApi.post('/auth/signup', { email, username, password });
-            await AsyncStorage.setItem('token', response.data.token);
-            dispatch({ type: 'sign_in', payload: response.data.token });
-            navigate('Home');
+    catch(err){
+        let message;
+        if(err.response){
+            message = err.response.data;
         }
-        catch(err){
-            let message;
-            if(err.response){
-                message = err.response.data;
-            }
-            else{
-                message = err.message;
-            }
-            dispatch({ type: 'add_error', payload: message });
+        else{
+            message = err.message;
         }
+        dispatch({ type: 'add_error', payload: message });
     }
 };
 

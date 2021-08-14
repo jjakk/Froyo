@@ -63,11 +63,11 @@ const DatePicker = (props) => {
                     mode={'date'}
                     is24Hour={true}
                     display={Platform.OS === 'ios' ? 'spinner' : 'default'}
-                    onChange={() => {
+                    onChange={(event, date) => {
                         if(!dateFocused){
                             setDateFocused(true);
                         }
-                        onChange();
+                        onChange(event, date);
                     }}
                 />
             )}

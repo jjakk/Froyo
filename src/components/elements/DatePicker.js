@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { View, Platform, StyleSheet, TouchableWithoutFeedback } from 'react-native';
 import { Overlay } from 'react-native-elements';
@@ -8,12 +8,18 @@ const DatePicker = (props) => {
     const [date, setDate] = useState(new Date(1598051730000));
     const [show, setShow] = useState(false);
     const [dateFocused, setDateFocused] = useState(false);
+    const { setDob } = props;
+
+    useEffect(() => {
+        setDob(date);
+    }, [date]);
 
     const onChange = (event, selectedDate) => {
         if(!dateFocused){
             setDateFocused(true);
         }
         const currentDate = selectedDate || date;
+        setShow(Platform.OS === 'ios');
         setDate(currentDate);
     };
 

@@ -17,9 +17,10 @@ import {
 import { Context as AuthContext } from '../../../context/AuthContext';
 
 const SignUpScreenOne = ({ navigation }) => {
-    const { signUp, clearErrorMessage, state: { errorMessage } } = useContext(AuthContext);
+    const { continueSignUp, clearErrorMessage, state: { errorMessage } } = useContext(AuthContext);
     const [email, setEmail] = useState('');
     const [username, setUsername] = useState('');
+    const [dob, setDob] = useState(new Date(0));
 
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -43,6 +44,7 @@ const SignUpScreenOne = ({ navigation }) => {
                     <DatePicker
                         buttonStyle={{width: 300}}
                         containerStyle={styles.submitContainer}
+                        setDob={setDob}
                     />
                     <Button
                         title='Continue'
@@ -53,7 +55,7 @@ const SignUpScreenOne = ({ navigation }) => {
                         containerStyle={styles.submitContainer}
                         onPress={() => {
                             clearErrorMessage();
-                            navigation.navigate('SignUpTwo')
+                            continueSignUp({ email, username, dob });
                         }}
                     />
                     <View style={styles.bottomText}>

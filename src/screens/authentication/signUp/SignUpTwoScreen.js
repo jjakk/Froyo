@@ -19,7 +19,7 @@ import {
 import { Context as AuthContext } from '../../../context/AuthContext';
 import { Ionicons } from '@expo/vector-icons';
 
-const SignUpScreenTwo = ({ navigation }) => {
+const SignUpTwoScreen = ({ navigation }) => {
     const { signUp, clearErrorMessage, state: { errorMessage } } = useContext(AuthContext);
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
@@ -65,7 +65,7 @@ const SignUpScreenTwo = ({ navigation }) => {
     );
 };
 
-SignUpScreenTwo.navigationOptions = {
+SignUpTwoScreen.navigationOptions = {
     headerShown: false
 };
 
@@ -107,5 +107,5 @@ const styles = StyleSheet.create({
     }
 });
 
-export default SignUpScreenTwo;
+export default SignUpTwoScreen;
 

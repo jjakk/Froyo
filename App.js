@@ -19,8 +19,8 @@ import PostScreen from './src/screens/PostScreen';
 // Authentication Screens
 import ResolveAuthScreen from './src/screens/authentication/ResolveAuthScreen';
 import SignInScreen from './src/screens/authentication/SignInScreen';
-import SignUpScreenOne from './src/screens/authentication/signUp/SignUpScreenOne';
-import SignUpScreenTwo from './src/screens/authentication/signUp/SignUpScreenTwo';
+import SignUpOneScreen from './src/screens/authentication/signUp/SignUpOneScreen';
+import SignUpTwoScreen from './src/screens/authentication/signUp/SignUpTwoScreen';
 import ResetPasswordScreen from './src/screens/authentication/ResetPasswordScreen';
 //Acccount Screens
 import AccountViewScreen from './src/screens/account/AccountViewScreen';
@@ -37,8 +37,8 @@ const switchNavigator = createSwitchNavigator({
     SignIn: SignInScreen,
     SignUp: {
       screen: createStackNavigator({
-        SignUpOne: SignUpScreenOne,
-        SignUpTwo: SignUpScreenTwo
+        SignUpOne: SignUpOneScreen,
+        SignUpTwo: SignUpTwoScreen
       }),
       navigationOptions: {
         headerShown: false

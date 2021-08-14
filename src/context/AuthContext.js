@@ -37,6 +37,37 @@ const signIn = (dispatch) => async ({ email, password }) => {
     }
 };
 
+const continueSignUp = (dispatch) => async ({ email, username, dob }) => {
+    console.log(calculateAge(dob));
+    try{
+        if(!email){
+            dispatch({ type: 'add_error', payload: 'Email is required' });
+            return;
+        }
+        if(!username){
+            dispatch({ type: 'add_error', payload: 'Username is required' });
+            return;
+        }
+        if(calculateAge(dob) < 13){
+            dispatch({ type: 'add_error', payload: 'You must be 13 years or older to sign up' });
+            return;
+        }
+        const response = await froyoApi.post('/auth/verifyInfo', { email, username, dob });
+        console.log(response);
+        navigate('SignUpTwo');
+    }
+    catch(err){
+        let message;
+        if(err.response){
+            message = err.response.data;
+        }
+        else{
+            message = err.message;
+        }
+        dispatch({ type: 'add_error', payload: message });
+    }
+};
+
 const signUp = (dispatch) => async ({ email, username, password, passwordConfirm }) => {
     if(password !== passwordConfirm){
         dispatch({ type: 'add_error', payload: 'Passwords must match' });
@@ -103,9 +134,21 @@ const clearErrorMessage = (dispatch) => () => {
     dispatch({ type: 'add_error', payload: '' });
 }
 
+// Helper functions
+
+const calculateAge = (birthDate) => {
+    var today = new Date();
+    var age = today.getFullYear() - birthDate.getFullYear();
+    var m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+    }
+    return age;
+}
+
 export const { Provider, Context } = createDataContext(
     authReducer,
-    { signIn, signUp, checkSignedIn, signOut, getUserInfo, clearErrorMessage },
+    { signIn, continueSignUp, signUp, checkSignedIn, signOut, getUserInfo, clearErrorMessage },
     { /*isSignedIn: false,*/ user: {}, errorMessage: '' }
 );
 

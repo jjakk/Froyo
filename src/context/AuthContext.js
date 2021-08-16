@@ -71,6 +71,20 @@ const continueSignUp = (dispatch) => async ({ email, username, dob }) => {
 const signUp = (dispatch) => async (info) => {
     try{
         const { email, username, dob, firstName, lastName, password, passwordConfirm } = info;
+        switch(''){
+            case firstName:
+                dispatch({ type: 'add_error', payload: 'Must enter a first name' });
+                return;
+            case lastName:
+                dispatch({ type: 'add_error', payload: 'Must enter a last name' });
+                return;
+            case password:
+                dispatch({ type: 'add_error', payload: 'Must enter a password' });
+                return;
+            case passwordConfirm:
+                dispatch({ type: 'add_error', payload: 'Must confirm password' });
+                return;
+        }
         if(password !== passwordConfirm){
             dispatch({ type: 'add_error', payload: 'Passwords must match' });
             return;

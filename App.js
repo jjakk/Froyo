@@ -5,7 +5,7 @@ import {
   createSwitchNavigator
 } from 'react-navigation';
 import { SafeAreaProvider, initialWindowMetrics } from 'react-native-safe-area-context';
-import { createStackNavigator } from 'react-navigation-stack';
+import { createStackNavigator, TransitionPresets } from 'react-navigation-stack';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { useFonts } from 'expo-font';
 // Navigation
@@ -39,17 +39,32 @@ const switchNavigator = createSwitchNavigator({
       screen: createStackNavigator({
         SignUpOne: SignUpOneScreen,
         SignUpTwo: SignUpTwoScreen
+      }, {
+        headerMode: 'none',
+        defaultNavigationOptions: {
+          ...TransitionPresets.SlideFromRightIOS,
+        },
       }),
       navigationOptions: {
         headerShown: false
       }
     },
     ResetPassword: ResetPasswordScreen
+  }, {
+    headerMode: 'none',
+    defaultNavigationOptions: {
+      ...TransitionPresets.SlideFromRightIOS,
+    },
   }),
   mainFlow: createBottomTabNavigator({
     homeFlow: {
       screen: createStackNavigator({
         Feed: FeedScreen
+      }, {
+        headerMode: 'none',
+        defaultNavigationOptions: {
+          ...TransitionPresets.SlideFromRightIOS,
+        },
       }),
       navigationOptions: {
         tabBarIcon: (({ tintColor }) => (
@@ -69,6 +84,11 @@ const switchNavigator = createSwitchNavigator({
       screen: createStackNavigator({
         AccountView: AccountViewScreen,
         AccountEdit: AccountEditScreen
+      },{
+        headerMode: 'none',
+        defaultNavigationOptions: {
+          ...TransitionPresets.SlideFromRightIOS,
+        },
       }),
       navigationOptions: {
         tabBarIcon: (({ tintColor }) => (

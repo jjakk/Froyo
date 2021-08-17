@@ -18,9 +18,18 @@ import { Context as AuthContext } from '../../../context/AuthContext';
 
 const SignUpScreenOne = ({ navigation }) => {
     const { continueSignUp, clearErrorMessage, state: { errorMessage } } = useContext(AuthContext);
+    const [loading, setLoading] = useState(false);
     const [email, setEmail] = useState('');
     const [username, setUsername] = useState('');
     const [dob, setDob] = useState('');
+
+    const handleSubmit = () => {
+        //setLoading(true);
+        Keyboard.dismiss();
+        clearErrorMessage();
+        continueSignUp({ email, username, dob: dob });
+        //setLoading(false);
+    }
 
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -52,13 +61,10 @@ const SignUpScreenOne = ({ navigation }) => {
                         color='#41CA99'
                         textColor='white'
                         type='primary'
+                        loading={loading}
                         buttonStyle={styles.submit}
                         containerStyle={styles.submitContainer}
-                        onPress={() => {
-                            Keyboard.dismiss();
-                            clearErrorMessage();
-                            continueSignUp({ email, username, dob: dob });
-                        }}
+                        onPress={handleSubmit}
                     />
                     <View style={styles.bottomText}>
                         <Text>Already have an account?</Text>

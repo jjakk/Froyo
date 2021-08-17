@@ -39,7 +39,6 @@ const signIn = (dispatch) => async ({ email, password }) => {
 
 // Verify that the information from the first page of sign up is valid
 const continueSignUp = (dispatch) => async ({ email, username, dob }) => {
-    console.log(dob);
     try{
         // Check all feilds are filled
         switch(''){
@@ -58,8 +57,9 @@ const continueSignUp = (dispatch) => async ({ email, username, dob }) => {
             dispatch({ type: 'add_error', payload: 'You must be 13 years or older to sign up' });
             return;
         }
-        const response = await froyoApi.post('/auth/verifyInfo', { email, username, dob });
-        console.log(response);
+        // Check server if email, and username are valid
+        const checkEmail = await froyoApi.post('/auth/checkEmail', { email });
+        const checkUsername = await froyoApi.post('/auth/checkUsername', { username });
         navigate('SignUpTwo', { email, username, dob });
     }
     catch(err){
@@ -77,6 +77,7 @@ const continueSignUp = (dispatch) => async ({ email, username, dob }) => {
 const signUp = (dispatch) => async (info) => {
     try{
         const { email, username, dob, firstName, lastName, password, passwordConfirm } = info;
+        // Check all feilds are filled
         switch(''){
             case firstName:
                 dispatch({ type: 'add_error', payload: 'Must enter a first name' });
@@ -91,11 +92,13 @@ const signUp = (dispatch) => async (info) => {
                 dispatch({ type: 'add_error', payload: 'Must confirm password' });
                 return;
         }
+        // Make sure passwords match
         if(password !== passwordConfirm){
             dispatch({ type: 'add_error', payload: 'Passwords must match' });
             return;
         }
-        const response = await froyoApi.post('/auth/signup', info);
+        const response = await froyoApi.post('/auth/signup', { email, username, dob, firstName, lastName, password });
+        console.log(response);
         await AsyncStorage.setItem('token', response.data.token);
         dispatch({ type: 'sign_in', payload: response.data.token });
         navigate('homeFlow');

@@ -11,8 +11,7 @@ import {
     Button,
     Text,
     Input,
-    Link,
-    Spacer
+    Link
 } from '../../components/froyo-elements';
 import { Context as AuthContext } from '../../context/AuthContext';
 

@@ -13,21 +13,27 @@ import {
 import {
     Text,
     Input,
-    Spacer,
     Button
 } from '../../../components/froyo-elements';
 import { Context as AuthContext } from '../../../context/AuthContext';
 import { Ionicons } from '@expo/vector-icons';
 
 const SignUpTwoScreen = ({ navigation }) => {
+    // Form params from previous screen
     const email = navigation.getParam('email');
     const username = navigation.getParam('username');
     const dob = navigation.getParam('dob');
-    const { signUp, clearErrorMessage, state: { errorMessage } } = useContext(AuthContext);
+    // This screen's form params
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [password, setPassword] = useState('');
     const [passwordConfirm, setPasswordConfirm] = useState('');
+    // Context values & functions
+    const { signUp, clearErrorMessage, state: { errorMessage } } = useContext(AuthContext);
+
+    const handleSubmit = () => {
+        signUp({ email, username, dob, firstName, lastName, password, passwordConfirm });
+    };
 
     return (
         <SafeAreaView style={styles.container} forceInset={{top: 'always'}}>
@@ -59,9 +65,7 @@ const SignUpTwoScreen = ({ navigation }) => {
                                 type='primary'
                                 buttonStyle={styles.submit}
                                 containerStyle={styles.submitContainer}
-                                onPress={() => {
-                                    signUp({ email, username, dob, firstName, lastName, password, passwordConfirm });
-                                }}
+                                onPress={handleSubmit}
                             />
                             {
                                 errorMessage !== ''

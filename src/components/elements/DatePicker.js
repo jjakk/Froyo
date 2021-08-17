@@ -1,23 +1,26 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { View, Platform, StyleSheet, TouchableWithoutFeedback } from 'react-native';
 import { Overlay } from 'react-native-elements';
 import Button from './Button';
 
 const DatePicker = (props) => {
-    const [date, setDate] = useState(new Date(1598051730000));
+    const [date, setDate] = useState(new Date(new Date().toJSON().slice(0,10).replace(/-/g,'/')));
     const [show, setShow] = useState(false);
-    const [dateFocused, setDateFocused] = useState(false);
-    const { setDob } = props;
+    const { dob, setDob } = props;
+    // check if date has been touched yet
+    const didMountRef = useRef(false);
 
     useEffect(() => {
-        setDob(date);
+        if(didMountRef.current){
+            setDob(date);
+        }
+        else{
+            didMountRef.current = true;
+        }
     }, [date]);
 
     const onChange = (event, selectedDate) => {
-        if(!dateFocused){
-            setDateFocused(true);
-        }
         const currentDate = selectedDate || date;
         setShow(Platform.OS === 'ios');
         setDate(currentDate);
@@ -53,13 +56,10 @@ const DatePicker = (props) => {
             <Button
                 onPress={() => {
                     toggleShow();
-                    if(!dateFocused){
-                        setDateFocused(true);
-                    }
                 }}
-                title={(dateFocused ? (parseDate(date)) : 'Date of birth')}
+                title={dob ? parseDate(date) : 'Date of birth'}
                 color='black'
-                textColor={( dateFocused ? 'black' : 'rgba(0,0,0,0.3)')}
+                textColor={dob ? 'black' : 'rgba(0,0,0,0.3)'}
                 type='secondary'
                 textAlign='left'
                 titleStyle={styles.buttonText}

@@ -37,17 +37,23 @@ const signIn = (dispatch) => async ({ email, password }) => {
     }
 };
 
+// Verify that the information from the first page of sign up is valid
 const continueSignUp = (dispatch) => async ({ email, username, dob }) => {
-    console.log(calculateAge(dob));
+    console.log(dob);
     try{
-        if(!email){
-            dispatch({ type: 'add_error', payload: 'Email is required' });
-            return;
+        // Check all feilds are filled
+        switch(''){
+            case email:
+                dispatch({ type: 'add_error', payload: 'Email is required' });
+                return;
+            case username:
+                dispatch({ type: 'add_error', payload: 'Username is required' });
+                return;
+            case dob:
+                dispatch({ type: 'add_error', payload: 'Date of Birth is required' });
+                return;
         }
-        if(!username){
-            dispatch({ type: 'add_error', payload: 'Username is required' });
-            return;
-        }
+        // Check user is old enough
         if(calculateAge(dob) < 13){
             dispatch({ type: 'add_error', payload: 'You must be 13 years or older to sign up' });
             return;

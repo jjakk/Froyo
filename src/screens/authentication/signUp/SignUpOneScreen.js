@@ -20,7 +20,7 @@ const SignUpScreenOne = ({ navigation }) => {
     const { continueSignUp, clearErrorMessage, state: { errorMessage } } = useContext(AuthContext);
     const [email, setEmail] = useState('');
     const [username, setUsername] = useState('');
-    const [dob, setDob] = useState(new Date(0));
+    const [dob, setDob] = useState('');
 
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -44,6 +44,7 @@ const SignUpScreenOne = ({ navigation }) => {
                     <DatePicker
                         buttonStyle={{width: 300}}
                         containerStyle={styles.submitContainer}
+                        dob={dob}
                         setDob={setDob}
                     />
                     <Button
@@ -54,8 +55,9 @@ const SignUpScreenOne = ({ navigation }) => {
                         buttonStyle={styles.submit}
                         containerStyle={styles.submitContainer}
                         onPress={() => {
+                            Keyboard.dismiss();
                             clearErrorMessage();
-                            continueSignUp({ email, username, dob });
+                            continueSignUp({ email, username, dob: dob });
                         }}
                     />
                     <View style={styles.bottomText}>

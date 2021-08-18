@@ -30,78 +30,88 @@ import { Entypo } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 
+const signUpNavigator = createStackNavigator({
+  SignUpOne: SignUpOneScreen,
+  SignUpTwo: SignUpTwoScreen
+}, {
+  headerMode: 'none',
+  defaultNavigationOptions: {
+    ...TransitionPresets.SlideFromRightIOS,
+  },
+});
+
+const homeNavigator = createStackNavigator({
+  Feed: FeedScreen
+}, {
+  headerMode: 'none',
+  defaultNavigationOptions: {
+    ...TransitionPresets.SlideFromRightIOS,
+  },
+});
+
+const accountNavigator = createStackNavigator({
+  AccountView: AccountViewScreen,
+  AccountEdit: AccountEditScreen
+},{
+  headerMode: 'none',
+  defaultNavigationOptions: {
+    ...TransitionPresets.SlideFromRightIOS,
+  },
+});
+
+const mainNavigator = createBottomTabNavigator({
+  homeFlow: {
+    screen: homeNavigator,
+    navigationOptions: {
+      tabBarIcon: (({ tintColor }) => (
+        <Entypo name='home' color={tintColor} size={32} />
+      ))
+    }
+  },
+  PostScreen: {
+    screen: PostScreen,
+    navigationOptions: {
+      tabBarIcon: (({ tintColor }) => (
+        <AntDesign name='pluscircle' color={tintColor} size={32} />
+      ))
+    }
+  },
+  accountFlow: {
+    screen: accountNavigator,
+    navigationOptions: {
+      tabBarIcon: (({ tintColor }) => (
+        <Feather name='user' color={tintColor} size={32} />
+      ))
+    }
+  }
+}, {
+  tabBarOptions: {
+    showLabel: false,
+    activeTintColor: '#41CA99'
+  },
+});
+
+const authNavigator = createStackNavigator({
+  SignIn: SignInScreen,
+  SignUp: {
+    screen: signUpNavigator,
+    navigationOptions: {
+      headerShown: false
+    }
+  },
+  ResetPassword: ResetPasswordScreen
+}, {
+  headerMode: 'none',
+  defaultNavigationOptions: {
+    ...TransitionPresets.SlideFromRightIOS,
+  },
+});
+
 const switchNavigator = createSwitchNavigator({
   ResolveAuth: ResolveAuthScreen,
   Welcome: WelcomeScreen,
-  authFlow: createStackNavigator({
-    SignIn: SignInScreen,
-    SignUp: {
-      screen: createStackNavigator({
-        SignUpOne: SignUpOneScreen,
-        SignUpTwo: SignUpTwoScreen
-      }, {
-        headerMode: 'none',
-        defaultNavigationOptions: {
-          ...TransitionPresets.SlideFromRightIOS,
-        },
-      }),
-      navigationOptions: {
-        headerShown: false
-      }
-    },
-    ResetPassword: ResetPasswordScreen
-  }, {
-    headerMode: 'none',
-    defaultNavigationOptions: {
-      ...TransitionPresets.SlideFromRightIOS,
-    },
-  }),
-  mainFlow: createBottomTabNavigator({
-    homeFlow: {
-      screen: createStackNavigator({
-        Feed: FeedScreen
-      }, {
-        headerMode: 'none',
-        defaultNavigationOptions: {
-          ...TransitionPresets.SlideFromRightIOS,
-        },
-      }),
-      navigationOptions: {
-        tabBarIcon: (({ tintColor }) => (
-          <Entypo name='home' color={tintColor} size={32} />
-        ))
-      }
-    },
-    PostScreen: {
-      screen: PostScreen,
-      navigationOptions: {
-        tabBarIcon: (({ tintColor }) => (
-          <AntDesign name='pluscircle' color={tintColor} size={32} />
-        ))
-      }
-    },
-    accountFlow: {
-      screen: createStackNavigator({
-        AccountView: AccountViewScreen,
-        AccountEdit: AccountEditScreen
-      },{
-        headerMode: 'none',
-        defaultNavigationOptions: {
-          ...TransitionPresets.SlideFromRightIOS,
-        },
-      }),
-      navigationOptions: {
-        tabBarIcon: (({ tintColor }) => (
-          <Feather name='user' color={tintColor} size={32} />
-        ))
-      }
-    }
-  }, {
-    tabBarOptions: {
-      showLabel: false,
-      activeTintColor: '#41CA99'
-    },
-  })
+  authFlow: authNavigator,
+  mainFlow: mainNavigator
 });
 
 

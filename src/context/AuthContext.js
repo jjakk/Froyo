@@ -98,7 +98,6 @@ const signUp = (dispatch) => async (info) => {
             return;
         }
         const response = await froyoApi.post('/auth/signup', { email, username, dob, firstName, lastName, password });
-        console.log(response);
         await AsyncStorage.setItem('token', response.data.token);
         dispatch({ type: 'sign_in', payload: response.data.token });
         navigate('homeFlow');

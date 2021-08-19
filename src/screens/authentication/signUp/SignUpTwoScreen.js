@@ -32,6 +32,7 @@ const SignUpTwoScreen = ({ navigation }) => {
     const { signUp, clearErrorMessage, state: { errorMessage } } = useContext(AuthContext);
 
     const handleSubmit = () => {
+        Keyboard.dismiss();
         signUp({ email, username, dob, firstName, lastName, password, passwordConfirm });
     };
 

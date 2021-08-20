@@ -1,7 +1,7 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import createDataContext from './createDataContext';
 import froyoApi from '../api/froyo';
-import { navigate } from '../navigationRef';
+import { navigate } from '../navigation/navigationRef';
 
 const authReducer = (state, action) => {
     switch(action.type){

@@ -1,10 +1,17 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { SafeAreaView, View, Image, StyleSheet, StatusBar } from 'react-native';
 import { Button, Text, Spacer } from '../../components/froyo-elements';
 import { Context as AuthContext } from '../../context/AuthContext';
 
 const AccountViewScreen = () => {
-    const { signOut } = useContext(AuthContext);
+    const { getUserInfo, signOut, state: { loading, user } } = useContext(AuthContext);
+
+    useEffect(() => {
+        getUserInfo();
+    }, []);
+
+    console.log(user);
+    console.log(loading);
 
     return(
         <SafeAreaView>
@@ -13,17 +20,27 @@ const AccountViewScreen = () => {
                 <View style={styles.header}>
                     <Image style={styles.profilePicture} source={require('../../../assets/icons/guest.png')} />
                     <View style={styles.headerText}>
-                        <Text style={styles.name}>John Khachain</Text>
-                        <Text style={styles.username}>@Jak</Text>
+                        <Text style={styles.name} numberOfLines={1}>
+                            {user.firstName} {user.lastName}
+                        </Text>
+                        <Text style={styles.username} numberOfLines={1}>
+                            {!loading ? `@${user.username}` : ''}
+                        </Text>
                         <View style={styles.numbers}>
-                            <Text style={styles.followers}>10 Followers</Text>
-                            <Text style={styles.following}>3 Following</Text>
+                            <Text style={styles.followers}>{!loading? `${user.followers.length} Followers` : ''}</Text>
+                            <Text style={styles.following}>{!loading? `${user.following.length} Following` : ''}</Text>
                         </View>
                     </View>
                 </View>
-                <Text style={styles.description}>
-                    College Software engineering student studying at Drexel University. CEO & founder of Protos Apps LLC.
-                </Text>
+                {
+                    user.description
+                        ? (
+                            <Text style={styles.description}>
+                                {user.description}
+                            </Text>
+                        )
+                        : null
+                }
             </View>
             <Spacer>
                 <Button
@@ -73,10 +90,10 @@ const styles = StyleSheet.create({
         marginBottom: 5
     },
     followers: {
-        fontSize: 16
+        fontSize: 18
     },
     following: {
-        fontSize: 16,
+        fontSize: 18,
         marginLeft: 10
     },
     description: {

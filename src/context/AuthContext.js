@@ -3,6 +3,7 @@ import createDataContext from './createDataContext';
 import froyoApi from '../api/froyo';
 import { navigate } from '../navigation/navigationRef';
 
+// Handle setting state
 const authReducer = (state, action) => {
     switch(action.type){
         case 'add_error':
@@ -12,12 +13,13 @@ const authReducer = (state, action) => {
         case 'sign_out':
             return { ...state, token: null, errorMessage: '' };
         case 'get_user_info':
-            return { ...state, user: action.payload, errorMessage: '' }
+            return { ...state, loading: false, user: action.payload, errorMessage: '' }
         default:
             return state;
     }
 };
 
+// Sign in with email and password
 const signIn = (dispatch) => async ({ email, password }) => {
     try{
         const response = await froyoApi.post('/auth/signin', { email, password });
@@ -74,6 +76,7 @@ const continueSignUp = (dispatch) => async ({ email, username, dob }) => {
     }
 };
 
+// Create an account & sign in
 const signUp = (dispatch) => async (info) => {
     try{
         const { email, username, dob, firstName, lastName, password, passwordConfirm } = info;
@@ -114,47 +117,44 @@ const signUp = (dispatch) => async (info) => {
     }
 };
 
+// Clear token from AsyncStorage
 const signOut = (dispatch) => async () => {
     await AsyncStorage.removeItem('token');
     dispatch({ type: 'sign_out' });
     navigate('Welcome');
 };
 
+// Get a user's information given their auth token
 const getUserInfo = (dispatch) => async () => {
     try{
-        const token = await AsyncStorage.getItem('token');
-        const response = await froyoApi.get('/', {
-            headers: {
-                authorization: token
-            }
-        });
-        const { username, email } = response.data;
-        dispatch({ type: 'get_user_info', payload: { username, email } });
+        const user = await froyoApi.get('/');
+        const id = user.data;
+        console.log(id);
+        const response = await froyoApi.get(`/users/${id}`);
+        dispatch({ type: 'get_user_info', payload: response.data });
     }
     catch(err){
+        console.log(err);
         dispatch({ type: 'add_error', payload: `Ran into an error: ${err}` })
     }
-}
+};
 
+// Goes to either your feed or welcome page depending on whether you are logged in
 const checkSignedIn = (dispatch) => async () => {
     try{
-        const token = await AsyncStorage.getItem('token');
-        const { email, username } = await froyoApi.get('/', {
-            headers: {
-                authorization: token
-            }
-        });
+        const user = await froyoApi.get('/');
         navigate('mainFlow');
     }
     catch(err){
         console.log("Couldn't autheticate");
         navigate('Welcome');
     }
-}
+};
 
+// Clear the error message
 const clearErrorMessage = (dispatch) => () => {
     dispatch({ type: 'add_error', payload: '' });
-}
+};
 
 // Helper functions
 
@@ -171,6 +171,10 @@ const calculateAge = (birthDate) => {
 export const { Provider, Context } = createDataContext(
     authReducer,
     { signIn, continueSignUp, signUp, checkSignedIn, signOut, getUserInfo, clearErrorMessage },
-    { /*isSignedIn: false,*/ user: {}, errorMessage: '' }
+    { /*isSignedIn: false,*/
+        user: {},
+        loading: true,
+        errorMessage: ''
+    }
 );
 

@@ -95,7 +95,7 @@ const authNavigator = createStackNavigator({
         headerMode: 'none',
         defaultNavigationOptions: {
             ...TransitionPresets.SlideFromRightIOS,
-        }
+    }
 });
 
 const appNavigator = createSwitchNavigator({

@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import { SafeAreaView, View, Image, StyleSheet, StatusBar } from 'react-native';
-import { Button, Text, Spacer } from '../../components/froyo-elements';
+import { Button, Text, Spacer, Br } from '../../components/froyo-elements';
 import { Context as AuthContext } from '../../context/AuthContext';
 
 const AccountViewScreen = () => {
@@ -43,6 +43,12 @@ const AccountViewScreen = () => {
                 }
             </View>
             <Spacer>
+                <Button
+                    title='Edit profile'
+                    color='#41CA99'
+                    textColor='white'
+                />
+                <Br/>
                 <Button
                     title='Sign out'
                     color='#41CA99'

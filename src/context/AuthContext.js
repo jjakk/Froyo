@@ -134,7 +134,6 @@ const getUserInfo = (dispatch) => async () => {
         dispatch({ type: 'get_user_info', payload: response.data });
     }
     catch(err){
-        console.log(err);
         dispatch({ type: 'add_error', payload: `Ran into an error: ${err}` })
     }
 };

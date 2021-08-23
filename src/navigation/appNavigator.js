@@ -19,6 +19,9 @@ import AccountEditScreen from '../screens/account/AccountEditScreen';
 import { Entypo } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
+import FroyoIcon from '../../assets/icons/Froyo.svg';
+import UserIcon from '../../assets/icons/Profile Picture.svg';
+import HomeIcon from '../../assets/icons/Home.svg';
 
 
 const signUpNavigator = createStackNavigator({
@@ -54,32 +57,36 @@ const mainNavigator = createBottomTabNavigator({
     homeFlow: {
         screen: homeNavigator,
         navigationOptions: {
-        tabBarIcon: (({ tintColor }) => (
-            <Entypo name='home' color={tintColor} size={32} />
-        ))
+            tabBarIcon: (({ tintColor, focused }) => (
+                <HomeIcon color={tintColor} height={45} width={45}/>
+            ))
         }
     },
     PostScreen: {
         screen: PostScreen,
         navigationOptions: {
-        tabBarIcon: (({ tintColor }) => (
-            <AntDesign name='pluscircle' color={tintColor} size={32} />
-        ))
+            tabBarIcon: (({ tintColor, focused }) => (
+                <FroyoIcon color={tintColor} height={45} width={45}/>
+            ))
         }
     },
     accountFlow: {
         screen: accountNavigator,
         navigationOptions: {
-            tabBarIcon: (({ tintColor }) => (
-                <Feather name='user' color={tintColor} size={32} />
+            tabBarIcon: (({ tintColor, focused }) => (
+                <UserIcon color={tintColor} height={45} width={45}/>
             ))
         }
     }
     }, {
     tabBarOptions: {
         showLabel: false,
-        activeTintColor: '#41CA99'
-    },
+        activeTintColor: '#41CA99',
+        style: {
+            height: 75,
+            paddingTop: 15,
+        }
+    }
 });
 
 const authNavigator = createStackNavigator({

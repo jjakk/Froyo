@@ -10,9 +10,6 @@ const AccountViewScreen = () => {
         getUserInfo();
     }, []);
 
-    console.log(user);
-    console.log(loading);
-
     return(
         <SafeAreaView>
             <StatusBar backgroundColor='#F2F2F2' barStyle='dark-content' />

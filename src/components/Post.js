@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, Image } from 'react-native';
+import { View, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { Text, Br } from './froyo-elements';
 import MoreOptionsIcon from '../../assets/icons/MoreSettings.svg';
 

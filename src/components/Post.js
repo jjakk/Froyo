@@ -23,7 +23,7 @@ const Post = ({ author, age, text, imageSrc }) => {
                 <Text style={styles.text}>{text}</Text>
             </View>
             <View style={styles.actions}>
-
+                <TouchableOpacity></TouchableOpacity>
             </View>
         </View>
     );

@@ -129,7 +129,6 @@ const getUserInfo = (dispatch) => async () => {
     try{
         const user = await froyoApi.get('/');
         const id = user.data;
-        console.log(id);
         const response = await froyoApi.get(`/users/${id}`);
         dispatch({ type: 'get_user_info', payload: response.data });
     }

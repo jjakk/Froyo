@@ -44,6 +44,10 @@
         "wasm",
         "svg"
       ]
-    }
+    },
+    "androidNavigationBar": {
+      "barStyle": "light-content",
+      "backgroundColor": "#ffffff"
+   }
   }
 }

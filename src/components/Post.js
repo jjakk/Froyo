@@ -1,13 +1,13 @@
 import React from 'react';
 import { View, StyleSheet, Image } from 'react-native';
 import { Text, Br } from './froyo-elements';
-import { SimpleLineIcons } from '@expo/vector-icons';
+import MoreOptionsIcon from '../../assets/icons/MoreSettings.svg';
 
 const Post = ({ author, age, text, imageSrc }) => {
     return (
         <View style={styles.post}>
             <View style={styles.header}>
-                <SimpleLineIcons style={styles.options} name='options-vertical' size={24} color='black' />
+                <MoreOptionsIcon style={styles.options} name='options-vertical' height={24} width={24} color='black' />
                 <Image
                     style={styles.profilePicture}
                     source={require('../../assets/icons/guest.png')}
@@ -21,6 +21,9 @@ const Post = ({ author, age, text, imageSrc }) => {
             </View>
             <View style={styles.body}>
                 <Text style={styles.text}>{text}</Text>
+            </View>
+            <View style={styles.actions}>
+
             </View>
         </View>
     );
@@ -60,6 +63,10 @@ const styles = StyleSheet.create({
     body: {
         margin: 25,
         marginTop: 0
+    },
+    // Actions
+    actions: {
+
     }
 });
 

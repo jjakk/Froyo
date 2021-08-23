@@ -16,9 +16,6 @@ import ResetPasswordScreen from '../screens/authentication/ResetPasswordScreen';
 import AccountViewScreen from '../screens/account/AccountViewScreen';
 import AccountEditScreen from '../screens/account/AccountEditScreen';
 // Icons
-import { Entypo } from '@expo/vector-icons';
-import { Feather } from '@expo/vector-icons';
-import { AntDesign } from '@expo/vector-icons';
 import FroyoIcon from '../../assets/icons/Froyo.svg';
 import UserIcon from '../../assets/icons/Profile Picture.svg';
 import HomeIcon from '../../assets/icons/Home.svg';
@@ -58,7 +55,7 @@ const mainNavigator = createBottomTabNavigator({
         screen: homeNavigator,
         navigationOptions: {
             tabBarIcon: (({ tintColor, focused }) => (
-                <HomeIcon color={tintColor} height={45} width={45}/>
+                <HomeIcon color={tintColor} height={35} width={35}/>
             ))
         }
     },
@@ -66,7 +63,7 @@ const mainNavigator = createBottomTabNavigator({
         screen: PostScreen,
         navigationOptions: {
             tabBarIcon: (({ tintColor, focused }) => (
-                <FroyoIcon color={tintColor} height={45} width={45}/>
+                <FroyoIcon color={tintColor} height={35} width={35}/>
             ))
         }
     },
@@ -74,7 +71,7 @@ const mainNavigator = createBottomTabNavigator({
         screen: accountNavigator,
         navigationOptions: {
             tabBarIcon: (({ tintColor, focused }) => (
-                <UserIcon color={tintColor} height={45} width={45}/>
+                <UserIcon color={tintColor} height={35} width={35}/>
             ))
         }
     }
@@ -83,8 +80,7 @@ const mainNavigator = createBottomTabNavigator({
         showLabel: false,
         activeTintColor: '#41CA99',
         style: {
-            height: 75,
-            paddingTop: 15,
+            height: 60
         }
     }
 });

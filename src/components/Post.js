@@ -2,6 +2,12 @@ import React from 'react';
 import { View, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { Text, Br } from './froyo-elements';
 import MoreOptionsIcon from '../../assets/icons/MoreSettings.svg';
+import LikeIcon from '../../assets/icons/Like.svg';
+import DislikeIcon from '../../assets/icons/Dislike.svg';
+import CommentIcon from '../../assets/icons/Comment.svg';
+import ShareIcon from '../../assets/icons/Share.svg';
+
+const actionButtonSize = 25;
 
 const Post = ({ author, age, text, imageSrc }) => {
     return (
@@ -23,9 +29,20 @@ const Post = ({ author, age, text, imageSrc }) => {
                 <Text style={styles.text}>{text}</Text>
             </View>
             <View style={styles.actions}>
-                <TouchableOpacity></TouchableOpacity>
-                <TouchableOpacity></TouchableOpacity>
-                <TouchableOpacity></TouchableOpacity>
+                <View style={styles.likeness}>
+                    <TouchableOpacity>
+                        <LikeIcon width={actionButtonSize} height={actionButtonSize} color='black'/>
+                    </TouchableOpacity>
+                    <TouchableOpacity>
+                        <DislikeIcon width={actionButtonSize} height={actionButtonSize} style={styles.dislike}  color='black'/>
+                    </TouchableOpacity>
+                </View>
+                <TouchableOpacity>
+                    <CommentIcon width={actionButtonSize} height={actionButtonSize} style={styles.comment}  color='black'/>
+                </TouchableOpacity>
+                <TouchableOpacity>
+                    <ShareIcon width={actionButtonSize} height={actionButtonSize}  color='black'/>
+                </TouchableOpacity>
             </View>
         </View>
     );
@@ -68,7 +85,20 @@ const styles = StyleSheet.create({
     },
     // Actions
     actions: {
-
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        margin: 25,
+        alignItems: 'center'
+    },
+    likeness: {
+        flexDirection: 'row'
+    },
+    dislike: {
+        marginTop: 5,
+        marginLeft: 5
+    },
+    comment: {
+        marginRight: 30
     }
 });
 

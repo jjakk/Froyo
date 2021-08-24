@@ -88,6 +88,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         margin: 25,
+        marginTop: 0,
         alignItems: 'center'
     },
     likeness: {

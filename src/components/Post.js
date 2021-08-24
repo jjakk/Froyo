@@ -7,7 +7,7 @@ import DislikeIcon from '../../assets/icons/Dislike.svg';
 import CommentIcon from '../../assets/icons/Comment.svg';
 import ShareIcon from '../../assets/icons/Share.svg';
 
-const actionButtonSize = 25;
+const actionButtonSize = 30;
 
 const Post = ({ author, age, text, imageSrc }) => {
     return (
@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
         marginLeft: 5
     },
     comment: {
-        marginRight: 30
+        marginRight: 35
     }
 });
 

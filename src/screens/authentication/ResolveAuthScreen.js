@@ -1,14 +1,20 @@
-import React, { useContext } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { Image, StyleSheet, View } from 'react-native';
+import * as Progress from 'react-native-progress';
 import { Context as AuthContext } from '../../context/AuthContext';
 
 const ResolveAuthScreen = () => {
     const { checkSignedIn } = useContext(AuthContext);
-    checkSignedIn();
+    useEffect(() => {
+        checkSignedIn();
+    }, []);
 
     return (
         <View style={styles.container}>
-            <Image style={styles.logo} source={require('../../../assets/logo/Logo-White.png')} />
+            <View style={styles.animation}>
+                <Image style={styles.logo} source={require('../../../assets/logo/Logo-White.png')} />
+                <Progress.Bar style={styles.bar} indeterminate={true} width={104} color='white' />
+            </View>
         </View>
     );
 };
@@ -20,9 +26,16 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         backgroundColor: '#41CA99'
     },
+    animation: {
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
     logo: {
         width: 104,
         height: 120,
+    },
+    bar: {
+        marginTop: 25
     }
 });
 

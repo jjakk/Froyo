@@ -39,13 +39,13 @@ const AccountViewScreen = () => {
                         : null
                 }
             </View>
-            <Spacer>
+            <View style={styles.auth}>
                 <Button
                     title='Edit profile'
                     color='#41CA99'
                     textColor='white'
+                    style={styles.authButton}
                 />
-                <Br/>
                 <Button
                     title='Sign out'
                     color='#41CA99'
@@ -53,8 +53,9 @@ const AccountViewScreen = () => {
                     onPress={() => {
                         signOut();
                     }}
+                    style={styles.authButton}
                 />
-            </Spacer>
+            </View>
         </SafeAreaView>
     );
 };
@@ -66,7 +67,8 @@ AccountViewScreen.navigationOptions = {
 const styles = StyleSheet.create({
     // Profile
     profile: {
-        margin: 25
+        margin: 25,
+        marginBottom: 0
     },
     header: {
         flexDirection: 'row',
@@ -101,6 +103,16 @@ const styles = StyleSheet.create({
     },
     description: {
         fontSize: 22
+    },
+    // Auth
+    auth: {
+        margin: 25,
+        marginTop: 10,
+        flexDirection: 'row',
+        justifyContent: 'space-between'
+    },
+    authButton: {
+        width: 175
     }
 });
 

@@ -95,8 +95,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row'
     },
     dislike: {
-        marginTop: 5,
-        marginLeft: 5
+        marginTop: 7.5,
+        marginLeft: 7.5
     },
     comment: {
         marginRight: 35

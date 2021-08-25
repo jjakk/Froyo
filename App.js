@@ -18,6 +18,7 @@ export default () => {
   // Import custom fonts
   const [loaded] = useFonts({
     'Nunito': require('./assets/fonts/Nunito/Nunito-Regular.ttf'),
+    'Nunito-SemiBold': require('./assets/fonts/Nunito/Nunito-SemiBold.ttf'),
     'Nunito-Bold': require('./assets/fonts/Nunito/Nunito-Bold.ttf'),
     'Nunito-Light': require('./assets/fonts/Nunito/Nunito-Light.ttf'),
   });

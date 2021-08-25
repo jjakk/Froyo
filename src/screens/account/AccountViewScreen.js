@@ -45,6 +45,7 @@ const AccountViewScreen = () => {
                     color='#41CA99'
                     textColor='white'
                     style={styles.authButton}
+                    titleStyle={{fontFamily: 'Nunito-SemiBold'}}
                 />
                 <Button
                     title='Sign out'
@@ -54,7 +55,12 @@ const AccountViewScreen = () => {
                         signOut();
                     }}
                     style={styles.authButton}
+                    titleStyle={{fontFamily: 'Nunito-SemiBold'}}
                 />
+            </View>
+            <View style={styles.post}>
+                <Text style={styles.postsHeader}>Posts</Text>
+
             </View>
         </SafeAreaView>
     );
@@ -113,6 +119,15 @@ const styles = StyleSheet.create({
     },
     authButton: {
         width: 175
+    },
+    // Posts
+    posts: {
+        margin: 25,
+    },
+    postsHeader: {
+        textAlign: 'center',
+        fontSize: 32,
+        margin: 10
     }
 });
 

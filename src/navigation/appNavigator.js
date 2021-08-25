@@ -32,12 +32,22 @@ const signUpNavigator = createStackNavigator({
 });
 
 const homeNavigator = createStackNavigator({
-        Feed: FeedScreen
+        Feed: FeedScreen,
     }, {
         headerMode: 'none',
         defaultNavigationOptions: {
             ...TransitionPresets.SlideFromRightIOS,
         },
+});
+
+const feedNavigator = createStackNavigator({
+        Feed: FeedScreen,
+        Post: PostScreen,
+    }, {
+    headerMode: 'none',
+    defaultNavigationOptions: {
+        ...TransitionPresets.SlideFromRightIOS,
+    }
 });
 
 const accountNavigator = createStackNavigator({
@@ -52,15 +62,15 @@ const accountNavigator = createStackNavigator({
 
 const mainNavigator = createBottomTabNavigator({
     homeFlow: {
-        screen: homeNavigator,
+        screen: PostScreen,
         navigationOptions: {
             tabBarIcon: (({ tintColor, focused }) => (
                 <HomeIcon color={tintColor} height={35} width={35}/>
             ))
         }
     },
-    PostScreen: {
-        screen: PostScreen,
+    feedFlow: {
+        screen: feedNavigator,
         navigationOptions: {
             tabBarIcon: (({ tintColor, focused }) => (
                 <FroyoIcon color={tintColor} height={35} width={35}/>
@@ -82,7 +92,8 @@ const mainNavigator = createBottomTabNavigator({
         style: {
             height: 60
         }
-    }
+    },
+    initialRouteName: 'feedFlow'
 });
 
 const authNavigator = createStackNavigator({

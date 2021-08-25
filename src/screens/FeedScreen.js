@@ -1,8 +1,9 @@
 import React from 'react';
-import { ScrollView, SafeAreaView, StatusBar } from 'react-native';
+import { ScrollView, SafeAreaView, StyleSheet, StatusBar, TouchableNativeFeedback } from 'react-native';
 import Post from '../components/Post';
+import CreatePostIcon from '../../assets/icons/CreatePost.svg';
 
-const FeedScreen = () => {
+const FeedScreen = ({ navigation }) => {
     return (
         <SafeAreaView>
             <StatusBar backgroundColor='#F2F2F2' barStyle='dark-content' />
@@ -53,6 +54,9 @@ const FeedScreen = () => {
                     Never gonna tell a lie and hurt you'
                 />
             </ScrollView>
+            <TouchableNativeFeedback onPress={() => navigation.navigate('Post')}>
+                <CreatePostIcon width={50} height={50} style={styles.createPost} />
+            </TouchableNativeFeedback>
         </SafeAreaView>
     );
 };
@@ -60,6 +64,14 @@ const FeedScreen = () => {
 FeedScreen.navigationOptions = {
     headerShown: false
 };
+
+const styles = StyleSheet.create({
+    createPost: {
+        position: 'absolute',
+        bottom: 20,
+        right: 20
+    }
+});
 
 export default FeedScreen;
 

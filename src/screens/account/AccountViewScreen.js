@@ -44,8 +44,8 @@ const AccountViewScreen = () => {
                     title='Edit profile'
                     color='#41CA99'
                     textColor='white'
-                    style={styles.authButton}
-                    titleStyle={{fontFamily: 'Nunito-SemiBold'}}
+                    buttonStyle={styles.authButton}
+                    titleStyle={styles.authButtonText}
                 />
                 <Button
                     title='Sign out'
@@ -54,8 +54,8 @@ const AccountViewScreen = () => {
                     onPress={() => {
                         signOut();
                     }}
-                    style={styles.authButton}
-                    titleStyle={{fontFamily: 'Nunito-SemiBold'}}
+                    buttonStyle={styles.authButton}
+                    titleStyle={styles.authButtonText}
                 />
             </View>
             <View style={styles.post}>
@@ -115,10 +115,14 @@ const styles = StyleSheet.create({
         margin: 25,
         marginTop: 10,
         flexDirection: 'row',
-        justifyContent: 'space-between'
+        justifyContent: 'space-evenly'
     },
     authButton: {
-        width: 175
+        width: 150,
+    },
+    authButtonText: {
+        fontFamily: 'Nunito-SemiBold',
+        fontSize: 24
     },
     // Posts
     posts: {
@@ -126,7 +130,7 @@ const styles = StyleSheet.create({
     },
     postsHeader: {
         textAlign: 'center',
-        fontSize: 32,
+        fontSize: 28,
         margin: 10
     }
 });

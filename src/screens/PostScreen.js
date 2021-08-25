@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, SafeAreaView, StyleSheet, TouchableOpacity, TouchableNativeFeedback } from 'react-native';
 import * as MediaLibrary from 'expo-media-library';
-import { Text, Input } from '../components/froyo-elements';
+import { Button, Text, Input } from '../components/froyo-elements';
 import BackIcon from '../../assets/icons/Back.svg';
 import PlusIcon from '../../assets/icons/Plus.svg';
 
@@ -43,6 +43,13 @@ const PostScreen = ({ navigation }) => {
                     <Text style={styles.attachmentText}>Add a photo or video</Text>
                 </View>
             </TouchableOpacity>
+            <Button
+                buttonStyle={styles.submit}
+                type='primary'
+                title='Post'
+                color='#41CA99'
+                textColor='white'
+            />
             <TouchableNativeFeedback onPress={() => navigation.pop()}>
                 <BackIcon width={25} height={25} style={styles.back} />
             </TouchableNativeFeedback>
@@ -86,6 +93,9 @@ const styles = StyleSheet.create({
         fontSize: 24,
         marginTop: 20,
         color: '#393939'
+    },
+    submit: {
+        margin: 15
     }
 });
 

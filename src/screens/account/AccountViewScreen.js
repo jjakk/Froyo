@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import { SafeAreaView, View, Image, StyleSheet, StatusBar } from 'react-native';
-import { Button, Text, Spacer, Br } from '../../components/froyo-elements';
+import { Button, Text, } from '../../components/froyo-elements';
 import { Context as AuthContext } from '../../context/AuthContext';
 
 const AccountViewScreen = () => {
@@ -58,9 +58,9 @@ const AccountViewScreen = () => {
                     titleStyle={styles.authButtonText}
                 />
             </View>
-            <View style={styles.post}>
+            <View style={styles.posts}>
                 <Text style={styles.postsHeader}>Posts</Text>
-
+                <View style={styles.postsHeaderUnderline}></View>
             </View>
         </SafeAreaView>
     );
@@ -127,11 +127,21 @@ const styles = StyleSheet.create({
     // Posts
     posts: {
         margin: 25,
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     postsHeader: {
         textAlign: 'center',
-        fontSize: 28,
+        fontSize: 32,
         margin: 10
+    },
+    postsHeaderUnderline: {
+        width: 80,
+        height: 2,
+        backgroundColor: 'black',
+        opacity: 0.75,
+        marginBottom: 10,
+        borderRadius: 2
     }
 });
 

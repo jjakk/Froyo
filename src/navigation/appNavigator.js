@@ -19,6 +19,7 @@ import AccountEditScreen from '../screens/account/AccountEditScreen';
 import FroyoIcon from '../../assets/icons/Froyo.svg';
 import UserIcon from '../../assets/icons/Profile Picture.svg';
 import HomeIcon from '../../assets/icons/Home.svg';
+import { View } from 'react-native';
 
 
 const signUpNavigator = createStackNavigator({
@@ -62,7 +63,7 @@ const accountNavigator = createStackNavigator({
 
 const mainNavigator = createBottomTabNavigator({
     homeFlow: {
-        screen: PostScreen,
+        screen: () => (<View></View>),
         navigationOptions: {
             tabBarIcon: (({ tintColor, focused }) => (
                 <HomeIcon color={tintColor} height={35} width={35}/>

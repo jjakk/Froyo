@@ -27,7 +27,7 @@ const PostScreen = ({ navigation }) => {
     }
 
     return(
-        <SafeAreaView>
+        <SafeAreaView style={styles.container}>
             <Text style={styles.postHeader}>Post</Text>
             <View style={styles.bodyContainer}>
                 <Input
@@ -58,6 +58,10 @@ const PostScreen = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
+    container: {
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
     back: {
         position: 'absolute',
         top: Platform.OS === 'ios' ? 60 : 20,
@@ -71,14 +75,15 @@ const styles = StyleSheet.create({
     },
     // Inputs
     bodyContainer: {
-        maxHeight: 300
+        maxHeight: 300,
+        width: 350,
+        margin: 15,
     },
     body: {
         borderColor: '#cccccc',
-        margin: 15
     },
     bodyText: {
-        fontSize: 24,
+        fontSize: 22
     },
     attachment: {
         flexDirection: 'column',
@@ -87,7 +92,8 @@ const styles = StyleSheet.create({
         backgroundColor: '#E5E5E5',
         margin: 15,
         padding: 25,
-        borderRadius: 15
+        borderRadius: 15,
+        width: 350
     },
     attachmentText: {
         fontSize: 24,
@@ -95,7 +101,8 @@ const styles = StyleSheet.create({
         color: '#393939'
     },
     submit: {
-        margin: 15
+        margin: 15,
+        width: 350
     }
 });
 

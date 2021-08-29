@@ -40,23 +40,28 @@ const AccountViewScreen = () => {
                 }
             </View>
             <View style={styles.auth}>
-                <Button
-                    title='Edit profile'
-                    color='#41CA99'
-                    textColor='white'
-                    buttonStyle={styles.authButton}
-                    titleStyle={styles.authButtonText}
-                />
-                <Button
-                    title='Sign out'
-                    color='#41CA99'
-                    textColor='white'
-                    onPress={() => {
-                        signOut();
-                    }}
-                    buttonStyle={styles.authButton}
-                    titleStyle={styles.authButtonText}
-                />
+                <View style={styles.authButtonContainer}>
+                    <Button
+                        title='Edit profile'
+                        color='#41CA99'
+                        textColor='white'
+                        buttonStyle={styles.authButton}
+                        titleStyle={styles.authButtonText}
+                    />
+                </View>
+                <View style={styles.gap}></View>
+                <View  style={styles.authButtonContainer}>
+                    <Button
+                        title='Sign out'
+                        color='#41CA99'
+                        textColor='white'
+                        onPress={() => {
+                            signOut();
+                        }}
+                        buttonStyle={styles.authButton}
+                        titleStyle={styles.authButtonText}
+                    />
+                </View>
             </View>
             <View style={styles.posts}>
                 <Text style={styles.postsHeader}>Posts</Text>
@@ -115,14 +120,17 @@ const styles = StyleSheet.create({
         margin: 25,
         marginTop: 10,
         flexDirection: 'row',
-        justifyContent: 'space-evenly'
+        alignItems: 'center',
+        justifyContent: 'center',
     },
-    authButton: {
-        width: 150,
+    authButtonContainer: {
+        flex: 1,
+    },
+    gap: {
+        width: 25,
     },
     authButtonText: {
-        fontFamily: 'Nunito-SemiBold',
-        fontSize: 24
+        fontSize: 22
     },
     // Posts
     posts: {

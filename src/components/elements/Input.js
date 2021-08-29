@@ -14,7 +14,7 @@ const Input = (props) => {
 const styles = StyleSheet.create({
     container: {
         padding: 15,
-        borderWidth: 2,
+        borderWidth: 1,
         borderRadius: 15,
         borderColor: '#404040'
     },

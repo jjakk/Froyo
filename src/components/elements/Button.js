@@ -9,7 +9,7 @@ const Button = (props) => {
         button: {
             borderRadius: 15,
             padding: 10,
-            borderWidth: 2,
+            borderWidth: 1,
             backgroundColor: (
                 (type === 'secondary')
                     ? 'transparent'

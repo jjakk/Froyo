@@ -41,6 +41,7 @@ const homeNavigator = createStackNavigator({
         },
 });
 
+/*
 const feedNavigator = createStackNavigator({
         Feed: FeedScreen,
         Post: PostScreen,
@@ -50,7 +51,9 @@ const feedNavigator = createStackNavigator({
         ...TransitionPresets.SlideFromRightIOS,
     }
 });
+*/
 
+/*
 const accountNavigator = createStackNavigator({
     AccountView: AccountViewScreen,
     AccountEdit: AccountEditScreen
@@ -60,8 +63,9 @@ const accountNavigator = createStackNavigator({
             ...TransitionPresets.SlideFromRightIOS,
         },
 });
+*/
 
-const mainNavigator = createBottomTabNavigator({
+const tabNavigator = createBottomTabNavigator({
     homeFlow: {
         screen: () => (<SafeAreaView><Text>Home Screen</Text></SafeAreaView>),
         navigationOptions: {
@@ -70,22 +74,22 @@ const mainNavigator = createBottomTabNavigator({
             ))
         }
     },
-    feedFlow: {
-        screen: feedNavigator,
+    Feed: {
+        screen: FeedScreen,
         navigationOptions: {
             tabBarIcon: (({ tintColor, focused }) => (
                 <FroyoIcon color={tintColor} height={35} width={35}/>
             ))
         }
     },
-    accountFlow: {
-        screen: accountNavigator,
+    AccountView: {
+        screen: AccountViewScreen,
         navigationOptions: {
             tabBarIcon: (({ tintColor, focused }) => (
                 <UserIcon color={tintColor} height={35} width={35}/>
             ))
         }
-    }
+    },
     }, {
     tabBarOptions: {
         showLabel: false,
@@ -94,8 +98,21 @@ const mainNavigator = createBottomTabNavigator({
             height: 60
         }
     },
-    initialRouteName: 'feedFlow'
+    initialRouteName: 'Feed'
 });
+
+const mainNavigator = createStackNavigator({
+        tabFlow: tabNavigator,
+        AccountEdit: AccountEditScreen,
+        Post: PostScreen
+    },
+    {
+        headerMode: 'none',
+        defaultNavigationOptions: {
+            ...TransitionPresets.SlideFromRightIOS,
+        },
+    }
+);
 
 const authNavigator = createStackNavigator({
     SignIn: SignInScreen,

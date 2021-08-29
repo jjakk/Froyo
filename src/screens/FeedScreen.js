@@ -5,7 +5,7 @@ import CreatePostIcon from '../../assets/icons/CreatePost.svg';
 
 const FeedScreen = ({ navigation }) => {
     return (
-        <SafeAreaView>
+        <SafeAreaView style={styles.container}>
             <StatusBar backgroundColor='#F2F2F2' barStyle='dark-content' />
             <ScrollView>
                 <Post
@@ -70,6 +70,9 @@ const styles = StyleSheet.create({
         position: 'absolute',
         bottom: 20,
         right: 20
+    },
+    container: {
+        backgroundColor: 'ghostwhite'
     }
 });
 

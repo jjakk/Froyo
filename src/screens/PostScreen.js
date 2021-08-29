@@ -50,7 +50,7 @@ const PostScreen = ({ navigation }) => {
                 color='#41CA99'
                 textColor='white'
             />
-            <TouchableNativeFeedback onPress={() => navigation.pop()}>
+            <TouchableNativeFeedback onPress={() => navigation.navigate('Feed')}>
                 <BackIcon width={25} height={25} style={styles.back} />
             </TouchableNativeFeedback>
         </SafeAreaView>

@@ -3,7 +3,7 @@ import { SafeAreaView, View, Image, StyleSheet, StatusBar } from 'react-native';
 import { Button, Text, } from '../../components/froyo-elements';
 import { Context as AuthContext } from '../../context/AuthContext';
 
-const AccountViewScreen = () => {
+const AccountViewScreen = ({ navigation }) => {
     const { getUserInfo, signOut, state: { loading, user } } = useContext(AuthContext);
 
     useEffect(() => {
@@ -47,6 +47,9 @@ const AccountViewScreen = () => {
                         textColor='white'
                         buttonStyle={styles.authButton}
                         titleStyle={styles.authButtonText}
+                        onPress={() => {
+                            navigation.navigate('AccountEdit');
+                        }}
                     />
                 </View>
                 <View style={styles.gap}></View>
@@ -79,7 +82,7 @@ const styles = StyleSheet.create({
     // Profile
     profile: {
         margin: 25,
-        marginBottom: 0
+        marginBottom: 0,
     },
     header: {
         flexDirection: 'row',
@@ -121,7 +124,7 @@ const styles = StyleSheet.create({
         marginTop: 10,
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'center'
     },
     authButtonContainer: {
         flex: 1,
@@ -135,6 +138,7 @@ const styles = StyleSheet.create({
     // Posts
     posts: {
         margin: 25,
+        marginTop: 15,
         justifyContent: 'center',
         alignItems: 'center'
     },
@@ -144,7 +148,7 @@ const styles = StyleSheet.create({
         margin: 10
     },
     postsHeaderUnderline: {
-        width: 80,
+        width: 100,
         height: 2,
         backgroundColor: 'black',
         opacity: 0.75,

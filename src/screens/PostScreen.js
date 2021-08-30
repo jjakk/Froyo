@@ -79,9 +79,6 @@ const styles = StyleSheet.create({
         width: 350,
         margin: 15,
     },
-    body: {
-        borderColor: '#cccccc',
-    },
     bodyText: {
         fontSize: 22
     },
@@ -89,7 +86,8 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#E5E5E5',
+        borderWidth: 1,
+        borderColor: '#404040',
         margin: 15,
         padding: 25,
         borderRadius: 15,

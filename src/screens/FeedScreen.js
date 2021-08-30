@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
         right: 20
     },
     container: {
-        backgroundColor: 'ghostwhite'
+        backgroundColor: '#F2F2F2'
     }
 });
 

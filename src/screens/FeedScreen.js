@@ -1,6 +1,7 @@
 import React from 'react';
-import { FlatList, SafeAreaView, StyleSheet, StatusBar, TouchableNativeFeedback } from 'react-native';
+import { FlatList, SafeAreaView, StyleSheet, TouchableNativeFeedback } from 'react-native';
 import Post from '../components/Post';
+import EmptyMessage from '../components/EmptyMessage';
 import CreatePostIcon from '../../assets/icons/CreatePost.svg';
 
 const FeedScreen = ({ navigation }) => {
@@ -32,22 +33,31 @@ Never gonna say goodbye. Never gonna tell a lie and hurt you`
 
     return (
         <SafeAreaView style={styles.container}>
-            <StatusBar backgroundColor='#F2F2F2' barStyle='dark-content' />
-            <FlatList
-                showsVerticalScrollIndicator={false}
-                data={dummyPosts}
-                style={styles.postList}
-                keyExtractor={item => item.id}
-                renderItem={({ item }) => {
-                    return (
-                        <Post
-                            author={item.author}
-                            age={item.age}
-                            text={item.text}
-                        />
-                    );
-                }}
-            />
+            {
+                dummyPosts.length !== 0 ? (
+                    <FlatList
+                        showsVerticalScrollIndicator={false}
+                        data={dummyPosts}
+                        style={styles.postList}
+                        keyExtractor={item => item.id}
+                        renderItem={({ item }) => {
+                            return (
+                                <Post
+                                    author={item.author}
+                                    age={item.age}
+                                    text={item.text}
+                                />
+                            );
+                        }}
+                    />
+                )
+                : (
+                    <EmptyMessage
+                        style={styles.emptyMessage}
+                        subheaderText="Follow people to populate your feed"
+                    />
+                )
+            }
             <TouchableNativeFeedback onPress={() => navigation.navigate('Post')}>
                 <CreatePostIcon width={50} height={50} style={styles.createPost} />
             </TouchableNativeFeedback>
@@ -68,9 +78,15 @@ const styles = StyleSheet.create({
     container: {
         backgroundColor: '#F2F2F2',
         flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     postList: {
         flex: 1,
+        flexDirection: 'column',
+    },
+    emptyMessage: {
+        marginBottom: 100
     }
 });
 

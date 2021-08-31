@@ -7,7 +7,7 @@ const FeedScreen = ({ navigation }) => {
     return (
         <SafeAreaView style={styles.container}>
             <StatusBar backgroundColor='#F2F2F2' barStyle='dark-content' />
-            <ScrollView>
+            <ScrollView showsVerticalScrollIndicator={false}>
                 <Post
                     author='Jak Moden'
                     age='3d'

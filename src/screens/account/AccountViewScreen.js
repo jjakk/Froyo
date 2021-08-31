@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import { SafeAreaView, View, Image, StyleSheet, StatusBar } from 'react-native';
 import { Button, Text, } from '../../components/froyo-elements';
 import { Context as AuthContext } from '../../context/AuthContext';
+import EmptyMessage from '../../components/EmptyMessage';
 
 const AccountViewScreen = ({ navigation }) => {
     const { getUserInfo, signOut, state: { loading, user } } = useContext(AuthContext);
@@ -69,6 +70,10 @@ const AccountViewScreen = ({ navigation }) => {
             <View style={styles.posts}>
                 <Text style={styles.postsHeader}>Posts</Text>
                 <View style={styles.postsHeaderUnderline}></View>
+                <EmptyMessage
+                    style={styles.emptyMessage}
+                    subheaderText="You haven't posted anything yet"
+                />
             </View>
         </SafeAreaView>
     );
@@ -148,12 +153,15 @@ const styles = StyleSheet.create({
         margin: 10
     },
     postsHeaderUnderline: {
-        width: 100,
+        width: 125,
         height: 2,
         backgroundColor: 'black',
         opacity: 0.75,
         marginBottom: 10,
         borderRadius: 2
+    },
+    emptyMessage: {
+        marginTop: 25
     }
 });
 

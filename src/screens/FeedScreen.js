@@ -1,59 +1,53 @@
 import React from 'react';
-import { ScrollView, SafeAreaView, StyleSheet, StatusBar, TouchableNativeFeedback } from 'react-native';
+import { FlatList, SafeAreaView, StyleSheet, StatusBar, TouchableNativeFeedback } from 'react-native';
 import Post from '../components/Post';
 import CreatePostIcon from '../../assets/icons/CreatePost.svg';
 
 const FeedScreen = ({ navigation }) => {
+    const dummyPosts = [
+        {
+            id: 'fj2fhj2ihf923fih23f0',
+            author: 'Jak Moden',
+            age: '3d',
+            text: 'This is my first post'
+        },
+        {
+            id: '20kjf2i3h239fh928fh92ioh2f82h',
+            author: 'Dogecoin Millionare',
+            age: '1hr',
+            text: 'Dogecoin to the mooooon!'
+        },
+        {
+            id: 'foijwifj2oh3f8h2938fh2',
+            author: 'Rick Astley',
+            age: '4y',
+            text: `Never gonna give you up.
+Never gonna let you down.
+Never gonna run around and desert you.
+Never gonna make you cry.
+Never gonna say goodbye. Never gonna tell a lie and hurt you`
+        }
+];
+    
+
     return (
         <SafeAreaView style={styles.container}>
             <StatusBar backgroundColor='#F2F2F2' barStyle='dark-content' />
-            <ScrollView showsVerticalScrollIndicator={false}>
-                <Post
-                    author='Jak Moden'
-                    age='3d'
-                    text='This is my first post'
-                />
-                <Post
-                    author='Rick Astley'
-                    age='4y'
-                    text='Never gonna give you up
-                    Never gonna let you down
-                    Never gonna run around and desert you
-                    Never gonna make you cry
-                    Never gonna say goodbye
-                    Never gonna tell a lie and hurt you'
-                />
-                <Post
-                    author='Rick Astley'
-                    age='4y'
-                    text='Never gonna give you up
-                    Never gonna let you down
-                    Never gonna run around and desert you
-                    Never gonna make you cry
-                    Never gonna say goodbye
-                    Never gonna tell a lie and hurt you'
-                />
-                <Post
-                    author='Rick Astley'
-                    age='4y'
-                    text='Never gonna give you up
-                    Never gonna let you down
-                    Never gonna run around and desert you
-                    Never gonna make you cry
-                    Never gonna say goodbye
-                    Never gonna tell a lie and hurt you'
-                />
-                <Post
-                    author='Rick Astley'
-                    age='4y'
-                    text='Never gonna give you up
-                    Never gonna let you down
-                    Never gonna run around and desert you
-                    Never gonna make you cry
-                    Never gonna say goodbye
-                    Never gonna tell a lie and hurt you'
-                />
-            </ScrollView>
+            <FlatList
+                showsVerticalScrollIndicator={false}
+                data={dummyPosts}
+                style={styles.postList}
+                keyExtractor={item => item.id}
+                renderItem={({ item }) => {
+                    return (
+                        <Post
+                            author={item.author}
+                            age={item.age}
+                            text={item.text}
+                        />
+                    );
+                }}
+            />
             <TouchableNativeFeedback onPress={() => navigation.navigate('Post')}>
                 <CreatePostIcon width={50} height={50} style={styles.createPost} />
             </TouchableNativeFeedback>
@@ -72,7 +66,11 @@ const styles = StyleSheet.create({
         right: 20
     },
     container: {
-        backgroundColor: '#F2F2F2'
+        backgroundColor: '#F2F2F2',
+        flex: 1,
+    },
+    postList: {
+        flex: 1,
     }
 });
 

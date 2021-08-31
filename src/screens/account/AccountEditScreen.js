@@ -61,6 +61,7 @@ const AccountEditScreen = ({ navigation }) => {
                     color='#41CA99'
                     textColor='white'
                     buttonStyle={styles.submit}
+                    onPress={() => {}}
                 />
                 <TouchableNativeFeedback onPress={() => navigation.navigate('AccountView')}>
                     <BackIcon width={25} height={25} style={styles.back} />

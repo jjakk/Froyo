@@ -17,6 +17,7 @@ import {
 } from '../../../components/froyo-elements';
 import { Context as AuthContext } from '../../../context/AuthContext';
 import { Ionicons } from '@expo/vector-icons';
+import ErrorMessage from '../../../components/ErrorMessage';
 
 const SignUpTwoScreen = ({ navigation }) => {
     // Form params from previous screen
@@ -68,11 +69,7 @@ const SignUpTwoScreen = ({ navigation }) => {
                                 containerStyle={styles.submitContainer}
                                 onPress={handleSubmit}
                             />
-                            {
-                                errorMessage !== ''
-                                    ? <Text style={styles.error}>{errorMessage}</Text>
-                                    : null
-                            }
+                            <ErrorMessage message={errorMessage} />
                         </View>
                     </View>
                 </KeyboardAvoidingView>
@@ -117,7 +114,6 @@ const styles = StyleSheet.create({
         width: 300,
         textAlign: 'center'
     },
-
     back: {
         margin: 15
     }

@@ -14,6 +14,7 @@ import {
     Link
 } from '../../components/froyo-elements';
 import { Context as AuthContext } from '../../context/AuthContext';
+import ErrorMessage from '../../components/ErrorMessage';
 
 const SignInScreen = ({ navigation }) => {
     const { signIn, clearErrorMessage, state: { errorMessage } } = useContext(AuthContext);
@@ -62,11 +63,7 @@ const SignInScreen = ({ navigation }) => {
                         >
                             Sign up
                         </Link>
-                        {
-                            errorMessage !== ''
-                                ? <Text style={styles.error}>{errorMessage}</Text>
-                                : null
-                        }
+                        <ErrorMessage message={errorMessage} />
                     </View>
                 </View>
             </View>
@@ -110,14 +107,6 @@ const styles = StyleSheet.create({
         margin: 10,
         alignItems: 'center',
         justifyContent: 'center'
-    },
-    error: {
-        color: '#FB1C1C',
-        opacity: 0.5,
-        marginTop: 25,
-        fontSize: 22,
-        width: 300,
-        textAlign: 'center'
     }
 });
 

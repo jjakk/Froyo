@@ -7,7 +7,7 @@ import DislikeIcon from '../../assets/icons/Dislike.svg';
 import CommentIcon from '../../assets/icons/Comment.svg';
 import ShareIcon from '../../assets/icons/Share.svg';
 
-const actionButtonSize = 30;
+const actionButtonSize = 25;
 
 const Post = ({ author, age, text, imageSrc }) => {
     return (
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     },
     // Header
     header: {
-        margin: 25,
+        margin: 15,
         flexDirection: 'row',
         alignItems: 'center'
     },
@@ -80,14 +80,14 @@ const styles = StyleSheet.create({
     },
     // Post body
     body: {
-        margin: 25,
+        margin: 15,
         marginTop: 0
     },
     // Actions
     actions: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        margin: 25,
+        margin: 15,
         marginTop: 0,
         alignItems: 'center'
     },
@@ -95,8 +95,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row'
     },
     dislike: {
-        marginTop: 7.5,
-        marginLeft: 7.5
+        marginTop: 5,
+        marginLeft: 5
     },
     comment: {
         marginRight: 35

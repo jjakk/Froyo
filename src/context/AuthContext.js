@@ -13,7 +13,7 @@ const authReducer = (state, action) => {
         case 'sign_out':
             return { ...state, token: null, errorMessage: '' };
         case 'get_user_info':
-            return { ...state, loading: false, user: action.payload, errorMessage: '' }
+            return { ...state, contentLoaded: true, user: action.payload, errorMessage: '' }
         default:
             return state;
     }
@@ -137,6 +137,29 @@ const getUserInfo = (dispatch) => async () => {
     }
 };
 
+// Update a user's information
+const updateUserInfo = (dispatch) => async (info) => {
+    try{
+        const { firstName, lastName, username, description} = info;
+        const user = await froyoApi.get('/');
+        const id = user.data;
+        console.log(id);
+        const response = await froyoApi.put(`/users/${id}`, { firstName, lastName, username, description });
+        console.log(response);
+        navigate('AccountView');
+    }
+    catch(err){
+        let message;
+        if(err.response){
+            message = err.response.data;
+        }
+        else{
+            message = err.message;
+        }
+        dispatch({ type: 'add_error', payload: message });
+    }
+};
+
 // Goes to either your feed or welcome page depending on whether you are logged in
 const checkSignedIn = (dispatch) => async () => {
     try{
@@ -168,10 +191,10 @@ const calculateAge = (birthDate) => {
 
 export const { Provider, Context } = createDataContext(
     authReducer,
-    { signIn, continueSignUp, signUp, checkSignedIn, signOut, getUserInfo, clearErrorMessage },
+    { signIn, continueSignUp, signUp, checkSignedIn, signOut, getUserInfo, updateUserInfo, clearErrorMessage },
     { /*isSignedIn: false,*/
         user: {},
-        loading: true,
+        contentLoading: false,
         errorMessage: ''
     }
 );

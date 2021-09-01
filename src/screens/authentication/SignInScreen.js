@@ -23,11 +23,11 @@ const SignInScreen = ({ navigation }) => {
     const [loading, setLoading] = useState(false);
 
     const handleSubmit = async () => {
-        //setLoading(true);
         Keyboard.dismiss()
-        signIn({ email, password });
+        //setLoading(true);
+        await signIn({ email, password });
         //setLoading(false);
-    };
+    };  
 
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>

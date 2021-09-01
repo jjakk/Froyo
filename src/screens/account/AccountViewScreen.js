@@ -5,7 +5,7 @@ import { Context as AuthContext } from '../../context/AuthContext';
 import EmptyMessage from '../../components/EmptyMessage';
 
 const AccountViewScreen = ({ navigation }) => {
-    const { getUserInfo, signOut, state: { loading, user } } = useContext(AuthContext);
+    const { getUserInfo, signOut, state: { contentLoaded, user } } = useContext(AuthContext);
 
     useEffect(() => {
         getUserInfo();
@@ -22,11 +22,11 @@ const AccountViewScreen = ({ navigation }) => {
                             {user.firstName} {user.lastName}
                         </Text>
                         <Text style={styles.username} numberOfLines={1}>
-                            {!loading ? `@${user.username}` : ''}
+                            {contentLoaded ? `@${user.username}` : ''}
                         </Text>
                         <View style={styles.numbers}>
-                            <Text style={styles.followers}>{!loading? `${user.followers.length} Followers` : ''}</Text>
-                            <Text style={styles.following}>{!loading? `${user.following.length} Following` : ''}</Text>
+                            <Text style={styles.followers}>{contentLoaded? `${user.followers.length} Followers` : ''}</Text>
+                            <Text style={styles.following}>{contentLoaded? `${user.following.length} Following` : ''}</Text>
                         </View>
                     </View>
                 </View>
@@ -59,9 +59,7 @@ const AccountViewScreen = ({ navigation }) => {
                         title='Sign out'
                         color='#41CA99'
                         textColor='white'
-                        onPress={() => {
-                            signOut();
-                        }}
+                        onPress={signOut}
                         buttonStyle={styles.authButton}
                         titleStyle={styles.authButtonText}
                     />

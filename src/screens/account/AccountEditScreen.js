@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext, useEffect,  useState } from 'react';
 import {
     SafeAreaView,
     StyleSheet,
@@ -15,10 +15,33 @@ import {
     Input,
     Text
 } from '../../components/froyo-elements';
+import ErrorMessage from '../../components/ErrorMessage';
+import { Context as AuthContext } from '../../context/AuthContext';
 import BackIcon from '../../../assets/icons/Back.svg';
 import UploadIcon from '../../../assets/icons/Upload.svg';
 
 const AccountEditScreen = ({ navigation }) => {
+    const { getUserInfo, updateUserInfo, state: { contentLoaded, user, errorMessage } } = useContext(AuthContext);
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
+    const [username, setUsername] = useState('');
+    const [description, setDescription] = useState('');
+
+    useEffect(() => {
+        async function asyncCode(){
+            await getUserInfo();
+            setFirstName(user.firstName);
+            setLastName(user.lastName);
+            setUsername(user.username);
+            setDescription(user.description);
+        }
+        asyncCode();
+    }, []);
+
+    const handleSubmit = () => {
+        updateUserInfo({ firstName, lastName, username, description });
+    };
+
     return(
         <TouchableWithoutFeedback style={styles.container} onPress={Keyboard.dismiss}>
             <SafeAreaView style={styles.container}>
@@ -36,24 +59,36 @@ const AccountEditScreen = ({ navigation }) => {
                         <View style={styles.nameInputContainer}>
                             <Input
                                 placeholder='First'
+                                value={firstName}
+                                onChangeText={setFirstName}
+                                editable={contentLoaded}
                             />
                         </View>
                         <View style={styles.gap}></View>
                         <View style={styles.nameInputContainer}>
                             <Input
                                 placeholder='Last'
+                                value={lastName}
+                                onChangeText={setLastName}
+                                editable={contentLoaded}
                             />
                         </View>
                     </View>
                     <Input
                         style={styles.field}
                         placeholder='Username'
+                        value={username}
+                        onChangeText={setUsername}
+                        editable={contentLoaded}
                     />
                     <Input
                         style={[styles.field, styles.description]}
                         multiline
                         numberOfLines={4}
                         placeholder='Description'
+                        value={description}
+                        onChangeText={setDescription}
+                        editable={contentLoaded}
                     />
                 </View>
                 <Button
@@ -61,8 +96,9 @@ const AccountEditScreen = ({ navigation }) => {
                     color='#41CA99'
                     textColor='white'
                     buttonStyle={styles.submit}
-                    onPress={() => {}}
+                    onPress={handleSubmit}
                 />
+                <ErrorMessage message={errorMessage} style={styles.errorMessage} />
                 <TouchableNativeFeedback onPress={() => navigation.navigate('AccountView')}>
                     <BackIcon width={25} height={25} style={styles.back} />
                 </TouchableNativeFeedback>
@@ -92,6 +128,9 @@ const styles = StyleSheet.create({
     },
     submit: {
         margin: 25,
+    },
+    errorMessage: {
+        marginTop: 10
     },
     // Profile Picture Upload Button
     profilePictureUpload: {

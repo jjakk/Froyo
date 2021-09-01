@@ -51,7 +51,7 @@ const Post = ({ author, age, text, imageSrc }) => {
 const styles = StyleSheet.create({
     post: {
         backgroundColor: 'white',
-        marginTop: 5
+        marginBottom: 5
     },
     // Header
     header: {
@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
         marginLeft: 5
     },
     comment: {
-        marginRight: 35
+        marginRight: 40
     }
 });
 

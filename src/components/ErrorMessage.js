@@ -3,10 +3,10 @@ import { StyleSheet } from 'react-native';
 import { Text } from './froyo-elements'; 
 
 const ErrorMessage = (props) => {
-    const { message } = props; 
+    const { message, style } = props; 
     if(message){
         return (
-            <Text style={styles.error} {...props}>{message}</Text>
+            <Text {...props} style={[styles.error, style]}>{message}</Text>
         );
     }
     else{
@@ -21,7 +21,8 @@ const styles = StyleSheet.create({
         marginTop: 25,
         fontSize: 22,
         width: 300,
-        textAlign: 'center'
+        textAlign: 'center',
+        alignSelf: 'center'
     }
 });
 

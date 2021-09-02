@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlatList, SafeAreaView, StyleSheet, TouchableNativeFeedback } from 'react-native';
+import { FlatList, SafeAreaView, StyleSheet, StatusBar, TouchableNativeFeedback } from 'react-native';
 import Post from '../components/Post';
 import EmptyMessage from '../components/EmptyMessage';
 import CreatePostIcon from '../../assets/icons/CreatePost.svg';
@@ -33,6 +33,7 @@ Never gonna say goodbye. Never gonna tell a lie and hurt you`
 
     return (
         <SafeAreaView style={styles.container}>
+            <StatusBar backgroundColor='#F2F2F2' barStyle='dark-content' />
             {
                 dummyPosts.length !== 0 ? (
                     <FlatList

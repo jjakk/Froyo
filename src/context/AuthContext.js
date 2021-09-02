@@ -143,9 +143,7 @@ const updateUserInfo = (dispatch) => async (info) => {
         const { firstName, lastName, username, description} = info;
         const user = await froyoApi.get('/');
         const id = user.data;
-        console.log(id);
         const response = await froyoApi.put(`/users/${id}`, { firstName, lastName, username, description });
-        console.log(response);
         navigate('AccountView');
     }
     catch(err){

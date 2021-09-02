@@ -41,7 +41,7 @@ const SignUpTwoScreen = ({ navigation }) => {
         <SafeAreaView style={styles.container} forceInset={{top: 'always'}}>
             <TouchableWithoutFeedback style={styles.container} onPress={Keyboard.dismiss}>
                 <KeyboardAvoidingView
-                    behavior={Platform.OS === "ios" ? "padding" : "height"}
+                    behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
                     style={styles.container}
                 >
                     <View style={{flex: 1}}>

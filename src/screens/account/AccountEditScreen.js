@@ -8,12 +8,12 @@ import {
     View,
     Image,
     TouchableWithoutFeedback,
-    Keyboard
+    Keyboard,
+    KeyboardAvoidingView
 } from 'react-native';
 import {
     Button,
-    Input,
-    Text
+    Input
 } from '../../components/froyo-elements';
 import ErrorMessage from '../../components/ErrorMessage';
 import { Context as AuthContext } from '../../context/AuthContext';
@@ -43,71 +43,77 @@ const AccountEditScreen = ({ navigation }) => {
 
     return(
         <TouchableWithoutFeedback style={styles.container} onPress={Keyboard.dismiss}>
-            <SafeAreaView style={styles.container}>
-                <StatusBar backgroundColor='#F2F2F2' barStyle='dark-content' />
-                <View style={styles.profilePictureUpload}>
-                    <Image
-                        source={require('../../../assets/icons/guest.png')}
-                        style={styles.profilePicture}
-                    />
-                    <View style={styles.filter}></View>
-                    <UploadIcon width={35} height={35} style={styles.uploadIcon} />
-                </View>
-                <View style={styles.fields}>
-                    <View style={[styles.field, styles.nameInputs]}>
-                        <View style={styles.nameInputContainer}>
-                            <Input
-                                placeholder='First'
-                                value={firstName}
-                                onChangeText={setFirstName}
-                                editable={contentLoaded}
-                            />
-                        </View>
-                        <View style={styles.gap}></View>
-                        <View style={styles.nameInputContainer}>
-                            <Input
-                                placeholder='Last'
-                                value={lastName}
-                                onChangeText={setLastName}
-                                editable={contentLoaded}
-                            />
-                        </View>
+            <KeyboardAvoidingView
+                behavior={Platform.OS === "ios" ? "padding" : "height"}
+                style={styles.container}
+            >
+                <SafeAreaView style={styles.container}>
+                    <StatusBar backgroundColor='#F2F2F2' barStyle='dark-content' />
+                    <View style={styles.profilePictureUpload}>
+                        <Image
+                            source={require('../../../assets/icons/guest.png')}
+                            style={styles.profilePicture}
+                        />
+                        <View style={styles.filter}></View>
+                        <UploadIcon width={35} height={35} style={styles.uploadIcon} />
                     </View>
-                    <Input
-                        style={styles.field}
-                        placeholder='Username'
-                        value={username}
-                        onChangeText={setUsername}
-                        editable={contentLoaded}
+                    <View style={styles.fields}>
+                        <View style={[styles.field, styles.nameInputs]}>
+                            <View style={styles.nameInputContainer}>
+                                <Input
+                                    placeholder='First'
+                                    value={firstName}
+                                    onChangeText={setFirstName}
+                                    editable={contentLoaded}
+                                />
+                            </View>
+                            <View style={styles.gap}></View>
+                            <View style={styles.nameInputContainer}>
+                                <Input
+                                    placeholder='Last'
+                                    value={lastName}
+                                    onChangeText={setLastName}
+                                    editable={contentLoaded}
+                                />
+                            </View>
+                        </View>
+                        <Input
+                            style={styles.field}
+                            placeholder='Username'
+                            value={username}
+                            onChangeText={setUsername}
+                            editable={contentLoaded}
+                        />
+                        <Input
+                            style={[styles.field, styles.description]}
+                            multiline
+                            numberOfLines={4}
+                            placeholder='Description'
+                            value={description}
+                            onChangeText={setDescription}
+                            editable={contentLoaded}
+                        />
+                    </View>
+                    <Button
+                        title='Save'
+                        color='#41CA99'
+                        textColor='white'
+                        buttonStyle={styles.submit}
+                        onPress={handleSubmit}
                     />
-                    <Input
-                        style={[styles.field, styles.description]}
-                        multiline
-                        numberOfLines={4}
-                        placeholder='Description'
-                        value={description}
-                        onChangeText={setDescription}
-                        editable={contentLoaded}
-                    />
-                </View>
-                <Button
-                    title='Save'
-                    color='#41CA99'
-                    textColor='white'
-                    buttonStyle={styles.submit}
-                    onPress={handleSubmit}
-                />
-                <ErrorMessage message={errorMessage} style={styles.errorMessage} />
-                <TouchableNativeFeedback onPress={() => navigation.navigate('AccountView')}>
-                    <BackIcon width={25} height={25} style={styles.back} />
-                </TouchableNativeFeedback>
-            </SafeAreaView>
+                    <ErrorMessage message={errorMessage} style={styles.errorMessage} />
+                    <TouchableNativeFeedback onPress={() => navigation.navigate('AccountView')}>
+                        <BackIcon width={25} height={25} style={styles.back} />
+                    </TouchableNativeFeedback>
+                </SafeAreaView>
+            </KeyboardAvoidingView>
         </TouchableWithoutFeedback>
     );
 };
 
 const styles = StyleSheet.create({
     container: {
+        flex: 1,
     },
     back: {
         position: 'absolute',

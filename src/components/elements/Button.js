@@ -3,11 +3,11 @@ import { StyleSheet } from 'react-native';
 import { Button as DefaultButton } from 'react-native-elements';
 
 const Button = (props) => {
-    const { color, textColor, type, textAlign } = props;
+    const { color, textColor, type, textAlign, pill } = props;
 
     const styles = StyleSheet.create({
         button: {
-            borderRadius: 15,
+            borderRadius: pill ? 30 : 15,
             padding: 10,
             borderWidth: 1,
             backgroundColor: (
@@ -47,6 +47,10 @@ const Button = (props) => {
             }}
         />
     );
+};
+
+Button.defaultProps = {
+    pill: false
 };
 
 export default Button;

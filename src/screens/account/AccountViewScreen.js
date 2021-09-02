@@ -46,6 +46,7 @@ const AccountViewScreen = ({ navigation }) => {
                         title='Edit profile'
                         color='#41CA99'
                         textColor='white'
+                        pill
                         buttonStyle={styles.authButton}
                         titleStyle={styles.authButtonText}
                         onPress={() => {
@@ -59,6 +60,7 @@ const AccountViewScreen = ({ navigation }) => {
                         title='Sign out'
                         color='#41CA99'
                         textColor='white'
+                        pill
                         onPress={signOut}
                         buttonStyle={styles.authButton}
                         titleStyle={styles.authButtonText}
@@ -136,7 +138,7 @@ const styles = StyleSheet.create({
         width: 25,
     },
     authButtonText: {
-        fontSize: 22
+        fontSize: 20
     },
     // Posts
     posts: {

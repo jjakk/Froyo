@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
     FlatList,
     SafeAreaView,
@@ -35,6 +35,10 @@ Never gonna make you cry.
 Never gonna say goodbye. Never gonna tell a lie and hurt you`
         }
     ];
+
+    useEffect(() => {
+        // Get posts from server
+    }, []);
 
     return (
         <SafeAreaView style={styles.container}>

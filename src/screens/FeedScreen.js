@@ -1,5 +1,11 @@
 import React from 'react';
-import { FlatList, SafeAreaView, StyleSheet, StatusBar, TouchableNativeFeedback } from 'react-native';
+import {
+    FlatList,
+    SafeAreaView,
+    StyleSheet,
+    StatusBar,
+    TouchableNativeFeedback
+} from 'react-native';
 import Post from '../components/Post';
 import EmptyMessage from '../components/EmptyMessage';
 import CreatePostIcon from '../../assets/icons/CreatePost.svg';
@@ -28,8 +34,7 @@ Never gonna run around and desert you.
 Never gonna make you cry.
 Never gonna say goodbye. Never gonna tell a lie and hurt you`
         }
-];
-    
+    ];
 
     return (
         <SafeAreaView style={styles.container}>

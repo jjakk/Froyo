@@ -141,6 +141,18 @@ const getUserInfo = (dispatch) => async () => {
 const updateUserInfo = (dispatch) => async (info) => {
     try{
         const { firstName, lastName, username, description} = info;
+        // Check all required fields are filled
+        switch(''){
+            case firstName:
+                dispatch({ type: 'add_error', payload: 'Must enter a first name' });
+                return;
+            case lastName:
+                dispatch({ type: 'add_error', payload: 'Must enter a last name' });
+                return;
+            case username:
+                dispatch({ type: 'add_error', payload: 'Must enter a username' });
+                return;
+        }
         const user = await froyoApi.get('/');
         const id = user.data;
         const response = await froyoApi.put(`/users/${id}`, { firstName, lastName, username, description });

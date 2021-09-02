@@ -37,18 +37,13 @@ const DatePicker = (props) => {
         setShow(!show);
     };
 
-    const DateSelection = (props) => {
-        return (
-            <DateTimePicker
-                testID='dateTimePicker'
-                value={date}
-                mode={'date'}
-                is24Hour={true}
-                display='spinner'
-                onChange={onChange}
-                {...props}
-            />
-        );
+    const dateProps = {
+        testID: 'dateTimePicker',
+        value: date,
+        mode: 'date',
+        is24Hour: true,
+        display: 'spinner',
+        onChange: onChange
     };
 
     return (
@@ -73,11 +68,15 @@ const DatePicker = (props) => {
                         isVisible={show}
                         onBackdropPress={toggleShow}
                     >
-                        <DateSelection/>
+                        <DateTimePicker
+                            {...dateProps}
+                        />
                     </Overlay>
                 ) : show ?
                     (
-                        <DateSelection/>
+                        <DateTimePicker
+                            {...dateProps}
+                        />
                     ) : null
             }
         </View>

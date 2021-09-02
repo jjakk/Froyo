@@ -28,14 +28,13 @@ const AccountEditScreen = ({ navigation }) => {
     const [description, setDescription] = useState('');
 
     useEffect(() => {
-        async function asyncCode(){
+        (async function(){
             await getUserInfo();
             setFirstName(user.firstName);
             setLastName(user.lastName);
             setUsername(user.username);
             setDescription(user.description);
-        }
-        asyncCode();
+        })();
     }, []);
 
     const handleSubmit = () => {

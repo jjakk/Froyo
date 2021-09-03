@@ -12,7 +12,7 @@ import CreatePostIcon from '../../assets/icons/CreatePost.svg';
 
 const FeedScreen = ({ navigation }) => {
     const dummyPosts = [
-        {
+        /*{
             id: 'fj2fhj2ihf923fih23f0',
             author: 'Jak Moden',
             age: '3d',
@@ -33,7 +33,7 @@ Never gonna let you down.
 Never gonna run around and desert you.
 Never gonna make you cry.
 Never gonna say goodbye. Never gonna tell a lie and hurt you`
-        }
+        }*/
     ];
 
     useEffect(() => {
@@ -96,7 +96,7 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
     },
     emptyMessage: {
-        marginBottom: 100
+        marginBottom: 100,
     }
 });
 

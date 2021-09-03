@@ -18,7 +18,7 @@ import AccountEditScreen from '../screens/account/AccountEditScreen';
 // Icons
 import FroyoIcon from '../../assets/icons/Froyo.svg';
 import UserIcon from '../../assets/icons/Profile Picture.svg';
-import HomeIcon from '../../assets/icons/Home.svg';
+import SearchIcon from '../../assets/icons/Search.svg';
 import { SafeAreaView, Text } from 'react-native';
 
 
@@ -66,11 +66,11 @@ const accountNavigator = createStackNavigator({
 */
 
 const tabNavigator = createBottomTabNavigator({
-    homeFlow: {
-        screen: () => (<SafeAreaView><Text>Home Screen</Text></SafeAreaView>),
+    searchFlow: {
+        screen: () => (<SafeAreaView><Text>Search Screen</Text></SafeAreaView>),
         navigationOptions: {
             tabBarIcon: (({ tintColor, focused }) => (
-                <HomeIcon color={tintColor} height={35} width={35}/>
+                <SearchIcon color={tintColor} height={35} width={35}/>
             ))
         }
     },

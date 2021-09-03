@@ -29,12 +29,19 @@ const SignUpTwoScreen = ({ navigation }) => {
     const [lastName, setLastName] = useState('');
     const [password, setPassword] = useState('');
     const [passwordConfirm, setPasswordConfirm] = useState('');
+    const [loading, setLoading] = useState(false);
     // Context values & functions
     const { signUp, clearErrorMessage, state: { errorMessage } } = useContext(AuthContext);
 
     const handleSubmit = () => {
+        setLoading(true);
         Keyboard.dismiss();
-        signUp({ email, username, dob, firstName, lastName, password, passwordConfirm });
+        signUp({ email, username, dob, firstName, lastName, password, passwordConfirm }, (success) => {
+            setLoading(false);
+            if(success){
+                navigation.navigate('mainFlow');
+            }
+        });
     };
 
     return (
@@ -65,6 +72,7 @@ const SignUpTwoScreen = ({ navigation }) => {
                                 color='#41CA99'
                                 textColor='white'
                                 type='primary'
+                                loading={loading}
                                 buttonStyle={styles.submit}
                                 containerStyle={styles.submitContainer}
                                 onPress={handleSubmit}

@@ -20,12 +20,12 @@ const authReducer = (state, action) => {
 };
 
 // Sign in with email and password
-const signIn = (dispatch) => async ({ email, password }) => {
+const signIn = (dispatch) => async ({ email, password }, callback) => {
     try{
         const response = await froyoApi.post('/auth/signin', { email, password });
         await AsyncStorage.setItem('token', response.data.token);
         dispatch({ type: 'sign_in', payload: response.data.token });
-        navigate('mainFlow');
+        callback(true);
     }
     catch(err){
         let message;
@@ -36,33 +36,38 @@ const signIn = (dispatch) => async ({ email, password }) => {
             message = err.message;
         }
         dispatch({ type: 'add_error', payload: message });
+        callback(false);
     }
 };
 
 // Verify that the information from the first page of sign up is valid
-const continueSignUp = (dispatch) => async ({ email, username, dob }) => {
+const continueSignUp = (dispatch) => async ({ email, username, dob }, callback) => {
     try{
         // Check all feilds are filled
         switch(''){
             case email:
                 dispatch({ type: 'add_error', payload: 'Email is required' });
+                callback(false);
                 return;
             case username:
                 dispatch({ type: 'add_error', payload: 'Username is required' });
+                callback(false);
                 return;
             case dob:
                 dispatch({ type: 'add_error', payload: 'Date of Birth is required' });
+                callback(false);
                 return;
         }
         // Check user is old enough
         if(calculateAge(dob) < 13){
             dispatch({ type: 'add_error', payload: 'You must be 13 years or older to sign up' });
+            callback(false);
             return;
         }
         // Check server if email, and username are valid
         const checkEmail = await froyoApi.post('/auth/checkEmail', { email });
         const checkUsername = await froyoApi.post('/auth/checkUsername', { username });
-        navigate('SignUpTwo', { email, username, dob });
+        callback(true);
     }
     catch(err){
         let message;
@@ -73,37 +78,43 @@ const continueSignUp = (dispatch) => async ({ email, username, dob }) => {
             message = err.message;
         }
         dispatch({ type: 'add_error', payload: message });
+        callback(false);
     }
 };
 
 // Create an account & sign in
-const signUp = (dispatch) => async (info) => {
+const signUp = (dispatch) => async (info, callback) => {
     try{
         const { email, username, dob, firstName, lastName, password, passwordConfirm } = info;
         // Check all feilds are filled
         switch(''){
             case firstName:
                 dispatch({ type: 'add_error', payload: 'Must enter a first name' });
+                callback(false);
                 return;
             case lastName:
                 dispatch({ type: 'add_error', payload: 'Must enter a last name' });
+                callback(false);
                 return;
             case password:
                 dispatch({ type: 'add_error', payload: 'Must enter a password' });
+                callback(false);
                 return;
             case passwordConfirm:
                 dispatch({ type: 'add_error', payload: 'Must confirm password' });
+                callback(false);
                 return;
         }
         // Make sure passwords match
         if(password !== passwordConfirm){
             dispatch({ type: 'add_error', payload: 'Passwords must match' });
+            callback(false);
             return;
         }
         const response = await froyoApi.post('/auth/signup', { email, username, dob, firstName, lastName, password });
         await AsyncStorage.setItem('token', response.data.token);
         dispatch({ type: 'sign_in', payload: response.data.token });
-        navigate('mainFlow');
+        callback(true);
     }
     catch(err){
         let message;
@@ -114,6 +125,7 @@ const signUp = (dispatch) => async (info) => {
             message = err.message;
         }
         dispatch({ type: 'add_error', payload: message });
+        callback(false);
     }
 };
 
@@ -138,25 +150,28 @@ const getUserInfo = (dispatch) => async () => {
 };
 
 // Update a user's information
-const updateUserInfo = (dispatch) => async (info) => {
+const updateUserInfo = (dispatch) => async (info, callback) => {
     try{
         const { firstName, lastName, username, description} = info;
         // Check all required fields are filled
         switch(''){
             case firstName:
                 dispatch({ type: 'add_error', payload: 'Must enter a first name' });
+                callback(false);
                 return;
             case lastName:
                 dispatch({ type: 'add_error', payload: 'Must enter a last name' });
+                callback(false);
                 return;
             case username:
                 dispatch({ type: 'add_error', payload: 'Must enter a username' });
+                callback(false);
                 return;
         }
         const user = await froyoApi.get('/');
         const id = user.data;
         const response = await froyoApi.put(`/users/${id}`, { firstName, lastName, username, description });
-        navigate('AccountView');
+        callback(true);
     }
     catch(err){
         let message;
@@ -167,6 +182,7 @@ const updateUserInfo = (dispatch) => async (info) => {
             message = err.message;
         }
         dispatch({ type: 'add_error', payload: message });
+        callback(false);
     }
 };
 

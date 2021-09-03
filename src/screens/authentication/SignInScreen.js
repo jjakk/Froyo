@@ -22,11 +22,15 @@ const SignInScreen = ({ navigation }) => {
     const [password, setPassword] = useState('');
     const [loading, setLoading] = useState(false);
 
-    const handleSubmit = async () => {
+    const handleSubmit = () => {
         Keyboard.dismiss()
-        //setLoading(true);
-        await signIn({ email, password });
-        //setLoading(false);
+        setLoading(true);
+        signIn({ email, password }, (success) => {
+            setLoading(false);
+            if(success){
+                navigation.navigate('mainFlow');
+            }
+        });
     };  
 
     return (

@@ -26,6 +26,7 @@ const AccountEditScreen = ({ navigation }) => {
     const [lastName, setLastName] = useState('');
     const [username, setUsername] = useState('');
     const [description, setDescription] = useState('');
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         (async function(){
@@ -38,7 +39,13 @@ const AccountEditScreen = ({ navigation }) => {
     }, []);
 
     const handleSubmit = () => {
-        updateUserInfo({ firstName, lastName, username, description });
+        setLoading(true);
+        updateUserInfo({ firstName, lastName, username, description }, (success) => {
+            setLoading(false);
+            if(success) {
+                navigation.navigate('AccountView');
+            }
+        });
     };
 
     return(
@@ -98,6 +105,7 @@ const AccountEditScreen = ({ navigation }) => {
                         title='Save'
                         color='#41CA99'
                         textColor='white'
+                        loading={loading}
                         buttonStyle={styles.submit}
                         onPress={handleSubmit}
                     />

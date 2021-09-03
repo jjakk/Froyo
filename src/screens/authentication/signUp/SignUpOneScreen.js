@@ -24,11 +24,15 @@ const SignUpScreenOne = ({ navigation }) => {
     const [dob, setDob] = useState('');
 
     const handleSubmit = () => {
-        //setLoading(true);
+        setLoading(true);
         Keyboard.dismiss();
         clearErrorMessage();
-        continueSignUp({ email, username, dob: dob });
-        //setLoading(false);
+        continueSignUp({ email, username, dob }, (success) => {
+            setLoading(false);
+            if(success){
+                navigation.navigate('SignUpTwo', { email, username, dob });
+            }
+        });
     }
 
     return (

@@ -11,8 +11,12 @@ const AccountViewScreen = ({ navigation }) => {
         getUserInfo();
     }, []);
 
+    const handleEditProfile = () => {
+        navigation.navigate('AccountEdit');
+    };
+
     return(
-        <SafeAreaView>
+        <SafeAreaView style={styles.container}>
             <StatusBar backgroundColor='#F2F2F2' barStyle='dark-content' />
             <View style={styles.profile}>
                 <View style={styles.header}>
@@ -57,9 +61,7 @@ const AccountViewScreen = ({ navigation }) => {
                         pill
                         buttonStyle={styles.authButton}
                         titleStyle={styles.authButtonText}
-                        onPress={() => {
-                            navigation.navigate('AccountEdit');
-                        }}
+                        onPress={handleEditProfile}
                     />
                 </View>
                 <View style={styles.gap}></View>
@@ -67,7 +69,8 @@ const AccountViewScreen = ({ navigation }) => {
                     <Button
                         title='Sign out'
                         color='#41CA99'
-                        textColor='white'
+                        textColor='#41CA99'
+                        type='secondary'
                         pill
                         onPress={signOut}
                         buttonStyle={styles.authButton}
@@ -92,6 +95,10 @@ AccountViewScreen.navigationOptions = {
 };
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: 'white'
+    },
     // Profile
     profile: {
         margin: 25,
@@ -111,12 +118,10 @@ const styles = StyleSheet.create({
     },
     name: {
         fontSize: 30,
-        backgroundColor: 'orange'
     },
     username: {
         fontSize: 24,
         marginBottom: 5,
-        backgroundColor: 'orange',
         width: 225
     },
     numbers: {

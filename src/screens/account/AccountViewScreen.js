@@ -17,7 +17,7 @@ const AccountViewScreen = ({ navigation }) => {
 
     return(
         <SafeAreaView style={styles.container}>
-            <StatusBar backgroundColor='#F2F2F2' barStyle='dark-content' />
+            <StatusBar backgroundColor='white' barStyle='dark-content' />
             <View style={styles.profile}>
                 <View style={styles.header}>
                     <Image style={styles.profilePicture} source={require('../../../assets/icons/guest.png')} />

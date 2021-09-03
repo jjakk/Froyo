@@ -18,10 +18,18 @@ const AccountViewScreen = ({ navigation }) => {
                 <View style={styles.header}>
                     <Image style={styles.profilePicture} source={require('../../../assets/icons/guest.png')} />
                     <View style={styles.headerText}>
-                        <Text style={styles.name} numberOfLines={1}>
+                        <Text
+                            style={styles.name}
+                            numberOfLines={1}
+                            adjustsFontSizeToFit={true}
+                        >
                             {user.firstName} {user.lastName}
                         </Text>
-                        <Text style={styles.username} numberOfLines={1}>
+                        <Text
+                            style={styles.username}
+                            numberOfLines={1}
+                            adjustsFontSizeToFit={true}
+                        >
                             {contentLoaded ? `@${user.username}` : ''}
                         </Text>
                         <View style={styles.numbers}>
@@ -103,10 +111,13 @@ const styles = StyleSheet.create({
     },
     name: {
         fontSize: 30,
+        backgroundColor: 'orange'
     },
     username: {
         fontSize: 24,
-        marginBottom: 5
+        marginBottom: 5,
+        backgroundColor: 'orange',
+        width: 225
     },
     numbers: {
         flexDirection: 'row',

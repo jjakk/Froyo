@@ -1,6 +1,6 @@
 <<<<<<< HEAD
 node_modules/
-.DS_Store
+**/.DS_Store
 =======
 node_modules/
 >>>>>>> 1dc067594a42f3d197b2914d1164d741bcd37105

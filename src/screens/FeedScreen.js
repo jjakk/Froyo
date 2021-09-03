@@ -4,7 +4,7 @@ import {
     SafeAreaView,
     StyleSheet,
     StatusBar,
-    TouchableNativeFeedback
+    TouchableWithoutFeedback
 } from 'react-native';
 import Post from '../components/Post';
 import EmptyMessage from '../components/EmptyMessage';
@@ -68,9 +68,9 @@ Never gonna say goodbye. Never gonna tell a lie and hurt you`
                     />
                 )
             }
-            <TouchableNativeFeedback onPress={() => navigation.navigate('Post')}>
+            <TouchableWithoutFeedback onPress={() => navigation.navigate('Post')}>
                 <CreatePostIcon width={50} height={50} style={styles.createPost} />
-            </TouchableNativeFeedback>
+            </TouchableWithoutFeedback>
         </SafeAreaView>
     );
 };
@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
     createPost: {
         position: 'absolute',
         bottom: 20,
-        right: 20
+        right: 20,
     },
     container: {
         backgroundColor: '#F2F2F2',

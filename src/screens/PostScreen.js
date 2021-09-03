@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, SafeAreaView, StyleSheet, TouchableOpacity, TouchableNativeFeedback } from 'react-native';
+import { View, SafeAreaView, StyleSheet, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
 import * as MediaLibrary from 'expo-media-library';
 import { Button, Text, Input } from '../components/froyo-elements';
 import BackIcon from '../../assets/icons/Back.svg';
@@ -50,9 +50,9 @@ const PostScreen = ({ navigation }) => {
                 color='#41CA99'
                 textColor='white'
             />
-            <TouchableNativeFeedback onPress={() => navigation.navigate('Feed')}>
+            <TouchableWithoutFeedback onPress={() => navigation.navigate('Feed')}>
                 <BackIcon width={25} height={25} style={styles.back} />
-            </TouchableNativeFeedback>
+            </TouchableWithoutFeedback>
         </SafeAreaView>
     );
 };
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
     back: {
         position: 'absolute',
         top: Platform.OS === 'ios' ? 60 : 20,
-        left: 20,
+        left: 20
     },
     postHeader: {
         fontSize: 32,

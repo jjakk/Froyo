@@ -122,7 +122,8 @@ const styles = StyleSheet.create({
     username: {
         fontSize: 24,
         marginBottom: 5,
-        width: 225
+        width: 225,
+        opacity: 0.5
     },
     numbers: {
         flexDirection: 'row',

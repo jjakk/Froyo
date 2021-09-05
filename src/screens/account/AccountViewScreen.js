@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
         fontSize: 24,
         marginBottom: 5,
         width: 225,
-        opacity: 0.5
+        opacity: 0.75
     },
     numbers: {
         flexDirection: 'row',

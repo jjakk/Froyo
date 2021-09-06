@@ -69,7 +69,7 @@ const AccountEditScreen = ({ navigation }) => {
                             <View style={styles.nameInputContainer}>
                                 <Input
                                     placeholder='First'
-                                    value={firstName}
+                                    value={contentLoaded ? firstName : 'loading'}
                                     onChangeText={setFirstName}
                                     editable={contentLoaded}
                                 />
@@ -78,7 +78,7 @@ const AccountEditScreen = ({ navigation }) => {
                             <View style={styles.nameInputContainer}>
                                 <Input
                                     placeholder='Last'
-                                    value={lastName}
+                                    value={contentLoaded ? lastName : 'loading'}
                                     onChangeText={setLastName}
                                     editable={contentLoaded}
                                 />
@@ -87,7 +87,7 @@ const AccountEditScreen = ({ navigation }) => {
                         <Input
                             style={styles.field}
                             placeholder='Username'
-                            value={username}
+                            value={contentLoaded ? username : 'loading'}
                             onChangeText={setUsername}
                             editable={contentLoaded}
                         />
@@ -96,7 +96,7 @@ const AccountEditScreen = ({ navigation }) => {
                             multiline
                             numberOfLines={4}
                             placeholder='Description'
-                            value={description}
+                            value={contentLoaded ? description : 'loading'}
                             onChangeText={setDescription}
                             editable={contentLoaded}
                         />

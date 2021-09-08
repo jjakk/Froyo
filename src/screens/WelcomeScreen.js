@@ -19,7 +19,7 @@ const WelcomeScreen = ({ navigation }) => {
                 />
                 <Text>
                     <Text style={styles.title}>Froyo</Text>
-                    <Text style={styles.subTitle}>{'\n'}Ethical Social Media</Text>
+                    <Text style={styles.subTitle}>{'\n'}Ethical social media</Text>
                 </Text>
             </View>
             <View style={styles.authOptions}>

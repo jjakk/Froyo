@@ -22,10 +22,10 @@ import UploadIcon from '../../../assets/icons/Upload.svg';
 
 const AccountEditScreen = ({ navigation }) => {
     const { getUserInfo, updateUserInfo, state: { contentLoaded, user, errorMessage } } = useContext(AuthContext);
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
-    const [username, setUsername] = useState('');
-    const [description, setDescription] = useState('');
+    const [firstName, setFirstName] = useState('loading');
+    const [lastName, setLastName] = useState('loading');
+    const [username, setUsername] = useState('loading');
+    const [description, setDescription] = useState('loading');
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
@@ -69,7 +69,7 @@ const AccountEditScreen = ({ navigation }) => {
                             <View style={styles.nameInputContainer}>
                                 <Input
                                     placeholder='First'
-                                    value={contentLoaded ? firstName : 'loading'}
+                                    value={firstName}
                                     onChangeText={setFirstName}
                                     editable={contentLoaded}
                                 />
@@ -78,7 +78,7 @@ const AccountEditScreen = ({ navigation }) => {
                             <View style={styles.nameInputContainer}>
                                 <Input
                                     placeholder='Last'
-                                    value={contentLoaded ? lastName : 'loading'}
+                                    value={lastName}
                                     onChangeText={setLastName}
                                     editable={contentLoaded}
                                 />
@@ -87,7 +87,7 @@ const AccountEditScreen = ({ navigation }) => {
                         <Input
                             style={styles.field}
                             placeholder='Username'
-                            value={contentLoaded ? username : 'loading'}
+                            value={username}
                             onChangeText={setUsername}
                             editable={contentLoaded}
                         />
@@ -96,7 +96,7 @@ const AccountEditScreen = ({ navigation }) => {
                             multiline
                             numberOfLines={4}
                             placeholder='Description'
-                            value={contentLoaded ? description : 'loading'}
+                            value={description}
                             onChangeText={setDescription}
                             editable={contentLoaded}
                         />

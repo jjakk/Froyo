@@ -23,13 +23,12 @@ const SignInScreen = ({ navigation }) => {
     const [loading, setLoading] = useState(false);
 
     const handleSubmit = () => {
+        clearErrorMessage();
         Keyboard.dismiss()
         setLoading(true);
         signIn({ email, password }, (success) => {
             setLoading(false);
-            if(success){
-                navigation.navigate('mainFlow');
-            }
+            if(success) navigation.navigate('mainFlow');
         });
     };  
 

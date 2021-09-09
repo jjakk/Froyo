@@ -1,12 +1,18 @@
-import React from 'react';
-import { View, SafeAreaView, StyleSheet, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
+import React, { useState, useContext, useEffect } from 'react';
+import { View, SafeAreaView, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import * as MediaLibrary from 'expo-media-library';
+import { Context as AuthContext } from '../context/AuthContext';
 import { Button, Text, Input } from '../components/froyo-elements';
 import BackIcon from '../../assets/icons/Back.svg';
 import PlusIcon from '../../assets/icons/Plus.svg';
+import ErrorMessage from '../components/ErrorMessage';
 
 const PostScreen = ({ navigation }) => {
-    const handleUpload = async () => {
+    const [postBody, setPostBody] = useState('');
+    const [loading, setLoading] = useState(false);
+    const { createPost, clearErrorMessage, state: { errorMessage } } = useContext(AuthContext);
+
+    /*const handleUpload = async () => {
         // Get permission if not granted
         const permission = await MediaLibrary.getPermissionsAsync();
         if(!permission.granted){
@@ -24,7 +30,22 @@ const PostScreen = ({ navigation }) => {
             const asset = await MediaLibrary.createAssetAsync(uri);
             console.log(asset);
         }
-    }
+    }*/
+
+    const handleSubmit = async () => {
+        clearErrorMessage();
+        Keyboard.dismiss()
+        setLoading(true);
+        await createPost({ postBody }, (success) => {
+            setLoading(false);
+            if(success) navigation.navigate('Feed');
+        });
+    };
+
+    // Delete error message when you type in the post body
+    useEffect(() => {
+        if(errorMessage) clearErrorMessage();
+    }, [postBody]);
 
     return(
         <SafeAreaView style={styles.container}>
@@ -35,21 +56,28 @@ const PostScreen = ({ navigation }) => {
                     textStyle={styles.bodyText}
                     multiline={true}
                     placeholder='Type here...'
+                    value={postBody}
+                    onChangeText={setPostBody}
                 />
             </View>
+            {/*
             <TouchableOpacity onPress={handleUpload}>
                 <View style={styles.attachment}>
                     <PlusIcon width={40} height={40} color='#393939' />
                     <Text style={styles.attachmentText}>Add a photo or video</Text>
                 </View>
             </TouchableOpacity>
+            */}
             <Button
                 buttonStyle={styles.submit}
                 type='primary'
                 title='Post'
                 color='#41CA99'
                 textColor='white'
+                loading={loading}
+                onPress={handleSubmit}
             />
+            <ErrorMessage message={errorMessage} />
             <TouchableWithoutFeedback onPress={() => navigation.navigate('Feed')}>
                 <BackIcon width={25} height={25} style={styles.back} />
             </TouchableWithoutFeedback>

@@ -6,6 +6,7 @@ import { createBottomTabNavigator } from 'react-navigation-tabs';
 import WelcomeScreen from '../screens/WelcomeScreen';
 import FeedScreen from '../screens/FeedScreen';
 import PostScreen from '../screens/PostScreen';
+import NoWifiScreen from '../screens/NoWifiScreen';
 // Authentication Screens
 import ResolveAuthScreen from '../screens/authentication/ResolveAuthScreen';
 import SignInScreen from '../screens/authentication/SignInScreen';
@@ -40,30 +41,6 @@ const homeNavigator = createStackNavigator({
             ...TransitionPresets.SlideFromRightIOS,
         },
 });
-
-/*
-const feedNavigator = createStackNavigator({
-        Feed: FeedScreen,
-        Post: PostScreen,
-    }, {
-    headerMode: 'none',
-    defaultNavigationOptions: {
-        ...TransitionPresets.SlideFromRightIOS,
-    }
-});
-*/
-
-/*
-const accountNavigator = createStackNavigator({
-    AccountView: AccountViewScreen,
-    AccountEdit: AccountEditScreen
-    },{
-        headerMode: 'none',
-        defaultNavigationOptions: {
-            ...TransitionPresets.SlideFromRightIOS,
-        },
-});
-*/
 
 const tabNavigator = createBottomTabNavigator({
     searchFlow: {
@@ -132,6 +109,7 @@ const authNavigator = createStackNavigator({
 
 const appNavigator = createSwitchNavigator({
     ResolveAuth: ResolveAuthScreen,
+    NoWifi: NoWifiScreen,
     Welcome: WelcomeScreen,
     authFlow: authNavigator,
     mainFlow: mainNavigator

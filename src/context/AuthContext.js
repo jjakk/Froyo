@@ -19,6 +19,8 @@ const authReducer = (state, action) => {
     }
 };
 
+// For all functions: If callback parameter is true, task succeeded; if false, task failed
+
 // Sign in with email and password
 const signIn = (dispatch) => async ({ email, password }, callback) => {
     try{
@@ -28,13 +30,7 @@ const signIn = (dispatch) => async ({ email, password }, callback) => {
         callback(true);
     }
     catch(err){
-        let message;
-        if(err.response){
-            message = err.response.data;
-        }
-        else{
-            message = err.message;
-        }
+        let message = err.response.data;
         dispatch({ type: 'add_error', payload: message });
         callback(false);
     }
@@ -70,13 +66,7 @@ const continueSignUp = (dispatch) => async ({ email, username, dob }, callback) 
         callback(true);
     }
     catch(err){
-        let message;
-        if(err.response){
-            message = err.response.data;
-        }
-        else{
-            message = err.message;
-        }
+        let message = err.response.data;
         dispatch({ type: 'add_error', payload: message });
         callback(false);
     }
@@ -117,13 +107,7 @@ const signUp = (dispatch) => async (info, callback) => {
         callback(true);
     }
     catch(err){
-        let message;
-        if(err.response){
-            message = err.response.data;
-        }
-        else{
-            message = err.message;
-        }
+        let message = err.response.data;
         dispatch({ type: 'add_error', payload: message });
         callback(false);
     }
@@ -134,6 +118,20 @@ const signOut = (dispatch) => async () => {
     await AsyncStorage.removeItem('token');
     dispatch({ type: 'sign_out' });
     navigate('Welcome');
+};
+
+// Create a post
+const createPost = (dispatch) => async (info, callback) => {
+    try{
+        const { postBody } = info;
+        const response = await froyoApi.post('/posts', { body: postBody });
+        callback(true);
+    }
+    catch(err){
+        let message = err.response.data;
+        dispatch({ type: 'add_error', payload: message });
+        callback(false);
+    }
 };
 
 // Get a user's information given their auth token
@@ -174,13 +172,7 @@ const updateUserInfo = (dispatch) => async (info, callback) => {
         callback(true);
     }
     catch(err){
-        let message;
-        if(err.response){
-            message = err.response.data;
-        }
-        else{
-            message = err.message;
-        }
+        let message = err.response.data;
         dispatch({ type: 'add_error', payload: message });
         callback(false);
     }
@@ -217,7 +209,17 @@ const calculateAge = (birthDate) => {
 
 export const { Provider, Context } = createDataContext(
     authReducer,
-    { signIn, continueSignUp, signUp, checkSignedIn, signOut, getUserInfo, updateUserInfo, clearErrorMessage },
+    {
+        signIn,
+        continueSignUp,
+        signUp,
+        checkSignedIn,
+        signOut,
+        createPost,
+        getUserInfo,
+        updateUserInfo,
+        clearErrorMessage
+    },
     { /*isSignedIn: false,*/
         user: {},
         contentLoading: false,

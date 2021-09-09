@@ -136,6 +136,17 @@ const createPost = (dispatch) => async (info, callback) => {
     }
 };
 
+const deletePost = (dispatch) => async (postId, callback) => {
+    try{
+        await froyoApi.delete(`/posts/${postId}`);
+        callback(true);
+    }
+    catch(err){
+        dispatch({ type: 'add_error', payload: `Unable to delete post` })
+        callback(false);
+    }
+}
+
 // Get all the posts of a given user
 const getUserPosts = (dispatch) => async () => {
     try{
@@ -229,6 +240,7 @@ export const { Provider, Context } = createDataContext(
         checkSignedIn,
         signOut,
         createPost,
+        deletePost,
         getUserPosts,
         getUserInfo,
         updateUserInfo,
@@ -236,7 +248,8 @@ export const { Provider, Context } = createDataContext(
     },
     { /*isSignedIn: false,*/
         user: {},
-        errorMessage: ''
+        errorMessage: '',
+        posts: []
     }
 );
 

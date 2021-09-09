@@ -7,7 +7,7 @@ import EmptyMessage from '../../components/EmptyMessage';
 import Post from '../../components/Post';
 
 const AccountViewScreen = ({ navigation }) => {
-    const { getUserInfo, getUserPosts, signOut, state: { user, posts } } = useContext(AuthContext);
+    const { getUserInfo, deletePost, getUserPosts, signOut, state: { user, posts } } = useContext(AuthContext);
     const [contentLoaded, setContentLoaded] = useState(false);
 
     useEffect(() => {
@@ -25,7 +25,7 @@ const AccountViewScreen = ({ navigation }) => {
     return(
         <SafeAreaView style={styles.container}>
             <StatusBar backgroundColor='white' barStyle='dark-content' />
-            <ScrollView>
+            <ScrollView showsVerticalScrollIndicator={false}>
                 <View style={styles.profile}>
                     <View style={styles.header}>
                         <Image style={styles.profilePicture} source={require('../../../assets/icons/guest.png')} />
@@ -89,31 +89,39 @@ const AccountViewScreen = ({ navigation }) => {
                 <View style={styles.posts}>
                     <Text style={styles.postsHeader}>Posts</Text>
                     <View style={styles.postsHeaderUnderline}></View>
-                    <View style={styles.postView}>
                     {
                         contentLoaded ?
                             (
                                 posts.length > 0 ? (
-                                    posts.map(post => (
-                                        <Post
-                                            key={post._id}
-                                            author={`${user.firstName} ${user.lastName}`}
-                                            age={'1hr'}
-                                            text={post.body}
-                                            navigation={navigation}
-                                        />
-                                    ))
+                                    <View style={styles.postView}>
+                                    {
+                                        posts.map(post => (
+                                            <Post
+                                                key={post._id}
+                                                author={`${user.firstName} ${user.lastName}`}
+                                                age={'1hr'}
+                                                text={post.body}
+                                                onDelete={() => {
+                                                    console.log(post._id);
+                                                    deletePost(post._id, async (success) => {
+                                                        if(success) await getUserPosts();
+                                                    })
+                                                }}
+                                                navigation={navigation}
+                                            />
+                                        ))
+                                    }
+                                    </View>
                                 ) : (
                                     <EmptyMessage
+                                        style={styles.emptyMessage}
                                         subheaderText="You haven't posted anything yet"
                                     />
                                 )
-                            )
-                            : (
-                                <Progress.CircleSnail size={50} indeterminate={true} spinDuration={1000} color='#41CA99' />
+                            ) : (
+                                <Progress.CircleSnail size={50} indeterminate={true} spinDuration={1000} color='#41CA99' style={styles.postLoading} />
                             )
                     }
-                    </View>
                 </View>
             </ScrollView>
         </SafeAreaView>
@@ -195,8 +203,7 @@ const styles = StyleSheet.create({
     },
     postsHeader: {
         textAlign: 'center',
-        fontSize: 32,
-        margin: 10
+        fontSize: 32
     },
     postsHeaderUnderline: {
         width: 125,
@@ -210,6 +217,12 @@ const styles = StyleSheet.create({
         marginTop: 25,
         backgroundColor: '#F2F2F2',
         width: '100%'
+    },
+    emptyMessage: {
+        marginTop: 50,
+    },
+    postLoading: {
+        marginTop: 50,
     }
 });
 

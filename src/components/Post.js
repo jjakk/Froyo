@@ -1,5 +1,11 @@
 import React from 'react';
 import { View, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import {
+    Menu,
+    MenuOptions,
+    MenuOption,
+    MenuTrigger,
+} from 'react-native-popup-menu';
 import { Text, Br } from './froyo-elements';
 import MoreOptionsIcon from '../../assets/icons/MoreSettings.svg';
 import LikeIcon from '../../assets/icons/Like.svg';
@@ -9,11 +15,20 @@ import ShareIcon from '../../assets/icons/Share.svg';
 
 const actionButtonSize = 25;
 
-const Post = ({ author, age, text, imageSrc }) => {
+const Post = ({ author, age, text, imageSrc, onDelete }) => {
     return (
         <View style={styles.post}>
             <View style={styles.header}>
-                <MoreOptionsIcon style={styles.options} name='options-vertical' height={24} width={24} color='black' />
+                <Menu style={styles.options}>
+                    <MenuTrigger>
+                        <MoreOptionsIcon name='options-vertical' height={24} width={24} color='black' />
+                    </MenuTrigger>
+                    <MenuOptions style={{margin: 10}}>
+                        <MenuOption onSelect={onDelete} >
+                            <Text style={styles.deleteButton}>Delete post</Text>
+                        </MenuOption>
+                    </MenuOptions>
+                </Menu>
                 <Image
                     style={styles.profilePicture}
                     source={require('../../assets/icons/guest.png')}
@@ -37,9 +52,7 @@ const Post = ({ author, age, text, imageSrc }) => {
                         <DislikeIcon width={actionButtonSize} height={actionButtonSize} style={styles.dislike}  color='black'/>
                     </TouchableOpacity>
                 </View>
-                <TouchableOpacity>
-                    <CommentIcon width={actionButtonSize} height={actionButtonSize} style={styles.comment}  color='black'/>
-                </TouchableOpacity>
+                <CommentIcon width={actionButtonSize} height={actionButtonSize} style={styles.comment}  color='black'/>
                 <TouchableOpacity>
                     <ShareIcon width={actionButtonSize} height={actionButtonSize}  color='black'/>
                 </TouchableOpacity>
@@ -100,6 +113,10 @@ const styles = StyleSheet.create({
     },
     comment: {
         marginRight: 40
+    },
+    deleteButton: {
+        color: '#FB1C1C',
+        opacity: 0.75
     }
 });
 

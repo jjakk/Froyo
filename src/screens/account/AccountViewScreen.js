@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { SafeAreaView, View, Image, StyleSheet, StatusBar, FlatList } from 'react-native';
+import { SafeAreaView, View, Image, StyleSheet, StatusBar, ScrollView } from 'react-native';
 import * as Progress from 'react-native-progress';
 import { Button, Text, } from '../../components/froyo-elements';
 import { Context as AuthContext } from '../../context/AuthContext';
@@ -25,99 +25,97 @@ const AccountViewScreen = ({ navigation }) => {
     return(
         <SafeAreaView style={styles.container}>
             <StatusBar backgroundColor='white' barStyle='dark-content' />
-            <View style={styles.profile}>
-                <View style={styles.header}>
-                    <Image style={styles.profilePicture} source={require('../../../assets/icons/guest.png')} />
-                    <View style={styles.headerText}>
-                        <Text
-                            style={styles.name}
-                            numberOfLines={1}
-                            adjustsFontSizeToFit={true}
-                        >
-                            {user.firstName} {user.lastName}
-                        </Text>
-                        <Text
-                            style={styles.username}
-                            numberOfLines={1}
-                            adjustsFontSizeToFit={true}
-                        >
-                            {contentLoaded ? `@${user.username}` : ''}
-                        </Text>
-                        <View style={styles.numbers}>
-                            <Text style={styles.followers}>{contentLoaded? `${user.followers.length} Followers` : ''}</Text>
-                            <Text style={styles.following}>{contentLoaded? `${user.following.length} Following` : ''}</Text>
+            <ScrollView>
+                <View style={styles.profile}>
+                    <View style={styles.header}>
+                        <Image style={styles.profilePicture} source={require('../../../assets/icons/guest.png')} />
+                        <View style={styles.headerText}>
+                            <Text
+                                style={styles.name}
+                                numberOfLines={1}
+                                adjustsFontSizeToFit={true}
+                            >
+                                {user.firstName} {user.lastName}
+                            </Text>
+                            <Text
+                                style={styles.username}
+                                numberOfLines={1}
+                                adjustsFontSizeToFit={true}
+                            >
+                                {contentLoaded ? `@${user.username}` : ''}
+                            </Text>
+                            <View style={styles.numbers}>
+                                <Text style={styles.followers}>{contentLoaded? `${user.followers.length} Followers` : ''}</Text>
+                                <Text style={styles.following}>{contentLoaded? `${user.following.length} Following` : ''}</Text>
+                            </View>
                         </View>
                     </View>
-                </View>
-                {
-                    user.description
-                        ? (
-                            <Text style={styles.description}>
-                                {user.description}
-                            </Text>
-                        )
-                        : null
-                }
-            </View>
-            <View style={styles.auth}>
-                <View style={styles.authButtonContainer}>
-                    <Button
-                        title='Edit profile'
-                        color='#41CA99'
-                        textColor='white'
-                        pill
-                        buttonStyle={styles.authButton}
-                        titleStyle={styles.authButtonText}
-                        onPress={handleEditProfile}
-                    />
-                </View>
-                <View style={styles.gap}></View>
-                <View  style={styles.authButtonContainer}>
-                    <Button
-                        title='Sign out'
-                        color='#41CA99'
-                        textColor='#41CA99'
-                        type='secondary'
-                        pill
-                        onPress={signOut}
-                        buttonStyle={styles.authButton}
-                        titleStyle={styles.authButtonText}
-                    />
-                </View>
-            </View>
-            <View style={styles.posts}>
-                <Text style={styles.postsHeader}>Posts</Text>
-                <View style={styles.postsHeaderUnderline}></View>
-                {
-                    contentLoaded ?
-                        (
-                            posts.length > 0 ? (
-                                <FlatList
-                                    showsVerticalScrollIndicator={false}
-                                    data={posts}
-                                    style={styles.postView}
-                                    keyExtractor={item => item._id}
-                                    renderItem={({ item }) => {
-                                        return (
-                                            <Post
-                                                author={`${user.firstName} ${user.lastName}`}
-                                                age={'1hr'}
-                                                text={item.body}
-                                            />
-                                        );
-                                    }}
-                                />
-                            ) : (
-                                <EmptyMessage
-                                    subheaderText="You haven't posted anything yet"
-                                />
+                    {
+                        user.description
+                            ? (
+                                <Text style={styles.description}>
+                                    {user.description}
+                                </Text>
                             )
-                        )
-                        : (
-                            <Progress.CircleSnail size={50} indeterminate={true} spinDuration={1000} color='#41CA99' />
-                        )
-                }
-            </View>
+                            : null
+                    }
+                </View>
+                <View style={styles.auth}>
+                    <View style={styles.authButtonContainer}>
+                        <Button
+                            title='Edit profile'
+                            color='#41CA99'
+                            textColor='white'
+                            pill
+                            buttonStyle={styles.authButton}
+                            titleStyle={styles.authButtonText}
+                            onPress={handleEditProfile}
+                        />
+                    </View>
+                    <View style={styles.gap}></View>
+                    <View  style={styles.authButtonContainer}>
+                        <Button
+                            title='Sign out'
+                            color='#41CA99'
+                            textColor='#41CA99'
+                            type='secondary'
+                            pill
+                            onPress={signOut}
+                            buttonStyle={styles.authButton}
+                            titleStyle={styles.authButtonText}
+                        />
+                    </View>
+                </View>
+                <View style={styles.posts}>
+                    <Text style={styles.postsHeader}>Posts</Text>
+                    <View style={styles.postsHeaderUnderline}></View>
+                    <View style={styles.postView}>
+                    {
+                        contentLoaded ?
+                            (
+                                posts.length > 0 ? (
+                                    posts.map(post => (
+                                        <Post
+                                            key={post._id}
+                                            author={`${user.firstName} ${user.lastName}`}
+                                            age={'1hr'}
+                                            text={post.body}
+                                            navigation={navigation}
+                                        />
+                                    ))
+                                ) : (
+                                    <EmptyMessage
+                                        subheaderText="You haven't posted anything yet"
+                                    />
+                                )
+                            )
+                            : (
+                                <Progress.CircleSnail size={50} indeterminate={true} spinDuration={1000} color='#41CA99' />
+                            )
+                    }
+                    </View>
+                </View>
+            </ScrollView>
         </SafeAreaView>
     );
 };

@@ -1,14 +1,21 @@
-import React, { useContext, useEffect } from 'react';
-import { SafeAreaView, View, Image, StyleSheet, StatusBar } from 'react-native';
+import React, { useContext, useEffect, useState } from 'react';
+import { SafeAreaView, View, Image, StyleSheet, StatusBar, FlatList } from 'react-native';
+import * as Progress from 'react-native-progress';
 import { Button, Text, } from '../../components/froyo-elements';
 import { Context as AuthContext } from '../../context/AuthContext';
 import EmptyMessage from '../../components/EmptyMessage';
+import Post from '../../components/Post';
 
 const AccountViewScreen = ({ navigation }) => {
-    const { getUserInfo, signOut, state: { contentLoaded, user } } = useContext(AuthContext);
+    const { getUserInfo, getUserPosts, signOut, state: { user, posts } } = useContext(AuthContext);
+    const [contentLoaded, setContentLoaded] = useState(false);
 
     useEffect(() => {
-        getUserInfo();
+        (async function(){
+            await getUserInfo();
+            await getUserPosts();
+            setContentLoaded(true);
+        })();
     }, []);
 
     const handleEditProfile = () => {
@@ -81,10 +88,35 @@ const AccountViewScreen = ({ navigation }) => {
             <View style={styles.posts}>
                 <Text style={styles.postsHeader}>Posts</Text>
                 <View style={styles.postsHeaderUnderline}></View>
-                <EmptyMessage
-                    style={styles.emptyMessage}
-                    subheaderText="You haven't posted anything yet"
-                />
+                {
+                    contentLoaded ?
+                        (
+                            posts.length > 0 ? (
+                                <FlatList
+                                    showsVerticalScrollIndicator={false}
+                                    data={posts}
+                                    style={styles.postView}
+                                    keyExtractor={item => item._id}
+                                    renderItem={({ item }) => {
+                                        return (
+                                            <Post
+                                                author={`${user.firstName} ${user.lastName}`}
+                                                age={'1hr'}
+                                                text={item.body}
+                                            />
+                                        );
+                                    }}
+                                />
+                            ) : (
+                                <EmptyMessage
+                                    subheaderText="You haven't posted anything yet"
+                                />
+                            )
+                        )
+                        : (
+                            <Progress.CircleSnail size={50} indeterminate={true} spinDuration={1000} color='#41CA99' />
+                        )
+                }
             </View>
         </SafeAreaView>
     );
@@ -159,7 +191,6 @@ const styles = StyleSheet.create({
     },
     // Posts
     posts: {
-        margin: 25,
         marginTop: 15,
         justifyContent: 'center',
         alignItems: 'center'
@@ -177,8 +208,10 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         borderRadius: 2
     },
-    emptyMessage: {
-        marginTop: 25
+    postView: {
+        marginTop: 25,
+        backgroundColor: '#F2F2F2',
+        width: '100%'
     }
 });
 

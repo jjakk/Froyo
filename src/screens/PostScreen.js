@@ -69,7 +69,7 @@ const PostScreen = ({ navigation }) => {
             </TouchableOpacity>
             */}
             <Button
-                buttonStyle={styles.submit}
+                containerStyle={styles.submit}
                 type='primary'
                 title='Post'
                 color='#41CA99'

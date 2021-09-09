@@ -13,7 +13,9 @@ const authReducer = (state, action) => {
         case 'sign_out':
             return { ...state, token: null, errorMessage: '' };
         case 'get_user_info':
-            return { ...state, contentLoaded: true, user: action.payload, errorMessage: '' }
+            return { ...state, user: action.payload, errorMessage: '' }
+        case 'load_posts':
+            return { ...state, posts: action.payload, errorMessage: '' }
         default:
             return state;
     }
@@ -134,6 +136,17 @@ const createPost = (dispatch) => async (info, callback) => {
     }
 };
 
+// Get all the posts of a given user
+const getUserPosts = (dispatch) => async () => {
+    try{
+        const response = await froyoApi.get('/posts');
+        dispatch({ type: 'load_posts', payload: response.data });
+    }
+    catch(err){
+        dispatch({ type: 'add_error', payload: `Ran into an error: ${err}` })
+    }
+};
+
 // Get a user's information given their auth token
 const getUserInfo = (dispatch) => async () => {
     try{
@@ -216,13 +229,13 @@ export const { Provider, Context } = createDataContext(
         checkSignedIn,
         signOut,
         createPost,
+        getUserPosts,
         getUserInfo,
         updateUserInfo,
         clearErrorMessage
     },
     { /*isSignedIn: false,*/
         user: {},
-        contentLoading: false,
         errorMessage: ''
     }
 );

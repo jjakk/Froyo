@@ -1,4 +1,4 @@
-import React, { useContext, useEffect,  useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import {
     SafeAreaView,
     StyleSheet,
@@ -21,11 +21,12 @@ import BackIcon from '../../../assets/icons/Back.svg';
 import UploadIcon from '../../../assets/icons/Upload.svg';
 
 const AccountEditScreen = ({ navigation }) => {
-    const { getUserInfo, updateUserInfo, state: { contentLoaded, user, errorMessage } } = useContext(AuthContext);
+    const { getUserInfo, updateUserInfo, state: { user, errorMessage } } = useContext(AuthContext);
     const [firstName, setFirstName] = useState('loading');
     const [lastName, setLastName] = useState('loading');
     const [username, setUsername] = useState('loading');
     const [description, setDescription] = useState('loading');
+    const [contentLoaded, setContentLoaded] = useState(false);
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
@@ -35,6 +36,7 @@ const AccountEditScreen = ({ navigation }) => {
             setLastName(user.lastName);
             setUsername(user.username);
             setDescription(user.description);
+            setContentLoaded(true);
         })();
     }, []);
 

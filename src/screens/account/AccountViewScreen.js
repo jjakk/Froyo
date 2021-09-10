@@ -102,7 +102,6 @@ const AccountViewScreen = ({ navigation }) => {
                                                 age={'1hr'}
                                                 text={post.body}
                                                 onDelete={() => {
-                                                    console.log(post._id);
                                                     deletePost(post._id, async (success) => {
                                                         if(success) await getUserPosts();
                                                     })

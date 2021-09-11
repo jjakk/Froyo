@@ -47,12 +47,22 @@ const AccountViewScreen = ({ navigation }) => {
                                         {contentLoaded ? `@${user.username}` : ''}
                                     </Text>
                                     <View style={styles.numbers}>
-                                        <Text style={styles.followers}>{contentLoaded? `${user.followers.length} Followers` : ''}</Text>
-                                        <Text style={styles.following}>{contentLoaded? `${user.following.length} Following` : ''}</Text>
+                                        <Text style={styles.followers}>
+                                            {contentLoaded? `${user.followers.length} Followers` : ''}
+                                        </Text>
+                                        <Text style={styles.following}>
+                                            {contentLoaded? `${user.following.length} Following` : ''}
+                                        </Text>
                                     </View>
                                 </View>
                             ) : (
-                                <Progress.CircleSnail size={50} indeterminate={true} spinDuration={1000} color='#41CA99' style={styles.accountInfoLoading} />
+                                <Progress.CircleSnail
+                                    size={50}
+                                    indeterminate={true}
+                                    spinDuration={1000}
+                                    color='#41CA99'
+                                    style={styles.accountInfoLoading}
+                                />
                             )
                         }
                     </View>
@@ -124,7 +134,13 @@ const AccountViewScreen = ({ navigation }) => {
                                     />
                                 )
                             ) : (
-                                <Progress.CircleSnail size={50} indeterminate={true} spinDuration={1000} color='#41CA99' style={styles.postLoading} />
+                                <Progress.CircleSnail
+                                    size={50}
+                                    indeterminate={true}
+                                    spinDuration={1000}
+                                    color='#41CA99'
+                                    style={styles.postLoading}
+                                />
                             )
                     }
                 </View>

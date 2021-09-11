@@ -29,26 +29,32 @@ const AccountViewScreen = ({ navigation }) => {
                 <View style={styles.profile}>
                     <View style={styles.header}>
                         <Image style={styles.profilePicture} source={require('../../../assets/icons/guest.png')} />
-                        <View style={styles.headerText}>
-                            <Text
-                                style={styles.name}
-                                numberOfLines={1}
-                                adjustsFontSizeToFit={true}
-                            >
-                                {user.firstName} {user.lastName}
-                            </Text>
-                            <Text
-                                style={styles.username}
-                                numberOfLines={1}
-                                adjustsFontSizeToFit={true}
-                            >
-                                {contentLoaded ? `@${user.username}` : ''}
-                            </Text>
-                            <View style={styles.numbers}>
-                                <Text style={styles.followers}>{contentLoaded? `${user.followers.length} Followers` : ''}</Text>
-                                <Text style={styles.following}>{contentLoaded? `${user.following.length} Following` : ''}</Text>
-                            </View>
-                        </View>
+                        {
+                            contentLoaded ? (
+                                <View style={styles.headerText}>
+                                    <Text
+                                        style={styles.name}
+                                        numberOfLines={1}
+                                        adjustsFontSizeToFit={true}
+                                    >
+                                        {user.firstName} {user.lastName}
+                                    </Text>
+                                    <Text
+                                        style={styles.username}
+                                        numberOfLines={1}
+                                        adjustsFontSizeToFit={true}
+                                    >
+                                        {contentLoaded ? `@${user.username}` : ''}
+                                    </Text>
+                                    <View style={styles.numbers}>
+                                        <Text style={styles.followers}>{contentLoaded? `${user.followers.length} Followers` : ''}</Text>
+                                        <Text style={styles.following}>{contentLoaded? `${user.following.length} Following` : ''}</Text>
+                                    </View>
+                                </View>
+                            ) : (
+                                <Progress.CircleSnail size={50} indeterminate={true} spinDuration={1000} color='#41CA99' style={styles.accountInfoLoading} />
+                            )
+                        }
                     </View>
                     {
                         user.description
@@ -176,6 +182,10 @@ const styles = StyleSheet.create({
     },
     description: {
         fontSize: 22
+    },
+    accountInfoLoading: {
+        marginLeft: 50,
+        alignSelf: 'center'
     },
     // Auth
     auth: {

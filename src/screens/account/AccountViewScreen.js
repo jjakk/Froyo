@@ -10,6 +10,10 @@ const AccountViewScreen = ({ navigation }) => {
     const { getUserInfo, deletePost, getUserPosts, signOut, state: { user, posts } } = useContext(AuthContext);
     const [contentLoaded, setContentLoaded] = useState(false);
 
+    /*
+        Add code to get user info and posts on refocus
+    */
+
     useEffect(() => {
         (async function(){
             await getUserInfo();

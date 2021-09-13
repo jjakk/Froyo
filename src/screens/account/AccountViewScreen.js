@@ -13,6 +13,16 @@ const AccountViewScreen = ({ navigation }) => {
     /*
         Add code to get user info and posts on refocus
     */
+   /*
+   Something like this:
+    useFocusEffect(
+        React.useCallback(() => {
+        const unsubscribe = API.subscribe(userId, user => setUser(data));
+
+        return () => unsubscribe();
+        }, [userId])
+    );
+   */
 
     useEffect(() => {
         (async function(){

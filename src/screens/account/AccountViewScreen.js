@@ -10,20 +10,7 @@ const AccountViewScreen = ({ navigation }) => {
     const { getUserInfo, deletePost, getUserPosts, signOut, state: { user, posts } } = useContext(AuthContext);
     const [contentLoaded, setContentLoaded] = useState(false);
 
-    /*
-        Add code to get user info and posts on refocus
-    */
-   /*
-   Something like this:
-    useFocusEffect(
-        React.useCallback(() => {
-        const unsubscribe = API.subscribe(userId, user => setUser(data));
-
-        return () => unsubscribe();
-        }, [userId])
-    );
-   */
-
+    // Get user info on mount
     useEffect(() => {
         (async function(){
             await getUserInfo();

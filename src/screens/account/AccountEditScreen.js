@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from 'react';
 import {
     SafeAreaView,
     StyleSheet,
-    TouchableNativeFeedback,
     Platform,
     StatusBar,
     View,
@@ -20,12 +19,14 @@ import { Context as AuthContext } from '../../context/AuthContext';
 import BackIcon from '../../../assets/icons/Back.svg';
 import UploadIcon from '../../../assets/icons/Upload.svg';
 
+const LOADING_TEXT = 'Loading';
+
 const AccountEditScreen = ({ navigation }) => {
     const { getUserInfo, updateUserInfo, state: { user, errorMessage } } = useContext(AuthContext);
-    const [firstName, setFirstName] = useState('loading');
-    const [lastName, setLastName] = useState('loading');
-    const [username, setUsername] = useState('loading');
-    const [description, setDescription] = useState('loading');
+    const [firstName, setFirstName] = useState(LOADING_TEXT);
+    const [lastName, setLastName] = useState(LOADING_TEXT);
+    const [username, setUsername] = useState(LOADING_TEXT);
+    const [description, setDescription] = useState(LOADING_TEXT);
     const [contentLoaded, setContentLoaded] = useState(false);
     const [loading, setLoading] = useState(false);
 
@@ -112,9 +113,9 @@ const AccountEditScreen = ({ navigation }) => {
                         onPress={handleSubmit}
                     />
                     <ErrorMessage message={errorMessage} style={styles.errorMessage} />
-                    <TouchableNativeFeedback onPress={() => navigation.navigate('AccountView')}>
+                    <TouchableWithoutFeedback onPress={() => navigation.navigate('AccountView')}>
                         <BackIcon width={25} height={25} style={styles.back} />
-                    </TouchableNativeFeedback>
+                    </TouchableWithoutFeedback>
                 </SafeAreaView>
             </KeyboardAvoidingView>
         </TouchableWithoutFeedback>

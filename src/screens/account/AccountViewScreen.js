@@ -1,14 +1,32 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { SafeAreaView, View, Image, StyleSheet, StatusBar, ScrollView } from 'react-native';
+import React, {
+    useContext,
+    useEffect,
+    useState,
+    useCallback
+} from 'react';
+import {
+    SafeAreaView,
+    View,
+    Image,
+    StyleSheet,
+    StatusBar,
+    ScrollView,
+    RefreshControl
+} from 'react-native';
 import * as Progress from 'react-native-progress';
 import { Button, Text, } from '../../components/froyo-elements';
 import { Context as AuthContext } from '../../context/AuthContext';
 import EmptyMessage from '../../components/EmptyMessage';
 import Post from '../../components/Post';
 
+const wait = (timeout) => {
+    return new Promise(resolve => setTimeout(resolve, timeout));
+}
+
 const AccountViewScreen = ({ navigation }) => {
     const { getUserInfo, deletePost, getUserPosts, signOut, state: { user, posts } } = useContext(AuthContext);
     const [contentLoaded, setContentLoaded] = useState(false);
+    const [refreshing, setRefreshing] = useState(false);
 
     // Get user info on mount
     useEffect(() => {
@@ -23,10 +41,24 @@ const AccountViewScreen = ({ navigation }) => {
         navigation.navigate('AccountEdit');
     };
 
+    const onRefresh = useCallback(async () => {
+        setRefreshing(true);
+        await getUserPosts();
+        setRefreshing(false);
+      }, []);
+
     return(
         <SafeAreaView style={styles.container}>
             <StatusBar backgroundColor='white' barStyle='dark-content' />
-            <ScrollView showsVerticalScrollIndicator={false}>
+            <ScrollView
+                showsVerticalScrollIndicator={false}
+                refreshControl={
+                    <RefreshControl
+                        refreshing={refreshing}
+                        onRefresh={onRefresh}
+                    />
+                }
+            >
                 <View style={styles.profile}>
                     <View style={styles.header}>
                         <Image style={styles.profilePicture} source={require('../../../assets/icons/guest.png')} />

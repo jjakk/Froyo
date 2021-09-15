@@ -43,7 +43,10 @@ const AccountViewScreen = ({ navigation }) => {
 
     const onRefresh = useCallback(async () => {
         setRefreshing(true);
+        setContentLoaded(false);
+        await getUserInfo();
         await getUserPosts();
+        setContentLoaded(true);
         setRefreshing(false);
       }, []);
 

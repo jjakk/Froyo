@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, Image, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
 import {
     Menu,
     MenuOptions,
@@ -15,49 +15,51 @@ import ShareIcon from '../../assets/icons/Share.svg';
 
 const actionButtonSize = 25;
 
-const Post = ({ author, age, text, imageSrc, onDelete }) => {
+const Post = ({ author, age, text, imageSrc, onDelete, onPress }) => {
     return (
-        <View style={styles.post}>
-            <View style={styles.header}>
-                <Menu style={styles.options}>
-                    <MenuTrigger>
-                        <MoreOptionsIcon name='options-vertical' height={24} width={24} color='black' />
-                    </MenuTrigger>
-                    <MenuOptions style={{margin: 10}}>
-                        <MenuOption onSelect={onDelete} >
-                            <Text style={styles.deleteButton}>Delete post</Text>
-                        </MenuOption>
-                    </MenuOptions>
-                </Menu>
-                <Image
-                    style={styles.profilePicture}
-                    source={require('../../assets/icons/guest.png')}
-                    resizeMode='contain'
-                />
-                <Text style={styles.headerText}>
-                    <Text style={styles.author}>{author}</Text>
-                    <Br/>
-                    <Text style={styles.age}>{age}</Text>
-                </Text>
-            </View>
-            <View style={styles.body}>
-                <Text style={styles.text}>{text}</Text>
-            </View>
-            <View style={styles.actions}>
-                <View style={styles.likeness}>
+        <TouchableWithoutFeedback onPress={onPress}>
+            <View style={styles.post}>
+                <View style={styles.header}>
+                    <Menu style={styles.options}>
+                        <MenuTrigger>
+                            <MoreOptionsIcon name='options-vertical' height={24} width={24} color='black' />
+                        </MenuTrigger>
+                        <MenuOptions style={{margin: 10}}>
+                            <MenuOption onSelect={onDelete} >
+                                <Text style={styles.deleteButton}>Delete post</Text>
+                            </MenuOption>
+                        </MenuOptions>
+                    </Menu>
+                    <Image
+                        style={styles.profilePicture}
+                        source={require('../../assets/icons/guest.png')}
+                        resizeMode='contain'
+                    />
+                    <Text style={styles.headerText}>
+                        <Text style={styles.author}>{author}</Text>
+                        <Br/>
+                        <Text style={styles.age}>{age}</Text>
+                    </Text>
+                </View>
+                <View style={styles.body}>
+                    <Text style={styles.text}>{text}</Text>
+                </View>
+                <View style={styles.actions}>
+                    <View style={styles.likeness}>
+                        <TouchableOpacity>
+                            <LikeIcon width={actionButtonSize} height={actionButtonSize} color='black'/>
+                        </TouchableOpacity>
+                        <TouchableOpacity>
+                            <DislikeIcon width={actionButtonSize} height={actionButtonSize} style={styles.dislike}  color='black'/>
+                        </TouchableOpacity>
+                    </View>
+                    <CommentIcon width={actionButtonSize} height={actionButtonSize} style={styles.comment}  color='black'/>
                     <TouchableOpacity>
-                        <LikeIcon width={actionButtonSize} height={actionButtonSize} color='black'/>
-                    </TouchableOpacity>
-                    <TouchableOpacity>
-                        <DislikeIcon width={actionButtonSize} height={actionButtonSize} style={styles.dislike}  color='black'/>
+                        <ShareIcon width={actionButtonSize} height={actionButtonSize}  color='black'/>
                     </TouchableOpacity>
                 </View>
-                <CommentIcon width={actionButtonSize} height={actionButtonSize} style={styles.comment}  color='black'/>
-                <TouchableOpacity>
-                    <ShareIcon width={actionButtonSize} height={actionButtonSize}  color='black'/>
-                </TouchableOpacity>
             </View>
-        </View>
+        </TouchableWithoutFeedback>
     );
 };
 

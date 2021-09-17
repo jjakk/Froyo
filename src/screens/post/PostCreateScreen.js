@@ -1,11 +1,11 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { View, SafeAreaView, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import * as MediaLibrary from 'expo-media-library';
-import { Context as AuthContext } from '../context/AuthContext';
-import { Button, Text, Input } from '../components/froyo-elements';
-import BackIcon from '../../assets/icons/Back.svg';
-import PlusIcon from '../../assets/icons/Plus.svg';
-import ErrorMessage from '../components/ErrorMessage';
+import { Context as AuthContext } from '../../context/AuthContext';
+import { Button, Text, Input } from '../../../components/froyo-elements';
+import BackIcon from '../../../assets/icons/Back.svg';
+import PlusIcon from '../../../assets/icons/Plus.svg';
+import ErrorMessage from '../../../components/ErrorMessage';
 
 const PostScreen = ({ navigation }) => {
     const [postBody, setPostBody] = useState('');

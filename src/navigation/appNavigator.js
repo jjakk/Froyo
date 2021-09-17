@@ -5,7 +5,6 @@ import { createBottomTabNavigator } from 'react-navigation-tabs';
 // Screens
 import WelcomeScreen from '../screens/WelcomeScreen';
 import FeedScreen from '../screens/FeedScreen';
-import PostScreen from '../screens/PostScreen';
 import NoWifiScreen from '../screens/NoWifiScreen';
 // Authentication Screens
 import ResolveAuthScreen from '../screens/authentication/ResolveAuthScreen';
@@ -13,9 +12,11 @@ import SignInScreen from '../screens/authentication/SignInScreen';
 import SignUpOneScreen from '../screens/authentication/signUp/SignUpOneScreen';
 import SignUpTwoScreen from '../screens/authentication/signUp/SignUpTwoScreen';
 import ResetPasswordScreen from '../screens/authentication/ResetPasswordScreen';
-//Acccount Screens
+// Acccount Screens
 import AccountViewScreen from '../screens/account/AccountViewScreen';
 import AccountEditScreen from '../screens/account/AccountEditScreen';
+// Post Screens
+import PostScreen from '../screens/post/PostCreateScreen';
 // Icons
 import FroyoIcon from '../../assets/icons/Froyo.svg';
 import UserIcon from '../../assets/icons/Profile Picture.svg';

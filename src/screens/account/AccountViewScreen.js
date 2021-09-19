@@ -139,8 +139,6 @@ const AccountViewScreen = ({ navigation }) => {
                     </View>
                 </View>
                 <View style={styles.posts}>
-                    <Text style={styles.postsHeader}>Posts</Text>
-                    <View style={styles.postsHeaderUnderline}></View>
                     {
                         contentLoaded ?
                             (
@@ -262,20 +260,10 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center'
     },
-    postsHeader: {
-        textAlign: 'center',
-        fontSize: 32
-    },
-    postsHeaderUnderline: {
-        width: 125,
-        height: 2,
-        backgroundColor: 'black',
-        opacity: 0.75,
-        marginBottom: 10,
-        borderRadius: 2
-    },
     postView: {
-        marginTop: 25,
+        marginTop: 5,
+        paddingTop: 5,
+        borderRadius: 5,
         backgroundColor: '#F2F2F2',
         width: '100%'
     },

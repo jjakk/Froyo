@@ -38,12 +38,12 @@ const Post = ({ author, uploadDate, text, imageSrc, onDelete, onPress }) => {
         const yearsDiff = Math.floor(monthsDiff / 12);
 
         // Return the correct time unit
-        if(minutesDiff < 1) return `${secondsDiff} seconds`;
-        if(hoursDiff < 1) return `${minutesDiff} minutes`;
-        if(daysDiff < 1) return `${hoursDiff} hours`;
-        if(weeksDiff < 1) return `${daysDiff} days`;
-        if(monthsDiff < 1) return `${weeksDiff} weeks`;
-        if(yearsDiff < 1) return `${monthsDiff} months`;
+        if(minutesDiff < 1) return `${secondsDiff} second${secondsDiff > 1 ? 's' : ''}`;
+        if(hoursDiff < 1) return `${minutesDiff} minute${minutesDiff > 1 ? 's' : ''}`;
+        if(daysDiff < 1) return `${hoursDiff} hour${hoursDiff > 1 ? 's' : ''}`;
+        if(weeksDiff < 1) return `${daysDiff} day${daysDiff > 1 ? 's' : ''}`;
+        if(monthsDiff < 1) return `${weeksDiff} week${weeksDiff > 1 ? 's' : ''}`;
+        if(yearsDiff < 1) return `${monthsDiff} month${monthsDiff > 1 ? 's' : ''}`;
         return `${yearsDiff} years`;
     }
 

@@ -68,7 +68,7 @@ Never gonna say goodbye. Never gonna tell a lie and hurt you`
                     />
                 )
             }
-            <TouchableWithoutFeedback onPress={() => navigation.navigate('Post')}>
+            <TouchableWithoutFeedback onPress={() => navigation.navigate('PostCreate')}>
                 <CreatePostIcon width={50} height={50} style={styles.createPost} />
             </TouchableWithoutFeedback>
         </SafeAreaView>

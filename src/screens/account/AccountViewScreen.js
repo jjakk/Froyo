@@ -156,7 +156,14 @@ const AccountViewScreen = ({ navigation }) => {
                                                         if(success) await getUserPosts();
                                                     })
                                                 }}
+                                                onEdit={() => {
+                                                    navigation.navigate('PostEdit', { post });
+                                                }}
+                                                onPress={() => {
+                                                    navigation.navigate('PostView', { post });
+                                                }}
                                                 navigation={navigation}
+                                                personalPost={true}
                                             />
                                         ))
                                     }
@@ -263,7 +270,6 @@ const styles = StyleSheet.create({
     postView: {
         marginTop: 5,
         paddingTop: 5,
-        borderRadius: 5,
         backgroundColor: '#F2F2F2',
         width: '100%'
     },

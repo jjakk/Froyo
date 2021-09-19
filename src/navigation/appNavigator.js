@@ -16,7 +16,9 @@ import ResetPasswordScreen from '../screens/authentication/ResetPasswordScreen';
 import AccountViewScreen from '../screens/account/AccountViewScreen';
 import AccountEditScreen from '../screens/account/AccountEditScreen';
 // Post Screens
-import PostScreen from '../screens/post/PostCreateScreen';
+import PostCreateScreen from '../screens/post/PostCreateScreen';
+import PostEditScreen from '../screens/post/PostEditScreen';
+import PostViewScreen from '../screens/post/PostViewScreen';
 // Icons
 import FroyoIcon from '../../assets/icons/Froyo.svg';
 import UserIcon from '../../assets/icons/Profile Picture.svg';
@@ -82,7 +84,9 @@ const tabNavigator = createBottomTabNavigator({
 const mainNavigator = createStackNavigator({
         tabFlow: tabNavigator,
         AccountEdit: AccountEditScreen,
-        Post: PostScreen
+        PostCreate: PostCreateScreen,
+        PostView: PostViewScreen,
+        PostEdit: PostEditScreen,
     },
     {
         headerMode: 'none',

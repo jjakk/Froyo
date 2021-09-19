@@ -16,7 +16,18 @@ import ShareIcon from '../../assets/icons/Share.svg';
 const ACTION_BUTTON_SIZE = 25;
 const AVERAGE_WEEKS_PER_MONTH = 4.34524;
 
-const Post = ({ author, uploadDate, text, imageSrc, onDelete, onPress }) => {
+// Post props & their meanings
+// ___________________________
+// personalPost -> whether the post is your own or not
+// author -> the name of the author
+// uploadDate -> the date the post was uploaded
+// text -> the text body of the post
+// imageSrc -> the image of the post
+// onDelete -> the function to call when the delete button is pressed
+// onEdit -> the function to call when the edit button is pressed
+// onPress -> the function to call when the post is tapped on
+
+const Post = ({ personalPost, author, uploadDate, text, imageSrc, onEdit, onDelete, onPress }) => {
     
     // Calculate the time since the post was uploaded in miliseconds
     const calculatePostAge = (dateOfUpload) => {
@@ -56,9 +67,18 @@ const Post = ({ author, uploadDate, text, imageSrc, onDelete, onPress }) => {
                             <MoreOptionsIcon name='options-vertical' height={24} width={24} color='black' />
                         </MenuTrigger>
                         <MenuOptions style={{margin: 10}}>
-                            <MenuOption onSelect={onDelete} >
-                                <Text style={styles.deleteButton}>Delete post</Text>
-                            </MenuOption>
+                            {
+                                personalPost ? (
+                                    <>
+                                        <MenuOption onSelect={onEdit}>
+                                            <Text>Edit post</Text>
+                                        </MenuOption>
+                                        <MenuOption onSelect={onDelete}>
+                                            <Text style={styles.deleteButton}>Delete post</Text>
+                                        </MenuOption>
+                                    </>
+                                ) : null
+                            }
                         </MenuOptions>
                     </Menu>
                     <Image
@@ -77,17 +97,17 @@ const Post = ({ author, uploadDate, text, imageSrc, onDelete, onPress }) => {
                 </View>
                 <View style={styles.actions}>
                     <View style={styles.likeness}>
-                        <TouchableOpacity>
+                        <TouchableWithoutFeedback>
                             <LikeIcon width={ACTION_BUTTON_SIZE} height={ACTION_BUTTON_SIZE} color='black'/>
-                        </TouchableOpacity>
-                        <TouchableOpacity>
+                        </TouchableWithoutFeedback>
+                        <TouchableWithoutFeedback>
                             <DislikeIcon width={ACTION_BUTTON_SIZE} height={ACTION_BUTTON_SIZE} style={styles.dislike}  color='black'/>
-                        </TouchableOpacity>
+                        </TouchableWithoutFeedback>
                     </View>
                     <CommentIcon width={ACTION_BUTTON_SIZE} height={ACTION_BUTTON_SIZE} style={styles.comment}  color='black'/>
-                    <TouchableOpacity>
+                    <TouchableWithoutFeedback>
                         <ShareIcon width={ACTION_BUTTON_SIZE} height={ACTION_BUTTON_SIZE}  color='black'/>
-                    </TouchableOpacity>
+                    </TouchableWithoutFeedback>
                 </View>
             </View>
         </TouchableWithoutFeedback>

@@ -7,7 +7,7 @@ import BackIcon from '../../../assets/icons/Back.svg';
 import PlusIcon from '../../../assets/icons/Plus.svg';
 import ErrorMessage from '../../components/ErrorMessage';
 
-const PostScreen = ({ navigation }) => {
+const PostCreateScreen = ({ navigation }) => {
     const [postBody, setPostBody] = useState('');
     const [loading, setLoading] = useState(false);
     const { createPost, clearErrorMessage, state: { errorMessage } } = useContext(AuthContext);
@@ -132,5 +132,5 @@ const styles = StyleSheet.create({
     }
 });
 
-export default PostScreen;
+export default PostCreateScreen;
 

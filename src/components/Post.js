@@ -13,9 +13,40 @@ import DislikeIcon from '../../assets/icons/Dislike.svg';
 import CommentIcon from '../../assets/icons/Comment.svg';
 import ShareIcon from '../../assets/icons/Share.svg';
 
-const actionButtonSize = 25;
+const ACTION_BUTTON_SIZE = 25;
+const AVERAGE_WEEKS_PER_MONTH = 4.34524;
 
-const Post = ({ author, age, text, imageSrc, onDelete, onPress }) => {
+const Post = ({ author, uploadDate, text, imageSrc, onDelete, onPress }) => {
+    
+    // Calculate the time since the post was uploaded in miliseconds
+    const calculatePostAge = (dateOfUpload) => {
+        const today = new Date();
+        const postDate = new Date(dateOfUpload);
+        const millisecondsDiff = Math.abs(postDate - today);
+        return formatPostAge(millisecondsDiff);
+    }
+
+    // Format the time since the post was uploaded (given miliseconds)
+    const formatPostAge = (miliseconds) => {
+        // Calculate all the different time units
+        const secondsDiff = Math.floor(miliseconds / 1000);
+        const minutesDiff = Math.floor(secondsDiff / 60);
+        const hoursDiff = Math.floor(minutesDiff / 60);
+        const daysDiff = Math.floor(hoursDiff / 24);
+        const weeksDiff = Math.floor(daysDiff / 7);
+        const monthsDiff = Math.floor(weeksDiff / AVERAGE_WEEKS_PER_MONTH);
+        const yearsDiff = Math.floor(monthsDiff / 12);
+
+        // Return the correct time unit
+        if(minutesDiff < 1) return `${secondsDiff} seconds`;
+        if(hoursDiff < 1) return `${minutesDiff} minutes`;
+        if(daysDiff < 1) return `${hoursDiff} hours`;
+        if(weeksDiff < 1) return `${daysDiff} days`;
+        if(monthsDiff < 1) return `${weeksDiff} weeks`;
+        if(yearsDiff < 1) return `${monthsDiff} months`;
+        return `${yearsDiff} years`;
+    }
+
     return (
         <TouchableWithoutFeedback onPress={onPress}>
             <View style={styles.post}>
@@ -38,7 +69,7 @@ const Post = ({ author, age, text, imageSrc, onDelete, onPress }) => {
                     <Text style={styles.headerText}>
                         <Text style={styles.author}>{author}</Text>
                         <Br/>
-                        <Text style={styles.age}>{age}</Text>
+                        <Text style={styles.age}>{calculatePostAge(uploadDate)}</Text>
                     </Text>
                 </View>
                 <View style={styles.body}>
@@ -47,15 +78,15 @@ const Post = ({ author, age, text, imageSrc, onDelete, onPress }) => {
                 <View style={styles.actions}>
                     <View style={styles.likeness}>
                         <TouchableOpacity>
-                            <LikeIcon width={actionButtonSize} height={actionButtonSize} color='black'/>
+                            <LikeIcon width={ACTION_BUTTON_SIZE} height={ACTION_BUTTON_SIZE} color='black'/>
                         </TouchableOpacity>
                         <TouchableOpacity>
-                            <DislikeIcon width={actionButtonSize} height={actionButtonSize} style={styles.dislike}  color='black'/>
+                            <DislikeIcon width={ACTION_BUTTON_SIZE} height={ACTION_BUTTON_SIZE} style={styles.dislike}  color='black'/>
                         </TouchableOpacity>
                     </View>
-                    <CommentIcon width={actionButtonSize} height={actionButtonSize} style={styles.comment}  color='black'/>
+                    <CommentIcon width={ACTION_BUTTON_SIZE} height={ACTION_BUTTON_SIZE} style={styles.comment}  color='black'/>
                     <TouchableOpacity>
-                        <ShareIcon width={actionButtonSize} height={actionButtonSize}  color='black'/>
+                        <ShareIcon width={ACTION_BUTTON_SIZE} height={ACTION_BUTTON_SIZE}  color='black'/>
                     </TouchableOpacity>
                 </View>
             </View>

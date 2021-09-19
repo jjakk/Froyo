@@ -149,7 +149,7 @@ const AccountViewScreen = ({ navigation }) => {
                                             <Post
                                                 key={post._id}
                                                 author={`${user.firstName} ${user.lastName}`}
-                                                age={'1hr'}
+                                                uploadDate={post.timestamp}
                                                 text={post.body}
                                                 onDelete={() => {
                                                     deletePost(post._id, async (success) => {

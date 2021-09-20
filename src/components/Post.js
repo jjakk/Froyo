@@ -58,6 +58,34 @@ const Post = ({ personalPost, author, uploadDate, text, imageSrc, onEdit, onDele
         return `${yearsDiff} years`;
     }
 
+    // More options menu items
+    const moreOptions = {
+        // personalPost ?
+        // [
+        //     delete: {
+        //         label: 'Delete post',
+        //         onSelect: onDelete,
+        //         style: styles.deleteButton
+        //     },
+        //     edit: {
+        //         label: 'Edit post',
+        //         onSelect: onEdit,
+        //     }
+        // ] : null
+        {...personalPost ? {
+            delete: {
+                label: 'Delete post',
+                onSelect: onDelete,
+                style: styles.deleteButton
+                
+        }}
+    };
+
+    if(!personalPost){
+        moreOptions.edit;
+        delete moreOptions.delete;
+    }
+
     return (
         <TouchableWithoutFeedback onPress={onPress}>
             <View style={styles.post}>
@@ -68,16 +96,11 @@ const Post = ({ personalPost, author, uploadDate, text, imageSrc, onEdit, onDele
                         </MenuTrigger>
                         <MenuOptions style={{margin: 10}}>
                             {
-                                personalPost ? (
-                                    <>
-                                        <MenuOption onSelect={onEdit}>
-                                            <Text>Edit post</Text>
-                                        </MenuOption>
-                                        <MenuOption onSelect={onDelete}>
-                                            <Text style={styles.deleteButton}>Delete post</Text>
-                                        </MenuOption>
-                                    </>
-                                ) : null
+                                moreOptions.map(option => (
+                                    <MenuOption key={option.label} onSelect={option.onSelect}>
+                                        <Text style={option.style}>{option.label}</Text>
+                                    </MenuOption>
+                                ))
                             }
                         </MenuOptions>
                     </Menu>

@@ -60,31 +60,18 @@ const Post = ({ personalPost, author, uploadDate, text, imageSrc, onEdit, onDele
 
     // More options menu items
     const moreOptions = {
-        // personalPost ?
-        // [
-        //     delete: {
-        //         label: 'Delete post',
-        //         onSelect: onDelete,
-        //         style: styles.deleteButton
-        //     },
-        //     edit: {
-        //         label: 'Edit post',
-        //         onSelect: onEdit,
-        //     }
-        // ] : null
-        {...personalPost ? {
+        ...(personalPost && {
             delete: {
                 label: 'Delete post',
                 onSelect: onDelete,
                 style: styles.deleteButton
-                
-        }}
+            },
+            edit: {
+                label: 'Edit post',
+                onSelect: onEdit,
+            }
+        }),
     };
-
-    if(!personalPost){
-        moreOptions.edit;
-        delete moreOptions.delete;
-    }
 
     return (
         <TouchableWithoutFeedback onPress={onPress}>

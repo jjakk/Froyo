@@ -37,6 +37,10 @@ const Post = ({ personalPost, author, uploadDate, text, imageSrc, onEdit, onDele
         return formatPostAge(millisecondsDiff);
     }
 
+    const plural = (amount) => {
+        return amount > 1 ? 's' : '';
+    }
+
     // Format the time since the post was uploaded (given miliseconds)
     const formatPostAge = (miliseconds) => {
         // Calculate all the different time units
@@ -49,12 +53,12 @@ const Post = ({ personalPost, author, uploadDate, text, imageSrc, onEdit, onDele
         const yearsDiff = Math.floor(monthsDiff / 12);
 
         // Return the correct time unit
-        if(minutesDiff < 1) return `${secondsDiff} second${secondsDiff > 1 ? 's' : ''}`;
-        if(hoursDiff < 1) return `${minutesDiff} minute${minutesDiff > 1 ? 's' : ''}`;
-        if(daysDiff < 1) return `${hoursDiff} hour${hoursDiff > 1 ? 's' : ''}`;
-        if(weeksDiff < 1) return `${daysDiff} day${daysDiff > 1 ? 's' : ''}`;
-        if(monthsDiff < 1) return `${weeksDiff} week${weeksDiff > 1 ? 's' : ''}`;
-        if(yearsDiff < 1) return `${monthsDiff} month${monthsDiff > 1 ? 's' : ''}`;
+        if(minutesDiff < 1) return `${secondsDiff} second${plural(secondsDiff)}`;
+        if(hoursDiff < 1) return `${minutesDiff} minute${pulural(minutesDiff)}`;
+        if(daysDiff < 1) return `${hoursDiff} hour${plural(hoursDiff)}`;
+        if(weeksDiff < 1) return `${daysDiff} day${plural(daysDiff)}`;
+        if(monthsDiff < 1) return `${weeksDiff} week${plural(weeksDiff)}`;
+        if(yearsDiff < 1) return `${monthsDiff} month${plural(monthsDiff)}`;
         return `${yearsDiff} years`;
     }
 
@@ -69,6 +73,7 @@ const Post = ({ personalPost, author, uploadDate, text, imageSrc, onEdit, onDele
             edit: {
                 label: 'Edit post',
                 onSelect: onEdit,
+                style: null
             }
         }),
     };
@@ -83,11 +88,13 @@ const Post = ({ personalPost, author, uploadDate, text, imageSrc, onEdit, onDele
                         </MenuTrigger>
                         <MenuOptions style={{margin: 10}}>
                             {
-                                moreOptions.map(option => (
-                                    <MenuOption key={option.label} onSelect={option.onSelect}>
-                                        <Text style={option.style}>{option.label}</Text>
-                                    </MenuOption>
-                                ))
+                                moreOptions > 0 ? 
+                                    moreOptions.map(option => (
+                                        <MenuOption key={option.label} onSelect={option.onSelect}>
+                                            <Text style={option.style}>{option.label}</Text>
+                                        </MenuOption>
+                                    ))
+                                : null
                             }
                         </MenuOptions>
                     </Menu>

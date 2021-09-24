@@ -64,6 +64,7 @@ const Post = ({ personalPost, author, uploadDate, text, imageSrc, onEdit, onDele
 
     // More options menu items
     const moreOptions = [
+        // Only show these options if it's your own post
         ...(personalPost ? [
             {
                 label: 'Delete',
@@ -76,6 +77,7 @@ const Post = ({ personalPost, author, uploadDate, text, imageSrc, onEdit, onDele
                 style: null
             }
         ]: []),
+        // The rest of the options
         {
             label: 'Share',
             onSelect: () => {},
@@ -192,7 +194,6 @@ const styles = StyleSheet.create({
         opacity: 0.75
     },
     moreOptions: {
-        width: 100,
         margin: 10
     }
 });

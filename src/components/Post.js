@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, StyleSheet, Image, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
 import {
     Menu,
@@ -63,20 +63,25 @@ const Post = ({ personalPost, author, uploadDate, text, imageSrc, onEdit, onDele
     }
 
     // More options menu items
-    const moreOptions = {
-        ...(personalPost && {
-            delete: {
-                label: 'Delete post',
+    const moreOptions = [
+        ...(personalPost ? [
+            {
+                label: 'Delete',
                 onSelect: onDelete,
                 style: styles.deleteButton
             },
-            edit: {
-                label: 'Edit post',
+            {
+                label: 'Edit',
                 onSelect: onEdit,
                 style: null
             }
-        }),
-    };
+        ]: []),
+        {
+            label: 'Share',
+            onSelect: () => {},
+            style: null
+        }
+    ];
 
     return (
         <TouchableWithoutFeedback onPress={onPress}>
@@ -86,15 +91,13 @@ const Post = ({ personalPost, author, uploadDate, text, imageSrc, onEdit, onDele
                         <MenuTrigger>
                             <MoreOptionsIcon name='options-vertical' height={24} width={24} color='black' />
                         </MenuTrigger>
-                        <MenuOptions style={{margin: 10}}>
+                        <MenuOptions style={styles.moreOptions}>
                             {
-                                moreOptions > 0 ? 
-                                    moreOptions.map(option => (
-                                        <MenuOption key={option.label} onSelect={option.onSelect}>
-                                            <Text style={option.style}>{option.label}</Text>
-                                        </MenuOption>
-                                    ))
-                                : null
+                                moreOptions.map(option => (
+                                    <MenuOption key={option.label} onSelect={option.onSelect}>
+                                        <Text style={option.style}>{option.label}</Text>
+                                    </MenuOption>
+                                ))
                             }
                         </MenuOptions>
                     </Menu>
@@ -187,6 +190,10 @@ const styles = StyleSheet.create({
     deleteButton: {
         color: '#FB1C1C',
         opacity: 0.75
+    },
+    moreOptions: {
+        width: 100,
+        margin: 10
     }
 });
 

@@ -82,6 +82,11 @@ const Post = ({ personalPost, author, uploadDate, text, imageSrc, onEdit, onDele
             label: 'Share',
             onSelect: () => {},
             style: null
+        },
+        {
+            label: 'Save',
+            onSelect: () => {},
+            style: null
         }
     ];
 

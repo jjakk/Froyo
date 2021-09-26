@@ -1,5 +1,5 @@
 import React from 'react';
-import { SafeAreaView } from 'react-native';
+import { SafeAreaView, StyleSheet } from 'react-native';
 import { Text } from '../../components/froyo-elements';
 import Post from '../../components/Post';
 
@@ -16,5 +16,9 @@ const PostViewScreen = ({ navigation }) => {
         </SafeAreaView>
     );
 };
+
+const styles = StyleSheet.create({
+
+});
 
 export default PostViewScreen;

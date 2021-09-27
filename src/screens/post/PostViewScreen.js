@@ -7,18 +7,23 @@ const PostViewScreen = ({ navigation }) => {
     const post = navigation.getParam('post');
 
     return (
-        <SafeAreaView>
+        <SafeAreaView style={styles.container}>
             <Post
                 author={'[Author name]'}
                 text={post.body}
                 uploadDate={post.timestamp}
+                style={styles.post}
             />
         </SafeAreaView>
     );
 };
 
 const styles = StyleSheet.create({
-
+    container: {
+    },
+    post: {
+        
+    }
 });
 
 export default PostViewScreen;

@@ -12,7 +12,7 @@ const PostViewScreen = ({ navigation }) => {
                 author={'[Author name]'}
                 text={post.body}
                 uploadDate={post.timestamp}
-                style={styles.post}
+                style={styles.post }
             />
         </SafeAreaView>
     );
@@ -20,9 +20,11 @@ const PostViewScreen = ({ navigation }) => {
 
 const styles = StyleSheet.create({
     container: {
+        flex: 1,
+        backgroundColor: '#fff',
     },
     post: {
-        
+        marginTop: 50
     }
 });
 

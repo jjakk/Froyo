@@ -27,7 +27,19 @@ const AVERAGE_WEEKS_PER_MONTH = 4.34524;
 // onEdit -> the function to call when the edit button is pressed
 // onPress -> the function to call when the post is tapped on
 
-const Post = ({ personalPost, author, uploadDate, text, imageSrc, onEdit, onDelete, onPress }) => {
+const Post = (props) => {
+
+    const {
+        personalPost,
+        author,
+        uploadDate,
+        text,
+        imageSrc,
+        onEdit,
+        onDelete,
+        onPress,
+        style
+    } = props;
     
     // Calculate the time since the post was uploaded in miliseconds
     const calculatePostAge = (dateOfUpload) => {
@@ -92,7 +104,7 @@ const Post = ({ personalPost, author, uploadDate, text, imageSrc, onEdit, onDele
 
     return (
         <TouchableWithoutFeedback onPress={onPress}>
-            <View style={styles.post}>
+            <View style={[styles.post, style]}>
                 <View style={styles.header}>
                     <Menu style={styles.options}>
                         <MenuTrigger>

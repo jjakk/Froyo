@@ -1,5 +1,5 @@
 import React from 'react';
-import { SafeAreaView, StyleSheet, TouchableWithoutFeedback } from 'react-native';
+import { SafeAreaView, StyleSheet, TouchableWithoutFeedback, ScrollView } from 'react-native';
 import { Text } from '../../components/froyo-elements';
 import Post from '../../components/Post';
 import BackIcon from '../../../assets/icons/Back.svg';
@@ -9,12 +9,13 @@ const PostViewScreen = ({ navigation }) => {
 
     return (
         <SafeAreaView style={styles.container}>
-            <Post
-                author={'[Author name]'}
-                text={post.body}
-                uploadDate={post.timestamp}
-                style={styles.post }
-            />
+            <ScrollView style={styles.post}>
+                <Post
+                    author={'[Author name]'}
+                    text={post.body}
+                    uploadDate={post.timestamp}
+                />
+            </ScrollView>
             <TouchableWithoutFeedback onPress={() => navigation.pop()}>
                 <BackIcon width={25} height={25} style={styles.back} />
             </TouchableWithoutFeedback>
@@ -33,7 +34,8 @@ const styles = StyleSheet.create({
         left: 20
     },
     post: {
-        marginTop: 50
+        marginTop: 50,
+        backgroundColor: '#F2F2F2'
     }
 });
 

@@ -49,7 +49,6 @@ const PostCreateScreen = ({ navigation }) => {
 
     return(
         <SafeAreaView style={styles.container}>
-            <Text style={styles.postHeader}>Post</Text>
             <View style={styles.bodyContainer}>
                 <Input
                     style={styles.body}
@@ -95,17 +94,12 @@ const styles = StyleSheet.create({
         top: Platform.OS === 'ios' ? 60 : 20,
         left: 20
     },
-    postHeader: {
-        fontSize: 32,
-        fontFamily: 'Nunito-SemiBold',
-        textAlign: 'center',
-        margin: 5
-    },
     // Inputs
     bodyContainer: {
         maxHeight: 300,
         width: 350,
         margin: 15,
+        marginTop: 75
     },
     bodyText: {
         fontSize: 22

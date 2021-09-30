@@ -66,7 +66,7 @@ const Post = (props) => {
 
         // Return the correct time unit
         if(minutesDiff < 1) return `${secondsDiff} second${plural(secondsDiff)}`;
-        if(hoursDiff < 1) return `${minutesDiff} minute${pulural(minutesDiff)}`;
+        if(hoursDiff < 1) return `${minutesDiff} minute${plural(minutesDiff)}`;
         if(daysDiff < 1) return `${hoursDiff} hour${plural(hoursDiff)}`;
         if(weeksDiff < 1) return `${daysDiff} day${plural(daysDiff)}`;
         if(monthsDiff < 1) return `${weeksDiff} week${plural(weeksDiff)}`;

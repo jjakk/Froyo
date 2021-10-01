@@ -17,6 +17,7 @@ const PostViewScreen = ({ navigation }) => {
                     uploadDate={post.timestamp}
                     style={styles.post}
                 />
+                {/*<Comment/>*/}
             </ScrollView>
             <TouchableWithoutFeedback onPress={() => navigation.pop()}>
                 <BackIcon width={25} height={25} style={styles.back} />

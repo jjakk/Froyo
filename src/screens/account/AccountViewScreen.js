@@ -207,7 +207,7 @@ const styles = StyleSheet.create({
     header: {
         flexDirection: 'row',
         alignItems: 'center',
-        marginBottom: 25,
+        marginBottom: 15,
     },
     headerText: {
         marginLeft: 15
@@ -238,7 +238,8 @@ const styles = StyleSheet.create({
         marginLeft: 10
     },
     description: {
-        fontSize: 22
+        fontSize: 22,
+        marginBottom: 15
     },
     accountInfoLoading: {
         marginLeft: 50,

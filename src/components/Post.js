@@ -12,7 +12,7 @@ import LikeIcon from '../../assets/icons/Like.svg';
 import DislikeIcon from '../../assets/icons/Dislike.svg';
 import CommentIcon from '../../assets/icons/Comment.svg';
 import ShareIcon from '../../assets/icons/Share.svg';
-import { calculatePostAge } from '../helperFunctions/age';
+import { calculateAge } from '../helperFunctions/age';
 
 const ACTION_BUTTON_SIZE = 25;
 
@@ -95,7 +95,7 @@ const Post = (props) => {
                     <Text style={styles.headerText}>
                         <Text style={styles.author}>{author}</Text>
                         <Br/>
-                        <Text style={styles.age}>{calculatePostAge(uploadDate)}</Text>
+                        <Text style={styles.age}>{calculateAge(uploadDate)}</Text>
                     </Text>
                 </View>
                 <View style={styles.body}>

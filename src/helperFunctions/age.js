@@ -6,11 +6,11 @@ age of something (post, comment, etc.)
 const AVERAGE_WEEKS_PER_MONTH = 4.34524;
 
 // Calculate the time since a post was uploaded in miliseconds
-const calculatePostAge = (dateOfUpload) => {
+const calculateAge = (dateOfUpload) => {
     const today = new Date();
     const postDate = new Date(dateOfUpload);
     const millisecondsDiff = Math.abs(postDate - today);
-    return formatPostAge(millisecondsDiff);
+    return formatAge(millisecondsDiff);
 }
 
 const plural = (amount) => {
@@ -18,7 +18,7 @@ const plural = (amount) => {
 }
 
 // Format the time since the post was uploaded (given miliseconds)
-const formatPostAge = (miliseconds) => {
+const formatAge = (miliseconds) => {
     // Calculate all the different time units
     const secondsDiff = Math.floor(miliseconds / 1000);
     const minutesDiff = Math.floor(secondsDiff / 60);
@@ -38,6 +38,6 @@ const formatPostAge = (miliseconds) => {
     return `${yearsDiff} years`;
 }
 
-export default {
-    calculatePostAge
+module.exports =  {
+    calculateAge
 };

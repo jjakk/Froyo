@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
         left: 20
     },
     postView: {
-        marginTop: 50,
+        marginTop: 60,
         backgroundColor: '#F2F2F2'
     },
     post: {

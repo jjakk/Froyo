@@ -52,12 +52,15 @@ const AccountEditScreen = ({ navigation }) => {
     };
 
     return(
-        <TouchableWithoutFeedback style={styles.container} onPress={Keyboard.dismiss}>
-            <KeyboardAvoidingView
-                behavior={Platform.OS === "ios" ? "padding" : "height"}
+        <SafeAreaView style={styles.container}>
+            <TouchableWithoutFeedback
                 style={styles.container}
+                onPress={Keyboard.dismiss}
             >
-                <SafeAreaView style={styles.container}>
+                <KeyboardAvoidingView
+                    behavior={Platform.OS === "ios" ? "padding" : "height"}
+                    style={styles.container}
+                >
                     <View style={styles.form}>
                         <StatusBar backgroundColor='#F2F2F2' barStyle='dark-content' />
                         <View style={styles.profilePictureUpload}>
@@ -115,26 +118,27 @@ const AccountEditScreen = ({ navigation }) => {
                             onPress={handleSubmit}
                         />
                         <ErrorMessage message={errorMessage} style={styles.errorMessage} />
-                        <TouchableWithoutFeedback onPress={() => navigation.navigate('AccountView')}>
-                            <BackIcon width={25} height={25} style={styles.back} />
-                        </TouchableWithoutFeedback>
                     </View>
-                </SafeAreaView>
-            </KeyboardAvoidingView>
-        </TouchableWithoutFeedback>
+                    <TouchableWithoutFeedback onPress={() => navigation.navigate('AccountView')}>
+                        <BackIcon width={25} height={25} style={styles.back} />
+                    </TouchableWithoutFeedback>
+                </KeyboardAvoidingView>
+            </TouchableWithoutFeedback>
+        </SafeAreaView>
     );
 };
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1
+        flex: 1,
     },
     form: {
+        justifyContent: 'center',
         paddingBottom: 250
     },
     back: {
         position: 'absolute',
-        top: Platform.OS === 'ios' ? 60 : 20,
+        top: 20,
         left: 20,
     },
     label: {

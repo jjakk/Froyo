@@ -96,6 +96,7 @@ const AccountEditScreen = ({ navigation }) => {
                         />
                         <Input
                             style={[styles.field, styles.description]}
+                            textStyle={styles.descriptionText}
                             multiline
                             numberOfLines={4}
                             placeholder='Description'
@@ -189,6 +190,10 @@ const styles = StyleSheet.create({
     // Description
     description: {
         height: 175,
+        textAlignVertical: 'top'
+    },
+    descriptionText: {
+        justifyContent: 'flex-start',
         textAlignVertical: 'top'
     }
 });

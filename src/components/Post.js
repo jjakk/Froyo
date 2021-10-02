@@ -12,9 +12,9 @@ import LikeIcon from '../../assets/icons/Like.svg';
 import DislikeIcon from '../../assets/icons/Dislike.svg';
 import CommentIcon from '../../assets/icons/Comment.svg';
 import ShareIcon from '../../assets/icons/Share.svg';
+import { calculatePostAge } from '../helperFunctions/age';
 
 const ACTION_BUTTON_SIZE = 25;
-const AVERAGE_WEEKS_PER_MONTH = 4.34524;
 
 // Post props & their meanings
 // ___________________________
@@ -40,39 +40,6 @@ const Post = (props) => {
         onPress,
         style
     } = props;
-    
-    // Calculate the time since the post was uploaded in miliseconds
-    const calculatePostAge = (dateOfUpload) => {
-        const today = new Date();
-        const postDate = new Date(dateOfUpload);
-        const millisecondsDiff = Math.abs(postDate - today);
-        return formatPostAge(millisecondsDiff);
-    }
-
-    const plural = (amount) => {
-        return amount > 1 ? 's' : '';
-    }
-
-    // Format the time since the post was uploaded (given miliseconds)
-    const formatPostAge = (miliseconds) => {
-        // Calculate all the different time units
-        const secondsDiff = Math.floor(miliseconds / 1000);
-        const minutesDiff = Math.floor(secondsDiff / 60);
-        const hoursDiff = Math.floor(minutesDiff / 60);
-        const daysDiff = Math.floor(hoursDiff / 24);
-        const weeksDiff = Math.floor(daysDiff / 7);
-        const monthsDiff = Math.floor(weeksDiff / AVERAGE_WEEKS_PER_MONTH);
-        const yearsDiff = Math.floor(monthsDiff / 12);
-
-        // Return the correct time unit
-        if(minutesDiff < 1) return `${secondsDiff} second${plural(secondsDiff)}`;
-        if(hoursDiff < 1) return `${minutesDiff} minute${plural(minutesDiff)}`;
-        if(daysDiff < 1) return `${hoursDiff} hour${plural(hoursDiff)}`;
-        if(weeksDiff < 1) return `${daysDiff} day${plural(daysDiff)}`;
-        if(monthsDiff < 1) return `${weeksDiff} week${plural(weeksDiff)}`;
-        if(yearsDiff < 1) return `${monthsDiff} month${plural(monthsDiff)}`;
-        return `${yearsDiff} years`;
-    }
 
     // More options menu items
     const moreOptions = [

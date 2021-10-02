@@ -5,15 +5,14 @@ import {
     StatusBar,
     View,
     TouchableWithoutFeedback,
-    Keyboard,
-    TouchableOpacity
+    Keyboard
 } from 'react-native';
 import {
     Input,
     Button,
     Text
 } from './../../components/froyo-elements';
-import { Ionicons } from '@expo/vector-icons';
+import BackIcon from '../../../assets/icons/Back.svg';
 
 const ResetPasswordScreen = ({ navigation }) => {
     return (
@@ -22,9 +21,13 @@ const ResetPasswordScreen = ({ navigation }) => {
                 <SafeAreaView>
                     <StatusBar backgroundColor="#F2F2F2" barStyle="dark-content" />
                 </SafeAreaView>
-                <TouchableOpacity style={styles.back} onPress={() => navigation.navigate('SignIn')}>
-                    <Ionicons name="arrow-back" size={52} color="black" />
-                </TouchableOpacity>
+                <TouchableWithoutFeedback
+                    onPress={() => {
+                        navigation.pop()
+                    }}
+                >
+                    <BackIcon width={25} height={25} style={styles.back} />
+                </TouchableWithoutFeedback>
                 <View style={styles.container} forceInset={{ top: 'always' }}>
                     <View style={styles.form}>
                         <Text style={styles.header} >Reset Password</Text>
@@ -68,7 +71,7 @@ const styles = StyleSheet.create({
         margin: 10
     },
     back: {
-        margin: 15
+        margin: 25
     }
 });
 

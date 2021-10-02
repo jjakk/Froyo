@@ -7,7 +7,6 @@ import {
     KeyboardAvoidingView,
     Keyboard,
     StyleSheet,
-    TouchableOpacity,
     Platform
 } from 'react-native';
 import {
@@ -16,7 +15,7 @@ import {
     Button
 } from '../../../components/froyo-elements';
 import { Context as AuthContext } from '../../../context/AuthContext';
-import { Ionicons } from '@expo/vector-icons';
+import BackIcon from '../../../../assets/icons/Back.svg';
 import ErrorMessage from '../../../components/ErrorMessage';
 
 const SignUpTwoScreen = ({ navigation }) => {
@@ -52,15 +51,14 @@ const SignUpTwoScreen = ({ navigation }) => {
                     style={styles.container}
                 >
                     <View style={{flex: 1}}>
-                        <TouchableOpacity
-                            style={styles.back}
+                        <TouchableWithoutFeedback
                             onPress={() => {
                                 clearErrorMessage();
-                                navigation.navigate('SignUpOne')
+                                navigation.pop()
                             }}
                         >
-                            <Ionicons name="arrow-back" size={52} color="black" />
-                        </TouchableOpacity>
+                            <BackIcon width={25} height={25} style={styles.back} />
+                        </TouchableWithoutFeedback>
                         <View style={styles.auth}>
                             <Text style={styles.header}>Sign up</Text>
                             <Input style={styles.input} placeholder='First name' onChangeText={setFirstName} />
@@ -123,7 +121,7 @@ const styles = StyleSheet.create({
         textAlign: 'center'
     },
     back: {
-        margin: 15
+        margin: 25
     }
 });
 

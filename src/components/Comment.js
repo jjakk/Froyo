@@ -5,11 +5,14 @@ import { Text } from '../components/froyo-elements';
 const Comment = (props) => {
     
     const {
-        style
+        style,
+        text
     } = props;
 
     return (
-        <View style={[styles.comment, style]}></View>
+        <View style={[styles.comment, style]}>
+            <Text>{text}</Text>
+        </View>
     );
 }
 

@@ -42,7 +42,6 @@ Never gonna say goodbye. Never gonna tell a lie and hurt you`
 
     return (
         <SafeAreaView style={styles.container}>
-            <StatusBar backgroundColor='#F2F2F2' barStyle='dark-content' />
             {
                 dummyPosts.length !== 0 ? (
                     <FlatList

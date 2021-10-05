@@ -105,7 +105,9 @@ const AccountViewScreen = ({ navigation }) => {
                     {
                         user.description
                             ? (
-                                <Text style={styles.description}>
+                                <Text
+                                    style={styles.description}
+                                >
                                     {user.description}
                                 </Text>
                             )
@@ -239,7 +241,7 @@ const styles = StyleSheet.create({
     },
     description: {
         fontSize: 22,
-        marginBottom: 15
+        marginBottom: 15,
     },
     accountInfoLoading: {
         marginLeft: 50,

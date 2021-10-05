@@ -159,10 +159,10 @@ const AccountViewScreen = ({ navigation }) => {
                                                     })
                                                 }}
                                                 onEdit={() => {
-                                                    navigation.navigate('PostEdit', { post });
+                                                    navigation.navigate('PostEdit', { id: post._id });
                                                 }}
                                                 onPress={() => {
-                                                    navigation.navigate('PostView', { post });
+                                                    navigation.navigate('PostView', { id: post._id });
                                                 }}
                                                 navigation={navigation}
                                                 personalPost={true}

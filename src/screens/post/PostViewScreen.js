@@ -1,22 +1,25 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { SafeAreaView, StyleSheet, TouchableWithoutFeedback, ScrollView } from 'react-native';
 import { Text } from '../../components/froyo-elements';
+import { Context as AuthContext } from '../../context/AuthContext';
 import Post from '../../components/Post';
 import Comment from '../../components/Comment';
 import BackIcon from '../../../assets/icons/Back.svg';
 
 const PostViewScreen = ({ navigation }) => {
-    const post = navigation.getParam('post');
+    const { getPost } = useContext(AuthContext);
+    const id = navigation.getParam('id');
 
     return (
         <SafeAreaView style={styles.container}>
             <ScrollView style={styles.postView}>
                 <Post
-                    author={'[Author name]'}
+                    /*author={'[Author name]'}
                     text={post.body}
                     uploadDate={post.timestamp}
-                    style={styles.post}
+                    style={styles.post}*/
                 />
+                <Text>{getPost(id).toString()}</Text>
                 {/*<Comment/>*/}
             </ScrollView>
             <TouchableWithoutFeedback onPress={() => navigation.pop()}>

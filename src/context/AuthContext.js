@@ -158,6 +158,18 @@ const getUserPosts = (dispatch) => async () => {
     }
 };
 
+const getPost = (dispatch) => async (postId, callback) => {
+    try{
+        const response = await froyoApi.get(`/posts/${postId}`);
+        const author = await froyoApi.get(`/users/${response.data.userId}`);
+        const post = { ...response.data, author };
+        callback(post);
+    }
+    catch(err){
+        dispatch({ type: 'add_error', payload: `Ran into an error: ${err}` })
+    }
+}
+
 // Get a user's information given their auth token
 const getUserInfo = (dispatch) => async () => {
     try{
@@ -239,6 +251,7 @@ export const { Provider, Context } = createDataContext(
         signUp,
         checkSignedIn,
         signOut,
+        getPost,
         createPost,
         deletePost,
         getUserPosts,

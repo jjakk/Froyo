@@ -164,12 +164,20 @@ const getUserPosts = (dispatch) => async () => {
 const getPost = (dispatch) => async (postId) => {
     try{
         const response = await froyoApi.get(`/posts/${postId}`);
-        const authorName = await froyoApi.get(`/users/${response.data.userId}`);
-        const post = { ...response.data, authorName };
-        console.log(post);
+        const {
+            data: {
+                firstName,
+                lastName
+            }
+        } = await froyoApi.get(`/users/${response.data.author}`);
+        const post = {
+            ...response.data,
+            authorName: (firstName + ' ' + lastName)
+        };
         dispatch({ type: 'load_post', payload: post });
     }
     catch(err){
+        console.log(err);
         dispatch({ type: 'add_error', payload: `Ran into an error: ${err}` })
     }
 }

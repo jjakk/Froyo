@@ -14,6 +14,8 @@ const authReducer = (state, action) => {
             return { ...state, token: null, errorMessage: '' };
         case 'get_user_info':
             return { ...state, user: action.payload, errorMessage: '' }
+        case 'load_post':
+            return { ...state, post: action.payload, errorMessage: '' }
         case 'load_posts':
             return { ...state, posts: action.payload, errorMessage: '' }
         default:
@@ -158,12 +160,14 @@ const getUserPosts = (dispatch) => async () => {
     }
 };
 
-const getPost = (dispatch) => async (postId, callback) => {
+// Get a post given it's ID
+const getPost = (dispatch) => async (postId) => {
     try{
         const response = await froyoApi.get(`/posts/${postId}`);
-        const author = await froyoApi.get(`/users/${response.data.userId}`);
-        const post = { ...response.data, author };
-        callback(post);
+        const authorName = await froyoApi.get(`/users/${response.data.userId}`);
+        const post = { ...response.data, authorName };
+        console.log(post);
+        dispatch({ type: 'load_post', payload: post });
     }
     catch(err){
         dispatch({ type: 'add_error', payload: `Ran into an error: ${err}` })
@@ -261,6 +265,7 @@ export const { Provider, Context } = createDataContext(
     },
     { /*isSignedIn: false,*/
         user: {},
+        post: {},
         errorMessage: '',
         posts: []
     }

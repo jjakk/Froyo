@@ -11,6 +11,7 @@ import { setNavigator } from './src/navigation/navigationRef';
 import appNavigator from './src/navigation/appNavigator';
 // Context
 import { Provider as AuthProvider } from './src/context/AuthContext';
+import { Provider as PostProvider } from './src/context/PostContext';
 
 
 const App = createAppContainer(appNavigator);
@@ -29,7 +30,9 @@ export default () => {
         <SafeAreaProvider initialMetrics={initialWindowMetrics}>
           <MenuProvider>
             <AuthProvider>
-              <App ref={(navigator) => { setNavigator(navigator) }} />
+              <PostProvider>
+                <App ref={(navigator) => { setNavigator(navigator) }} />
+              </PostProvider>
             </AuthProvider>
           </MenuProvider>
         </SafeAreaProvider>

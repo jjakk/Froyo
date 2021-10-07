@@ -14,10 +14,6 @@ const authReducer = (state, action) => {
             return { ...state, token: null, errorMessage: '' };
         case 'get_user_info':
             return { ...state, user: action.payload, errorMessage: '' }
-        case 'load_post':
-            return { ...state, post: action.payload, errorMessage: '' }
-        case 'load_posts':
-            return { ...state, posts: action.payload, errorMessage: '' }
         default:
             return state;
     }
@@ -124,64 +120,6 @@ const signOut = (dispatch) => async () => {
     navigate('Welcome');
 };
 
-// Create a post
-const createPost = (dispatch) => async (info, callback) => {
-    try{
-        const { postBody } = info;
-        const response = await froyoApi.post('/posts', { body: postBody });
-        callback(true);
-    }
-    catch(err){
-        let message = err.response.data;
-        dispatch({ type: 'add_error', payload: message });
-        callback(false);
-    }
-};
-
-const deletePost = (dispatch) => async (postId, callback) => {
-    try{
-        await froyoApi.delete(`/posts/${postId}`);
-        callback(true);
-    }
-    catch(err){
-        dispatch({ type: 'add_error', payload: `Unable to delete post` })
-        callback(false);
-    }
-}
-
-// Get all the posts of a given user
-const getUserPosts = (dispatch) => async () => {
-    try{
-        const response = await froyoApi.get('/posts');
-        dispatch({ type: 'load_posts', payload: response.data });
-    }
-    catch(err){
-        dispatch({ type: 'add_error', payload: `Ran into an error: ${err}` })
-    }
-};
-
-// Get a post given it's ID
-const getPost = (dispatch) => async (postId) => {
-    try{
-        const response = await froyoApi.get(`/posts/${postId}`);
-        const {
-            data: {
-                firstName,
-                lastName
-            }
-        } = await froyoApi.get(`/users/${response.data.author}`);
-        const post = {
-            ...response.data,
-            authorName: (firstName + ' ' + lastName)
-        };
-        dispatch({ type: 'load_post', payload: post });
-    }
-    catch(err){
-        console.log(err);
-        dispatch({ type: 'add_error', payload: `Ran into an error: ${err}` })
-    }
-}
-
 // Get a user's information given their auth token
 const getUserInfo = (dispatch) => async () => {
     try{
@@ -244,7 +182,6 @@ const clearErrorMessage = (dispatch) => () => {
 };
 
 // Helper functions
-
 const calculateAge = (birthDate) => {
     var today = new Date();
     var age = today.getFullYear() - birthDate.getFullYear();
@@ -263,19 +200,13 @@ export const { Provider, Context } = createDataContext(
         signUp,
         checkSignedIn,
         signOut,
-        getPost,
-        createPost,
-        deletePost,
-        getUserPosts,
         getUserInfo,
         updateUserInfo,
         clearErrorMessage
     },
-    { /*isSignedIn: false,*/
+    {
         user: {},
-        post: {},
-        errorMessage: '',
-        posts: []
+        errorMessage: ''
     }
 );
 

@@ -16,6 +16,7 @@ import {
 import * as Progress from 'react-native-progress';
 import { Button, Text, } from '../../components/froyo-elements';
 import { Context as AuthContext } from '../../context/AuthContext';
+import { Context as PostContext } from '../../context/PostContext';
 import EmptyMessage from '../../components/EmptyMessage';
 import Post from '../../components/Post';
 
@@ -24,7 +25,8 @@ const wait = (timeout) => {
 }
 
 const AccountViewScreen = ({ navigation }) => {
-    const { getUserInfo, deletePost, getUserPosts, signOut, state: { user, posts } } = useContext(AuthContext);
+    const { getUserInfo, signOut, state: { user } } = useContext(AuthContext);
+    const { deletePost, getUserPosts, state: { posts } } = useContext(PostContext);
     const [contentLoaded, setContentLoaded] = useState(false);
     const [refreshing, setRefreshing] = useState(false);
 

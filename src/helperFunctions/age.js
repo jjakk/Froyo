@@ -3,8 +3,6 @@ The purpose of these functions are to calculate the
 age of something (post, comment, etc.)
 */
 
-const AVERAGE_WEEKS_PER_MONTH = 4.34524;
-
 // Calculate the time since a post was uploaded in miliseconds
 const calculateAge = (dateOfUpload) => {
     const today = new Date();
@@ -25,7 +23,7 @@ const formatAge = (miliseconds) => {
     const hoursDiff = Math.floor(minutesDiff / 60);
     const daysDiff = Math.floor(hoursDiff / 24);
     const weeksDiff = Math.floor(daysDiff / 7);
-    const monthsDiff = Math.floor(weeksDiff / AVERAGE_WEEKS_PER_MONTH);
+    const monthsDiff = Math.floor(weeksDiff / 4);
     const yearsDiff = Math.floor(monthsDiff / 12);
 
     // Return the correct time unit

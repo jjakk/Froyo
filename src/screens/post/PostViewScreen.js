@@ -1,7 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { SafeAreaView, StyleSheet, TouchableWithoutFeedback, ScrollView } from 'react-native';
 import { Text } from '../../components/froyo-elements';
-import { Context as AuthContext } from '../../context/AuthContext';
 import { Context as PostContext } from '../../context/PostContext';
 import Post from '../../components/Post';
 import Comment from '../../components/Comment';

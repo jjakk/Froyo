@@ -1,15 +1,14 @@
 import React, { useContext, useEffect, useState } from 'react';
 import {
-    SafeAreaView,
     StyleSheet,
     Platform,
-    StatusBar,
     View,
     Image,
     TouchableWithoutFeedback,
     Keyboard,
     KeyboardAvoidingView
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import {
     Button,
     Input
@@ -62,7 +61,6 @@ const AccountEditScreen = ({ navigation }) => {
                     style={styles.container}
                 >
                     <View style={styles.form}>
-                        <StatusBar backgroundColor='#F2F2F2' barStyle='dark-content' />
                         <View style={styles.profilePictureUpload}>
                             <Image
                                 source={require('../../../assets/icons/guest.png')}

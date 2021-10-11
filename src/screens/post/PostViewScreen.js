@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { SafeAreaView, StyleSheet, TouchableWithoutFeedback, ScrollView } from 'react-native';
-import { Text } from '../../components/froyo-elements';
+import { StyleSheet, TouchableWithoutFeedback, ScrollView } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { Context as PostContext } from '../../context/PostContext';
 import Post from '../../components/Post';
 import Comment from '../../components/Comment';
@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
     },
     back: {
         position: 'absolute',
-        top: Platform.OS === 'ios' ? 60 : 20,
+        top: 60,
         left: 20
     },
     postView: {

@@ -5,6 +5,7 @@ import { createBottomTabNavigator } from 'react-navigation-tabs';
 // Screens
 import WelcomeScreen from '../screens/WelcomeScreen';
 import FeedScreen from '../screens/FeedScreen';
+import SearchScreen from '../screens/SearchScreen';
 import NoWifiScreen from '../screens/NoWifiScreen';
 // Authentication Screens
 import ResolveAuthScreen from '../screens/authentication/ResolveAuthScreen';
@@ -47,7 +48,7 @@ const homeNavigator = createStackNavigator({
 
 const tabNavigator = createBottomTabNavigator({
     searchFlow: {
-        screen: () => (<SafeAreaView><Text>Search Screen</Text></SafeAreaView>),
+        screen: SearchScreen,
         navigationOptions: {
             tabBarIcon: (({ tintColor, focused }) => (
                 <SearchIcon color={tintColor} height={35} width={35}/>

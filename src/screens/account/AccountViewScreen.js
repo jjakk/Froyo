@@ -5,14 +5,13 @@ import React, {
     useCallback
 } from 'react';
 import {
-    SafeAreaView,
     View,
     Image,
     StyleSheet,
-    StatusBar,
     ScrollView,
     RefreshControl
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import * as Progress from 'react-native-progress';
 import { Button, Text, } from '../../components/froyo-elements';
 import { Context as AuthContext } from '../../context/AuthContext';
@@ -54,7 +53,6 @@ const AccountViewScreen = ({ navigation }) => {
 
     return(
         <SafeAreaView style={styles.container}>
-            <StatusBar backgroundColor='white' barStyle='dark-content' />
             <ScrollView
                 showsVerticalScrollIndicator={false}
                 refreshControl={

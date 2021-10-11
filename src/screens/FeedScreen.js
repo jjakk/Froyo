@@ -1,11 +1,10 @@
 import React, { useEffect } from 'react';
 import {
     FlatList,
-    SafeAreaView,
     StyleSheet,
-    StatusBar,
     TouchableWithoutFeedback
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import Post from '../components/Post';
 import EmptyMessage from '../components/EmptyMessage';
 import CreatePostIcon from '../../assets/icons/CreatePost.svg';

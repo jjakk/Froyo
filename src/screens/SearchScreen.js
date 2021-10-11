@@ -16,7 +16,7 @@ const SearchScreen = () => {
                 onPress={Keyboard.dismiss}
             >
                 <View style={styles.container}>
-                    <SearchBar />
+                    <SearchBar onSearch={() => {}} />
                 </View>
             </TouchableWithoutFeedback>
         </SafeAreaView>

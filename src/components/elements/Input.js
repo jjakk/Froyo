@@ -25,6 +25,8 @@ const styles = StyleSheet.create({
         borderRadius: 15,
         borderColor: '#404040',
         flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center'
     },
     text: {
         fontFamily: 'Nunito',

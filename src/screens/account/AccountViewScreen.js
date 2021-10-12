@@ -105,11 +105,21 @@ const AccountViewScreen = ({ navigation }) => {
                     {
                         user.description
                             ? (
-                                <Text
-                                    style={styles.description}
-                                >
-                                    {user.description}
-                                </Text>
+                                contentLoaded ? (
+                                    <Text
+                                        style={styles.description}
+                                    >
+                                        {user.description}
+                                    </Text>
+                                ) : (
+                                    <Progress.CircleSnail
+                                        size={50}
+                                        indeterminate={true}
+                                        spinDuration={1000}
+                                        color='#41CA99'
+                                        style={styles.accountInfoLoading}
+                                    />
+                                )
                             )
                             : null
                     }

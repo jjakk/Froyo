@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import { View, SafeAreaView, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import * as MediaLibrary from 'expo-media-library';
 import { Context as AuthContext } from '../../context/AuthContext';
+import { Context as PostContext } from '../../context/PostContext';
 import { Button, Text, Input } from '../../components/froyo-elements';
 import BackIcon from '../../../assets/icons/Back.svg';
 import PlusIcon from '../../../assets/icons/Plus.svg';
@@ -10,7 +11,8 @@ import ErrorMessage from '../../components/ErrorMessage';
 const PostCreateScreen = ({ navigation }) => {
     const [postBody, setPostBody] = useState('');
     const [loading, setLoading] = useState(false);
-    const { createPost, clearErrorMessage, state: { errorMessage } } = useContext(AuthContext);
+    const { clearErrorMessage, state: { errorMessage } } = useContext(AuthContext);
+    const { createPost } = useContext(PostContext);
 
     /*const handleUpload = async () => {
         // Get permission if not granted

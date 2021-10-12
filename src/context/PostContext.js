@@ -76,13 +76,19 @@ const getUserPosts = (dispatch) => async () => {
     }
 };
 
+// Clear the error message
+const clearErrorMessage = (dispatch) => () => {
+    dispatch({ type: 'add_error', payload: '' });
+};
+
 export const { Provider, Context } = createDataContext(
     postReducer,
     {
         getPost,
         createPost,
         deletePost,
-        getUserPosts
+        getUserPosts,
+        clearErrorMessage
     },
     {
         post: {},

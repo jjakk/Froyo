@@ -1,6 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { View, StyleSheet, TouchableWithoutFeedback, Keyboard } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { View, SafeAreaView, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import * as MediaLibrary from 'expo-media-library';
 import { Context as AuthContext } from '../../context/AuthContext';
 import { Button, Text, Input } from '../../components/froyo-elements';

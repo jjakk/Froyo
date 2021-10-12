@@ -2,16 +2,19 @@ import React, { useState, useContext, useEffect } from 'react';
 import { StyleSheet, TouchableWithoutFeedback, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Context as PostContext } from '../../context/PostContext';
+import { Context as AuthContext } from '../../context/AuthContext';
 import Post from '../../components/Post';
 import Comment from '../../components/Comment';
 import BackIcon from '../../../assets/icons/Back.svg';
 
 const PostViewScreen = ({ navigation }) => {
+    const { getUserInfo, state: { user } } = useContext(AuthContext);
     const { getPost, state: { post } } = useContext(PostContext);
     const id = navigation.getParam('id');
 
     useEffect(() => {
         (async function(){
+            await getUserInfo();
             await getPost(id);
         })();
     }, []);
@@ -24,6 +27,7 @@ const PostViewScreen = ({ navigation }) => {
                     text={post.body || 'loading'}
                     uploadDate={post.timestamp || Date()}
                     style={styles.post || 'loading'}
+                    personalPost={post.author === user._id}
                 />
                 {/*<Comment/>*/}
             </ScrollView>

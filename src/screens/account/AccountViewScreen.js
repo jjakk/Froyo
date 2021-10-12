@@ -175,7 +175,7 @@ const AccountViewScreen = ({ navigation }) => {
                                                     navigation.navigate('PostView', { id: post._id });
                                                 }}
                                                 navigation={navigation}
-                                                personalPost={true}
+                                                personalPost={post.author === user._id}
                                             />
                                         ))
                                     }

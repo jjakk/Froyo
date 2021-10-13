@@ -1,5 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { View, SafeAreaView, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { View, StyleSheet, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import * as MediaLibrary from 'expo-media-library';
 import { Context as PostContext } from '../../context/PostContext';
 import { Button, Text, Input } from '../../components/froyo-elements';
@@ -47,38 +48,45 @@ const PostCreateScreen = ({ navigation }) => {
         if(errorMessage) clearErrorMessage();
     }, [postBody]);
 
-    return(
+    return (
         <SafeAreaView style={styles.container}>
-            <View style={styles.bodyContainer}>
-                <Input
-                    style={styles.body}
-                    textStyle={styles.bodyText}
-                    multiline={true}
-                    placeholder='Type here...'
-                    value={postBody}
-                    onChangeText={setPostBody}
-                />
-            </View>
-            {/*
-            <TouchableOpacity onPress={handleUpload}>
-                <View style={styles.attachment}>
-                    <PlusIcon width={40} height={40} color='#393939' />
-                    <Text style={styles.attachmentText}>Add a photo or video</Text>
+            <TouchableWithoutFeedback
+                style={styles.container}
+                onPress={Keyboard.dismiss}
+            >
+                <View>
+                    <TouchableWithoutFeedback onPress={() => navigation.navigate('Feed')}>
+                        <BackIcon width={25} height={25} style={styles.back} />
+                    </TouchableWithoutFeedback>
+                    <View style={styles.bodyContainer}>
+                        <Input
+                            style={styles.body}
+                            textStyle={styles.bodyText}
+                            multiline={true}
+                            placeholder='Type here...'
+                            value={postBody}
+                            onChangeText={setPostBody}
+                        />
+                    </View>
+                    {/*
+                    <TouchableOpacity onPress={handleUpload}>
+                        <View style={styles.attachment}>
+                            <PlusIcon width={40} height={40} color='#393939' />
+                            <Text style={styles.attachmentText}>Add a photo or video</Text>
+                        </View>
+                    </TouchableOpacity>
+                    */}
+                    <Button
+                        containerStyle={styles.submit}
+                        type='primary'
+                        title='Post'
+                        color='#41CA99'
+                        textColor='white'
+                        loading={loading}
+                        onPress={handleSubmit}
+                    />
+                    <ErrorMessage message={errorMessage} />
                 </View>
-            </TouchableOpacity>
-            */}
-            <Button
-                containerStyle={styles.submit}
-                type='primary'
-                title='Post'
-                color='#41CA99'
-                textColor='white'
-                loading={loading}
-                onPress={handleSubmit}
-            />
-            <ErrorMessage message={errorMessage} />
-            <TouchableWithoutFeedback onPress={() => navigation.navigate('Feed')}>
-                <BackIcon width={25} height={25} style={styles.back} />
             </TouchableWithoutFeedback>
         </SafeAreaView>
     );
@@ -86,20 +94,17 @@ const PostCreateScreen = ({ navigation }) => {
 
 const styles = StyleSheet.create({
     container: {
-        justifyContent: 'center',
-        alignItems: 'center'
+        flex: 1
     },
     back: {
-        position: 'absolute',
-        top: 60,
-        left: 20
+        margin: 25,
+        marginBottom: 10
     },
     // Inputs
     bodyContainer: {
         maxHeight: 300,
         width: 350,
-        margin: 15,
-        marginTop: 75
+        margin: 15
     },
     bodyText: {
         fontSize: 22

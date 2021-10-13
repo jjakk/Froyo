@@ -29,7 +29,7 @@ const PostViewScreen = ({ navigation }) => {
                     style={styles.post || 'loading'}
                     personalPost={post.author === user._id}
                 />
-                {/*<Comment/>*/}
+                {/*Comments*/}
             </ScrollView>
             <TouchableWithoutFeedback onPress={() => navigation.pop()}>
                 <BackIcon width={25} height={25} style={styles.back} />

@@ -19,10 +19,6 @@ import { Context as PostContext } from '../../context/PostContext';
 import EmptyMessage from '../../components/EmptyMessage';
 import Post from '../../components/Post';
 
-const wait = (timeout) => {
-    return new Promise(resolve => setTimeout(resolve, timeout));
-}
-
 const AccountViewScreen = ({ navigation }) => {
     const { getUserInfo, signOut, state: { user } } = useContext(AuthContext);
     const { deletePost, getUserPosts, state: { posts } } = useContext(PostContext);

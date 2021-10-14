@@ -7,14 +7,17 @@ import {
     MenuTrigger,
 } from 'react-native-popup-menu';
 import { Text, Br } from './froyo-elements';
+import { calculateAge } from '../helperFunctions/age';
+// Icons
 import MoreOptionsIcon from '../../assets/icons/MoreSettings.svg';
 import LikeIcon from '../../assets/icons/Like.svg';
 import DislikeIcon from '../../assets/icons/Dislike.svg';
 import CommentIcon from '../../assets/icons/Comment.svg';
 import ShareIcon from '../../assets/icons/Share.svg';
-import { calculateAge } from '../helperFunctions/age';
+import TrashIcon from '../../assets/icons/Trash.svg';
 
-const ACTION_BUTTON_SIZE = 25;
+const ACTION_ICON_SIZE = 25;
+const OPTION_ICON_SIZE = 20;
 
 // Post props & their meanings
 // ___________________________
@@ -64,7 +67,14 @@ const Post = (props) => {
             {
                 label: 'Delete',
                 onSelect: onDelete || defaultOnDelete,
-                style: styles.deleteButton
+                style: styles.deleteButton,
+                icon: (
+                    <TrashIcon
+                        width={OPTION_ICON_SIZE}
+                        height={OPTION_ICON_SIZE}
+                        color='#FB1C1C'
+                    /> 
+                )
             },
             {
                 label: 'Edit',
@@ -76,7 +86,7 @@ const Post = (props) => {
         {
             label: 'Share',
             onSelect: () => {},
-            style: null
+            style: null,
         },
         {
             label: 'Save',
@@ -97,13 +107,16 @@ const Post = (props) => {
                 <View style={styles.header}>
                     <Menu style={styles.options}>
                         <MenuTrigger>
-                            <MoreOptionsIcon name='options-vertical' height={24} width={24} color='black' />
+                            <MoreOptionsIcon name='options-vertical' height={ACTION_ICON_SIZE} width={ACTION_ICON_SIZE} color='black' />
                         </MenuTrigger>
                         <MenuOptions style={styles.moreOptions}>
                             {
                                 moreOptions.map(option => (
                                     <MenuOption key={option.label} onSelect={option.onSelect}>
-                                        <Text style={option.style}>{option.label}</Text>
+                                        <View style={styles.optionView}>
+                                            {option.icon}
+                                            <Text style={[option.style, styles.optionText]}>{option.label}</Text>
+                                        </View>
                                     </MenuOption>
                                 ))
                             }
@@ -126,15 +139,15 @@ const Post = (props) => {
                 <View style={styles.actions}>
                     <View style={styles.likeness}>
                         <TouchableWithoutFeedback>
-                            <LikeIcon width={ACTION_BUTTON_SIZE} height={ACTION_BUTTON_SIZE} color='black'/>
+                            <LikeIcon width={ACTION_ICON_SIZE} height={ACTION_ICON_SIZE} color='black'/>
                         </TouchableWithoutFeedback>
                         <TouchableWithoutFeedback>
-                            <DislikeIcon width={ACTION_BUTTON_SIZE} height={ACTION_BUTTON_SIZE} style={styles.dislike}  color='black'/>
+                            <DislikeIcon width={ACTION_ICON_SIZE} height={ACTION_ICON_SIZE} style={styles.dislike}  color='black'/>
                         </TouchableWithoutFeedback>
                     </View>
-                    <CommentIcon width={ACTION_BUTTON_SIZE} height={ACTION_BUTTON_SIZE} style={styles.comment}  color='black'/>
+                    <CommentIcon width={ACTION_ICON_SIZE} height={ACTION_ICON_SIZE} style={styles.comment}  color='black'/>
                     <TouchableWithoutFeedback>
-                        <ShareIcon width={ACTION_BUTTON_SIZE} height={ACTION_BUTTON_SIZE}  color='black'/>
+                        <ShareIcon width={ACTION_ICON_SIZE} height={ACTION_ICON_SIZE}  color='black'/>
                     </TouchableWithoutFeedback>
                 </View>
             </View>
@@ -196,11 +209,19 @@ const styles = StyleSheet.create({
         marginRight: 40
     },
     deleteButton: {
-        color: '#FB1C1C',
-        opacity: 0.75
+        color: '#FB1C1C'
     },
+    // More options menu
     moreOptions: {
         margin: 10
+    },
+    optionView: {
+        flexDirection: 'row',
+        alignItems: 'center'
+    },
+    optionText: {
+        fontSize: 20,
+        marginLeft: 5
     }
 });
 

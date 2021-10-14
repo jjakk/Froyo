@@ -15,12 +15,15 @@ import DislikeIcon from '../../assets/icons/Dislike.svg';
 import CommentIcon from '../../assets/icons/Comment.svg';
 import ShareIcon from '../../assets/icons/Share.svg';
 import TrashIcon from '../../assets/icons/Trash.svg';
+import PenIcon from '../../assets/icons/Pen.svg';
+import SaveIcon from '../../assets/icons/Save.svg';
 
 const ACTION_ICON_SIZE = 25;
 const OPTION_ICON_SIZE = 20;
 
 // Post props & their meanings
 // ___________________________
+// id -> string: the id of the post
 // clickable -> boolean: whether clicking on the post should trigger onPress
 // personalPost -> boolean: whether the post is your own or not
 // author -> string: the name of the author
@@ -34,6 +37,7 @@ const OPTION_ICON_SIZE = 20;
 const Post = (props) => {
 
     const {
+        id,
         clickable,
         personalPost,
         author,
@@ -79,7 +83,14 @@ const Post = (props) => {
             {
                 label: 'Edit',
                 onSelect: onEdit || defaultOnEdit,
-                style: null
+                style: null,
+                icon: (
+                    <PenIcon
+                        width={OPTION_ICON_SIZE}
+                        height={OPTION_ICON_SIZE}
+                        color='black'
+                    /> 
+                )
             }
         ]: []),
         // The rest of the options
@@ -87,11 +98,26 @@ const Post = (props) => {
             label: 'Share',
             onSelect: () => {},
             style: null,
+            icon: (
+                <ShareIcon
+                    width={OPTION_ICON_SIZE}
+                    height={OPTION_ICON_SIZE}
+                    color='black'
+                /> 
+            )
         },
         {
             label: 'Save',
             onSelect: () => {},
-            style: null
+            style: null,
+
+            icon: (
+                <SaveIcon
+                    width={OPTION_ICON_SIZE}
+                    height={OPTION_ICON_SIZE}
+                    color='black'
+                /> 
+            )
         }
     ];
 
@@ -221,7 +247,7 @@ const styles = StyleSheet.create({
     },
     optionText: {
         fontSize: 20,
-        marginLeft: 5
+        marginLeft: 10
     }
 });
 

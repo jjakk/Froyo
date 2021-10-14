@@ -146,6 +146,7 @@ const AccountViewScreen = ({ navigation }) => {
                                         posts.map(post => (
                                             <Post
                                                 key={post._id}
+                                                id={post._id}
                                                 author={`${user.firstName} ${user.lastName}`}
                                                 uploadDate={post.timestamp}
                                                 text={post.body}

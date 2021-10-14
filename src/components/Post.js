@@ -18,18 +18,20 @@ const ACTION_BUTTON_SIZE = 25;
 
 // Post props & their meanings
 // ___________________________
-// personalPost -> whether the post is your own or not
-// author -> the name of the author
-// uploadDate -> the date the post was uploaded
-// text -> the text body of the post
-// imageSrc -> the image of the post
-// onDelete -> the function to call when the delete button is pressed
-// onEdit -> the function to call when the edit button is pressed
-// onPress -> the function to call when the post is tapped on
+// clickable -> boolean: whether clicking on the post should trigger onPress
+// personalPost -> boolean: whether the post is your own or not
+// author -> string: the name of the author
+// uploadDate -> date: the date the post was uploaded
+// text -> string: the text body of the post
+// imageSrc -> string: the source of the image of the post
+// onDelete -> function: the function to call when the delete button is pressed
+// onEdit -> function: the function to call when the edit button is pressed
+// onPress -> function: the function to call when the post is tapped on
 
 const Post = (props) => {
 
     const {
+        clickable,
         personalPost,
         author,
         uploadDate,
@@ -38,8 +40,22 @@ const Post = (props) => {
         onEdit,
         onDelete,
         onPress,
-        style
+        style,
+        navigation
     } = props;
+
+    // Default function to call when a post is tapped on
+    const defaultOnPress = () => {
+        navigation.navigate('PostView', { id });
+    };
+
+    // Default functions for more options menu
+    const defaultOnEdit = () => {
+        
+    };
+    const defaultOnDelete = () => {
+
+    };
 
     // More options menu items
     const moreOptions = [
@@ -47,12 +63,12 @@ const Post = (props) => {
         ...(personalPost ? [
             {
                 label: 'Delete',
-                onSelect: onDelete,
+                onSelect: onDelete || defaultOnDelete,
                 style: styles.deleteButton
             },
             {
                 label: 'Edit',
-                onSelect: onEdit,
+                onSelect: onEdit || defaultOnEdit,
                 style: null
             }
         ]: []),
@@ -70,7 +86,13 @@ const Post = (props) => {
     ];
 
     return (
-        <TouchableWithoutFeedback onPress={onPress}>
+        <TouchableWithoutFeedback
+            onPress={
+                clickable
+                    ? (onPress || defaultOnPress)
+                    : null
+            }
+        >
             <View style={[styles.post, style]}>
                 <View style={styles.header}>
                     <Menu style={styles.options}>

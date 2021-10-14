@@ -28,6 +28,7 @@ const PostViewScreen = ({ navigation }) => {
                     uploadDate={post.timestamp || Date()}
                     style={styles.post || 'loading'}
                     personalPost={post.author === user._id}
+                    clickable={false}
                 />
                 {/*Comments*/}
             </ScrollView>

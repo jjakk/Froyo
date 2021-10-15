@@ -56,10 +56,12 @@ const Post = (props) => {
         navigation.navigate('PostView', { id });
     };
 
-    // Default functions for more options menu
+    // Default functions for edit button
     const defaultOnEdit = () => {
-        
+        navigation.navigate('PostEdit', { id });
     };
+    
+    // Default function for delete button
     const defaultOnDelete = () => {
 
     };
@@ -94,18 +96,6 @@ const Post = (props) => {
             }
         ]: []),
         // The rest of the options
-        {
-            label: 'Share',
-            onSelect: () => {},
-            style: null,
-            icon: (
-                <ShareIcon
-                    width={OPTION_ICON_SIZE}
-                    height={OPTION_ICON_SIZE}
-                    color='black'
-                /> 
-            )
-        },
         {
             label: 'Save',
             onSelect: () => {},
@@ -165,15 +155,33 @@ const Post = (props) => {
                 <View style={styles.actions}>
                     <View style={styles.likeness}>
                         <TouchableWithoutFeedback>
-                            <LikeIcon width={ACTION_ICON_SIZE} height={ACTION_ICON_SIZE} color='black'/>
+                            <LikeIcon
+                                width={ACTION_ICON_SIZE}
+                                height={ACTION_ICON_SIZE}
+                                color='black'
+                            />
                         </TouchableWithoutFeedback>
                         <TouchableWithoutFeedback>
-                            <DislikeIcon width={ACTION_ICON_SIZE} height={ACTION_ICON_SIZE} style={styles.dislike}  color='black'/>
+                            <DislikeIcon
+                                width={ACTION_ICON_SIZE}
+                                height={ACTION_ICON_SIZE}
+                                style={styles.dislike}
+                                color='black'
+                            />
                         </TouchableWithoutFeedback>
                     </View>
-                    <CommentIcon width={ACTION_ICON_SIZE} height={ACTION_ICON_SIZE} style={styles.comment}  color='black'/>
+                    <CommentIcon
+                        width={ACTION_ICON_SIZE}
+                        height={ACTION_ICON_SIZE}
+                        style={styles.comment}
+                        color='black'
+                    />
                     <TouchableWithoutFeedback>
-                        <ShareIcon width={ACTION_ICON_SIZE} height={ACTION_ICON_SIZE}  color='black'/>
+                        <ShareIcon
+                            width={ACTION_ICON_SIZE}
+                            height={ACTION_ICON_SIZE}
+                            color='black'
+                        />
                     </TouchableWithoutFeedback>
                 </View>
             </View>

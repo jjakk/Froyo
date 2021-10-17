@@ -62,9 +62,7 @@ const Post = (props) => {
     };
     
     // Default function for delete button
-    const defaultOnDelete = () => {
-
-    };
+    const defaultOnDelete = () => {};
 
     // More options menu items
     const moreOptions = [

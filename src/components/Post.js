@@ -1,11 +1,12 @@
-import React, { useEffect } from 'react';
-import { View, StyleSheet, Image, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
+import React from 'react';
+import { View, StyleSheet, Image, TouchableWithoutFeedback } from 'react-native';
 import {
     Menu,
     MenuOptions,
     MenuOption,
     MenuTrigger,
 } from 'react-native-popup-menu';
+import { navigate } from '../navigation/navigationRef';
 import { Text, Br } from './froyo-elements';
 import { calculateAge } from '../helperFunctions/age';
 // Icons
@@ -47,18 +48,17 @@ const Post = (props) => {
         onEdit,
         onDelete,
         onPress,
-        style,
-        navigation
+        style
     } = props;
 
     // Default function to call when a post is tapped on
     const defaultOnPress = () => {
-        navigation.navigate('PostView', { id });
+        navigate('PostView', { id });
     };
 
     // Default functions for edit button
     const defaultOnEdit = () => {
-        navigation.navigate('PostEdit', { id });
+        navigate('PostEdit', { id });
     };
     
     // Default function for delete button

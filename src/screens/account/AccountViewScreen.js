@@ -155,10 +155,6 @@ const AccountViewScreen = ({ navigation }) => {
                                                         if(success) await getUserPosts();
                                                     })
                                                 }}
-                                                onEdit={() => {
-                                                    navigation.navigate('PostEdit', { id: post._id });
-                                                }}
-                                                navigation={navigation}
                                                 personalPost={post.author === user._id}
                                                 clickable
                                             />

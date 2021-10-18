@@ -23,10 +23,6 @@ const PostViewScreen = ({ navigation }) => {
         <SafeAreaView style={styles.container}>
             <ScrollView style={styles.postView}>
                 <Post
-                    author={post.authorName || 'loading'}
-                    text={post.body || 'loading'}
-                    uploadDate={post.timestamp || Date()}
-                    style={styles.post || 'loading'}
                     personalPost={post.author === user._id}
                     clickable={false}
                 />

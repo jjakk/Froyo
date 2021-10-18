@@ -76,6 +76,16 @@ const getUserPosts = (dispatch) => async () => {
     }
 };
 
+// Like a post (unlikes if already liked)
+const likePost = (dispatch) => async (postId) => {
+    console.log('liked');
+};
+
+// Dislike a post (undislikes if already disliked)
+const dislikePost = (dispatch) => async (postId) => {
+    console.log('disliked');
+};
+
 // Clear the error message
 const clearErrorMessage = (dispatch) => () => {
     dispatch({ type: 'add_error', payload: '' });
@@ -88,6 +98,8 @@ export const { Provider, Context } = createDataContext(
         createPost,
         deletePost,
         getUserPosts,
+        likePost,
+        dislikePost,
         clearErrorMessage
     },
     {

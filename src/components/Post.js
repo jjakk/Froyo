@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useContext } from 'react';
 import { View, StyleSheet, Image, TouchableWithoutFeedback } from 'react-native';
 import {
     Menu,
@@ -7,12 +7,15 @@ import {
     MenuTrigger,
 } from 'react-native-popup-menu';
 import { navigate } from '../navigation/navigationRef';
+import { Context as PostContext } from '../context/PostContext';
 import { Text, Br } from './froyo-elements';
 import { calculateAge } from '../helperFunctions/age';
 // Icons
 import MoreOptionsIcon from '../../assets/icons/MoreSettings.svg';
-import LikeIcon from '../../assets/icons/Like.svg';
-import DislikeIcon from '../../assets/icons/Dislike.svg';
+import LikeIconFill from '../../assets/icons/Like-Fill.svg';
+import DislikeIconFill from '../../assets/icons/Dislike-Fill.svg';
+import LikeIconOutline from '../../assets/icons/Like-Outline.svg';
+import DislikeIconOutline from '../../assets/icons/Dislike-Outline.svg';
 import CommentIcon from '../../assets/icons/Comment.svg';
 import ShareIcon from '../../assets/icons/Share.svg';
 import TrashIcon from '../../assets/icons/Trash.svg';
@@ -36,20 +39,29 @@ const OPTION_ICON_SIZE = 20;
 // onPress -> function: the function to call when the post is tapped on
 
 const Post = (props) => {
-
+    const { getPost, likePost, dislikePost, state: { post } } = useContext(PostContext);
     const {
         id,
         clickable,
         personalPost,
-        author,
-        uploadDate,
-        text,
         imageSrc,
         onEdit,
         onDelete,
         onPress,
         style
     } = props;
+    const {
+        body,
+        timestamp,
+        authorName
+    } = post;
+
+    // Get post information
+    useEffect(() => {
+        (async function(){
+            await getPost(id);
+        })();
+    }, []);
 
     // Default function to call when a post is tapped on
     const defaultOnPress = () => {
@@ -109,6 +121,16 @@ const Post = (props) => {
         }
     ];
 
+    // When like button is pressed
+    const handleLike = () => {
+        likePost(id);
+    };
+
+    // When dislike button  is pressed
+    const handleDislike = () => {
+        dislikePost(id);
+    };
+
     return (
         <TouchableWithoutFeedback
             onPress={
@@ -142,25 +164,29 @@ const Post = (props) => {
                         resizeMode='contain'
                     />
                     <Text style={styles.headerText}>
-                        <Text style={styles.author}>{author}</Text>
+                        <Text style={styles.author}>{authorName}</Text>
                         <Br/>
-                        <Text style={styles.age}>{calculateAge(uploadDate)}</Text>
+                        <Text style={styles.age}>{calculateAge(timestamp)}</Text>
                     </Text>
                 </View>
                 <View style={styles.body}>
-                    <Text style={styles.text}>{text}</Text>
+                    <Text style={styles.text}>{body}</Text>
                 </View>
                 <View style={styles.actions}>
                     <View style={styles.likeness}>
-                        <TouchableWithoutFeedback>
-                            <LikeIcon
+                        <TouchableWithoutFeedback
+                            onPress={handleLike}
+                        >
+                            <LikeIconOutline
                                 width={ACTION_ICON_SIZE}
                                 height={ACTION_ICON_SIZE}
                                 color='black'
                             />
                         </TouchableWithoutFeedback>
-                        <TouchableWithoutFeedback>
-                            <DislikeIcon
+                        <TouchableWithoutFeedback
+                            onPress={handleDislike}
+                        >
+                            <DislikeIconOutline
                                 width={ACTION_ICON_SIZE}
                                 height={ACTION_ICON_SIZE}
                                 style={styles.dislike}

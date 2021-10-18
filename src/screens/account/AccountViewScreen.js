@@ -147,9 +147,6 @@ const AccountViewScreen = ({ navigation }) => {
                                             <Post
                                                 key={post._id}
                                                 id={post._id}
-                                                author={`${user.firstName} ${user.lastName}`}
-                                                uploadDate={post.timestamp}
-                                                text={post.body}
                                                 onDelete={() => {
                                                     deletePost(post._id, async (success) => {
                                                         if(success) await getUserPosts();

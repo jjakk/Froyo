@@ -23,7 +23,7 @@ import TrashIcon from '../../assets/icons/Trash.svg';
 import PenIcon from '../../assets/icons/Pen.svg';
 import SaveIcon from '../../assets/icons/Save.svg';
 
-const ACTION_ICON_SIZE = 25;
+const ACTION_ICON_SIZE = 30;
 const OPTION_ICON_SIZE = 20;
 
 // Post props & their meanings

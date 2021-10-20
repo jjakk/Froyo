@@ -61,11 +61,16 @@ const Post = (props) => {
         authorName
     } = post;
 
+    // Gets user & post info
+    const fetchInfo = async () => {
+        await getPost(id);
+        await getUserInfo();
+    };
+
     // Get post & user information
     useEffect(() => {
         (async function(){
-            await getPost(id);
-            await getUserInfo();
+            await fetchInfo();
             setContentLoaded(true);
         })();
     }, []);
@@ -131,13 +136,13 @@ const Post = (props) => {
     // When like button is pressed
     const handleLike = async () => {
         await likePost(id);
-        console.log(post.likes, user._id);
+        await fetchInfo();
     };
 
     // When dislike button  is pressed
     const handleDislike = async () => {
-        await likePost(id);
-        console.log(post.dislikes, user._id)
+        await dislikePost(id);
+        await fetchInfo();
     };
 
     return (
@@ -189,7 +194,7 @@ const Post = (props) => {
                         >
                             {
                                 contentLoaded ? (
-                                    0
+                                    post.likes.indexOf(user._id) !== -1
                                     ? (
                                         <LikeIconFill
                                             width={ACTION_ICON_SIZE}
@@ -205,10 +210,10 @@ const Post = (props) => {
                                         />
                                     )
                                 ) : (
-                                    <LikeIconOutline
+                                    <LikeIconFill
                                         width={ACTION_ICON_SIZE}
                                         height={ACTION_ICON_SIZE}
-                                        color='black'
+                                        color='rgb(0, 0, 0, 0.5)'
                                     />
                                 )
                             }
@@ -216,12 +221,33 @@ const Post = (props) => {
                         <TouchableWithoutFeedback
                             onPress={handleDislike}
                         >
-                            <DislikeIconOutline
-                                width={ACTION_ICON_SIZE}
-                                height={ACTION_ICON_SIZE}
-                                style={styles.dislike}
-                                color='black'
-                            />
+                            {
+                                contentLoaded ? (
+                                    post.dislikes.indexOf(user._id) !== -1
+                                    ? (
+                                        <DislikeIconFill
+                                            width={ACTION_ICON_SIZE}
+                                            height={ACTION_ICON_SIZE}
+                                            style={styles.dislike}
+                                            color='#CA4141'
+                                        />
+                                    ) : (
+                                        <DislikeIconOutline
+                                            width={ACTION_ICON_SIZE}
+                                            height={ACTION_ICON_SIZE}
+                                            style={styles.dislike}
+                                            color='black'
+                                        />
+                                    )
+                                ) : (
+                                    <DislikeIconFill
+                                        width={ACTION_ICON_SIZE}
+                                        height={ACTION_ICON_SIZE}
+                                        style={styles.dislike}
+                                        color='rgb(0, 0, 0, 0.5)'
+                                    />
+                                )
+                            }
                         </TouchableWithoutFeedback>
                     </View>
                     {/* Comment icon */}

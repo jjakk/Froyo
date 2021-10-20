@@ -81,7 +81,6 @@ const getUserPosts = (dispatch) => async () => {
 const likePost = (dispatch) => async (postId) => {
     try{
         await froyoApi.put(`/posts/${postId}/like`);
-        getPost(postId);
     }
     catch(err){
         console.log(err);
@@ -93,7 +92,6 @@ const likePost = (dispatch) => async (postId) => {
 const dislikePost = (dispatch) => async (postId) => {
     try{
         await froyoApi.put(`/posts/${postId}/dislike`);
-        getPost(postId);
     }
     catch(err){
         console.log(err);

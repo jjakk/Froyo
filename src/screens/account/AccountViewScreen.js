@@ -261,6 +261,7 @@ const styles = StyleSheet.create({
     postView: {
         marginTop: 5,
         paddingTop: 5,
+        flex: 1,
         backgroundColor: '#F2F2F2',
         width: '100%'
     },

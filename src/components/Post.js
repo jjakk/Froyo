@@ -41,8 +41,9 @@ const OPTION_ICON_SIZE = 20;
 
 const Post = (props) => {
     const { getUserInfo, state: { user } } = useContext(AuthContext);
-    const { getPost, likePost, dislikePost, state: { post } } = useContext(PostContext);
+    const { getPost, likePost, dislikePost } = useContext(PostContext);
     const [ contentLoaded, setContentLoaded ] = useState(false);
+    const [ post, setPost ] = useState({});
     
     const {
         id,
@@ -63,7 +64,9 @@ const Post = (props) => {
 
     // Gets user & post info
     const fetchInfo = async () => {
-        await getPost(id);
+        await getPost(id, post => {
+            setPost(post);
+        });
         await getUserInfo();
     };
 
@@ -71,6 +74,7 @@ const Post = (props) => {
     useEffect(() => {
         (async function(){
             await fetchInfo();
+            console.log(post.body + ": " + id);
             setContentLoaded(true);
         })();
     }, []);

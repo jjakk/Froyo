@@ -43,7 +43,7 @@ const deletePost = (dispatch) => async (postId, callback) => {
 }
 
 // GET a post
-const getPost = (dispatch) => async (postId) => {
+const getPost = (dispatch) => async (postId, callback=(() => {})) => {
     try{
         const response = await froyoApi.get(`/posts/${postId}`);
         // Get author name & add it to the post
@@ -59,6 +59,7 @@ const getPost = (dispatch) => async (postId) => {
             authorName: (firstName + ' ' + lastName)
         };
         dispatch({ type: 'load_post', payload: post });
+        callback(post);
     }
     catch(err){
         console.log(err);

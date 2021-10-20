@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { View, StyleSheet, Image, TouchableWithoutFeedback } from 'react-native';
 import {
     Menu,
@@ -8,6 +8,7 @@ import {
 } from 'react-native-popup-menu';
 import { navigate } from '../navigation/navigationRef';
 import { Context as PostContext } from '../context/PostContext';
+import { Context as AuthContext } from '../context/AuthContext';
 import { Text, Br } from './froyo-elements';
 import { calculateAge } from '../helperFunctions/age';
 // Icons
@@ -39,7 +40,10 @@ const OPTION_ICON_SIZE = 20;
 // onPress -> function: the function to call when the post is tapped on
 
 const Post = (props) => {
+    const { getUserInfo, state: { user } } = useContext(AuthContext);
     const { getPost, likePost, dislikePost, state: { post } } = useContext(PostContext);
+    const [ contentLoaded, setContentLoaded ] = useState(false);
+    
     const {
         id,
         clickable,
@@ -50,16 +54,19 @@ const Post = (props) => {
         onPress,
         style
     } = props;
+
     const {
         body,
         timestamp,
         authorName
     } = post;
 
-    // Get post information
+    // Get post & user information
     useEffect(() => {
         (async function(){
             await getPost(id);
+            await getUserInfo();
+            setContentLoaded(true);
         })();
     }, []);
 
@@ -122,13 +129,15 @@ const Post = (props) => {
     ];
 
     // When like button is pressed
-    const handleLike = () => {
-        likePost(id);
+    const handleLike = async () => {
+        await likePost(id);
+        console.log(post.likes, user._id);
     };
 
     // When dislike button  is pressed
-    const handleDislike = () => {
-        dislikePost(id);
+    const handleDislike = async () => {
+        await likePost(id);
+        console.log(post.dislikes, user._id)
     };
 
     return (
@@ -173,15 +182,36 @@ const Post = (props) => {
                     <Text style={styles.text}>{body}</Text>
                 </View>
                 <View style={styles.actions}>
+                    {/* Like & dislike buttons */}
                     <View style={styles.likeness}>
                         <TouchableWithoutFeedback
                             onPress={handleLike}
                         >
-                            <LikeIconOutline
-                                width={ACTION_ICON_SIZE}
-                                height={ACTION_ICON_SIZE}
-                                color='black'
-                            />
+                            {
+                                contentLoaded ? (
+                                    0
+                                    ? (
+                                        <LikeIconFill
+                                            width={ACTION_ICON_SIZE}
+                                            height={ACTION_ICON_SIZE}
+                                            color='#41CA99'
+                                            // red - #CA4141
+                                        />
+                                    ) : (
+                                        <LikeIconOutline
+                                            width={ACTION_ICON_SIZE}
+                                            height={ACTION_ICON_SIZE}
+                                            color='black'
+                                        />
+                                    )
+                                ) : (
+                                    <LikeIconOutline
+                                        width={ACTION_ICON_SIZE}
+                                        height={ACTION_ICON_SIZE}
+                                        color='black'
+                                    />
+                                )
+                            }
                         </TouchableWithoutFeedback>
                         <TouchableWithoutFeedback
                             onPress={handleDislike}
@@ -194,12 +224,14 @@ const Post = (props) => {
                             />
                         </TouchableWithoutFeedback>
                     </View>
+                    {/* Comment icon */}
                     <CommentIcon
                         width={ACTION_ICON_SIZE}
                         height={ACTION_ICON_SIZE}
                         style={styles.comment}
                         color='black'
                     />
+                    {/* Share button */}
                     <TouchableWithoutFeedback>
                         <ShareIcon
                             width={ACTION_ICON_SIZE}

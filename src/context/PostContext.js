@@ -78,20 +78,10 @@ const getUserPosts = (dispatch) => async () => {
 };
 
 // Like a post (unlikes if already liked)
-const likePost = (dispatch) => async (postId, callback) => {
+const likePost = (dispatch) => async (postId) => {
     try{
-        const {
-            data: {
-                likes
-            }
-        } = await froyoApi.put(`/posts/${postId}/like`);
-
-        const {
-            data: userId
-        } = await froyoApi.get('/');
-
-        // Return if user is liking post
-        callback(likes.indexOf(userId) === -1);
+        await froyoApi.put(`/posts/${postId}/like`);
+        getPost(postId);
     }
     catch(err){
         console.log(err);
@@ -100,20 +90,10 @@ const likePost = (dispatch) => async (postId, callback) => {
 };
 
 // Dislike a post (undislikes if already disliked)
-const dislikePost = (dispatch) => async (postId, callback) => {
+const dislikePost = (dispatch) => async (postId) => {
     try{
-        const {
-            data: {
-                dislikes
-            }
-        } = await froyoApi.put(`/posts/${postId}/dislike`);
-
-        const {
-            data: userId
-        } = await froyoApi.get('/');
-
-        // Return if user is liking post
-        callback(dislikes.indexOf(userId) === -1);
+        await froyoApi.put(`/posts/${postId}/dislike`);
+        getPost(postId);
     }
     catch(err){
         console.log(err);

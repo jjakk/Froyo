@@ -23,6 +23,7 @@ const PostViewScreen = ({ navigation }) => {
         <SafeAreaView style={styles.container}>
             <ScrollView style={styles.postView}>
                 <Post
+                    id={id}
                     personalPost={post.author === user._id}
                     clickable={false}
                 />

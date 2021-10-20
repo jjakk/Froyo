@@ -1,4 +1,5 @@
 import createDataContext from './createDataContext';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import froyoApi from '../api/froyo';
 
 // Handle setting state
@@ -77,13 +78,47 @@ const getUserPosts = (dispatch) => async () => {
 };
 
 // Like a post (unlikes if already liked)
-const likePost = (dispatch) => async (postId) => {
-    console.log('liked');
+const likePost = (dispatch) => async (postId, callback) => {
+    try{
+        const {
+            data: {
+                likes
+            }
+        } = await froyoApi.put(`/posts/${postId}/like`);
+
+        const {
+            data: userId
+        } = await froyoApi.get('/');
+
+        // Return if user is liking post
+        callback(likes.indexOf(userId) === -1);
+    }
+    catch(err){
+        console.log(err);
+        dispatch({ type: 'add_error', payload: `Ran into an error: ${err}` })
+    }
 };
 
 // Dislike a post (undislikes if already disliked)
-const dislikePost = (dispatch) => async (postId) => {
-    console.log('disliked');
+const dislikePost = (dispatch) => async (postId, callback) => {
+    try{
+        const {
+            data: {
+                dislikes
+            }
+        } = await froyoApi.put(`/posts/${postId}/dislike`);
+
+        const {
+            data: userId
+        } = await froyoApi.get('/');
+
+        // Return if user is liking post
+        callback(dislikes.indexOf(userId) === -1);
+    }
+    catch(err){
+        console.log(err);
+        dispatch({ type: 'add_error', payload: `Ran into an error: ${err}` })
+    };
 };
 
 // Clear the error message

@@ -19,6 +19,10 @@ const PostViewScreen = ({ navigation }) => {
         })();
     }, []);
 
+    const onBack = async () => {
+        navigation.pop();
+    };
+
     return (
         <SafeAreaView style={styles.container}>
             <ScrollView style={styles.postView}>
@@ -29,7 +33,7 @@ const PostViewScreen = ({ navigation }) => {
                 />
                 {/*Comments*/}
             </ScrollView>
-            <TouchableWithoutFeedback onPress={() => navigation.pop()}>
+            <TouchableWithoutFeedback onPress={onBack}>
                 <BackIcon width={25} height={25} style={styles.back} />
             </TouchableWithoutFeedback>
         </SafeAreaView>

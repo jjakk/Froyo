@@ -33,7 +33,7 @@ const AccountViewScreen = ({ navigation }) => {
             setContentLoaded(true);
         })();
     }, []);
-
+    
     const handleEditProfile = () => {
         navigation.navigate('AccountEdit');
     };

@@ -64,17 +64,16 @@ const Post = (props) => {
 
     // Gets user & post info
     const fetchInfo = async () => {
-        await getPost(id, post => {
+        await getPost(id, (post) => {
             setPost(post);
         });
         await getUserInfo();
     };
 
-    // Get post & user information
+    // Get post & user information on render
     useEffect(() => {
         (async function(){
             await fetchInfo();
-            console.log(post.body + ": " + id);
             setContentLoaded(true);
         })();
     }, []);

@@ -13,6 +13,7 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import * as Progress from 'react-native-progress';
+import { NavigationEvents } from 'react-navigation';
 import { Button, Text, } from '../../components/froyo-elements';
 import { Context as AuthContext } from '../../context/AuthContext';
 import { Context as PostContext } from '../../context/PostContext';
@@ -25,30 +26,34 @@ const AccountViewScreen = ({ navigation }) => {
     const [contentLoaded, setContentLoaded] = useState(false);
     const [refreshing, setRefreshing] = useState(false);
 
-    // Get user info on mount
-    useEffect(() => {
-        (async function(){
-            await getUserInfo();
-            await getUserPosts();
-            setContentLoaded(true);
-        })();
-    }, []);
-    
-    const handleEditProfile = () => {
-        navigation.navigate('AccountEdit');
-    };
-
-    const onRefresh = useCallback(async () => {
-        setRefreshing(true);
+    // Function to retrieve user info & posts
+    const reloadContent = async (refresh=false) => {
+        if(refresh) setRefreshing(true);
         setContentLoaded(false);
         await getUserInfo();
         await getUserPosts();
         setContentLoaded(true);
-        setRefreshing(false);
+        if(refresh) setRefreshing(false);
+    };
+
+    // Go to Account Edit when "Edit profile" button's pressed
+    const handleEditProfile = () => {
+        navigation.navigate('AccountEdit');
+    };
+
+    // Refresh content when loading this page
+    const handleDidFocus = async () => {
+        reloadContent();
+    };
+
+    // Handle refresh
+    const onRefresh = useCallback(async () => {
+        await reloadContent(true);
       }, []);
 
     return(
         <SafeAreaView style={styles.container}>
+            <NavigationEvents onDidFocus={handleDidFocus} />
             <ScrollView
                 showsVerticalScrollIndicator={false}
                 refreshControl={

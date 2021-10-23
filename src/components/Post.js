@@ -183,7 +183,12 @@ const Post = (props) => {
                     <Text style={styles.headerText}>
                         <Text style={styles.author}>{authorName}</Text>
                         <Br/>
-                        <Text style={styles.age}>{calculateAge(timestamp)}</Text>
+                        <Text style={styles.age}>{
+                            contentLoaded ? (
+                                calculateAge(timestamp)
+                            ) : null
+                            
+                        }</Text>
                     </Text>
                 </View>
                 <View style={styles.body}>

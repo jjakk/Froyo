@@ -62,6 +62,7 @@ const AccountViewScreen = ({ navigation }) => {
                         onRefresh={onRefresh}
                     />
                 }
+                style={styles.container}
             >
                 <View style={styles.profile}>
                     <View style={styles.header}>
@@ -261,7 +262,8 @@ const styles = StyleSheet.create({
     posts: {
         marginTop: 15,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        flex: 1
     },
     postView: {
         marginTop: 5,

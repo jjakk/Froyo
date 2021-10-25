@@ -52,7 +52,10 @@ const AccountViewScreen = ({ navigation }) => {
       }, []);
 
     return(
-        <SafeAreaView style={styles.container}>
+        <SafeAreaView
+            style={styles.container}
+            edges={['top']}
+        >
             <NavigationEvents onDidFocus={handleDidFocus} />
             <ScrollView
                 showsVerticalScrollIndicator={false}
@@ -62,7 +65,6 @@ const AccountViewScreen = ({ navigation }) => {
                         onRefresh={onRefresh}
                     />
                 }
-                style={styles.container}
             >
                 <View style={styles.profile}>
                     <View style={styles.header}>

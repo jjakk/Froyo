@@ -14,9 +14,11 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import * as Progress from 'react-native-progress';
 import { NavigationEvents } from 'react-navigation';
-import { Button, Text, } from '../../components/froyo-elements';
+// Context
 import { Context as AuthContext } from '../../context/AuthContext';
 import { Context as PostContext } from '../../context/PostContext';
+// Components
+import { Button, Text, } from '../../components/froyo-elements';
 import EmptyMessage from '../../components/EmptyMessage';
 import Post from '../../components/Post';
 

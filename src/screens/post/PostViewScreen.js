@@ -1,10 +1,18 @@
 import React, { useContext, useEffect } from 'react';
-import { StyleSheet, TouchableWithoutFeedback, ScrollView } from 'react-native';
+import {
+    StyleSheet,
+    TouchableWithoutFeedback,
+    ScrollView
+} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+// Context
 import { Context as PostContext } from '../../context/PostContext';
 import { Context as AuthContext } from '../../context/AuthContext';
+// Components
 import Post from '../../components/Post';
 import Comment from '../../components/Comment';
+import CommentBar from '../../components/CommentBar';
+// Icons
 import BackIcon from '../../../assets/icons/Back.svg';
 
 const PostViewScreen = ({ navigation }) => {
@@ -33,6 +41,7 @@ const PostViewScreen = ({ navigation }) => {
                 />
                 {/*Comments*/}
             </ScrollView>
+            <CommentBar style={styles.commentBar}/>
             <TouchableWithoutFeedback onPress={onBack}>
                 <BackIcon width={25} height={25} style={styles.back} />
             </TouchableWithoutFeedback>
@@ -56,6 +65,10 @@ const styles = StyleSheet.create({
     },
     post: {
         marginTop: 5
+    },
+    commentBar: {
+        position: 'absolute',
+        bottom: 0
     }
 });
 

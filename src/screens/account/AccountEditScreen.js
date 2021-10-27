@@ -57,7 +57,7 @@ const AccountEditScreen = ({ navigation }) => {
                 onPress={Keyboard.dismiss}
             >
                 <KeyboardAvoidingView
-                    behavior={Platform.OS === "ios" ? "padding" : "height"}
+                    behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
                     style={styles.container}
                 >
                     <View style={styles.form}>

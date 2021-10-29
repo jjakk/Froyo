@@ -1,5 +1,5 @@
-import React from 'react';
-import { StyleSheet, Platform, TouchableWithoutFeedback, KeyboardAvoidingView } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, TouchableWithoutFeedback, KeyboardAvoidingView } from 'react-native';
 import { View } from 'react-native';
 // Components
 import { Input } from '../components/froyo-elements';
@@ -9,14 +9,26 @@ import SendIcon from '../../assets/icons/Send.svg';
 import { colors } from '../constants/constants';
 
 const CommentBar = (props) => {
+    const [commentText, setCommentText] = useState();
     const {
-        style
+        style,
+        onCreate
     } = props;
+
+    const onSubmit = () => {
+        console.log(commentText);
+        onCreate(commentText);
+    };
 
     return (
         <View style={[styles.bar, style]}>
-            <Input style={styles.input} placeholder='Comment...'/>
-            <TouchableWithoutFeedback>
+            <Input
+                style={styles.input}
+                placeholder='Comment...'
+                value={commentText}
+                onChangeText={setCommentText}
+            />
+            <TouchableWithoutFeedback onPress={onSubmit}>
                 <SendIcon style={styles.send} width={35} height={35} color={colors.froyoGreen}/>
             </TouchableWithoutFeedback>
         </View>

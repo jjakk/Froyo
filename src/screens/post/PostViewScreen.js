@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import {
     StyleSheet,
     TouchableWithoutFeedback,
@@ -12,6 +12,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Context as PostContext } from '../../context/PostContext';
 import { Context as AuthContext } from '../../context/AuthContext';
 // Components
+import { Text } from '../../components/froyo-elements';
 import Post from '../../components/Post';
 import Comment from '../../components/Comment';
 import CommentBar from '../../components/CommentBar';
@@ -23,11 +24,13 @@ const PostViewScreen = ({ navigation }) => {
     const { getUserInfo, state: { user } } = useContext(AuthContext);
     const { getPost, state: { post } } = useContext(PostContext);
     const id = navigation.getParam('id');
+    const [contentLoaded, setContentLoaded] = useState(false);
 
     useEffect(() => {
         (async function(){
             await getUserInfo();
             await getPost(id);
+            setContentLoaded(true);
         })();
     }, []);
 
@@ -40,22 +43,36 @@ const PostViewScreen = ({ navigation }) => {
             style={styles.container}
         >
             <TouchableWithoutFeedback
-                style={{flex: 1}}
+                style={styles.container}
                 onPress={Keyboard.dismiss}
             >
                 <KeyboardAvoidingView
                     behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
                     keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : 50}
-                    style={{flex: 1}}
+                    style={styles.container}
                 >
-                    <View style={{flex: 1}}>
-                        <ScrollView style={styles.postView}>
+                    <View style={styles.container}>
+                        <ScrollView style={styles.contentView}>
                             <Post
                                 id={id}
                                 personalPost={post.author === user._id}
                                 clickable={false}
                             />
-                            {/*Comments*/}
+                            {
+                                contentLoaded ? (
+                                    post.comments.length > 0 ? (
+                                        post.comments.map(comment => (
+                                            <Comment
+
+                                            />
+                                        ))
+                                    ) : (
+                                        <Text style={styles.noComments}>No comments</Text>
+                                    )
+                                ) : (
+                                    <Text>Loading...</Text>
+                                )
+                            }
                         </ScrollView>
                         <CommentBar style={styles.commentBar}/>
                         <TouchableWithoutFeedback onPress={onBack}>
@@ -78,10 +95,16 @@ const styles = StyleSheet.create({
         top: 20,
         left: 20
     },
-    postView: {
+    contentView: {
         marginTop: 60,
         backgroundColor: '#F2F2F2',
         flex: 1
+    },
+    noComments: {
+        fontSize: 28,
+        alignSelf: 'center',
+        opacity: 0.75,
+        marginTop: 50
     },
     post: {
         marginTop: 5

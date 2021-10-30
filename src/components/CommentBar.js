@@ -16,7 +16,7 @@ const CommentBar = (props) => {
     } = props;
 
     const onSubmit = () => {
-        console.log(commentText);
+        console.log('Comment : ' + commentText);
         onCreate(commentText);
     };
 

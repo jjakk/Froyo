@@ -21,12 +21,12 @@ const createPost = (dispatch) => async (info, callback) => {
     try{
         const { postBody } = info;
         const response = await froyoApi.post('/posts', { body: postBody });
-        callback(true);
+        callback();
     }
     catch(err){
         let message = err.response.data;
         dispatch({ type: 'add_error', payload: message });
-        callback(false);
+        callback(message);
     }
 };
 

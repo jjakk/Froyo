@@ -37,9 +37,9 @@ const PostCreateScreen = ({ navigation }) => {
         clearErrorMessage();
         Keyboard.dismiss()
         setLoading(true);
-        await createPost({ postBody }, (success) => {
+        await createPost({ postBody }, (error) => {
             setLoading(false);
-            if(success) navigation.navigate('Feed');
+            if(!error) navigation.navigate('Feed');
         });
     };
 

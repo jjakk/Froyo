@@ -20,13 +20,10 @@ const commentReducer = (state, action) => {
 const createComment = (dispatch) => async (info, callback) => {
     try{
         const response = await froyoApi.post('/comments', info);
-        callback(true);
     }
     catch(err){
         let message = err.response.data;
-        console.log('Issue creating comment: ' + message);
         dispatch({ type: 'add_error', payload: message });
-        callback(false);
     }
 };
 

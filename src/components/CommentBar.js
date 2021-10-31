@@ -24,9 +24,9 @@ const CommentBar = (props) => {
                 body: commentText,
                 parent: parentId
             };
-            createComment(content, (success) => {
-                console.log(success ? 'Created comment' : 'Failed to create comment');
-                setCommentText('');
+            createComment(content, (error) => {
+                if(error) console.log(error);
+                else setCommentText('');
             });
         }
     };

@@ -12,6 +12,7 @@ import appNavigator from './src/navigation/appNavigator';
 // Context
 import { Provider as AuthProvider } from './src/context/AuthContext';
 import { Provider as PostProvider } from './src/context/PostContext';
+import { Provider as CommentProvider } from './src/context/CommentContext';
 
 
 const App = createAppContainer(appNavigator);
@@ -31,7 +32,9 @@ export default () => {
           <MenuProvider>
             <AuthProvider>
               <PostProvider>
-                <App ref={(navigator) => { setNavigator(navigator) }} />
+                <CommentProvider>
+                  <App ref={(navigator) => { setNavigator(navigator) }} />
+                </CommentProvider>
               </PostProvider>
             </AuthProvider>
           </MenuProvider>

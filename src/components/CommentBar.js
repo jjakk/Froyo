@@ -1,23 +1,34 @@
-import React, { useState } from 'react';
-import { StyleSheet, TouchableWithoutFeedback, KeyboardAvoidingView } from 'react-native';
+import React, { useState, useContext } from 'react';
+import { StyleSheet, TouchableWithoutFeedback } from 'react-native';
 import { View } from 'react-native';
 // Components
 import { Input } from '../components/froyo-elements';
+// Context
+import { Context as CommentContext } from '../context/CommentContext';
 // Icons
 import SendIcon from '../../assets/icons/Send.svg';
 // Constants
 import { colors } from '../constants/constants';
 
 const CommentBar = (props) => {
-    const [commentText, setCommentText] = useState();
+    const { createComment } = useContext(CommentContext);
+    const [commentText, setCommentText] = useState('');
     const {
         style,
-        onCreate
+        parentId
     } = props;
 
     const onSubmit = () => {
-        console.log('Comment : ' + commentText);
-        onCreate(commentText);
+        if(parentId){
+            const content = {
+                body: commentText,
+                parent: parentId
+            };
+            createComment(content, (success) => {
+                console.log(success ? 'Created comment' : 'Failed to create comment');
+                setCommentText('');
+            });
+        }
     };
 
     return (

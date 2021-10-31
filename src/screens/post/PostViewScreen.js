@@ -9,8 +9,8 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 // Context
-import { Context as PostContext } from '../../context/PostContext';
 import { Context as AuthContext } from '../../context/AuthContext';
+import { Context as PostContext } from '../../context/PostContext';
 // Components
 import { Text } from '../../components/froyo-elements';
 import Post from '../../components/Post';
@@ -70,11 +70,14 @@ const PostViewScreen = ({ navigation }) => {
                                         <Text style={styles.noComments}>No comments</Text>
                                     )
                                 ) : (
-                                    <Text>Loading...</Text>
+                                    <Text style={styles.noComments}>Loading...</Text>
                                 )
                             }
                         </ScrollView>
-                        <CommentBar style={styles.commentBar}/>
+                        <CommentBar
+                            style={styles.commentBar}
+                            parentId={id}
+                        />
                         <TouchableWithoutFeedback onPress={onBack}>
                             <BackIcon width={25} height={25} style={styles.back} />
                         </TouchableWithoutFeedback>

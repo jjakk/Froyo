@@ -1,0 +1,124 @@
+import createDataContext from './createDataContext';
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import froyoApi from '../api/froyo';
+
+// Handle setting state
+const commentReducer = (state, action) => {
+    switch(action.type){
+        case 'add_error':
+            return { ...state, errorMessage: action.payload };
+        case 'load_post':
+            return { ...state, comment: action.payload, errorMessage: '' }
+        case 'load_posts':
+            return { ...state, comments: action.payload, errorMessage: '' }
+        default:
+            return state;
+    }
+};
+
+// POST a comment
+const createComment = (dispatch) => async (info, callback) => {
+    try{
+        const response = await froyoApi.post('/comments', info);
+        callback(true);
+    }
+    catch(err){
+        let message = err.response.data;
+        console.log('Issue creating comment: ' + message);
+        dispatch({ type: 'add_error', payload: message });
+        callback(false);
+    }
+};
+
+// DELETE a comment
+const deleteComment = (dispatch) => async (postId, callback) => {
+    /*try{
+        await froyoApi.delete(`/posts/${postId}`);
+        callback(true);
+    }
+    catch(err){
+        dispatch({ type: 'add_error', payload: `Unable to delete post` })
+        callback(false);
+    }*/
+}
+
+// GET a comment
+const getComment = (dispatch) => async (postId, callback=(() => {})) => {
+    /*try{
+        const response = await froyoApi.get(`/posts/${postId}`);
+        // Get author name & add it to the post
+        // This is necessary because the author value given is equal to a database id
+        const {
+            data: {
+                firstName,
+                lastName
+            }
+        } = await froyoApi.get(`/users/${response.data.author}`);
+        const post = {
+            ...response.data,
+            authorName: (firstName + ' ' + lastName)
+        };
+        dispatch({ type: 'load_post', payload: post });
+        callback(post);
+    }
+    catch(err){
+        console.log(err);
+        dispatch({ type: 'add_error', payload: `Ran into an error: ${err}` })
+    }*/
+}
+
+// GET all the comments of a given post
+const getUserComments = (dispatch) => async () => {
+    /*try{
+        const response = await froyoApi.get('/posts');
+        dispatch({ type: 'load_posts', payload: response.data });
+    }
+    catch(err){
+        dispatch({ type: 'add_error', payload: `Ran into an error: ${err}` })
+    }*/
+};
+
+// Like a comment (unlikes if already liked)
+const likeComment = (dispatch) => async (postId) => {
+    /*try{
+        await froyoApi.put(`/posts/${postId}/like`);
+    }
+    catch(err){
+        console.log(err);
+        dispatch({ type: 'add_error', payload: `Ran into an error: ${err}` })
+    }*/
+};
+
+// Dislike a comment (undislikes if already disliked)
+const dislikeComment = (dispatch) => async (postId) => {
+    /*try{
+        await froyoApi.put(`/posts/${postId}/dislike`);
+    }
+    catch(err){
+        console.log(err);
+        dispatch({ type: 'add_error', payload: `Ran into an error: ${err}` })
+    };*/
+};
+
+// Clear the error message
+const clearErrorMessage = (dispatch) => () => {
+    dispatch({ type: 'add_error', payload: '' });
+};
+
+export const { Provider, Context } = createDataContext(
+    commentReducer,
+    {
+        getComment,
+        createComment,
+        deleteComment,
+        getUserComments,
+        likeComment,
+        dislikeComment,
+        clearErrorMessage
+    },
+    {
+        comment: {},
+        errorMessage: '',
+        comment: []
+    }
+);

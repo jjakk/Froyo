@@ -52,6 +52,9 @@ const PostViewScreen = ({ navigation }) => {
                     style={styles.container}
                 >
                     <View style={styles.container}>
+                        <TouchableWithoutFeedback onPress={onBack}>
+                            <BackIcon width={25} height={25} style={styles.back} />
+                        </TouchableWithoutFeedback>
                         <ScrollView style={styles.contentView}>
                             <Post
                                 id={id}
@@ -76,12 +79,8 @@ const PostViewScreen = ({ navigation }) => {
                             }
                         </ScrollView>
                         <CommentBar
-                            style={styles.commentBar}
                             parentId={id}
                         />
-                        <TouchableWithoutFeedback onPress={onBack}>
-                            <BackIcon width={25} height={25} style={styles.back} />
-                        </TouchableWithoutFeedback>
                     </View>
                 </KeyboardAvoidingView>
             </TouchableWithoutFeedback>
@@ -94,15 +93,14 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#ffff',
     },
-    back: {
-        position: 'absolute',
-        top: 20,
-        left: 20
-    },
     contentView: {
-        marginTop: 60,
+        marginTop: 20,
         backgroundColor: '#F2F2F2',
         flex: 1
+    },
+    back: {
+        marginTop: 20,
+        marginLeft: 20
     },
     noComments: {
         fontSize: 28,
@@ -112,10 +110,6 @@ const styles = StyleSheet.create({
     },
     post: {
         marginTop: 5
-    },
-    commentBar: {
-        position: 'absolute',
-        bottom: 0
     }
 });
 

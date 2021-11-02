@@ -53,7 +53,9 @@ const styles = StyleSheet.create({
         padding: 20,
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        borderTopColor: '#F2F2F2',
+        borderTopWidth: 2
     },
     input: {
         backgroundColor: '#F2F2F2',

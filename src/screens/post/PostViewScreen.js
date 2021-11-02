@@ -63,7 +63,8 @@ const PostViewScreen = ({ navigation }) => {
                                     post.comments.length > 0 ? (
                                         post.comments.map(comment => (
                                             <Comment
-
+                                                key={comment}
+                                                text={comment}
                                             />
                                         ))
                                     ) : (

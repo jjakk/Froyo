@@ -1,5 +1,4 @@
 import createDataContext from './createDataContext';
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import froyoApi from '../api/froyo';
 
 // Handle setting state

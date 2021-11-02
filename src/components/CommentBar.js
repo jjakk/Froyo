@@ -10,6 +10,7 @@ import SendIcon from '../../assets/icons/Send.svg';
 // Constants
 import { colors } from '../constants/constants';
 
+// ParentId -> string: ID of the content that's being commented one
 const CommentBar = (props) => {
     const { createComment } = useContext(CommentContext);
     const [commentText, setCommentText] = useState('');
@@ -19,16 +20,14 @@ const CommentBar = (props) => {
     } = props;
 
     const onSubmit = () => {
-        if(parentId){
-            const content = {
-                body: commentText,
-                parent: parentId
-            };
-            createComment(content, (error) => {
-                if(error) console.log(error);
-                else setCommentText('');
-            });
-        }
+        const content = {
+            body: commentText,
+            parent: parentId
+        };
+        createComment(content, (error) => {
+            if(error) console.log(error);
+            else setCommentText('');
+        });
     };
 
     return (

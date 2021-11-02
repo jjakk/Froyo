@@ -1,5 +1,4 @@
 import createDataContext from './createDataContext';
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import froyoApi from '../api/froyo';
 
 // Handle setting state
@@ -19,11 +18,22 @@ const commentReducer = (state, action) => {
 // POST a comment
 const createComment = (dispatch) => async (info, callback) => {
     try{
+        const {
+            body,
+            parent
+        } = info;
+        if(!body || !parent){
+            const message = !body ? 'Empty comment' : (!parent ? 'No parent' : null);
+            dispatch({ type: 'add_error', payload: message });
+            return callback(message);
+        }
         const response = await froyoApi.post('/comments', info);
+        return callback();
     }
     catch(err){
         let message = err.response.data;
         dispatch({ type: 'add_error', payload: message });
+        return callback(err);
     }
 };
 

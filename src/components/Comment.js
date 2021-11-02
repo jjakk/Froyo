@@ -12,6 +12,12 @@ const Comment = (props) => {
     return (
         <View style={[styles.comment, style]}>
             <Text>{text}</Text>
+            {/*
+                Like button
+                Dislike button
+                More options
+                Reply
+            */}
         </View>
     );
 }

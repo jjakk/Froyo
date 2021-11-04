@@ -52,9 +52,11 @@ const PostViewScreen = ({ navigation }) => {
                     style={styles.container}
                 >
                     <View style={styles.container}>
-                        <TouchableWithoutFeedback onPress={onBack}>
-                            <BackIcon width={25} height={25} style={styles.back} />
-                        </TouchableWithoutFeedback>
+                        <View style={styles.header}>
+                            <TouchableWithoutFeedback onPress={onBack}>
+                                <BackIcon width={25} height={25} style={styles.back} />
+                            </TouchableWithoutFeedback>
+                        </View>
                         <ScrollView style={styles.contentView}>
                             <Post
                                 id={id}
@@ -91,16 +93,18 @@ const PostViewScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#ffff',
+        backgroundColor: '#FFFFFF',
+    },
+    header: {
+        borderBottomColor: '#F2F2F2',
+        borderBottomWidth: 2
     },
     contentView: {
-        marginTop: 20,
         backgroundColor: '#F2F2F2',
         flex: 1
     },
     back: {
-        marginTop: 20,
-        marginLeft: 20
+        margin: 20
     },
     noComments: {
         fontSize: 28,

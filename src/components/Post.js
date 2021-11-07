@@ -1,5 +1,19 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { View, StyleSheet, Image, TouchableWithoutFeedback } from 'react-native';
+import React, {
+    useState,
+    useEffect,
+    useContext
+} from 'react';
+import {
+    View,
+    StyleSheet,
+    Image,
+    TouchableWithoutFeedback
+} from 'react-native';
+import {
+    Text,
+    Br,
+    TouchableIcon
+} from './froyo-elements';
 import {
     Menu,
     MenuOptions,
@@ -9,7 +23,6 @@ import {
 import { navigate } from '../navigation/navigationRef';
 import { Context as PostContext } from '../context/PostContext';
 import { Context as AuthContext } from '../context/AuthContext';
-import { Text, Br } from './froyo-elements';
 import { calculateAge } from '../helperFunctions/age';
 // Icons
 import MoreOptionsIcon from '../../assets/icons/MoreSettings.svg';
@@ -267,11 +280,7 @@ const Post = (props) => {
                     />
                     {/* Share button */}
                     <TouchableWithoutFeedback>
-                        <ShareIcon
-                            width={ACTION_ICON_SIZE}
-                            height={ACTION_ICON_SIZE}
-                            color='black'
-                        />
+                        <ShareIcon width={ACTION_ICON_SIZE} height={ACTION_ICON_SIZE} />
                     </TouchableWithoutFeedback>
                 </View>
             </View>

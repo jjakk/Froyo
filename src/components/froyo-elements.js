@@ -5,6 +5,7 @@ import Text from './elements/Text';
 import Spacer from './elements/Spacer';
 import Br from './elements/Br';
 import DatePicker from './elements/DatePicker';
+import TouchableIcon from './elements/TouchableIcon';
 
 module.exports = {
   Button,
@@ -13,7 +14,8 @@ module.exports = {
   Text,
   Spacer,
   Br,
-  DatePicker
+  DatePicker,
+  TouchableIcon
 };
 
 

@@ -280,7 +280,7 @@ const Post = (props) => {
                     />
                     {/* Share button */}
                     <TouchableWithoutFeedback>
-                        <ShareIcon width={ACTION_ICON_SIZE} height={ACTION_ICON_SIZE} />
+                        <ShareIcon width={ACTION_ICON_SIZE} height={ACTION_ICON_SIZE} color='black' />
                     </TouchableWithoutFeedback>
                 </View>
             </View>

@@ -1,5 +1,11 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { View, StyleSheet, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import {
+    View,
+    StyleSheet,
+    TouchableOpacity,
+    TouchableWithoutFeedback,
+    Keyboard
+} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import * as MediaLibrary from 'expo-media-library';
 import { Context as PostContext } from '../../context/PostContext';
@@ -55,9 +61,9 @@ const PostCreateScreen = ({ navigation }) => {
                 onPress={Keyboard.dismiss}
             >
                 <View>
-                    <TouchableWithoutFeedback onPress={() => navigation.navigate('Feed')}>
+                    <TouchableOpacity onPress={() => navigation.navigate('Feed')}>
                         <BackIcon width={25} height={25} style={styles.back} />
-                    </TouchableWithoutFeedback>
+                    </TouchableOpacity>
                     <View style={styles.bodyContainer}>
                         <Input
                             style={styles.body}

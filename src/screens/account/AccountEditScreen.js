@@ -4,6 +4,7 @@ import {
     Platform,
     View,
     Image,
+    TouchableOpacity,
     TouchableWithoutFeedback,
     Keyboard,
     KeyboardAvoidingView
@@ -60,6 +61,9 @@ const AccountEditScreen = ({ navigation }) => {
                     behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
                     style={styles.container}
                 >
+                    <TouchableOpacity onPress={() => navigation.navigate('AccountView')}>
+                        <BackIcon width={25} height={25} style={styles.back} />
+                    </TouchableOpacity>
                     <View style={styles.form}>
                         <View style={styles.profilePictureUpload}>
                             <Image
@@ -117,9 +121,6 @@ const AccountEditScreen = ({ navigation }) => {
                         />
                         <ErrorMessage message={errorMessage} style={styles.errorMessage} />
                     </View>
-                    <TouchableWithoutFeedback onPress={() => navigation.navigate('AccountView')}>
-                        <BackIcon width={25} height={25} style={styles.back} />
-                    </TouchableWithoutFeedback>
                 </KeyboardAvoidingView>
             </TouchableWithoutFeedback>
         </SafeAreaView>
@@ -135,9 +136,8 @@ const styles = StyleSheet.create({
         paddingBottom: 250
     },
     back: {
-        position: 'absolute',
-        top: 20,
-        left: 20,
+        margin: 25,
+        marginBottom: 0
     },
     label: {
         fontSize: 28,

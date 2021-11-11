@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import {
     FlatList,
     StyleSheet,
+    TouchableOpacity,
     TouchableWithoutFeedback
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -66,9 +67,12 @@ Never gonna say goodbye. Never gonna tell a lie and hurt you`
                     />
                 )
             }
-            <TouchableWithoutFeedback onPress={() => navigation.navigate('PostCreate')}>
-                <CreatePostIcon width={50} height={50} style={styles.createPost} />
-            </TouchableWithoutFeedback>
+            <TouchableOpacity
+                onPress={() => navigation.navigate('PostCreate')}
+                style={styles.createPost}
+            >
+                <CreatePostIcon width={50} height={50}/>
+            </TouchableOpacity>
         </SafeAreaView>
     );
 };

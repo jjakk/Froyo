@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import {
     StyleSheet,
+    TouchableOpacity,
     TouchableWithoutFeedback,
     KeyboardAvoidingView,
     Keyboard,
@@ -53,9 +54,9 @@ const PostViewScreen = ({ navigation }) => {
                 >
                     <View style={styles.container}>
                         <View style={styles.header}>
-                            <TouchableWithoutFeedback onPress={onBack}>
+                            <TouchableOpacity onPress={onBack}>
                                 <BackIcon width={25} height={25} style={styles.back} />
-                            </TouchableWithoutFeedback>
+                            </TouchableOpacity>
                         </View>
                         <ScrollView style={styles.contentView}>
                             <Post

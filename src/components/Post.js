@@ -7,6 +7,7 @@ import {
     View,
     StyleSheet,
     Image,
+    TouchableOpacity,
     TouchableWithoutFeedback
 } from 'react-native';
 import {
@@ -210,7 +211,7 @@ const Post = (props) => {
                 <View style={styles.actions}>
                     {/* Like & dislike buttons */}
                     <View style={styles.likeness}>
-                        <TouchableWithoutFeedback
+                        <TouchableOpacity
                             onPress={handleLike}
                         >
                             {
@@ -238,8 +239,8 @@ const Post = (props) => {
                                     />
                                 )
                             }
-                        </TouchableWithoutFeedback>
-                        <TouchableWithoutFeedback
+                        </TouchableOpacity>
+                        <TouchableOpacity
                             onPress={handleDislike}
                         >
                             {
@@ -269,7 +270,7 @@ const Post = (props) => {
                                     />
                                 )
                             }
-                        </TouchableWithoutFeedback>
+                        </TouchableOpacity>
                     </View>
                     {/* Comment icon */}
                     <CommentIcon
@@ -279,9 +280,9 @@ const Post = (props) => {
                         color='black'
                     />
                     {/* Share button */}
-                    <TouchableWithoutFeedback>
+                    <TouchableOpacity>
                         <ShareIcon width={ACTION_ICON_SIZE} height={ACTION_ICON_SIZE} color='black' />
-                    </TouchableWithoutFeedback>
+                    </TouchableOpacity>
                 </View>
             </View>
         </TouchableWithoutFeedback>

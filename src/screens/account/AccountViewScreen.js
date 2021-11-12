@@ -97,15 +97,7 @@ const AccountViewScreen = ({ navigation }) => {
                                         </Text>
                                     </View>
                                 </View>
-                            ) : (
-                                <Progress.CircleSnail
-                                    size={50}
-                                    indeterminate={true}
-                                    spinDuration={1000}
-                                    color='#41CA99'
-                                    style={styles.accountInfoLoading}
-                                />
-                            )
+                            ) : null
                         }
                     </View>
                     {

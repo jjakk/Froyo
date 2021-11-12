@@ -37,7 +37,7 @@ import TrashIcon from '../../assets/icons/Trash.svg';
 import PenIcon from '../../assets/icons/Pen.svg';
 import SaveIcon from '../../assets/icons/Save.svg';
 
-const ACTION_ICON_SIZE = 30;
+const ACTION_ICON_SIZE = 27.5;
 const OPTION_ICON_SIZE = 20;
 
 // Post props & their meanings
@@ -340,7 +340,7 @@ const styles = StyleSheet.create({
         marginLeft: 5
     },
     comment: {
-        marginRight: 40
+        marginRight: 35
     },
     deleteButton: {
         color: '#FB1C1C'

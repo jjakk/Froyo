@@ -12,6 +12,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 // Context
 import { Context as AuthContext } from '../../context/AuthContext';
 import { Context as PostContext } from '../../context/PostContext';
+import { Context as CommentContext } from '../../context/CommentContext';
 // Components
 import { Text } from '../../components/froyo-elements';
 import Post from '../../components/Post';
@@ -20,17 +21,24 @@ import CommentBar from '../../components/CommentBar';
 // Icons
 import BackIcon from '../../../assets/icons/Back.svg';
 import { Platform } from 'react-native';
+import { FlatList } from 'react-native';
 
 const PostViewScreen = ({ navigation }) => {
     const { getUserInfo, state: { user } } = useContext(AuthContext);
-    const { getPost, state: { post } } = useContext(PostContext);
+    const { getPost } = useContext(PostContext);
+    const { getComments, state: { comments } } = useContext(CommentContext);
     const id = navigation.getParam('id');
     const [contentLoaded, setContentLoaded] = useState(false);
+    const [post, setPost] = useState({});
 
     useEffect(() => {
         (async function(){
+            // Get user info to determine if the user is the author of the post
             await getUserInfo();
-            await getPost(id);
+            getPost(id, async (post) => {
+                setPost(post);
+                await getComments(post);
+            });
             setContentLoaded(true);
         })();
     }, []);
@@ -58,7 +66,7 @@ const PostViewScreen = ({ navigation }) => {
                                 <BackIcon width={25} height={25} style={styles.back} />
                             </TouchableOpacity>
                         </View>
-                        <ScrollView style={styles.contentView}>
+                        <View style={styles.contentView}>
                             <Post
                                 id={id}
                                 personalPost={post.author === user._id}
@@ -66,13 +74,18 @@ const PostViewScreen = ({ navigation }) => {
                             />
                             {
                                 contentLoaded ? (
-                                    post.comments.length > 0 ? (
-                                        post.comments.map(comment => (
-                                            <Comment
-                                                key={comment}
-                                                text={comment}
-                                            />
-                                        ))
+                                    comments.length > 0 ? (
+                                        <FlatList
+                                            data={comments}
+                                            keyExtractor={(item) => item._id}
+                                            renderItem={({ item }) => {
+                                                return (
+                                                    <Comment
+                                                        text={item.body}
+                                                    />
+                                                );
+                                            }}
+                                        />
                                     ) : (
                                         <Text style={styles.noComments}>No comments</Text>
                                     )
@@ -80,7 +93,7 @@ const PostViewScreen = ({ navigation }) => {
                                     <Text style={styles.noComments}>Loading...</Text>
                                 )
                             }
-                        </ScrollView>
+                        </View>
                         <CommentBar
                             parentId={id}
                         />

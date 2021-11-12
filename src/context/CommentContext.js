@@ -6,9 +6,9 @@ const commentReducer = (state, action) => {
     switch(action.type){
         case 'add_error':
             return { ...state, errorMessage: action.payload };
-        case 'load_post':
+        case 'load_comment':
             return { ...state, comment: action.payload, errorMessage: '' }
-        case 'load_posts':
+        case 'load_comments':
             return { ...state, comments: action.payload, errorMessage: '' }
         default:
             return state;
@@ -74,15 +74,21 @@ const getComment = (dispatch) => async (postId, callback=(() => {})) => {
     }*/
 }
 
-// GET all the comments of a given post
-const getUserComments = (dispatch) => async () => {
-    /*try{
-        const response = await froyoApi.get('/posts');
-        dispatch({ type: 'load_posts', payload: response.data });
+// GET all the comments of a given parent
+const getComments = (dispatch) => async ({ comments }) => {
+    try{
+        let result = [];
+        for(let i = 0; i < comments.length; i++){
+            const { data } = await froyoApi.get(`/comments/${comments[i]}`);
+            result.push(data);
+        }
+
+        dispatch({ type: 'load_comments', payload: result });
     }
     catch(err){
+        console.log(err);
         dispatch({ type: 'add_error', payload: `Ran into an error: ${err}` })
-    }*/
+    }
 };
 
 // Like a comment (unlikes if already liked)
@@ -118,7 +124,7 @@ export const { Provider, Context } = createDataContext(
         getComment,
         createComment,
         deleteComment,
-        getUserComments,
+        getComments,
         likeComment,
         dislikeComment,
         clearErrorMessage
@@ -126,6 +132,6 @@ export const { Provider, Context } = createDataContext(
     {
         comment: {},
         errorMessage: '',
-        comment: []
+        comments: []
     }
 );

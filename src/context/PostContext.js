@@ -29,7 +29,7 @@ const createPost = (dispatch) => async (info, callback) => {
     }
 };
 
-// DELETE a post
+// DELETE a post by id
 const deletePost = (dispatch) => async (postId, callback) => {
     try{
         await froyoApi.delete(`/posts/${postId}`);
@@ -41,8 +41,9 @@ const deletePost = (dispatch) => async (postId, callback) => {
     }
 }
 
-// GET a post
-const getPost = (dispatch) => async (postId, callback=(() => {})) => {
+// GET a post by id
+// Use callback if you don't want to change state
+const getPost = (dispatch) => async (postId, callback) => {
     try{
         const response = await froyoApi.get(`/posts/${postId}`);
         // Get author name & add it to the post
@@ -57,8 +58,13 @@ const getPost = (dispatch) => async (postId, callback=(() => {})) => {
             ...response.data,
             authorName: (firstName + ' ' + lastName)
         };
-        dispatch({ type: 'load_post', payload: post });
-        callback(post);
+        // Don't change state if callback is passed
+        if(callback){
+            callback(post);
+        }
+        else{
+            dispatch({ type: 'load_post', payload: post });
+        }
     }
     catch(err){
         console.log(err);

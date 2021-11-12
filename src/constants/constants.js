@@ -1,11 +1,14 @@
 
 module.exports = {
     colors: {
-        froyoGreenDarker: '#0F8158',
-        froyoGreenDark: '#4AA786',
-        froyoGreen: '#41CA99',
-        froyoGreenLight: '#0DCBB',
-        froyoGreenLighter: '#C0EDDD',
-        errorRed: '#FB1C1C'
+        // Greens
+        FROYO_GREEN_DARKER: '#0F8158',
+        FROYO_GREEN_DARK: '#4AA786',
+        FROYO_GREEN: '#41CA99',
+        FROYO_GREEN_LIGHT: '#0DCBB',
+        FROYO_GREEN_LIGHTER: '#C0EDDD',
+        // Reds
+        ERROR_RED: '#FB1C1C',
+        DISLIKE_RED: '#CA4141',
     }
 };

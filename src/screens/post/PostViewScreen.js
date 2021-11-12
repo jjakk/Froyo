@@ -6,7 +6,6 @@ import {
     KeyboardAvoidingView,
     Keyboard,
     ScrollView,
-    FlatList,
     View,
     Platform
 } from 'react-native';

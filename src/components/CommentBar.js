@@ -39,7 +39,7 @@ const CommentBar = (props) => {
                 onChangeText={setCommentText}
             />
             <TouchableWithoutFeedback onPress={onSubmit}>
-                <SendIcon style={styles.send} width={35} height={35} color={colors.froyoGreen}/>
+                <SendIcon style={styles.send} width={35} height={35} color={colors.FROYO_GREEN}/>
             </TouchableWithoutFeedback>
         </View>
     );

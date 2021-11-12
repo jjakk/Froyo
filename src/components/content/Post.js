@@ -37,6 +37,11 @@ import TrashIcon from '../../../assets/icons/Trash.svg';
 import PenIcon from '../../../assets/icons/Pen.svg';
 import SaveIcon from '../../../assets/icons/Save.svg';
 
+// Constants
+import {
+    colors
+} from '../../constants/constants';
+
 const ACTION_ICON_SIZE = 27.5;
 const OPTION_ICON_SIZE = 20;
 
@@ -194,7 +199,7 @@ const Post = (props) => {
                                     <LikeIconFill
                                         width={ACTION_ICON_SIZE}
                                         height={ACTION_ICON_SIZE}
-                                        color='#41CA99'
+                                        color={colors.FROYO_GREEN}
                                     />
                                 ) : (
                                     <LikeIconOutline
@@ -215,7 +220,7 @@ const Post = (props) => {
                                         width={ACTION_ICON_SIZE}
                                         height={ACTION_ICON_SIZE}
                                         style={styles.dislike}
-                                        color='#CA4141'
+                                        color={colors.DISLIKE_RED}
                                     />
                                 ) : (
                                     <DislikeIconOutline

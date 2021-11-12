@@ -7,7 +7,7 @@ import ReplyIcon from '../../../assets/icons/Reply.svg';
 import LikeIcon from '../../../assets/icons/Like-Outline.svg';
 import DislikeIcon from '../../../assets/icons/Dislike-Outline.svg';
 
-const ACTION_SIZE = 25;
+const ACTION_SIZE = 27.5;
 const ACTION_COLOR = 'black';
 
 const Comment = (props) => {

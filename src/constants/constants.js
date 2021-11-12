@@ -9,6 +9,6 @@ module.exports = {
         FROYO_GREEN_LIGHTER: '#C0EDDD',
         // Reds
         ERROR_RED: '#FB1C1C',
-        DISLIKE_RED: '#CA4141',
+        DISLIKE_RED: '#CA5A41',
     }
 };

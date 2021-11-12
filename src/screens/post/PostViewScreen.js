@@ -6,7 +6,9 @@ import {
     KeyboardAvoidingView,
     Keyboard,
     ScrollView,
-    View
+    FlatList,
+    View,
+    Platform
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 // Context
@@ -15,33 +17,14 @@ import { Context as PostContext } from '../../context/PostContext';
 import { Context as CommentContext } from '../../context/CommentContext';
 // Components
 import { Text } from '../../components/froyo-elements';
-import Post from '../../components/Post';
-import Comment from '../../components/Comment';
 import CommentBar from '../../components/CommentBar';
+import Post from '../../components/content/Post';
+import Comment from '../../components/content/Comment';
 // Icons
 import BackIcon from '../../../assets/icons/Back.svg';
-import { Platform } from 'react-native';
-import { FlatList } from 'react-native';
 
 const PostViewScreen = ({ navigation }) => {
-    const { getUserInfo, state: { user } } = useContext(AuthContext);
-    const { getPost } = useContext(PostContext);
-    const { getComments, state: { comments } } = useContext(CommentContext);
-    const id = navigation.getParam('id');
-    const [contentLoaded, setContentLoaded] = useState(false);
-    const [post, setPost] = useState({});
-
-    useEffect(() => {
-        (async function(){
-            // Get user info to determine if the user is the author of the post
-            await getUserInfo();
-            getPost(id, async (post) => {
-                setPost(post);
-                await getComments(post);
-            });
-            setContentLoaded(true);
-        })();
-    }, []);
+    const [post, setPost] = useState(navigation.getParam('post'));
 
     const onBack = async () => {
         navigation.pop();
@@ -68,34 +51,13 @@ const PostViewScreen = ({ navigation }) => {
                         </View>
                         <View style={styles.contentView}>
                             <Post
-                                id={id}
-                                personalPost={post.author === user._id}
+                                data={post}
                                 clickable={false}
                             />
-                            {
-                                contentLoaded ? (
-                                    comments.length > 0 ? (
-                                        <FlatList
-                                            data={comments}
-                                            keyExtractor={(item) => item._id}
-                                            renderItem={({ item }) => {
-                                                return (
-                                                    <Comment
-                                                        text={item.body}
-                                                    />
-                                                );
-                                            }}
-                                        />
-                                    ) : (
-                                        <Text style={styles.noComments}>No comments</Text>
-                                    )
-                                ) : (
-                                    <Text style={styles.noComments}>Loading...</Text>
-                                )
-                            }
+                            <Text>Comments go here</Text>
                         </View>
                         <CommentBar
-                            parentId={id}
+                            parentId={post._id}
                         />
                     </View>
                 </KeyboardAvoidingView>

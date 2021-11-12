@@ -132,6 +132,6 @@ export const { Provider, Context } = createDataContext(
     {
         comment: {},
         errorMessage: '',
-        comments: []
+        comments: null
     }
 );

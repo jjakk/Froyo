@@ -14,92 +14,64 @@ import {
     Text,
     Br,
     TouchableIcon
-} from './froyo-elements';
+} from '../froyo-elements';
 import {
     Menu,
     MenuOptions,
     MenuOption,
     MenuTrigger,
 } from 'react-native-popup-menu';
-import { navigate } from '../navigation/navigationRef';
-import { Context as PostContext } from '../context/PostContext';
-import { Context as AuthContext } from '../context/AuthContext';
-import { calculateAge } from '../helperFunctions/age';
+import { navigate } from '../../navigation/navigationRef';
+import { Context as PostContext } from '../../context/PostContext';
+import { Context as AuthContext } from '../../context/AuthContext';
+import { calculateAge } from '../../helperFunctions/age';
 // Icons
-import MoreOptionsIcon from '../../assets/icons/MoreSettings.svg';
-import LikeIconFill from '../../assets/icons/Like-Fill.svg';
-import DislikeIconFill from '../../assets/icons/Dislike-Fill.svg';
-import LikeIconOutline from '../../assets/icons/Like-Outline.svg';
-import DislikeIconOutline from '../../assets/icons/Dislike-Outline.svg';
-import CommentIcon from '../../assets/icons/Comment.svg';
-import ShareIcon from '../../assets/icons/Share.svg';
-import TrashIcon from '../../assets/icons/Trash.svg';
-import PenIcon from '../../assets/icons/Pen.svg';
-import SaveIcon from '../../assets/icons/Save.svg';
+import MoreOptionsIcon from '../../../assets/icons/MoreSettings.svg';
+import LikeIconFill from '../../../assets/icons/Like-Fill.svg';
+import DislikeIconFill from '../../../assets/icons/Dislike-Fill.svg';
+import LikeIconOutline from '../../../assets/icons/Like-Outline.svg';
+import DislikeIconOutline from '../../../assets/icons/Dislike-Outline.svg';
+import CommentIcon from '../../../assets/icons/Comment.svg';
+import ShareIcon from '../../../assets/icons/Share.svg';
+import TrashIcon from '../../../assets/icons/Trash.svg';
+import PenIcon from '../../../assets/icons/Pen.svg';
+import SaveIcon from '../../../assets/icons/Save.svg';
 
 const ACTION_ICON_SIZE = 27.5;
 const OPTION_ICON_SIZE = 20;
 
 // Post props & their meanings
 // ___________________________
-// id -> string: the id of the post
 // clickable -> boolean: whether clicking on the post should trigger onPress
-// personalPost -> boolean: whether the post is your own or not
-// author -> string: the name of the author
-// uploadDate -> date: the date the post was uploaded
-// text -> string: the text body of the post
-// imageSrc -> string: the source of the image of the post
+// style -> object: style for the post
+// data -> object: data for the post
 // onDelete -> function: the function to call when the delete button is pressed
 // onEdit -> function: the function to call when the edit button is pressed
 // onPress -> function: the function to call when the post is tapped on
 
 const Post = (props) => {
-    const { getUserInfo, state: { user } } = useContext(AuthContext);
-    const { getPost, likePost, dislikePost } = useContext(PostContext);
-    const [ contentLoaded, setContentLoaded ] = useState(false);
-    const [ post, setPost ] = useState({});
+    const { state: { user } } = useContext(AuthContext);
+    const { likePost, dislikePost, getPost } = useContext(PostContext);
     
     const {
-        id,
         clickable,
-        personalPost,
-        imageSrc,
-        onEdit,
+        style,
+        data,
         onDelete,
-        onPress,
-        style
+        onEdit,
+        onPress
     } = props;
 
-    const {
-        body,
-        timestamp,
-        authorName
-    } = post;
-
-    // Gets user & post info
-    const fetchInfo = async () => {
-        await getPost(id, (post) => {
-            setPost(post);
-        });
-        await getUserInfo();
-    };
-
-    // Get post & user information on render
-    useEffect(() => {
-        (async function(){
-            await fetchInfo();
-            setContentLoaded(true);
-        })();
-    }, []);
+    const [post, setPost] = useState(data);
 
     // Default function to call when a post is tapped on
     const defaultOnPress = () => {
-        navigate('PostView', { id });
+        navigate('PostView', { post });
     };
 
     // Default functions for edit button
     const defaultOnEdit = () => {
-        navigate('PostEdit', { id });
+        navigate('PostEdit');
     };
     
     // Default function for delete button
@@ -108,7 +80,7 @@ const Post = (props) => {
     // More options menu items
     const moreOptions = [
         // Only show these options if it's your own post
-        ...(personalPost ? [
+        ...(post.author === user._id ? [
             {
                 label: 'Delete',
                 onSelect: onDelete || defaultOnDelete,
@@ -150,16 +122,23 @@ const Post = (props) => {
         }
     ];
 
+    // Update post information from context
+    const updatePost = async () => {
+        await getPost(post._id, updatedPost => {
+            setPost(updatedPost);
+        });
+    };
+
     // When like button is pressed
     const handleLike = async () => {
-        await likePost(id);
-        await fetchInfo();
+        await likePost(post._id);
+        await updatePost();
     };
 
     // When dislike button  is pressed
     const handleDislike = async () => {
-        await dislikePost(id);
-        await fetchInfo();
+        await dislikePost(post._id);
+        await updatePost();
     };
 
     return (
@@ -191,22 +170,17 @@ const Post = (props) => {
                     </Menu>
                     <Image
                         style={styles.profilePicture}
-                        source={require('../../assets/icons/guest.png')}
+                        source={require('../../../assets/icons/guest.png')}
                         resizeMode='contain'
                     />
                     <Text style={styles.headerText}>
-                        <Text style={styles.author}>{authorName}</Text>
+                        <Text style={styles.author}>{post.authorName}</Text>
                         <Br/>
-                        <Text style={styles.age}>{
-                            contentLoaded ? (
-                                calculateAge(timestamp)
-                            ) : null
-                            
-                        }</Text>
+                        <Text style={styles.age}>{ calculateAge(post.timestamp) }</Text>
                     </Text>
                 </View>
                 <View style={styles.body}>
-                    <Text style={styles.text}>{body}</Text>
+                    <Text style={styles.text}>{post.body}</Text>
                 </View>
                 <View style={styles.actions}>
                     {/* Like & dislike buttons */}
@@ -215,27 +189,18 @@ const Post = (props) => {
                             onPress={handleLike}
                         >
                             {
-                                contentLoaded ? (
-                                    post.likes.indexOf(user._id) !== -1
-                                    ? (
-                                        <LikeIconFill
-                                            width={ACTION_ICON_SIZE}
-                                            height={ACTION_ICON_SIZE}
-                                            color='#41CA99'
-                                            // red - #CA4141
-                                        />
-                                    ) : (
-                                        <LikeIconOutline
-                                            width={ACTION_ICON_SIZE}
-                                            height={ACTION_ICON_SIZE}
-                                            color='black'
-                                        />
-                                    )
-                                ) : (
+                                post.likes.includes(user._id)
+                                ? (
                                     <LikeIconFill
                                         width={ACTION_ICON_SIZE}
                                         height={ACTION_ICON_SIZE}
-                                        color='rgb(0, 0, 0, 0.5)'
+                                        color='#41CA99'
+                                    />
+                                ) : (
+                                    <LikeIconOutline
+                                        width={ACTION_ICON_SIZE}
+                                        height={ACTION_ICON_SIZE}
+                                        color='black'
                                     />
                                 )
                             }
@@ -244,29 +209,20 @@ const Post = (props) => {
                             onPress={handleDislike}
                         >
                             {
-                                contentLoaded ? (
-                                    post.dislikes.indexOf(user._id) !== -1
-                                    ? (
-                                        <DislikeIconFill
-                                            width={ACTION_ICON_SIZE}
-                                            height={ACTION_ICON_SIZE}
-                                            style={styles.dislike}
-                                            color='#CA4141'
-                                        />
-                                    ) : (
-                                        <DislikeIconOutline
-                                            width={ACTION_ICON_SIZE}
-                                            height={ACTION_ICON_SIZE}
-                                            style={styles.dislike}
-                                            color='black'
-                                        />
-                                    )
-                                ) : (
+                                post.dislikes.includes(user._id)
+                                ? (
                                     <DislikeIconFill
                                         width={ACTION_ICON_SIZE}
                                         height={ACTION_ICON_SIZE}
                                         style={styles.dislike}
-                                        color='rgb(0, 0, 0, 0.5)'
+                                        color='#CA4141'
+                                    />
+                                ) : (
+                                    <DislikeIconOutline
+                                        width={ACTION_ICON_SIZE}
+                                        height={ACTION_ICON_SIZE}
+                                        style={styles.dislike}
+                                        color='black'
                                     />
                                 )
                             }

@@ -6,7 +6,7 @@ import {
     TouchableWithoutFeedback
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import Post from '../components/Post';
+import Post from '../components/content/Post';
 import EmptyMessage from '../components/EmptyMessage';
 import CreatePostIcon from '../../assets/icons/CreatePost.svg';
 

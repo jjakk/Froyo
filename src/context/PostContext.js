@@ -75,8 +75,21 @@ const getPost = (dispatch) => async (postId, callback) => {
 // GET all the posts of a given user
 const getUserPosts = (dispatch) => async () => {
     try{
-        const response = await froyoApi.get('/posts');
-        dispatch({ type: 'load_posts', payload: response.data });
+        const { data } = await froyoApi.get('/posts');
+        let posts = [];
+        for(let i = 0; i < data.length; i++){
+            const {
+                data: {
+                    firstName,
+                    lastName
+                }
+            } = await froyoApi.get(`/users/${data[i].author}`);
+            posts.push({
+                ...data[i],
+                authorName: (firstName + ' ' + lastName)
+            });
+        }
+        dispatch({ type: 'load_posts', payload: posts });
     }
     catch(err){
         dispatch({ type: 'add_error', payload: `Ran into an error: ${err}` })

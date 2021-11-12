@@ -20,7 +20,7 @@ import { Context as PostContext } from '../../context/PostContext';
 // Components
 import { Button, Text, } from '../../components/froyo-elements';
 import EmptyMessage from '../../components/EmptyMessage';
-import Post from '../../components/Post';
+import Post from '../../components/content/Post';
 
 const AccountViewScreen = ({ navigation }) => {
     const { getUserInfo, signOut, state: { user } } = useContext(AuthContext);
@@ -148,13 +148,14 @@ const AccountViewScreen = ({ navigation }) => {
                                         posts.map(post => (
                                             <Post
                                                 key={post._id}
-                                                id={post._id}
+                                                data={{
+                                                    ...post,
+                                                }}
                                                 onDelete={() => {
                                                     deletePost(post._id, async (success) => {
                                                         if(success) await getUserPosts();
                                                     })
                                                 }}
-                                                personalPost={post.author === user._id}
                                                 clickable
                                             />
                                         ))

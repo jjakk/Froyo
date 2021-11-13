@@ -1,28 +1,29 @@
 import React from 'react';
-import { TouchableWithoutFeedback, StyleSheet } from 'react-native';
+import { TouchableOpacity } from 'react-native';
 
 const TouchableIcon = (props) => {
     const {
-        icon,
+        Icon,
         size,
         color,
-        style
+        style,
+        onPress
     } = props;
     
     return (
-        <TouchableWithoutFeedback style={[styles.container, style]}>
-            {icon}
-        </TouchableWithoutFeedback>
+        <TouchableOpacity onPress={onPress} style={style}>
+            <Icon
+                width={size}
+                height={size}
+                color={color}
+            />
+        </TouchableOpacity>
     );
 };
 
 TouchableIcon.defaultProps = {
     size: 25,
-    color: '#000'
+    color: 'black'
 };
 
-const styles = StyleSheet.create({
-    container: {
-        padding: 5
-    }
-});
+export default TouchableIcon;

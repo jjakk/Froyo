@@ -1,6 +1,5 @@
 import React, {
     useState,
-    useEffect,
     useContext
 } from 'react';
 import {
@@ -191,60 +190,45 @@ const Post = (props) => {
                 <View style={styles.actions}>
                     {/* Like & dislike buttons */}
                     <View style={styles.likeness}>
-                        <TouchableOpacity
+                        {/* Like Button */}
+                        <TouchableIcon
+                            size={sizes.ACTION_ICON}
                             onPress={handleLike}
-                        >
-                            {
+                            Icon={
                                 post.likes.includes(user._id)
-                                ? (
-                                    <LikeIconFill
-                                        width={sizes.ACTION_ICON}
-                                        height={sizes.ACTION_ICON}
-                                        color={colors.FROYO_GREEN}
-                                    />
-                                ) : (
-                                    <LikeIconOutline
-                                        width={sizes.ACTION_ICON}
-                                        height={sizes.ACTION_ICON}
-                                        color='black'
-                                    />
-                                )
+                                ? LikeIconFill : LikeIconOutline
                             }
-                        </TouchableOpacity>
-                        <TouchableOpacity
+                            color={
+                                post.likes.includes(user._id)
+                                ? colors.FROYO_GREEN : 'black'
+                            }
+                        />
+                        {/* Disike Button */}
+                        <TouchableIcon
+                            size={sizes.ACTION_ICON}
                             onPress={handleDislike}
-                        >
-                            {
+                            style={styles.dislike}
+                            Icon={
                                 post.dislikes.includes(user._id)
-                                ? (
-                                    <DislikeIconFill
-                                        width={sizes.ACTION_ICON}
-                                        height={sizes.ACTION_ICON}
-                                        style={styles.dislike}
-                                        color={colors.DISLIKE_RED}
-                                    />
-                                ) : (
-                                    <DislikeIconOutline
-                                        width={sizes.ACTION_ICON}
-                                        height={sizes.ACTION_ICON}
-                                        style={styles.dislike}
-                                        color='black'
-                                    />
-                                )
+                                ? DislikeIconFill : DislikeIconOutline
                             }
-                        </TouchableOpacity>
+                            color={
+                                post.dislikes.includes(user._id)
+                                ? colors.DISLIKE_RED : 'black'
+                            }
+                        />
                     </View>
                     {/* Comment icon */}
-                    <CommentIcon
-                        width={sizes.ACTION_ICON}
-                        height={sizes.ACTION_ICON}
+                    <TouchableIcon
+                        Icon={CommentIcon}
+                        size={sizes.ACTION_ICON}
                         style={styles.comment}
-                        color='black'
                     />
                     {/* Share button */}
-                    <TouchableOpacity>
-                        <ShareIcon width={sizes.ACTION_ICON} height={sizes.ACTION_ICON} color='black' />
-                    </TouchableOpacity>
+                    <TouchableIcon
+                        Icon={ShareIcon}
+                        size={sizes.ACTION_ICON}
+                    />
                 </View>
             </View>
         </TouchableWithoutFeedback>

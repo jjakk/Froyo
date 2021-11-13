@@ -10,5 +10,11 @@ module.exports = {
         // Reds
         ERROR_RED: '#FB1C1C',
         DISLIKE_RED: '#CA5A41',
+    },
+    sizes: {
+        // Width & height for like, dislike, comment, and share icons
+        ACTION_ICON: 27.5,
+        // Width & height for icons in the more options menu
+        OPTIONS_ICON: 20,
     }
 };

@@ -39,7 +39,8 @@ import SaveIcon from '../../../assets/icons/Save.svg';
 
 // Constants
 import {
-    colors
+    colors,
+    sizes
 } from '../../constants/constants';
 
 const ACTION_ICON_SIZE = 27.5;
@@ -158,7 +159,7 @@ const Post = (props) => {
                 <View style={styles.header}>
                     <Menu style={styles.options}>
                         <MenuTrigger>
-                            <MoreOptionsIcon name='options-vertical' height={ACTION_ICON_SIZE} width={ACTION_ICON_SIZE} color='black' />
+                            <MoreOptionsIcon name='options-vertical' height={sizes.ACTION_ICON} width={sizes.ACTION_ICON} color='black' />
                         </MenuTrigger>
                         <MenuOptions style={styles.moreOptions}>
                             {
@@ -197,14 +198,14 @@ const Post = (props) => {
                                 post.likes.includes(user._id)
                                 ? (
                                     <LikeIconFill
-                                        width={ACTION_ICON_SIZE}
-                                        height={ACTION_ICON_SIZE}
+                                        width={sizes.ACTION_ICON}
+                                        height={sizes.ACTION_ICON}
                                         color={colors.FROYO_GREEN}
                                     />
                                 ) : (
                                     <LikeIconOutline
-                                        width={ACTION_ICON_SIZE}
-                                        height={ACTION_ICON_SIZE}
+                                        width={sizes.ACTION_ICON}
+                                        height={sizes.ACTION_ICON}
                                         color='black'
                                     />
                                 )
@@ -217,15 +218,15 @@ const Post = (props) => {
                                 post.dislikes.includes(user._id)
                                 ? (
                                     <DislikeIconFill
-                                        width={ACTION_ICON_SIZE}
-                                        height={ACTION_ICON_SIZE}
+                                        width={sizes.ACTION_ICON}
+                                        height={sizes.ACTION_ICON}
                                         style={styles.dislike}
                                         color={colors.DISLIKE_RED}
                                     />
                                 ) : (
                                     <DislikeIconOutline
-                                        width={ACTION_ICON_SIZE}
-                                        height={ACTION_ICON_SIZE}
+                                        width={sizes.ACTION_ICON}
+                                        height={sizes.ACTION_ICON}
                                         style={styles.dislike}
                                         color='black'
                                     />
@@ -235,14 +236,14 @@ const Post = (props) => {
                     </View>
                     {/* Comment icon */}
                     <CommentIcon
-                        width={ACTION_ICON_SIZE}
-                        height={ACTION_ICON_SIZE}
+                        width={sizes.ACTION_ICON}
+                        height={sizes.ACTION_ICON}
                         style={styles.comment}
                         color='black'
                     />
                     {/* Share button */}
                     <TouchableOpacity>
-                        <ShareIcon width={ACTION_ICON_SIZE} height={ACTION_ICON_SIZE} color='black' />
+                        <ShareIcon width={sizes.ACTION_ICON} height={sizes.ACTION_ICON} color='black' />
                     </TouchableOpacity>
                 </View>
             </View>

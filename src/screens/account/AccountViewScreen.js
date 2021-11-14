@@ -23,7 +23,7 @@ import EmptyMessage from '../../components/EmptyMessage';
 import Post from '../../components/content/Post';
 
 const AccountViewScreen = ({ navigation }) => {
-    const { getUserInfo, signOut, state: { user } } = useContext(AuthContext);
+    const { signOut, state: { user } } = useContext(AuthContext);
     const { deletePost, getUserPosts, state: { posts } } = useContext(PostContext);
     const [contentLoaded, setContentLoaded] = useState(false);
     const [refreshing, setRefreshing] = useState(false);
@@ -32,7 +32,6 @@ const AccountViewScreen = ({ navigation }) => {
     const reloadContent = async (refresh=false) => {
         if(refresh) setRefreshing(true);
         setContentLoaded(false);
-        await getUserInfo();
         await getUserPosts();
         setContentLoaded(true);
         if(refresh) setRefreshing(false);

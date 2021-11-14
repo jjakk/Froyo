@@ -167,7 +167,9 @@ const updateUserInfo = (dispatch) => async (info, callback) => {
 // Goes to either your feed or welcome page depending on whether you are logged in
 const checkSignedIn = (dispatch) => async () => {
     try{
-        const user = await froyoApi.get('/');
+        const { data: userId } = await froyoApi.get('/');
+        const { data: user } = await froyoApi.get(`/users/${userId}`);
+        dispatch({ type: 'get_user_info', payload: user });
         navigate('mainFlow');
     }
     catch(err){

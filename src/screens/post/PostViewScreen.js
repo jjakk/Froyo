@@ -24,7 +24,12 @@ import BackIcon from '../../../assets/icons/Back.svg';
 
 const PostViewScreen = ({ navigation }) => {
     const { getPost } = useContext(PostContext);
+    const { getComments, state: { comments } } = useContext(CommentContext);
     const [post, setPost] = useState(navigation.getParam('post'));
+
+    useEffect(() => {
+        getComments(post);
+    }, [post]);
 
     const onBack = async () => {
         navigation.pop();
@@ -62,13 +67,21 @@ const PostViewScreen = ({ navigation }) => {
                                 clickable={false}
                             />
                             {
-                                post.comments.length > 0 ? (
-                                    post.comments.map(comment => (
-                                        <Text key={comment}>{comment}</Text>
-                                    ))
+                                comments ? (
+                                    comments.length > 0 ? (
+                                        comments.map(comment => (
+                                            <Comment
+                                                key={comment._id}
+                                                data={comment}
+                                            />
+                                        ))
+                                    ) : (
+                                        <Text style={styles.noComments}>No comments</Text>
+                                    )
                                 ) : (
-                                    <Text style={styles.noComments}>No comments</Text>
+                                    <Text style={styles.noComments}>Loading</Text>
                                 )
+                                
                             }
                         </ScrollView>
                         <CommentBar

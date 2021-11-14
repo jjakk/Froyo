@@ -28,7 +28,7 @@ const MoreOptions = (props) => {
     const { state: { user } } = useContext(AuthContext);
 
     const {
-        post,
+        content,
         onEdit,
         onDelete,
         style
@@ -44,8 +44,8 @@ const MoreOptions = (props) => {
 
     // More options menu items
     const moreOptions = [
-        // Only show these options if it's your own post
-        ...(post.author === user._id ? [
+        // Only show these options if it's your own content
+        ...(content.author === user._id ? [
             {
                 label: 'Delete',
                 onSelect: onDelete || defaultOnDelete,

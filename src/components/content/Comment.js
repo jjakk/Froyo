@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { View, Image, StyleSheet, TouchableOpacity } from 'react-native';
 // Context
 import { Context as AuthContext } from '../../context/AuthContext';
+import { Context as CommentContext } from '../../context/CommentContext';
 // Components
 import {
     Text,
@@ -10,7 +11,7 @@ import {
 import Header from './parts/Header';
 import MoreOptions from './parts/MoreOptions';
 // Constants
-import { sizes } from '../../constants/constants';
+import { colors, sizes } from '../../constants/constants';
 // Icons
 import ReplyIcon from '../../../assets/icons/Reply.svg';
 import LikeIconFill from '../../../assets/icons/Like-Fill.svg';
@@ -18,25 +19,24 @@ import DislikeIconFill from '../../../assets/icons/Dislike-Fill.svg';
 import LikeIconOutline from '../../../assets/icons/Like-Outline.svg';
 import DislikeIconOutline from '../../../assets/icons/Dislike-Outline.svg';
 
-const ACTION_SIZE = 27.5;
+const ACTION_SIZE = 25;
 const ACTION_COLOR = 'black';
 
 const Comment = (props) => {
     const { state: { user } } = useContext(AuthContext);
+    const { getComment, likeComment, dislikeComment } = useContext(CommentContext);
     
     const {
         style,
-        text,
         data
     } = props;
 
     const [comment, setComment] = useState(data);
 
-    /*
     // Update comment information from context
     const updateComment = () => {
         getComment(comment._id, newComment => {
-            setPost(newComment);
+            setComment(newComment);
         });
     };
 
@@ -51,13 +51,14 @@ const Comment = (props) => {
         await dislikeComment(comment._id);
         await updateComment();
     };
-    */
 
     return (
         <View style={[styles.comment, style]}>
-            <Text style={styles.body}>{text}</Text>
+            <Text style={styles.body}>{data.body}</Text>
             <View style={styles.actions}>
-                <MoreOptions/>
+                <MoreOptions
+                    content={comment}
+                />
                 {/* Reply button */}
                 <TouchableOpacity style={styles.reply}>
                         <ReplyIcon style={styles.replyIcon} width={20} height={20} color={ACTION_COLOR} />
@@ -65,32 +66,32 @@ const Comment = (props) => {
                 </TouchableOpacity>
                 <View style={styles.likeness}>
                     {/* Like Button */}
-                    {/*<TouchableIcon
-                            size={sizes.ACTION_ICON}
-                            onPress={handleLike}
-                            Icon={
-                                comment.likes.includes(user._id)
-                                ? LikeIconFill : LikeIconOutline
-                            }
-                            color={
-                                comment.likes.includes(user._id)
-                                ? colors.FROYO_GREEN : 'black'
-                            }
-                        />*/}
-                        {/* Disike Button */}
-                        {/*<TouchableIcon
-                            size={sizes.ACTION_ICON}
-                            onPress={handleDislike}
-                            style={styles.dislike}
-                            Icon={
-                                comment.dislikes.includes(user._id)
-                                ? DislikeIconFill : DislikeIconOutline
-                            }
-                            color={
-                                comment.dislikes.includes(user._id)
-                                ? colors.DISLIKE_RED : 'black'
-                            }
-                        />*/}
+                    <TouchableIcon
+                        size={sizes.ACTION_ICON}
+                        onPress={handleLike}
+                        Icon={
+                            comment.likes.includes(user._id)
+                            ? LikeIconFill : LikeIconOutline
+                        }
+                        color={
+                            comment.likes.includes(user._id)
+                            ? colors.FROYO_GREEN : 'black'
+                        }
+                    />
+                    {/* Disike Button */}
+                    <TouchableIcon
+                        size={sizes.ACTION_ICON}
+                        onPress={handleDislike}
+                        style={styles.dislike}
+                        Icon={
+                            comment.dislikes.includes(user._id)
+                            ? DislikeIconFill : DislikeIconOutline
+                        }
+                        color={
+                            comment.dislikes.includes(user._id)
+                            ? colors.DISLIKE_RED : 'black'
+                        }
+                    />
                 </View>
             </View>
         </View>

@@ -51,7 +51,7 @@ const AccountViewScreen = ({ navigation }) => {
     // Handle refresh
     const onRefresh = useCallback(async () => {
         await reloadContent(true);
-      }, []);
+    }, []);
 
     return(
         <SafeAreaView

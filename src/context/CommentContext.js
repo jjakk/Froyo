@@ -50,9 +50,9 @@ const deleteComment = (dispatch) => async (postId, callback) => {
 }
 
 // GET a comment
-const getComment = (dispatch) => async (postId, callback=(() => {})) => {
-    /*try{
-        const response = await froyoApi.get(`/posts/${postId}`);
+const getComment = (dispatch) => async (commentId, callback=(() => {})) => {
+    try{
+        const response = await froyoApi.get(`/comments/${commentId}`);
         // Get author name & add it to the post
         // This is necessary because the author value given is equal to a database id
         const {
@@ -61,17 +61,22 @@ const getComment = (dispatch) => async (postId, callback=(() => {})) => {
                 lastName
             }
         } = await froyoApi.get(`/users/${response.data.author}`);
-        const post = {
+        const comment = {
             ...response.data,
             authorName: (firstName + ' ' + lastName)
         };
-        dispatch({ type: 'load_post', payload: post });
-        callback(post);
+        // Don't change state if callback is passed
+        if(callback){
+            callback(comment);
+        }
+        else{
+            dispatch({ type: 'load_comment', payload: comment });
+        }
     }
     catch(err){
         console.log(err);
         dispatch({ type: 'add_error', payload: `Ran into an error: ${err}` })
-    }*/
+    }
 }
 
 // GET all the comments of a given parent
@@ -92,25 +97,25 @@ const getComments = (dispatch) => async ({ comments }) => {
 };
 
 // Like a comment (unlikes if already liked)
-const likeComment = (dispatch) => async (postId) => {
-    /*try{
-        await froyoApi.put(`/posts/${postId}/like`);
+const likeComment = (dispatch) => async (commentId) => {
+    try{
+        await froyoApi.put(`/comments/${commentId}/like`);
     }
     catch(err){
         console.log(err);
         dispatch({ type: 'add_error', payload: `Ran into an error: ${err}` })
-    }*/
+    }
 };
 
 // Dislike a comment (undislikes if already disliked)
-const dislikeComment = (dispatch) => async (postId) => {
-    /*try{
-        await froyoApi.put(`/posts/${postId}/dislike`);
+const dislikeComment = (dispatch) => async (commentId) => {
+    try{
+        await froyoApi.put(`/comments/${commentId}/dislike`);
     }
     catch(err){
         console.log(err);
         dispatch({ type: 'add_error', payload: `Ran into an error: ${err}` })
-    };*/
+    };
 };
 
 // Clear the error message

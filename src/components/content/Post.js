@@ -96,7 +96,7 @@ const Post = (props) => {
                     onDelete={onDelete}
                 />
                 <MoreOptions
-                    post={post}
+                    content={post}
                     onEdit={onEdit}
                     onDelete={onDelete}
                     style={styles.options}

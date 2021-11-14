@@ -14,6 +14,8 @@ module.exports = {
     sizes: {
         // Width & height for like, dislike, comment, and share icons
         ACTION_ICON: 27.5,
+        ACTION_ICON_SMALL: 25,
+        ACTION_ICON_SMALLER: 22.5,
         // Width & height for icons in the more options menu
         OPTIONS_ICON: 20,
     }

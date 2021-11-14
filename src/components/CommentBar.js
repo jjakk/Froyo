@@ -11,12 +11,14 @@ import SendIcon from '../../assets/icons/Send.svg';
 import { colors } from '../constants/constants';
 
 // ParentId -> string: ID of the content that's being commented one
+// onCreateComment -> function: callback function to be called when the comment is created
 const CommentBar = (props) => {
     const { createComment } = useContext(CommentContext);
     const [commentText, setCommentText] = useState('');
     const {
         style,
-        parentId
+        parentId,
+        onCreateComment,
     } = props;
 
     const onSubmit = () => {
@@ -25,8 +27,8 @@ const CommentBar = (props) => {
             parent: parentId
         };
         createComment(content, (error) => {
-            if(error) console.log(error);
-            else setCommentText('');
+            if(!error) setCommentText('');
+            onCreateComment(error);
         });
     };
 

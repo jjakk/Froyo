@@ -7,22 +7,22 @@ import {
     MenuTrigger,
 } from 'react-native-popup-menu';
 // Navigation
-import { navigate } from '../../navigation/navigationRef';
+import { navigate } from '../../../navigation/navigationRef';
 // Components
-import { Text } from '../froyo-elements';
+import { Text } from '../../froyo-elements';
 // Contexts
-import { Context as AuthContext } from '../../context/AuthContext';
+import { Context as AuthContext } from '../../../context/AuthContext';
 // Icons
-import MoreOptionsIcon from '../../../assets/icons/MoreSettings.svg';
-import TrashIcon from '../../../assets/icons/Trash.svg';
-import PenIcon from '../../../assets/icons/Pen.svg';
-import SaveIcon from '../../../assets/icons/Save.svg';
+import MoreOptionsIcon from '../../../../assets/icons/MoreSettings.svg';
+import TrashIcon from '../../../../assets/icons/Trash.svg';
+import PenIcon from '../../../../assets/icons/Pen.svg';
+import SaveIcon from '../../../../assets/icons/Save.svg';
 
 // Constants
 import {
     colors,
     sizes
-} from '../../constants/constants';
+} from '../../../constants/constants';
 
 const MoreOptions = (props) => {
     const { state: { user } } = useContext(AuthContext);

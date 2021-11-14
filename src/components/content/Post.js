@@ -5,7 +5,6 @@ import React, {
 import {
     View,
     StyleSheet,
-    Image,
     TouchableWithoutFeedback
 } from 'react-native';
 // Navigation
@@ -15,7 +14,8 @@ import {
     Text,
     TouchableIcon
 } from '../froyo-elements';
-import Header from './Header';
+import Header from './parts/Header';
+import MoreOptions from './parts/MoreOptions';
 // Contexts
 import { Context as PostContext } from '../../context/PostContext';
 import { Context as AuthContext } from '../../context/AuthContext';
@@ -63,9 +63,9 @@ const Post = (props) => {
     };
 
     // Update post information from context
-    const updatePost = async () => {
-        await getPost(post._id, updatedPost => {
-            setPost(updatedPost);
+    const updatePost = () => {
+        getPost(post._id, newPost => {
+            setPost(newPost);
         });
     };
 
@@ -75,7 +75,7 @@ const Post = (props) => {
         await updatePost();
     };
 
-    // When dislike button  is pressed
+    // When dislike button is pressed
     const handleDislike = async () => {
         await dislikePost(post._id);
         await updatePost();
@@ -94,6 +94,12 @@ const Post = (props) => {
                     post={post}
                     onEdit={onEdit}
                     onDelete={onDelete}
+                />
+                <MoreOptions
+                    post={post}
+                    onEdit={onEdit}
+                    onDelete={onDelete}
+                    style={styles.options}
                 />
                 <View style={styles.body}>
                     <Text style={styles.text}>{post.body}</Text>
@@ -150,6 +156,13 @@ const styles = StyleSheet.create({
     post: {
         backgroundColor: 'white',
         marginBottom: 5
+    },
+    // More options
+    options: {
+        position: 'absolute',
+        right: 15,
+        top: 20,
+        opacity: 0.75
     },
     // Post body
     body: {

@@ -23,10 +23,18 @@ import Comment from '../../components/content/Comment';
 import BackIcon from '../../../assets/icons/Back.svg';
 
 const PostViewScreen = ({ navigation }) => {
+    const { getPost } = useContext(PostContext);
     const [post, setPost] = useState(navigation.getParam('post'));
 
     const onBack = async () => {
         navigation.pop();
+    };
+
+    // Refresh post information (get new comment)
+    const refreshPost = async () => {
+        getPost(post._id, (newPost) => {
+            setPost(newPost);
+        });
     };
 
     return (
@@ -48,15 +56,24 @@ const PostViewScreen = ({ navigation }) => {
                                 <BackIcon width={25} height={25} style={styles.back} />
                             </TouchableOpacity>
                         </View>
-                        <View style={styles.contentView}>
+                        <ScrollView style={styles.contentView}>
                             <Post
                                 data={post}
                                 clickable={false}
                             />
-                            <Text>Comments go here</Text>
-                        </View>
+                            {
+                                post.comments.length > 0 ? (
+                                    post.comments.map(comment => (
+                                        <Text key={comment}>{comment}</Text>
+                                    ))
+                                ) : (
+                                    <Text style={styles.noComments}>No comments</Text>
+                                )
+                            }
+                        </ScrollView>
                         <CommentBar
                             parentId={post._id}
+                            onCreateComment={refreshPost}
                         />
                     </View>
                 </KeyboardAvoidingView>
@@ -74,21 +91,21 @@ const styles = StyleSheet.create({
         borderBottomColor: '#F2F2F2',
         borderBottomWidth: 2
     },
+    back: {
+        margin: 20
+    },
+    post: {
+        marginTop: 5
+    },
     contentView: {
         backgroundColor: '#F2F2F2',
         flex: 1
-    },
-    back: {
-        margin: 20
     },
     noComments: {
         fontSize: 28,
         alignSelf: 'center',
         opacity: 0.75,
         marginTop: 50
-    },
-    post: {
-        marginTop: 5
     }
 });
 

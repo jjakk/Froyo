@@ -24,11 +24,13 @@ import BackIcon from '../../../assets/icons/Back.svg';
 
 const PostViewScreen = ({ navigation }) => {
     const { getPost } = useContext(PostContext);
-    const { getComments, state: { comments } } = useContext(CommentContext);
+    const { getComments } = useContext(CommentContext);
     const [post, setPost] = useState(navigation.getParam('post'));
+    const [comments, setComments] = useState(null);
 
+    // Update comments when post is refreshed
     useEffect(() => {
-        getComments(post);
+        getComments(post, setComments);
     }, [post]);
 
     const onBack = async () => {
@@ -37,9 +39,7 @@ const PostViewScreen = ({ navigation }) => {
 
     // Refresh post information (get new comment)
     const refreshPost = async () => {
-        getPost(post._id, (newPost) => {
-            setPost(newPost);
-        });
+        await getPost(post._id, setPost);
     };
 
     return (

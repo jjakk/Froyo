@@ -35,7 +35,7 @@ const SignUpTwoScreen = ({ navigation }) => {
     const handleSubmit = () => {
         setLoading(true);
         Keyboard.dismiss();
-        signUp({ email, username, dob, firstName, lastName, password, passwordConfirm }, (success) => {
+        signUp({ email, username, dob, first_name: firstName, last_name: lastName, password, passwordConfirm }, (success) => {
             setLoading(false);
             if(success){
                 navigation.navigate('mainFlow');

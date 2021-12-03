@@ -54,16 +54,18 @@ const continueSignUp = (dispatch) => async ({ email, username, dob }, callback) 
                 callback(false);
                 return;
         }
+
         // Check user is old enough
         if(calculateAge(dob) < 13){
             dispatch({ type: 'add_error', payload: 'You must be 13 years or older to sign up' });
             callback(false);
             return;
         }
+
         // Check server if email, and username are valid
-        const checkEmail = await froyoApi.post('/auth/checkEmail', { email });
-        const checkUsername = await froyoApi.post('/auth/checkUsername', { username });
-        callback(true);
+        const checkEmail = await froyoApi.get(`/auth/emailTaken/${email}`);
+        const checkUsername = await froyoApi.get(`/auth/usernameTaken/${username}`);
+        callback(checkEmail && checkUsername);
     }
     catch(err){
         let message = err.response.data;
@@ -75,14 +77,14 @@ const continueSignUp = (dispatch) => async ({ email, username, dob }, callback) 
 // Create an account & sign in
 const signUp = (dispatch) => async (info, callback) => {
     try{
-        const { email, username, dob, firstName, lastName, password, passwordConfirm } = info;
+        const { email, username, dob, first_name, last_name, password, passwordConfirm } = info;
         // Check all feilds are filled
         switch(''){
-            case firstName:
+            case first_name:
                 dispatch({ type: 'add_error', payload: 'Must enter a first name' });
                 callback(false);
                 return;
-            case lastName:
+            case last_name:
                 dispatch({ type: 'add_error', payload: 'Must enter a last name' });
                 callback(false);
                 return;
@@ -101,9 +103,10 @@ const signUp = (dispatch) => async (info, callback) => {
             callback(false);
             return;
         }
-        const response = await froyoApi.post('/auth/signup', { email, username, dob, firstName, lastName, password });
-        await AsyncStorage.setItem('token', response.data.token);
-        dispatch({ type: 'sign_in', payload: response.data.token });
+        const { headers: { authorization } } = await froyoApi.post('/users/', { email, username, dob, first_name, last_name, password });
+        const token = authorization.replace('Bearer ', '');
+        await AsyncStorage.setItem('token', token);
+        dispatch({ type: 'sign_in', payload: token});
         callback(true);
     }
     catch(err){
@@ -123,8 +126,7 @@ const signOut = (dispatch) => async () => {
 // Get a user's information given their auth token
 const getUserInfo = (dispatch) => async () => {
     try{
-        const user = await froyoApi.get('/');
-        const id = user.data;
+        const { data: { id } } = await froyoApi.get('/');
         const response = await froyoApi.get(`/users/${id}`);
         dispatch({ type: 'get_user_info', payload: response.data });
     }

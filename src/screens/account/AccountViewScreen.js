@@ -78,7 +78,7 @@ const AccountViewScreen = ({ navigation }) => {
                                         numberOfLines={1}
                                         adjustsFontSizeToFit={true}
                                     >
-                                        {user.firstName} {user.lastName}
+                                        {user.first_name} {user.last_name}
                                     </Text>
                                     <Text
                                         style={styles.username}
@@ -89,10 +89,10 @@ const AccountViewScreen = ({ navigation }) => {
                                     </Text>
                                     <View style={styles.numbers}>
                                         <Text style={styles.followers}>
-                                            {contentLoaded? `${user.followers.length} Followers` : ''}
+                                            {contentLoaded ? `${0/*user.followers.length*/} Followers` : ''}
                                         </Text>
                                         <Text style={styles.following}>
-                                            {contentLoaded? `${user.following.length} Following` : ''}
+                                            {contentLoaded ? `${0/*user.following.length*/} Following` : ''}
                                         </Text>
                                     </View>
                                 </View>

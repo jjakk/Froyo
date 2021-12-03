@@ -5,6 +5,7 @@ import {
     StatusBar,
     View,
     TouchableWithoutFeedback,
+    TouchableOpacity,
     Keyboard
 } from 'react-native';
 import {
@@ -21,13 +22,13 @@ const ResetPasswordScreen = ({ navigation }) => {
                 <SafeAreaView>
                     <StatusBar backgroundColor="#F2F2F2" barStyle="dark-content" />
                 </SafeAreaView>
-                <TouchableWithoutFeedback
+                <TouchableOpacity
                     onPress={() => {
                         navigation.pop()
                     }}
                 >
                     <BackIcon width={25} height={25} style={styles.back} />
-                </TouchableWithoutFeedback>
+                </TouchableOpacity>
                 <View style={styles.container} forceInset={{ top: 'always' }}>
                     <View style={styles.form}>
                         <Text style={styles.header} >Reset Password</Text>

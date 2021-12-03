@@ -2,7 +2,7 @@ import axios from 'axios';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const instance =  axios.create({
-    baseURL: 'https://froyo-api.herokuapp.com'
+    baseURL: 'https://froyo-api.herokuapp.com/api'
 });
 
 instance.interceptors.request.use(

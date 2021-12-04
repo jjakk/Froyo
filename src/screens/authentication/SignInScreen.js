@@ -40,7 +40,13 @@ const SignInScreen = ({ navigation }) => {
                 </SafeAreaView>
                 <View style={styles.auth}>
                     <Text style={styles.header}>Sign in</Text>
-                    <Input style={styles.input} placeholder='Email' onChangeText={setEmail} />
+                    <Input
+                        style={styles.input}
+                        placeholder='Email'
+                        autoCorrect={false}
+                        autoCapitalize='none'
+                        onChangeText={setEmail}
+                    />
                     <View>
                         <Input style={styles.input} placeholder='Password' onChangeText={setPassword} secureTextEntry />
                         <Link color='#41CA99' style={styles.forgotPassword} onPress={() => navigation.navigate('ResetPassword')}>Forgot password?</Link>

@@ -24,9 +24,10 @@ const authReducer = (state, action) => {
 // Sign in with email and password
 const signIn = (dispatch) => async ({ email, password }, callback) => {
     try{
-        const response = await froyoApi.post('/auth/signin', { email, password });
-        await AsyncStorage.setItem('token', response.data.token);
-        dispatch({ type: 'sign_in', payload: response.data.token });
+        const { headers: { authorization } } = await froyoApi.post('/auth/login', { email, password });
+        const token = authorization.replace('Bearer ', '');
+        await AsyncStorage.setItem('token', token);
+        dispatch({ type: 'sign_in', payload: token });
         callback(true);
     }
     catch(err){

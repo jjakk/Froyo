@@ -4,6 +4,7 @@ import {
     View,
     StatusBar,
     TouchableWithoutFeedback,
+    TouchableOpacity,
     KeyboardAvoidingView,
     Keyboard,
     StyleSheet,
@@ -51,14 +52,14 @@ const SignUpTwoScreen = ({ navigation }) => {
                     style={styles.container}
                 >
                     <View style={{flex: 1}}>
-                        <TouchableWithoutFeedback
+                        <TouchableOpacity
                             onPress={() => {
                                 clearErrorMessage();
                                 navigation.pop()
                             }}
                         >
                             <BackIcon width={25} height={25} style={styles.back} />
-                        </TouchableWithoutFeedback>
+                        </TouchableOpacity>
                         <View style={styles.auth}>
                             <Text style={styles.header}>Sign up</Text>
                             <Input style={styles.input} placeholder='First name' onChangeText={setFirstName} />

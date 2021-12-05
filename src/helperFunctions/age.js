@@ -3,6 +3,16 @@ The purpose of these functions are to calculate the
 age of something (post, comment, etc.)
 */
 
+const ageInYears = (birthDate) => {
+    var today = new Date();
+    var age = today.getFullYear() - birthDate.getFullYear();
+    var m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+    }
+    return age;
+}
+
 // Calculate the time since a post was uploaded in miliseconds
 const calculateAge = (dateOfUpload) => {
     const today = new Date();
@@ -37,5 +47,6 @@ const formatAge = (miliseconds) => {
 }
 
 module.exports =  {
-    calculateAge
+    calculateAge,
+    ageInYears
 };

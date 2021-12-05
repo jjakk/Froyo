@@ -2,6 +2,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import createDataContext from './createDataContext';
 import froyoApi from '../api/froyo';
 import { navigate } from '../navigation/navigationRef';
+import { ageInYears } from '../helperFunctions/age';
 
 // Handle setting state
 const authReducer = (state, action) => {
@@ -57,16 +58,16 @@ const continueSignUp = (dispatch) => async ({ email, username, dob }, callback) 
         }
 
         // Check user is old enough
-        if(calculateAge(dob) < 13){
+        if(ageInYears(dob) < 13){
             dispatch({ type: 'add_error', payload: 'You must be 13 years or older to sign up' });
             callback(false);
             return;
         }
 
         // Check server if email, and username are valid
-        const checkEmail = await froyoApi.get(`/auth/emailTaken/${email}`);
-        const checkUsername = await froyoApi.get(`/auth/usernameTaken/${username}`);
-        callback(checkEmail && checkUsername);
+        await froyoApi.get(`/auth/validEmail/${email}`);
+        await froyoApi.get(`/auth/validUsername/${username}`);
+        callback(true);
     }
     catch(err){
         let message = err.response.data;
@@ -185,17 +186,6 @@ const checkSignedIn = (dispatch) => async () => {
 const clearErrorMessage = (dispatch) => () => {
     dispatch({ type: 'add_error', payload: '' });
 };
-
-// Helper functions
-const calculateAge = (birthDate) => {
-    var today = new Date();
-    var age = today.getFullYear() - birthDate.getFullYear();
-    var m = today.getMonth() - birthDate.getMonth();
-    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-        age--;
-    }
-    return age;
-}
 
 export const { Provider, Context } = createDataContext(
     authReducer,

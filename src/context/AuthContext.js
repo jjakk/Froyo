@@ -129,11 +129,12 @@ const signOut = (dispatch) => async () => {
 const getUserInfo = (dispatch) => async () => {
     try{
         const { data: { id } } = await froyoApi.get('/');
-        const response = await froyoApi.get(`/users/${id}`);
-        dispatch({ type: 'get_user_info', payload: response.data });
+        const { data: { user } } = await froyoApi.get(`/users/${id}`);
+        console.log(user);
+        dispatch({ type: 'get_user_info', payload: user });
     }
     catch(err){
-        dispatch({ type: 'add_error', payload: `Ran into an error: ${err}` })
+        dispatch({ type: 'add_error', payload: `Ran into an error: ${err.message}` })
     }
 };
 
@@ -177,8 +178,12 @@ const checkSignedIn = (dispatch) => async () => {
         navigate('mainFlow');
     }
     catch(err){
-        console.log("Couldn't autheticate");
-        navigate('Welcome');
+        if(err+'' === 'Error: Network Error'){
+            navigate('NoWifi');
+        }
+        else{
+            navigate('Welcome');
+        }
     }
 };
 

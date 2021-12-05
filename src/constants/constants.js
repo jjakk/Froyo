@@ -1,6 +1,9 @@
 
 module.exports = {
     colors: {
+        // Lights
+        WHITE: '#FFFFFF',
+        GREY: '#F2F2F2',
         // Greens
         FROYO_GREEN_DARKER: '#0F8158',
         FROYO_GREEN_DARK: '#4AA786',

@@ -33,8 +33,8 @@ const AccountEditScreen = ({ navigation }) => {
     useEffect(() => {
         (async function(){
             await getUserInfo();
-            setFirstName(user.firstName);
-            setLastName(user.lastName);
+            setFirstName(user.first_name);
+            setLastName(user.last_name);
             setUsername(user.username);
             setDescription(user.description);
             setContentLoaded(true);
@@ -43,7 +43,7 @@ const AccountEditScreen = ({ navigation }) => {
 
     const handleSubmit = () => {
         setLoading(true);
-        updateUserInfo({ firstName, lastName, username, description }, (success) => {
+        updateUserInfo({ first_name: firstName, last_name: lastName, username, description }, (success) => {
             setLoading(false);
             if(success) {
                 navigation.navigate('AccountView');

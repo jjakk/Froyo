@@ -26,9 +26,9 @@ const plural = (amount) => {
 }
 
 // Format the time since the post was uploaded (given miliseconds)
-const formatAge = (miliseconds) => {
+const formatAge = (milliseconds) => {
     // Calculate all the different time units
-    const secondsDiff = Math.floor(miliseconds / 1000);
+    const secondsDiff = Math.floor(milliseconds / 1000);
     const minutesDiff = Math.floor(secondsDiff / 60);
     const hoursDiff = Math.floor(minutesDiff / 60);
     const daysDiff = Math.floor(hoursDiff / 24);

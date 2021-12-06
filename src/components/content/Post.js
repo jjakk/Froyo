@@ -102,7 +102,7 @@ const Post = (props) => {
                     style={styles.options}
                 />
                 <View style={styles.body}>
-                    <Text style={styles.text}>{post.body}</Text>
+                    <Text style={styles.text}>{post.text}</Text>
                 </View>
                 <View style={styles.actions}>
                     {/* Like & dislike buttons */}
@@ -112,12 +112,14 @@ const Post = (props) => {
                             size={sizes.ACTION_ICON}
                             onPress={handleLike}
                             Icon={
-                                post.likes.includes(user._id)
-                                ? LikeIconFill : LikeIconOutline
+                                //post.likes.includes(user._id)
+                                //? LikeIconFill : LikeIconOutline
+                                LikeIconOutline
                             }
                             color={
-                                post.likes.includes(user._id)
-                                ? colors.FROYO_GREEN : 'black'
+                                //post.likes.includes(user._id)
+                                //? colors.FROYO_GREEN : 'black'
+                                'black'
                             }
                         />
                         {/* Disike Button */}
@@ -126,12 +128,14 @@ const Post = (props) => {
                             onPress={handleDislike}
                             style={styles.dislike}
                             Icon={
-                                post.dislikes.includes(user._id)
-                                ? DislikeIconFill : DislikeIconOutline
+                                //post.dislikes.includes(user._id)
+                                //? DislikeIconFill : DislikeIconOutline
+                                DislikeIconOutline
                             }
                             color={
-                                post.dislikes.includes(user._id)
-                                ? colors.DISLIKE_RED : 'black'
+                                //post.dislikes.includes(user._id)
+                                //? colors.DISLIKE_RED : 'black'
+                                'black'
                             }
                         />
                     </View>

@@ -146,7 +146,7 @@ const AccountViewScreen = ({ navigation }) => {
                                     {
                                         posts.map(post => (
                                             <Post
-                                                key={post._id}
+                                                key={post.id}
                                                 data={{
                                                     ...post,
                                                 }}

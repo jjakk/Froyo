@@ -80,15 +80,12 @@ const getComment = (dispatch) => async (commentId, callback=(() => {})) => {
 }
 
 // GET all the comments of a given parent
-const getComments = (dispatch) => async ({ comments }, callback) => {
+const getComments = (dispatch) => async ({ id: parentId }, callback) => {
     try{
-        let result = [];
-        for(let i = 0; i < comments.length; i++){
-            const { data } = await froyoApi.get(`/comments/${comments[i]}`);
-            result.push(data);
-        }
-        if(callback) callback(result);
-        else dispatch({ type: 'load_comments', payload: result });
+        console.log(parentId);
+        const { data: comments } = await froyoApi.get(`/posts/${parentId}/comments`);
+        if(callback) callback(comments);
+        else dispatch({ type: 'load_comments', payload: comments });
     }
     catch(err){
         console.log(err);

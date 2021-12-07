@@ -16,24 +16,21 @@ const commentReducer = (state, action) => {
 };
 
 // POST a comment
-const createComment = (dispatch) => async (info, callback) => {
+const createComment = (dispatch) => async (info) => {
     try{
         const {
-            body,
-            parent
+            text,
+            parent_id
         } = info;
-        if(!body || !parent){
-            const message = !body ? 'Empty comment' : (!parent ? 'No parent' : null);
+        if(!text || !parent){
+            const message = !text ? 'Empty comment' : (!parent ? 'No parent' : null);
             dispatch({ type: 'add_error', payload: message });
-            return callback(message);
+            return;
         }
         const response = await froyoApi.post('/comments', info);
-        return callback();
     }
     catch(err){
-        let message = err.response.data;
-        dispatch({ type: 'add_error', payload: message });
-        return callback(err);
+        dispatch({ type: 'add_error', payload: err.message });
     }
 };
 
@@ -80,12 +77,10 @@ const getComment = (dispatch) => async (commentId, callback=(() => {})) => {
 }
 
 // GET all the comments of a given parent
-const getComments = (dispatch) => async ({ id: parentId }, callback) => {
+const getComments = (dispatch) => async ({ id: parentId }) => {
     try{
-        console.log(parentId);
         const { data: comments } = await froyoApi.get(`/posts/${parentId}/comments`);
-        if(callback) callback(comments);
-        else dispatch({ type: 'load_comments', payload: comments });
+        return comments;
     }
     catch(err){
         console.log(err);

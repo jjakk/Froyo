@@ -39,7 +39,7 @@ const deletePost = (dispatch) => async (postId, callback) => {
 
 // GET a post by id
 // Use callback if you don't want to change state
-const getPost = (dispatch) => async (postId, callback) => {
+const getPost = (dispatch) => async (postId) => {
     try{
         const response = await froyoApi.get(`/posts/${postId}`);
         // Get author name & add it to the post
@@ -54,16 +54,9 @@ const getPost = (dispatch) => async (postId, callback) => {
             ...response.data,
             authorName: (firstName + ' ' + lastName)
         };
-        // Don't change state if callback is passed
-        if(callback){
-            callback(post);
-        }
-        else{
-            dispatch({ type: 'load_post', payload: post });
-        }
+        return post;
     }
     catch(err){
-        console.log(err);
         dispatch({ type: 'add_error', payload: `Ran into an error: ${err}` })
     }
 }

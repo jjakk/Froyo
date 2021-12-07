@@ -30,7 +30,9 @@ const PostViewScreen = ({ navigation }) => {
 
     // Update comments when post is refreshed
     useEffect(() => {
-        getComments(post, setComments);
+        (async function(){
+            setComments(await getComments(post));
+        })();
     }, [post]);
 
     const onBack = async () => {
@@ -39,7 +41,7 @@ const PostViewScreen = ({ navigation }) => {
 
     // Refresh post information (get new comment)
     const refreshPost = async () => {
-        await getPost(post._id, setPost);
+        setPost(await getPost(post.id));
     };
 
     return (
@@ -85,7 +87,7 @@ const PostViewScreen = ({ navigation }) => {
                             }
                         </ScrollView>
                         <CommentBar
-                            parentId={post._id}
+                            parent_id={post.id}
                             onCreateComment={refreshPost}
                         />
                     </View>

@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { StyleSheet, TouchableWithoutFeedback } from 'react-native';
+import { StyleSheet, TouchableOpacity } from 'react-native';
 import { View } from 'react-native';
 // Components
 import { Input } from '../components/froyo-elements';
@@ -21,15 +21,14 @@ const CommentBar = (props) => {
         onCreateComment,
     } = props;
 
-    const onSubmit = () => {
+    const onSubmit = async () => {
         const content = {
-            body: commentText,
+            text: commentText,
             parent: parentId
         };
-        createComment(content, (error) => {
-            if(!error) setCommentText('');
-            onCreateComment(error);
-        });
+        await createComment(content);
+        setCommentText('');
+        onCreateComment();
     };
 
     return (
@@ -40,9 +39,9 @@ const CommentBar = (props) => {
                 value={commentText}
                 onChangeText={setCommentText}
             />
-            <TouchableWithoutFeedback onPress={onSubmit}>
+            <TouchableOpacity onPress={onSubmit}>
                 <SendIcon style={styles.send} width={35} height={35} color={colors.FROYO_GREEN}/>
-            </TouchableWithoutFeedback>
+            </TouchableOpacity>
         </View>
     );
 };

@@ -19,12 +19,13 @@ import { Text } from '../../components/froyo-elements';
 import CommentBar from '../../components/CommentBar';
 import Post from '../../components/content/Post';
 import Comment from '../../components/content/Comment';
+import ErrorMessage from '../../components/ErrorMessage';
 // Icons
 import BackIcon from '../../../assets/icons/Back.svg';
 
 const PostViewScreen = ({ navigation }) => {
-    const { getPost } = useContext(PostContext);
-    const { getComments } = useContext(CommentContext);
+    const { getPost, state: {  errorMessage: postError } } = useContext(PostContext);
+    const { getComments, state: { errorMessage: commentError } } = useContext(CommentContext);
     const [post, setPost] = useState(navigation.getParam('post'));
     const [comments, setComments] = useState(null);
 
@@ -90,6 +91,15 @@ const PostViewScreen = ({ navigation }) => {
                             parent_id={post.id}
                             onCreateComment={refreshPost}
                         />
+                        {
+                            postError || commentError ? (
+                                <ErrorMessage
+                                    type='box'
+                                    message={postError || commentError}
+                                    style={styles.error}
+                                />
+                            ) : null
+                        }
                     </View>
                 </KeyboardAvoidingView>
             </TouchableWithoutFeedback>
@@ -121,6 +131,10 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         opacity: 0.75,
         marginTop: 50
+    },
+    error: {
+        position: 'absolute',
+        bottom: 125
     }
 });
 

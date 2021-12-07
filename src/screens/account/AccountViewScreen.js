@@ -46,7 +46,7 @@ const AccountViewScreen = ({ navigation }) => {
 
     // Refresh content when loading this page
     const handleDidFocus = async () => {
-        reloadContent();
+        await reloadContent();
     };
 
     // Handle refresh

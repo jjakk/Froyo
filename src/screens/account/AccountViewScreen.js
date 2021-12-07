@@ -1,8 +1,6 @@
 import React, {
     useContext,
-    useEffect,
-    useState,
-    useCallback
+    useState
 } from 'react';
 import {
     View,
@@ -24,15 +22,19 @@ import Post from '../../components/content/Post';
 
 const AccountViewScreen = ({ navigation }) => {
     const { signOut, state: { user } } = useContext(AuthContext);
-    const { deletePost, getUserPosts, state: { posts } } = useContext(PostContext);
+    const { deletePost, getUserPosts } = useContext(PostContext);
+    // Boolean to check if the posts have loaded
     const [contentLoaded, setContentLoaded] = useState(false);
+    // Boolean to control whether content is refreshing
     const [refreshing, setRefreshing] = useState(false);
+    // List of posts
+    const [posts, setPosts] = useState([]);
 
     // Function to retrieve user info & posts
     const reloadContent = async (refresh=false) => {
         if(refresh) setRefreshing(true);
         setContentLoaded(false);
-        await getUserPosts();
+        setPosts(await getUserPosts());
         setContentLoaded(true);
         if(refresh) setRefreshing(false);
     };
@@ -48,9 +50,9 @@ const AccountViewScreen = ({ navigation }) => {
     };
 
     // Handle refresh
-    const onRefresh = useCallback(async () => {
+    const onRefresh = async () => {
         await reloadContent(true);
-    }, []);
+    };
 
     return(
         <SafeAreaView

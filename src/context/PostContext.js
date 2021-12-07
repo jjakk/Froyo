@@ -6,10 +6,6 @@ const postReducer = (state, action) => {
     switch(action.type){
         case 'add_error':
             return { ...state, errorMessage: action.payload };
-        case 'load_post':
-            return { ...state, post: action.payload, errorMessage: '' }
-        case 'load_posts':
-            return { ...state, posts: action.payload, errorMessage: '' }
         default:
             return state;
     }
@@ -89,7 +85,7 @@ const getUserPosts = (dispatch) => async () => {
                 authorName: (first_name + ' ' + last_name)
             });
         }
-        dispatch({ type: 'load_posts', payload: completePosts });
+        return completePosts;
     }
     catch(err){
         dispatch({ type: 'add_error', payload: `Ran into an error: ${err}` })

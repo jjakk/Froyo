@@ -1,5 +1,6 @@
 import React from 'react';
 import { TextInput, View, StyleSheet } from 'react-native';
+import { colors } from '../../constants/constants';
 
 const Input = (props) => {
     const { style, textStyle, icon } = props;
@@ -13,7 +14,11 @@ const Input = (props) => {
                     </View>
                 ) : null)
             }
-            <TextInput {...props} style={[styles.text, textStyle]} />
+            <TextInput
+                {...props}
+                selectionColor={colors.GREY}
+                style={[styles.text, textStyle]}
+            />
         </View>
     );
 };

@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
+// Components
 import {
     StyleSheet,
-    TouchableOpacity,
     TouchableWithoutFeedback,
     KeyboardAvoidingView,
     Keyboard,
@@ -10,15 +10,15 @@ import {
     Platform,
     RefreshControl
 } from 'react-native';
+import { TouchableIcon } from '../../components/froyo-elements';
 import { SafeAreaView } from 'react-native-safe-area-context';
-// Context
-import { Context as PostContext } from '../../context/PostContext';
-import { Context as CommentContext } from '../../context/CommentContext';
-// Components
 import CommentBar from '../../components/CommentBar';
 import Post from '../../components/content/Post';
 import CommentList from '../../components/content/CommentList';
 import ErrorMessage from '../../components/ErrorMessage';
+// Context
+import { Context as PostContext } from '../../context/PostContext';
+import { Context as CommentContext } from '../../context/CommentContext';
 // Icons
 import BackIcon from '../../../assets/icons/Back.svg';
 
@@ -40,6 +40,8 @@ const PostViewScreen = ({ navigation }) => {
     const [post, setPost] = useState(navigation.getParam('post'));
     const [comments, setComments] = useState([]);
     const [loadingComments, setLoadingComments] = useState(true);
+    // Boolean to control whether content is refreshing
+    const [refreshing, setRefreshing] = useState(false);
 
     // Update comments when post is refreshed
     useEffect(() => {
@@ -56,18 +58,15 @@ const PostViewScreen = ({ navigation }) => {
     };
 
     // Event Handlers
-    // When the user closes an error message
-    const onErrorClose = () => {
-        postClear();
-        commentClear();
-    };
-    // When the user deletes the posts being viewed
-    const onDeletePost = () => {
-        navigation.pop();
-    };
-    // When the back button's pressed
+    // When leaving the post view screen
     const onBack = async () => {
         navigation.pop();
+    };
+    // Handle refresh pull down
+    const onRefresh = async () => {
+        setRefreshing(true);
+        await refreshPost(true);
+        setRefreshing(false);
     };
 
     return (
@@ -85,22 +84,26 @@ const PostViewScreen = ({ navigation }) => {
                 >
                     <View style={styles.container}>
                         <View style={styles.header}>
-                            <TouchableOpacity onPress={onBack}>
-                                <BackIcon width={25} height={25} style={styles.back} />
-                            </TouchableOpacity>
+                            <TouchableIcon
+                                Icon={BackIcon}
+                                size={25}
+                                style={styles.back}
+                                onPress={onBack}
+                            />
                         </View>
                         <ScrollView
                             style={styles.contentView}
                             refreshControl={
                                 <RefreshControl
-                                    onRefresh={refreshPost}
+                                    refreshing={refreshing}
+                                    onRefresh={onRefresh}
                                 />
                             }
                         >
                             <Post
                                 data={post}
                                 clickable={false}
-                                onDelete={onDeletePost}
+                                onDelete={onBack}
                             />
                             <CommentList
                                 comments={comments}

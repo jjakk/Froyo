@@ -24,7 +24,6 @@ import PostViewScreen from '../screens/post/PostViewScreen';
 import FroyoIcon from '../../assets/icons/Froyo.svg';
 import UserIcon from '../../assets/icons/Profile Picture.svg';
 import SearchIcon from '../../assets/icons/Search.svg';
-import { SafeAreaView, Text } from 'react-native';
 
 
 const signUpNavigator = createStackNavigator({

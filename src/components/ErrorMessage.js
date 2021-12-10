@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
         padding: 15,
         paddingHorizontal: 30,
         borderRadius: 10,
-        borderColor: colors.DARK_GREY,
+        borderColor: colors.GREY,
         borderWidth: 2
     },
     boxText: {

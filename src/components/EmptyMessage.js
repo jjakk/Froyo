@@ -6,7 +6,6 @@ const EmptyMessage = ({ style, subheaderText }) => {
     return (
         <View style={[styles.container, style]}>
             <Text style={[styles.text, styles.header]}>Nothing to show</Text>
-            <Text style={[styles.text, styles.emoticon]}>¯\_(ツ)_/¯</Text>
             <Text style={[styles.text, styles.subheader]}>{subheaderText}</Text>
         </View>
     );
@@ -20,11 +19,8 @@ const styles = StyleSheet.create({
         textAlign: 'center'
     },
     header: {
-        fontSize: 24
-    },
-    emoticon: {
-        fontSize: 32,
-        margin: 10
+        fontSize: 24,
+        marginBottom: 10
     },
     subheader: {
         fontSize: 18

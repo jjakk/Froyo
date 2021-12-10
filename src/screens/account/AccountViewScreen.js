@@ -51,7 +51,7 @@ const AccountViewScreen = () => {
         await reloadContent();
     };
 
-    // Handle refresh
+    // Handle refresh pulldown
     const onRefresh = async () => {
         setRefreshing(true);
         await reloadContent(true);

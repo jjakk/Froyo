@@ -3,8 +3,9 @@ module.exports = {
     colors: {
         // Lights
         WHITE: '#FFFFFF',
-        GREY: '#F2F2F2',
-        DARK_GREY: '#C0C0C0',
+        LIGHT_GREY: '#F2F2F2',
+        GREY: '#C0C0C0',
+        DARK_GREY: '#707070',
         BLACK: '#000000',
         // Greens
         FROYO_GREEN_DARKER: '#0F8158',

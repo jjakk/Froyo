@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react';
+// Components
 import {
     SafeAreaView,
     View,
@@ -13,8 +14,9 @@ import {
     Input,
     Link
 } from '../../components/froyo-elements';
-import { Context as AuthContext } from '../../context/AuthContext';
 import ErrorMessage from '../../components/ErrorMessage';
+// Context
+import { Context as AuthContext } from '../../context/AuthContext';
 
 const SignInScreen = ({ navigation }) => {
     const { signIn, clearErrorMessage, state: { errorMessage } } = useContext(AuthContext);

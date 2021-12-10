@@ -1,5 +1,5 @@
 import React from 'react';
-import { TouchableOpacity } from 'react-native';
+import { StyleSheet, TouchableOpacity } from 'react-native';
 
 const TouchableIcon = (props) => {
     const {
@@ -11,7 +11,7 @@ const TouchableIcon = (props) => {
     } = props;
     
     return (
-        <TouchableOpacity onPress={onPress} style={style}>
+        <TouchableOpacity onPress={onPress} style={[styles.touchableArea, style]}>
             <Icon
                 width={size}
                 height={size}
@@ -20,6 +20,12 @@ const TouchableIcon = (props) => {
         </TouchableOpacity>
     );
 };
+
+const styles = StyleSheet.create({
+    touchableArea: {
+        alignSelf: 'flex-start'
+    }
+});
 
 TouchableIcon.defaultProps = {
     size: 25,

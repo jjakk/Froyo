@@ -4,6 +4,8 @@ import { StyleSheet, View } from 'react-native';
 import { Text, TouchableIcon } from './froyo-elements';
 // Icons
 import CloseIcon from '../../assets/icons/Close.svg';
+// Constants
+import { colors } from '../constants/constants';
 
 const ErrorMessage = (props) => {
     const { message, style, type } = props; 
@@ -48,7 +50,7 @@ const styles = StyleSheet.create({
     },
     box: {
         backgroundColor: 'white',
-        opacity: 0.8,
+        opacity: 0.9,
         flexDirection: 'row',
         textAlign: 'center',
         alignSelf: 'center',
@@ -56,6 +58,8 @@ const styles = StyleSheet.create({
         padding: 15,
         paddingHorizontal: 30,
         borderRadius: 10,
+        borderColor: colors.DARK_GREY,
+        borderWidth: 2
     },
     boxText: {
         fontSize: 24,

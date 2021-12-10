@@ -22,13 +22,12 @@ const createComment = (dispatch) => async (info) => {
             text,
             parent_id
         } = info;
-        console.log(text, parent_id);
         if(!text || !parent_id){
             const message = !text ? 'Empty comment' : (!parent_id ? 'No parent' : null);
             dispatch({ type: 'add_error', payload: message });
             return;
         }
-        const response = await froyoApi.post('/comments', info);
+        await froyoApi.post('/comments', info);
     }
     catch(err){
         dispatch({ type: 'add_error', payload: err.message });

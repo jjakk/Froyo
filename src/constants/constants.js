@@ -4,6 +4,8 @@ module.exports = {
         // Lights
         WHITE: '#FFFFFF',
         GREY: '#F2F2F2',
+        DARK_GREY: '#C0C0C0',
+        BLACK: '#000000',
         // Greens
         FROYO_GREEN_DARKER: '#0F8158',
         FROYO_GREEN_DARK: '#4AA786',

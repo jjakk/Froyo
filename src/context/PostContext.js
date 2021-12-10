@@ -41,18 +41,20 @@ const deletePost = (dispatch) => async (postId, callback) => {
 // Use callback if you don't want to change state
 const getPost = (dispatch) => async (postId) => {
     try{
-        const response = await froyoApi.get(`/posts/${postId}`);
+        const {
+            data: unformattedPost
+        } = await froyoApi.get(`/posts/${postId}`);
         // Get author name & add it to the post
         // This is necessary because the author value given is equal to a database id
         const {
             data: {
-                firstName,
-                lastName
+                first_name,
+                last_name
             }
-        } = await froyoApi.get(`/users/${response.data.author}`);
+        } = await froyoApi.get(`/users/${unformattedPost.author_id}`);
         const post = {
-            ...response.data,
-            authorName: (firstName + ' ' + lastName)
+            ...unformattedPost,
+            authorName: (first_name + ' ' + last_name)
         };
         return post;
     }

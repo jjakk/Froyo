@@ -62,7 +62,6 @@ const Post = (props) => {
 
     // Update post information from context
     const updatePost = async () => {
-        console.log(post);
         setPost(await getPost(data.id));
     };
 

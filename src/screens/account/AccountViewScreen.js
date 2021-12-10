@@ -22,7 +22,7 @@ import Post from '../../components/content/Post';
 
 const AccountViewScreen = ({ navigation }) => {
     const { signOut, state: { user } } = useContext(AuthContext);
-    const { deletePost, getUserPosts } = useContext(PostContext);
+    const { getUserPosts } = useContext(PostContext);
     // Boolean to check if the posts have loaded
     const [contentLoaded, setContentLoaded] = useState(false);
     // Boolean to control whether content is refreshing

@@ -23,8 +23,16 @@ import ErrorMessage from '../../components/ErrorMessage';
 import BackIcon from '../../../assets/icons/Back.svg';
 
 const PostViewScreen = ({ navigation }) => {
-    const { clearErrorMessage: postClear, getPost, state: {  errorMessage: postError } } = useContext(PostContext);
-    const { clearErrorMessage: commentClear, getComments, state: { errorMessage: commentError } } = useContext(CommentContext);
+    const {
+        clearErrorMessage: postClear,
+        getPost,
+        state: {  errorMessage: postError }
+    } = useContext(PostContext);
+    const {
+        clearErrorMessage: commentClear,
+        getComments,
+        state: { errorMessage: commentError }
+    } = useContext(CommentContext);
     const [post, setPost] = useState(navigation.getParam('post'));
     const [comments, setComments] = useState(null);
 
@@ -35,6 +43,7 @@ const PostViewScreen = ({ navigation }) => {
         })();
     }, [post]);
 
+    // When the back button's pressed
     const onBack = async () => {
         navigation.pop();
     };
@@ -43,6 +52,11 @@ const PostViewScreen = ({ navigation }) => {
     const onErrorClose = () => {
         postClear();
         commentClear();
+    }
+
+    // When the user deletes the posts being viewed
+    const onDeletePost = () => {
+        navigation.pop();
     }
 
     // Refresh post information (get new comment)
@@ -73,6 +87,7 @@ const PostViewScreen = ({ navigation }) => {
                             <Post
                                 data={post}
                                 clickable={false}
+                                onDelete={onDeletePost}
                             />
                             {
                                 comments ? (

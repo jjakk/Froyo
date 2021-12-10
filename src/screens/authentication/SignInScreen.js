@@ -26,9 +26,9 @@ const SignInScreen = ({ navigation }) => {
         clearErrorMessage();
         Keyboard.dismiss()
         setLoading(true);
-        signIn({ email, password }, (success) => {
+        signIn({ email, password }, (error) => {
             setLoading(false);
-            if(success) navigation.navigate('mainFlow');
+            if(!error) navigation.navigate('ResolveAuth');
         });
     };  
 

@@ -29,12 +29,12 @@ const signIn = (dispatch) => async ({ email, password }, callback) => {
         const token = authorization.replace('Bearer ', '');
         await AsyncStorage.setItem('token', token);
         dispatch({ type: 'sign_in', payload: token });
-        callback(true);
+        callback();
     }
     catch(err){
         let message = err.response.data;
         dispatch({ type: 'add_error', payload: message });
-        callback(false);
+        callback(err);
     }
 };
 

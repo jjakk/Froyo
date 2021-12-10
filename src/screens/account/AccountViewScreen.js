@@ -15,10 +15,23 @@ import { Context as PostContext } from '../../context/PostContext';
 // Components
 import PostList from '../../components/content/PostList';
 import UserProfile from '../../components/UserProfile';
+import ErrorMessage from '../../components/ErrorMessage';
 
-const AccountViewScreen = ({ navigation }) => {
-    const { state: { user } } = useContext(AuthContext);
-    const { getUserPosts } = useContext(PostContext);
+const AccountViewScreen = () => {
+    const {
+        clearErrorMessage: clearAuth,
+        state: {
+            user,
+            errorMessage: authError
+        }
+    } = useContext(AuthContext);
+    const {
+        clearErrorMessage: clearPost,
+        getUserPosts,
+        state: {
+            errorMessage: postError,
+        }
+    } = useContext(PostContext);
     // Boolean to check if the posts have loaded
     const [loadingContent, setLoadingContent] = useState(true);
     // Boolean to control whether content is refreshing
@@ -71,6 +84,12 @@ const AccountViewScreen = ({ navigation }) => {
                     onPostDelete={reloadContent}
                 />
             </ScrollView>
+            <ErrorMessage
+                type='box'
+                message={authError || postError}
+                clearFunctions={[clearAuth, clearPost]}
+                style={styles.error}
+            />
         </SafeAreaView>
     );
 };
@@ -83,6 +102,11 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: 'white'
+    },
+    error: {
+        position: 'absolute',
+        bottom: 0,
+        margin: 25
     }
 });
 

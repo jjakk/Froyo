@@ -26,12 +26,16 @@ const PostViewScreen = ({ navigation }) => {
     const {
         clearErrorMessage: postClear,
         getPost,
-        state: {  errorMessage: postError }
+        state: {
+            errorMessage: postError
+        }
     } = useContext(PostContext);
     const {
         clearErrorMessage: commentClear,
         getComments,
-        state: { errorMessage: commentError }
+        state: {
+            errorMessage: commentError
+        }
     } = useContext(CommentContext);
     const [post, setPost] = useState(navigation.getParam('post'));
     const [comments, setComments] = useState([]);
@@ -111,7 +115,7 @@ const PostViewScreen = ({ navigation }) => {
                         <ErrorMessage
                             type='box'
                             message={postError || commentError}
-                            onClose={onErrorClose}
+                            clearFunctions={[postClear, commentClear]}
                             style={styles.error}
                         />
                     </View>

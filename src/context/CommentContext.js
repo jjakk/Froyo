@@ -17,7 +17,7 @@ const commentReducer = (state, action) => {
 
 // POST a comment
 const createComment = (dispatch) => async (info, callback) => {
-    try{
+    try {
         const {
             text,
             parent_id
@@ -31,7 +31,7 @@ const createComment = (dispatch) => async (info, callback) => {
         await froyoApi.post('/comments', info);
         callback();
     }
-    catch(err){
+    catch (err) {
         dispatch({ type: 'add_error', payload: err.message });
         callback(err.message);
     }

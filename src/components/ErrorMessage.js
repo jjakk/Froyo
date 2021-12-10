@@ -12,8 +12,15 @@ const ErrorMessage = (props) => {
         message,
         style,
         type,
-        onClose
-    } = props; 
+        clearFunctions
+    } = props;
+
+    // Clears all the error messages
+    const clearError = () => {
+        clearFunctions.forEach(func => {
+            func();
+        });
+    };
 
     if(message){
         return (
@@ -26,7 +33,7 @@ const ErrorMessage = (props) => {
                         <TouchableIcon
                             Icon={CloseIcon}
                             size={20}
-                            onPress={onClose}
+                            onPress={clearError}
                         />
                     </View>
                 ) : null

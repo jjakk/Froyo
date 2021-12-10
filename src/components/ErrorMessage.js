@@ -8,11 +8,12 @@ import CloseIcon from '../../assets/icons/Close.svg';
 import { colors } from '../constants/constants';
 
 const ErrorMessage = (props) => {
-    const { message, style, type } = props; 
-
-    const selfDestruct = () => {
-        
-    };
+    const {
+        message,
+        style,
+        type,
+        onClose
+    } = props; 
 
     if(message){
         return (
@@ -22,11 +23,11 @@ const ErrorMessage = (props) => {
                 ) : type === 'box' ? (
                     <View {...props} style={[styles.box, style]}>
                         <Text style={styles.boxText}>{message}</Text>
-                        {/*<TouchableIcon
+                        <TouchableIcon
                             Icon={CloseIcon}
                             size={20}
-                            onPress={selfDestruct}
-                        />*/}
+                            onPress={onClose}
+                        />
                     </View>
                 ) : null
             )

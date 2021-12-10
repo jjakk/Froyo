@@ -23,8 +23,8 @@ import ErrorMessage from '../../components/ErrorMessage';
 import BackIcon from '../../../assets/icons/Back.svg';
 
 const PostViewScreen = ({ navigation }) => {
-    const { getPost, state: {  errorMessage: postError } } = useContext(PostContext);
-    const { getComments, state: { errorMessage: commentError } } = useContext(CommentContext);
+    const { clearErrorMessage: postClear, getPost, state: {  errorMessage: postError } } = useContext(PostContext);
+    const { clearErrorMessage: commentClear, getComments, state: { errorMessage: commentError } } = useContext(CommentContext);
     const [post, setPost] = useState(navigation.getParam('post'));
     const [comments, setComments] = useState(null);
 
@@ -38,6 +38,12 @@ const PostViewScreen = ({ navigation }) => {
     const onBack = async () => {
         navigation.pop();
     };
+
+    // When the user closes an error message
+    const onErrorClose = () => {
+        postClear();
+        commentClear();
+    }
 
     // Refresh post information (get new comment)
     const refreshPost = async () => {
@@ -91,15 +97,12 @@ const PostViewScreen = ({ navigation }) => {
                             parent_id={post.id}
                             onCreateComment={refreshPost}
                         />
-                        {
-                            postError || commentError ? (
-                                <ErrorMessage
-                                    type='box'
-                                    message={postError || commentError}
-                                    style={styles.error}
-                                />
-                            ) : null
-                        }
+                        <ErrorMessage
+                            type='box'
+                            message={postError || commentError}
+                            onClose={onErrorClose}
+                            style={styles.error}
+                        />
                     </View>
                 </KeyboardAvoidingView>
             </TouchableWithoutFeedback>

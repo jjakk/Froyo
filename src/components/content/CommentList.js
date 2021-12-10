@@ -29,7 +29,7 @@ const CommentList = (props) => {
     }, [comments]);
 
     return (
-        <View>
+        <View style={styles.container}>
             {
                 !loading ? (
                     commentsRender.length > 0 ? (
@@ -53,6 +53,9 @@ const CommentList = (props) => {
 };
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+    },
     noComments: {
         fontSize: 28,
         alignSelf: 'center',

@@ -2,14 +2,18 @@ import React, { useState, useContext, useEffect } from 'react';
 import {
     View,
     StyleSheet,
-    TouchableOpacity,
     TouchableWithoutFeedback,
     Keyboard
 } from 'react-native';
+
+import {
+    Button,
+    Input, 
+    TouchableIcon
+} from '../../components/froyo-elements';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import * as MediaLibrary from 'expo-media-library';
 import { Context as PostContext } from '../../context/PostContext';
-import { Button, Text, Input } from '../../components/froyo-elements';
 import BackIcon from '../../../assets/icons/Back.svg';
 import PlusIcon from '../../../assets/icons/Plus.svg';
 import ErrorMessage from '../../components/ErrorMessage';
@@ -39,6 +43,7 @@ const PostCreateScreen = ({ navigation }) => {
         }
     }*/
 
+    // Event Handlers
     const handleSubmit = async () => {
         clearErrorMessage();
         Keyboard.dismiss()
@@ -47,6 +52,10 @@ const PostCreateScreen = ({ navigation }) => {
             setLoading(false);
             if(!error) navigation.navigate('Feed');
         });
+    };
+    const onBack = () => {
+        clearErrorMessage();
+        navigation.pop();
     };
 
     // Delete error message when you type in the post body
@@ -61,9 +70,12 @@ const PostCreateScreen = ({ navigation }) => {
                 onPress={Keyboard.dismiss}
             >
                 <View>
-                    <TouchableOpacity onPress={() => navigation.navigate('Feed')}>
-                        <BackIcon width={25} height={25} style={styles.back} />
-                    </TouchableOpacity>
+                    <TouchableIcon
+                        Icon={BackIcon}
+                        size={25}
+                        onPress={onBack}
+                        style={styles.back}
+                    />
                     <View style={styles.bodyContainer}>
                         <Input
                             style={styles.body}

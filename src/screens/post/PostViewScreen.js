@@ -7,7 +7,8 @@ import {
     Keyboard,
     ScrollView,
     View,
-    Platform
+    Platform,
+    RefreshControl
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 // Context
@@ -35,6 +36,8 @@ const PostViewScreen = ({ navigation }) => {
     const [post, setPost] = useState(navigation.getParam('post'));
     const [comments, setComments] = useState([]);
     const [loadingComments, setLoadingComments] = useState(true);
+    // Boolean to control whether content is refreshing
+    const [refreshing, setRefreshing] = useState(false);
 
     // Update comments when post is refreshed
     useEffect(() => {
@@ -85,7 +88,15 @@ const PostViewScreen = ({ navigation }) => {
                                 <BackIcon width={25} height={25} style={styles.back} />
                             </TouchableOpacity>
                         </View>
-                        <ScrollView style={styles.contentView}>
+                        <ScrollView
+                            style={styles.contentView}
+                            refreshControl={
+                                <RefreshControl
+                                    refreshing={refreshing}
+                                    onRefresh={refreshPost}
+                                />
+                            }
+                        >
                             <Post
                                 data={post}
                                 clickable={false}

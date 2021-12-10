@@ -3,8 +3,6 @@ import React, {
     useState
 } from 'react';
 import {
-    View,
-    Image,
     StyleSheet,
     ScrollView,
     RefreshControl
@@ -15,37 +13,27 @@ import { NavigationEvents } from 'react-navigation';
 import { Context as AuthContext } from '../../context/AuthContext';
 import { Context as PostContext } from '../../context/PostContext';
 // Components
-import { Button, Text, } from '../../components/froyo-elements';
 import PostList from '../../components/content/PostList';
 import UserProfile from '../../components/UserProfile';
 
-const AccountViewScreen = ({ navigation }) => {
+const AccountViewScreen = () => {
     const { state: { user } } = useContext(AuthContext);
     const { getUserPosts } = useContext(PostContext);
     // Boolean to check if the posts have loaded
     const [loadingContent, setLoadingContent] = useState(true);
-    // Boolean to control whether content is refreshing
-    const [refreshing, setRefreshing] = useState(false);
     // List of posts
     const [posts, setPosts] = useState([]);
 
     // Function to retrieve user info & posts
-    const reloadContent = async (refresh=false) => {
-        if(refresh) setRefreshing(true);
+    const reloadContent = async () => {
         setLoadingContent(true);
         setPosts(await getUserPosts());
         setLoadingContent(false);
-        if(refresh) setRefreshing(false);
     };
 
-    // Refresh content when loading this page
+    // Refresh content when moving to this page
     const handleDidFocus = async () => {
         await reloadContent();
-    };
-
-    // Handle refresh
-    const onRefresh = async () => {
-        await reloadContent(true);
     };
 
     return(
@@ -58,8 +46,7 @@ const AccountViewScreen = ({ navigation }) => {
                 showsVerticalScrollIndicator={false}
                 refreshControl={
                     <RefreshControl
-                        refreshing={refreshing}
-                        onRefresh={onRefresh}
+                        onRefresh={reloadContent}
                     />
                 }
             >

@@ -80,6 +80,7 @@ const getUserPosts = (dispatch) => async () => {
                 authorName: (first_name + ' ' + last_name)
             });
         }
+        console.log(completePosts);
         return completePosts;
     }
     catch(err){

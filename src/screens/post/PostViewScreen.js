@@ -92,7 +92,7 @@ const PostViewScreen = ({ navigation }) => {
                             />
                         </View>
                         <ScrollView
-                            style={styles.contentView}
+                            contentContainerStyle={styles.contentView}
                             refreshControl={
                                 <RefreshControl
                                     refreshing={refreshing}
@@ -145,7 +145,8 @@ const styles = StyleSheet.create({
     },
     contentView: {
         backgroundColor: '#F2F2F2',
-        flex: 1
+        flex: 1,
+        justifyContent: 'flex-start',
     },
     error: {
         position: 'absolute',

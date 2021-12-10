@@ -1,5 +1,10 @@
 import React, { useContext, useState } from 'react';
-import { View, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import {
+    View,
+    TouchableWithoutFeedback,
+    StyleSheet,
+    TouchableOpacity
+} from 'react-native';
 // Context
 import { Context as AuthContext } from '../../context/AuthContext';
 import { Context as CommentContext } from '../../context/CommentContext';
@@ -54,53 +59,55 @@ const Comment = (props) => {
     };
 
     return (
-        <View style={[styles.comment, style]}>
-            <Text style={styles.body}>{data.text}</Text>
-            <View style={styles.actions}>
-                <MoreOptions
-                    content={comment}
-                    onDelete={onDelete}
-                />
-                {/* Reply button */}
-                <TouchableOpacity style={styles.reply}>
-                        <ReplyIcon style={styles.replyIcon} width={20} height={20} color={ACTION_COLOR} />
-                        <Text style={styles.replyText}>Reply</Text>
-                </TouchableOpacity>
-                <View style={styles.likeness}>
-                    {/* Like Button */}
-                    <TouchableIcon
-                        size={sizes.ACTION_ICON}
-                        onPress={handleLike}
-                        Icon={
-                            //comment.likes.includes(user._id)
-                            //? LikeIconFill : LikeIconOutline
-                            LikeIconOutline
-                        }
-                        color={
-                            //comment.likes.includes(user._id)
-                            //? colors.FROYO_GREEN : 'black'
-                            'black'
-                        }
+        <TouchableWithoutFeedback>
+            <View style={[styles.comment, style]}>
+                <Text style={styles.body}>{data.text}</Text>
+                <View style={styles.actions}>
+                    <MoreOptions
+                        content={comment}
+                        onDelete={onDelete}
                     />
-                    {/* Disike Button */}
-                    <TouchableIcon
-                        size={sizes.ACTION_ICON}
-                        onPress={handleDislike}
-                        style={styles.dislike}
-                        Icon={
-                            //comment.dislikes.includes(user._id)
-                            //? DislikeIconFill : DislikeIconOutline
-                            DislikeIconOutline
-                        }
-                        color={
-                            //comment.dislikes.includes(user._id)
-                            //? colors.DISLIKE_RED : 'black'
-                            'black'
-                        }
-                    />
+                    {/* Reply button */}
+                    <TouchableOpacity style={styles.reply}>
+                            <ReplyIcon style={styles.replyIcon} width={20} height={20} color={ACTION_COLOR} />
+                            <Text style={styles.replyText}>Reply</Text>
+                    </TouchableOpacity>
+                    <View style={styles.likeness}>
+                        {/* Like Button */}
+                        <TouchableIcon
+                            size={sizes.ACTION_ICON}
+                            onPress={handleLike}
+                            Icon={
+                                //comment.likes.includes(user._id)
+                                //? LikeIconFill : LikeIconOutline
+                                LikeIconOutline
+                            }
+                            color={
+                                //comment.likes.includes(user._id)
+                                //? colors.FROYO_GREEN : 'black'
+                                'black'
+                            }
+                        />
+                        {/* Disike Button */}
+                        <TouchableIcon
+                            size={sizes.ACTION_ICON}
+                            onPress={handleDislike}
+                            style={styles.dislike}
+                            Icon={
+                                //comment.dislikes.includes(user._id)
+                                //? DislikeIconFill : DislikeIconOutline
+                                DislikeIconOutline
+                            }
+                            color={
+                                //comment.dislikes.includes(user._id)
+                                //? colors.DISLIKE_RED : 'black'
+                                'black'
+                            }
+                        />
+                    </View>
                 </View>
             </View>
-        </View>
+        </TouchableWithoutFeedback>
     );
 }
 
@@ -112,38 +119,13 @@ const styles = StyleSheet.create({
     },
     body: {
         fontSize: 18,
-        marginBottom: 5
-    },
-    // Header
-    header: {
-        margin: 15,
-        flexDirection: 'row',
-        alignItems: 'center'
-    },
-    options: {
-        position: 'absolute',
-        right: 0,
-        top: 0,
-        opacity: 0.75
-    },
-    headerText: {
-        marginLeft: 15
-    },
-    profilePicture: {
-        width: 50,
-        height: 50
-    },
-    author: {
-        fontSize: 22
-    },
-    age: {
-        fontSize: 14
+        marginBottom: 5,
     },
     // Action bar
     actions: {
         flexDirection: 'row',
         alignSelf: 'flex-end',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     // Reply
     reply: {

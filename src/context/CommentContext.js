@@ -22,8 +22,9 @@ const createComment = (dispatch) => async (info) => {
             text,
             parent_id
         } = info;
-        if(!text || !parent){
-            const message = !text ? 'Empty comment' : (!parent ? 'No parent' : null);
+        console.log(text, parent_id);
+        if(!text || !parent_id){
+            const message = !text ? 'Empty comment' : (!parent_id ? 'No parent' : null);
             dispatch({ type: 'add_error', payload: message });
             return;
         }

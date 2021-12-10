@@ -86,24 +86,22 @@ const getUserPosts = (dispatch) => async () => {
 };
 
 // Like a post (unlikes if already liked)
-const likePost = (dispatch) => async (postId) => {
+const likePost = (dispatch) => async ({ id }) => {
     try{
-        await froyoApi.put(`/posts/${postId}/like`);
+        await froyoApi.put(`/posts/${id}/like`);
     }
     catch(err){
-        console.log(err);
-        dispatch({ type: 'add_error', payload: `Ran into an error: ${err}` })
+        dispatch({ type: 'add_error', payload: `Ran into an error: ${err.message}` })
     }
 };
 
 // Dislike a post (undislikes if already disliked)
-const dislikePost = (dispatch) => async (postId) => {
+const dislikePost = (dispatch) => async ({ id }) => {
     try{
-        await froyoApi.put(`/posts/${postId}/dislike`);
+        await froyoApi.put(`/posts/${id}/dislike`);
     }
     catch(err){
-        console.log(err);
-        dispatch({ type: 'add_error', payload: `Ran into an error: ${err}` })
+        dispatch({ type: 'add_error', payload: `Ran into an error: ${err.message}` })
     };
 };
 

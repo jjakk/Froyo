@@ -20,11 +20,11 @@ const ErrorMessage = (props) => {
                 ) : type === 'box' ? (
                     <View {...props} style={[styles.box, style]}>
                         <Text style={styles.boxText}>{message}</Text>
-                        <TouchableIcon
+                        {/*<TouchableIcon
                             Icon={CloseIcon}
                             size={20}
                             onPress={selfDestruct}
-                        />
+                        />*/}
                     </View>
                 ) : null
             )

@@ -35,7 +35,7 @@ const Comment = (props) => {
 
     // Update comment information from context
     const updateComment = () => {
-        getComment(comment._id, newComment => {
+        getComment(comment.id, newComment => {
             setComment(newComment);
         });
     };
@@ -54,7 +54,7 @@ const Comment = (props) => {
 
     return (
         <View style={[styles.comment, style]}>
-            <Text style={styles.body}>{data.body}</Text>
+            <Text style={styles.body}>{data.text}</Text>
             <View style={styles.actions}>
                 <MoreOptions
                     content={comment}
@@ -70,12 +70,14 @@ const Comment = (props) => {
                         size={sizes.ACTION_ICON}
                         onPress={handleLike}
                         Icon={
-                            comment.likes.includes(user._id)
-                            ? LikeIconFill : LikeIconOutline
+                            //comment.likes.includes(user._id)
+                            //? LikeIconFill : LikeIconOutline
+                            LikeIconOutline
                         }
                         color={
-                            comment.likes.includes(user._id)
-                            ? colors.FROYO_GREEN : 'black'
+                            //comment.likes.includes(user._id)
+                            //? colors.FROYO_GREEN : 'black'
+                            'black'
                         }
                     />
                     {/* Disike Button */}
@@ -84,12 +86,14 @@ const Comment = (props) => {
                         onPress={handleDislike}
                         style={styles.dislike}
                         Icon={
-                            comment.dislikes.includes(user._id)
-                            ? DislikeIconFill : DislikeIconOutline
+                            //comment.dislikes.includes(user._id)
+                            //? DislikeIconFill : DislikeIconOutline
+                            DislikeIconOutline
                         }
                         color={
-                            comment.dislikes.includes(user._id)
-                            ? colors.DISLIKE_RED : 'black'
+                            //comment.dislikes.includes(user._id)
+                            //? colors.DISLIKE_RED : 'black'
+                            'black'
                         }
                     />
                 </View>

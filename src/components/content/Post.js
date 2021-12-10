@@ -18,7 +18,6 @@ import Header from './parts/Header';
 import MoreOptions from './parts/MoreOptions';
 // Contexts
 import { Context as PostContext } from '../../context/PostContext';
-import { Context as AuthContext } from '../../context/AuthContext';
 // Icons
 import LikeIconFill from '../../../assets/icons/Like-Fill.svg';
 import DislikeIconFill from '../../../assets/icons/Dislike-Fill.svg';
@@ -43,7 +42,6 @@ import {
 // onPress -> function: the function to call when the post is tapped on
 
 const Post = (props) => {
-    const { state: { user } } = useContext(AuthContext);
     const { likePost, dislikePost, getPost } = useContext(PostContext);
     
     const {
@@ -63,21 +61,20 @@ const Post = (props) => {
     };
 
     // Update post information from context
-    const updatePost = () => {
-        getPost(post._id, newPost => {
-            setPost(newPost);
-        });
+    const updatePost = async () => {
+        console.log(post);
+        setPost(await getPost(data.id));
     };
 
     // When like button is pressed
     const handleLike = async () => {
-        await likePost(post._id);
+        await likePost(post);
         await updatePost();
     };
 
     // When dislike button is pressed
     const handleDislike = async () => {
-        await dislikePost(post._id);
+        await dislikePost(post);
         await updatePost();
     };
 
@@ -112,14 +109,12 @@ const Post = (props) => {
                             size={sizes.ACTION_ICON}
                             onPress={handleLike}
                             Icon={
-                                //post.likes.includes(user._id)
-                                //? LikeIconFill : LikeIconOutline
-                                LikeIconOutline
+                                post.liking
+                                ? LikeIconFill : LikeIconOutline
                             }
                             color={
-                                //post.likes.includes(user._id)
-                                //? colors.FROYO_GREEN : 'black'
-                                'black'
+                                post.liking
+                                ? colors.FROYO_GREEN : 'black'
                             }
                         />
                         {/* Disike Button */}
@@ -128,14 +123,12 @@ const Post = (props) => {
                             onPress={handleDislike}
                             style={styles.dislike}
                             Icon={
-                                //post.dislikes.includes(user._id)
-                                //? DislikeIconFill : DislikeIconOutline
-                                DislikeIconOutline
+                                post.disliking
+                                ? DislikeIconFill : DislikeIconOutline
                             }
                             color={
-                                //post.dislikes.includes(user._id)
-                                //? colors.DISLIKE_RED : 'black'
-                                'black'
+                                post.disliking
+                                ? colors.DISLIKE_RED : 'black'
                             }
                         />
                     </View>

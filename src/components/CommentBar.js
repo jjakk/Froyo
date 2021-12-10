@@ -17,14 +17,14 @@ const CommentBar = (props) => {
     const [commentText, setCommentText] = useState('');
     const {
         style,
-        parentId,
+        parent_id,
         onCreateComment,
     } = props;
 
     const onSubmit = async () => {
         const content = {
             text: commentText,
-            parent: parentId
+            parent_id
         };
         await createComment(content);
         setCommentText('');

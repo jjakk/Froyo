@@ -11,7 +11,6 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 // Context
-import { Context as AuthContext } from '../../context/AuthContext';
 import { Context as PostContext } from '../../context/PostContext';
 import { Context as CommentContext } from '../../context/CommentContext';
 // Components
@@ -74,7 +73,7 @@ const PostViewScreen = ({ navigation }) => {
                                     comments.length > 0 ? (
                                         comments.map(comment => (
                                             <Comment
-                                                key={comment._id}
+                                                key={comment.id}
                                                 data={comment}
                                             />
                                         ))

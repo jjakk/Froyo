@@ -36,8 +36,6 @@ const PostViewScreen = ({ navigation }) => {
     const [post, setPost] = useState(navigation.getParam('post'));
     const [comments, setComments] = useState([]);
     const [loadingComments, setLoadingComments] = useState(true);
-    // Boolean to control whether content is refreshing
-    const [refreshing, setRefreshing] = useState(false);
 
     // Update comments when post is refreshed
     useEffect(() => {
@@ -48,25 +46,24 @@ const PostViewScreen = ({ navigation }) => {
         })();
     }, [post]);
 
-    // When the back button's pressed
-    const onBack = async () => {
-        navigation.pop();
+    // Refresh post information (get new comment)
+    const refreshPost = async () => {
+        setPost(await getPost(post.id));
     };
 
+    // Event Handlers
     // When the user closes an error message
     const onErrorClose = () => {
         postClear();
         commentClear();
-    }
-
+    };
     // When the user deletes the posts being viewed
     const onDeletePost = () => {
         navigation.pop();
-    }
-
-    // Refresh post information (get new comment)
-    const refreshPost = async () => {
-        setPost(await getPost(post.id));
+    };
+    // When the back button's pressed
+    const onBack = async () => {
+        navigation.pop();
     };
 
     return (
@@ -92,7 +89,6 @@ const PostViewScreen = ({ navigation }) => {
                             style={styles.contentView}
                             refreshControl={
                                 <RefreshControl
-                                    refreshing={refreshing}
                                     onRefresh={refreshPost}
                                 />
                             }

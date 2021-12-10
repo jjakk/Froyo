@@ -16,24 +16,33 @@ import { Context as PostContext } from '../../context/PostContext';
 import PostList from '../../components/content/PostList';
 import UserProfile from '../../components/UserProfile';
 
-const AccountViewScreen = () => {
+const AccountViewScreen = ({ navigation }) => {
     const { state: { user } } = useContext(AuthContext);
     const { getUserPosts } = useContext(PostContext);
     // Boolean to check if the posts have loaded
     const [loadingContent, setLoadingContent] = useState(true);
+    // Boolean to control whether content is refreshing
+    const [refreshing, setRefreshing] = useState(false);
     // List of posts
     const [posts, setPosts] = useState([]);
 
     // Function to retrieve user info & posts
-    const reloadContent = async () => {
+    const reloadContent = async (refresh=false) => {
+        if(refresh) setRefreshing(true);
         setLoadingContent(true);
         setPosts(await getUserPosts());
         setLoadingContent(false);
+        if(refresh) setRefreshing(false);
     };
 
-    // Refresh content when moving to this page
+    // Refresh content when loading this page
     const handleDidFocus = async () => {
         await reloadContent();
+    };
+
+    // Handle refresh
+    const onRefresh = async () => {
+        await reloadContent(true);
     };
 
     return(
@@ -46,7 +55,8 @@ const AccountViewScreen = () => {
                 showsVerticalScrollIndicator={false}
                 refreshControl={
                     <RefreshControl
-                        onRefresh={reloadContent}
+                        refreshing={refreshing}
+                        onRefresh={onRefresh}
                     />
                 }
             >

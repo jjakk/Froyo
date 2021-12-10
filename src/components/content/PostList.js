@@ -1,16 +1,33 @@
 // This componet takes in a list of posts and renders them in chronological order
-import React from 'react';
+import React, { useEffect } from 'react';
 import * as Progress from 'react-native-progress';
 import { StyleSheet, View } from 'react-native';
 import { EmptyMessage } from '../EmptyMessage';
 import Post from './Post';
 
 const PostList = (props) => {
+    const [postsRender, setPostsRender] = React.useState(null);
     const {
         posts,
         loading,
+        sortBy,
         onPostDelete
     } = props;
+
+    // Sort posts before rendering
+    useEffect(() => {
+        switch (sortBy) {
+            // Sort by date (newest first)
+            case 'new':
+                setPostsRender(
+                    posts.sort(function (a, b) {
+                        const dateA = new Date(a.timestamp).getTime();
+                        const dateB = new Date(b.timestamp).getTime();
+                        return dateB - dateA;
+                    })
+                );
+        }
+    }, [posts]);
 
     return (
         <View style={styles.posts}>
@@ -20,7 +37,7 @@ const PostList = (props) => {
                         posts.length > 0 ? (
                             <View style={styles.postView}>
                             {
-                                posts.map(post => (
+                                postsRender.map(post => (
                                     <Post
                                         key={post.id}
                                         data={{
@@ -73,5 +90,9 @@ const styles = StyleSheet.create({
         marginTop: 50,
     }
 });
+
+PostList.defaultProps = {
+    sortBy: 'new'
+};
 
 export default PostList;

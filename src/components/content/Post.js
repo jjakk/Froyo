@@ -132,10 +132,11 @@ const Post = (props) => {
                         />
                     </View>
                     {/* Comment icon */}
-                    <TouchableIcon
-                        Icon={CommentIcon}
-                        size={sizes.ACTION_ICON}
+                    <CommentIcon
+                        width={sizes.ACTION_ICON}
+                        height={sizes.ACTION_ICON}
                         style={styles.comment}
+                        color='black'
                     />
                     {/* Share button */}
                     <TouchableIcon

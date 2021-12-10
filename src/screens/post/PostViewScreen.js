@@ -14,10 +14,9 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Context as PostContext } from '../../context/PostContext';
 import { Context as CommentContext } from '../../context/CommentContext';
 // Components
-import { Text } from '../../components/froyo-elements';
 import CommentBar from '../../components/CommentBar';
 import Post from '../../components/content/Post';
-import Comment from '../../components/content/Comment';
+import CommentList from '../../components/content/CommentList';
 import ErrorMessage from '../../components/ErrorMessage';
 // Icons
 import BackIcon from '../../../assets/icons/Back.svg';
@@ -34,12 +33,15 @@ const PostViewScreen = ({ navigation }) => {
         state: { errorMessage: commentError }
     } = useContext(CommentContext);
     const [post, setPost] = useState(navigation.getParam('post'));
-    const [comments, setComments] = useState(null);
+    const [comments, setComments] = useState([]);
+    const [loadingComments, setLoadingComments] = useState(true);
 
     // Update comments when post is refreshed
     useEffect(() => {
         (async function(){
+            setLoadingComments(true);
             setComments(await getComments(post));
+            setLoadingComments(false);
         })();
     }, [post]);
 
@@ -89,24 +91,11 @@ const PostViewScreen = ({ navigation }) => {
                                 clickable={false}
                                 onDelete={onDeletePost}
                             />
-                            {
-                                comments ? (
-                                    comments.length > 0 ? (
-                                        comments.map(comment => (
-                                            <Comment
-                                                key={comment.id}
-                                                data={comment}
-                                                onDelete={refreshPost}
-                                            />
-                                        ))
-                                    ) : (
-                                        <Text style={styles.noComments}>No comments</Text>
-                                    )
-                                ) : (
-                                    <Text style={styles.noComments}>Loading</Text>
-                                )
-                                
-                            }
+                            <CommentList
+                                comments={comments}
+                                loading={loadingComments}
+                                onDeleteComment={refreshPost}
+                            />
                         </ScrollView>
                         <CommentBar
                             parent_id={post.id}
@@ -143,12 +132,6 @@ const styles = StyleSheet.create({
     contentView: {
         backgroundColor: '#F2F2F2',
         flex: 1
-    },
-    noComments: {
-        fontSize: 28,
-        alignSelf: 'center',
-        opacity: 0.75,
-        marginTop: 50
     },
     error: {
         position: 'absolute',

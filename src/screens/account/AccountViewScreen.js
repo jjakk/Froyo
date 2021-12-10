@@ -23,7 +23,7 @@ const AccountViewScreen = ({ navigation }) => {
     const { state: { user } } = useContext(AuthContext);
     const { getUserPosts } = useContext(PostContext);
     // Boolean to check if the posts have loaded
-    const [contentLoaded, setContentLoaded] = useState(false);
+    const [loadingContent, setLoadingContent] = useState(true);
     // Boolean to control whether content is refreshing
     const [refreshing, setRefreshing] = useState(false);
     // List of posts
@@ -32,9 +32,9 @@ const AccountViewScreen = ({ navigation }) => {
     // Function to retrieve user info & posts
     const reloadContent = async (refresh=false) => {
         if(refresh) setRefreshing(true);
-        setContentLoaded(false);
+        setLoadingContent(true);
         setPosts(await getUserPosts());
-        setContentLoaded(true);
+        setLoadingContent(false);
         if(refresh) setRefreshing(false);
     };
 
@@ -65,11 +65,12 @@ const AccountViewScreen = ({ navigation }) => {
             >
                 <UserProfile
                     user={user}
-                    loading={!contentLoaded}
+                    loading={loadingContent}
                 />
                 <PostList
                     posts={posts}
-                    loading={!contentLoaded}
+                    loading={loadingContent}
+                    emptyMessage="You haven't posted anything yet"
                     onPostDelete={reloadContent}
                 />
             </ScrollView>

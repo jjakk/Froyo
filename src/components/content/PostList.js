@@ -1,8 +1,8 @@
-// This componet takes in a list of posts and renders them in chronological order
+// This componet takes in a list of posts and renders them
 import React, { useEffect } from 'react';
 import * as Progress from 'react-native-progress';
 import { StyleSheet, View } from 'react-native';
-import { EmptyMessage } from '../EmptyMessage';
+import EmptyMessage from '../EmptyMessage';
 import Post from './Post';
 
 const PostList = (props) => {
@@ -11,6 +11,7 @@ const PostList = (props) => {
         posts,
         loading,
         sortBy,
+        emptyMessage,
         onPostDelete
     } = props;
 
@@ -34,7 +35,7 @@ const PostList = (props) => {
             {
                 !loading ?
                     (
-                        posts.length > 0 ? (
+                        postsRender.length > 0 ? (
                             <View style={styles.postView}>
                             {
                                 postsRender.map(post => (
@@ -52,7 +53,7 @@ const PostList = (props) => {
                         ) : (
                             <EmptyMessage
                                 style={styles.emptyMessage}
-                                subheaderText="You haven't posted anything yet"
+                                subheaderText={emptyMessage}
                             />
                         )
                     ) : (

@@ -75,6 +75,7 @@ const PostViewScreen = ({ navigation }) => {
                                             <Comment
                                                 key={comment.id}
                                                 data={comment}
+                                                onDelete={refreshPost}
                                             />
                                         ))
                                     ) : (

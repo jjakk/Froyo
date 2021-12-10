@@ -49,7 +49,6 @@ const Post = (props) => {
         style,
         data,
         onDelete,
-        onEdit,
         onPress
     } = props;
 
@@ -88,12 +87,10 @@ const Post = (props) => {
             <View style={[styles.post, style]}>
                 <Header
                     post={post}
-                    onEdit={onEdit}
                     onDelete={onDelete}
                 />
                 <MoreOptions
                     content={post}
-                    onEdit={onEdit}
                     onDelete={onDelete}
                     style={styles.options}
                 />

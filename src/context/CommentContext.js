@@ -35,15 +35,13 @@ const createComment = (dispatch) => async (info) => {
 };
 
 // DELETE a comment
-const deleteComment = (dispatch) => async (postId, callback) => {
-    /*try{
-        await froyoApi.delete(`/posts/${postId}`);
-        callback(true);
+const deleteComment = (dispatch) => async (postId) => {
+    try{
+        await froyoApi.delete(`/comments/${postId}`);
     }
     catch(err){
-        dispatch({ type: 'add_error', payload: `Unable to delete post` })
-        callback(false);
-    }*/
+        dispatch({ type: 'add_error', payload: `Unable to delete post` });
+    }
 }
 
 // GET a comment

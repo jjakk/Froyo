@@ -28,7 +28,8 @@ const Comment = (props) => {
     
     const {
         style,
-        data
+        data,
+        onDelete
     } = props;
 
     const [comment, setComment] = useState(data);
@@ -58,6 +59,7 @@ const Comment = (props) => {
             <View style={styles.actions}>
                 <MoreOptions
                     content={comment}
+                    onDelete={onDelete}
                 />
                 {/* Reply button */}
                 <TouchableOpacity style={styles.reply}>

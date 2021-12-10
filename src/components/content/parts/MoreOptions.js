@@ -7,11 +7,13 @@ import {
     MenuTrigger,
 } from 'react-native-popup-menu';
 // Navigation
-import { navigate } from '../../../navigation/navigationRef';
+import { navigate, pop } from '../../../navigation/navigationRef';
 // Components
 import { Text } from '../../froyo-elements';
 // Contexts
 import { Context as AuthContext } from '../../../context/AuthContext';
+import { Context as PostContext } from '../../../context/PostContext';
+import { Context as CommentContext } from '../../../context/CommentContext';
 // Icons
 import MoreOptionsIcon from '../../../../assets/icons/MoreSettings.svg';
 import TrashIcon from '../../../../assets/icons/Trash.svg';
@@ -26,36 +28,45 @@ import {
 
 const MoreOptions = (props) => {
     const { state: { user } } = useContext(AuthContext);
-
+    const { deletePost } = useContext(PostContext);
+    const { deleteComment } = useContext(CommentContext);
     const {
         content,
-        onEdit,
         onDelete,
         style
     } = props;
+    const contentType = !content.parent_id ? 'Post' : 'Comment';
 
     // Default functions for edit button
     const defaultOnEdit = () => {
-        navigate('PostEdit');
+        navigate(`${contentType}Edit`);
     };
     
     // Default function for delete button
-    const defaultOnDelete = () => {};
+    const defaultOnDelete = async () => {
+        if (contentType === 'Post') {
+            await deletePost(content.id);
+        }
+        else {
+            await deleteComment(content.id);
+        }
+        onDelete();
+    };
 
     // More options menu items
     const moreOptions = [
         // Only show these options if it's your own content
-        ...(content.author === user._id ? [
+        ...(content.author_id === user.id ? [
             {
                 label: 'Delete',
-                onSelect: onDelete || defaultOnDelete,
+                onSelect: defaultOnDelete,
                 style: styles.deleteButton,
                 Icon: TrashIcon,
                 color: '#FB1C1C'
             },
             {
                 label: 'Edit',
-                onSelect: onEdit || defaultOnEdit,
+                onSelect: defaultOnEdit,
                 Icon: PenIcon,
                 color: 'black'
             }

@@ -152,11 +152,7 @@ const AccountViewScreen = ({ navigation }) => {
                                                 data={{
                                                     ...post,
                                                 }}
-                                                onDelete={() => {
-                                                    deletePost(post._id, async (success) => {
-                                                        if(success) await getUserPosts();
-                                                    })
-                                                }}
+                                                onDelete={reloadContent}
                                                 clickable
                                             />
                                         ))

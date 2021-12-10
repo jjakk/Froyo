@@ -13,7 +13,6 @@ const Header = (props) => {
 
     return (
         <View style={styles.header}>
-            
             <Image
                 style={styles.profilePicture}
                 source={require('../../../../assets/icons/guest.png')}

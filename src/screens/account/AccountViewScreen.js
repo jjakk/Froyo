@@ -27,12 +27,10 @@ const AccountViewScreen = ({ navigation }) => {
     const [posts, setPosts] = useState([]);
 
     // Function to retrieve user info & posts
-    const reloadContent = async (refresh=false) => {
-        if(refresh) setRefreshing(true);
+    const reloadContent = async () => {
         setLoadingContent(true);
         setPosts(await getUserPosts());
         setLoadingContent(false);
-        if(refresh) setRefreshing(false);
     };
 
     // Refresh content when loading this page
@@ -42,7 +40,9 @@ const AccountViewScreen = ({ navigation }) => {
 
     // Handle refresh
     const onRefresh = async () => {
+        setRefreshing(true);
         await reloadContent(true);
+        setRefreshing(false);
     };
 
     return(

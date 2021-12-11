@@ -15,8 +15,8 @@ import {
     Input,
     Button
 } from '../../../components/froyo-elements';
+import Header from '../../../components/Header';
 import { Context as AuthContext } from '../../../context/AuthContext';
-import BackIcon from '../../../../assets/icons/Back.svg';
 import ErrorMessage from '../../../components/ErrorMessage';
 
 const SignUpTwoScreen = ({ navigation }) => {
@@ -52,14 +52,7 @@ const SignUpTwoScreen = ({ navigation }) => {
                     style={styles.container}
                 >
                     <View style={{flex: 1}}>
-                        <TouchableOpacity
-                            onPress={() => {
-                                clearErrorMessage();
-                                navigation.pop()
-                            }}
-                        >
-                            <BackIcon width={25} height={25} style={styles.back} />
-                        </TouchableOpacity>
+                        <Header navigation={navigation} />
                         <View style={styles.auth}>
                             <Text style={styles.header}>Sign up</Text>
                             <Input style={styles.input} placeholder='First name' onChangeText={setFirstName} />

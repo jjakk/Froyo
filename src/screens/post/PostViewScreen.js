@@ -10,7 +10,7 @@ import {
     Platform,
     RefreshControl
 } from 'react-native';
-import { TouchableIcon } from '../../components/froyo-elements';
+import Header from '../../components/Header';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import CommentBar from '../../components/CommentBar';
 import Post from '../../components/content/Post';
@@ -19,8 +19,6 @@ import ErrorMessage from '../../components/ErrorMessage';
 // Context
 import { Context as PostContext } from '../../context/PostContext';
 import { Context as CommentContext } from '../../context/CommentContext';
-// Icons
-import BackIcon from '../../../assets/icons/Back.svg';
 
 const PostViewScreen = ({ navigation }) => {
     const {
@@ -83,14 +81,7 @@ const PostViewScreen = ({ navigation }) => {
                     style={styles.container}
                 >
                     <View style={styles.container}>
-                        <View style={styles.header}>
-                            <TouchableIcon
-                                Icon={BackIcon}
-                                size={25}
-                                style={styles.back}
-                                onPress={onBack}
-                            />
-                        </View>
+                        <Header navigation={navigation} />
                         <ScrollView
                             contentContainerStyle={styles.contentView}
                             refreshControl={
@@ -132,13 +123,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#FFFFFF',
-    },
-    header: {
-        borderBottomColor: '#F2F2F2',
-        borderBottomWidth: 2
-    },
-    back: {
-        margin: 20
     },
     post: {
         marginTop: 5

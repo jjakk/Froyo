@@ -14,9 +14,9 @@ import {
     Button,
     Input
 } from '../../components/froyo-elements';
+import Header from '../../components/Header';
 import ErrorMessage from '../../components/ErrorMessage';
 import { Context as AuthContext } from '../../context/AuthContext';
-import BackIcon from '../../../assets/icons/Back.svg';
 import UploadIcon from '../../../assets/icons/Upload.svg';
 
 const LOADING_TEXT = 'Loading';
@@ -61,9 +61,7 @@ const AccountEditScreen = ({ navigation }) => {
                     behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
                     style={styles.container}
                 >
-                    <TouchableOpacity onPress={() => navigation.navigate('AccountView')}>
-                        <BackIcon width={25} height={25} style={styles.back} />
-                    </TouchableOpacity>
+                    <Header navigation={navigation} />
                     <View style={styles.form}>
                         <View style={styles.profilePictureUpload}>
                             <Image

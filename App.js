@@ -1,9 +1,10 @@
 import _ from 'denodeify';
 import React from 'react';
+import { createAppContainer } from 'react-navigation';
 import {
-  createAppContainer
-} from 'react-navigation';
-import { SafeAreaProvider, initialWindowMetrics } from 'react-native-safe-area-context';
+  SafeAreaProvider,
+  initialWindowMetrics
+} from 'react-native-safe-area-context';
 import { MenuProvider } from 'react-native-popup-menu';
 import { useFonts } from 'expo-font';
 // Navigation

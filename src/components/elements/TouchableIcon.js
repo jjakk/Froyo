@@ -11,25 +11,20 @@ const TouchableIcon = (props) => {
     } = props;
     
     return (
-        <TouchableOpacity onPress={onPress} style={[styles.touchableArea, style]}>
+        <TouchableOpacity onPress={onPress}>
             <Icon
                 width={size}
                 height={size}
                 color={color}
+                style={style}
             />
         </TouchableOpacity>
     );
 };
 
-const styles = StyleSheet.create({
-    touchableArea: {
-        alignSelf: 'flex-start'
-    }
-});
-
 TouchableIcon.defaultProps = {
     size: 25,
-    color: 'black'
+    color: 'black',
 };
 
 export default TouchableIcon;

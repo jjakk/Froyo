@@ -60,18 +60,18 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         opacity: 0.9,
         flexDirection: 'row',
-        textAlign: 'center',
         alignSelf: 'center',
+        justifyContent: 'center',
         alignItems: 'center',
         padding: 15,
         paddingHorizontal: 30,
         borderRadius: 10,
         borderColor: colors.GREY,
-        borderWidth: 2
+        borderWidth: 2,
     },
     boxText: {
         fontSize: 24,
-        marginRight: 15
+        marginRight: 15,
     }
 });
 

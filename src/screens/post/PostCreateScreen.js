@@ -5,17 +5,14 @@ import {
     TouchableWithoutFeedback,
     Keyboard
 } from 'react-native';
-
 import {
     Button,
-    Input, 
-    TouchableIcon
+    Input
 } from '../../components/froyo-elements';
+import Header from '../../components/Header';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import * as MediaLibrary from 'expo-media-library';
+//import * as MediaLibrary from 'expo-media-library';
 import { Context as PostContext } from '../../context/PostContext';
-import BackIcon from '../../../assets/icons/Back.svg';
-import PlusIcon from '../../../assets/icons/Plus.svg';
 import ErrorMessage from '../../components/ErrorMessage';
 
 const PostCreateScreen = ({ navigation }) => {
@@ -53,10 +50,6 @@ const PostCreateScreen = ({ navigation }) => {
             if(!error) navigation.navigate('Feed');
         });
     };
-    const onBack = () => {
-        clearErrorMessage();
-        navigation.pop();
-    };
 
     // Delete error message when you type in the post body
     useEffect(() => {
@@ -70,12 +63,7 @@ const PostCreateScreen = ({ navigation }) => {
                 onPress={Keyboard.dismiss}
             >
                 <View>
-                    <TouchableIcon
-                        Icon={BackIcon}
-                        size={25}
-                        onPress={onBack}
-                        style={styles.back}
-                    />
+                    <Header navigation={navigation} />
                     <View style={styles.bodyContainer}>
                         <Input
                             style={styles.body}
@@ -113,10 +101,6 @@ const PostCreateScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1
-    },
-    back: {
-        margin: 25,
-        marginBottom: 10
     },
     // Inputs
     bodyContainer: {

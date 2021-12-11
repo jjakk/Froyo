@@ -25,7 +25,7 @@ const ResetPasswordScreen = ({ navigation }) => {
                 <Header navigation={navigation} />
                 <View style={styles.container} forceInset={{ top: 'always' }}>
                     <View style={styles.form}>
-                        <Text style={styles.header} >Reset Password</Text>
+                        <Text style={styles.header}>Reset Password</Text>
                         <Input style={styles.input} placeholder='Email' />
                         <Button
                             buttonStyle={styles.submit}

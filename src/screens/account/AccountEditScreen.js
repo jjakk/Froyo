@@ -4,7 +4,6 @@ import {
     Platform,
     View,
     Image,
-    TouchableOpacity,
     TouchableWithoutFeedback,
     Keyboard,
     KeyboardAvoidingView
@@ -22,31 +21,34 @@ import UploadIcon from '../../../assets/icons/Upload.svg';
 const LOADING_TEXT = 'Loading';
 
 const AccountEditScreen = ({ navigation }) => {
-    const { getUserInfo, updateUserInfo, state: { user, errorMessage } } = useContext(AuthContext);
+    const { updateUserInfo, state: { user, errorMessage } } = useContext(AuthContext);
     const [firstName, setFirstName] = useState(LOADING_TEXT);
     const [lastName, setLastName] = useState(LOADING_TEXT);
     const [username, setUsername] = useState(LOADING_TEXT);
     const [description, setDescription] = useState(LOADING_TEXT);
-    const [contentLoaded, setContentLoaded] = useState(false);
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         (async function(){
-            await getUserInfo();
             setFirstName(user.first_name);
             setLastName(user.last_name);
             setUsername(user.username);
             setDescription(user.description);
-            setContentLoaded(true);
         })();
     }, []);
 
     const handleSubmit = () => {
         setLoading(true);
-        updateUserInfo({ first_name: firstName, last_name: lastName, username, description }, (success) => {
+        updateUserInfo({
+            firstName,
+            lastName,
+            username,
+            description
+        }, (error) => {
             setLoading(false);
-            if(success) {
-                navigation.navigate('AccountView');
+            if(!error) {
+                //getUserInfo();
+                navigation.pop();
             }
         });
     };
@@ -78,7 +80,6 @@ const AccountEditScreen = ({ navigation }) => {
                                         placeholder='First'
                                         value={firstName}
                                         onChangeText={setFirstName}
-                                        editable={contentLoaded}
                                     />
                                 </View>
                                 <View style={styles.gap}></View>
@@ -87,7 +88,6 @@ const AccountEditScreen = ({ navigation }) => {
                                         placeholder='Last'
                                         value={lastName}
                                         onChangeText={setLastName}
-                                        editable={contentLoaded}
                                     />
                                 </View>
                             </View>
@@ -96,7 +96,6 @@ const AccountEditScreen = ({ navigation }) => {
                                 placeholder='Username'
                                 value={username}
                                 onChangeText={setUsername}
-                                editable={contentLoaded}
                             />
                             <Input
                                 style={[styles.field, styles.description]}
@@ -106,7 +105,6 @@ const AccountEditScreen = ({ navigation }) => {
                                 placeholder='Description'
                                 value={description}
                                 onChangeText={setDescription}
-                                editable={contentLoaded}
                             />
                         </View>
                         <Button

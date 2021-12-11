@@ -128,20 +128,24 @@ const signOut = (dispatch) => async () => {
 // Get a user's information given their auth token
 const getUserInfo = (dispatch) => async () => {
     try{
-        const { data: { id } } = await froyoApi.get('/');
-        const { data: { user } } = await froyoApi.get(`/users/${id}`);
-        console.log(user);
+        const { data: id } = await froyoApi.get('/');
+        const { data: user } = await froyoApi.get(`/users/${id}`);
         dispatch({ type: 'get_user_info', payload: user });
     }
     catch(err){
-        dispatch({ type: 'add_error', payload: `Ran into an error: ${err.message}` })
+        dispatch({ type: 'add_error', payload: err.message });
     }
 };
 
 // Update a user's information
 const updateUserInfo = (dispatch) => async (info, callback) => {
     try{
-        const { firstName, lastName, username, description} = info;
+        const {
+            firstName,
+            lastName,
+            username,
+            description
+        } = info;
         // Check all required fields are filled
         switch(''){
             case firstName:
@@ -157,15 +161,18 @@ const updateUserInfo = (dispatch) => async (info, callback) => {
                 callback(false);
                 return;
         }
-        const user = await froyoApi.get('/');
-        const id = user.data;
-        const response = await froyoApi.put(`/users/${id}`, { firstName, lastName, username, description });
-        callback(true);
+        await froyoApi.put('/users', {
+            first_name: firstName,
+            last_name: lastName,
+            username,
+            description
+        });
+        callback();
     }
     catch(err){
-        let message = err.response.data;
-        dispatch({ type: 'add_error', payload: message });
-        callback(false);
+        console.log(err.response.data);
+        dispatch({ type: 'add_error', payload: err.message });
+        callback(err);
     }
 };
 

@@ -16,7 +16,7 @@ const Input = (props) => {
             }
             <TextInput
                 {...props}
-                selectionColor={colors.GREY}
+                selectionColor={colors.DARK_GREY}
                 style={[styles.text, textStyle]}
             />
         </View>

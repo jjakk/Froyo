@@ -31,7 +31,7 @@ const SignUpTwoScreen = ({ navigation }) => {
     const [passwordConfirm, setPasswordConfirm] = useState('');
     const [loading, setLoading] = useState(false);
     // Context values & functions
-    const { signUp, clearErrorMessage, state: { errorMessage } } = useContext(AuthContext);
+    const { signUp, state: { errorMessage } } = useContext(AuthContext);
 
     const handleSubmit = () => {
         setLoading(true);

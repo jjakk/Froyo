@@ -20,6 +20,7 @@ import ErrorMessage from '../../components/ErrorMessage';
 const AccountViewScreen = () => {
     const {
         clearErrorMessage: clearAuth,
+        getUserInfo,
         state: {
             user,
             errorMessage: authError
@@ -43,6 +44,7 @@ const AccountViewScreen = () => {
     const reloadContent = async () => {
         setLoadingContent(true);
         setPosts(await getUserPosts());
+        await getUserInfo();
         setLoadingContent(false);
     };
 

@@ -50,7 +50,7 @@ const AccountEditScreen = ({ navigation }) => {
     };
 
     return(
-        <ScreenContainer >
+        <ScreenContainer>
             <Header navigation={navigation} />
             <View style={styles.form}>
                 <View style={styles.profilePictureUpload}>
@@ -111,12 +111,8 @@ const AccountEditScreen = ({ navigation }) => {
 
 const styles = StyleSheet.create({
     form: {
-        justifyContent: 'center',
-        paddingBottom: 250
-    },
-    back: {
-        margin: 25,
-        marginBottom: 0
+        marginTop: 0,
+        justifyContent: 'center'
     },
     label: {
         fontSize: 28,
@@ -137,7 +133,7 @@ const styles = StyleSheet.create({
     },
     // Profile Picture Upload Button
     profilePictureUpload: {
-        marginTop: 45,
+        marginTop: 30,
         justifyContent: 'center',
         alignItems: 'center',
         alignSelf: 'center',

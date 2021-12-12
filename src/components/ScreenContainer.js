@@ -27,11 +27,10 @@ const ScreenContainer = (props) => {
             >
                 <KeyboardAvoidingView
                     behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+                    keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : 50}
                     style={styles.container}
                 >
-                    <View style={styles.container}>
-                        {children}
-                    </View>
+                    {children}
                 </KeyboardAvoidingView>
             </TouchableWithoutFeedback>
         </SafeAreaView>
@@ -41,7 +40,7 @@ const ScreenContainer = (props) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-    },
+    }
 });
 
 export default ScreenContainer;

@@ -1,12 +1,7 @@
 import React from 'react';
 import {
-    SafeAreaView,
     StyleSheet,
-    StatusBar,
     View,
-    TouchableWithoutFeedback,
-    TouchableOpacity,
-    Keyboard
 } from 'react-native';
 import {
     Input,
@@ -14,30 +9,24 @@ import {
     Text
 } from './../../components/froyo-elements';
 import Header from '../../components/Header';
+import ScreenContainer from '../../components/ScreenContainer';
 
 const ResetPasswordScreen = ({ navigation }) => {
     return (
-        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-            <View style={{flex: 1}}>
-                <SafeAreaView>
-                    <StatusBar backgroundColor="#F2F2F2" barStyle="dark-content" />
-                </SafeAreaView>
-                <Header navigation={navigation} />
-                <View style={styles.container} forceInset={{ top: 'always' }}>
-                    <View style={styles.form}>
-                        <Text style={styles.header}>Reset Password</Text>
-                        <Input style={styles.input} placeholder='Email' />
-                        <Button
-                            buttonStyle={styles.submit}
-                            title='Reset'
-                            type='primary'
-                            color='#41CA99'
-                            textColor='white'
-                        />
-                    </View>
-                </View>
+        <ScreenContainer>
+            <Header navigation={navigation} />
+            <View style={styles.form}>
+                <Text style={styles.header}>Reset Password</Text>
+                <Input style={styles.input} placeholder='Email' />
+                <Button
+                    buttonStyle={styles.submit}
+                    title='Reset'
+                    type='primary'
+                    color='#41CA99'
+                    textColor='white'
+                />
             </View>
-        </TouchableWithoutFeedback>
+        </ScreenContainer>
     );
 };
 

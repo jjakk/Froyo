@@ -1,11 +1,8 @@
 import React, { useContext, useState } from 'react';
 // Components
 import {
-    SafeAreaView,
     View,
     StyleSheet,
-    StatusBar,
-    TouchableWithoutFeedback,
     Keyboard
 } from 'react-native';
 import {
@@ -15,6 +12,7 @@ import {
     Link
 } from '../../components/froyo-elements';
 import ErrorMessage from '../../components/ErrorMessage';
+import ScreenContainer from '../../components/ScreenContainer';
 // Context
 import { Context as AuthContext } from '../../context/AuthContext';
 
@@ -35,50 +33,45 @@ const SignInScreen = ({ navigation }) => {
     };  
 
     return (
-        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-            <View style={styles.container}>
-                <SafeAreaView>
-                    <StatusBar backgroundColor='#F2F2F2' barStyle='dark-content' />
-                </SafeAreaView>
-                <View style={styles.auth}>
-                    <Text style={styles.header}>Sign in</Text>
-                    <Input
-                        style={styles.input}
-                        placeholder='Email'
-                        autoCorrect={false}
-                        autoCapitalize='none'
-                        onChangeText={setEmail}
-                    />
-                    <View>
-                        <Input style={styles.input} placeholder='Password' onChangeText={setPassword} secureTextEntry />
-                        <Link color='#41CA99' style={styles.forgotPassword} onPress={() => navigation.navigate('ResetPassword')}>Forgot password?</Link>
-                    </View>
-                    <Button
-                        title='Sign in'
+        <ScreenContainer>
+            <View style={styles.auth}>
+                <Text style={styles.header}>Sign in</Text>
+                <Input
+                    style={styles.input}
+                    placeholder='Email'
+                    autoCorrect={false}
+                    autoCapitalize='none'
+                    onChangeText={setEmail}
+                />
+                <View>
+                    <Input style={styles.input} placeholder='Password' onChangeText={setPassword} secureTextEntry />
+                    <Link color='#41CA99' style={styles.forgotPassword} onPress={() => navigation.navigate('ResetPassword')}>Forgot password?</Link>
+                </View>
+                <Button
+                    title='Sign in'
+                    color='#41CA99'
+                    textColor='white'
+                    type='primary'
+                    loading={loading}
+                    buttonStyle={styles.submit}
+                    containerStyle={styles.submitContainer}
+                    onPress={handleSubmit}
+                />
+                <View style={styles.bottomText}>
+                    <Text style={{fontSize: 18}}>Don't have an account?</Text>
+                    <Link
                         color='#41CA99'
-                        textColor='white'
-                        type='primary'
-                        loading={loading}
-                        buttonStyle={styles.submit}
-                        containerStyle={styles.submitContainer}
-                        onPress={handleSubmit}
-                    />
-                    <View style={styles.bottomText}>
-                        <Text style={{fontSize: 18}}>Don't have an account?</Text>
-                        <Link
-                            color='#41CA99'
-                            onPress={() => {
-                                clearErrorMessage();
-                                navigation.navigate('SignUp')
-                            }}
-                        >
-                            Sign up
-                        </Link>
-                        <ErrorMessage message={errorMessage} />
-                    </View>
+                        onPress={() => {
+                            clearErrorMessage();
+                            navigation.navigate('SignUp')
+                        }}
+                    >
+                        Sign up
+                    </Link>
+                    <ErrorMessage message={errorMessage} />
                 </View>
             </View>
-        </TouchableWithoutFeedback>
+        </ScreenContainer>
     );
 };
 
@@ -87,9 +80,6 @@ SignInScreen.navigationOptions = {
 };
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-    },
     auth: {
         alignItems: 'center',
         justifyContent: 'center',

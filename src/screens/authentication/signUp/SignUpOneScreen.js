@@ -1,8 +1,7 @@
 import React, { useContext, useState } from 'react';
+// Components
 import {
-    SafeAreaView,
     View,
-    TouchableWithoutFeedback,
     Keyboard,
     StyleSheet
 } from 'react-native';
@@ -13,8 +12,10 @@ import {
     Button,
     DatePicker
 } from '../../../components/froyo-elements';
-import { Context as AuthContext } from '../../../context/AuthContext';
+import ScreenContainer from '../../../components/ScreenContainer';
 import ErrorMessage from '../../../components/ErrorMessage';
+// Context
+import { Context as AuthContext } from '../../../context/AuthContext';
 
 const SignUpScreenOne = ({ navigation }) => {
     const { continueSignUp, clearErrorMessage, state: { errorMessage } } = useContext(AuthContext);
@@ -36,56 +37,54 @@ const SignUpScreenOne = ({ navigation }) => {
     }
 
     return (
-        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-            <SafeAreaView style={styles.container}>
-                <View style={styles.auth}>
-                    <Text style={styles.header}>Sign up</Text>
-                    <Input
-                        style={styles.input}
-                        placeholder='Email'
-                        onChangeText={setEmail}
-                        autoCapitalize='none'
-                        autoCorrect={false}
-                    />
-                    <Input
-                        style={styles.input}
-                        placeholder='Username'
-                        onChangeText={setUsername}
-                        autoCapitalize='none'
-                        autoCorrect={false}
-                    />
-                    <DatePicker
-                        buttonStyle={{width: 300}}
-                        containerStyle={styles.submitContainer}
-                        dob={dob}
-                        setDob={setDob}
-                    />
-                    <Button
-                        title='Continue'
+        <ScreenContainer>
+            <View style={styles.auth}>
+                <Text style={styles.header}>Sign up</Text>
+                <Input
+                    style={styles.input}
+                    placeholder='Email'
+                    onChangeText={setEmail}
+                    autoCapitalize='none'
+                    autoCorrect={false}
+                />
+                <Input
+                    style={styles.input}
+                    placeholder='Username'
+                    onChangeText={setUsername}
+                    autoCapitalize='none'
+                    autoCorrect={false}
+                />
+                <DatePicker
+                    buttonStyle={{width: 300}}
+                    containerStyle={styles.submitContainer}
+                    dob={dob}
+                    setDob={setDob}
+                />
+                <Button
+                    title='Continue'
+                    color='#41CA99'
+                    textColor='white'
+                    type='primary'
+                    loading={loading}
+                    buttonStyle={styles.submit}
+                    containerStyle={styles.submitContainer}
+                    onPress={handleSubmit}
+                />
+                <View style={styles.bottomText}>
+                    <Text>Already have an account?</Text>
+                    <Link
                         color='#41CA99'
-                        textColor='white'
-                        type='primary'
-                        loading={loading}
-                        buttonStyle={styles.submit}
-                        containerStyle={styles.submitContainer}
-                        onPress={handleSubmit}
-                    />
-                    <View style={styles.bottomText}>
-                        <Text>Already have an account?</Text>
-                        <Link
-                            color='#41CA99'
-                            onPress={() => {
-                                clearErrorMessage();
-                                navigation.navigate('SignIn')
-                            }}
-                        >
-                            Sign in
-                        </Link>
-                        <ErrorMessage message={errorMessage} />
-                    </View>
+                        onPress={() => {
+                            clearErrorMessage();
+                            navigation.navigate('SignIn')
+                        }}
+                    >
+                        Sign in
+                    </Link>
+                    <ErrorMessage message={errorMessage} />
                 </View>
-            </SafeAreaView>
-        </TouchableWithoutFeedback>
+            </View>
+        </ScreenContainer>
     );
 };
 

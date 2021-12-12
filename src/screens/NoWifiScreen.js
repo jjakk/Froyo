@@ -14,8 +14,10 @@ const NoWifiScreen = ({ navigation }) => {
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.main}>
-                <Text style={styles.text}>No Wifi</Text>
-                <NoWifiIcon style={styles.icon}/>
+                <View style={styles.label}>
+                    <NoWifiIcon style={styles.icon}/>
+                    <Text style={styles.text}>No Wifi</Text>
+                </View>
                 <Button
                     title='Reconnect'
                     color={colors.FROYO_GREEN}
@@ -30,7 +32,7 @@ const NoWifiScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: colors.GREY,
+        backgroundColor: colors.LIGHT_GREY,
         alignItems: 'center',
         justifyContent: 'center'
     },
@@ -39,12 +41,18 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         marginBottom: 100
     },
+    label: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        margin: 50
+    },
     text: {
         fontSize: 32,
-        fontFamily: 'Nunito-SemiBold',
+        fontFamily: 'Nunito-SemiBold'
     },
     icon: {
-        margin: 30
+        marginRight: 15
     },
     button: {
         width: 200

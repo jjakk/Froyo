@@ -61,7 +61,10 @@ const AccountViewScreen = () => {
     };
 
     return(
-        <ScreenContainer style={styles.container}>
+        <ScreenContainer
+            style={styles.container}
+            edges={['top']}
+        >
             <NavigationEvents onDidFocus={handleDidFocus} />
             <ScrollView
                 showsVerticalScrollIndicator={false}

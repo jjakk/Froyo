@@ -1,14 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react';
 import {
     StyleSheet,
-    Platform,
     View,
     Image,
-    TouchableWithoutFeedback,
-    Keyboard,
-    KeyboardAvoidingView
 } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import {
     Button,
     Input
@@ -55,7 +50,7 @@ const AccountEditScreen = ({ navigation }) => {
     };
 
     return(
-        <ScreenContainer>
+        <ScreenContainer >
             <Header navigation={navigation} />
             <View style={styles.form}>
                 <View style={styles.profilePictureUpload}>
@@ -115,9 +110,6 @@ const AccountEditScreen = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-    },
     form: {
         justifyContent: 'center',
         paddingBottom: 250

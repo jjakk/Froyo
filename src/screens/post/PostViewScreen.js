@@ -10,6 +10,7 @@ import {
     Platform,
     RefreshControl
 } from 'react-native';
+import ScreenContainer from '../../components/ScreenContainer';
 import Header from '../../components/Header';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import CommentBar from '../../components/CommentBar';
@@ -68,60 +69,44 @@ const PostViewScreen = ({ navigation }) => {
     };
 
     return (
-        <SafeAreaView
-            style={styles.container}
-        >
-            <TouchableWithoutFeedback
-                style={styles.container}
-                onPress={Keyboard.dismiss}
-            >
-                <KeyboardAvoidingView
-                    behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-                    keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : 50}
-                    style={styles.container}
+        <ScreenContainer style={styles.container}>
+                <Header navigation={navigation} />
+                <ScrollView
+                    contentContainerStyle={styles.contentView}
+                    refreshControl={
+                        <RefreshControl
+                            refreshing={refreshing}
+                            onRefresh={onRefresh}
+                        />
+                    }
                 >
-                    <View style={styles.container}>
-                        <Header navigation={navigation} />
-                        <ScrollView
-                            contentContainerStyle={styles.contentView}
-                            refreshControl={
-                                <RefreshControl
-                                    refreshing={refreshing}
-                                    onRefresh={onRefresh}
-                                />
-                            }
-                        >
-                            <Post
-                                data={post}
-                                clickable={false}
-                                onDelete={onBack}
-                            />
-                            <CommentList
-                                comments={comments}
-                                loading={loadingComments}
-                                onDeleteComment={refreshPost}
-                            />
-                        </ScrollView>
-                        <CommentBar
-                            parent_id={post.id}
-                            onCreateComment={refreshPost}
-                        />
-                        <ErrorMessage
-                            type='box'
-                            message={postError || commentError}
-                            clearFunctions={[postClear, commentClear]}
-                            style={styles.error}
-                        />
-                    </View>
-                </KeyboardAvoidingView>
-            </TouchableWithoutFeedback>
-        </SafeAreaView>
+                    <Post
+                        data={post}
+                        clickable={false}
+                        onDelete={onBack}
+                    />
+                    <CommentList
+                        comments={comments}
+                        loading={loadingComments}
+                        onDeleteComment={refreshPost}
+                    />
+                </ScrollView>
+                <CommentBar
+                    parent_id={post.id}
+                    onCreateComment={refreshPost}
+                />
+                <ErrorMessage
+                    type='box'
+                    message={postError || commentError}
+                    clearFunctions={[postClear, commentClear]}
+                    style={styles.error}
+                />
+        </ScreenContainer>
     );
 };
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
         backgroundColor: '#FFFFFF',
     },
     post: {

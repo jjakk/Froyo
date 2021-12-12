@@ -3,20 +3,23 @@ import {
     StyleSheet,
     TouchableWithoutFeedback,
     KeyboardAvoidingView,
-    Keyboard
+    Keyboard,
+    Platform,
+    View
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const ScreenContainer = (props) => {
     const {
         children,
-        style
+        style,
+        ...restOfProps
     } = props;
 
     return (
         <SafeAreaView
+            {...restOfProps}
             style={[styles.container, style]}
-            edges={['top']}
         >
             <TouchableWithoutFeedback
                 style={styles.container}
@@ -26,7 +29,9 @@ const ScreenContainer = (props) => {
                     behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
                     style={styles.container}
                 >
-                    {children}
+                    <View style={styles.container}>
+                        {children}
+                    </View>
                 </KeyboardAvoidingView>
             </TouchableWithoutFeedback>
         </SafeAreaView>

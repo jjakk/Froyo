@@ -13,6 +13,7 @@ import {
     Button,
     Input
 } from '../../components/froyo-elements';
+import ScreenContainer from '../../components/ScreenContainer';
 import Header from '../../components/Header';
 import ErrorMessage from '../../components/ErrorMessage';
 import { Context as AuthContext } from '../../context/AuthContext';
@@ -54,72 +55,62 @@ const AccountEditScreen = ({ navigation }) => {
     };
 
     return(
-        <SafeAreaView style={styles.container}>
-            <TouchableWithoutFeedback
-                style={styles.container}
-                onPress={Keyboard.dismiss}
-            >
-                <KeyboardAvoidingView
-                    behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-                    style={styles.container}
-                >
-                    <Header navigation={navigation} />
-                    <View style={styles.form}>
-                        <View style={styles.profilePictureUpload}>
-                            <Image
-                                source={require('../../../assets/icons/guest.png')}
-                                style={styles.profilePicture}
-                            />
-                            <View style={styles.filter}></View>
-                            <UploadIcon width={35} height={35} style={styles.uploadIcon} />
-                        </View>
-                        <View style={styles.fields}>
-                            <View style={[styles.field, styles.nameInputs]}>
-                                <View style={styles.nameInputContainer}>
-                                    <Input
-                                        placeholder='First'
-                                        value={firstName}
-                                        onChangeText={setFirstName}
-                                    />
-                                </View>
-                                <View style={styles.gap}></View>
-                                <View style={styles.nameInputContainer}>
-                                    <Input
-                                        placeholder='Last'
-                                        value={lastName}
-                                        onChangeText={setLastName}
-                                    />
-                                </View>
-                            </View>
+        <ScreenContainer>
+            <Header navigation={navigation} />
+            <View style={styles.form}>
+                <View style={styles.profilePictureUpload}>
+                    <Image
+                        source={require('../../../assets/icons/guest.png')}
+                        style={styles.profilePicture}
+                    />
+                    <View style={styles.filter}></View>
+                    <UploadIcon width={35} height={35} style={styles.uploadIcon} />
+                </View>
+                <View style={styles.fields}>
+                    <View style={[styles.field, styles.nameInputs]}>
+                        <View style={styles.nameInputContainer}>
                             <Input
-                                style={styles.field}
-                                placeholder='Username'
-                                value={username}
-                                onChangeText={setUsername}
-                            />
-                            <Input
-                                style={[styles.field, styles.description]}
-                                textStyle={styles.descriptionText}
-                                multiline
-                                numberOfLines={4}
-                                placeholder='Description'
-                                value={description}
-                                onChangeText={setDescription}
+                                placeholder='First'
+                                value={firstName}
+                                onChangeText={setFirstName}
                             />
                         </View>
-                        <Button
-                            title='Save'
-                            color='#41CA99'
-                            textColor='white'
-                            loading={loading}
-                            buttonStyle={styles.submit}
-                            onPress={handleSubmit}
-                        />
-                        <ErrorMessage message={errorMessage} style={styles.errorMessage} />
+                        <View style={styles.gap}></View>
+                        <View style={styles.nameInputContainer}>
+                            <Input
+                                placeholder='Last'
+                                value={lastName}
+                                onChangeText={setLastName}
+                            />
+                        </View>
                     </View>
-                </KeyboardAvoidingView>
-            </TouchableWithoutFeedback>
-        </SafeAreaView>
+                    <Input
+                        style={styles.field}
+                        placeholder='Username'
+                        value={username}
+                        onChangeText={setUsername}
+                    />
+                    <Input
+                        style={[styles.field, styles.description]}
+                        textStyle={styles.descriptionText}
+                        multiline
+                        numberOfLines={4}
+                        placeholder='Description'
+                        value={description}
+                        onChangeText={setDescription}
+                    />
+                </View>
+                <Button
+                    title='Save'
+                    color='#41CA99'
+                    textColor='white'
+                    loading={loading}
+                    buttonStyle={styles.submit}
+                    onPress={handleSubmit}
+                />
+                <ErrorMessage message={errorMessage} style={styles.errorMessage} />
+            </View>
+        </ScreenContainer>
     );
 };
 

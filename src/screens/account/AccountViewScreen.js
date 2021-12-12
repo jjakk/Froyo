@@ -7,8 +7,8 @@ import {
     ScrollView,
     RefreshControl
 } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { NavigationEvents } from 'react-navigation';
+import ScreenContainer from '../../components/ScreenContainer';
 // Context
 import { Context as AuthContext } from '../../context/AuthContext';
 import { Context as PostContext } from '../../context/PostContext';
@@ -61,10 +61,7 @@ const AccountViewScreen = () => {
     };
 
     return(
-        <SafeAreaView
-            style={styles.container}
-            edges={['top']}
-        >
+        <ScreenContainer style={styles.container}>
             <NavigationEvents onDidFocus={handleDidFocus} />
             <ScrollView
                 showsVerticalScrollIndicator={false}
@@ -93,7 +90,7 @@ const AccountViewScreen = () => {
                 clearFunctions={[clearAuth, clearPost]}
                 style={styles.error}
             />
-        </SafeAreaView>
+        </ScreenContainer>
     );
 };
 
@@ -103,7 +100,6 @@ AccountViewScreen.navigationOptions = {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
         backgroundColor: 'white'
     },
     mainView: {

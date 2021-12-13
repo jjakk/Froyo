@@ -15,7 +15,11 @@ const NoWifiScreen = ({ navigation }) => {
         <SafeAreaView style={styles.container}>
             <View style={styles.main}>
                 <View style={styles.label}>
-                    <NoWifiIcon style={styles.icon}/>
+                    <NoWifiIcon
+                        style={styles.icon}
+                        width={50}
+                        height={50}
+                    />
                     <Text style={styles.text}>No Wifi</Text>
                 </View>
                 <Button

@@ -1,6 +1,13 @@
 import React, { useEffect, useContext } from 'react';
-import { Image, StyleSheet, View } from 'react-native';
+// Components
+import {
+    Image,
+    StyleSheet,
+    View
+} from 'react-native';
+import ScreenContainer from '../../components/ScreenContainer';
 import * as Progress from 'react-native-progress';
+// Context
 import { Context as AuthContext } from '../../context/AuthContext';
 
 const ResolveAuthScreen = () => {
@@ -10,20 +17,20 @@ const ResolveAuthScreen = () => {
     }, []);
 
     return (
-        <View style={styles.container}>
+        <ScreenContainer style={styles.container}>
             <View style={styles.animation}>
                 <Image style={styles.logo} source={require('../../../assets/logo/Logo-White.png')} />
-                <Progress.Bar style={styles.bar} indeterminate={true} width={104} color='white' />
+                <Progress.Bar style={styles.bar} indeterminate={true} width={50} color='white' />
             </View>
-        </View>
+        </ScreenContainer>
     );
 };
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
+        flexDirection: 'row',
         backgroundColor: '#41CA99'
     },
     animation: {

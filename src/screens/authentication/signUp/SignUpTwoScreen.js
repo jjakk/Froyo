@@ -1,20 +1,16 @@
 import React, { useContext, useState } from 'react';
+// Components
 import {
-    SafeAreaView,
     View,
-    StatusBar,
-    TouchableWithoutFeedback,
-    TouchableOpacity,
-    KeyboardAvoidingView,
     Keyboard,
     StyleSheet,
-    Platform
 } from 'react-native';
 import {
     Text,
     Input,
     Button
 } from '../../../components/froyo-elements';
+import ScreenContainer from '../../../components/ScreenContainer';
 import Header from '../../../components/Header';
 import { Context as AuthContext } from '../../../context/AuthContext';
 import ErrorMessage from '../../../components/ErrorMessage';
@@ -36,7 +32,15 @@ const SignUpTwoScreen = ({ navigation }) => {
     const handleSubmit = () => {
         setLoading(true);
         Keyboard.dismiss();
-        signUp({ email, username, dob, first_name: firstName, last_name: lastName, password, passwordConfirm }, (success) => {
+        signUp({
+            email,
+            username,
+            dob,
+            first_name: firstName,
+            last_name: lastName,
+            password,
+            passwordConfirm
+        }, (success) => {
             setLoading(false);
             if(success){
                 navigation.navigate('mainFlow');
@@ -45,36 +49,27 @@ const SignUpTwoScreen = ({ navigation }) => {
     };
 
     return (
-        <SafeAreaView style={styles.container} forceInset={{top: 'always'}}>
-            <TouchableWithoutFeedback style={styles.container} onPress={Keyboard.dismiss}>
-                <KeyboardAvoidingView
-                    behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-                    style={styles.container}
-                >
-                    <View style={{flex: 1}}>
-                        <Header navigation={navigation} />
-                        <View style={styles.auth}>
-                            <Text style={styles.header}>Sign up</Text>
-                            <Input style={styles.input} placeholder='First name' onChangeText={setFirstName} />
-                            <Input style={styles.input} placeholder='Last name' onChangeText={setLastName} />
-                            <Input style={styles.input} placeholder='Password' onChangeText={setPassword} secureTextEntry />
-                            <Input style={styles.input} placeholder='Confirm Password' onChangeText={setPasswordConfirm} secureTextEntry />
-                            <Button
-                                title='Sign up'
-                                color='#41CA99'
-                                textColor='white'
-                                type='primary'
-                                loading={loading}
-                                buttonStyle={styles.submit}
-                                containerStyle={styles.submitContainer}
-                                onPress={handleSubmit}
-                            />
-                            <ErrorMessage message={errorMessage} />
-                        </View>
-                    </View>
-                </KeyboardAvoidingView>
-            </TouchableWithoutFeedback>
-        </SafeAreaView>
+        <ScreenContainer>
+            <Header navigation={navigation} />
+            <View style={styles.auth}>
+                <Text style={styles.header}>Sign up</Text>
+                <Input style={styles.input} placeholder='First name' onChangeText={setFirstName} />
+                <Input style={styles.input} placeholder='Last name' onChangeText={setLastName} />
+                <Input style={styles.input} placeholder='Password' onChangeText={setPassword} secureTextEntry />
+                <Input style={styles.input} placeholder='Confirm Password' onChangeText={setPasswordConfirm} secureTextEntry />
+                <Button
+                    title='Sign up'
+                    color='#41CA99'
+                    textColor='white'
+                    type='primary'
+                    loading={loading}
+                    buttonStyle={styles.submit}
+                    containerStyle={styles.submitContainer}
+                    onPress={handleSubmit}
+                />
+                <ErrorMessage message={errorMessage} />
+            </View>
+        </ScreenContainer>
     );
 };
 

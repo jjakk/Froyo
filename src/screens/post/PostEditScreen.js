@@ -1,12 +1,13 @@
 import React from 'react';
-import { SafeAreaView } from 'react-native-safe-area-context';
+// Components
 import { Text } from '../../components/froyo-elements';
+import ScreenContainer from '../../components/ScreenContainer';
 
 const PostEditScreen = () => {
     return (
-        <SafeAreaView>
+        <ScreenContainer>
             <Text>PostEditScreen</Text>
-        </SafeAreaView>
+        </ScreenContainer>
     );
 };
 

@@ -1,8 +1,11 @@
 import React from 'react';
-import { StyleSheet, View, StatusBar } from 'react-native';
+// Components
+import { StyleSheet, View } from 'react-native';
 import { Text, Button } from '../components/froyo-elements';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import ScreenContainer from '../components/ScreenContainer';
+// Icons
 import NoWifiIcon from '../../assets/icons/NoWifi.svg';
+// Constants
 import { colors } from '../constants/constants';
 
 const NoWifiScreen = ({ navigation }) => {
@@ -12,7 +15,7 @@ const NoWifiScreen = ({ navigation }) => {
     }
 
     return (
-        <SafeAreaView style={styles.container}>
+        <ScreenContainer style={styles.container}>
             <View style={styles.main}>
                 <View style={styles.label}>
                     <NoWifiIcon
@@ -29,21 +32,21 @@ const NoWifiScreen = ({ navigation }) => {
                     onPress={onReconnect}
                 />
             </View>
-        </SafeAreaView>
+        </ScreenContainer>
     );
 }
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
         backgroundColor: colors.LIGHT_GREY,
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        flexDirection: 'row'
     },
     main: {
         alignItems: 'center',
         justifyContent: 'center',
-        marginBottom: 100
+        marginBottom: 200,
     },
     label: {
         flexDirection: 'row',

@@ -14,7 +14,6 @@ const PostList = (props) => {
         emptyMessage,
         onPostDelete
     } = props;
-    console.log(posts);
 
     // Sort posts before rendering
     useEffect(() => {

@@ -4,19 +4,20 @@ import {
     View,
     StyleSheet,
     Keyboard,
-//    TouchableOpacity
 } from 'react-native';
 import {
     Button,
     Input,
-//    Text
 } from '../../components/froyo-elements';
 import ScreenContainer from '../../components/ScreenContainer';
 import Header from '../../components/Header';
-//import * as MediaLibrary from 'expo-media-library';
-import { Context as PostContext } from '../../context/PostContext';
 import ErrorMessage from '../../components/ErrorMessage';
-//import PlusIcon from '../../../assets/icons/Plus.svg';
+// Constants
+import { colors } from '../../constants/constants';
+// Context
+import { Context as PostContext } from '../../context/PostContext';
+// Icons
+import SendIcon from '../../../assets/icons/Send.svg';
 
 const PostCreateScreen = ({ navigation }) => {
     const [postBody, setPostBody] = useState('');
@@ -61,7 +62,14 @@ const PostCreateScreen = ({ navigation }) => {
 
     return (
         <ScreenContainer>
-            <Header navigation={navigation} />
+            <Header
+                navigation={navigation}
+                RightIcon={SendIcon}
+                rightIconColor={colors.FROYO_GREEN}
+                rightIconOnPress={handleSubmit}
+                rightIconSize={30}
+                leftIconSize={30}
+            />
             <View style={styles.bodyContainer}>
                 <Input
                     style={styles.body}
@@ -80,15 +88,6 @@ const PostCreateScreen = ({ navigation }) => {
                 </View>
             </TouchableOpacity>
             */}
-            <Button
-                containerStyle={styles.submit}
-                type='primary'
-                title='Post'
-                color='#41CA99'
-                textColor='white'
-                loading={loading}
-                onPress={handleSubmit}
-            />
             <ErrorMessage message={errorMessage} />
         </ScreenContainer>
     );

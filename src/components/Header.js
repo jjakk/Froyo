@@ -1,24 +1,41 @@
 import React from 'react';
-// Navigation
-import { navigate } from '../navigation/navigationRef';
 // Components
 import { StyleSheet, View } from 'react-native';
 import { TouchableIcon } from './froyo-elements';
 import BackIcon from '../../assets/icons/Back.svg';
 
-const Header = ({ navigation }) => {
+const Header = (props) => {
+    const {
+        navigation,
+        style,
+        RightIcon,
+        rightIconOnPress,
+        rightIconColor,
+        rightIconSize,
+        leftIconSize
+    } = props;
+
     const onBack = () => {
         navigation.pop();
     };
 
     return (
-        <View style={styles.header}>
+        <View style={[styles.header, style]}>
             <TouchableIcon
                 Icon={BackIcon}
-                size={25}
+                size={leftIconSize}
                 onPress={onBack}
-                style={styles.back}
             />
+            {
+                RightIcon ? (
+                    <TouchableIcon
+                        Icon={RightIcon}
+                        size={rightIconSize}
+                        onPress={rightIconOnPress}
+                        color={rightIconColor}
+                    />
+                ) : null
+            }
         </View>
     );
 }
@@ -28,8 +45,14 @@ const styles = StyleSheet.create({
         borderBottomColor: '#F2F2F2',
         borderBottomWidth: 2,
         padding: 20,
-        flexDirection: 'row'
+        flexDirection: 'row',
+        justifyContent: 'space-between'
     },
 });
+
+Header.defaultProps = {
+    rightIconSize: 25,
+    leftIconSize: 25
+};
 
 export default Header;

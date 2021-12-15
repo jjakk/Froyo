@@ -1,10 +1,11 @@
 import React from 'react';
 // Components
 import {
-    StyleSheet
+    StyleSheet,
+    TouchableWithoutFeedback
 } from 'react-native';
 import {
-    TouchableIcon
+    TouchableIcon,
 } from '../components/froyo-elements';
 import ScreenContainer from '../components/ScreenContainer';
 import PostList from '../components/content/PostList';
@@ -31,6 +32,7 @@ const FeedScreen = ({ navigation }) => {
             />
             <TouchableIcon
                 Icon={CreatePostIcon}
+                TouchableComponent={TouchableWithoutFeedback}
                 size={50}
                 style={styles.createPost}
                 onPress={onCreatePost}
@@ -43,7 +45,7 @@ const styles = StyleSheet.create({
     createPost: {
         position: 'absolute',
         bottom: 20,
-        right: 20,
+        right: 20
     }
 });
 

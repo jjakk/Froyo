@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, TouchableOpacity } from 'react-native';
+import { TouchableOpacity } from 'react-native';
 
 const TouchableIcon = (props) => {
     const {
@@ -7,18 +7,21 @@ const TouchableIcon = (props) => {
         size,
         color,
         style,
-        onPress
+        onPress,
+        TouchableComponent
     } = props;
     
+    const Touchable = TouchableComponent || TouchableOpacity;
+    
     return (
-        <TouchableOpacity onPress={onPress}>
+        <Touchable onPress={onPress}>
             <Icon
                 width={size}
                 height={size}
                 color={color}
                 style={style}
             />
-        </TouchableOpacity>
+        </Touchable>
     );
 };
 

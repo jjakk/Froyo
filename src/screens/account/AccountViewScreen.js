@@ -84,6 +84,7 @@ const AccountViewScreen = () => {
                     posts={posts}
                     loading={loadingContent}
                     emptyMessage="You haven't posted anything yet"
+                    emptyMessageAlign='flex-start'
                     onPostDelete={reloadContent}
                 />
             </ScrollView>

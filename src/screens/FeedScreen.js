@@ -2,13 +2,11 @@ import React, { useEffect } from 'react';
 import {
     FlatList,
     StyleSheet,
-    TouchableOpacity,
-    TouchableWithoutFeedback
+    TouchableOpacity
 } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { TouchableIcon } from '../components/froyo-elements';
+import ScreenContainer from '../components/ScreenContainer';
 import PostList from '../components/content/PostList';
-import Post from '../components/content/Post';
-import EmptyMessage from '../components/EmptyMessage';
 import CreatePostIcon from '../../assets/icons/CreatePost.svg';
 
 const FeedScreen = ({ navigation }) => {
@@ -37,46 +35,52 @@ Never gonna say goodbye. Never gonna tell a lie and hurt you`
         }*/
     ];
 
+    // Event Handlers
+    const onCreatePost = () => {
+        navigation.navigate('PostCreate');
+    }
+
     useEffect(() => {
         // Get posts from server
     }, []);
 
     return (
-        <SafeAreaView style={styles.container}>
+        <ScreenContainer
+            style={styles.container}
+            edges={['top']}
+        >
             <PostList
                 posts={dummyPosts}
                 loading={false}
                 emptyMessage='Follow people to populate your feed'
                 onPostDelete={() => {}}
+                style={styles.postList}
             />
-            <TouchableOpacity
-                onPress={() => navigation.navigate('PostCreate')}
+            <TouchableIcon
+                Icon={CreatePostIcon}
+                size={50}
                 style={styles.createPost}
-            >
-                <CreatePostIcon width={50} height={50}/>
-            </TouchableOpacity>
-        </SafeAreaView>
+                onPress={onCreatePost}
+            />
+        </ScreenContainer>
     );
 };
 
 const styles = StyleSheet.create({
-    createPost: {
-        position: 'absolute',
-        bottom: 20,
-        right: 20,
-    },
     container: {
         backgroundColor: '#F2F2F2',
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
     },
-    postList: {
-        flex: 1,
-        flexDirection: 'column',
+    createPost: {
+        position: 'absolute',
+        bottom: 20,
+        right: 20,
     },
-    emptyMessage: {
-        marginBottom: 100,
+    postList: {
+        flexDirection: 'column',
+        backgroundColor: 'orange'
     }
 });
 

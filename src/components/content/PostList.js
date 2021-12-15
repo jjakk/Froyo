@@ -12,7 +12,9 @@ const PostList = (props) => {
         loading,
         sortBy,
         emptyMessage,
-        onPostDelete
+        emptyMessageAlign,
+        onPostDelete,
+        style
     } = props;
 
     // Sort posts before rendering
@@ -31,7 +33,7 @@ const PostList = (props) => {
     }, [posts]);
 
     return (
-        <View style={styles.posts}>
+        <View style={[styles.posts, style]}>
             {
                 !loading ?
                     (
@@ -52,7 +54,12 @@ const PostList = (props) => {
                             </View>
                         ) : (
                             <EmptyMessage
-                                style={styles.emptyMessage}
+                                style={[
+                                    styles.emptyMessage,
+                                    {
+                                        alignSelf: emptyMessageAlign
+                                    }
+                                ]}
                                 subheaderText={emptyMessage}
                             />
                         )
@@ -74,7 +81,7 @@ const styles = StyleSheet.create({
     posts: {
         marginTop: 15,
         justifyContent: 'center',
-        alignItems: 'center',
+        flexDirection: 'row',
         flex: 1
     },
     postView: {
@@ -88,12 +95,15 @@ const styles = StyleSheet.create({
         marginTop: 50,
     },
     postLoading: {
-        marginTop: 50,
+        alignSelf: 'flex-start',
+        backgroundColor: 'orange',
+        marginTop: 50
     }
 });
 
 PostList.defaultProps = {
-    sortBy: 'new'
+    sortBy: 'new',
+    emptyMessageAlign: 'center'
 };
 
 export default PostList;

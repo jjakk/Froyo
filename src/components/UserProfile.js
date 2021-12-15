@@ -140,6 +140,7 @@ const styles = StyleSheet.create({
     auth: {
         margin: 25,
         marginTop: 10,
+        marginBottom: 0,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center'

@@ -9,7 +9,9 @@ import SearchBar from '../components/SearchBar';
 const SearchScreen = () => {
 
     return (
-        <ScreenContainer>
+        <ScreenContainer
+            edges={['top']}
+        >
             <SearchBar onSearch={() => {}} />
             <View style={styles.results}></View>
         </ScreenContainer>

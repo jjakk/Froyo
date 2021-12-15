@@ -6,6 +6,7 @@ import {
     TouchableWithoutFeedback
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import PostList from '../components/content/PostList';
 import Post from '../components/content/Post';
 import EmptyMessage from '../components/EmptyMessage';
 import CreatePostIcon from '../../assets/icons/CreatePost.svg';
@@ -42,31 +43,12 @@ Never gonna say goodbye. Never gonna tell a lie and hurt you`
 
     return (
         <SafeAreaView style={styles.container}>
-            {
-                dummyPosts.length !== 0 ? (
-                    <FlatList
-                        showsVerticalScrollIndicator={false}
-                        data={dummyPosts}
-                        style={styles.postList}
-                        keyExtractor={item => item.id}
-                        renderItem={({ item }) => {
-                            return (
-                                <Post
-                                    author={item.author}
-                                    age={item.age}
-                                    text={item.text}
-                                />
-                            );
-                        }}
-                    />
-                )
-                : (
-                    <EmptyMessage
-                        style={styles.emptyMessage}
-                        subheaderText="Follow people to populate your feed"
-                    />
-                )
-            }
+            <PostList
+                posts={dummyPosts}
+                loading={false}
+                emptyMessage='Follow people to populate your feed'
+                onPostDelete={() => {}}
+            />
             <TouchableOpacity
                 onPress={() => navigation.navigate('PostCreate')}
                 style={styles.createPost}
@@ -75,10 +57,6 @@ Never gonna say goodbye. Never gonna tell a lie and hurt you`
             </TouchableOpacity>
         </SafeAreaView>
     );
-};
-
-FeedScreen.navigationOptions = {
-    headerShown: false
 };
 
 const styles = StyleSheet.create({

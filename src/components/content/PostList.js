@@ -6,7 +6,7 @@ import EmptyMessage from '../EmptyMessage';
 import Post from './Post';
 
 const PostList = (props) => {
-    const [postsRender, setPostsRender] = React.useState(null);
+    const [postsRender, setPostsRender] = React.useState([]);
     const {
         posts,
         loading,
@@ -14,6 +14,7 @@ const PostList = (props) => {
         emptyMessage,
         onPostDelete
     } = props;
+    console.log(posts);
 
     // Sort posts before rendering
     useEffect(() => {

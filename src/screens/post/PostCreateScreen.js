@@ -6,7 +6,6 @@ import {
     Keyboard,
 } from 'react-native';
 import {
-    Button,
     Input,
 } from '../../components/froyo-elements';
 import ScreenContainer from '../../components/ScreenContainer';

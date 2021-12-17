@@ -6,14 +6,12 @@ import {
     TouchableOpacity
 } from 'react-native';
 // Context
-import { Context as AuthContext } from '../../context/AuthContext';
 import { Context as CommentContext } from '../../context/CommentContext';
 // Components
 import {
     Text,
     TouchableIcon
 } from '../../components/froyo-elements';
-import Header from './parts/Header';
 import MoreOptions from './parts/MoreOptions';
 // Constants
 import { colors, sizes } from '../../constants/constants';
@@ -24,11 +22,9 @@ import DislikeIconFill from '../../../assets/icons/Dislike-Fill.svg';
 import LikeIconOutline from '../../../assets/icons/Like-Outline.svg';
 import DislikeIconOutline from '../../../assets/icons/Dislike-Outline.svg';
 
-const ACTION_SIZE = 25;
 const ACTION_COLOR = 'black';
 
 const Comment = (props) => {
-    const { state: { user } } = useContext(AuthContext);
     const { getComment, likeComment, dislikeComment } = useContext(CommentContext);
     
     const {
@@ -40,22 +36,28 @@ const Comment = (props) => {
     const [comment, setComment] = useState(data);
 
     // Update comment information from context
-    const updateComment = () => {
-        getComment(comment.id, newComment => {
-            setComment(newComment);
+    const updateComment = async () => {
+        await getComment(comment.id, (newComment, err) => {
+            if(!err) setComment(newComment);
         });
     };
 
     // When like button is pressed
     const handleLike = async () => {
-        await likeComment(comment._id);
-        await updateComment();
+        await likeComment(comment.id, async (err) => {
+            if (!err) {
+                await updateComment();
+            }
+        });
     };
 
     // When dislike button is pressed
     const handleDislike = async () => {
-        await dislikeComment(comment._id);
-        await updateComment();
+        await dislikeComment(comment.id, async (err) => {
+            if (!err) {
+                await updateComment();
+            }
+        });
     };
 
     return (
@@ -78,14 +80,12 @@ const Comment = (props) => {
                             size={sizes.ACTION_ICON}
                             onPress={handleLike}
                             Icon={
-                                //comment.likes.includes(user._id)
-                                //? LikeIconFill : LikeIconOutline
-                                LikeIconOutline
+                                comment.liking
+                                ? LikeIconFill : LikeIconOutline
                             }
                             color={
-                                //comment.likes.includes(user._id)
-                                //? colors.FROYO_GREEN : 'black'
-                                'black'
+                                comment.liking
+                                ? colors.FROYO_GREEN : 'black'
                             }
                         />
                         {/* Disike Button */}
@@ -94,14 +94,12 @@ const Comment = (props) => {
                             onPress={handleDislike}
                             style={styles.dislike}
                             Icon={
-                                //comment.dislikes.includes(user._id)
-                                //? DislikeIconFill : DislikeIconOutline
-                                DislikeIconOutline
+                                comment.disliking
+                                ? DislikeIconFill : DislikeIconOutline
                             }
                             color={
-                                //comment.dislikes.includes(user._id)
-                                //? colors.DISLIKE_RED : 'black'
-                                'black'
+                                comment.disliking
+                                ? colors.DISLIKE_RED : 'black'
                             }
                         />
                     </View>

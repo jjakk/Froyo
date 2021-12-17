@@ -50,7 +50,7 @@ const getComment = () => async (commentId, callback) => {
                 firstName,
                 lastName
             }
-        } = await froyoApi.get(`/users/${response.data.author}`);
+        } = await froyoApi.get(`/users/${response.data.author_id}`);
         const comment = {
             ...response.data,
             authorName: (firstName + ' ' + lastName)

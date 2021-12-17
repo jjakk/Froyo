@@ -71,7 +71,7 @@ const PostViewScreen = ({ navigation }) => {
     // Handle refresh pull down
     const onRefresh = async () => {
         setRefreshing(true);
-        await refreshPost(true);
+        await refreshPost();
         setRefreshing(false);
     };
 

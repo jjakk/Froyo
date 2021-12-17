@@ -18,23 +18,35 @@ import ErrorMessage from '../../../components/ErrorMessage';
 import { Context as AuthContext } from '../../../context/AuthContext';
 
 const SignUpScreenOne = ({ navigation }) => {
-    const { continueSignUp, clearErrorMessage, state: { errorMessage } } = useContext(AuthContext);
-    const [loading, setLoading] = useState(false);
+    const { continueSignUp } = useContext(AuthContext);
+    // Form feilds
     const [email, setEmail] = useState('');
     const [username, setUsername] = useState('');
     const [dob, setDob] = useState('');
+    // Status states
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState('');
 
+    // Event Handlers
     const handleSubmit = () => {
         setLoading(true);
         Keyboard.dismiss();
-        clearErrorMessage();
-        continueSignUp({ email, username, dob }, (success) => {
+        setError('');
+        continueSignUp({ email, username, dob }, (err) => {
             setLoading(false);
-            if(success){
+            if (err) {
+                setError(err);
+            }
+            else {
                 navigation.navigate('SignUpTwo', { email, username, dob });
             }
         });
     }
+    
+    const handleRefSignIn = () => {
+        setError('');
+        navigation.navigate('SignIn')
+    };
 
     return (
         <ScreenContainer>
@@ -74,14 +86,11 @@ const SignUpScreenOne = ({ navigation }) => {
                     <Text>Already have an account?</Text>
                     <Link
                         color='#41CA99'
-                        onPress={() => {
-                            clearErrorMessage();
-                            navigation.navigate('SignIn')
-                        }}
+                        onPress={handleRefSignIn}
                     >
                         Sign in
                     </Link>
-                    <ErrorMessage message={errorMessage} />
+                    <ErrorMessage message={error} />
                 </View>
             </View>
         </ScreenContainer>

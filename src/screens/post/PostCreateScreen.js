@@ -19,44 +19,32 @@ import { Context as PostContext } from '../../context/PostContext';
 import SendIcon from '../../../assets/icons/Send.svg';
 
 const PostCreateScreen = ({ navigation }) => {
-    const [postBody, setPostBody] = useState('');
-    const [loading, setLoading] = useState(false);
     const { createPost, clearErrorMessage, state: { errorMessage } } = useContext(PostContext);
-
-    const handleUpload = async () => {
-        // Get permission if not granted
-        const permission = await MediaLibrary.getPermissionsAsync();
-        if(!permission.granted){
-            const response = await MediaLibrary.requestPermissionsAsync();
-            if(response.granted){
-                console.log('Permission Granted');
-            }
-            else{
-                console.log('Permission Denied');
-            }
-        }
-        // Request file if permission if granted
-        if(permission.granted){
-            const { uri } = await Camera.takePictureAsync();
-            const asset = await MediaLibrary.createAssetAsync(uri);
-            console.log(asset);
-        }
-    }
+    // Form feilds
+    const [postBody, setPostBody] = useState('');
+    // Status state
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState('');
 
     // Event Handlers
     const handleSubmit = async () => {
         clearErrorMessage();
         Keyboard.dismiss()
         setLoading(true);
-        await createPost({ postBody }, (error) => {
+        await createPost({ postBody }, (err) => {
             setLoading(false);
-            if(!error) navigation.navigate('Feed');
+            if (err) {
+                setError(err);
+            }
+            else {
+                navigation.pop();
+            }
         });
     };
 
     // Delete error message when you type in the post body
     useEffect(() => {
-        if(errorMessage) clearErrorMessage();
+        if(error) setError('');
     }, [postBody]);
 
     return (
@@ -79,15 +67,7 @@ const PostCreateScreen = ({ navigation }) => {
                     onChangeText={setPostBody}
                 />
             </View>
-            {/*}
-            <TouchableOpacity onPress={handleUpload}>
-                <View style={styles.attachment}>
-                    <PlusIcon width={40} height={40} color='#393939' />
-                    <Text style={styles.attachmentText}>Add a photo or video</Text>
-                </View>
-            </TouchableOpacity>
-            */}
-            <ErrorMessage message={errorMessage} />
+            <ErrorMessage message={error} />
         </ScreenContainer>
     );
 };

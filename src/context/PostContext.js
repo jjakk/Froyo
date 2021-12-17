@@ -4,8 +4,6 @@ import froyoApi from '../api/froyo';
 // Handle setting state
 const postReducer = (state, action) => {
     switch(action.type){
-        case 'add_error':
-            return { ...state, errorMessage: action.payload };
         default:
             return state;
     }
@@ -26,18 +24,19 @@ const createPost = (dispatch) => async (info, callback) => {
 };
 
 // DELETE a post by id
-const deletePost = (dispatch) => async (postId, callback) => {
+const deletePost = () => async (postId, callback) => {
     try{
         await froyoApi.delete(`/posts/${postId}`);
+        callback();
     }
     catch(err){
-        dispatch({ type: 'add_error', payload: `Unable to delete post` });
+        callback(err.response.data);
     }
 }
 
 // GET a post by id
 // Use callback if you don't want to change state
-const getPost = (dispatch) => async (postId) => {
+const getPost = () => async (postId, callback) => {
     try{
         const {
             data: unformattedPost
@@ -54,15 +53,15 @@ const getPost = (dispatch) => async (postId) => {
             ...unformattedPost,
             authorName: (first_name + ' ' + last_name)
         };
-        return post;
+        callback(post);
     }
     catch(err){
-        dispatch({ type: 'add_error', payload: `Ran into an error: ${err}` })
+        callback(null, err.response.data);
     }
 }
 
 // GET all the posts of a given user
-const getUserPosts = (dispatch) => async () => {
+const getUserPosts = () => async (callback) => {
     try {
         const { data: unformattedPosts } = await froyoApi.get('/posts');
         let posts = [];
@@ -78,31 +77,32 @@ const getUserPosts = (dispatch) => async () => {
                 authorName: (first_name + ' ' + last_name)
             });
         }
-        return posts;
+        callback(posts);
     }
     catch(err){
-        dispatch({ type: 'add_error', payload: err.message })
-        return [];
+        callback([], err.response.data);
     }
 };
 
 // Like a post (unlikes if already liked)
-const likePost = (dispatch) => async ({ id }) => {
+const likePost = () => async ({ id }, callback) => {
     try{
         await froyoApi.put(`/posts/${id}/like`);
+        callback();
     }
     catch(err){
-        dispatch({ type: 'add_error', payload: `Ran into an error: ${err.message}` })
+        callback(err.response.data);
     }
 };
 
 // Dislike a post (undislikes if already disliked)
-const dislikePost = (dispatch) => async ({ id }) => {
+const dislikePost = () => async ({ id }, callback) => {
     try{
         await froyoApi.put(`/posts/${id}/dislike`);
+        callback();
     }
     catch(err){
-        dispatch({ type: 'add_error', payload: `Ran into an error: ${err.message}` })
+        callback(err.response.data);
     };
 };
 
@@ -121,10 +121,5 @@ export const { Provider, Context } = createDataContext(
         likePost,
         dislikePost,
         clearErrorMessage
-    },
-    {
-        post: {},
-        errorMessage: '',
-        posts: []
-    }
+    }, {}
 );

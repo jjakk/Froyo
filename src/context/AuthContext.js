@@ -7,14 +7,12 @@ import { ageInYears } from '../helperFunctions/age';
 // Handle setting state
 const authReducer = (state, action) => {
     switch(action.type){
-        case 'add_error':
-            return { ...state, errorMessage: action.payload };
         case 'sign_in':
-            return { ...state, token: action.payload, errorMessage: '' };
+            return { ...state, token: action.payload };
         case 'sign_out':
-            return { ...state, token: null, errorMessage: '' };
+            return { ...state, token: null };
         case 'get_user_info':
-            return { ...state, user: action.payload, errorMessage: '' }
+            return { ...state, user: action.payload }
         default:
             return state;
     }
@@ -25,6 +23,14 @@ const authReducer = (state, action) => {
 // Sign in with email and password
 const signIn = (dispatch) => async ({ email, password }, callback) => {
     try{
+        // Check that all fields are complete first
+        switch(''){
+            case email:
+                return callback('Must provide an email');
+            case password:
+                return callback('Must provide a password');
+        }
+        // Get authentication token from API
         const { headers: { authorization } } = await froyoApi.post('/auth/login', { email, password });
         const token = authorization.replace('Bearer ', '');
         await AsyncStorage.setItem('token', token);
@@ -32,89 +38,75 @@ const signIn = (dispatch) => async ({ email, password }, callback) => {
         callback();
     }
     catch(err){
-        let message = err.response.data;
-        dispatch({ type: 'add_error', payload: message });
-        callback(err);
+        callback(err.response.data);
     }
 };
 
 // Verify that the information from the first page of sign up is valid
-const continueSignUp = (dispatch) => async ({ email, username, dob }, callback) => {
+const continueSignUp = () => async ({ email, username, dob }, callback) => {
     try{
         // Check all feilds are filled
         switch(''){
             case email:
-                dispatch({ type: 'add_error', payload: 'Email is required' });
-                callback(false);
-                return;
+                return callback('Email is required');
             case username:
-                dispatch({ type: 'add_error', payload: 'Username is required' });
-                callback(false);
+                return callback('Username is required');
                 return;
             case dob:
-                dispatch({ type: 'add_error', payload: 'Date of Birth is required' });
-                callback(false);
-                return;
+                return callback('Date of Birth is required');
         }
 
         // Check user is old enough
         if(ageInYears(dob) < 13){
-            dispatch({ type: 'add_error', payload: 'You must be 13 years or older to sign up' });
-            callback(false);
-            return;
+            return callback('You must be 13 years or older to sign up');
         }
 
         // Check server if email, and username are valid
         await froyoApi.get(`/auth/validEmail/${email}`);
         await froyoApi.get(`/auth/validUsername/${username}`);
-        callback(true);
+        callback();
     }
     catch(err){
-        let message = err.response.data;
-        dispatch({ type: 'add_error', payload: message });
-        callback(false);
+        callback(err.response.data);
     }
 };
 
 // Create an account & sign in
 const signUp = (dispatch) => async (info, callback) => {
     try{
-        const { email, username, dob, first_name, last_name, password, passwordConfirm } = info;
+        const {
+            email,
+            username,
+            dob,
+            first_name,
+            last_name,
+            password,
+            passwordConfirm
+        } = info;
         // Check all feilds are filled
         switch(''){
             case first_name:
-                dispatch({ type: 'add_error', payload: 'Must enter a first name' });
-                callback(false);
-                return;
+                return callback('Must enter a first name');
             case last_name:
-                dispatch({ type: 'add_error', payload: 'Must enter a last name' });
-                callback(false);
-                return;
+                return callback('Must enter a last name');
             case password:
-                dispatch({ type: 'add_error', payload: 'Must enter a password' });
-                callback(false);
-                return;
+                return callback('Must enter a password');
             case passwordConfirm:
-                dispatch({ type: 'add_error', payload: 'Must confirm password' });
-                callback(false);
-                return;
+                return callback('Must confirm password');
         }
         // Make sure passwords match
         if(password !== passwordConfirm){
-            dispatch({ type: 'add_error', payload: 'Passwords must match' });
-            callback(false);
-            return;
+            return callback('Passwords must match');
         }
+        // Create the user and store their authentication token
         const { headers: { authorization } } = await froyoApi.post('/users/', { email, username, dob, first_name, last_name, password });
         const token = authorization.replace('Bearer ', '');
         await AsyncStorage.setItem('token', token);
         dispatch({ type: 'sign_in', payload: token});
-        callback(true);
+        callback();
     }
     catch(err){
-        let message = err.response.data;
-        dispatch({ type: 'add_error', payload: message });
-        callback(false);
+        callback(err.response.data);
     }
 };
 
@@ -126,19 +118,20 @@ const signOut = (dispatch) => async () => {
 };
 
 // Get a user's information given their auth token
-const getUserInfo = (dispatch) => async () => {
+const getUserInfo = (dispatch) => async (callback) => {
     try{
         const { data: id } = await froyoApi.get('/');
         const { data: user } = await froyoApi.get(`/users/${id}`);
         dispatch({ type: 'get_user_info', payload: user });
+        callback();
     }
     catch(err){
-        dispatch({ type: 'add_error', payload: err.message });
+        callback(err.response.data);
     }
 };
 
 // Update a user's information
-const updateUserInfo = (dispatch) => async (info, callback) => {
+const updateUserInfo = () => async (info, callback) => {
     try{
         const {
             firstName,
@@ -149,17 +142,11 @@ const updateUserInfo = (dispatch) => async (info, callback) => {
         // Check all required fields are filled
         switch(''){
             case firstName:
-                dispatch({ type: 'add_error', payload: 'Must enter a first name' });
-                callback(false);
-                return;
+                return callback('Must enter a first name');
             case lastName:
-                dispatch({ type: 'add_error', payload: 'Must enter a last name' });
-                callback(false);
-                return;
+                return callback('Must enter a last name');
             case username:
-                dispatch({ type: 'add_error', payload: 'Must enter a username' });
-                callback(false);
-                return;
+                return callback('Must enter a username');
         }
         await froyoApi.put('/users', {
             first_name: firstName,
@@ -170,9 +157,7 @@ const updateUserInfo = (dispatch) => async (info, callback) => {
         callback();
     }
     catch(err){
-        console.log(err.response.data);
-        dispatch({ type: 'add_error', payload: err.message });
-        callback(err);
+        callback(err.response.data);
     }
 };
 
@@ -194,11 +179,6 @@ const checkSignedIn = (dispatch) => async () => {
     }
 };
 
-// Clear the error message
-const clearErrorMessage = (dispatch) => () => {
-    dispatch({ type: 'add_error', payload: '' });
-};
-
 export const { Provider, Context } = createDataContext(
     authReducer,
     {
@@ -208,12 +188,7 @@ export const { Provider, Context } = createDataContext(
         checkSignedIn,
         signOut,
         getUserInfo,
-        updateUserInfo,
-        clearErrorMessage
-    },
-    {
-        user: {},
-        errorMessage: ''
-    }
+        updateUserInfo
+    }, { user: {} }
 );
 

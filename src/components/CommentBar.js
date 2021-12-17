@@ -27,7 +27,10 @@ const CommentBar = (props) => {
             parent_id
         };
         await createComment(content, (err) => {
-            if (!err) {
+            if (err) {
+                onCreateComment(err);
+            }
+            else {
                 setCommentText('');
                 onCreateComment();
             }

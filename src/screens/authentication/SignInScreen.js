@@ -17,24 +17,38 @@ import ScreenContainer from '../../components/ScreenContainer';
 import { Context as AuthContext } from '../../context/AuthContext';
 
 const SignInScreen = ({ navigation }) => {
-    const { signIn, clearErrorMessage, state: { errorMessage } } = useContext(AuthContext);
+    const { signIn } = useContext(AuthContext);
+    // Sign in feilds
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    // Status states
     const [loading, setLoading] = useState(false);
+    const [error, setError] = useState('');
 
+    // Event handlers
     const handleSubmit = () => {
-        clearErrorMessage();
+        setError('');
         Keyboard.dismiss()
         setLoading(true);
-        signIn({ email, password }, (error) => {
+        signIn({ email, password }, (err) => {
             setLoading(false);
-            if(!error) navigation.navigate('ResolveAuth');
+            if (err) {
+                setError(err);
+            }
+            else{
+                navigation.navigate('ResolveAuth');
+            }
         });
-    };  
+    };
+
+    const handleRefSignUp = () => {
+        setError('');
+        navigation.navigate('SignUp')
+    };
 
     return (
         <ScreenContainer>
-            <View style={styles.auth}>
+            <View style={styles.form}>
                 <Text style={styles.header}>Sign in</Text>
                 <Input
                     style={styles.input}
@@ -54,21 +68,17 @@ const SignInScreen = ({ navigation }) => {
                     type='primary'
                     loading={loading}
                     buttonStyle={styles.submit}
-                    containerStyle={styles.submitContainer}
                     onPress={handleSubmit}
                 />
                 <View style={styles.bottomText}>
-                    <Text style={{fontSize: 18}}>Don't have an account?</Text>
+                    <Text style={styles.linkLabel}>Don't have an account?</Text>
                     <Link
                         color='#41CA99'
-                        onPress={() => {
-                            clearErrorMessage();
-                            navigation.navigate('SignUp')
-                        }}
+                        onPress={handleRefSignUp}
                     >
                         Sign up
                     </Link>
-                    <ErrorMessage message={errorMessage} />
+                    <ErrorMessage message={error} />
                 </View>
             </View>
         </ScreenContainer>
@@ -80,7 +90,7 @@ SignInScreen.navigationOptions = {
 };
 
 const styles = StyleSheet.create({
-    auth: {
+    form: {
         alignItems: 'center',
         justifyContent: 'center',
         marginTop: 100
@@ -89,25 +99,28 @@ const styles = StyleSheet.create({
         fontSize: 48,
         marginBottom: 15
     },
-    submit: {
-        width: 300
-    },
-    submitContainer: {
+    // Form elements
+    input: {
+        width: 300,
         marginTop: 10,
         marginBottom: 10
     },
     forgotPassword: {
         marginBottom: 5
     },
-    input: {
+    submit: {
         width: 300,
         marginTop: 10,
         marginBottom: 10
     },
+    // Bottom text
     bottomText: {
         margin: 10,
         alignItems: 'center',
         justifyContent: 'center'
+    },
+    linkLabel: {
+        fontSize: 18
     }
 });
 

@@ -4,41 +4,50 @@ import { Button, Text } from '../components/froyo-elements';
 import { LinearGradient } from 'expo-linear-gradient';
 
 const WelcomeScreen = ({ navigation }) => {
+
+    // Event Handlers
+    const handleRefSignIn = () => {
+        navigation.navigate('SignIn')
+    };
+    const handleRefSignUp = () => {
+        navigation.navigate('SignUp')
+    };
+
     return (  
         <LinearGradient
             colors={['#37B899', '#41CA78']}
             style={styles.container}
         >
-            <SafeAreaView>
-                <StatusBar backgroundColor="#37B899" barStyle="light-content" />
+            <StatusBar backgroundColor="#37B899" barStyle="light-content" />
+            <SafeAreaView style={styles.container}>
+                <View style={styles.header}>
+                    <Image
+                        source={require('../../assets/logo/Logo-White.png')}
+                        style={styles.logo}
+                    />
+                    <Text>
+                        <Text style={styles.title}>Froyo</Text>
+                        <Text style={styles.subTitle}>{'\n'}Ethical social media</Text>
+                    </Text>
+                </View>
+                <View style={styles.authOptions}>
+                    <Button
+                        title='Sign in'
+                        color='white'
+                        textColor='#41CA99'
+                        type='primary'
+                        buttonStyle={styles.primary}
+                        onPress={handleRefSignIn}
+                    />
+                    <Button
+                        title='Sign up'
+                        color='white'
+                        type='secondary'
+                        buttonStyle={styles.secondary}
+                        onPress={handleRefSignUp}
+                    />
+                </View>
             </SafeAreaView>
-            <View style={styles.header}>
-                <Image
-                    source={require('../../assets/logo/Logo-White.png')}
-                    style={styles.logo}
-                />
-                <Text>
-                    <Text style={styles.title}>Froyo</Text>
-                    <Text style={styles.subTitle}>{'\n'}Ethical social media</Text>
-                </Text>
-            </View>
-            <View style={styles.authOptions}>
-                <Button
-                    title='Sign in'
-                    color='white'
-                    textColor='#41CA99'
-                    type='primary'
-                    buttonStyle={styles.primary}
-                    onPress={() => navigation.navigate('SignIn')}
-                />
-                <Button
-                    title='Sign up'
-                    color='white'
-                    type='secondary'
-                    buttonStyle={styles.secondary}
-                    onPress={() => navigation.navigate('SignUp')}
-                />
-            </View>
         </LinearGradient>
         
     );
@@ -48,14 +57,14 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
-        
+        justifyContent: 'space-between'
     },
+    // Header
     header: {
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
-        position: 'absolute',
-        top: 150
+        marginTop: 100,
     },
     logo: {
         width: 82,
@@ -72,9 +81,9 @@ const styles = StyleSheet.create({
         fontSize: 18,
         fontFamily: 'Nunito'
     },
+    // Authentication Options
     authOptions: {
-        position: 'absolute',
-        bottom: 75
+        marginBottom: 50
     },
     primary: {
         width: 300,

@@ -1,5 +1,6 @@
 import React, {
     useContext,
+    useEffect,
     useState
 } from 'react';
 import {
@@ -18,34 +19,34 @@ import UserProfile from '../../components/UserProfile';
 import ErrorMessage from '../../components/ErrorMessage';
 
 const AccountViewScreen = () => {
-    const {
-        clearErrorMessage: clearAuth,
-        getUserInfo,
-        state: {
-            user,
-            errorMessage: authError
-        }
-    } = useContext(AuthContext);
-    const {
-        clearErrorMessage: clearPost,
-        getUserPosts,
-        state: {
-            errorMessage: postError,
-        }
-    } = useContext(PostContext);
-    // Boolean to check if the posts have loaded
-    const [loadingContent, setLoadingContent] = useState(true);
-    // Boolean to control whether content is refreshing
-    const [refreshing, setRefreshing] = useState(false);
+    const { getUserInfo, state: { user } } = useContext(AuthContext);
+    const { getUserPosts } = useContext(PostContext);
     // List of posts
     const [posts, setPosts] = useState([]);
+    // Status states
+    const [loading, setLoading] = useState(true);
+    const [refreshing, setRefreshing] = useState(false);
+    const [error, setError] = useState('');
+    
+    const clearError = () => {
+        setError('');
+    };
 
     // Function to retrieve user info & posts
     const reloadContent = async () => {
-        setLoadingContent(true);
-        setPosts(await getUserPosts());
-        await getUserInfo();
-        setLoadingContent(false);
+        setLoading(true);
+        await getUserPosts((posts, err) => {
+            if (err) {
+                setError(err);
+            }
+            else {
+                setPosts(posts);
+            }
+        });
+        await getUserInfo((err) => {
+            if(err) setError(err);
+        });
+        setLoading(false);
     };
 
     // Refresh content when loading this page
@@ -65,7 +66,7 @@ const AccountViewScreen = () => {
             style={styles.container}
             edges={['top']}
         >
-            <NavigationEvents onDidFocus={handleDidFocus} />
+            <NavigationEvents onDidFocus={handleDidFocus}/>
             <ScrollView
                 showsVerticalScrollIndicator={false}
                 contentContainerStyle={styles.mainView}
@@ -78,11 +79,11 @@ const AccountViewScreen = () => {
             >
                 <UserProfile
                     user={user}
-                    loading={loadingContent}
+                    loading={loading}
                 />
                 <PostList
                     posts={posts}
-                    loading={loadingContent}
+                    loading={loading}
                     emptyMessage="You haven't posted anything yet"
                     emptyMessageAlign='flex-start'
                     onPostDelete={reloadContent}
@@ -90,8 +91,8 @@ const AccountViewScreen = () => {
             </ScrollView>
             <ErrorMessage
                 type='box'
-                message={authError || postError}
-                clearFunctions={[clearAuth, clearPost]}
+                message={error}
+                clearError={clearError}
                 style={styles.error}
             />
         </ScreenContainer>

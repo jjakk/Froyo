@@ -25,12 +25,15 @@ const SignUpTwoScreen = ({ navigation }) => {
     const [lastName, setLastName] = useState('');
     const [password, setPassword] = useState('');
     const [passwordConfirm, setPasswordConfirm] = useState('');
+    // Status states
     const [loading, setLoading] = useState(false);
+    const [error, setError] = useState('');
     // Context values & functions
-    const { signUp, state: { errorMessage } } = useContext(AuthContext);
+    const { signUp} = useContext(AuthContext);
 
     const handleSubmit = () => {
         setLoading(true);
+        setError('');
         Keyboard.dismiss();
         signUp({
             email,
@@ -40,9 +43,12 @@ const SignUpTwoScreen = ({ navigation }) => {
             last_name: lastName,
             password,
             passwordConfirm
-        }, (success) => {
+        }, (err) => {
             setLoading(false);
-            if(success){
+            if (err) {
+                setError(err);
+            }
+            else {
                 navigation.navigate('mainFlow');
             }
         });
@@ -53,10 +59,30 @@ const SignUpTwoScreen = ({ navigation }) => {
             <Header navigation={navigation} />
             <View style={styles.auth}>
                 <Text style={styles.header}>Sign up</Text>
-                <Input style={styles.input} placeholder='First name' onChangeText={setFirstName} />
-                <Input style={styles.input} placeholder='Last name' onChangeText={setLastName} />
-                <Input style={styles.input} placeholder='Password' onChangeText={setPassword} secureTextEntry />
-                <Input style={styles.input} placeholder='Confirm Password' onChangeText={setPasswordConfirm} secureTextEntry />
+                <Input
+                    style={styles.input}
+                    placeholder='First name'
+                    autoCorrect={false}
+                    onChangeText={setFirstName}
+                />
+                <Input
+                    style={styles.input}
+                    placeholder='Last name'
+                    autoCorrect={false}
+                    onChangeText={setLastName}
+                />
+                <Input
+                    style={styles.input}
+                    placeholder='Password'
+                    onChangeText={setPassword}
+                    secureTextEntry
+                />
+                <Input
+                    style={styles.input}
+                    placeholder='Confirm Password'
+                    onChangeText={setPasswordConfirm}
+                    secureTextEntry
+                />
                 <Button
                     title='Sign up'
                     color='#41CA99'
@@ -67,7 +93,7 @@ const SignUpTwoScreen = ({ navigation }) => {
                     containerStyle={styles.submitContainer}
                     onPress={handleSubmit}
                 />
-                <ErrorMessage message={errorMessage} />
+                <ErrorMessage message={error} />
             </View>
         </ScreenContainer>
     );

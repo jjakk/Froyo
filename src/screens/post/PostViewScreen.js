@@ -2,17 +2,11 @@ import React, { useContext, useEffect, useState } from 'react';
 // Components
 import {
     StyleSheet,
-    TouchableWithoutFeedback,
-    KeyboardAvoidingView,
-    Keyboard,
     ScrollView,
-    View,
-    Platform,
     RefreshControl
 } from 'react-native';
 import ScreenContainer from '../../components/ScreenContainer';
 import Header from '../../components/Header';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import CommentBar from '../../components/CommentBar';
 import Post from '../../components/content/Post';
 import CommentList from '../../components/content/CommentList';
@@ -22,38 +16,51 @@ import { Context as PostContext } from '../../context/PostContext';
 import { Context as CommentContext } from '../../context/CommentContext';
 
 const PostViewScreen = ({ navigation }) => {
-    const {
-        clearErrorMessage: postClear,
-        getPost,
-        state: {
-            errorMessage: postError
-        }
-    } = useContext(PostContext);
-    const {
-        clearErrorMessage: commentClear,
-        getComments,
-        state: {
-            errorMessage: commentError
-        }
-    } = useContext(CommentContext);
+    const { getPost } = useContext(PostContext);
+    const { getComments } = useContext(CommentContext);
+    // Content
     const [post, setPost] = useState(navigation.getParam('post'));
     const [comments, setComments] = useState([]);
+    // Status state
     const [loadingComments, setLoadingComments] = useState(true);
-    // Boolean to control whether content is refreshing
     const [refreshing, setRefreshing] = useState(false);
+    const [error, setError] = useState('');
 
     // Update comments when post is refreshed
     useEffect(() => {
         (async function(){
             setLoadingComments(true);
-            setComments(await getComments(post));
+            await getComments(post, (comments, err) => {
+                if (err) {
+                    setError(err);
+                }
+                else {
+                    setComments(comments);
+                }
+            });
             setLoadingComments(false);
         })();
     }, [post]);
 
     // Refresh post information (get new comment)
-    const refreshPost = async () => {
-        setPost(await getPost(post.id));
+    const refreshPost = async (err) => {
+        if (err) {
+            setError(err);
+        }
+        else {
+            await getPost(post.id, (post, err) => {
+                if (err) {
+                    setError(err);
+                }
+                else {
+                    setPost(post);
+                }
+            });
+        }
+    };
+
+    const clearError = () => {
+        setError('');
     };
 
     // Event Handlers
@@ -97,8 +104,8 @@ const PostViewScreen = ({ navigation }) => {
                 />
                 <ErrorMessage
                     type='box'
-                    message={postError || commentError}
-                    clearFunctions={[postClear, commentClear]}
+                    message={error}
+                    clearError={clearError}
                     style={styles.error}
                 />
         </ScreenContainer>

@@ -4,19 +4,13 @@ import froyoApi from '../api/froyo';
 // Handle setting state
 const commentReducer = (state, action) => {
     switch(action.type){
-        case 'add_error':
-            return { ...state, errorMessage: action.payload };
-        case 'load_comment':
-            return { ...state, comment: action.payload, errorMessage: '' }
-        case 'load_comments':
-            return { ...state, comments: action.payload, errorMessage: '' }
         default:
             return state;
     }
 };
 
 // POST a comment
-const createComment = (dispatch) => async (info, callback) => {
+const createComment = () => async (info, callback) => {
     try {
         const {
             text,
@@ -24,31 +18,29 @@ const createComment = (dispatch) => async (info, callback) => {
         } = info;
         if(!text || !parent_id){
             const message = !text ? 'Empty comment' : (!parent_id ? 'No parent' : null);
-            dispatch({ type: 'add_error', payload: message });
-            callback(message);
-            return;
+            return callback(message);
         }
         await froyoApi.post('/comments', info);
         callback();
     }
     catch (err) {
-        dispatch({ type: 'add_error', payload: err.message });
-        callback(err.message);
+        callback(err.response.data);
     }
 };
 
 // DELETE a comment
-const deleteComment = (dispatch) => async (postId) => {
+const deleteComment = () => async (postId, callback) => {
     try{
         await froyoApi.delete(`/comments/${postId}`);
+        callback();
     }
     catch(err){
-        dispatch({ type: 'add_error', payload: `Unable to delete post` });
+        callback(err.response.data);
     }
 }
 
 // GET a comment
-const getComment = (dispatch) => async (commentId, callback=(() => {})) => {
+const getComment = () => async (commentId, callback) => {
     try{
         const response = await froyoApi.get(`/comments/${commentId}`);
         // Get author name & add it to the post
@@ -63,57 +55,44 @@ const getComment = (dispatch) => async (commentId, callback=(() => {})) => {
             ...response.data,
             authorName: (firstName + ' ' + lastName)
         };
-        // Don't change state if callback is passed
-        if(callback){
-            callback(comment);
-        }
-        else{
-            dispatch({ type: 'load_comment', payload: comment });
-        }
+        callback(comment);
     }
     catch(err){
-        console.log(err);
-        dispatch({ type: 'add_error', payload: `Ran into an error: ${err}` })
+        callback(null, err.response.data);
     }
 }
 
 // GET all the comments of a given parent
-const getComments = (dispatch) => async ({ id: parentId }) => {
+const getComments = () => async ({ id: parentId }, callback) => {
     try{
         const { data: comments } = await froyoApi.get(`/posts/${parentId}/comments`);
-        return comments;
+        callback(comments);
     }
     catch(err){
-        console.log(err);
-        dispatch({ type: 'add_error', payload: `Ran into an error: ${err}` })
+        callback([], err.response.data);
     }
 };
 
 // Like a comment (unlikes if already liked)
-const likeComment = (dispatch) => async (commentId) => {
+const likeComment = () => async (commentId, callback) => {
     try{
         await froyoApi.put(`/comments/${commentId}/like`);
+        callback();
     }
     catch(err){
-        console.log(err);
-        dispatch({ type: 'add_error', payload: `Ran into an error: ${err}` })
+        callback(err.response.data);
     }
 };
 
 // Dislike a comment (undislikes if already disliked)
-const dislikeComment = (dispatch) => async (commentId) => {
+const dislikeComment = () => async (commentId, callback) => {
     try{
         await froyoApi.put(`/comments/${commentId}/dislike`);
+        callback();
     }
     catch(err){
-        console.log(err);
-        dispatch({ type: 'add_error', payload: `Ran into an error: ${err}` })
+        callback(err.response.data);
     };
-};
-
-// Clear the error message
-const clearErrorMessage = (dispatch) => () => {
-    dispatch({ type: 'add_error', payload: '' });
 };
 
 export const { Provider, Context } = createDataContext(
@@ -125,11 +104,5 @@ export const { Provider, Context } = createDataContext(
         getComments,
         likeComment,
         dislikeComment,
-        clearErrorMessage
-    },
-    {
-        comment: {},
-        errorMessage: '',
-        comments: null
-    }
+    }, {}
 );

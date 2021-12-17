@@ -12,15 +12,8 @@ const ErrorMessage = (props) => {
         message,
         style,
         type,
-        clearFunctions
+        clearError
     } = props;
-
-    // Clears all the error messages
-    const clearError = () => {
-        clearFunctions.forEach(func => {
-            func();
-        });
-    };
 
     if(message){
         return (

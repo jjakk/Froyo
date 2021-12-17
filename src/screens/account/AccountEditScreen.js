@@ -18,20 +18,14 @@ const LOADING_TEXT = 'Loading';
 
 const AccountEditScreen = ({ navigation }) => {
     const { updateUserInfo, state: { user, errorMessage } } = useContext(AuthContext);
-    const [firstName, setFirstName] = useState(LOADING_TEXT);
-    const [lastName, setLastName] = useState(LOADING_TEXT);
-    const [username, setUsername] = useState(LOADING_TEXT);
-    const [description, setDescription] = useState(LOADING_TEXT);
+    // Form feilds
+    const [firstName, setFirstName] = useState(user.first_name);
+    const [lastName, setLastName] = useState(user.last_name);
+    const [username, setUsername] = useState(user.username);
+    const [description, setDescription] = useState(user.description);
+    // Status states
     const [loading, setLoading] = useState(false);
-
-    useEffect(() => {
-        (async function(){
-            setFirstName(user.first_name);
-            setLastName(user.last_name);
-            setUsername(user.username);
-            setDescription(user.description);
-        })();
-    }, []);
+    const [error, setError] = useState('');
 
     const handleSubmit = () => {
         setLoading(true);
@@ -40,10 +34,12 @@ const AccountEditScreen = ({ navigation }) => {
             lastName,
             username,
             description
-        }, (error) => {
+        }, (err) => {
             setLoading(false);
-            if(!error) {
-                //getUserInfo();
+            if (err) {
+                setError(err);
+            }
+            else {
                 navigation.pop();
             }
         });
@@ -103,7 +99,10 @@ const AccountEditScreen = ({ navigation }) => {
                     buttonStyle={styles.submit}
                     onPress={handleSubmit}
                 />
-                <ErrorMessage message={errorMessage} style={styles.errorMessage} />
+                <ErrorMessage
+                    message={error}
+                    style={styles.errorMessage}
+                />
             </View>
         </ScreenContainer>
     );

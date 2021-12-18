@@ -28,6 +28,10 @@ const AccountViewScreen = () => {
     const [refreshing, setRefreshing] = useState(false);
     const [error, setError] = useState('');
     
+    // Error handling
+    const onError = (err) => {
+        setError(err);
+    }
     const clearError = () => {
         setError('');
     };
@@ -87,6 +91,7 @@ const AccountViewScreen = () => {
                     emptyMessage="You haven't posted anything yet"
                     emptyMessageAlign='flex-start'
                     onPostDelete={reloadContent}
+                    onError={onError}
                 />
             </ScrollView>
             <ErrorMessage

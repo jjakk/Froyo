@@ -10,7 +10,8 @@ const CommentList = (props) => {
         comments,
         loading,
         sortBy,
-        onDeleteComment
+        onDeleteComment,
+        onError
     } = props;
 
     // Sort comments before rendering
@@ -38,6 +39,7 @@ const CommentList = (props) => {
                                 key={comment.id}
                                 data={comment}
                                 onDelete={onDeleteComment}
+                                onError={onError}
                             />
                         ))
                     ) : (

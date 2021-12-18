@@ -14,6 +14,7 @@ const PostList = (props) => {
         emptyMessage,
         emptyMessageAlign,
         onPostDelete,
+        onError,
         style
     } = props;
 
@@ -47,6 +48,7 @@ const PostList = (props) => {
                                             ...post,
                                         }}
                                         onDelete={onPostDelete}
+                                        onError={onError}
                                         clickable
                                     />
                                 ))

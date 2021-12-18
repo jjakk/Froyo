@@ -33,6 +33,7 @@ const MoreOptions = (props) => {
     const {
         content,
         onDelete,
+        onError,
         style
     } = props;
     const contentType = !content.parent_id ? 'Post' : 'Comment';
@@ -46,12 +47,22 @@ const MoreOptions = (props) => {
     const defaultOnDelete = async () => {
         if (contentType === 'Post') {
             await deletePost(content.id, (err) => {
-                if (!err) onDelete();
+                if (err) {
+                    onError(err);
+                }
+                else {
+                    onDelete();
+                }
             });
         }
         else {
             await deleteComment(content.id, (err) => {
-                if (!err) onDelete();
+                if (err) {
+                    onError(err);
+                }
+                else {
+                    onDelete();
+                }
             });
         }
     };

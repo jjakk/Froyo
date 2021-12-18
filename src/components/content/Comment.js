@@ -30,7 +30,8 @@ const Comment = (props) => {
     const {
         style,
         data,
-        onDelete
+        onDelete,
+        onError
     } = props;
 
     const [comment, setComment] = useState(data);
@@ -68,6 +69,7 @@ const Comment = (props) => {
                     <MoreOptions
                         content={comment}
                         onDelete={onDelete}
+                        onError={onError}
                     />
                     {/* Reply button */}
                     <TouchableOpacity style={styles.reply}>

@@ -59,9 +59,13 @@ const PostViewScreen = ({ navigation }) => {
         }
     };
 
+    // Error handling
     const clearError = () => {
         setError('');
     };
+    const onError = (err) => {
+        setError(err);
+    }
 
     // Event Handlers
     // When leaving the post view screen
@@ -91,11 +95,13 @@ const PostViewScreen = ({ navigation }) => {
                         data={post}
                         clickable={false}
                         onDelete={onBack}
+                        onError={onError}
                     />
                     <CommentList
                         comments={comments}
                         loading={loadingComments}
                         onDeleteComment={refreshPost}
+                        onError={onError}
                     />
                 </ScrollView>
                 <CommentBar

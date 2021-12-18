@@ -49,7 +49,8 @@ const Post = (props) => {
         style,
         data,
         onDelete,
-        onPress
+        onPress,
+        onError
     } = props;
 
     const [post, setPost] = useState(data);
@@ -102,6 +103,7 @@ const Post = (props) => {
                 <MoreOptions
                     content={post}
                     onDelete={onDelete}
+                    onError={onError}
                     style={styles.options}
                 />
                 <View style={styles.body}>

@@ -29,9 +29,9 @@ const createComment = () => async (info, callback) => {
 };
 
 // DELETE a comment
-const deleteComment = () => async (postId, callback) => {
+const deleteComment = () => async (commentId, callback) => {
     try{
-        await froyoApi.delete(`/comments/${postId}`);
+        await froyoApi.delete(`/comments/${commentId}`);
         callback();
     }
     catch(err){

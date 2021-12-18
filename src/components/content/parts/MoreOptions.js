@@ -45,12 +45,15 @@ const MoreOptions = (props) => {
     // Default function for delete button
     const defaultOnDelete = async () => {
         if (contentType === 'Post') {
-            await deletePost(content.id);
+            await deletePost(content.id, (err) => {
+                if (!err) onDelete();
+            });
         }
         else {
-            await deleteComment(content.id);
+            await deleteComment(content.id, (err) => {
+                if (!err) onDelete();
+            });
         }
-        onDelete();
     };
 
     // More options menu items

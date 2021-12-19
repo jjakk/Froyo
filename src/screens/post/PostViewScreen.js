@@ -11,6 +11,8 @@ import CommentBar from '../../components/CommentBar';
 import Post from '../../components/content/Post';
 import CommentList from '../../components/content/CommentList';
 import ErrorMessage from '../../components/ErrorMessage';
+// Constants
+import { colors } from '../../constants/constants';
 // Context
 import { Context as PostContext } from '../../context/PostContext';
 import { Context as CommentContext } from '../../context/CommentContext';
@@ -120,13 +122,13 @@ const PostViewScreen = ({ navigation }) => {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#FFFFFF',
+        backgroundColor: colors.WHITE,
     },
     post: {
         marginTop: 5
     },
     contentView: {
-        backgroundColor: '#F2F2F2',
+        backgroundColor: colors.LIGHT_GREY,
         flex: 1,
         justifyContent: 'flex-start',
     },

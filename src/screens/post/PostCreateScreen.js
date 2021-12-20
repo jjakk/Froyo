@@ -12,7 +12,7 @@ import ScreenContainer from '../../components/ScreenContainer';
 import Header from '../../components/Header';
 import ErrorMessage from '../../components/ErrorMessage';
 // Constants
-import { colors } from '../../constants/constants';
+import constants, { colors } from '../../constants/constants';
 // Context
 import { Context as PostContext } from '../../context/PostContext';
 // Icons
@@ -84,26 +84,6 @@ const styles = StyleSheet.create({
     },
     bodyText: {
         fontSize: 22
-    },
-    attachment: {
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderWidth: 1,
-        borderColor: '#404040',
-        margin: 15,
-        padding: 25,
-        borderRadius: 15,
-        width: 350
-    },
-    attachmentText: {
-        fontSize: 24,
-        marginTop: 20,
-        color: '#393939'
-    },
-    submit: {
-        margin: 15,
-        width: 350
     }
 });
 

@@ -1,9 +1,12 @@
 // This componet takes in a list of posts and renders them
 import React, { useEffect } from 'react';
 import * as Progress from 'react-native-progress';
+// Components
 import { StyleSheet, View } from 'react-native';
 import EmptyMessage from '../EmptyMessage';
 import Post from './Post';
+// Constants
+import { colors } from '../../constants/constants';
 
 const PostList = (props) => {
     const [postsRender, setPostsRender] = React.useState([]);
@@ -90,7 +93,7 @@ const styles = StyleSheet.create({
         marginTop: 15,
         paddingTop: 5,
         flex: 1,
-        backgroundColor: '#F2F2F2',
+        backgroundColor: colors.LIGHT_GREY,
         width: '100%'
     },
     emptyMessage: {
@@ -98,7 +101,6 @@ const styles = StyleSheet.create({
     },
     postLoading: {
         alignSelf: 'flex-start',
-        backgroundColor: 'orange',
         marginTop: 50
     }
 });

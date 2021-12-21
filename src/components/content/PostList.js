@@ -84,13 +84,11 @@ const PostList = (props) => {
 
 const styles = StyleSheet.create({
     posts: {
-        marginTop: 15,
         justifyContent: 'center',
         flexDirection: 'row',
         flex: 1
     },
     postView: {
-        marginTop: 15,
         paddingTop: 5,
         flex: 1,
         backgroundColor: colors.LIGHT_GREY,

@@ -73,7 +73,6 @@ const AccountViewScreen = () => {
             <NavigationEvents onDidFocus={handleDidFocus}/>
             <ScrollView
                 showsVerticalScrollIndicator={false}
-                contentContainerStyle={styles.mainView}
                 refreshControl={
                     <RefreshControl
                         refreshing={refreshing}
@@ -111,9 +110,6 @@ AccountViewScreen.navigationOptions = {
 const styles = StyleSheet.create({
     container: {
         backgroundColor: 'white'
-    },
-    mainView: {
-        flex: 1,
     },
     error: {
         position: 'absolute',

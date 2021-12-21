@@ -6,7 +6,7 @@ import { Button, Text } from './froyo-elements';
 
 const UserProfile = (props) => {
     const { signOut } = useContext(AuthContext);
-    const { user, loading } = props;
+    const { style, user, loading } = props;
 
     // Go to Account Edit when "Edit profile" button's pressed
     const handleEditProfile = () => {
@@ -14,8 +14,8 @@ const UserProfile = (props) => {
     };
 
     return (
-        <View>
-            <View style={styles.profile}>
+        <View style={[styles.container, style]}>
+            <View>
                 <View style={styles.header}>
                     <Image style={styles.profilePicture} source={require('../../assets/icons/guest.png')} />
                     {
@@ -90,11 +90,10 @@ const UserProfile = (props) => {
 };
 
 const styles = StyleSheet.create({
-    // Profile
-    profile: {
-        margin: 25,
-        marginBottom: 0,
+    container: {
+        padding: 25
     },
+    // Profile
     header: {
         flexDirection: 'row',
         alignItems: 'center',
@@ -138,9 +137,6 @@ const styles = StyleSheet.create({
     },
     // Auth
     auth: {
-        margin: 25,
-        marginTop: 10,
-        marginBottom: 0,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center'

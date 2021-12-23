@@ -1,5 +1,8 @@
 import React, { useContext } from 'react';
-import { View, StyleSheet } from 'react-native';
+import {
+    View,
+    StyleSheet
+} from 'react-native';
 import {
     Menu,
     MenuOptions,
@@ -10,6 +13,8 @@ import {
 import { navigate, pop } from '../../../navigation/navigationRef';
 // Components
 import { Text } from '../../froyo-elements';
+// Helper functions
+import confirmAlert from '../../../helperFunctions/confirmAlert';
 // Contexts
 import { Context as AuthContext } from '../../../context/AuthContext';
 import { Context as PostContext } from '../../../context/PostContext';
@@ -45,26 +50,28 @@ const MoreOptions = (props) => {
     
     // Default function for delete button
     const defaultOnDelete = async () => {
-        if (contentType === 'Post') {
-            await deletePost(content.id, (err) => {
-                if (err) {
-                    onError(err);
-                }
-                else {
-                    onDelete();
-                }
-            });
-        }
-        else {
-            await deleteComment(content.id, (err) => {
-                if (err) {
-                    onError(err);
-                }
-                else {
-                    onDelete();
-                }
-            });
-        }
+        confirmAlert(`Are you sure you want to delete this ${contentType.toLowerCase()}?`, async () => {
+            if (contentType === 'Post') {
+                await deletePost(content.id, (err) => {
+                    if (err) {
+                        onError(err);
+                    }
+                    else {
+                        onDelete();
+                    }
+                });
+            }
+            else {
+                await deleteComment(content.id, (err) => {
+                    if (err) {
+                        onError(err);
+                    }
+                    else {
+                        onDelete();
+                    }
+                });
+            }
+        });
     };
 
     // More options menu items

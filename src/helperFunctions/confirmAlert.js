@@ -4,18 +4,21 @@ import { Alert } from 'react-native';
 const confirmAlert = (message, callback) => {
     Alert.alert(
         message,
-        '',
+        null,
         [
             {
-                text: "Cancel",
-                onPress: () => {},
+                text: "No",
                 style: "cancel"
             },
             {
-                text: "OK",
+                text: "Yes",
+                style: "destructive",
                 onPress: callback
             }
-        ]
+        ],
+        {
+            cancelable: true
+        }
     );
 };
 

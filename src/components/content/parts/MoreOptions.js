@@ -23,7 +23,6 @@ import { Context as CommentContext } from '../../../context/CommentContext';
 import MoreOptionsIcon from '../../../../assets/icons/MoreSettings.svg';
 import TrashIcon from '../../../../assets/icons/Trash.svg';
 import PenIcon from '../../../../assets/icons/Pen.svg';
-import SaveIcon from '../../../../assets/icons/Save.svg';
 
 // Constants
 import {
@@ -91,14 +90,8 @@ const MoreOptions = (props) => {
                 Icon: PenIcon,
                 color: 'black'
             }
-        ]: []),
-        // The rest of the options
-        {
-            label: 'Save',
-            onSelect: () => {},
-            Icon: SaveIcon,
-            color: 'black'
-        }
+        ]: [])
+        // The rest of the options go below
     ];
 
     return (

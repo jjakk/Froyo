@@ -84,6 +84,36 @@ const getUserPosts = () => async (callback) => {
     }
 };
 
+// (GET) Search posts
+const searchPosts = () => async (query, callback) => {
+    try {
+        const { data: unformattedPosts } = await froyoApi.get('/posts', {
+            params: {
+                text: query
+            }
+        });
+        // Add author information to the posts
+        let posts = [];
+        for(let i = 0; i < unformattedPosts.length; i++){
+            const {
+                data: {
+                    first_name,
+                    last_name
+                }
+            } = await froyoApi.get(`/users/${unformattedPosts[i].author_id}`);
+            posts.push({
+                ...unformattedPosts[i],
+                authorName: (first_name + ' ' + last_name)
+            });
+        }
+        callback(posts);
+        callback(posts);
+    }
+    catch(err) {
+        callback([], err.message);
+    }
+}
+
 // Like a post (unlikes if already liked)
 const likePost = () => async ({ id }, callback) => {
     try{
@@ -118,6 +148,7 @@ export const { Provider, Context } = createDataContext(
         createPost,
         deletePost,
         getUserPosts,
+        searchPosts,
         likePost,
         dislikePost,
         clearErrorMessage

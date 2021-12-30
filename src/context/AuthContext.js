@@ -118,15 +118,13 @@ const signOut = (dispatch) => async () => {
 };
 
 // Get a user's information given their auth token
-const getUserInfo = (dispatch) => async (callback) => {
+const getUserById = (dispatch) => async (id, callback) => {
     try{
-        const { data: id } = await froyoApi.get('/');
         const { data: user } = await froyoApi.get(`/users/${id}`);
-        dispatch({ type: 'get_user_info', payload: user });
-        callback();
+        callback(user);
     }
     catch(err){
-        callback(err.response.data);
+        callback(null, err.response.data);
     }
 };
 
@@ -187,7 +185,7 @@ export const { Provider, Context } = createDataContext(
         signUp,
         checkSignedIn,
         signOut,
-        getUserInfo,
+        getUserById,
         updateUserInfo
     }, { user: {} }
 );

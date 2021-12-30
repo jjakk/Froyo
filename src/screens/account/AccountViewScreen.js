@@ -18,15 +18,18 @@ import PostList from '../../components/content/PostList';
 import UserProfile from '../../components/UserProfile';
 import ErrorMessage from '../../components/ErrorMessage';
 
-const AccountViewScreen = () => {
-    const { getUserInfo, state: { user } } = useContext(AuthContext);
-    const { getUserPosts } = useContext(PostContext);
+const AccountViewScreen = ({ navigation }) => {
+    const { getUserById, state: { user: defaultUser } } = useContext(AuthContext);
+    const { getPostsByAuthor } = useContext(PostContext);
+    // User state
+    const [user, setUser] = useState(navigation.getParam('user') || defaultUser);
     // List of posts
     const [posts, setPosts] = useState([]);
     // Status states
     const [loading, setLoading] = useState(true);
     const [refreshing, setRefreshing] = useState(false);
     const [error, setError] = useState('');
+    
     
     // Error handling
     const onError = (err) => {
@@ -39,7 +42,8 @@ const AccountViewScreen = () => {
     // Function to retrieve user info & posts
     const reloadContent = async () => {
         setLoading(true);
-        await getUserPosts((posts, err) => {
+        // Retrieve posts
+        await getPostsByAuthor(user.id, (posts, err) => {
             if (err) {
                 setError(err);
             }
@@ -47,8 +51,14 @@ const AccountViewScreen = () => {
                 setPosts(posts);
             }
         });
-        await getUserInfo((err) => {
-            if(err) setError(err);
+        // Retreive user information
+        await getUserById(user.id, (user, err) => {
+            if(err) {
+                setError(err);
+            }
+            else {
+                setUser(user);
+            }
         });
         setLoading(false);
     };

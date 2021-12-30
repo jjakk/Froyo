@@ -15,7 +15,6 @@ import {
     TouchableIcon
 } from '../froyo-elements';
 import Header from './parts/Header';
-import MoreOptions from './parts/MoreOptions';
 // Contexts
 import { Context as PostContext } from '../../context/PostContext';
 // Icons
@@ -54,6 +53,10 @@ const Post = (props) => {
     } = props;
 
     const [post, setPost] = useState(data);
+
+    const onHeaderPress = () => {
+        navigate('AccountView', { user: post.author });
+    };
 
     // Default function to call when a post is tapped on
     const defaultOnPress = () => {
@@ -98,13 +101,9 @@ const Post = (props) => {
             <View style={[styles.post, style]}>
                 <Header
                     post={post}
-                    onDelete={onDelete}
-                />
-                <MoreOptions
-                    content={post}
-                    onDelete={onDelete}
+                    onPress={onHeaderPress}
                     onError={onError}
-                    style={styles.options}
+                    onDelete={onDelete}
                 />
                 <View style={styles.body}>
                     <Text style={styles.text}>{post.text}</Text>
@@ -163,13 +162,6 @@ const styles = StyleSheet.create({
     post: {
         backgroundColor: 'white',
         marginBottom: 5
-    },
-    // More options
-    options: {
-        position: 'absolute',
-        right: 15,
-        top: 20,
-        opacity: 0.75
     },
     // Post body
     body: {

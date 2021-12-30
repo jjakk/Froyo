@@ -44,14 +44,11 @@ const getPost = () => async (postId, callback) => {
         // Get author name & add it to the post
         // This is necessary because the author value given is equal to a database id
         const {
-            data: {
-                first_name,
-                last_name
-            }
+            data: author
         } = await froyoApi.get(`/users/${unformattedPost.author_id}`);
         const post = {
             ...unformattedPost,
-            authorName: (first_name + ' ' + last_name)
+            author: author
         };
         callback(post);
     }
@@ -61,20 +58,21 @@ const getPost = () => async (postId, callback) => {
 }
 
 // GET all the posts of a given user
-const getUserPosts = () => async (callback) => {
+const getPostsByAuthor = () => async (author_id, callback) => {
     try {
-        const { data: unformattedPosts } = await froyoApi.get('/posts');
+        const { data: unformattedPosts } = await froyoApi.get(`/posts`, {
+            params: {
+                author_id: author_id
+            }
+        });
         let posts = [];
         for(let i = 0; i < unformattedPosts.length; i++){
             const {
-                data: {
-                    first_name,
-                    last_name
-                }
+                data: author
             } = await froyoApi.get(`/users/${unformattedPosts[i].author_id}`);
             posts.push({
                 ...unformattedPosts[i],
-                authorName: (first_name + ' ' + last_name)
+                author: author
             });
         }
         callback(posts);
@@ -96,14 +94,11 @@ const searchPosts = () => async (query, callback) => {
         let posts = [];
         for(let i = 0; i < unformattedPosts.length; i++){
             const {
-                data: {
-                    first_name,
-                    last_name
-                }
+                data: author
             } = await froyoApi.get(`/users/${unformattedPosts[i].author_id}`);
             posts.push({
                 ...unformattedPosts[i],
-                authorName: (first_name + ' ' + last_name)
+                author: author
             });
         }
         callback(posts);
@@ -147,7 +142,7 @@ export const { Provider, Context } = createDataContext(
         getPost,
         createPost,
         deletePost,
-        getUserPosts,
+        getPostsByAuthor,
         searchPosts,
         likePost,
         dislikePost,

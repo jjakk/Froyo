@@ -99,9 +99,9 @@ const MoreOptions = (props) => {
             <MenuTrigger>
                 <MoreOptionsIcon
                     name='options-vertical'
-                    height={sizes.ACTION_ICON}
-                    width={sizes.ACTION_ICON}
-                    color='black'
+                    height={sizes.ACTION_ICON_SMALLER}
+                    width={sizes.ACTION_ICON_SMALLER}
+                    color={colors.DARK_GREY}
                 />
             </MenuTrigger>
             <MenuOptions style={styles.moreOptions}>

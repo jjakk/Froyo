@@ -22,8 +22,6 @@ import DislikeIconFill from '../../../assets/icons/Dislike-Fill.svg';
 import LikeIconOutline from '../../../assets/icons/Like-Outline.svg';
 import DislikeIconOutline from '../../../assets/icons/Dislike-Outline.svg';
 
-const ACTION_COLOR = 'black';
-
 const Comment = (props) => {
     const { getComment, likeComment, dislikeComment } = useContext(CommentContext);
     
@@ -73,7 +71,12 @@ const Comment = (props) => {
                     />
                     {/* Reply button */}
                     <TouchableOpacity style={styles.reply}>
-                            <ReplyIcon style={styles.replyIcon} width={20} height={20} color={ACTION_COLOR} />
+                            <ReplyIcon
+                                style={styles.replyIcon}
+                                width={sizes.ACTION_ICON_SMALLER}
+                                height={sizes.ACTION_ICON_SMALLER}
+                                color={colors.DARK_GREY}
+                            />
                             <Text style={styles.replyText}>Reply</Text>
                     </TouchableOpacity>
                     <View style={styles.likeness}>
@@ -87,7 +90,7 @@ const Comment = (props) => {
                             }
                             color={
                                 comment.liking
-                                ? colors.FROYO_GREEN : 'black'
+                                ? colors.FROYO_GREEN : colors.DARK_GREY
                             }
                         />
                         {/* Disike Button */}
@@ -101,7 +104,7 @@ const Comment = (props) => {
                             }
                             color={
                                 comment.disliking
-                                ? colors.DISLIKE_RED : 'black'
+                                ? colors.DISLIKE_RED : colors.DARK_GREY
                             }
                         />
                     </View>
@@ -136,6 +139,7 @@ const styles = StyleSheet.create({
     replyText: {
         fontSize: 20,
         marginLeft: 5,
+        color: colors.DARK_GREY
     },
     // Like/Dislike
     likeness: {

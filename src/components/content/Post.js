@@ -122,7 +122,7 @@ const Post = (props) => {
                             }
                             color={
                                 post.liking
-                                ? colors.FROYO_GREEN : 'black'
+                                ? colors.FROYO_GREEN : colors.DARK_GREY
                             }
                         />
                         {/* Disike Button */}
@@ -136,7 +136,7 @@ const Post = (props) => {
                             }
                             color={
                                 post.disliking
-                                ? colors.DISLIKE_RED : 'black'
+                                ? colors.DISLIKE_RED : colors.DARK_GREY
                             }
                         />
                     </View>
@@ -145,12 +145,13 @@ const Post = (props) => {
                         width={sizes.ACTION_ICON}
                         height={sizes.ACTION_ICON}
                         style={styles.comment}
-                        color='black'
+                        color={colors.DARK_GREY}
                     />
                     {/* Share button */}
                     <TouchableIcon
                         Icon={ShareIcon}
                         size={sizes.ACTION_ICON}
+                        color={colors.DARK_GREY}
                     />
                 </View>
             </View>

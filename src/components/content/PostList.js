@@ -73,7 +73,7 @@ const PostList = (props) => {
                             size={50}
                             indeterminate={true}
                             spinDuration={1000}
-                            color='#41CA99'
+                            color={colors.FROYO_GREEN}
                             style={styles.postLoading}
                         />
                     )

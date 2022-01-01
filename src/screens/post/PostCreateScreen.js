@@ -50,21 +50,23 @@ const PostCreateScreen = ({ navigation }) => {
 
     return (
         <ScreenContainer style={styles.container}>
-            <TouchableIcon
-                Icon={SendIcon}
-                color={colors.FROYO_GREEN}
-                onPress={handleSubmit}
-                size={30}
-                style={styles.sendButton}
-            />
-            <Input
-                style={styles.body}
-                textStyle={styles.bodyText}
-                multiline={true}
-                placeholder='Type here...'
-                value={postBody}
-                onChangeText={setPostBody}
-            />
+            <View style={styles.body}>
+                <Input
+                    style={styles.bodyText}
+                    multiline={true}
+                    placeholder='Type here...'
+                    value={postBody}
+                    onChangeText={setPostBody}
+                />
+                <TouchableIcon
+                    Icon={SendIcon}
+                    color={colors.FROYO_GREEN}
+                    onPress={handleSubmit}
+                    size={30}
+                    loading={loading}
+                    style={styles.sendButton}
+                />
+            </View>
             <ErrorMessage message={error} />
         </ScreenContainer>
     );
@@ -72,16 +74,19 @@ const PostCreateScreen = ({ navigation }) => {
 
 const styles = StyleSheet.create({
     container: {
-        maxHeight: 300,
-        width: 350,
-        margin: 15
+        padding: 15
+    },
+    body: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     sendButton: {
-        alignSelf: 'flex-end',
-        marginBottom: 25
+        marginLeft: 20,
     },
     bodyText: {
-        fontSize: 22
+        fontSize: 22,
+        flex: 1,
     }
 });
 

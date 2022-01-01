@@ -1,5 +1,7 @@
 import React from 'react';
 import { TouchableOpacity } from 'react-native';
+import { colors } from '../../constants/constants';
+import * as Progress from 'react-native-progress';
 
 const TouchableIcon = (props) => {
     const {
@@ -8,13 +10,15 @@ const TouchableIcon = (props) => {
         color,
         style,
         onPress,
+        loading,
         TouchableComponent
     } = props;
     
     const Touchable = TouchableComponent || TouchableOpacity;
     
     return (
-        <Touchable onPress={onPress}>
+        !loading ? (
+            <Touchable onPress={onPress}>
             <Icon
                 width={size}
                 height={size}
@@ -22,6 +26,14 @@ const TouchableIcon = (props) => {
                 style={style}
             />
         </Touchable>
+        ) : (
+            <Progress.CircleSnail
+                size={50}
+                indeterminate={true}
+                spinDuration={1000}
+                color={colors.FROYO_GREEN}
+            />
+        )
     );
 };
 

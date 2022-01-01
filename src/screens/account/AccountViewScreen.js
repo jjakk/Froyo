@@ -65,7 +65,7 @@ const AccountViewScreen = ({ navigation }) => {
     };
 
     // Refresh content when loading this page
-    const handleDidFocus = async () => {
+    const onDidFocus = async () => {
         await reloadContent();
     };
 
@@ -81,7 +81,7 @@ const AccountViewScreen = ({ navigation }) => {
             style={styles.container}
             edges={['top']}
         >
-            <NavigationEvents onDidFocus={handleDidFocus}/>
+            <NavigationEvents onDidFocus={onDidFocus}/>
             <Header
                 navigation={navigation}
             />

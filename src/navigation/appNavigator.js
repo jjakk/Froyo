@@ -21,7 +21,7 @@ import PostCreateScreen from '../screens/post/PostCreateScreen';
 import PostEditScreen from '../screens/post/PostEditScreen';
 import PostViewScreen from '../screens/post/PostViewScreen';
 // Icons
-import FroyoIcon from '../../assets/icons/Froyo.svg';
+import PlusCircleIcon from '../../assets/icons/Plus-Circle.svg';
 import HomeIcon from '../../assets/icons/Home.svg';
 import SearchIcon from '../../assets/icons/Search.svg';
 
@@ -50,7 +50,7 @@ const tabNavigator = createBottomTabNavigator({
     Feed: {
         screen: FeedScreen,
         navigationOptions: {
-            tabBarIcon: (({ tintColor, focused }) => (
+            tabBarIcon: (({ tintColor }) => (
                 <HomeIcon color={tintColor} height={35} width={35}/>
             ))
         }
@@ -58,15 +58,15 @@ const tabNavigator = createBottomTabNavigator({
     Create: {
         screen: PostCreateScreen,
         navigationOptions: {
-            tabBarIcon: (({ tintColor, focused }) => (
-                <FroyoIcon color={tintColor} height={35} width={35}/>
+            tabBarIcon: (({ tintColor }) => (
+                <PlusCircleIcon color={tintColor} height={35} width={35}/>
             ))
         }
     },
     Search: {
         screen: SearchScreen,
         navigationOptions: {
-            tabBarIcon: (({ tintColor, focused }) => (
+            tabBarIcon: (({ tintColor }) => (
                 <SearchIcon color={tintColor} height={35} width={35}/>
             ))
         }

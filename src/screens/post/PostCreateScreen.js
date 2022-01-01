@@ -9,8 +9,8 @@ import {
     Input,
     TouchableIcon
 } from '../../components/froyo-elements';
+import { NavigationEvents } from 'react-navigation';
 import ScreenContainer from '../../components/ScreenContainer';
-import Header from '../../components/Header';
 import ErrorMessage from '../../components/ErrorMessage';
 // Constants
 import constants, { colors } from '../../constants/constants';
@@ -20,7 +20,7 @@ import { Context as PostContext } from '../../context/PostContext';
 import SendIcon from '../../../assets/icons/Send.svg';
 
 const PostCreateScreen = ({ navigation }) => {
-    const { createPost, clearErrorMessage, state: { errorMessage } } = useContext(PostContext);
+    const { createPost } = useContext(PostContext);
     // Form feilds
     const [postBody, setPostBody] = useState('');
     // Status state
@@ -29,7 +29,6 @@ const PostCreateScreen = ({ navigation }) => {
 
     // Event Handlers
     const handleSubmit = async () => {
-        clearErrorMessage();
         Keyboard.dismiss()
         setLoading(true);
         await createPost({ postBody }, (err) => {
@@ -38,18 +37,24 @@ const PostCreateScreen = ({ navigation }) => {
                 setError(err);
             }
             else {
-                navigation.navigate('Feed');
+                setPostBody('');
+                navigation.navigate('AccountView');
             }
         });
     };
 
+    const clearError = async () => {
+        if(error) setError('');
+    };
+
     // Delete error message when you type in the post body
     useEffect(() => {
-        if(error) setError('');
+        clearError();
     }, [postBody]);
 
     return (
         <ScreenContainer style={styles.container}>
+            <NavigationEvents onDidFocus={clearError}/>
             <View style={styles.body}>
                 <Input
                     style={styles.bodyText}

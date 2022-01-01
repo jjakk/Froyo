@@ -5,7 +5,7 @@ import { StyleSheet, View, Image } from 'react-native';
 import { Button, Text } from './froyo-elements';
 
 const UserProfile = (props) => {
-    const { signOut } = useContext(AuthContext);
+    const { signOut, state: { user: signedInUser } } = useContext(AuthContext);
     const { style, user, loading } = props;
 
     // Go to Account Edit when "Edit profile" button's pressed
@@ -59,32 +59,36 @@ const UserProfile = (props) => {
                         : null
                 }
             </View>
-            <View style={styles.auth}>
-                <View style={styles.authButtonContainer}>
-                    <Button
-                        title='Edit profile'
-                        color='#41CA99'
-                        textColor='white'
-                        pill
-                        buttonStyle={styles.authButton}
-                        titleStyle={styles.authButtonText}
-                        onPress={handleEditProfile}
-                    />
+            {
+                user.id === signedInUser.id ? (
+                    <View style={styles.auth}>
+                    <View style={styles.authButtonContainer}>
+                        <Button
+                            title='Edit profile'
+                            color='#41CA99'
+                            textColor='white'
+                            pill
+                            buttonStyle={styles.authButton}
+                            titleStyle={styles.authButtonText}
+                            onPress={handleEditProfile}
+                        />
+                    </View>
+                    <View style={styles.gap}></View>
+                    <View  style={styles.authButtonContainer}>
+                        <Button
+                            title='Sign out'
+                            color='#41CA99'
+                            textColor='#41CA99'
+                            type='secondary'
+                            pill
+                            buttonStyle={styles.authButton}
+                            titleStyle={styles.authButtonText}
+                            onPress={signOut}
+                        />
+                    </View>
                 </View>
-                <View style={styles.gap}></View>
-                <View  style={styles.authButtonContainer}>
-                    <Button
-                        title='Sign out'
-                        color='#41CA99'
-                        textColor='#41CA99'
-                        type='secondary'
-                        pill
-                        buttonStyle={styles.authButton}
-                        titleStyle={styles.authButtonText}
-                        onPress={signOut}
-                    />
-                </View>
-            </View>
+                ) : null
+            }
         </View>
     );
 };

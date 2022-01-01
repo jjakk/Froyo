@@ -1,40 +1,79 @@
 import React, { useState } from 'react';
-import { View, StyleSheet } from 'react-native';
-import { Input } from './froyo-elements';
-import Search from '../../assets/icons/Search.svg';
+// Components
+import {
+    View,
+    StyleSheet
+} from 'react-native';
+import {
+    Input,
+    TouchableIcon
+} from './froyo-elements';
+// Icons
+import SearchIcon from '../../assets/icons/Search.svg';
+import CloseIcon from '../../assets/icons/Close.svg'
 
 const SearchBar = ({ onSearch }) => {
     const [text, setText] = useState('');
 
+    const clearText = () => {
+        setText('');
+    };
+
+    // Event handlers
     const onSubmit = () => {
         onSearch(text);
     }
 
     return (
         <View>
-            <Input
-                style={styles.container}
-                onChangeText={setText}
-                textStyle={styles.text}
-                placeholder='Search'
-                icon={(
-                    <Search color='black' width={25} height={25} />
-                )}
-                onSubmitEditing={onSubmit}
-            />
+            <View style={styles.container}>
+                <Input
+                    style={styles.text}
+                    onChangeText={setText}
+                    value={text}
+                    placeholder='Search'
+                    icon={(
+                        <SearchIcon
+                            color='black'
+                            width={25}
+                            height={25}
+                        />
+                    )}
+                    onSubmitEditing={onSubmit}
+                />
+                {
+                    text !== '' ? (
+                        <TouchableIcon
+                            Icon={CloseIcon}
+                            size={20}
+                            style={styles.clear}
+                            onPress={clearText}
+                        />
+                    ) : null
+                }
+            </View>
         </View>
     );
 };
 
 const styles = StyleSheet.create({
     container: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
         borderWidth: 0,
         backgroundColor: 'white',
         borderRadius: 50,
         margin: 25
     },
     text: {
-        
+        flex: 1,
+        borderRadius: 0, 
+        borderWidth: 0
+    },
+    clear: {
+        marginRight: 20,
+        opacity: 0.5
     }
 });
 

@@ -11,7 +11,7 @@ import MoreOptions from './MoreOptions';
 // Helper functions
 import { calculateAge } from '../../../helperFunctions/age';
 
-const Header = (props) => {
+const PostHeader = (props) => {
     const {
         post,
         onPress,
@@ -80,5 +80,5 @@ const styles = StyleSheet.create({
     // Condensed header
 });
 
-export default Header;
+export default PostHeader;
 

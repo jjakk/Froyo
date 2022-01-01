@@ -76,7 +76,7 @@ const MoreOptions = (props) => {
     // More options menu items
     const moreOptions = [
         // Only show these options if it's your own content
-        ...(content.author_id === user.id ? [
+        ...(content.author.id === user.id ? [
             {
                 label: 'Delete',
                 onSelect: defaultOnDelete,

@@ -42,19 +42,7 @@ const deleteComment = () => async (commentId, callback) => {
 // GET a comment
 const getComment = () => async (commentId, callback) => {
     try{
-        const response = await froyoApi.get(`/comments/${commentId}`);
-        // Get author name & add it to the post
-        // This is necessary because the author value given is equal to a database id
-        const {
-            data: {
-                firstName,
-                lastName
-            }
-        } = await froyoApi.get(`/users/${response.data.author_id}`);
-        const comment = {
-            ...response.data,
-            authorName: (firstName + ' ' + lastName)
-        };
+        const { data: comment } = await froyoApi.get(`/comments/${commentId}`);
         callback(comment);
     }
     catch(err){

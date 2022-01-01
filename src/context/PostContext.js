@@ -39,17 +39,8 @@ const deletePost = () => async (postId, callback) => {
 const getPost = () => async (postId, callback) => {
     try{
         const {
-            data: unformattedPost
+            data: post
         } = await froyoApi.get(`/posts/${postId}`);
-        // Get author name & add it to the post
-        // This is necessary because the author value given is equal to a database id
-        const {
-            data: author
-        } = await froyoApi.get(`/users/${unformattedPost.author_id}`);
-        const post = {
-            ...unformattedPost,
-            author: author
-        };
         callback(post);
     }
     catch(err){
@@ -60,21 +51,11 @@ const getPost = () => async (postId, callback) => {
 // GET all the posts of a given user
 const getPostsByAuthor = () => async (author_id, callback) => {
     try {
-        const { data: unformattedPosts } = await froyoApi.get(`/posts`, {
+        const { data: posts } = await froyoApi.get(`/posts`, {
             params: {
                 author_id: author_id
             }
         });
-        let posts = [];
-        for(let i = 0; i < unformattedPosts.length; i++){
-            const {
-                data: author
-            } = await froyoApi.get(`/users/${unformattedPosts[i].author_id}`);
-            posts.push({
-                ...unformattedPosts[i],
-                author: author
-            });
-        }
         callback(posts);
     }
     catch(err){
@@ -85,23 +66,11 @@ const getPostsByAuthor = () => async (author_id, callback) => {
 // (GET) Search posts
 const searchPosts = () => async (query, callback) => {
     try {
-        const { data: unformattedPosts } = await froyoApi.get('/posts', {
+        const { data: posts } = await froyoApi.get('/posts', {
             params: {
                 text: query
             }
         });
-        // Add author information to the posts
-        let posts = [];
-        for(let i = 0; i < unformattedPosts.length; i++){
-            const {
-                data: author
-            } = await froyoApi.get(`/users/${unformattedPosts[i].author_id}`);
-            posts.push({
-                ...unformattedPosts[i],
-                author: author
-            });
-        }
-        callback(posts);
         callback(posts);
     }
     catch(err) {

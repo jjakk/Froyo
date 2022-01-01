@@ -35,7 +35,6 @@ const deletePost = () => async (postId, callback) => {
 }
 
 // GET a post by id
-// Use callback if you don't want to change state
 const getPost = () => async (postId, callback) => {
     try{
         const {
@@ -48,28 +47,11 @@ const getPost = () => async (postId, callback) => {
     }
 }
 
-// GET all the posts of a given user
-const getPostsByAuthor = () => async (author_id, callback) => {
-    try {
-        const { data: posts } = await froyoApi.get(`/posts`, {
-            params: {
-                author_id: author_id
-            }
-        });
-        callback(posts);
-    }
-    catch(err){
-        callback([], err.response.data);
-    }
-};
-
 // (GET) Search posts
 const searchPosts = () => async (query, callback) => {
     try {
         const { data: posts } = await froyoApi.get('/posts', {
-            params: {
-                text: query
-            }
+            params: query
         });
         callback(posts);
     }
@@ -111,7 +93,6 @@ export const { Provider, Context } = createDataContext(
         getPost,
         createPost,
         deletePost,
-        getPostsByAuthor,
         searchPosts,
         likePost,
         dislikePost,

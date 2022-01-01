@@ -16,9 +16,9 @@ const SearchScreen = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
 
-    const onSearch = async (query='') => {
+    const onSearch = async (searchValue='') => {
         setLoading(true);
-        await searchPosts(query, (posts, err) => {
+        await searchPosts({ text: searchValue }, (posts, err) => {
             setLoading(false);
             if(err) {
                 setError(err);

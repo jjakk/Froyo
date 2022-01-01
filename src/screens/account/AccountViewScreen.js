@@ -20,7 +20,7 @@ import ErrorMessage from '../../components/ErrorMessage';
 
 const AccountViewScreen = ({ navigation }) => {
     const { getUserById, state: { user: defaultUser } } = useContext(AuthContext);
-    const { getPostsByAuthor } = useContext(PostContext);
+    const { searchPosts } = useContext(PostContext);
     // User state
     const [user, setUser] = useState(navigation.getParam('user') || defaultUser);
     // List of posts
@@ -43,7 +43,7 @@ const AccountViewScreen = ({ navigation }) => {
     const reloadContent = async () => {
         setLoading(true);
         // Retrieve posts
-        await getPostsByAuthor(user.id, (posts, err) => {
+        await searchPosts({ author_id: user.id }, (posts, err) => {
             if (err) {
                 setError(err);
             }

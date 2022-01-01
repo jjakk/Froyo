@@ -7,6 +7,7 @@ import {
 } from 'react-native';
 import {
     Input,
+    TouchableIcon
 } from '../../components/froyo-elements';
 import ScreenContainer from '../../components/ScreenContainer';
 import Header from '../../components/Header';
@@ -37,7 +38,7 @@ const PostCreateScreen = ({ navigation }) => {
                 setError(err);
             }
             else {
-                navigation.pop();
+                navigation.navigate('Feed');
             }
         });
     };
@@ -48,25 +49,22 @@ const PostCreateScreen = ({ navigation }) => {
     }, [postBody]);
 
     return (
-        <ScreenContainer>
-            <Header
-                navigation={navigation}
-                RightIcon={SendIcon}
-                rightIconColor={colors.FROYO_GREEN}
-                rightIconOnPress={handleSubmit}
-                rightIconSize={30}
-                leftIconSize={30}
+        <ScreenContainer style={styles.container}>
+            <TouchableIcon
+                Icon={SendIcon}
+                color={colors.FROYO_GREEN}
+                onPress={handleSubmit}
+                size={30}
+                style={styles.sendButton}
             />
-            <View style={styles.bodyContainer}>
-                <Input
-                    style={styles.body}
-                    textStyle={styles.bodyText}
-                    multiline={true}
-                    placeholder='Type here...'
-                    value={postBody}
-                    onChangeText={setPostBody}
-                />
-            </View>
+            <Input
+                style={styles.body}
+                textStyle={styles.bodyText}
+                multiline={true}
+                placeholder='Type here...'
+                value={postBody}
+                onChangeText={setPostBody}
+            />
             <ErrorMessage message={error} />
         </ScreenContainer>
     );
@@ -74,13 +72,13 @@ const PostCreateScreen = ({ navigation }) => {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1
-    },
-    // Inputs
-    bodyContainer: {
         maxHeight: 300,
         width: 350,
         margin: 15
+    },
+    sendButton: {
+        alignSelf: 'flex-end',
+        marginBottom: 25
     },
     bodyText: {
         fontSize: 22

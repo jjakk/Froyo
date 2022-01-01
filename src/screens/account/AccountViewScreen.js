@@ -14,6 +14,7 @@ import ScreenContainer from '../../components/ScreenContainer';
 import { Context as AuthContext } from '../../context/AuthContext';
 import { Context as PostContext } from '../../context/PostContext';
 // Components
+import Header from '../../components/Header';
 import PostList from '../../components/content/PostList';
 import UserProfile from '../../components/UserProfile';
 import ErrorMessage from '../../components/ErrorMessage';
@@ -81,6 +82,9 @@ const AccountViewScreen = ({ navigation }) => {
             edges={['top']}
         >
             <NavigationEvents onDidFocus={handleDidFocus}/>
+            <Header
+                navigation={navigation}
+            />
             <ScrollView
                 showsVerticalScrollIndicator={false}
                 refreshControl={

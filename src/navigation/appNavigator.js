@@ -22,7 +22,7 @@ import PostEditScreen from '../screens/post/PostEditScreen';
 import PostViewScreen from '../screens/post/PostViewScreen';
 // Icons
 import FroyoIcon from '../../assets/icons/Froyo.svg';
-import UserIcon from '../../assets/icons/Profile Picture.svg';
+import HomeIcon from '../../assets/icons/Home.svg';
 import SearchIcon from '../../assets/icons/Search.svg';
 
 
@@ -45,28 +45,29 @@ const homeNavigator = createStackNavigator({
         },
 });
 
+
 const tabNavigator = createBottomTabNavigator({
-    searchFlow: {
-        screen: SearchScreen,
+    Feed: {
+        screen: FeedScreen,
         navigationOptions: {
             tabBarIcon: (({ tintColor, focused }) => (
-                <SearchIcon color={tintColor} height={35} width={35}/>
+                <HomeIcon color={tintColor} height={35} width={35}/>
             ))
         }
     },
-    Feed: {
-        screen: FeedScreen,
+    Create: {
+        screen: PostCreateScreen,
         navigationOptions: {
             tabBarIcon: (({ tintColor, focused }) => (
                 <FroyoIcon color={tintColor} height={35} width={35}/>
             ))
         }
     },
-    AccountView: {
-        screen: AccountViewScreen,
+    Search: {
+        screen: SearchScreen,
         navigationOptions: {
             tabBarIcon: (({ tintColor, focused }) => (
-                <UserIcon color={tintColor} height={35} width={35}/>
+                <SearchIcon color={tintColor} height={35} width={35}/>
             ))
         }
     },
@@ -83,7 +84,10 @@ const tabNavigator = createBottomTabNavigator({
 
 const mainNavigator = createStackNavigator({
         tabFlow: tabNavigator,
+        // Account Screens
         AccountEdit: AccountEditScreen,
+        AccountView: AccountViewScreen,
+        // Post Screens
         PostCreate: PostCreateScreen,
         PostView: PostViewScreen,
         PostEdit: PostEditScreen,
@@ -113,9 +117,11 @@ const authNavigator = createStackNavigator({
 });
 
 const appNavigator = createSwitchNavigator({
+    // Miscellaneous (external) screens
     ResolveAuth: ResolveAuthScreen,
     NoWifi: NoWifiScreen,
     Welcome: WelcomeScreen,
+    // Flows
     authFlow: authNavigator,
     mainFlow: mainNavigator
 });

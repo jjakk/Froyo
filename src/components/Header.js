@@ -9,10 +9,9 @@ const Header = (props) => {
         navigation,
         style,
         RightIcon,
-        rightIconOnPress,
-        rightIconColor,
-        rightIconSize,
-        leftIconSize
+        RightIconProps,
+        LeftIcon,
+        LeftIconProps
     } = props;
 
     const onBack = () => {
@@ -21,18 +20,20 @@ const Header = (props) => {
 
     return (
         <View style={[styles.header, style]}>
-            <TouchableIcon
-                Icon={BackIcon}
-                size={leftIconSize}
-                onPress={onBack}
-            />
+            {
+                <TouchableIcon
+                    Icon={LeftIcon || BackIcon}
+                    size={20}
+                    onPress={onBack}
+                    {...LeftIconProps}
+                />
+            }
             {
                 RightIcon ? (
                     <TouchableIcon
                         Icon={RightIcon}
-                        size={rightIconSize}
-                        onPress={rightIconOnPress}
-                        color={rightIconColor}
+                        size={20}
+                        {...RightIconProps}
                     />
                 ) : null
             }
@@ -51,8 +52,6 @@ const styles = StyleSheet.create({
 });
 
 Header.defaultProps = {
-    rightIconSize: 25,
-    leftIconSize: 25
 };
 
 export default Header;

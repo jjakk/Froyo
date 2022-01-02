@@ -1,16 +1,54 @@
-import React, { useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
+// Context
 import { Context as AuthContext } from '../context/AuthContext';
+// Navigation
 import { navigate } from '../navigation/navigationRef';
-import { StyleSheet, View, Image } from 'react-native';
-import { Button, Text } from './froyo-elements';
+// Components
+import {
+    StyleSheet,
+    View,
+    Image
+} from 'react-native';
+import {
+    Button,
+    Text
+} from './froyo-elements';
+// Constants
+import { colors } from '../constants/constants';
 
 const UserProfile = (props) => {
-    const { signOut, state: { user: signedInUser } } = useContext(AuthContext);
-    const { style, user, loading } = props;
+    const { signOut, follow, following, state: { user: signedInUser } } = useContext(AuthContext);
+    const { style, user, loading: alreadyLoading } = props;
+    // Status state
+    const [followingUser, setFollowingUser] = useState(false);
+    const [loading, setLoading] = useState(alreadyLoading);
 
-    // Go to Account Edit when "Edit profile" button's pressed
-    const handleEditProfile = () => {
+    // Check if the user if following 
+    const getFollowing = async () => {
+        setLoading(true);
+        await following(signedInUser.id, user.id, (following, err) => {
+            setLoading(false);
+            setFollowingUser(following);
+        });
+    };
+
+    useEffect(() => {
+        if (user.id !== signedInUser.id) {
+            (async function(){
+                await getFollowing();
+            })()
+        }
+    }, []);
+
+    // Event handlers
+    const onEditProfile = () => {
         navigate('AccountEdit');
+    };
+
+    const onFollow = async () => {
+        await follow(user.id, async (err) => {
+            await getFollowing();
+        });
     };
 
     return (
@@ -59,36 +97,52 @@ const UserProfile = (props) => {
                         : null
                 }
             </View>
+            <View style={styles.action}>
             {
                 user.id === signedInUser.id ? (
-                    <View style={styles.auth}>
-                    <View style={styles.authButtonContainer}>
+                    <>
+                    <View style={styles.actionButtonContainer}>
                         <Button
                             title='Edit profile'
-                            color='#41CA99'
+                            color={colors.FROYO_GREEN}
                             textColor='white'
                             pill
-                            buttonStyle={styles.authButton}
-                            titleStyle={styles.authButtonText}
-                            onPress={handleEditProfile}
+                            buttonStyle={styles.actionButton}
+                            titleStyle={styles.actionButtonText}
+                            onPress={onEditProfile}
                         />
                     </View>
                     <View style={styles.gap}></View>
-                    <View  style={styles.authButtonContainer}>
+                    <View  style={styles.actionButtonContainer}>
                         <Button
                             title='Sign out'
-                            color='#41CA99'
-                            textColor='#41CA99'
+                            color={colors.FROYO_GREEN}
+                            textColor={colors.FROYO_GREEN}
                             type='secondary'
                             pill
-                            buttonStyle={styles.authButton}
-                            titleStyle={styles.authButtonText}
+                            buttonStyle={styles.actionButton}
+                            titleStyle={styles.actionButtonText}
                             onPress={signOut}
                         />
                     </View>
-                </View>
-                ) : null
+                    </>
+                ) : (
+                    <View  style={styles.actionButtonContainer}>
+                        <Button
+                            title={followingUser ? 'Unfollow' : 'Follow'}
+                            color={colors.FROYO_GREEN}
+                            textColor={followingUser ? colors.FROYO_GREEN : colors.WHITE}
+                            type={followingUser ? 'secondary' : 'primary'}
+                            pill
+                            loading={loading}
+                            buttonStyle={styles.actionButton}
+                            titleStyle={styles.actionButtonText}
+                            onPress={onFollow}
+                        />
+                    </View>
+                )
             }
+            </View>
         </View>
     );
 };
@@ -139,19 +193,19 @@ const styles = StyleSheet.create({
         marginLeft: 50,
         alignSelf: 'center'
     },
-    // Auth
-    auth: {
+    // actions
+    action: {
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center'
     },
-    authButtonContainer: {
+    actionButtonContainer: {
         flex: 1,
     },
     gap: {
         width: 25,
     },
-    authButtonText: {
+    actionButtonText: {
         fontSize: 20
     },
 });

@@ -177,6 +177,28 @@ const checkSignedIn = (dispatch) => async () => {
     }
 };
 
+// Follow a user. Unfollows if the user is already following them
+const follow = () => async (targetUser, callback) => {
+    try{
+        await froyoApi.put(`/users/${targetUser}/follow`);
+        callback();
+    }
+    catch (err) {
+        callback(err);
+    }
+};
+
+// Get whether userA is following userB
+const following = () => async (userA, userB, callback) => {
+    try{
+        const { data: following } = await froyoApi.get(`/users/${userA}/following/${userB}`);
+        callback(following);
+    }
+    catch (err) {
+        callback(null, err);
+    }
+};
+
 export const { Provider, Context } = createDataContext(
     authReducer,
     {
@@ -186,7 +208,9 @@ export const { Provider, Context } = createDataContext(
         checkSignedIn,
         signOut,
         getUserById,
-        updateUserInfo
+        updateUserInfo,
+        follow,
+        following
     }, { user: {} }
 );
 

@@ -14,8 +14,6 @@ import ErrorMessage from '../../components/ErrorMessage';
 import { Context as AuthContext } from '../../context/AuthContext';
 import UploadIcon from '../../../assets/icons/Upload.svg';
 
-const LOADING_TEXT = 'Loading';
-
 const AccountEditScreen = ({ navigation }) => {
     const { updateUser, state: { user, errorMessage } } = useContext(AuthContext);
     // Form feilds
@@ -28,15 +26,20 @@ const AccountEditScreen = ({ navigation }) => {
     const [error, setError] = useState('');
 
     const handleSubmit = () => {
-        setLoading(true);
-        updateUser({
-            firstName,
-            lastName,
-            username,
-            description
-        });
-        setLoading(false);
-        navigation.pop();
+        try {
+            setLoading(true);
+            updateUser({
+                firstName,
+                lastName,
+                username,
+                description
+            });
+            setLoading(false);
+            navigation.pop();
+        }
+        catch (err) {
+            setError(err);
+        }
     };
 
     return(

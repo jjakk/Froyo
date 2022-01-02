@@ -18,15 +18,8 @@ const SearchScreen = () => {
 
     const onSearch = async (searchValue='') => {
         setLoading(true);
-        await searchPosts({ text: searchValue }, (posts, err) => {
-            setLoading(false);
-            if(err) {
-                setError(err);
-            }
-            else{
-                setPosts(posts);
-            }
-        });
+        setPosts(await searchPosts({ text: searchValue }));
+        setLoading(false);
     };
 
     // Error handling

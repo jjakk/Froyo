@@ -118,45 +118,34 @@ const signOut = (dispatch) => async () => {
 };
 
 // Get a user's information given their auth token
-const getUserById = (dispatch) => async (id, callback) => {
-    try{
-        const { data: user } = await froyoApi.get(`/users/${id}`);
-        callback(user);
-    }
-    catch(err){
-        callback(null, err.response.data);
-    }
+const getUser = (dispatch) => async (id) => {
+    const { data: user } = await froyoApi.get(`/users/${id}`);
+    return user;
 };
 
 // Update a user's information
-const updateUserInfo = () => async (info, callback) => {
-    try{
-        const {
-            firstName,
-            lastName,
-            username,
-            description
-        } = info;
-        // Check all required fields are filled
-        switch(''){
-            case firstName:
-                return callback('Must enter a first name');
-            case lastName:
-                return callback('Must enter a last name');
-            case username:
-                return callback('Must enter a username');
-        }
-        await froyoApi.put('/users', {
-            first_name: firstName,
-            last_name: lastName,
-            username,
-            description
-        });
-        callback();
+const updateUser = () => async (info) => {
+    const {
+        firstName,
+        lastName,
+        username,
+        description
+    } = info;
+    // Check all required fields are filled
+    switch(''){
+        case firstName:
+            return callback('Must enter a first name');
+        case lastName:
+            return callback('Must enter a last name');
+        case username:
+            return callback('Must enter a username');
     }
-    catch(err){
-        callback(err.response.data);
-    }
+    await froyoApi.put('/users', {
+        first_name: firstName,
+        last_name: lastName,
+        username,
+        description
+    });
 };
 
 // Goes to either your feed or welcome page depending on whether you are logged in
@@ -178,25 +167,14 @@ const checkSignedIn = (dispatch) => async () => {
 };
 
 // Follow a user. Unfollows if the user is already following them
-const follow = () => async (targetUser, callback) => {
-    try{
-        await froyoApi.put(`/users/${targetUser}/follow`);
-        callback();
-    }
-    catch (err) {
-        callback(err);
-    }
+const follow = () => async (targetUser) => {
+    await froyoApi.put(`/users/${targetUser}/follow`);
 };
 
 // Get whether userA is following userB
 const following = () => async (userA, userB, callback) => {
-    try{
-        const { data: following } = await froyoApi.get(`/users/${userA}/following/${userB}`);
-        callback(following);
-    }
-    catch (err) {
-        callback(null, err);
-    }
+    const { data: following } = await froyoApi.get(`/users/${userA}/following/${userB}`);
+    return following;
 };
 
 export const { Provider, Context } = createDataContext(
@@ -207,8 +185,8 @@ export const { Provider, Context } = createDataContext(
         signUp,
         checkSignedIn,
         signOut,
-        getUserById,
-        updateUserInfo,
+        getUser,
+        updateUser,
         follow,
         following
     }, { user: {} }

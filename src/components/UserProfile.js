@@ -17,38 +17,21 @@ import {
 import { colors } from '../constants/constants';
 
 const UserProfile = (props) => {
-    const { signOut, follow, following, state: { user: signedInUser } } = useContext(AuthContext);
-    const { style, user, loading: alreadyLoading } = props;
-    // Status state
-    const [followingUser, setFollowingUser] = useState(false);
-    const [loading, setLoading] = useState(alreadyLoading);
-
-    // Check if the user if following 
-    const getFollowing = async () => {
-        setLoading(true);
-        await following(signedInUser.id, user.id, (following, err) => {
-            setLoading(false);
-            setFollowingUser(following);
-        });
-    };
-
-    useEffect(() => {
-        if (user.id !== signedInUser.id) {
-            (async function(){
-                await getFollowing();
-            })()
-        }
-    }, []);
+    const {
+        signOut,
+        state: { user: signedInUser }
+    } = useContext(AuthContext);
+    const {
+        style,
+        user,
+        onFollow,
+        loading,
+        following
+    } = props;
 
     // Event handlers
     const onEditProfile = () => {
         navigate('AccountEdit');
-    };
-
-    const onFollow = async () => {
-        await follow(user.id, async (err) => {
-            await getFollowing();
-        });
     };
 
     return (
@@ -56,34 +39,30 @@ const UserProfile = (props) => {
             <View>
                 <View style={styles.header}>
                     <Image style={styles.profilePicture} source={require('../../assets/icons/guest.png')} />
-                    {
-                        !loading ? (
-                            <View style={styles.headerText}>
-                                <Text
-                                    style={styles.name}
-                                    numberOfLines={1}
-                                    adjustsFontSizeToFit={true}
-                                >
-                                    {user.first_name} {user.last_name}
-                                </Text>
-                                <Text
-                                    style={styles.username}
-                                    numberOfLines={1}
-                                    adjustsFontSizeToFit={true}
-                                >
-                                    {!loading ? `@${user.username}` : ''}
-                                </Text>
-                                <View style={styles.numbers}>
-                                    <Text style={styles.followers}>
-                                        {!loading ? `${0/*user.followers.length*/} Followers` : ''}
-                                    </Text>
-                                    <Text style={styles.following}>
-                                        {!loading ? `${0/*user.following.length*/} Following` : ''}
-                                    </Text>
-                                </View>
-                            </View>
-                        ) : null
-                    }
+                    <View style={styles.headerText}>
+                        <Text
+                            style={styles.name}
+                            numberOfLines={1}
+                            adjustsFontSizeToFit={true}
+                        >
+                            {user.first_name} {user.last_name}
+                        </Text>
+                        <Text
+                            style={styles.username}
+                            numberOfLines={1}
+                            adjustsFontSizeToFit={true}
+                        >
+                            {`@${user.username}`}
+                        </Text>
+                        <View style={styles.numbers}>
+                            <Text style={styles.followers}>
+                                {`${0/*user.follower_count*/} Followers`}
+                            </Text>
+                            <Text style={styles.following}>
+                                {`${0/*user.follower_count*/} Following`}
+                            </Text>
+                        </View>
+                    </View>
                 </View>
                 {
                     user.description
@@ -129,10 +108,10 @@ const UserProfile = (props) => {
                 ) : (
                     <View  style={styles.actionButtonContainer}>
                         <Button
-                            title={followingUser ? 'Unfollow' : 'Follow'}
+                            title={following ? 'Unfollow' : 'Follow'}
                             color={colors.FROYO_GREEN}
-                            textColor={followingUser ? colors.FROYO_GREEN : colors.WHITE}
-                            type={followingUser ? 'secondary' : 'primary'}
+                            textColor={following ? colors.FROYO_GREEN : colors.WHITE}
+                            type={following ? 'secondary' : 'primary'}
                             pill
                             loading={loading}
                             buttonStyle={styles.actionButton}

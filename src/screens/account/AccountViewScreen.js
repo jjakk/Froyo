@@ -20,17 +20,22 @@ import UserProfile from '../../components/UserProfile';
 import ErrorMessage from '../../components/ErrorMessage';
 
 const AccountViewScreen = ({ navigation }) => {
-    const { getUserById, state: { user: defaultUser } } = useContext(AuthContext);
+    const {
+        getUser, 
+        follow,
+        following,
+        state: { user: signedInUser }
+    } = useContext(AuthContext);
     const { searchPosts } = useContext(PostContext);
     // User state
-    const [user, setUser] = useState(navigation.getParam('user') || defaultUser);
+    const [user, setUser] = useState(navigation.getParam('user') || signedInUser);
     // List of posts
     const [posts, setPosts] = useState([]);
     // Status states
+    const [followingUser, setFollowingUser] = useState(false);
     const [loading, setLoading] = useState(true);
     const [refreshing, setRefreshing] = useState(false);
     const [error, setError] = useState('');
-    
     
     // Error handling
     const onError = (err) => {
@@ -43,37 +48,40 @@ const AccountViewScreen = ({ navigation }) => {
     // Function to retrieve user info & posts
     const reloadContent = async () => {
         setLoading(true);
+        // Get following if view another user's profile
+        if (user.id !== signedInUser.id) {
+            (async function(){
+                await getFollowing();
+            })()
+        }
         // Retrieve posts
-        await searchPosts({ author_id: user.id }, (posts, err) => {
-            if (err) {
-                setError(err);
-            }
-            else {
-                setPosts(posts);
-            }
-        });
+        setPosts(await searchPosts({ author_id: user.id }));
         // Retreive user information
-        await getUserById(user.id, (user, err) => {
-            if(err) {
-                setError(err);
-            }
-            else {
-                setUser(user);
-            }
-        });
+        setUser(await getUser(user.id));
         setLoading(false);
     };
 
-    // Refresh content when loading this page
+    // Reusable function to check if the signed in user is following the user viewed
+    const getFollowing = async () => {
+        setLoading(true);
+        setFollowingUser(await following(signedInUser.id, user.id));
+        setLoading(false);
+    };
+
+    // Event handlers
     const onDidFocus = async () => {
         await reloadContent();
     };
 
-    // Handle refresh pulldown
     const onRefresh = async () => {
         setRefreshing(true);
         await reloadContent(true);
         setRefreshing(false);
+    };
+
+    const onFollow = async () => {
+        await follow(user.id);
+        await getFollowing();
     };
 
     return(
@@ -97,6 +105,8 @@ const AccountViewScreen = ({ navigation }) => {
                 <UserProfile
                     user={user}
                     loading={loading}
+                    onFollow={onFollow}
+                    following={followingUser}
                 />
                 <PostList
                     posts={posts}

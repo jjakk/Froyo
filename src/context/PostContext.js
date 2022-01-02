@@ -48,16 +48,11 @@ const getPost = () => async (postId, callback) => {
 }
 
 // (GET) Search posts
-const searchPosts = () => async (query, callback) => {
-    try {
-        const { data: posts } = await froyoApi.get('/posts', {
-            params: query
-        });
-        callback(posts);
-    }
-    catch(err) {
-        callback([], err.message);
-    }
+const searchPosts = () => async (query) => {
+    const { data: posts } = await froyoApi.get('/posts', {
+        params: query
+    });
+    return posts;
 }
 
 // Like a post (unlikes if already liked)

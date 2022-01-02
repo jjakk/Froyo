@@ -17,7 +17,7 @@ import UploadIcon from '../../../assets/icons/Upload.svg';
 const LOADING_TEXT = 'Loading';
 
 const AccountEditScreen = ({ navigation }) => {
-    const { updateUserInfo, state: { user, errorMessage } } = useContext(AuthContext);
+    const { updateUser, state: { user, errorMessage } } = useContext(AuthContext);
     // Form feilds
     const [firstName, setFirstName] = useState(user.first_name);
     const [lastName, setLastName] = useState(user.last_name);
@@ -29,20 +29,14 @@ const AccountEditScreen = ({ navigation }) => {
 
     const handleSubmit = () => {
         setLoading(true);
-        updateUserInfo({
+        updateUser({
             firstName,
             lastName,
             username,
             description
-        }, (err) => {
-            setLoading(false);
-            if (err) {
-                setError(err);
-            }
-            else {
-                navigation.pop();
-            }
         });
+        setLoading(false);
+        navigation.pop();
     };
 
     return(

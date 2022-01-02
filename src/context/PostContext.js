@@ -10,41 +10,22 @@ const postReducer = (state, action) => {
 };
 
 // POST a post
-const createPost = (dispatch) => async (info, callback) => {
-    try{
-        const { postBody } = info;
-        const response = await froyoApi.post('/posts', { text: postBody });
-        callback();
-    }
-    catch(err){
-        let message = err.response.data;
-        dispatch({ type: 'add_error', payload: message });
-        callback(message);
-    }
+const createPost = () => async (info) => {
+    const { postBody } = info;
+    await froyoApi.post('/posts', { text: postBody });
 };
 
 // DELETE a post by id
-const deletePost = () => async (postId, callback) => {
-    try{
-        await froyoApi.delete(`/posts/${postId}`);
-        callback();
-    }
-    catch(err){
-        callback(err.response.data);
-    }
+const deletePost = () => async (postId) => {
+    await froyoApi.delete(`/posts/${postId}`);
 }
 
 // GET a post by id
-const getPost = () => async (postId, callback) => {
-    try{
-        const {
-            data: post
-        } = await froyoApi.get(`/posts/${postId}`);
-        callback(post);
-    }
-    catch(err){
-        callback(null, err.response.data);
-    }
+const getPost = () => async (postId) => {
+    const {
+        data: post
+    } = await froyoApi.get(`/posts/${postId}`);
+    return post;
 }
 
 // (GET) Search posts
@@ -56,30 +37,13 @@ const searchPosts = () => async (query) => {
 }
 
 // Like a post (unlikes if already liked)
-const likePost = () => async ({ id }, callback) => {
-    try{
-        await froyoApi.put(`/posts/${id}/like`);
-        callback();
-    }
-    catch(err){
-        callback(err.response.data);
-    }
+const likePost = () => async (postId) => {
+    await froyoApi.put(`/posts/${postId}/like`);
 };
 
 // Dislike a post (undislikes if already disliked)
-const dislikePost = () => async ({ id }, callback) => {
-    try{
-        await froyoApi.put(`/posts/${id}/dislike`);
-        callback();
-    }
-    catch(err){
-        callback(err.response.data);
-    };
-};
-
-// Clear the error message
-const clearErrorMessage = (dispatch) => () => {
-    dispatch({ type: 'add_error', payload: '' });
+const dislikePost = () => async (postId) => {
+    await froyoApi.put(`/posts/${postId}/dislike`);
 };
 
 export const { Provider, Context } = createDataContext(
@@ -90,7 +54,6 @@ export const { Provider, Context } = createDataContext(
         deletePost,
         searchPosts,
         likePost,
-        dislikePost,
-        clearErrorMessage
+        dislikePost
     }, {}
 );

@@ -51,25 +51,12 @@ const MoreOptions = (props) => {
     const defaultOnDelete = async () => {
         confirmAlert(`Are you sure you want to delete this ${contentType.toLowerCase()}?`, async () => {
             if (contentType === 'Post') {
-                await deletePost(content.id, (err) => {
-                    if (err) {
-                        onError(err);
-                    }
-                    else {
-                        onDelete();
-                    }
-                });
+                await deletePost(content.id);
             }
             else {
-                await deleteComment(content.id, (err) => {
-                    if (err) {
-                        onError(err);
-                    }
-                    else {
-                        onDelete();
-                    }
-                });
+                await deleteComment(content.id);
             }
+            onDelete();
         });
     };
 

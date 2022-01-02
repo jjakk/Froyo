@@ -10,77 +10,35 @@ const commentReducer = (state, action) => {
 };
 
 // POST a comment
-const createComment = () => async (info, callback) => {
-    try {
-        const {
-            text,
-            parent_id
-        } = info;
-        if(!text || !parent_id){
-            const message = !text ? 'Empty comment' : (!parent_id ? 'No parent' : null);
-            return callback(message);
-        }
-        await froyoApi.post('/comments', info);
-        callback();
-    }
-    catch (err) {
-        callback(err.response.data);
-    }
+const createComment = () => async (info) => {
+    await froyoApi.post('/comments', info);
 };
 
 // DELETE a comment
-const deleteComment = () => async (commentId, callback) => {
-    try{
-        await froyoApi.delete(`/comments/${commentId}`);
-        callback();
-    }
-    catch(err){
-        callback(err.response.data);
-    }
+const deleteComment = () => async (commentId) => {
+    await froyoApi.delete(`/comments/${commentId}`);
 }
 
 // GET a comment
-const getComment = () => async (commentId, callback) => {
-    try{
-        const { data: comment } = await froyoApi.get(`/comments/${commentId}`);
-        callback(comment);
-    }
-    catch(err){
-        callback(null, err.response.data);
-    }
+const getComment = () => async (commentId) => {
+    const { data: comment } = await froyoApi.get(`/comments/${commentId}`);
+    return comment;
 }
 
 // GET all the comments of a given parent
-const getComments = () => async ({ id: parentId }, callback) => {
-    try{
-        const { data: comments } = await froyoApi.get(`/posts/${parentId}/comments`);
-        callback(comments);
-    }
-    catch(err){
-        callback([], err.response.data);
-    }
+const getComments = () => async (parentId) => {
+    const { data: comments } = await froyoApi.get(`/posts/${parentId}/comments`);
+    return comments;
 };
 
 // Like a comment (unlikes if already liked)
-const likeComment = () => async (commentId, callback) => {
-    try{
-        await froyoApi.put(`/comments/${commentId}/like`);
-        callback();
-    }
-    catch(err){
-        callback(err.response.data);
-    }
+const likeComment = () => async (commentId) => {
+    await froyoApi.put(`/comments/${commentId}/like`);
 };
 
 // Dislike a comment (undislikes if already disliked)
-const dislikeComment = () => async (commentId, callback) => {
-    try{
-        await froyoApi.put(`/comments/${commentId}/dislike`);
-        callback();
-    }
-    catch(err){
-        callback(err.response.data);
-    };
+const dislikeComment = () => async (commentId) => {
+    await froyoApi.put(`/comments/${commentId}/dislike`);
 };
 
 export const { Provider, Context } = createDataContext(

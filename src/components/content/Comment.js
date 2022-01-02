@@ -36,27 +36,34 @@ const Comment = (props) => {
 
     // Update comment information from context
     const updateComment = async () => {
-        await getComment(comment.id, (newComment, err) => {
-            if(!err) setComment(newComment);
-        });
+        try {
+            setComment(await getComment(comment.id));
+        }
+        catch (err) {
+            onError(err);
+        }
     };
 
     // When like button is pressed
     const handleLike = async () => {
-        await likeComment(comment.id, async (err) => {
-            if (!err) {
-                await updateComment();
-            }
-        });
+        try {
+            await likeComment(comment.id);
+            await updateComment();
+        }
+        catch (err) {
+            onError(err);
+        }
     };
 
     // When dislike button is pressed
     const handleDislike = async () => {
-        await dislikeComment(comment.id, async (err) => {
-            if (!err) {
-                await updateComment();
-            }
-        });
+        try {
+            await dislikeComment(comment.id);
+            await updateComment();
+        }
+        catch (err) {
+            onError(err);
+        }
     };
 
     return (

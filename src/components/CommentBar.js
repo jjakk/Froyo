@@ -26,15 +26,12 @@ const CommentBar = (props) => {
             text: commentText,
             parent_id
         };
-        await createComment(content, (err) => {
-            if (err) {
-                onCreateComment(err);
-            }
-            else {
-                setCommentText('');
-                onCreateComment();
-            }
-        });
+        const err = await createComment(content);
+        if (err) onCreateComment(err);
+        else {
+            setCommentText('');
+            onCreateComment();
+        }
     };
 
     return (

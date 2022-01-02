@@ -65,29 +65,34 @@ const Post = (props) => {
 
     // Update post information from context
     const updatePost = async () => {
-        await getPost(data.id, (post, err) => {
-            if (!err) {
-                setPost(post);
-            }
-        });
+        try {
+            setPost(await getPost(data.id));
+        }
+        catch (err) {
+            onError(err);
+        }
     };
 
     // When like button is pressed
     const handleLike = async () => {
-        await likePost(post, async (err) => {
-            if (!err) {
-                await updatePost();
-            }
-        });
+        try {
+            await likePost(post.id);
+            await updatePost();
+        }
+        catch (err) {
+            onError(err);
+        }
     };
 
     // When dislike button is pressed
     const handleDislike = async () => {
-        await dislikePost(post, async (err) => {
-            if (!err) {
-                await updatePost();
-            }
-        });
+        try {
+            await dislikePost(post.id);
+            await updatePost();
+        }
+        catch (err) {
+            onError(err);
+        }
     };
 
     return (

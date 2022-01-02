@@ -32,32 +32,16 @@ const PostViewScreen = ({ navigation }) => {
     useEffect(() => {
         (async function(){
             setLoadingComments(true);
-            await getComments(post, (comments, err) => {
-                if (err) {
-                    setError(err);
-                }
-                else {
-                    setComments(comments);
-                }
-            });
+            setComments(await getComments(post.id));
             setLoadingComments(false);
         })();
     }, [post]);
 
     // Refresh post information (get new comment)
     const refreshPost = async (err) => {
-        if (err) {
-            setError(err);
-        }
-        else {
-            await getPost(post.id, (post, err) => {
-                if (err) {
-                    setError(err);
-                }
-                else {
-                    setPost(post);
-                }
-            });
+        if (err) setError(err);
+        else{
+            setPost(await getPost(post.id));
         }
     };
 
@@ -65,16 +49,8 @@ const PostViewScreen = ({ navigation }) => {
     const clearError = () => {
         setError('');
     };
-    const onError = (err) => {
-        setError(err);
-    }
 
     // Event Handlers
-    // When leaving the post view screen
-    const onBack = async () => {
-        navigation.pop();
-    };
-    // Handle refresh pull down
     const onRefresh = async () => {
         setRefreshing(true);
         await refreshPost();
@@ -97,13 +73,13 @@ const PostViewScreen = ({ navigation }) => {
                         data={post}
                         clickable={false}
                         onDelete={onBack}
-                        onError={onError}
+                        onError={setError}
                     />
                     <CommentList
                         comments={comments}
                         loading={loadingComments}
                         onDeleteComment={refreshPost}
-                        onError={onError}
+                        onError={setError}
                     />
                 </ScrollView>
                 <CommentBar

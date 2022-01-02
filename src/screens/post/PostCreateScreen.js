@@ -29,18 +29,17 @@ const PostCreateScreen = ({ navigation }) => {
 
     // Event Handlers
     const handleSubmit = async () => {
-        Keyboard.dismiss()
-        setLoading(true);
-        await createPost({ postBody }, (err) => {
+        try{
+            Keyboard.dismiss()
+            setLoading(true);
+            await createPost({ postBody });
             setLoading(false);
-            if (err) {
-                setError(err);
-            }
-            else {
-                setPostBody('');
-                navigation.navigate('AccountView');
-            }
-        });
+            setPostBody('');
+            navigation.navigate('AccountView');
+        }
+        catch (err) {
+            setError(err);
+        }
     };
 
     const clearError = async () => {

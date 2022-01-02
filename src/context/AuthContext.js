@@ -18,8 +18,6 @@ const authReducer = (state, action) => {
     }
 };
 
-// For all functions: If callback parameter is true, task succeeded; if false, task failed
-
 // Sign in with email and password
 const signIn = (dispatch) => async ({ email, password }, callback) => {
     try{

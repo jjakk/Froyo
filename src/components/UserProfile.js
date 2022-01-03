@@ -56,10 +56,10 @@ const UserProfile = (props) => {
                         </Text>
                         <View style={styles.numbers}>
                             <Text style={styles.followers}>
-                                {`${0/*user.follower_count*/} Followers`}
+                                {`${user.follower_count} Followers`}
                             </Text>
                             <Text style={styles.following}>
-                                {`${0/*user.follower_count*/} Following`}
+                                {`${user.followee_count} Following`}
                             </Text>
                         </View>
                     </View>

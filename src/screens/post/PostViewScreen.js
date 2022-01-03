@@ -72,7 +72,7 @@ const PostViewScreen = ({ navigation }) => {
                     <Post
                         data={post}
                         clickable={false}
-                        onDelete={onBack}
+                        onDelete={navigation.pop}
                         onError={setError}
                     />
                     <CommentList

@@ -36,6 +36,13 @@ const searchPosts = () => async (query) => {
     return posts;
 }
 
+// GET the user's personal feed
+const getFeed = () => async () => {
+    const { data: posts } = await froyoApi.get(`/feed`);
+    console.log(posts);
+    return posts;
+};
+
 // Like a post (unlikes if already liked)
 const likePost = () => async (postId) => {
     await froyoApi.put(`/posts/${postId}/like`);
@@ -49,10 +56,11 @@ const dislikePost = () => async (postId) => {
 export const { Provider, Context } = createDataContext(
     postReducer,
     {
-        getPost,
         createPost,
         deletePost,
+        getPost,
         searchPosts,
+        getFeed,
         likePost,
         dislikePost
     }, {}

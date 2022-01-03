@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-    TouchableOpacity,
+    TouchableWithoutFeedback,
     Image,
     View,
     StyleSheet
@@ -11,7 +11,7 @@ import MoreOptions from './MoreOptions';
 // Helper functions
 import { calculateAge } from '../../../helperFunctions/age';
 
-const PostHeader = (props) => {
+const ContentHeader = (props) => {
     const {
         post,
         onPress,
@@ -21,8 +21,8 @@ const PostHeader = (props) => {
     } = props;
 
     return (
-        <TouchableOpacity onPress={onPress}>
-            <View style={styles.header}>
+        <View style={styles.header}>
+            <TouchableWithoutFeedback onPress={onPress}>
                 <View style={styles.userInfo}>
                     <Image
                         style={styles.profilePicture}
@@ -37,14 +37,14 @@ const PostHeader = (props) => {
                         <Text style={styles.age}>{ calculateAge(post.timestamp) || '' }</Text>
                     </Text>
                 </View>
-                <MoreOptions
-                    content={post}
-                    onDelete={onDelete}
-                    onError={onError}
-                    style={styles.options}
-                />
-            </View>
-        </TouchableOpacity>
+            </TouchableWithoutFeedback>
+            <MoreOptions
+                content={post}
+                onDelete={onDelete}
+                onError={onError}
+                style={styles.options}
+            />
+        </View>
     );
 };
 
@@ -54,11 +54,11 @@ const styles = StyleSheet.create({
         margin: 15,
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
     },
     userInfo: {
         flexDirection: 'row',
-        alignItems: 'center',
+        alignItems: 'center'
     },
     headerText: {
         marginLeft: 15
@@ -80,5 +80,5 @@ const styles = StyleSheet.create({
     // Condensed header
 });
 
-export default PostHeader;
+export default ContentHeader;
 

@@ -14,7 +14,7 @@ import {
     Text,
     TouchableIcon
 } from '../froyo-elements';
-import PostHeader from './parts/PostHeader';
+import ContentHeader from './parts/ContentHeader';
 // Contexts
 import { Context as PostContext } from '../../context/PostContext';
 // Icons
@@ -104,7 +104,7 @@ const Post = (props) => {
             }
         >
             <View style={[styles.post, style]}>
-                <PostHeader
+                <ContentHeader
                     post={post}
                     onPress={onHeaderPress}
                     onError={onError}

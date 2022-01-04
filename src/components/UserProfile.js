@@ -70,7 +70,7 @@ const UserProfile = (props) => {
                             <Text
                                 style={styles.description}
                             >
-                                {!loading ? user.description : ''}
+                                {user.description}
                             </Text>
                         )
                         : null

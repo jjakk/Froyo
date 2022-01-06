@@ -5,8 +5,10 @@ import {
     StyleSheet,
     View
 } from 'react-native';
+import {
+    LoadingAnimation
+} from '../../components/froyo-elements';
 import ScreenContainer from '../../components/ScreenContainer';
-import * as Progress from 'react-native-progress';
 // Context
 import { Context as AuthContext } from '../../context/AuthContext';
 
@@ -20,7 +22,9 @@ const ResolveAuthScreen = () => {
         <ScreenContainer style={styles.container}>
             <View style={styles.animation}>
                 <Image style={styles.logo} source={require('../../../assets/logo/Logo-White.png')} />
-                <Progress.Bar style={styles.bar} indeterminate={true} width={50} color='white' />
+                <LoadingAnimation
+                    
+                />
             </View>
         </ScreenContainer>
     );

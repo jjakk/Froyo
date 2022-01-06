@@ -1,6 +1,5 @@
 // This componet takes in a list of posts and renders them
 import React, { useEffect } from 'react';
-import * as Progress from 'react-native-progress';
 import { LoadingAnimation } from '../froyo-elements';
 // Components
 import { StyleSheet, View } from 'react-native';

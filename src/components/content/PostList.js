@@ -1,6 +1,7 @@
 // This componet takes in a list of posts and renders them
 import React, { useEffect } from 'react';
 import * as Progress from 'react-native-progress';
+import { LoadingAnimation } from '../froyo-elements';
 // Components
 import { StyleSheet, View } from 'react-native';
 import EmptyMessage from '../EmptyMessage';
@@ -69,11 +70,8 @@ const PostList = (props) => {
                             />
                         )
                     ) : (
-                        <Progress.CircleSnail
+                        <LoadingAnimation
                             size={50}
-                            indeterminate={true}
-                            spinDuration={1000}
-                            color={colors.FROYO_GREEN}
                             style={styles.postLoading}
                         />
                     )

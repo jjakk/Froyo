@@ -1,7 +1,9 @@
 import React, { useState, useContext } from 'react';
 // Components
 import {
-    StyleSheet
+    StyleSheet,
+    ScrollView,
+    RefreshControl
 } from 'react-native';
 import { NavigationEvents } from 'react-navigation';
 import Header from '../components/Header';
@@ -20,6 +22,7 @@ const FeedScreen = ({ navigation }) => {
     // Status states
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(true);
+    const [refreshing, setRefreshing] = useState(false);
     const [posts, setPosts] = useState([]);
 
     // Error handling
@@ -40,6 +43,12 @@ const FeedScreen = ({ navigation }) => {
         navigation.navigate('AccountView');
     };
 
+    const onRefresh = async () => {
+        setRefreshing(true);
+        await reloadContent(true);
+        setRefreshing(false);
+    };
+
     const onDidFocus = async () => {
         await reloadContent();
     };
@@ -58,13 +67,24 @@ const FeedScreen = ({ navigation }) => {
                 }}
                 style={styles.header}
             />
-            <PostList
-                posts={posts}
-                loading={loading}
-                emptyMessage='Follow people to populate your feed'
-                onPostDelete={reloadContent}
-                onError={setError}
-            />
+            <ScrollView
+                showsVerticalScrollIndicator={false}
+                refreshControl={
+                    <RefreshControl
+                        refreshing={refreshing}
+                        onRefresh={onRefresh}
+                    />
+                }
+                contentContainerStyle={styles.scrollviewContainer}
+            >
+                <PostList
+                    posts={posts}
+                    loading={loading}
+                    emptyMessage='Follow people to populate your feed'
+                    onPostDelete={reloadContent}
+                    onError={setError}
+                />
+            </ScrollView>
             <ErrorMessage
                 type='box'
                 message={error}
@@ -80,6 +100,11 @@ const styles = StyleSheet.create({
         padding: 10,
         borderBottomColor: colors.GREY,
         borderBottomWidth: 1,
+    },
+    scrollviewContainer: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center'
     }
 });
 

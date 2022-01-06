@@ -74,6 +74,7 @@ const FeedScreen = ({ navigation }) => {
                     posts={posts}
                     loading={loading}
                     emptyMessage='Follow people to populate your feed'
+                    showLoadingAnimation={false}
                     onPostDelete={reloadContent}
                     onError={setError}
                 />

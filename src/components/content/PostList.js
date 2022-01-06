@@ -18,7 +18,8 @@ const PostList = (props) => {
         emptyMessageAlign,
         onPostDelete,
         onError,
-        style
+        style,
+        showLoadingAnimation
     } = props;
 
     // Sort posts before rendering
@@ -68,12 +69,12 @@ const PostList = (props) => {
                                 subheaderText={emptyMessage}
                             />
                         )
-                    ) : (
+                    ) : showLoadingAnimation ? (
                         <LoadingAnimation
                             size={50}
                             style={styles.postLoading}
                         />
-                    )
+                    ) : null
             }
         </View>
     );
@@ -102,7 +103,8 @@ const styles = StyleSheet.create({
 
 PostList.defaultProps = {
     sortBy: 'new',
-    emptyMessageAlign: 'center'
+    emptyMessageAlign: 'center',
+    showLoadingAnimation: true
 };
 
 export default PostList;

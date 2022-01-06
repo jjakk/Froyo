@@ -1,12 +1,9 @@
 import React, {
     useContext,
-    useEffect,
     useState
 } from 'react';
 import {
     StyleSheet,
-    ScrollView,
-    RefreshControl
 } from 'react-native';
 import { NavigationEvents } from 'react-navigation';
 import ScreenContainer from '../../components/ScreenContainer';
@@ -18,6 +15,7 @@ import Header from '../../components/Header';
 import PostList from '../../components/content/PostList';
 import UserProfile from '../../components/UserProfile';
 import ErrorMessage from '../../components/ErrorMessage';
+import ScrollContainer from '../../components/ScrollContainer';
 
 const AccountViewScreen = ({ navigation }) => {
     const {
@@ -90,14 +88,9 @@ const AccountViewScreen = ({ navigation }) => {
             <Header
                 navigation={navigation}
             />
-            <ScrollView
-                showsVerticalScrollIndicator={false}
-                refreshControl={
-                    <RefreshControl
-                        refreshing={refreshing}
-                        onRefresh={onRefresh}
-                    />
-                }
+            <ScrollContainer
+                refreshing={refreshing}
+                onRefresh={onRefresh}
             >
                 <UserProfile
                     user={user}
@@ -113,7 +106,7 @@ const AccountViewScreen = ({ navigation }) => {
                     onPostDelete={reloadContent}
                     onError={setError}
                 />
-            </ScrollView>
+            </ScrollContainer>
             <ErrorMessage
                 type='box'
                 message={error}

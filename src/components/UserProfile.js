@@ -7,7 +7,8 @@ import { navigate } from '../navigation/navigationRef';
 import {
     StyleSheet,
     View,
-    Image
+    Image,
+    TouchableWithoutFeedback
 } from 'react-native';
 import {
     Button,

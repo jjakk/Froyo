@@ -5,9 +5,6 @@ import {
     StyleSheet,
     View
 } from 'react-native';
-import {
-    LoadingAnimation
-} from '../../components/froyo-elements';
 import ScreenContainer from '../../components/ScreenContainer';
 // Context
 import { Context as AuthContext } from '../../context/AuthContext';
@@ -22,9 +19,6 @@ const ResolveAuthScreen = () => {
         <ScreenContainer style={styles.container}>
             <View style={styles.animation}>
                 <Image style={styles.logo} source={require('../../../assets/logo/Logo-White.png')} />
-                <LoadingAnimation
-                    
-                />
             </View>
         </ScreenContainer>
     );

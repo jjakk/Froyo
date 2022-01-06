@@ -17,6 +17,7 @@ const SearchBar = ({ onSearch }) => {
 
     const clearText = () => {
         setText('');
+        onSearch('');
     };
 
     // Event handlers

@@ -2,12 +2,11 @@ import React, { useState, useContext } from 'react';
 // Components
 import {
     StyleSheet,
-    ScrollView,
-    RefreshControl
 } from 'react-native';
 import { NavigationEvents } from 'react-navigation';
 import Header from '../components/Header';
 import ScreenContainer from '../components/ScreenContainer';
+import ScrollContainer from '../components/ScrollContainer';
 import PostList from '../components/content/PostList';
 import ErrorMessage from '../components/ErrorMessage';
 // Context
@@ -67,15 +66,9 @@ const FeedScreen = ({ navigation }) => {
                 }}
                 style={styles.header}
             />
-            <ScrollView
-                showsVerticalScrollIndicator={false}
-                refreshControl={
-                    <RefreshControl
-                        refreshing={refreshing}
-                        onRefresh={onRefresh}
-                    />
-                }
-                contentContainerStyle={styles.scrollviewContainer}
+            <ScrollContainer
+                refreshing={refreshing}
+                onRefresh={onRefresh}
             >
                 <PostList
                     posts={posts}
@@ -84,7 +77,7 @@ const FeedScreen = ({ navigation }) => {
                     onPostDelete={reloadContent}
                     onError={setError}
                 />
-            </ScrollView>
+            </ScrollContainer>
             <ErrorMessage
                 type='box'
                 message={error}

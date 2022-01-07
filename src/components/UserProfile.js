@@ -167,7 +167,7 @@ const styles = StyleSheet.create({
         fontSize: 22,
         margin: 25,
         marginTop: 15,
-        marginBottom: 15,
+        marginBottom: 0,
     },
     accountInfoLoading: {
         marginLeft: 50,
@@ -179,7 +179,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         margin: 25,
-        marginTop: 0
+        marginTop: 15
     },
     actionButtonContainer: {
         flex: 1,

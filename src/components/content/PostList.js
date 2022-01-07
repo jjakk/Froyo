@@ -38,12 +38,12 @@ const PostList = (props) => {
     }, [posts]);
 
     return (
-        <View style={[styles.posts, style]}>
+        <View style={[styles.container, style]}>
             {
                 !loading ?
                     (
                         postsRender.length > 0 ? (
-                            <View style={styles.postView}>
+                            <View style={styles.posts}>
                             {
                                 postsRender.map(post => (
                                     <Post
@@ -63,7 +63,8 @@ const PostList = (props) => {
                                 style={[
                                     styles.emptyMessage,
                                     {
-                                        alignSelf: emptyMessageAlign
+                                        alignSelf: emptyMessageAlign,
+                                        marginTop: emptyMessageAlign === 'flex-start' ? 50 : 0,
                                     }
                                 ]}
                                 subheaderText={emptyMessage}
@@ -81,20 +82,20 @@ const PostList = (props) => {
 };
 
 const styles = StyleSheet.create({
-    posts: {
+    container: {
         justifyContent: 'center',
         flexDirection: 'row',
         width: '100%',
         flex: 1
     },
-    postView: {
+    posts: {
         paddingTop: 5,
         flex: 1,
         backgroundColor: colors.LIGHT_GREY,
         width: '100%'
     },
     emptyMessage: {
-        marginTop: 50,
+        width: '100%'
     },
     postLoading: {
         alignSelf: 'flex-start',

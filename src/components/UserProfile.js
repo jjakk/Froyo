@@ -36,7 +36,7 @@ const UserProfile = (props) => {
     };
 
     return (
-        <View style={[styles.container, style]}>
+        <View style={style}>
             <View>
                 <View style={styles.header}>
                     <Image style={styles.profilePicture} source={require('../../assets/icons/guest.png')} />
@@ -128,14 +128,12 @@ const UserProfile = (props) => {
 };
 
 const styles = StyleSheet.create({
-    container: {
-        padding: 25
-    },
     // Profile
     header: {
         flexDirection: 'row',
         alignItems: 'center',
-        marginBottom: 15,
+        margin: 15,
+        marginBottom: 0
     },
     headerText: {
         marginLeft: 15
@@ -167,6 +165,8 @@ const styles = StyleSheet.create({
     },
     description: {
         fontSize: 22,
+        margin: 25,
+        marginTop: 15,
         marginBottom: 15,
     },
     accountInfoLoading: {
@@ -177,7 +177,9 @@ const styles = StyleSheet.create({
     action: {
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        margin: 25,
+        marginTop: 0
     },
     actionButtonContainer: {
         flex: 1,

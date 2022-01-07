@@ -94,11 +94,6 @@ const styles = StyleSheet.create({
         padding: 10,
         borderBottomColor: colors.GREY,
         borderBottomWidth: 1,
-    },
-    scrollviewContainer: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center'
     }
 });
 

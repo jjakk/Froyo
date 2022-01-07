@@ -84,6 +84,7 @@ const styles = StyleSheet.create({
     posts: {
         justifyContent: 'center',
         flexDirection: 'row',
+        width: '100%',
         flex: 1
     },
     postView: {

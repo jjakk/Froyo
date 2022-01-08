@@ -115,7 +115,7 @@ const signOut = (dispatch) => async () => {
     navigate('Welcome');
 };
 
-// Get a user's information given their auth token
+// Get a user's information given their ID
 const getUser = () => async (id) => {
     const { data: user } = await froyoApi.get(`/users/${id}`);
     return user;

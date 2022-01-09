@@ -11,6 +11,9 @@ const commentReducer = (state, action) => {
 
 // POST a comment
 const createComment = () => async (info) => {
+    const { text } = info;
+    console.log(text);
+    if (!text) throw { message:'Comment body is required' };
     await froyoApi.post('/comments', info);
 };
 

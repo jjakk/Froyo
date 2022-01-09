@@ -38,7 +38,8 @@ const PostCreateScreen = ({ navigation }) => {
             navigation.navigate('AccountView');
         }
         catch (err) {
-            setError(err);
+            setError(err.message);
+            setLoading(false);
         }
     };
 

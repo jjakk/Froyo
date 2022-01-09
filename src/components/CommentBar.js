@@ -19,18 +19,21 @@ const CommentBar = (props) => {
         style,
         parent_id,
         onCreateComment,
+        onError
     } = props;
 
     const onSubmit = async () => {
-        const content = {
-            text: commentText,
-            parent_id
-        };
-        const err = await createComment(content);
-        if (err) onCreateComment(err);
-        else {
+        try{
+            const content = {
+                text: commentText,
+                parent_id
+            };
+            await createComment(content);
             setCommentText('');
             onCreateComment();
+        }
+        catch (err) {
+            onError(err.message);
         }
     };
 

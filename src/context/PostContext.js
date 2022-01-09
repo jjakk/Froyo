@@ -12,6 +12,7 @@ const postReducer = (state, action) => {
 // POST a post
 const createPost = () => async (info) => {
     const { postBody } = info;
+    if (!postBody) throw { message:'Post body is required' };
     await froyoApi.post('/posts', { text: postBody });
 };
 

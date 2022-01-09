@@ -85,6 +85,7 @@ const PostViewScreen = ({ navigation }) => {
                 <CommentBar
                     parent_id={post.id}
                     onCreateComment={refreshPost}
+                    onError={setError}
                 />
                 <ErrorMessage
                     type='box'

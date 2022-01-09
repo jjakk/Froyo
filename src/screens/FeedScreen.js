@@ -6,7 +6,6 @@ import {
 import { NavigationEvents } from 'react-navigation';
 import Header from '../components/Header';
 import ScreenContainer from '../components/ScreenContainer';
-import ScrollContainer from '../components/ScrollContainer';
 import PostList from '../components/content/PostList';
 import ErrorMessage from '../components/ErrorMessage';
 // Context

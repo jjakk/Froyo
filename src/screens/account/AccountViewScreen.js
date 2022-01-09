@@ -15,7 +15,6 @@ import Header from '../../components/Header';
 import PostList from '../../components/content/PostList';
 import UserProfile from '../../components/UserProfile';
 import ErrorMessage from '../../components/ErrorMessage';
-import ScrollContainer from '../../components/ScrollContainer';
 import { colors } from '../../constants/constants';
 
 const AccountViewScreen = ({ navigation }) => {

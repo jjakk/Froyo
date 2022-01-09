@@ -12,8 +12,13 @@ import {
 import SearchIcon from '../../assets/icons/Search.svg';
 import CloseIcon from '../../assets/icons/Close.svg'
 
-const SearchBar = ({ onSearch }) => {
+const SearchBar = (props) => {
     const [text, setText] = useState('');
+
+    const {
+        onSearch,
+        setSearchText
+    } = props;
 
     const clearText = () => {
         setText('');
@@ -22,6 +27,7 @@ const SearchBar = ({ onSearch }) => {
 
     // Event handlers
     const onSubmit = () => {
+        setSearchText(text);
         onSearch(text);
     }
 

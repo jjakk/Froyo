@@ -13,10 +13,11 @@ import { Context as PostContext } from '../context/PostContext';
 const SearchScreen = () => {
     const { searchPosts } = useContext(PostContext);
     const [posts, setPosts] = useState([]);
+    const [searchText, setSearchText] = useState('');
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
 
-    const onSearch = async (searchValue='') => {
+    const onSearch = async (searchValue=searchText) => {
         setLoading(true);
         setPosts(await searchPosts({ text: searchValue }));
         setLoading(false);
@@ -34,7 +35,10 @@ const SearchScreen = () => {
         <ScreenContainer
             edges={['top']}
         >
-            <SearchBar onSearch={onSearch} />
+            <SearchBar
+                onSearch={onSearch}
+                setSearchText={setSearchText}
+            />
             <PostList
                 posts={posts}
                 loading={loading}

@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
     scrollviewContainer: {
         flex: 1,
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
     }
 });
 

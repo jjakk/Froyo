@@ -36,103 +36,108 @@ const UserProfile = (props) => {
     };
 
     return (
-        <View style={style}>
-            <View>
-                <View style={styles.header}>
-                    <Image style={styles.profilePicture} source={require('../../assets/icons/guest.png')} />
-                    <View style={styles.headerText}>
-                        <Text
-                            style={styles.name}
-                            numberOfLines={1}
-                            adjustsFontSizeToFit={true}
-                        >
-                            {user.first_name} {user.last_name}
-                        </Text>
-                        <Text
-                            style={styles.username}
-                            numberOfLines={1}
-                            adjustsFontSizeToFit={true}
-                        >
-                            {`@${user.username}`}
-                        </Text>
-                        <View style={styles.numbers}>
-                            <Text style={styles.followers}>
-                                {`${user.follower_count} Followers`}
+        <TouchableWithoutFeedback>
+            <View style={[styles.container, style]}>
+                <View>
+                    <View style={styles.header}>
+                        <Image style={styles.profilePicture} source={require('../../assets/icons/guest.png')} />
+                        <View style={styles.headerText}>
+                            <Text
+                                style={styles.name}
+                                numberOfLines={1}
+                                adjustsFontSizeToFit={true}
+                            >
+                                {user.first_name} {user.last_name}
                             </Text>
-                            <Text style={styles.following}>
-                                {`${user.followee_count} Following`}
+                            <Text
+                                style={styles.username}
+                                numberOfLines={1}
+                                adjustsFontSizeToFit={true}
+                            >
+                                {`@${user.username}`}
                             </Text>
+                            <View style={styles.numbers}>
+                                <Text style={styles.followers}>
+                                    {`${user.follower_count} Followers`}
+                                </Text>
+                                <Text style={styles.following}>
+                                    {`${user.followee_count} Following`}
+                                </Text>
+                            </View>
                         </View>
                     </View>
+                    {
+                        user.description
+                            ? (
+                                <Text
+                                    style={styles.description}
+                                >
+                                    {user.description}
+                                </Text>
+                            )
+                            : null
+                    }
                 </View>
+                <View style={styles.action}>
                 {
-                    user.description
-                        ? (
-                            <Text
-                                style={styles.description}
-                            >
-                                {user.description}
-                            </Text>
-                        )
-                        : null
+                    user.id === signedInUser.id ? (
+                        <>
+                        <View style={styles.actionButtonContainer}>
+                            <Button
+                                title='Edit profile'
+                                color={colors.FROYO_GREEN}
+                                textColor='white'
+                                pill
+                                buttonStyle={styles.actionButton}
+                                titleStyle={styles.actionButtonText}
+                                onPress={onEditProfile}
+                            />
+                        </View>
+                        <View style={styles.gap}></View>
+                        <View  style={styles.actionButtonContainer}>
+                            <Button
+                                title='Sign out'
+                                color={colors.FROYO_GREEN}
+                                textColor={colors.FROYO_GREEN}
+                                type='secondary'
+                                pill
+                                buttonStyle={styles.actionButton}
+                                titleStyle={styles.actionButtonText}
+                                onPress={signOut}
+                            />
+                        </View>
+                        </>
+                    ) : (
+                        <View  style={styles.actionButtonContainer}>
+                            <Button
+                                title={following ? 'Unfollow' : 'Follow'}
+                                color={colors.FROYO_GREEN}
+                                textColor={following ? colors.FROYO_GREEN : colors.WHITE}
+                                type={following ? 'secondary' : 'primary'}
+                                pill
+                                loading={loading}
+                                buttonStyle={styles.actionButton}
+                                titleStyle={styles.actionButtonText}
+                                onPress={onFollow}
+                            />
+                        </View>
+                    )
                 }
+                </View>
             </View>
-            <View style={styles.action}>
-            {
-                user.id === signedInUser.id ? (
-                    <>
-                    <View style={styles.actionButtonContainer}>
-                        <Button
-                            title='Edit profile'
-                            color={colors.FROYO_GREEN}
-                            textColor='white'
-                            pill
-                            buttonStyle={styles.actionButton}
-                            titleStyle={styles.actionButtonText}
-                            onPress={onEditProfile}
-                        />
-                    </View>
-                    <View style={styles.gap}></View>
-                    <View  style={styles.actionButtonContainer}>
-                        <Button
-                            title='Sign out'
-                            color={colors.FROYO_GREEN}
-                            textColor={colors.FROYO_GREEN}
-                            type='secondary'
-                            pill
-                            buttonStyle={styles.actionButton}
-                            titleStyle={styles.actionButtonText}
-                            onPress={signOut}
-                        />
-                    </View>
-                    </>
-                ) : (
-                    <View  style={styles.actionButtonContainer}>
-                        <Button
-                            title={following ? 'Unfollow' : 'Follow'}
-                            color={colors.FROYO_GREEN}
-                            textColor={following ? colors.FROYO_GREEN : colors.WHITE}
-                            type={following ? 'secondary' : 'primary'}
-                            pill
-                            loading={loading}
-                            buttonStyle={styles.actionButton}
-                            titleStyle={styles.actionButtonText}
-                            onPress={onFollow}
-                        />
-                    </View>
-                )
-            }
-            </View>
-        </View>
+        </TouchableWithoutFeedback>
     );
 };
 
 const styles = StyleSheet.create({
+    container: {
+        flexDirection: 'column',
+        padding: 20
+    },
     // Profile
     header: {
         flexDirection: 'row',
         alignItems: 'center',
-        margin: 15,
         marginBottom: 0
     },
     headerText: {
@@ -163,22 +168,17 @@ const styles = StyleSheet.create({
         fontSize: 18,
         marginLeft: 10
     },
+    // Description
     description: {
         fontSize: 22,
-        margin: 25,
         marginTop: 15,
-        marginBottom: 0,
+        marginBottom: 0
     },
-    accountInfoLoading: {
-        marginLeft: 50,
-        alignSelf: 'center'
-    },
-    // actions
+    // Actions
     action: {
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
-        margin: 25,
         marginTop: 15
     },
     actionButtonContainer: {

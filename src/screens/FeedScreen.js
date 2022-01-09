@@ -66,19 +66,18 @@ const FeedScreen = ({ navigation }) => {
                 }}
                 style={styles.header}
             />
-            <ScrollContainer
+            <PostList
+                posts={posts}
+                loading={loading}
+                emptyMessage='Follow people to populate your feed'
+                showLoadingAnimation={false}
+                onPostDelete={reloadContent}
+                onError={setError}
+                style={styles.postList}
+                refreshable={true}
                 refreshing={refreshing}
                 onRefresh={onRefresh}
-            >
-                <PostList
-                    posts={posts}
-                    loading={loading}
-                    emptyMessage='Follow people to populate your feed'
-                    showLoadingAnimation={false}
-                    onPostDelete={reloadContent}
-                    onError={setError}
-                />
-            </ScrollContainer>
+            />
             <ErrorMessage
                 type='box'
                 message={error}

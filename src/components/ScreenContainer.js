@@ -17,23 +17,25 @@ const ScreenContainer = (props) => {
     } = props;
 
     return (
-        <SafeAreaView
-            {...restOfProps}
-            style={[styles.container, style]}
-        >
-            <TouchableWithoutFeedback
-                style={styles.container}
-                onPress={Keyboard.dismiss}
+        <View style={[styles.container, style]}>
+            <SafeAreaView
+                {...restOfProps}
+                style={[styles.container, style]}
             >
-                <KeyboardAvoidingView
-                    behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-                    keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : 50}
+                <TouchableWithoutFeedback
                     style={styles.container}
+                    onPress={Keyboard.dismiss}
                 >
-                    {children}
-                </KeyboardAvoidingView>
-            </TouchableWithoutFeedback>
-        </SafeAreaView>
+                    <KeyboardAvoidingView
+                        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+                        keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : 50}
+                        style={styles.container}
+                    >
+                        {children}
+                    </KeyboardAvoidingView>
+                </TouchableWithoutFeedback>
+            </SafeAreaView>
+        </View>
     );
 };
 

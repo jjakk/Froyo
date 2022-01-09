@@ -4,7 +4,6 @@ import {
 } from 'react-native';
 // Components
 import ScreenContainer from '../components/ScreenContainer';
-import ScrollContainer from '../components/ScrollContainer';
 import ErrorMessage from '../components/ErrorMessage';
 import SearchBar from '../components/SearchBar';
 import PostList from '../components/content/PostList';
@@ -36,19 +35,14 @@ const SearchScreen = () => {
             edges={['top']}
         >
             <SearchBar onSearch={onSearch} />
-            <ScrollContainer
-                fullyScrollable={false}
-                refreshable={false}
-            >
-                <PostList
-                    posts={posts}
-                    loading={loading}
-                    emptyMessage='No posts found'
-                    emptyMessageAlign='flex-start'
-                    onPostDelete={onSearch}
-                    onError={onError}
-                />
-            </ScrollContainer>
+            <PostList
+                posts={posts}
+                loading={loading}
+                emptyMessage='No posts found'
+                onPostDelete={onSearch}
+                onError={setError}
+                style={styles.postList}
+            />
             <ErrorMessage
                 type='box'
                 message={error}

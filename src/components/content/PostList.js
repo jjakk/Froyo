@@ -1,82 +1,82 @@
 // This componet takes in a list of posts and renders them
-import React, { useEffect } from 'react';
-import { LoadingAnimation } from '../froyo-elements';
+import React from 'react';
 // Components
-import { StyleSheet, View } from 'react-native';
+import {
+    StyleSheet,
+    View,
+    FlatList,
+    RefreshControl
+} from 'react-native';
+import { LoadingAnimation } from '../froyo-elements';
 import EmptyMessage from '../EmptyMessage';
 import Post from './Post';
 // Constants
 import { colors } from '../../constants/constants';
 
 const PostList = (props) => {
-    const [postsRender, setPostsRender] = React.useState([]);
     const {
         posts,
         loading,
-        sortBy,
         emptyMessage,
-        emptyMessageAlign,
         onPostDelete,
         onError,
         style,
-        showLoadingAnimation
+        showLoadingAnimation,
+        HeaderComponent,
+        refreshable,
+        refreshing,
+        onRefresh
     } = props;
-
-    // Sort posts before rendering
-    useEffect(() => {
-        switch (sortBy) {
-            // Sort by date (newest first)
-            case 'new':
-                setPostsRender(
-                    posts.sort(function (a, b) {
-                        const dateA = new Date(a.timestamp).getTime();
-                        const dateB = new Date(b.timestamp).getTime();
-                        return dateB - dateA;
-                    })
-                );
-        }
-    }, [posts]);
 
     return (
         <View style={[styles.container, style]}>
-            {
-                !loading ?
-                    (
-                        postsRender.length > 0 ? (
-                            <View style={styles.posts}>
+            <FlatList
+                data={posts}
+                keyExtractor={(item) => item.id}
+                ListHeaderComponent={HeaderComponent}
+                showsVerticalScrollIndicator={false}
+                refreshControl={
+                    refreshable ? (
+                        <RefreshControl
+                            refreshing={refreshing}
+                            onRefresh={onRefresh}
+                        />
+                    ) : null
+                }
+                renderItem={({ item }) => (
+                    <Post
+                        data={item}
+                        onDelete={onPostDelete}
+                        onError={onError}
+                        clickable
+                    />
+                )}
+                ListEmptyComponent={() => (
+                    <>
+                    {
+                        loading ? (
+                            <>
                             {
-                                postsRender.map(post => (
-                                    <Post
-                                        key={post.id}
-                                        data={{
-                                            ...post,
-                                        }}
-                                        onDelete={onPostDelete}
-                                        onError={onError}
-                                        clickable
+                                showLoadingAnimation ? (
+                                    <LoadingAnimation
+                                        size={50}
+                                        style={styles.postLoading}
                                     />
-                                ))
+                                ) : null
                             }
-                            </View>
+                            </>
                         ) : (
                             <EmptyMessage
                                 style={[
-                                    styles.emptyMessage,
-                                    {
-                                        alignSelf: emptyMessageAlign,
-                                        marginTop: emptyMessageAlign === 'flex-start' ? 50 : 0,
-                                    }
+                                    styles.emptyMessage
                                 ]}
                                 subheaderText={emptyMessage}
                             />
                         )
-                    ) : showLoadingAnimation ? (
-                        <LoadingAnimation
-                            size={50}
-                            style={styles.postLoading}
-                        />
-                    ) : null
-            }
+                    }
+                    </>
+                )}
+            />
         </View>
     );
 };
@@ -95,10 +95,10 @@ const styles = StyleSheet.create({
         width: '100%'
     },
     emptyMessage: {
-        width: '100%'
+        marginTop: 50
     },
     postLoading: {
-        alignSelf: 'flex-start',
+        alignSelf: 'center',
         marginTop: 50
     }
 });
@@ -106,7 +106,8 @@ const styles = StyleSheet.create({
 PostList.defaultProps = {
     sortBy: 'new',
     emptyMessageAlign: 'center',
-    showLoadingAnimation: true
+    showLoadingAnimation: true,
+    refreshable: false
 };
 
 export default PostList;

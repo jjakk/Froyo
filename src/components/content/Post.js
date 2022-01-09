@@ -166,7 +166,7 @@ const Post = (props) => {
 const styles = StyleSheet.create({
     post: {
         backgroundColor: 'white',
-        marginBottom: 5,
+        marginTop: 5,
     },
     // Post body
     body: {

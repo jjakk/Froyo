@@ -16,6 +16,7 @@ import PostList from '../../components/content/PostList';
 import UserProfile from '../../components/UserProfile';
 import ErrorMessage from '../../components/ErrorMessage';
 import ScrollContainer from '../../components/ScrollContainer';
+import { colors } from '../../constants/constants';
 
 const AccountViewScreen = ({ navigation }) => {
     const {
@@ -87,26 +88,28 @@ const AccountViewScreen = ({ navigation }) => {
             <NavigationEvents onDidFocus={onDidFocus}/>
             <Header
                 navigation={navigation}
+                style={{ backgroundColor: colors.white }}
             />
-            <ScrollContainer
+            <PostList
+                posts={posts}
+                loading={loading}
+                emptyMessage="You haven't posted anything yet"
+                onPostDelete={reloadContent}
+                onError={setError}
+                style={styles.postList}
+                refreshable={true}
                 refreshing={refreshing}
                 onRefresh={onRefresh}
-            >
-                <UserProfile
-                    user={user}
-                    loading={loading}
-                    onFollow={onFollow}
-                    following={followingUser}
-                />
-                <PostList
-                    posts={posts}
-                    loading={loading}
-                    emptyMessage="You haven't posted anything yet"
-                    emptyMessageAlign='flex-start'
-                    onPostDelete={reloadContent}
-                    onError={setError}
-                />
-            </ScrollContainer>
+                HeaderComponent={(
+                    <UserProfile
+                        user={user}
+                        loading={loading}
+                        onFollow={onFollow}
+                        following={followingUser}
+                        style={styles.userProfile}
+                    />
+                )}
+            />
             <ErrorMessage
                 type='box'
                 message={error}
@@ -123,7 +126,13 @@ AccountViewScreen.navigationOptions = {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: 'white'
+        backgroundColor: colors.WHITE
+    },
+    postList: {
+        backgroundColor: colors.LIGHT_GREY
+    },
+    userProfile: {
+        backgroundColor: colors.WHITE,
     },
     error: {
         position: 'absolute',

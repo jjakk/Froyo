@@ -24,9 +24,6 @@ const SearchScreen = () => {
     };
 
     // Error handling
-    const onError = (err) => {
-        setError(err);
-    }
     const clearError = () => {
         setError('');
     };

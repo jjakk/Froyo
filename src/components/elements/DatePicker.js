@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { View, Platform, StyleSheet, TouchableWithoutFeedback } from 'react-native';
 import { Overlay } from 'react-native-elements';
+import { colors } from '../../constants/constants';
 import Button from './Button';
 
 const DatePicker = (props) => {
@@ -53,7 +54,7 @@ const DatePicker = (props) => {
                     toggleShow();
                 }}
                 title={dob ? parseDate(date) : 'Date of birth'}
-                color='black'
+                color={colors.GREY}
                 textColor={dob ? 'black' : 'rgba(0,0,0,0.3)'}
                 type='secondary'
                 textAlign='left'

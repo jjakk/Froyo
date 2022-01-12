@@ -3,6 +3,7 @@ import {
     StyleSheet
 } from 'react-native';
 // Components
+import { NavigationEvents } from 'react-navigation';
 import ScreenContainer from '../components/ScreenContainer';
 import ErrorMessage from '../components/ErrorMessage';
 import SearchBar from '../components/SearchBar';
@@ -23,6 +24,11 @@ const SearchScreen = () => {
         setLoading(false);
     };
 
+    // Event handlers
+    const onDidFocus = async () => {
+        await onSearch();
+    };
+
     // Error handling
     const clearError = () => {
         setError('');
@@ -32,6 +38,7 @@ const SearchScreen = () => {
         <ScreenContainer
             edges={['top']}
         >
+            <NavigationEvents onDidFocus={onDidFocus}/>
             <SearchBar
                 onSearch={onSearch}
                 setSearchText={setSearchText}

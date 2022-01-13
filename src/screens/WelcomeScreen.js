@@ -27,7 +27,7 @@ const WelcomeScreen = ({ navigation }) => {
                     />
                     <Text>
                         <Text style={styles.title}>Froyo</Text>
-                        <Text style={styles.subTitle}>{'\n'}Ethical social media</Text>
+                        <Text style={styles.subTitle}>{'\n'}The minimalist{'\n'}social network</Text>
                     </Text>
                 </View>
                 <View style={styles.authOptions}>
@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
     subTitle: {
         color: 'rgba(255, 255, 255, 0.6)',
         fontSize: 18,
-        fontFamily: 'Nunito'
+        fontFamily: 'Nunito',
     },
     // Authentication Options
     authOptions: {

@@ -32,6 +32,13 @@ const LoadingAnimation = (props) => {
     outputRange: ['0deg', '360deg']
   })
 
+  const styles = StyleSheet.create({
+        loading: {
+            height: size,
+            width: size,
+        }
+    });
+
   return (
     <Animated.View
         style={[style , {
@@ -47,13 +54,6 @@ const LoadingAnimation = (props) => {
     </Animated.View>
   );
 };
-
-const styles = StyleSheet.create({
-    loading: {
-        height: 50,
-        width: 50,
-    }
-});
 
 LoadingAnimation.defaultProps = {
     size: 50,

@@ -1,7 +1,6 @@
 import React from 'react';
-import { TouchableOpacity } from 'react-native';
+import { TouchableOpacity, StyleSheet } from 'react-native';
 import LoadingAnimation from './LoadingAnimation';
-import { colors } from '../../constants/constants';
 
 const TouchableIcon = (props) => {
     const {
@@ -19,18 +18,28 @@ const TouchableIcon = (props) => {
     return (
         !loading ? (
             <Touchable onPress={onPress}>
-            <Icon
-                width={size}
-                height={size}
-                color={color}
+                <Icon
+                    width={size}
+                    height={size}
+                    color={color}
+                    style={style}
+                />
+            </Touchable>
+        ) : (
+            <LoadingAnimation
+                style={styles.loading}
+                size={size}
                 style={style}
             />
-        </Touchable>
-        ) : (
-            <LoadingAnimation/>
         )
     );
 };
+
+const styles = StyleSheet.create({
+    loading: {
+        alignSelf: 'center',
+    }
+});
 
 TouchableIcon.defaultProps = {
     size: 25,

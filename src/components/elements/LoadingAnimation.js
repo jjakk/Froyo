@@ -50,7 +50,6 @@ const LoadingAnimation = (props) => {
 
 const styles = StyleSheet.create({
     loading: {
-        //backgroundColor: 'orange',
         height: 50,
         width: 50,
     }
@@ -58,7 +57,7 @@ const styles = StyleSheet.create({
 
 LoadingAnimation.defaultProps = {
     size: 50,
-    color: colors.GREY
+    color: colors.FROYO_GREEN_LIGHTER
 };
 
 export default LoadingAnimation;

@@ -76,6 +76,7 @@ const FeedScreen = ({ navigation }) => {
                 refreshable={true}
                 refreshing={refreshing}
                 onRefresh={onRefresh}
+                onUpdate={reloadContent}
             />
             <ErrorMessage
                 type='box'

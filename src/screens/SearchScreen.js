@@ -49,6 +49,7 @@ const SearchScreen = () => {
                 emptyMessage='No posts found'
                 onPostDelete={onSearch}
                 onError={setError}
+                onUpdate={onSearch}
                 style={styles.postList}
             />
             <ErrorMessage

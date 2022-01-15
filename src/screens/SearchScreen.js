@@ -8,14 +8,11 @@ import PostList from '../components/content/PostList';
 import { Context as PostContext } from '../context/PostContext';
 
 const SearchScreen = () => {
-    const { searchPosts } = useContext(PostContext);
     const [searchText, setSearchText] = useState('');
-
     const searchRef = useRef();
-    const { current } = searchRef;
 
     const onSearch = async (searchValue=searchText) => {
-        //current.search(searchValue);
+        searchRef.current.search(searchValue);
     };
 
     // Event handlers

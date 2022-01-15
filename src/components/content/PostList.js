@@ -119,9 +119,7 @@ const PostList = (props, ref) => {
                             </>
                         ) : (
                             <EmptyMessage
-                                style={[
-                                    styles.emptyMessage
-                                ]}
+                                style={styles.emptyMessage}
                                 subheaderText={emptyMessage}
                             />
                         )

@@ -25,7 +25,8 @@ const PostList = (props) => {
         HeaderComponent,
         refreshable,
         refreshing,
-        onRefresh
+        onRefresh,
+        onUpdate
     } = props;
 
     return (
@@ -45,7 +46,8 @@ const PostList = (props) => {
                 }
                 renderItem={({ item }) => (
                     <Post
-                        data={item}
+                        post={item}
+                        onUpdate={onUpdate}
                         onDelete={onPostDelete}
                         onError={onError}
                         clickable

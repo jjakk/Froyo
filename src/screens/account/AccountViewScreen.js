@@ -99,6 +99,7 @@ const AccountViewScreen = ({ navigation }) => {
                 refreshable={true}
                 refreshing={refreshing}
                 onRefresh={onRefresh}
+                onUpdate={reloadContent}
                 HeaderComponent={(
                     <UserProfile
                         user={user}

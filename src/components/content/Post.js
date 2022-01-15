@@ -15,8 +15,10 @@ import {
     TouchableIcon
 } from '../froyo-elements';
 import ContentHeader from './parts/ContentHeader';
+import LikenessBar from './parts/LikenessBar';
 // Contexts
 import { Context as PostContext } from '../../context/PostContext';
+import { Context as AuthContext } from '../../context/AuthContext';
 // Icons
 import LikeIconFill from '../../../assets/icons/Like-Fill.svg';
 import DislikeIconFill from '../../../assets/icons/Dislike-Fill.svg';
@@ -42,17 +44,17 @@ import {
 
 const Post = (props) => {
     const { likePost, dislikePost, getPost } = useContext(PostContext);
+    const { state: { user } } = useContext(AuthContext);
     
     const {
         clickable,
         style,
-        data,
+        post,
+        onUpdate,
         onDelete,
         onPress,
         onError
     } = props;
-
-    const [post, setPost] = useState(data);
 
     const onHeaderPress = () => {
         navigate('AccountView', { user: post.author });
@@ -64,9 +66,9 @@ const Post = (props) => {
     };
 
     // Update post information from context
-    const updatePost = async () => {
+    const updatePost = () => {
         try {
-            setPost(await getPost(data.id));
+            onUpdate();
         }
         catch (err) {
             onError(err);
@@ -115,33 +117,40 @@ const Post = (props) => {
                 </View>
                 <View style={styles.actions}>
                     {/* Like & dislike buttons */}
-                    <View style={styles.likeness}>
-                        {/* Like Button */}
-                        <TouchableIcon
-                            size={sizes.ACTION_ICON}
-                            onPress={handleLike}
-                            Icon={
-                                post.liking
-                                ? LikeIconFill : LikeIconOutline
-                            }
-                            color={
-                                post.liking
-                                ? colors.FROYO_GREEN : colors.DARK_GREY
-                            }
-                        />
-                        {/* Disike Button */}
-                        <TouchableIcon
-                            size={sizes.ACTION_ICON}
-                            onPress={handleDislike}
-                            style={styles.dislike}
-                            Icon={
-                                post.disliking
-                                ? DislikeIconFill : DislikeIconOutline
-                            }
-                            color={
-                                post.disliking
-                                ? colors.DISLIKE_RED : colors.DARK_GREY
-                            }
+                    <View style={styles.likenessContainer}>
+                        <View style={styles.likeness}>
+                            {/* Like Button */}
+                            <TouchableIcon
+                                size={sizes.ACTION_ICON}
+                                onPress={handleLike}
+                                Icon={
+                                    post.liking
+                                    ? LikeIconFill : LikeIconOutline
+                                }
+                                color={
+                                    post.liking
+                                    ? colors.FROYO_GREEN : colors.DARK_GREY
+                                }
+                            />
+                            {/* Disike Button */}
+                            <TouchableIcon
+                                size={sizes.ACTION_ICON}
+                                onPress={handleDislike}
+                                style={styles.dislike}
+                                Icon={
+                                    post.disliking
+                                    ? DislikeIconFill : DislikeIconOutline
+                                }
+                                color={
+                                    post.disliking
+                                    ? colors.DISLIKE_RED : colors.DARK_GREY
+                                }
+                            />
+                        </View>
+                        <LikenessBar
+                            show={post.author.id === user.id}
+                            like_count={post.like_count}
+                            dislike_count={post.dislike_count}
                         />
                     </View>
                     {/* Comment icon */}
@@ -156,6 +165,7 @@ const Post = (props) => {
                         Icon={ShareIcon}
                         size={sizes.ACTION_ICON}
                         color={colors.DARK_GREY}
+                        style={styles.share}
                     />
                 </View>
             </View>
@@ -179,17 +189,26 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         margin: 15,
         marginTop: 0,
+        marginBottom: 0,
         alignItems: 'center'
     },
     likeness: {
-        flexDirection: 'row'
+        flexDirection: 'row',
+        marginLeft: 15,
+        marginRight: 15,
+        marginBottom: 10
     },
     dislike: {
         marginTop: 5,
         marginLeft: 5
     },
     comment: {
-        marginRight: 35
+        marginRight: 50,
+        marginBottom: 15
+    },
+    share: {
+        marginRight: 15,
+        marginBottom: 15
     }
 });
 

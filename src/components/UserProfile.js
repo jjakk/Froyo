@@ -25,10 +25,32 @@ const UserProfile = (props) => {
     const {
         style,
         user,
-        onFollow,
         loading,
         following
     } = props;
+
+    const [followingUser, setFollowingUser] = useState(false);
+
+    // Reusable function to check if the signed in user is following the user viewed
+    const getFollowing = async () => {
+        setLoading(true);
+        setFollowingUser(await following(signedInUser.id, user.id));
+        setLoading(false);
+    };
+
+    const onFollow = async () => {
+        await follow(user.id);
+        await getFollowing();
+    };
+
+    const onRefresh = async () => {
+        // Get following if view another user's profile
+        if (user.id !== signedInUser.id) {
+            (async function(){
+                await getFollowing();
+            })()
+        }
+    };
 
     // Event handlers
     const onEditProfile = () => {

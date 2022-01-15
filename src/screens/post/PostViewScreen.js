@@ -26,7 +26,6 @@ const PostViewScreen = ({ navigation }) => {
     // Status state
     const [loadingComments, setLoadingComments] = useState(true);
     const [refreshing, setRefreshing] = useState(false);
-    const [error, setError] = useState('');
 
     // Update comments when post is refreshed
     useEffect(() => {
@@ -43,11 +42,6 @@ const PostViewScreen = ({ navigation }) => {
         else{
             setPost(await getPost(post.id));
         }
-    };
-
-    // Error handling
-    const clearError = () => {
-        setError('');
     };
 
     // Event Handlers
@@ -73,25 +67,16 @@ const PostViewScreen = ({ navigation }) => {
                         data={post}
                         clickable={false}
                         onDelete={navigation.pop}
-                        onError={setError}
                     />
                     <CommentList
                         comments={comments}
                         loading={loadingComments}
                         onDeleteComment={refreshPost}
-                        onError={setError}
                     />
                 </ScrollView>
                 <CommentBar
                     parent_id={post.id}
                     onCreateComment={refreshPost}
-                    onError={setError}
-                />
-                <ErrorMessage
-                    type='box'
-                    message={error}
-                    clearError={clearError}
-                    style={styles.error}
                 />
         </ScreenContainer>
     );
@@ -108,10 +93,6 @@ const styles = StyleSheet.create({
         backgroundColor: colors.LIGHT_GREY,
         flex: 1,
         justifyContent: 'flex-start',
-    },
-    error: {
-        position: 'absolute',
-        bottom: 125
     }
 });
 

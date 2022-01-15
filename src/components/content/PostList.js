@@ -1,5 +1,11 @@
 // This componet takes in a list of posts and renders them
-import React from 'react';
+import React, {
+    useState,
+    useContext,
+    useEffect,
+    useImperativeHandle,
+    forwardRef
+} from 'react';
 // Components
 import {
     StyleSheet,
@@ -10,24 +16,72 @@ import {
 import { LoadingAnimation } from '../froyo-elements';
 import EmptyMessage from '../EmptyMessage';
 import Post from './Post';
+// Context
+import { Context as AuthContext } from '../../context/AuthContext';
+import { Context as PostContext } from '../../context/PostContext';
 // Constants
 import { colors } from '../../constants/constants';
 
-const PostList = (props) => {
+const PostList = (props, ref) => {
+    // Context
+    const { getUser, state: { user: signedInUser } } = useContext(AuthContext);
     const {
-        posts,
-        loading,
+        searchPosts,
+        getFeed
+    } = useContext(PostContext);
+
+    // Props
+    const {
+        user: passedUser,
+        type,
         emptyMessage,
-        onPostDelete,
         onError,
         style,
-        showLoadingAnimation,
-        HeaderComponent,
-        refreshable,
-        refreshing,
-        onRefresh,
-        onUpdate
+        HeaderComponent
     } = props;
+
+    // State
+    const [refreshing, setRefreshing] = useState(false);
+    const [loading, setLoading] = useState(true);
+    const [posts, setPosts] = useState([]);
+    const [user, setUser] = useState(passedUser || signedInUser);
+
+    // Reference
+    useImperativeHandle(ref, () => ({
+        search: async (searchValue) => { await reloadContent(searchValue) }
+    }))
+
+    // Function to retrieve user info & posts
+    const reloadContent = async (searchValue='') => {
+        setLoading(true);
+        // Retrieve posts
+        switch (type) {
+            case 'AccountView':
+                setPosts(await searchPosts({ author_id: user.id }));
+                break;
+            case 'Feed':
+                setPosts(await getFeed());
+                break;
+            case 'Search':
+                setPosts(await searchPosts({ text: searchValue }));
+                break;
+        }
+        // Retreive user information
+        setUser(await getUser(user.id));
+        setLoading(false);
+    };
+
+    const onRefresh = async () => {
+        setRefreshing(true);
+        await reloadContent(true);
+        setRefreshing(false);
+    };
+
+    useEffect(() => {
+        (async function(){
+            await reloadContent();
+        })()
+    }, []);
 
     return (
         <View style={[styles.container, style]}>
@@ -37,18 +91,16 @@ const PostList = (props) => {
                 ListHeaderComponent={HeaderComponent}
                 showsVerticalScrollIndicator={false}
                 refreshControl={
-                    refreshable ? (
-                        <RefreshControl
-                            refreshing={refreshing}
-                            onRefresh={onRefresh}
-                        />
-                    ) : null
+                    <RefreshControl
+                        refreshing={refreshing}
+                        onRefresh={onRefresh}
+                    />
                 }
                 renderItem={({ item }) => (
                     <Post
                         post={item}
-                        onUpdate={onUpdate}
-                        onDelete={onPostDelete}
+                        onUpdate={reloadContent}
+                        onDelete={reloadContent}
                         onError={onError}
                         clickable
                     />
@@ -59,12 +111,10 @@ const PostList = (props) => {
                         loading ? (
                             <>
                             {
-                                showLoadingAnimation ? (
-                                    <LoadingAnimation
-                                        size={50}
-                                        style={styles.postLoading}
-                                    />
-                                ) : null
+                                <LoadingAnimation
+                                    size={50}
+                                    style={styles.postLoading}
+                                />
                             }
                             </>
                         ) : (
@@ -105,11 +155,4 @@ const styles = StyleSheet.create({
     }
 });
 
-PostList.defaultProps = {
-    sortBy: 'new',
-    emptyMessageAlign: 'center',
-    showLoadingAnimation: true,
-    refreshable: false
-};
-
-export default PostList;
+export default forwardRef(PostList);

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
     StyleSheet,
     TouchableWithoutFeedback,
@@ -7,14 +7,23 @@ import {
     Platform,
     View
 } from 'react-native';
+import ErrorMessage from './ErrorMessage';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const ScreenContainer = (props) => {
+    // Props
     const {
         children,
         style,
         ...restOfProps
     } = props;
+
+    // Error handling
+    const [error, setError] = useState('');
+
+    const clearError = () => {
+        setError('');
+    };
 
     return (
         <View style={[styles.container, style]}>
@@ -32,6 +41,12 @@ const ScreenContainer = (props) => {
                         style={styles.container}
                     >
                         {children}
+                        <ErrorMessage
+                            type='box'
+                            message={error}
+                            clearError={clearError}
+                            style={styles.error}
+                        />
                     </KeyboardAvoidingView>
                 </TouchableWithoutFeedback>
             </SafeAreaView>
@@ -42,6 +57,11 @@ const ScreenContainer = (props) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+    },
+    error: {
+        position: 'absolute',
+        bottom: 0,
+        margin: 25
     }
 });
 

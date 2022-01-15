@@ -17,45 +17,16 @@ import { colors } from '../constants/constants';
 
 const FeedScreen = ({ navigation }) => {
     const { getFeed } = useContext(PostContext);
-    // Status states
-    const [error, setError] = useState('');
-    const [loading, setLoading] = useState(true);
-    const [refreshing, setRefreshing] = useState(false);
-    const [posts, setPosts] = useState([]);
-
-    // Error handling
-    const clearError = () => {
-        setError('');
-    };
-
-    // Function to retrieve user info & posts
-    const reloadContent = async () => {
-        setLoading(true);
-        // Retrieve posts
-        setPosts(await getFeed());
-        setLoading(false);
-    };
     
     // Event handlers
     const onAccountView = () => {
         navigation.navigate('AccountView');
     };
 
-    const onRefresh = async () => {
-        setRefreshing(true);
-        await reloadContent(true);
-        setRefreshing(false);
-    };
-
-    const onDidFocus = async () => {
-        await reloadContent();
-    };
-
     return (
         <ScreenContainer
             edges={['top']}
         >
-            <NavigationEvents onDidFocus={onDidFocus}/>
             <Header
                 navigation={navigation}
                 LeftIcon={GuestIcon}
@@ -66,23 +37,9 @@ const FeedScreen = ({ navigation }) => {
                 style={styles.header}
             />
             <PostList
-                posts={posts}
-                loading={loading}
+                type='Feed'
                 emptyMessage='Follow people to populate your feed'
-                showLoadingAnimation={false}
-                onPostDelete={reloadContent}
-                onError={setError}
                 style={styles.postList}
-                refreshable={true}
-                refreshing={refreshing}
-                onRefresh={onRefresh}
-                onUpdate={reloadContent}
-            />
-            <ErrorMessage
-                type='box'
-                message={error}
-                clearError={clearError}
-                style={styles.error}
             />
         </ScreenContainer>
     );

@@ -1,11 +1,7 @@
-import React, { useState, useContext } from 'react';
-import {
-    StyleSheet
-} from 'react-native';
+import React, { useState, useContext, useRef } from 'react';
 // Components
 import { NavigationEvents } from 'react-navigation';
 import ScreenContainer from '../components/ScreenContainer';
-import ErrorMessage from '../components/ErrorMessage';
 import SearchBar from '../components/SearchBar';
 import PostList from '../components/content/PostList';
 // Context
@@ -13,15 +9,13 @@ import { Context as PostContext } from '../context/PostContext';
 
 const SearchScreen = () => {
     const { searchPosts } = useContext(PostContext);
-    const [posts, setPosts] = useState([]);
     const [searchText, setSearchText] = useState('');
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState('');
+
+    const searchRef = useRef();
+    const { current } = searchRef;
 
     const onSearch = async (searchValue=searchText) => {
-        setLoading(true);
-        setPosts(await searchPosts({ text: searchValue }));
-        setLoading(false);
+        //current.search(searchValue);
     };
 
     // Event handlers
@@ -29,45 +23,24 @@ const SearchScreen = () => {
         await onSearch();
     };
 
-    // Error handling
-    const clearError = () => {
-        setError('');
-    };
-
     return (
         <ScreenContainer
             edges={['top']}
         >
             <NavigationEvents onDidFocus={onDidFocus}/>
-            <SearchBar
-                onSearch={onSearch}
-                setSearchText={setSearchText}
-            />
             <PostList
-                posts={posts}
-                loading={loading}
+                type='Search'
                 emptyMessage='No posts found'
-                onPostDelete={onSearch}
-                onError={setError}
-                onUpdate={onSearch}
-                style={styles.postList}
-            />
-            <ErrorMessage
-                type='box'
-                message={error}
-                clearError={clearError}
-                style={styles.error}
+                HeaderComponent={(
+                    <SearchBar
+                        onSearch={onSearch}
+                        setSearchText={setSearchText}
+                    />
+                )}
+                ref={searchRef}
             />
         </ScreenContainer>
     );
 };
-
-const styles = StyleSheet.create({
-    error: {
-        position: 'absolute',
-        bottom: 0,
-        margin: 25
-    }
-});
 
 export default SearchScreen;

@@ -11,7 +11,7 @@ const authReducer = (state, action) => {
             return { ...state, token: action.payload };
         case 'sign_out':
             return { ...state, token: null };
-        case 'get_user_info':
+        case 'set_user_info':
             return { ...state, user: action.payload }
         default:
             return state;
@@ -49,7 +49,6 @@ const continueSignUp = () => async ({ email, username, dob }, callback) => {
                 return callback('Email is required');
             case username:
                 return callback('Username is required');
-                return;
             case dob:
                 return callback('Date of Birth is required');
         }
@@ -151,7 +150,7 @@ const checkSignedIn = (dispatch) => async () => {
     try{
         const { data: userId } = await froyoApi.get('/');
         const { data: user } = await froyoApi.get(`/users/${userId}`);
-        dispatch({ type: 'get_user_info', payload: user });
+        dispatch({ type: 'set_user_info', payload: user });
         navigate('mainFlow');
     }
     catch(err){

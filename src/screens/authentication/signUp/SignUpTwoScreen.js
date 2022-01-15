@@ -49,7 +49,7 @@ const SignUpTwoScreen = ({ navigation }) => {
                 setError(err);
             }
             else {
-                navigation.navigate('mainFlow');
+                navigation.navigate('ResolveAuth');
             }
         });
     };

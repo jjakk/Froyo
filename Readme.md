@@ -1,2 +1,2 @@
 # Froyo
-Ethical Social Media
+The Minimalist Social Network

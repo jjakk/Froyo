@@ -1,45 +1,26 @@
 // This componet takes in a list of comments and renders them
-import React, { useEffect } from 'react';
+import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Text } from '../froyo-elements';
 import Comment from './Comment';
 
 const CommentList = (props) => {
-    const [commentsRender, setCommentsRender] = React.useState(null);
     const {
         comments,
         loading,
-        sortBy,
-        onDeleteComment,
-        onError
+        onDeleteComment
     } = props;
-
-    // Sort comments before rendering
-    useEffect(() => {
-        switch (sortBy) {
-            // Sort by date (newest first)
-            case 'new':
-                setCommentsRender(
-                    comments.sort(function (a, b) {
-                        const dateA = new Date(a.timestamp).getTime();
-                        const dateB = new Date(b.timestamp).getTime();
-                        return dateB - dateA;
-                    })
-                );
-        }
-    }, [comments]);
 
     return (
         <View style={styles.container}>
             {
                 !loading ? (
-                    commentsRender.length > 0 ? (
-                        commentsRender.map(comment => (
+                    comments.length > 0 ? (
+                        comments.map(comment => (
                             <Comment
                                 key={comment.id}
                                 data={comment}
                                 onDelete={onDeleteComment}
-                                onError={onError}
                             />
                         ))
                     ) : (
@@ -57,6 +38,7 @@ const CommentList = (props) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        marginTop: 5
     },
     noComments: {
         fontSize: 28,
@@ -65,9 +47,5 @@ const styles = StyleSheet.create({
         marginTop: 50
     },
 });
-
-CommentList.defaultProps = {
-    sortBy: 'new'
-};
 
 export default CommentList;

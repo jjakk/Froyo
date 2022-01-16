@@ -45,12 +45,14 @@ const getFeed = () => async () => {
 
 // Like a post (unlikes if already liked)
 const likePost = () => async (postId) => {
-    await froyoApi.put(`/posts/${postId}/like`);
+    const { data: updatedPost } = await froyoApi.put(`/posts/${postId}/like`);
+    return updatedPost;
 };
 
 // Dislike a post (undislikes if already disliked)
 const dislikePost = () => async (postId) => {
-    await froyoApi.put(`/posts/${postId}/dislike`);
+    const { data: updatedPost } = await froyoApi.put(`/posts/${postId}/dislike`);
+    return updatedPost;
 };
 
 export const { Provider, Context } = createDataContext(

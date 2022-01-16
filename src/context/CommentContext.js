@@ -12,7 +12,6 @@ const commentReducer = (state, action) => {
 // POST a comment
 const createComment = () => async (info) => {
     const { text } = info;
-    console.log(text);
     if (!text) throw { message:'Comment body is required' };
     await froyoApi.post('/comments', info);
 };
@@ -36,12 +35,14 @@ const getComments = () => async (parentId) => {
 
 // Like a comment (unlikes if already liked)
 const likeComment = () => async (commentId) => {
-    await froyoApi.put(`/comments/${commentId}/like`);
+    const { data: updatedComment } = await froyoApi.put(`/comments/${commentId}/like`);
+    return updatedComment;
 };
 
 // Dislike a comment (undislikes if already disliked)
 const dislikeComment = () => async (commentId) => {
-    await froyoApi.put(`/comments/${commentId}/dislike`);
+    const { data: updatedComment } = await froyoApi.put(`/comments/${commentId}/dislike`);
+    return updatedComment;
 };
 
 export const { Provider, Context } = createDataContext(

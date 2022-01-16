@@ -64,18 +64,11 @@ const Post = (props) => {
     };
 
     const onLike = async () => {
-        await likePost(post.id);
-        await updatePost();
+        setPost(await likePost(post.id));
     };
 
     const onDislike = async () => {
-        await dislikePost(post.id);
-        await updatePost();
-    };
-
-    // Update post from the server
-    const updatePost = async () => {
-        setPost(await getPost(post.id));
+        setPost(await dislikePost(post.id));
     };
 
     return (

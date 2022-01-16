@@ -23,47 +23,24 @@ import LikeIconOutline from '../../../assets/icons/Like-Outline.svg';
 import DislikeIconOutline from '../../../assets/icons/Dislike-Outline.svg';
 
 const Comment = (props) => {
-    const { getComment, likeComment, dislikeComment } = useContext(CommentContext);
+    const { likeComment, dislikeComment } = useContext(CommentContext);
     
     const {
         style,
         data,
         onDelete,
-        onError
     } = props;
 
     const [comment, setComment] = useState(data);
 
-    // Update comment information from context
-    const updateComment = async () => {
-        try {
-            setComment(await getComment(comment.id));
-        }
-        catch (err) {
-            onError(err);
-        }
-    };
-
     // When like button is pressed
     const handleLike = async () => {
-        try {
-            await likeComment(comment.id);
-            await updateComment();
-        }
-        catch (err) {
-            onError(err);
-        }
+        setComment(await likeComment(comment.id));
     };
 
     // When dislike button is pressed
     const handleDislike = async () => {
-        try {
-            await dislikeComment(comment.id);
-            await updateComment();
-        }
-        catch (err) {
-            onError(err);
-        }
+        setComment(await dislikeComment(comment.id));
     };
 
     return (
@@ -74,7 +51,6 @@ const Comment = (props) => {
                     <MoreOptions
                         content={comment}
                         onDelete={onDelete}
-                        onError={onError}
                     />
                     {/* Reply button */}
                     <TouchableOpacity style={styles.reply}>

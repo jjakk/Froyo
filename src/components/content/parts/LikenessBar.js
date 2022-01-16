@@ -17,6 +17,7 @@ const LikenessBar = (props) => {
             height: 5,
             backgroundColor: colors.GREY,
             flexDirection: 'row',
+            overflow: 'hidden'
         },
         like: {
             backgroundColor: colors.FROYO_GREEN,

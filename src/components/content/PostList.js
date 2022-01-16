@@ -17,14 +17,14 @@ import { LoadingAnimation } from '../froyo-elements';
 import EmptyMessage from '../EmptyMessage';
 import Post from './Post';
 // Context
-import { Context as AuthContext } from '../../context/AuthContext';
+import { Context as UserContext } from '../../context/UserContext';
 import { Context as PostContext } from '../../context/PostContext';
 // Constants
 import { colors } from '../../constants/constants';
 
 const PostList = (props, ref) => {
     // Context
-    const { getUser, state: { user: signedInUser } } = useContext(AuthContext);
+    const { getUser, state: { user: signedInUser } } = useContext(UserContext);
     const {
         searchPosts,
         getFeed

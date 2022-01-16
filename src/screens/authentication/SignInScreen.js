@@ -14,10 +14,10 @@ import {
 import ErrorMessage from '../../components/ErrorMessage';
 import ScreenContainer from '../../components/ScreenContainer';
 // Context
-import { Context as AuthContext } from '../../context/AuthContext';
+import { Context as UserContext } from '../../context/UserContext';
 
 const SignInScreen = ({ navigation }) => {
-    const { signIn } = useContext(AuthContext);
+    const { signIn } = useContext(UserContext);
     // Sign in feilds
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');

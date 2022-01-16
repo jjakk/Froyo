@@ -10,7 +10,6 @@ import Header from '../../components/Header';
 import CommentBar from '../../components/CommentBar';
 import Post from '../../components/content/Post';
 import CommentList from '../../components/content/CommentList';
-import ErrorMessage from '../../components/ErrorMessage';
 // Constants
 import { colors } from '../../constants/constants';
 // Context

@@ -11,11 +11,11 @@ import {
 import ScreenContainer from '../../components/ScreenContainer';
 import Header from '../../components/Header';
 import ErrorMessage from '../../components/ErrorMessage';
-import { Context as AuthContext } from '../../context/AuthContext';
+import { Context as UserContext } from '../../context/UserContext';
 import UploadIcon from '../../../assets/icons/Upload.svg';
 
 const AccountEditScreen = ({ navigation }) => {
-    const { updateUser, state: { user, errorMessage } } = useContext(AuthContext);
+    const { updateUser, state: { user, errorMessage } } = useContext(UserContext);
     // Form feilds
     const [firstName, setFirstName] = useState(user.first_name);
     const [lastName, setLastName] = useState(user.last_name);

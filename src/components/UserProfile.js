@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 // Context
-import { Context as AuthContext } from '../context/AuthContext';
+import { Context as UserContext } from '../context/UserContext';
 // Navigation
 import { navigate } from '../navigation/navigationRef';
 // Components
@@ -25,7 +25,7 @@ const UserProfile = (props) => {
         follow,
         following,
         state: { user: signedInUser }
-    } = useContext(AuthContext);
+    } = useContext(UserContext);
 
     // Props
     const {
@@ -34,7 +34,9 @@ const UserProfile = (props) => {
     } = props;
 
     // State
+    // Object of the user to display
     const [user, setUser] = useState(passedUser || signedInUser);
+    // Whether the current user's following the user being viewed
     const [followingUser, setFollowingUser] = useState(false);
     const [loading, setLoading] = useState(false);
 

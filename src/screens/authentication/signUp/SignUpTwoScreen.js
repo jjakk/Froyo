@@ -12,7 +12,7 @@ import {
 } from '../../../components/froyo-elements';
 import ScreenContainer from '../../../components/ScreenContainer';
 import Header from '../../../components/Header';
-import { Context as AuthContext } from '../../../context/AuthContext';
+import { Context as UserContext } from '../../../context/UserContext';
 import ErrorMessage from '../../../components/ErrorMessage';
 
 const SignUpTwoScreen = ({ navigation }) => {
@@ -29,7 +29,7 @@ const SignUpTwoScreen = ({ navigation }) => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
     // Context values & functions
-    const { signUp} = useContext(AuthContext);
+    const { signUp} = useContext(UserContext);
 
     const handleSubmit = () => {
         setLoading(true);

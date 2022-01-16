@@ -7,10 +7,10 @@ import {
 } from 'react-native';
 import ScreenContainer from '../../components/ScreenContainer';
 // Context
-import { Context as AuthContext } from '../../context/AuthContext';
+import { Context as UserContext } from '../../context/UserContext';
 
 const ResolveAuthScreen = () => {
-    const { checkSignedIn } = useContext(AuthContext);
+    const { checkSignedIn } = useContext(UserContext);
     useEffect(() => {
         checkSignedIn();
     }, []);

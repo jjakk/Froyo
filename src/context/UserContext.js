@@ -5,7 +5,7 @@ import { navigate } from '../navigation/navigationRef';
 import { ageInYears } from '../helperFunctions/age';
 
 // Handle setting state
-const authReducer = (state, action) => {
+const userReducer = (state, action) => {
     switch(action.type){
         case 'sign_in':
             return { ...state, token: action.payload };
@@ -169,13 +169,13 @@ const follow = () => async (targetUser) => {
 };
 
 // Get whether userA is following userB
-const following = () => async (userA, userB, callback) => {
+const following = () => async (userA, userB) => {
     const { data: following } = await froyoApi.get(`/users/${userA}/following/${userB}`);
     return following;
 };
 
 export const { Provider, Context } = createDataContext(
-    authReducer,
+    userReducer,
     {
         signIn,
         continueSignUp,

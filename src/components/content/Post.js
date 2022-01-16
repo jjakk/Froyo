@@ -18,7 +18,7 @@ import ContentHeader from './parts/ContentHeader';
 import LikenessBar from './parts/LikenessBar';
 // Contexts
 import { Context as PostContext } from '../../context/PostContext';
-import { Context as AuthContext } from '../../context/AuthContext';
+import { Context as UserContext } from '../../context/UserContext';
 // Icons
 import LikeIconFill from '../../../assets/icons/Like-Fill.svg';
 import DislikeIconFill from '../../../assets/icons/Dislike-Fill.svg';
@@ -44,7 +44,7 @@ import {
 
 const Post = (props) => {
     const { likePost, dislikePost, getPost } = useContext(PostContext);
-    const { state: { user } } = useContext(AuthContext);
+    const { state: { user } } = useContext(UserContext);
     
     const {
         clickable,

@@ -15,10 +15,10 @@ import {
 import ScreenContainer from '../../../components/ScreenContainer';
 import ErrorMessage from '../../../components/ErrorMessage';
 // Context
-import { Context as AuthContext } from '../../../context/AuthContext';
+import { Context as UserContext } from '../../../context/UserContext';
 
 const SignUpScreenOne = ({ navigation }) => {
-    const { continueSignUp } = useContext(AuthContext);
+    const { continueSignUp } = useContext(UserContext);
     // Form feilds
     const [email, setEmail] = useState('');
     const [username, setUsername] = useState('');

@@ -16,7 +16,7 @@ import { Text } from '../../froyo-elements';
 // Helper functions
 import confirmAlert from '../../../helperFunctions/confirmAlert';
 // Contexts
-import { Context as AuthContext } from '../../../context/AuthContext';
+import { Context as UserContext } from '../../../context/UserContext';
 import { Context as PostContext } from '../../../context/PostContext';
 import { Context as CommentContext } from '../../../context/CommentContext';
 // Icons
@@ -31,7 +31,7 @@ import {
 } from '../../../constants/constants';
 
 const MoreOptions = (props) => {
-    const { state: { user } } = useContext(AuthContext);
+    const { state: { user } } = useContext(UserContext);
     const { deletePost } = useContext(PostContext);
     const { deleteComment } = useContext(CommentContext);
     const {

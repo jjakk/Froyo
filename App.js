@@ -11,7 +11,7 @@ import { useFonts } from 'expo-font';
 import { setNavigator } from './src/navigation/navigationRef';
 import appNavigator from './src/navigation/appNavigator';
 // Context
-import { Provider as AuthProvider } from './src/context/AuthContext';
+import { Provider as UserProvider } from './src/context/UserContext';
 import { Provider as PostProvider } from './src/context/PostContext';
 import { Provider as CommentProvider } from './src/context/CommentContext';
 
@@ -31,13 +31,13 @@ export default () => {
     loaded ? (
         <SafeAreaProvider initialMetrics={initialWindowMetrics}>
           <MenuProvider>
-            <AuthProvider>
+            <UserProvider>
               <PostProvider>
                 <CommentProvider>
                   <App ref={(navigator) => { setNavigator(navigator) }} />
                 </CommentProvider>
               </PostProvider>
-            </AuthProvider>
+            </UserProvider>
           </MenuProvider>
         </SafeAreaProvider>
       ) : null

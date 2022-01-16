@@ -44,7 +44,11 @@ const Header = (props) => {
             }
             {
                 title ? (
-                    <Text style={styles.title}>{title}</Text>
+                    <Text
+                        style={styles.title}
+                    >
+                        {title}
+                    </Text>
                 ) : null
             }
             {
@@ -66,7 +70,8 @@ const styles = StyleSheet.create({
         borderBottomWidth: 2,
         padding: 20,
         flexDirection: 'row',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
+        alignItems: 'center'
     },
     title: {
         fontSize: 28,

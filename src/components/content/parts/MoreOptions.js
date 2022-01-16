@@ -37,18 +37,17 @@ const MoreOptions = (props) => {
     const {
         content,
         onDelete,
-        onError,
         style
     } = props;
     const contentType = !content.parent_id ? 'Post' : 'Comment';
 
     // Default functions for edit button
-    const defaultOnEdit = () => {
+    const onEdit = () => {
         navigate(`${contentType}Edit`);
     };
     
-    // Default function for delete button
-    const defaultOnDelete = async () => {
+    // Show delete confirmation, and delete if confirmed
+    const onDeletePrompt = async () => {
         confirmAlert(`Are you sure you want to delete this ${contentType.toLowerCase()}?`, async () => {
             if (contentType === 'Post') {
                 await deletePost(content.id);
@@ -66,14 +65,14 @@ const MoreOptions = (props) => {
         ...(content.author.id === user.id ? [
             {
                 label: 'Delete',
-                onSelect: defaultOnDelete,
+                onSelect: onDeletePrompt,
                 style: styles.deleteButton,
                 Icon: TrashIcon,
                 color: '#FB1C1C'
             },
             {
                 label: 'Edit',
-                onSelect: defaultOnEdit,
+                onSelect: onEdit,
                 Icon: PenIcon,
                 color: 'black'
             }

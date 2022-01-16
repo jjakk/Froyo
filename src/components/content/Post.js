@@ -39,7 +39,6 @@ import {
 // style -> object: style for the post
 // data -> object: data for the post
 // onDelete -> function: the function to call when the delete button is pressed
-// onEdit -> function: the function to call when the edit button is pressed
 // onPress -> function: the function to call when the post is tapped on
 
 const Post = (props) => {
@@ -49,30 +48,34 @@ const Post = (props) => {
     const {
         clickable,
         style,
-        post,
-        onUpdate,
+        post: passedPost,
         onDelete
     } = props;
 
+    const [post, setPost] = useState(passedPost);
+
+    // Event handlers
     const onHeaderPress = () => {
         navigate('AccountView', { user: post.author });
     };
 
-    // Default function to call when a post is tapped on
     const onPress = () => {
         navigate('PostView', { post });
     };
 
-    // When like button is pressed
-    const handleLike = async () => {
+    const onLike = async () => {
         await likePost(post.id);
-        onUpdate();
+        await updatePost();
     };
 
-    // When dislike button is pressed
-    const handleDislike = async () => {
+    const onDislike = async () => {
         await dislikePost(post.id);
-        onUpdate();
+        await updatePost();
+    };
+
+    // Update post from the server
+    const updatePost = async () => {
+        setPost(await getPost(post.id));
     };
 
     return (
@@ -99,7 +102,7 @@ const Post = (props) => {
                             {/* Like Button */}
                             <TouchableIcon
                                 size={sizes.ACTION_ICON}
-                                onPress={handleLike}
+                                onPress={onLike}
                                 Icon={
                                     post.liking
                                     ? LikeIconFill : LikeIconOutline
@@ -112,7 +115,7 @@ const Post = (props) => {
                             {/* Disike Button */}
                             <TouchableIcon
                                 size={sizes.ACTION_ICON}
-                                onPress={handleDislike}
+                                onPress={onDislike}
                                 style={styles.dislike}
                                 Icon={
                                     post.disliking

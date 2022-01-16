@@ -98,7 +98,6 @@ const PostList = (props, ref) => {
                 renderItem={({ item }) => (
                     <Post
                         post={item}
-                        onUpdate={reloadContent}
                         onDelete={reloadContent}
                         clickable
                     />

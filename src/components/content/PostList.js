@@ -35,7 +35,6 @@ const PostList = (props, ref) => {
         user: passedUser,
         type,
         emptyMessage,
-        onError,
         style,
         HeaderComponent
     } = props;
@@ -101,7 +100,6 @@ const PostList = (props, ref) => {
                         post={item}
                         onUpdate={reloadContent}
                         onDelete={reloadContent}
-                        onError={onError}
                         clickable
                     />
                 )}

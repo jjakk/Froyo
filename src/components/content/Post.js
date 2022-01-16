@@ -51,9 +51,7 @@ const Post = (props) => {
         style,
         post,
         onUpdate,
-        onDelete,
-        onPress,
-        onError
+        onDelete
     } = props;
 
     const onHeaderPress = () => {
@@ -61,47 +59,27 @@ const Post = (props) => {
     };
 
     // Default function to call when a post is tapped on
-    const defaultOnPress = () => {
+    const onPress = () => {
         navigate('PostView', { post });
-    };
-
-    // Update post information from context
-    const updatePost = () => {
-        try {
-            onUpdate();
-        }
-        catch (err) {
-            onError(err);
-        }
     };
 
     // When like button is pressed
     const handleLike = async () => {
-        try {
-            await likePost(post.id);
-            await updatePost();
-        }
-        catch (err) {
-            onError(err);
-        }
+        await likePost(post.id);
+        onUpdate();
     };
 
     // When dislike button is pressed
     const handleDislike = async () => {
-        try {
-            await dislikePost(post.id);
-            await updatePost();
-        }
-        catch (err) {
-            onError(err);
-        }
+        await dislikePost(post.id);
+        onUpdate();
     };
 
     return (
         <TouchableWithoutFeedback
             onPress={
                 clickable
-                    ? (onPress || defaultOnPress)
+                    ? onPress
                     : null
             }
         >
@@ -109,7 +87,6 @@ const Post = (props) => {
                 <ContentHeader
                     post={post}
                     onPress={onHeaderPress}
-                    onError={onError}
                     onDelete={onDelete}
                 />
                 <View style={styles.body}>

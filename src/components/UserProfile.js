@@ -18,44 +18,46 @@ import {
 import { colors } from '../constants/constants';
 
 const UserProfile = (props) => {
+    // Context
     const {
+        getUser,
         signOut,
+        follow,
+        following,
         state: { user: signedInUser }
     } = useContext(AuthContext);
+
+    // Props
     const {
         style,
-        user,
-        loading,
-        following
+        user: passedUser
     } = props;
 
+    // State
+    const [user, setUser] = useState(passedUser || signedInUser);
     const [followingUser, setFollowingUser] = useState(false);
-
-    // Reusable function to check if the signed in user is following the user viewed
-    const getFollowing = async () => {
-        setLoading(true);
-        setFollowingUser(await following(signedInUser.id, user.id));
-        setLoading(false);
-    };
+    const [loading, setLoading] = useState(false);
 
     const onFollow = async () => {
         await follow(user.id);
-        await getFollowing();
-    };
-
-    const onRefresh = async () => {
-        // Get following if view another user's profile
-        if (user.id !== signedInUser.id) {
-            (async function(){
-                await getFollowing();
-            })()
-        }
+        setUser(await getUser(user.id));
     };
 
     // Event handlers
     const onEditProfile = () => {
         navigate('AccountEdit');
     };
+
+    // Get following status whenever the user state changes (If viewing another user's profile)
+    useEffect(() => {
+        (async function(){
+            if (user.id !== signedInUser.id) {
+                setLoading(true);
+                setFollowingUser(await following(signedInUser.id, user.id));
+                setLoading(false);
+            }
+        })();
+    }, [user]);
 
     return (
         <TouchableWithoutFeedback>
@@ -132,10 +134,10 @@ const UserProfile = (props) => {
                     ) : (
                         <View  style={styles.actionButtonContainer}>
                             <Button
-                                title={following ? 'Unfollow' : 'Follow'}
+                                title={followingUser ? 'Unfollow' : 'Follow'}
                                 color={colors.FROYO_GREEN}
-                                textColor={following ? colors.FROYO_GREEN : colors.WHITE}
-                                type={following ? 'secondary' : 'primary'}
+                                textColor={followingUser ? colors.FROYO_GREEN : colors.WHITE}
+                                type={followingUser ? 'secondary' : 'primary'}
                                 pill
                                 loading={loading}
                                 buttonStyle={styles.actionButton}

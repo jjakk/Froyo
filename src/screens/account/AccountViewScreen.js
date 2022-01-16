@@ -1,24 +1,16 @@
-import React, {
-    useContext,
-    useState
-} from 'react';
+import React from 'react';
 import {
     StyleSheet,
 } from 'react-native';
 import ScreenContainer from '../../components/ScreenContainer';
-// Context
-import { Context as AuthContext } from '../../context/AuthContext';
 // Components
 import Header from '../../components/Header';
 import PostList from '../../components/content/PostList';
 import UserProfile from '../../components/UserProfile';
-import ErrorMessage from '../../components/ErrorMessage';
 import { colors } from '../../constants/constants';
 
 const AccountViewScreen = ({ navigation }) => {
-    const { state: { user: signedInUser } } = useContext(AuthContext);
-    // Status states
-    const [user, setUser] = useState(navigation.getParam('user') ||  signedInUser);
+    const user = navigation.getParam('user');
 
     return(
         <ScreenContainer

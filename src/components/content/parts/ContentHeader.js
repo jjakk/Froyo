@@ -16,7 +16,6 @@ const ContentHeader = (props) => {
         post,
         onPress,
         onDelete,
-        onError,
         condensed
     } = props;
 
@@ -41,7 +40,6 @@ const ContentHeader = (props) => {
             <MoreOptions
                 content={post}
                 onDelete={onDelete}
-                onError={onError}
                 style={styles.options}
             />
         </View>

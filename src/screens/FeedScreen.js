@@ -26,9 +26,9 @@ const FeedScreen = ({ navigation }) => {
                 navigation={navigation}
                 LeftIcon={GuestIcon}
                 LeftIconProps={{
-                    size: 50,
                     onPress: onAccountView
                 }}
+                size={50}
                 style={styles.header}
             />
             <PostList

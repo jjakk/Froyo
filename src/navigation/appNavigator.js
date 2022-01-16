@@ -16,6 +16,8 @@ import ResetPasswordScreen from '../screens/authentication/ResetPasswordScreen';
 // Acccount Screens
 import AccountViewScreen from '../screens/account/AccountViewScreen';
 import AccountEditScreen from '../screens/account/AccountEditScreen';
+// Settings Screen
+import SettingsScreen from '../screens/SettingsScreen';
 // Post Screens
 import PostCreateScreen from '../screens/post/PostCreateScreen';
 import PostEditScreen from '../screens/post/PostEditScreen';
@@ -87,6 +89,8 @@ const mainNavigator = createStackNavigator({
         // Account Screens
         AccountEdit: AccountEditScreen,
         AccountView: AccountViewScreen,
+        // Settings Screen
+        Settings: SettingsScreen,
         // Post Screens
         PostCreate: PostCreateScreen,
         PostView: PostViewScreen,

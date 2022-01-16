@@ -64,7 +64,7 @@ const PostViewScreen = ({ navigation }) => {
                     }
                 >
                     <Post
-                        data={post}
+                        post={post}
                         clickable={false}
                         onDelete={navigation.pop}
                     />

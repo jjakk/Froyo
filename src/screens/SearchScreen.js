@@ -4,15 +4,13 @@ import { NavigationEvents } from 'react-navigation';
 import ScreenContainer from '../components/ScreenContainer';
 import SearchBar from '../components/SearchBar';
 import PostList from '../components/content/PostList';
-// Context
-import { Context as PostContext } from '../context/PostContext';
 
 const SearchScreen = () => {
     const [searchText, setSearchText] = useState('');
-    const searchRef = useRef();
+    const postListRef = useRef();
 
     const onSearch = async (searchValue=searchText) => {
-        searchRef.current.search(searchValue);
+        postListRef.current.search(searchValue);
     };
 
     // Event handlers
@@ -34,7 +32,7 @@ const SearchScreen = () => {
                         setSearchText={setSearchText}
                     />
                 )}
-                ref={searchRef}
+                ref={postListRef}
             />
         </ScreenContainer>
     );

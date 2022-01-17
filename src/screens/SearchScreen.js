@@ -9,8 +9,9 @@ const SearchScreen = () => {
     const [searchText, setSearchText] = useState('');
     const postListRef = useRef();
 
-    const onSearch = async (searchValue=searchText) => {
-        postListRef.current.search(searchValue);
+    const onSearch = async () => {
+        console.log(searchText);
+        await postListRef.current.search(searchText);
     };
 
     // Event handlers

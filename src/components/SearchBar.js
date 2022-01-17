@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 // Components
 import {
     View,
@@ -14,22 +14,20 @@ import CloseIcon from '../../assets/icons/Close.svg'
 
 const SearchBar = (props) => {
     const [text, setText] = useState('');
-
     const {
         onSearch,
         setSearchText
     } = props;
 
-    const clearText = () => {
+    const clearText = async () => {
         setText('');
-        onSearch('');
+        setSearchText('');
+        onSearch();
     };
 
-    // Event handlers
-    const onSubmit = () => {
+    useEffect(() => {
         setSearchText(text);
-        onSearch(text);
-    }
+    }, [text]);
 
     return (
         <View>
@@ -46,7 +44,7 @@ const SearchBar = (props) => {
                             height={25}
                         />
                     )}
-                    onSubmitEditing={onSubmit}
+                    onSubmitEditing={onSearch}
                 />
                 {
                     text !== '' ? (

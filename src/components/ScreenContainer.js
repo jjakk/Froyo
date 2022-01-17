@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+// Components
 import {
     StyleSheet,
     TouchableWithoutFeedback,
@@ -7,14 +8,16 @@ import {
     Platform,
     View
 } from 'react-native';
-import ErrorMessage from './ErrorMessage';
+import { NavigationEvents } from 'react-navigation';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import ErrorMessage from './ErrorMessage';
 
 const ScreenContainer = (props) => {
     // Props
     const {
         children,
         style,
+        onDidFocus,
         ...restOfProps
     } = props;
 
@@ -40,6 +43,7 @@ const ScreenContainer = (props) => {
                         keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : 50}
                         style={styles.container}
                     >
+                        <NavigationEvents onDidFocus={onDidFocus} />
                         {children}
                         <ErrorMessage
                             type='box'

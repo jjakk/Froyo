@@ -1,4 +1,10 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, {
+    useState,
+    useContext,
+    useEffect,
+    useImperativeHandle,
+    forwardRef
+} from 'react';
 // Context
 import { Context as UserContext } from '../context/UserContext';
 // Navigation
@@ -17,7 +23,7 @@ import {
 // Constants
 import { colors } from '../constants/constants';
 
-const UserProfile = (props) => {
+const UserProfile = (props, ref) => {
     // Context
     const {
         getUser,
@@ -26,7 +32,6 @@ const UserProfile = (props) => {
         following,
         state: { user: signedInUser }
     } = useContext(UserContext);
-
     // Props
     const {
         style,
@@ -34,16 +39,22 @@ const UserProfile = (props) => {
     } = props;
 
     // State
-    // Object of the user to display
     const [user, setUser] = useState(passedUser || signedInUser);
     // Whether the current user's following the user being viewed
     const [followingUser, setFollowingUser] = useState(false);
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
 
     const onFollow = async () => {
         await follow(user.id);
         setUser(await getUser(user.id));
     };
+
+    // Reference
+    useImperativeHandle(ref, () => ({
+        updateUser: (newUser) => {
+            setUser(newUser)
+        }
+    }))
 
     // Event handlers
     const onEditProfile = () => {
@@ -60,6 +71,12 @@ const UserProfile = (props) => {
             }
         })();
     }, [user]);
+
+    useEffect(() => {
+        (async function(){
+            setUser(await getUser(user.id));
+        })();
+    }, []);
 
     return (
         <TouchableWithoutFeedback>
@@ -218,4 +235,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default UserProfile;
+export default forwardRef(UserProfile);

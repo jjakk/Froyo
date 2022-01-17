@@ -1,4 +1,9 @@
-import React, { useContext } from 'react';
+import React, {
+    useContext,
+    useEffect,
+    useState,
+    useRef
+} from 'react';
 import {
     StyleSheet,
 } from 'react-native';
@@ -15,17 +20,27 @@ import { colors } from '../../constants/constants';
 import GearIcon from '../../../assets/icons/Gear.svg';
 
 const AccountViewScreen = ({ navigation }) => {
-    const { user: signedInUser } = useContext(UserContext);
-    const user = navigation.getParam('user');
+    const { getUser, user: signedInUser } = useContext(UserContext);
+    const [user, setUser] = useState(navigation.getParam('user') || signedInUser);
+    const userProfileRef = useRef();
 
     const onSettings = () => {
         navigation.navigate('Settings');
     };
 
+    // Get user information onload and onrefresh
+    const onRefresh = async () => {
+        setUser(await getUser(user.id));
+    }
+    useEffect(() => {
+        userProfileRef.current.updateUser(user);
+    }, [user]);
+
     return(
         <ScreenContainer
             style={styles.container}
             edges={['top']}
+            onDidFocus={onRefresh}
         >
             <Header
                 navigation={navigation}
@@ -39,10 +54,12 @@ const AccountViewScreen = ({ navigation }) => {
                 user={user}
                 emptyMessage="You haven't posted anything yet"
                 style={styles.postList}
+                onPullDownRefresh={onRefresh}
                 HeaderComponent={(
                     <UserProfile
                         user={user}
                         style={styles.userProfile}
+                        ref={userProfileRef}
                     />
                 )}
             />

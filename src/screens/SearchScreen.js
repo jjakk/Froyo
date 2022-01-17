@@ -1,6 +1,5 @@
-import React, { useState, useContext, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 // Components
-import { NavigationEvents } from 'react-navigation';
 import ScreenContainer from '../components/ScreenContainer';
 import SearchBar from '../components/SearchBar';
 import PostList from '../components/content/PostList';
@@ -25,8 +24,8 @@ const SearchScreen = () => {
     return (
         <ScreenContainer
             edges={['top']}
+            onDidFocus={onDidFocus}
         >
-            <NavigationEvents onDidFocus={onDidFocus}/>
             <PostList
                 type='Search'
                 emptyMessage='No posts found'

@@ -36,6 +36,7 @@ const PostList = (props, ref) => {
         type,
         emptyMessage,
         style,
+        onPullDownRefresh,
         HeaderComponent
     } = props;
 
@@ -43,11 +44,13 @@ const PostList = (props, ref) => {
     const [refreshing, setRefreshing] = useState(false);
     const [loading, setLoading] = useState(true);
     const [posts, setPosts] = useState([]);
-    const [user, setUser] = useState(passedUser || signedInUser);
+    const user = passedUser || signedInUser;
 
     // Reference
     useImperativeHandle(ref, () => ({
-        search: async (searchValue) => { await reloadContent(searchValue) }
+        search: async (searchValue) => {
+            await reloadContent(searchValue)
+        }
     }))
 
     // Function to retrieve user info & posts
@@ -65,14 +68,13 @@ const PostList = (props, ref) => {
                 setPosts(await searchPosts({ text: searchValue }));
                 break;
         }
-        // Retreive user information
-        setUser(await getUser(user.id));
         setLoading(false);
     };
 
     const onRefresh = async () => {
         setRefreshing(true);
         await reloadContent(true);
+        await onPullDownRefresh();
         setRefreshing(false);
     };
 

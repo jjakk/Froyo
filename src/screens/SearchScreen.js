@@ -10,8 +10,11 @@ const SearchScreen = () => {
     const postListRef = useRef();
 
     const onSearch = async () => {
-        console.log(searchText);
         await postListRef.current.search(searchText);
+    };
+    
+    const onClear = async () => {
+        await postListRef.current.search('');
     };
 
     // Event handlers
@@ -30,6 +33,7 @@ const SearchScreen = () => {
                 HeaderComponent={(
                     <SearchBar
                         onSearch={onSearch}
+                        onClear={onClear}
                         setSearchText={setSearchText}
                     />
                 )}

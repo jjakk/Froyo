@@ -16,13 +16,14 @@ const SearchBar = (props) => {
     const [text, setText] = useState('');
     const {
         onSearch,
+        onClear,
         setSearchText
     } = props;
 
     const clearText = async () => {
         setText('');
         setSearchText('');
-        onSearch();
+        onClear();
     };
 
     useEffect(() => {

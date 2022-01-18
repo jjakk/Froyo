@@ -29,6 +29,7 @@ const SearchScreen = () => {
             <PostList
                 type='Search'
                 emptyMessage='No posts found'
+                refreshable={false}
                 HeaderComponent={(
                     <SearchBar
                         onSearch={onSearch}

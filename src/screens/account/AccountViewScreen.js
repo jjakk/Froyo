@@ -2,7 +2,6 @@ import React, {
     useContext,
     useEffect,
     useState,
-    useRef
 } from 'react';
 import {
     StyleSheet,
@@ -22,7 +21,6 @@ import GearIcon from '../../../assets/icons/Gear.svg';
 const AccountViewScreen = ({ navigation }) => {
     const { getUser, user: signedInUser } = useContext(UserContext);
     const [user, setUser] = useState(navigation.getParam('user') || signedInUser);
-    const userProfileRef = useRef();
 
     const onSettings = () => {
         navigation.navigate('Settings');
@@ -30,11 +28,8 @@ const AccountViewScreen = ({ navigation }) => {
 
     // Get user information onload and onrefresh
     const onRefresh = async () => {
-        setUser(await getUser(user.id));
+        if(user) setUser(await getUser(user.id));
     }
-    useEffect(() => {
-        userProfileRef.current.updateUser(user);
-    }, [user]);
 
     return(
         <ScreenContainer
@@ -51,15 +46,15 @@ const AccountViewScreen = ({ navigation }) => {
             />
             <PostList
                 type='AccountView'
-                user={user}
                 emptyMessage="You haven't posted anything yet"
+                user={user}
                 style={styles.postList}
                 onPullDownRefresh={onRefresh}
                 HeaderComponent={(
                     <UserProfile
                         user={user}
                         style={styles.userProfile}
-                        ref={userProfileRef}
+                        onUserUpdate={onRefresh}
                     />
                 )}
             />

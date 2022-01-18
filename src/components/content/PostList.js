@@ -24,7 +24,7 @@ import { colors } from '../../constants/constants';
 
 const PostList = (props, ref) => {
     // Context
-    const { getUser, state: { user: signedInUser } } = useContext(UserContext);
+    const { state: { user: signedInUser } } = useContext(UserContext);
     const {
         searchPosts,
         getFeed
@@ -32,10 +32,11 @@ const PostList = (props, ref) => {
 
     // Props
     const {
-        user: passedUser,
         type,
         emptyMessage,
         style,
+        user=signedInUser,
+        refreshable=true,
         onPullDownRefresh,
         HeaderComponent
     } = props;
@@ -44,7 +45,6 @@ const PostList = (props, ref) => {
     const [refreshing, setRefreshing] = useState(false);
     const [loading, setLoading] = useState(true);
     const [posts, setPosts] = useState([]);
-    const user = passedUser || signedInUser;
 
     // Reference
     useImperativeHandle(ref, () => ({
@@ -92,10 +92,12 @@ const PostList = (props, ref) => {
                 ListHeaderComponent={HeaderComponent}
                 showsVerticalScrollIndicator={false}
                 refreshControl={
-                    <RefreshControl
-                        refreshing={refreshing}
-                        onRefresh={onRefresh}
-                    />
+                    refreshable ? (
+                        <RefreshControl
+                            refreshing={refreshing}
+                            onRefresh={onRefresh}
+                        />
+                    ) : null
                 }
                 renderItem={({ item }) => (
                     <Post

@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
-import { Text } from './froyo-elements';
+import { Text } from '../froyo-elements';
 
 const EmptyMessage = ({ style, subheaderText }) => {
     return (

@@ -1,11 +1,11 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 // Component
-import { Text, TouchableIcon } from './froyo-elements';
+import { Text, TouchableIcon } from '../froyo-elements';
 // Icons
-import CloseIcon from '../../assets/icons/Close.svg';
+import CloseIcon from '../../../assets/icons/Close.svg';
 // Constants
-import { colors } from '../constants/constants';
+import { colors } from '../../constants/constants';
 
 const ErrorMessage = (props) => {
     const {

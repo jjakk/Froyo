@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import { NavigationEvents } from 'react-navigation';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import ErrorMessage from './ErrorMessage';
+import ErrorMessage from './messages/ErrorMessage';
 
 const ScreenContainer = (props) => {
     // Props

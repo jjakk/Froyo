@@ -10,10 +10,11 @@ import {
     Input,
     Button
 } from '../../../components/froyo-elements';
-import ScreenContainer from '../../../components/ScreenContainer';
 import Header from '../../../components/Header';
+import ScreenContainer from '../../../components/ScreenContainer';
+import ErrorMessage from '../../../components/messages//ErrorMessage';
+// Context
 import { Context as UserContext } from '../../../context/UserContext';
-import ErrorMessage from '../../../components/ErrorMessage';
 
 const SignUpTwoScreen = ({ navigation }) => {
     // Form params from previous screen

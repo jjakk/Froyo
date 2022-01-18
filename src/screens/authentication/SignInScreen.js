@@ -11,7 +11,7 @@ import {
     Input,
     Link
 } from '../../components/froyo-elements';
-import ErrorMessage from '../../components/ErrorMessage';
+import ErrorMessage from '../../components/messages/ErrorMessage';
 import ScreenContainer from '../../components/ScreenContainer';
 // Context
 import { Context as UserContext } from '../../context/UserContext';

@@ -11,9 +11,9 @@ import {
 } from '../../components/froyo-elements';
 import { NavigationEvents } from 'react-navigation';
 import ScreenContainer from '../../components/ScreenContainer';
-import ErrorMessage from '../../components/ErrorMessage';
+import ErrorMessage from '../../components/messages/ErrorMessage';
 // Constants
-import constants, { colors } from '../../constants/constants';
+import { colors } from '../../constants/constants';
 // Context
 import { Context as PostContext } from '../../context/PostContext';
 // Icons

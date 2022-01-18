@@ -13,7 +13,7 @@ import {
     DatePicker
 } from '../../../components/froyo-elements';
 import ScreenContainer from '../../../components/ScreenContainer';
-import ErrorMessage from '../../../components/ErrorMessage';
+import ErrorMessage from '../../../components/messages/ErrorMessage';
 // Context
 import { Context as UserContext } from '../../../context/UserContext';
 

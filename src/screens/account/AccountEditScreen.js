@@ -1,4 +1,8 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, {
+    useContext,
+    useState
+} from 'react';
+// Components
 import {
     StyleSheet,
     View,
@@ -10,9 +14,10 @@ import {
 } from '../../components/froyo-elements';
 import ScreenContainer from '../../components/ScreenContainer';
 import Header from '../../components/Header';
-import ErrorMessage from '../../components/ErrorMessage';
-import { Context as UserContext } from '../../context/UserContext';
+import ErrorMessage from '../../components/messages/ErrorMessage';
 import UploadIcon from '../../../assets/icons/Upload.svg';
+// Context
+import { Context as UserContext } from '../../context/UserContext';
 
 const AccountEditScreen = ({ navigation }) => {
     const { updateUser, state: { user, errorMessage } } = useContext(UserContext);

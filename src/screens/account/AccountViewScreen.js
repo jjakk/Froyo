@@ -19,7 +19,7 @@ import { colors } from '../../constants/constants';
 import GearIcon from '../../../assets/icons/Gear.svg';
 
 const AccountViewScreen = ({ navigation }) => {
-    const { getUser, user: signedInUser } = useContext(UserContext);
+    const { getUser, state: { user: signedInUser } } = useContext(UserContext);
     const [user, setUser] = useState(navigation.getParam('user') || signedInUser);
 
     const onSettings = () => {
@@ -39,7 +39,7 @@ const AccountViewScreen = ({ navigation }) => {
         >
             <Header
                 navigation={navigation}
-                RightIcon={user === signedInUser ? GearIcon : null}
+                RightIcon={user.id === signedInUser.id ? GearIcon : null}
                 RightIconProps={{
                     onPress: onSettings
                 }}

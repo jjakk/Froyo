@@ -20,7 +20,7 @@ import UploadIcon from '../../../assets/icons/Upload.svg';
 import { Context as UserContext } from '../../context/UserContext';
 
 const AccountEditScreen = ({ navigation }) => {
-    const { updateUser, state: { user, errorMessage } } = useContext(UserContext);
+    const { updateUser, state: { user } } = useContext(UserContext);
     // Form feilds
     const [firstName, setFirstName] = useState(user.first_name);
     const [lastName, setLastName] = useState(user.last_name);
@@ -28,23 +28,28 @@ const AccountEditScreen = ({ navigation }) => {
     const [description, setDescription] = useState(user.description);
     // Status states
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState('');
 
     const handleSubmit = () => {
-        try {
-            setLoading(true);
-            updateUser({
-                firstName,
-                lastName,
-                username,
-                description
-            });
+        setLoading(true);
+        // Code to catch submitting no changes
+        /*if (
+            firstName === user.first_name &&
+            lastName === user.last_name &&
+            username === user.username &&
+            description === user.description
+        ){
             setLoading(false);
-            navigation.pop();
-        }
-        catch (err) {
-            setError(err);
-        }
+            throw Error({ message: 'No changes' });
+            return;
+        }*/
+        updateUser({
+            firstName,
+            lastName,
+            username,
+            description
+        });
+        setLoading(false);
+        navigation.pop();
     };
 
     return(
@@ -100,10 +105,6 @@ const AccountEditScreen = ({ navigation }) => {
                     loading={loading}
                     buttonStyle={styles.submit}
                     onPress={handleSubmit}
-                />
-                <ErrorMessage
-                    message={error}
-                    style={styles.errorMessage}
                 />
             </View>
         </ScreenContainer>

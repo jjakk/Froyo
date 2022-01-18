@@ -2,13 +2,13 @@ import React, { useState, useContext } from 'react';
 import { StyleSheet, TouchableOpacity } from 'react-native';
 import { View } from 'react-native';
 // Components
-import { Input } from '../components/froyo-elements';
+import { Input } from '../froyo-elements';
 // Context
-import { Context as CommentContext } from '../context/CommentContext';
+import { Context as CommentContext } from '../../context/CommentContext';
 // Icons
-import SendIcon from '../../assets/icons/Send.svg';
+import SendIcon from '../../../assets/icons/Send.svg';
 // Constants
-import { colors } from '../constants/constants';
+import { colors } from '../../constants/constants';
 
 // ParentId -> string: ID of the content that's being commented one
 // onCreateComment -> function: callback function to be called when the comment is created

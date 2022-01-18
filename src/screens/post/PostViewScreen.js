@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 import ScreenContainer from '../../components/ScreenContainer';
 import Header from '../../components/Header';
-import CommentBar from '../../components/CommentBar';
+import CommentBar from '../../components/bars/CommentBar';
 import Post from '../../components/content/Post';
 import CommentList from '../../components/content/CommentList';
 // Constants

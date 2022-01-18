@@ -7,10 +7,10 @@ import {
 import {
     Input,
     TouchableIcon
-} from './froyo-elements';
+} from '../froyo-elements';
 // Icons
-import SearchIcon from '../../assets/icons/Search.svg';
-import CloseIcon from '../../assets/icons/Close.svg'
+import SearchIcon from '../../../assets/icons/Search.svg';
+import CloseIcon from '../../../assets/icons/Close.svg'
 
 const SearchBar = (props) => {
     const [text, setText] = useState('');

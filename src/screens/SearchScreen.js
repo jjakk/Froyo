@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 // Components
 import ScreenContainer from '../components/ScreenContainer';
-import SearchBar from '../components/SearchBar';
+import SearchBar from '../components/bars/SearchBar';
 import PostList from '../components/content/PostList';
 
 const SearchScreen = () => {

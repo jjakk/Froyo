@@ -39,7 +39,6 @@ const UserProfile = (props) => {
     // State
     // Whether the current user's following the user being viewed
     const [followingUser, setFollowingUser] = useState(false);
-    const [loading, setLoading] = useState(false);
 
     const onFollow = async () => {
         await follow(user.id);
@@ -55,9 +54,7 @@ const UserProfile = (props) => {
     useEffect(() => {
         (async function(){
             if (user.id !== signedInUser.id) {
-                setLoading(true);
                 setFollowingUser(await following(signedInUser.id, user.id));
-                setLoading(false);
             }
         })();
     }, [user]);
@@ -142,7 +139,6 @@ const UserProfile = (props) => {
                                 textColor={followingUser ? colors.FROYO_GREEN : colors.WHITE}
                                 type={followingUser ? 'secondary' : 'primary'}
                                 pill
-                                loading={loading}
                                 buttonStyle={styles.actionButton}
                                 titleStyle={styles.actionButtonText}
                                 onPress={onFollow}

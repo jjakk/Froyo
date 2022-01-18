@@ -48,9 +48,7 @@ const PostList = (props, ref) => {
 
     // Reference
     useImperativeHandle(ref, () => ({
-        search: async (searchValue) => {
-            await reloadContent(searchValue)
-        }
+        reloadContent: reloadContent
     }))
 
     // Function to retrieve user info & posts
@@ -74,7 +72,7 @@ const PostList = (props, ref) => {
     const onRefresh = async () => {
         setRefreshing(true);
         await reloadContent(true);
-        await onPullDownRefresh();
+        if (onPullDownRefresh) await onPullDownRefresh();
         setRefreshing(false);
     };
 

@@ -32,10 +32,9 @@ const UserProfile = (props) => {
     // Props
     const {
         style,
-        user: passedUser,
+        user=signedInUser,
         onUserUpdate
     } = props;
-    const user = passedUser || signedInUser;
 
     // State
     // Whether the current user's following the user being viewed
@@ -61,7 +60,7 @@ const UserProfile = (props) => {
                 setLoading(false);
             }
         })();
-    }, [passedUser]);
+    }, [user]);
 
     return (
         <TouchableWithoutFeedback>

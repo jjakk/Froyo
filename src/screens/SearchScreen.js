@@ -9,22 +9,17 @@ const SearchScreen = () => {
     const postListRef = useRef();
 
     const onSearch = async () => {
-        await postListRef.current.search(searchText);
+        await postListRef.current.reloadContent(searchText);
     };
     
     const onClear = async () => {
-        await postListRef.current.search('');
-    };
-
-    // Event handlers
-    const onDidFocus = async () => {
-        await onSearch();
+        await postListRef.current.reloadContent('');
     };
 
     return (
         <ScreenContainer
             edges={['top']}
-            onDidFocus={onDidFocus}
+            onDidFocus={onSearch}
         >
             <PostList
                 type='Search'

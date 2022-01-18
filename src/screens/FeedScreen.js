@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useRef } from 'react';
 // Components
 import {
     StyleSheet,
@@ -12,15 +12,21 @@ import GuestIcon from '../../assets/icons/Profile-Picture.svg'
 import { colors } from '../constants/constants';
 
 const FeedScreen = ({ navigation }) => {
+    const postListRef = useRef();
     
     // Event handlers
     const onAccountView = () => {
         navigation.navigate('AccountView');
     };
 
+    const onDidFocus = () => {
+        postListRef.current.reloadContent();
+    };
+
     return (
         <ScreenContainer
             edges={['top']}
+            onDidFocus={onDidFocus}
         >
             <Header
                 navigation={navigation}
@@ -35,6 +41,7 @@ const FeedScreen = ({ navigation }) => {
                 type='Feed'
                 emptyMessage='Follow people to populate your feed'
                 style={styles.postList}
+                ref={postListRef}
             />
         </ScreenContainer>
     );

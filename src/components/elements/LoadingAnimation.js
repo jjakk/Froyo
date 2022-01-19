@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from "react";
-import { Animated, Text, View, StyleSheet, Button, SafeAreaView, Easing } from "react-native";
+import { Animated, StyleSheet, Easing } from "react-native";
 // Icons
 import LoadingIcon from '../../../assets/animation-icons/loading.svg';
 // Constants

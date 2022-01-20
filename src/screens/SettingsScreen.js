@@ -1,7 +1,7 @@
 import React from 'react';
 // Components
 import { StyleSheet } from 'react-native';
-import SettingsOptions from '../components/SettingsList';;
+import SettingsOptions from '../components/settings/SettingsList';;
 import ScreenContainer from '../components/ScreenContainer';
 import Header from '../components/Header';
 // Constants

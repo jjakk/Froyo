@@ -57,13 +57,13 @@ const PostList = (props, ref) => {
         // Retrieve posts
         switch (type) {
             case 'AccountView':
-                setPosts(await searchContent('posts', { author_id: user.id }));
+                setPosts(await searchContent('post', { author_id: user.id }));
                 break;
             case 'Feed':
                 setPosts(await getFeed());
                 break;
             case 'Search':
-                setPosts(await searchContent('posts', { text: searchValue }));
+                setPosts(await searchContent('post', { text: searchValue }));
                 break;
         }
         setLoading(false);

@@ -28,7 +28,7 @@ const PostViewScreen = ({ navigation }) => {
     useEffect(() => {
         (async function(){
             setLoadingComments(true);
-            setComments(await getComments('posts', post.id));
+            setComments(await getComments('post', post.id));
             setLoadingComments(false);
         })();
     }, [post]);
@@ -37,7 +37,7 @@ const PostViewScreen = ({ navigation }) => {
     const refreshPost = async (err) => {
         if (err) setError(err);
         else{
-            setPost(await getContent('posts', post.id));
+            setPost(await getContent('post', post.id));
         }
     };
 

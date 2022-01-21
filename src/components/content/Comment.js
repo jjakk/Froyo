@@ -45,11 +45,11 @@ const Comment = (props) => {
     };
 
     const onLike = async () => {
-        setComment(await likeContent('comments', comment.id));
+        setComment(await likeContent('comment', comment.id));
     };
 
     const onDislike = async () => {
-        setComment(await dislikeContent('comments', comment.id));
+        setComment(await dislikeContent('comment', comment.id));
     };
 
     return (

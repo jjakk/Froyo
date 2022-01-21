@@ -37,7 +37,7 @@ const MoreOptions = (props) => {
         onDelete,
         style
     } = props;
-    const contentType = !content.parent_id ? 'posts' : 'comments';
+    const contentType = !content.parent_id ? 'post' : 'comment';
 
     // Default functions for edit button
     const onEdit = () => {

@@ -64,11 +64,11 @@ const Post = (props) => {
     };
 
     const onLike = async () => {
-        setPost(await likeContent('posts', post.id));
+        setPost(await likeContent('post', post.id));
     };
 
     const onDislike = async () => {
-        setPost(await dislikeContent('posts', post.id));
+        setPost(await dislikeContent('post', post.id));
     };
 
     return (

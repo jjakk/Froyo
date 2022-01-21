@@ -32,7 +32,7 @@ const PostCreateScreen = ({ navigation }) => {
         try{
             Keyboard.dismiss()
             setLoading(true);
-            await createContent('posts', { text: postText });
+            await createContent('post', { text: postText });
             setLoading(false);
             setPostText('');
             navigation.navigate('AccountView');

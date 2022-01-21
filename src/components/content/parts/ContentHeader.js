@@ -8,8 +8,6 @@ import {
 // Components
 import { Text, Br } from '../../froyo-elements';
 import MoreOptions from './MoreOptions';
-// Constants
-import { colors } from '../../../constants/constants';
 // Helper functions
 import { calculateAge } from '../../../helperFunctions/age';
 

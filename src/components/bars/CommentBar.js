@@ -26,7 +26,7 @@ const CommentBar = (props) => {
             text: commentText,
             parent_id
         };
-        await createContent('comments', content);
+        await createContent('comment', content);
         setCommentText('');
         onCreateComment();
     };

@@ -141,7 +141,8 @@ const styles = StyleSheet.create({
     },
     // Like/Dislike
     likenessContainer: {
-        marginLeft: 15
+        marginLeft: 15,
+        marginRight: 15
     },
     likeness: {
         flexDirection: 'row',

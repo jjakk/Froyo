@@ -19,23 +19,20 @@ const createContent = () => async (contentType, info) => {
 
 // Delete a post or comment by id
 const deleteContent = () => async (contentType, contentId) => {
-    contentType += 's';
-    await froyoApi.delete(`/${contentType}/${contentId}`);
+    await froyoApi.delete(`/${contentType}s/${contentId}`);
 }
 
 // Get content by id
 const getContent = () => async (contentType, contentId) => {
-    contentType += 's';
     const {
         data: content
-    } = await froyoApi.get(`/${contentType}/${contentId}`);
+    } = await froyoApi.get(`/${contentType}s/${contentId}`);
     return content;
 }
 
 // (GET) Search content
 const searchContent = () => async (contentType, query) => {
-    contentType += 's';
-    const { data: content } = await froyoApi.get(`/${contentType}`, {
+    const { data: content } = await froyoApi.get(`/${contentType}s`, {
         params: query
     });
     return content;
@@ -43,8 +40,7 @@ const searchContent = () => async (contentType, query) => {
 
 // GET all the comments of a given parent
 const getComments = () => async (contentType, parentId) => {
-    contentType += 's';
-    const { data: comments } = await froyoApi.get(`/${contentType}/${parentId}/comments`);
+    const { data: comments } = await froyoApi.get(`/${contentType}s/${parentId}/comments`);
     return comments;
 };
 
@@ -56,15 +52,13 @@ const getFeed = () => async () => {
 
 // Like a post or comment (unlikes if already liked)
 const likeContent = () => async (contentType, contentId) => {
-    contentType += 's';
-    const { data: updatedContent } = await froyoApi.put(`/${contentType}/${contentId}/like`);
+    const { data: updatedContent } = await froyoApi.put(`/${contentType}s/${contentId}/like`);
     return updatedContent;
 };
 
 // Dislike a post or comment (undislikes if already disliked)
 const dislikeContent = () => async (contentType, contentId) => {
-    contentType += 's';
-    const { data: updatedContent } = await froyoApi.put(`/${contentType}/${contentId}/dislike`);
+    const { data: updatedContent } = await froyoApi.put(`/${contentType}s/${contentId}/dislike`);
     return updatedContent;
 };
 

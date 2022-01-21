@@ -25,10 +25,10 @@ const Switch = (props) => {
     return (
         <TouchableWithoutFeedback onPress={onPress}>
             <View style={[styles.switch, {
-                backgroundColor: isOn ? colors.FROYO_GREEN : colors.LIGHT_GREY
+                backgroundColor: isOn ? colors.GREEN : colors.LIGHT_GREY
             }, style]}>
                 <Animated.View style={[styles.circle, {
-                    backgroundColor: isOn ? colors.LIGHT_GREY: colors.FROYO_GREEN,
+                    backgroundColor: isOn ? colors.LIGHT_GREY: colors.GREEN,
                     transform: [{
                         translateX: toggleAnimation,
                     }]

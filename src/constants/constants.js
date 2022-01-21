@@ -1,5 +1,5 @@
 
-module.exports = {
+const constants = {
     colors: {
         // Black, Grey, & White
         WHITE: '#FFFFFF',
@@ -9,11 +9,11 @@ module.exports = {
         LIGHT_BLACK: '#2b2b2b',
         BLACK: '#000000',
         // Greens
-        FROYO_GREEN_DARKER: '#0F8158',
-        FROYO_GREEN_DARK: '#4AA786',
-        FROYO_GREEN: '#41CA99',
-        FROYO_GREEN_LIGHT: '#0DCBB',
-        FROYO_GREEN_LIGHTER: '#C0EDDD',
+        GREEN_DARKER: '#0F8158',
+        GREEN_DARK: '#4AA786',
+        GREEN: '#41CA99',
+        GREEN_LIGHT: '#0DCBB',
+        GREEN_LIGHTER: '#C0EDDD',
         // Reds
         ERROR_RED: '#FB1C1C',
         DISLIKE_RED: '#CA5A41',
@@ -28,3 +28,5 @@ module.exports = {
         OPTIONS_ICON: 20,
     }
 };
+
+module.exports = constants;

@@ -109,7 +109,7 @@ const UserProfile = (props) => {
                         <View style={styles.actionButtonContainer}>
                             <Button
                                 title='Edit profile'
-                                color={colors.FROYO_GREEN}
+                                color={colors.GREEN}
                                 textColor='white'
                                 pill
                                 buttonStyle={styles.actionButton}
@@ -121,8 +121,8 @@ const UserProfile = (props) => {
                         <View  style={styles.actionButtonContainer}>
                             <Button
                                 title='Sign out'
-                                color={colors.FROYO_GREEN}
-                                textColor={colors.FROYO_GREEN}
+                                color={colors.GREEN}
+                                textColor={colors.GREEN}
                                 type='secondary'
                                 pill
                                 buttonStyle={styles.actionButton}
@@ -135,8 +135,8 @@ const UserProfile = (props) => {
                         <View  style={styles.actionButtonContainer}>
                             <Button
                                 title={followingUser ? 'Unfollow' : 'Follow'}
-                                color={colors.FROYO_GREEN}
-                                textColor={followingUser ? colors.FROYO_GREEN : colors.WHITE}
+                                color={colors.GREEN}
+                                textColor={followingUser ? colors.GREEN : colors.WHITE}
                                 type={followingUser ? 'secondary' : 'primary'}
                                 pill
                                 buttonStyle={styles.actionButton}

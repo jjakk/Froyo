@@ -65,7 +65,7 @@ const PostCreateScreen = ({ navigation }) => {
                 />
                 <TouchableIcon
                     Icon={SendIcon}
-                    color={colors.FROYO_GREEN}
+                    color={colors.GREEN}
                     onPress={handleSubmit}
                     size={30}
                     loading={loading}

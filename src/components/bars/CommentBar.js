@@ -40,7 +40,7 @@ const CommentBar = (props) => {
                 onChangeText={setCommentText}
             />
             <TouchableOpacity onPress={onSubmit}>
-                <SendIcon style={styles.send} width={35} height={35} color={colors.FROYO_GREEN}/>
+                <SendIcon style={styles.send} width={35} height={35} color={colors.GREEN}/>
             </TouchableOpacity>
         </View>
     );

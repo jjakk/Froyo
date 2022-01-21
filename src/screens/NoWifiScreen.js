@@ -27,7 +27,7 @@ const NoWifiScreen = ({ navigation }) => {
                 </View>
                 <Button
                     title='Reconnect'
-                    color={colors.FROYO_GREEN}
+                    color={colors.GREEN}
                     buttonStyle={styles.button}
                     onPress={onReconnect}
                 />

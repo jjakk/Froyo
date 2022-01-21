@@ -20,7 +20,7 @@ const LikenessBar = (props) => {
             overflow: 'hidden'
         },
         like: {
-            backgroundColor: colors.FROYO_GREEN,
+            backgroundColor: colors.GREEN,
             flex: like_count,
         },
         dislike: {

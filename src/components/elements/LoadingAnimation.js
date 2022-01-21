@@ -57,7 +57,7 @@ const LoadingAnimation = (props) => {
 
 LoadingAnimation.defaultProps = {
     size: 50,
-    color: colors.FROYO_GREEN_LIGHTER
+    color: colors.GREEN_LIGHTER
 };
 
 export default LoadingAnimation;

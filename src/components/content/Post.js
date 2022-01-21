@@ -102,7 +102,7 @@ const Post = (props) => {
                                 }
                                 color={
                                     post.liking
-                                    ? colors.FROYO_GREEN : colors.DARK_GREY
+                                    ? colors.GREEN : colors.DARK_GREY
                                 }
                             />
                             {/* Disike Button */}

@@ -4,7 +4,7 @@ import { View } from 'react-native';
 // Components
 import { Input } from '../froyo-elements';
 // Context
-import { Context as CommentContext } from '../../context/CommentContext';
+import { Context as ContentContext } from '../../context/ContentContext';
 // Icons
 import SendIcon from '../../../assets/icons/Send.svg';
 // Constants
@@ -13,28 +13,22 @@ import { colors } from '../../constants/constants';
 // ParentId -> string: ID of the content that's being commented one
 // onCreateComment -> function: callback function to be called when the comment is created
 const CommentBar = (props) => {
-    const { createComment } = useContext(CommentContext);
+    const { createContent } = useContext(ContentContext);
     const [commentText, setCommentText] = useState('');
     const {
         style,
         parent_id,
-        onCreateComment,
-        onError
+        onCreateComment
     } = props;
 
     const onSubmit = async () => {
-        try{
-            const content = {
-                text: commentText,
-                parent_id
-            };
-            await createComment(content);
-            setCommentText('');
-            onCreateComment();
-        }
-        catch (err) {
-            onError(err.message);
-        }
+        const content = {
+            text: commentText,
+            parent_id
+        };
+        await createContent('comments', content);
+        setCommentText('');
+        onCreateComment();
     };
 
     return (

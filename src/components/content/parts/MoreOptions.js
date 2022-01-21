@@ -17,8 +17,7 @@ import { Text } from '../../froyo-elements';
 import confirmAlert from '../../../helperFunctions/confirmAlert';
 // Contexts
 import { Context as UserContext } from '../../../context/UserContext';
-import { Context as PostContext } from '../../../context/PostContext';
-import { Context as CommentContext } from '../../../context/CommentContext';
+import { Context as ContentContext } from '../../../context/ContentContext';
 // Icons
 import MoreOptionsIcon from '../../../../assets/icons/MoreSettings.svg';
 import TrashIcon from '../../../../assets/icons/Trash.svg';
@@ -32,14 +31,13 @@ import {
 
 const MoreOptions = (props) => {
     const { state: { user } } = useContext(UserContext);
-    const { deletePost } = useContext(PostContext);
-    const { deleteComment } = useContext(CommentContext);
+    const { deleteContent } = useContext(ContentContext);
     const {
         content,
         onDelete,
         style
     } = props;
-    const contentType = !content.parent_id ? 'Post' : 'Comment';
+    const contentType = !content.parent_id ? 'posts' : 'comments';
 
     // Default functions for edit button
     const onEdit = () => {
@@ -49,12 +47,7 @@ const MoreOptions = (props) => {
     // Show delete confirmation, and delete if confirmed
     const onDeletePrompt = async () => {
         confirmAlert(`Are you sure you want to delete this ${contentType.toLowerCase()}?`, async () => {
-            if (contentType === 'Post') {
-                await deletePost(content.id);
-            }
-            else {
-                await deleteComment(content.id);
-            }
+            await deleteContent(contentType, content.id);
             onDelete();
         });
     };

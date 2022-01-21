@@ -15,14 +15,14 @@ import ErrorMessage from '../../components/messages/ErrorMessage';
 // Constants
 import { colors } from '../../constants/constants';
 // Context
-import { Context as PostContext } from '../../context/PostContext';
+import { Context as ContentContext } from '../../context/ContentContext';
 // Icons
 import SendIcon from '../../../assets/icons/Send.svg';
 
 const PostCreateScreen = ({ navigation }) => {
-    const { createPost } = useContext(PostContext);
+    const { createContent } = useContext(ContentContext);
     // Form feilds
-    const [postBody, setPostBody] = useState('');
+    const [postText, setPostText] = useState('');
     // Status state
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
@@ -32,9 +32,9 @@ const PostCreateScreen = ({ navigation }) => {
         try{
             Keyboard.dismiss()
             setLoading(true);
-            await createPost({ postBody });
+            await createContent('posts', { text: postText });
             setLoading(false);
-            setPostBody('');
+            setPostText('');
             navigation.navigate('AccountView');
         }
         catch (err) {
@@ -50,7 +50,7 @@ const PostCreateScreen = ({ navigation }) => {
     // Delete error message when you type in the post body
     useEffect(() => {
         clearError();
-    }, [postBody]);
+    }, [postText]);
 
     return (
         <ScreenContainer style={styles.container}>
@@ -60,8 +60,8 @@ const PostCreateScreen = ({ navigation }) => {
                     style={styles.bodyText}
                     multiline={true}
                     placeholder='Type here...'
-                    value={postBody}
-                    onChangeText={setPostBody}
+                    value={postText}
+                    onChangeText={setPostText}
                 />
                 <TouchableIcon
                     Icon={SendIcon}

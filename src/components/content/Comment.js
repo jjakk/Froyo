@@ -17,7 +17,7 @@ import MoreOptions from './parts/MoreOptions';
 import LikenessBar from './parts/LikenessBar';
 // Context
 import { Context as UserContext } from '../../context/UserContext';
-import { Context as CommentContext } from '../../context/CommentContext';
+import { Context as ContentContext } from '../../context/ContentContext';
 // Constants
 import { colors, sizes } from '../../constants/constants';
 // Icons
@@ -29,7 +29,7 @@ import DislikeIconOutline from '../../../assets/icons/Dislike-Outline.svg';
 
 const Comment = (props) => {
     const { state: { user } } = useContext(UserContext); 
-    const { likeComment, dislikeComment } = useContext(CommentContext);
+    const { likeContent, dislikeContent } = useContext(ContentContext);
     
     const {
         style,
@@ -45,11 +45,11 @@ const Comment = (props) => {
     };
 
     const onLike = async () => {
-        setComment(await likeComment(comment.id));
+        setComment(await likeContent('comments', comment.id));
     };
 
     const onDislike = async () => {
-        setComment(await dislikeComment(comment.id));
+        setComment(await dislikeContent('comments', comment.id));
     };
 
     return (

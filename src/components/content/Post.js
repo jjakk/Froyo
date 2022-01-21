@@ -17,8 +17,8 @@ import {
 import ContentHeader from './parts/ContentHeader';
 import LikenessBar from './parts/LikenessBar';
 // Contexts
-import { Context as PostContext } from '../../context/PostContext';
 import { Context as UserContext } from '../../context/UserContext';
+import { Context as ContentContext } from '../../context/ContentContext';
 // Icons
 import LikeIconFill from '../../../assets/icons/Like-Fill.svg';
 import DislikeIconFill from '../../../assets/icons/Dislike-Fill.svg';
@@ -42,8 +42,8 @@ import {
 // onPress -> function: the function to call when the post is tapped on
 
 const Post = (props) => {
-    const { likePost, dislikePost } = useContext(PostContext);
     const { state: { user } } = useContext(UserContext);
+    const { likeContent, dislikeContent } = useContext(ContentContext);
     
     const {
         clickable,
@@ -64,11 +64,11 @@ const Post = (props) => {
     };
 
     const onLike = async () => {
-        setPost(await likePost(post.id));
+        setPost(await likeContent('posts', post.id));
     };
 
     const onDislike = async () => {
-        setPost(await dislikePost(post.id));
+        setPost(await dislikeContent('posts', post.id));
     };
 
     return (

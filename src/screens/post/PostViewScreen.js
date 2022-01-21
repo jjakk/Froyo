@@ -13,12 +13,10 @@ import CommentList from '../../components/content/CommentList';
 // Constants
 import { colors } from '../../constants/constants';
 // Context
-import { Context as PostContext } from '../../context/PostContext';
-import { Context as CommentContext } from '../../context/CommentContext';
+import { Context as ContentContext } from '../../context/ContentContext';
 
 const PostViewScreen = ({ navigation }) => {
-    const { getPost } = useContext(PostContext);
-    const { getComments } = useContext(CommentContext);
+    const { getContent, getComments } = useContext(ContentContext);
     // Content
     const [post, setPost] = useState(navigation.getParam('post'));
     const [comments, setComments] = useState([]);
@@ -30,7 +28,7 @@ const PostViewScreen = ({ navigation }) => {
     useEffect(() => {
         (async function(){
             setLoadingComments(true);
-            setComments(await getComments(post.id));
+            setComments(await getComments('posts', post.id));
             setLoadingComments(false);
         })();
     }, [post]);
@@ -39,7 +37,7 @@ const PostViewScreen = ({ navigation }) => {
     const refreshPost = async (err) => {
         if (err) setError(err);
         else{
-            setPost(await getPost(post.id));
+            setPost(await getContent('posts', post.id));
         }
     };
 

@@ -12,8 +12,7 @@ import { setNavigator } from './src/navigation/navigationRef';
 import appNavigator from './src/navigation/appNavigator';
 // Context
 import { Provider as UserProvider } from './src/context/UserContext';
-import { Provider as PostProvider } from './src/context/PostContext';
-import { Provider as CommentProvider } from './src/context/CommentContext';
+import { Provider as ContentProvider } from './src/context/ContentContext';
 
 
 const App = createAppContainer(appNavigator);
@@ -32,11 +31,9 @@ export default () => {
         <SafeAreaProvider initialMetrics={initialWindowMetrics}>
           <MenuProvider>
             <UserProvider>
-              <PostProvider>
-                <CommentProvider>
+              <ContentProvider>
                   <App ref={(navigator) => { setNavigator(navigator) }} />
-                </CommentProvider>
-              </PostProvider>
+              </ContentProvider>
             </UserProvider>
           </MenuProvider>
         </SafeAreaProvider>

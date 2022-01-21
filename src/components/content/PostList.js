@@ -18,7 +18,7 @@ import EmptyMessage from '../messages/EmptyMessage';
 import Post from './Post';
 // Context
 import { Context as UserContext } from '../../context/UserContext';
-import { Context as PostContext } from '../../context/PostContext';
+import { Context as ContentContext } from '../../context/ContentContext';
 // Constants
 import { colors } from '../../constants/constants';
 
@@ -26,9 +26,9 @@ const PostList = (props, ref) => {
     // Context
     const { state: { user: signedInUser } } = useContext(UserContext);
     const {
-        searchPosts,
+        searchContent,
         getFeed
-    } = useContext(PostContext);
+    } = useContext(ContentContext);
 
     // Props
     const {
@@ -57,13 +57,13 @@ const PostList = (props, ref) => {
         // Retrieve posts
         switch (type) {
             case 'AccountView':
-                setPosts(await searchPosts({ author_id: user.id }));
+                setPosts(await searchContent('posts', { author_id: user.id }));
                 break;
             case 'Feed':
                 setPosts(await getFeed());
                 break;
             case 'Search':
-                setPosts(await searchPosts({ text: searchValue }));
+                setPosts(await searchContent('posts', { text: searchValue }));
                 break;
         }
         setLoading(false);

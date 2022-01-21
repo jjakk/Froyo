@@ -8,6 +8,8 @@ import {
 // Components
 import { Text, Br } from '../../froyo-elements';
 import MoreOptions from './MoreOptions';
+// Constants
+import { colors } from '../../../constants/constants';
 // Helper functions
 import { calculateAge } from '../../../helperFunctions/age';
 
@@ -24,15 +26,27 @@ const ContentHeader = (props) => {
             <TouchableWithoutFeedback onPress={onPress}>
                 <View style={styles.userInfo}>
                     <Image
-                        style={styles.profilePicture}
+                        style={[
+                            styles.profilePicture,
+                            condensed ? condensedStyles.profilePicture : null
+                        ]}
                         source={require('../../../../assets/icons/guest.png')}
                         resizeMode='contain'
                     />
-                    <Text style={styles.headerText}>
-                        <Text style={styles.author}>
+                    <Text>
+                        <Text style={[
+                            styles.author,
+                            condensed ? condensedStyles.author : null
+                        ]}>
                             {`${content.author.first_name} ${content.author.last_name}`}
                         </Text>
-                        <Br/>
+                        {
+                            !condensed ? (
+                                <Br/>
+                            ) : (
+                                <Text> | </Text>
+                            )
+                        }
                         <Text style={styles.age}>{ calculateAge(content.timestamp) || '' }</Text>
                     </Text>
                 </View>
@@ -60,14 +74,13 @@ const styles = StyleSheet.create({
     },
     userInfo: {
         flexDirection: 'row',
-        alignItems: 'center'
-    },
-    headerText: {
-        marginLeft: 15
+        alignItems: 'center',
+        justifyContent: 'center'
     },
     profilePicture: {
         width: 50,
-        height: 50
+        height: 50,
+        marginRight: 15
     },
     author: {
         fontSize: 22
@@ -78,6 +91,17 @@ const styles = StyleSheet.create({
     // More options
     options: {
         opacity: 0.75
+    },
+});
+
+const condensedStyles = StyleSheet.create({
+    profilePicture: {
+        width: 25,
+        height: 25,
+        marginRight: 10
+    },
+    author: {
+        fontSize: 18
     },
 });
 

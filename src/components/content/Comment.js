@@ -5,16 +5,19 @@ import {
     StyleSheet,
     TouchableOpacity
 } from 'react-native';
-// Context
-import { Context as UserContext } from '../../context/UserContext';
-import { Context as CommentContext } from '../../context/CommentContext';
+// Navigation
+import { navigate } from '../../navigation/navigationRef';
 // Components
 import {
     Text,
     TouchableIcon
 } from '../../components/froyo-elements';
+import ContentHeader from './parts/ContentHeader';
 import MoreOptions from './parts/MoreOptions';
 import LikenessBar from './parts/LikenessBar';
+// Context
+import { Context as UserContext } from '../../context/UserContext';
+import { Context as CommentContext } from '../../context/CommentContext';
 // Constants
 import { colors, sizes } from '../../constants/constants';
 // Icons
@@ -36,19 +39,28 @@ const Comment = (props) => {
 
     const [comment, setComment] = useState(passedComment);
 
-    // When like button is pressed
-    const handleLike = async () => {
+    // Event handlers
+    const onHeaderPress = () => {
+        navigate('AccountView', { user: comment.author });
+    };
+
+    const onLike = async () => {
         setComment(await likeComment(comment.id));
     };
 
-    // When dislike button is pressed
-    const handleDislike = async () => {
+    const onDislike = async () => {
         setComment(await dislikeComment(comment.id));
     };
 
     return (
         <TouchableWithoutFeedback>
             <View style={[styles.comment, style]}>
+                <ContentHeader
+                    content={comment}
+                    onPress={onHeaderPress}
+                    onDelete={onDelete}
+                    condensed
+                />
                 <Text style={styles.body}>{comment.text}</Text>
                 <View style={styles.actions}>
                     <MoreOptions
@@ -71,7 +83,7 @@ const Comment = (props) => {
                             {/* Like Button */}
                             <TouchableIcon
                                 size={sizes.ACTION_ICON}
-                                onPress={handleLike}
+                                onPress={onLike}
                                 Icon={
                                     comment.liking
                                     ? LikeIconFill : LikeIconOutline
@@ -84,7 +96,7 @@ const Comment = (props) => {
                             {/* Disike Button */}
                             <TouchableIcon
                                 size={sizes.ACTION_ICON}
-                                onPress={handleDislike}
+                                onPress={onDislike}
                                 style={styles.dislike}
                                 Icon={
                                     comment.disliking
@@ -115,7 +127,9 @@ const styles = StyleSheet.create({
     },
     body: {
         fontSize: 18,
-        margin: 15
+        margin: 15,
+        marginTop: 5,
+        marginBottom: 5
     },
     // Action bar
     actions: {

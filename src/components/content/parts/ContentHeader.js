@@ -13,7 +13,7 @@ import { calculateAge } from '../../../helperFunctions/age';
 
 const ContentHeader = (props) => {
     const {
-        post,
+        content,
         onPress,
         onDelete,
         condensed
@@ -30,18 +30,22 @@ const ContentHeader = (props) => {
                     />
                     <Text style={styles.headerText}>
                         <Text style={styles.author}>
-                            {`${post.author.first_name} ${post.author.last_name}`}
+                            {`${content.author.first_name} ${content.author.last_name}`}
                         </Text>
                         <Br/>
-                        <Text style={styles.age}>{ calculateAge(post.timestamp) || '' }</Text>
+                        <Text style={styles.age}>{ calculateAge(content.timestamp) || '' }</Text>
                     </Text>
                 </View>
             </TouchableWithoutFeedback>
-            <MoreOptions
-                content={post}
-                onDelete={onDelete}
-                style={styles.options}
-            />
+            {
+                !condensed ? (
+                    <MoreOptions
+                        content={content}
+                        onDelete={onDelete}
+                        style={styles.options}
+                    />
+                ) : null
+            }
         </View>
     );
 };
@@ -75,7 +79,6 @@ const styles = StyleSheet.create({
     options: {
         opacity: 0.75
     },
-    // Condensed header
 });
 
 export default ContentHeader;

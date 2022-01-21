@@ -81,7 +81,7 @@ const Post = (props) => {
         >
             <View style={[styles.post, style]}>
                 <ContentHeader
-                    post={post}
+                    content={post}
                     onPress={onHeaderPress}
                     onDelete={onDelete}
                 />

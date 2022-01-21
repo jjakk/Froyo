@@ -42,7 +42,7 @@ import {
 // onPress -> function: the function to call when the post is tapped on
 
 const Post = (props) => {
-    const { likePost, dislikePost, getPost } = useContext(PostContext);
+    const { likePost, dislikePost } = useContext(PostContext);
     const { state: { user } } = useContext(UserContext);
     
     const {

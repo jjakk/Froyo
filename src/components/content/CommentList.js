@@ -19,7 +19,7 @@ const CommentList = (props) => {
                         comments.map(comment => (
                             <Comment
                                 key={comment.id}
-                                data={comment}
+                                comment={comment}
                                 onDelete={onDeleteComment}
                             />
                         ))
@@ -37,8 +37,7 @@ const CommentList = (props) => {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        marginTop: 5
+        flex: 1
     },
     noComments: {
         fontSize: 28,

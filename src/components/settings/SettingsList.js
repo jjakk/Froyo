@@ -8,30 +8,11 @@ import SettingsItem from './SettingsItem';
 // Constants
 import { colors } from '../../constants/constants';
 
-const SettingsList = () => {
-
-    const settingOptions = [
-        /*
-        {
-            title: 'Theme',
-            type: 'dropdown',
-            options: [
-
-            ],
-            onChange: () => {}
-        },
-        {
-            title: 'Delete Account',
-            type: 'button',
-            color: colors.DISLIKE_RED,
-            onPress:() => {console.log('delete account');}
-        }
-        */
-    ];
+const SettingsList = ({ settings }) => {
 
     return (
         <FlatList
-            data={settingOptions}
+            data={settings}
             keyExtractor={(__, index) => index.toString()}
             renderItem={({ item }) => (
                 <SettingsItem item={item} />

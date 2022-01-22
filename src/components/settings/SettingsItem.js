@@ -22,7 +22,10 @@ const SettingsItem = ({ item }) => {
                     <Text style={styles.optionText}>
                         {item.title}
                     </Text>
-                    <Switch />
+                    <Switch
+                        value={item.value}
+                        onValueChange={item.onChange}
+                    />
                 </>
             );
             break;

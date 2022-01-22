@@ -11,10 +11,14 @@ import {
 import ScreenContainer from '../../components/ScreenContainer';
 // Context
 import { Context as UserContext } from '../../context/UserContext';
+import { Context as SettingsContext } from '../../context/SettingsContext';
 
 const ResolveAuthScreen = () => {
     const { checkSignedIn } = useContext(UserContext);
+    const { getSettings, state: { darkModeEnabled } } = useContext(SettingsContext);
     useEffect(() => {
+        getSettings();
+        console.log(darkModeEnabled);
         checkSignedIn();
     }, []);
 

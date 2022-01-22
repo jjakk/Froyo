@@ -3,8 +3,8 @@ import { Alert } from 'react-native';
 
 const confirmAlert = (message, callback) => {
     Alert.alert(
-        message,
-        null,
+        message.title,
+        message.subtitle,
         [
             {
                 text: "No",

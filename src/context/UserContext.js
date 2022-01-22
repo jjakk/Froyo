@@ -114,6 +114,14 @@ const signOut = (dispatch) => async () => {
     navigate('Welcome');
 };
 
+// Delete a user from the database and sign out
+const deleteUser = (dispatch) => async () => {
+    await froyoApi.delete('/users');
+    await AsyncStorage.removeItem('token');
+    dispatch({ type: 'sign_out' });
+    navigate('Welcome');
+};
+
 // Get a user's information given their ID
 const getUser = () => async (id) => {
     const { data: user } = await froyoApi.get(`/users/${id}`);
@@ -150,8 +158,13 @@ const checkSignedIn = (dispatch) => async () => {
     try{
         const { data: userId } = await froyoApi.get('/');
         const { data: user } = await froyoApi.get(`/users/${userId}`);
-        dispatch({ type: 'set_user_info', payload: user });
-        navigate('mainFlow');
+        if (typeof(user) === 'object') {
+            dispatch({ type: 'set_user_info', payload: user });
+            navigate('mainFlow');
+        }
+        else {
+            throw new Error('');
+        }
     }
     catch(err){
         if(err+'' === 'Error: Network Error'){
@@ -182,6 +195,7 @@ export const { Provider, Context } = createDataContext(
         signUp,
         checkSignedIn,
         signOut,
+        deleteUser,
         getUser,
         updateUser,
         follow,

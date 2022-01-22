@@ -18,7 +18,6 @@ const ResolveAuthScreen = () => {
     const { getSettings, state: { darkModeEnabled } } = useContext(SettingsContext);
     useEffect(() => {
         getSettings();
-        console.log(darkModeEnabled);
         checkSignedIn();
     }, []);
 

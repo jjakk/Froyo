@@ -46,10 +46,14 @@ const MoreOptions = (props) => {
     
     // Show delete confirmation, and delete if confirmed
     const onDeletePrompt = async () => {
-        confirmAlert(`Are you sure you want to delete this ${contentType.toLowerCase()}?`, async () => {
-            await deleteContent(contentType, content.id);
-            onDelete();
-        });
+        confirmAlert(
+            {
+                title: `Are you sure you want to delete this ${contentType.toLowerCase()}?`
+            }, async () => {
+                await deleteContent(contentType, content.id);
+                onDelete();
+            }
+        );
     };
 
     // More options menu items

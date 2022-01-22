@@ -15,14 +15,14 @@ import confirmAlert from '../helperFunctions/confirmAlert'
 const SettingsScreen = ({ navigation }) => {
     const { deleteUser } = useContext(UserContext);
     const { setDarkModeEnable, state: { darkModeEnabled } } = useContext(SettingsContext);
-
+    
     const settings = [
         {
             title: 'Dark Mode',
             type: 'toggle',
             value: darkModeEnabled,
-            onChange: (newValue) => {
-                setDarkModeEnable(newValue)
+            onToggle: () => {
+                setDarkModeEnable(!darkModeEnabled);
             }
         },
         {

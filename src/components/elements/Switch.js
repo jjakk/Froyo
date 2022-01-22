@@ -4,26 +4,20 @@ import { colors } from '../../constants/constants';
 
 const Switch = (props) => {
     const {
-        value,
-        onValueChange,
+        value: isOn,
+        onToggle,
         style,
     } = props;
-    const [isOn, setIsOn] = useState(value);
-
-    const onPress = () => {
-        onValueChange(!isOn);
-        setIsOn(!isOn);
-    };
 
     return (
-        <TouchableWithoutFeedback onPress={onPress}>
+        <TouchableWithoutFeedback onPress={onToggle}>
             <View style={[styles.switch, {
-                backgroundColor: isOn ?  colors.LIGHT_GREY : colors.GREEN
+                backgroundColor: isOn ? colors.GREEN : colors.LIGHT_GREY
             }, style]}>
                 <Animated.View style={[styles.circle, {
-                    backgroundColor: isOn ? colors.GREEN : colors.LIGHT_GREY,
+                    backgroundColor: isOn ? colors.LIGHT_GREY : colors.GREEN,
                     transform: [{
-                        translateX: isOn ? 0 : 28,
+                        translateX: isOn ? 28 : 0,
                     }]
                 }]} />
             </View>

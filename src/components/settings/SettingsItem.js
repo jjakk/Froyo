@@ -23,8 +23,7 @@ const SettingsItem = ({ item }) => {
                         {item.title}
                     </Text>
                     <Switch
-                        value={item.value}
-                        onValueChange={item.onChange}
+                        {...item}
                     />
                 </>
             );
@@ -42,7 +41,8 @@ const SettingsItem = ({ item }) => {
             RenderItem = () => (
                 <TouchableOpacity style={styles.button} onPress={item.onPress}>
                     <Text style={[styles.optionText, styles.buttonText, {
-                        color: item.color
+                        color: item.color,
+                        fontSize: 22
                     }]}>
                         {item.title}
                     </Text>

@@ -13,14 +13,15 @@ const settingsReducer = (state, action) => {
 
 // Set dark mode to on (true) or off (false)
 const setDarkModeEnable = (dispatch) => async (darkModeEnabled) => {
-    console.log(darkModeEnabled, darkModeEnabled.toString());
     await AsyncStorage.setItem('darkModeEnabled', darkModeEnabled.toString());
     dispatch({ type: 'set_dark_mode', payload: darkModeEnabled });
 };
 
 // Attach all settings options to context state
 const getSettings = (dispatch) => async () => {
-    let darkModeEnabled = await AsyncStorage.getItem('darkModeEnabled') || false;
+    let darkModeEnabled = await AsyncStorage.getItem('darkModeEnabled');
+    // Str -> Bool
+    darkModeEnabled = darkModeEnabled.toLowerCase() === 'true' ? true : false;
     dispatch({ type: 'set_dark_mode', payload: darkModeEnabled });
 };
 

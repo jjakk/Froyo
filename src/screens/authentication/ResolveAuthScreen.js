@@ -1,7 +1,4 @@
-import React, {
-    useEffect,
-    useContext
-} from 'react';
+import React, { useEffect } from 'react';
 // Components
 import {
     Image,
@@ -10,12 +7,12 @@ import {
 } from 'react-native';
 import ScreenContainer from '../../components/ScreenContainer';
 // Context
-import { Context as UserContext } from '../../context/UserContext';
-import { Context as SettingsContext } from '../../context/SettingsContext';
+import { useUser} from '../../context/UserContext';
+import { useSettings } from '../../context/SettingsContext';
 
 const ResolveAuthScreen = () => {
-    const { checkSignedIn } = useContext(UserContext);
-    const { getSettings, state: { darkModeEnabled } } = useContext(SettingsContext);
+    const { checkSignedIn } = useUser();
+    const { getSettings, state: { darkModeEnabled } } = useSettings();
     useEffect(() => {
         getSettings();
         checkSignedIn();

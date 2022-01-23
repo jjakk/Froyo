@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 // Components
 import {
     View,
@@ -14,7 +14,7 @@ import Header from '../../../components/Header';
 import ScreenContainer from '../../../components/ScreenContainer';
 import ErrorMessage from '../../../components/messages//ErrorMessage';
 // Context
-import { Context as UserContext } from '../../../context/UserContext';
+import { useUser } from '../../../context/UserContext';
 
 const SignUpTwoScreen = ({ navigation }) => {
     // Form params from previous screen
@@ -30,7 +30,7 @@ const SignUpTwoScreen = ({ navigation }) => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
     // Context values & functions
-    const { signUp} = useContext(UserContext);
+    const { signUp} = useUser();
 
     const handleSubmit = () => {
         setLoading(true);

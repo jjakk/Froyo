@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 // Components
 import {
     View,
@@ -15,12 +15,12 @@ import ErrorMessage from '../../components/messages/ErrorMessage';
 // Constants
 import { colors } from '../../constants/constants';
 // Context
-import { Context as ContentContext } from '../../context/ContentContext';
+import { useContent } from '../../context/ContentContext';
 // Icons
 import SendIcon from '../../../assets/icons/Send.svg';
 
 const PostCreateScreen = ({ navigation }) => {
-    const { createContent } = useContext(ContentContext);
+    const { createContent } = useContent();
     // Form feilds
     const [postText, setPostText] = useState('');
     // Status state

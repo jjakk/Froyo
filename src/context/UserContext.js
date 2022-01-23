@@ -1,3 +1,4 @@
+import { useContext } from 'react';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import createDataContext from './createDataContext';
 import froyoApi from '../api/froyo';
@@ -202,4 +203,6 @@ export const { Provider, Context } = createDataContext(
         following
     }, { user: {} }
 );
+
+export const useUser = () => useContext(Context);
 

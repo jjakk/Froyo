@@ -1,3 +1,4 @@
+import { useContext } from 'react';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import createDataContext from './createDataContext';
 
@@ -34,3 +35,5 @@ export const { Provider, Context } = createDataContext(
         darkModeEnabled: false
     }
 );
+
+export const useSettings = () => useContext(Context);

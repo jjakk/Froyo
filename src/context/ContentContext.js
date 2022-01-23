@@ -1,3 +1,4 @@
+import { useContext } from 'react';
 import createDataContext from './createDataContext';
 import froyoApi from '../api/froyo';
 
@@ -75,3 +76,6 @@ export const { Provider, Context } = createDataContext(
         dislikeContent
     }, {}
 );
+
+export const useContent = () => useContext(Context);
+

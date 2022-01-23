@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 // Components
 import {
     StyleSheet,
@@ -13,10 +13,10 @@ import CommentList from '../../components/content/CommentList';
 // Constants
 import { colors } from '../../constants/constants';
 // Context
-import { Context as ContentContext } from '../../context/ContentContext';
+import { useContent } from '../../context/ContentContext';
 
 const PostViewScreen = ({ navigation }) => {
-    const { getContent, getComments } = useContext(ContentContext);
+    const { getContent, getComments } = useContent();
     // Content
     const [post, setPost] = useState(navigation.getParam('post'));
     const [comments, setComments] = useState([]);

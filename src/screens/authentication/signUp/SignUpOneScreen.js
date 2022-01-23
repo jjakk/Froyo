@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 // Components
 import {
     View,
@@ -15,10 +15,10 @@ import {
 import ScreenContainer from '../../../components/ScreenContainer';
 import ErrorMessage from '../../../components/messages/ErrorMessage';
 // Context
-import { Context as UserContext } from '../../../context/UserContext';
+import { useUser } from '../../../context/UserContext';
 
 const SignUpScreenOne = ({ navigation }) => {
-    const { continueSignUp } = useContext(UserContext);
+    const { continueSignUp } = useUser();
     // Form feilds
     const [email, setEmail] = useState('');
     const [username, setUsername] = useState('');

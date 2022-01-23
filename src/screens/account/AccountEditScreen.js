@@ -1,7 +1,4 @@
-import React, {
-    useContext,
-    useState
-} from 'react';
+import React, { useState } from 'react';
 // Components
 import {
     StyleSheet,
@@ -14,13 +11,12 @@ import {
 } from '../../components/froyo-elements';
 import ScreenContainer from '../../components/ScreenContainer';
 import Header from '../../components/Header';
-import ErrorMessage from '../../components/messages/ErrorMessage';
 import UploadIcon from '../../../assets/icons/Upload.svg';
 // Context
-import { Context as UserContext } from '../../context/UserContext';
+import { useUser } from '../../context/UserContext';
 
 const AccountEditScreen = ({ navigation }) => {
-    const { updateUser, state: { user } } = useContext(UserContext);
+    const { updateUser, state: { user } } = useUser();
     // Form feilds
     const [firstName, setFirstName] = useState(user.first_name);
     const [lastName, setLastName] = useState(user.last_name);

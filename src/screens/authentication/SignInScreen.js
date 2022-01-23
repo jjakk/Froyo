@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 // Components
 import {
     View,
@@ -14,10 +14,10 @@ import {
 import ErrorMessage from '../../components/messages/ErrorMessage';
 import ScreenContainer from '../../components/ScreenContainer';
 // Context
-import { Context as UserContext } from '../../context/UserContext';
+import { useUser } from '../../context/UserContext';
 
 const SignInScreen = ({ navigation }) => {
-    const { signIn } = useContext(UserContext);
+    const { signIn } = useUser();
     // Sign in feilds
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');

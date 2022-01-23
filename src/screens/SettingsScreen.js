@@ -1,20 +1,20 @@
-import React, { useContext } from 'react';
+import React from 'react';
 // Components
 import { StyleSheet } from 'react-native';
 import SettingsOptions from '../components/settings/SettingsList';;
 import ScreenContainer from '../components/ScreenContainer';
 import Header from '../components/Header';
 // Context
-import { Context as SettingsContext } from '../context/SettingsContext';
-import { Context as UserContext } from '../context/UserContext';
+import { useUser } from '../context/UserContext';
+import { useSettings } from '../context/SettingsContext';
 // Constants
 import { colors } from '../constants/constants';
 // Helper functions
 import confirmAlert from '../helperFunctions/confirmAlert'
 
 const SettingsScreen = ({ navigation }) => {
-    const { deleteUser } = useContext(UserContext);
-    const { setDarkModeEnable, state: { darkModeEnabled } } = useContext(SettingsContext);
+    const { deleteUser } = useUser();
+    const { setDarkModeEnable, state: { darkModeEnabled } } = useSettings();
     
     const settings = [
         {

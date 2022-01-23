@@ -1,8 +1,4 @@
-import React, {
-    useContext,
-    useEffect,
-    useState,
-} from 'react';
+import React, { useState } from 'react';
 import {
     StyleSheet,
 } from 'react-native';
@@ -12,14 +8,14 @@ import Header from '../../components/Header';
 import PostList from '../../components/content/PostList';
 import UserProfile from '../../components/UserProfile';
 // Context
-import { Context as UserContext } from '../../context/UserContext';
+import { useUser } from '../../context/UserContext';
 // Constants
 import { colors } from '../../constants/constants';
 // Icons
 import GearIcon from '../../../assets/icons/Gear.svg';
 
 const AccountViewScreen = ({ navigation }) => {
-    const { getUser, state: { user: signedInUser } } = useContext(UserContext);
+    const { getUser, state: { user: signedInUser } } = useUser();
     const [user, setUser] = useState(navigation.getParam('user') || signedInUser);
 
     const onSettings = () => {

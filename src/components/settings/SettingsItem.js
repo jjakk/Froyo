@@ -78,7 +78,7 @@ const SettingsItem = ({ item }) => {
 const styles = StyleSheet.create({
     option: {
         padding: 10,
-        marginBottom: 2,
+        marginTop: 5,
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center'

@@ -27,14 +27,6 @@ const SettingsScreen = ({ navigation }) => {
             }
         },
         {
-            title: 'Dummy',
-            type: 'toggle',
-            value: dummy,
-            onToggle: () => {
-                setDummy(!dummy);
-            }
-        },
-        {
             title: 'Delete Account',
             type: 'button',
             color: colors.DISLIKE_RED,
@@ -57,6 +49,7 @@ const SettingsScreen = ({ navigation }) => {
         >
             <Header
                 navigation={navigation}
+                style={styles.header}
                 title='Settings'
             />
             <SettingsOptions settings={settings} />
@@ -65,7 +58,9 @@ const SettingsScreen = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
-
+    header: {
+        borderBottomWidth: 0,
+    }
 });
 
 export default SettingsScreen;

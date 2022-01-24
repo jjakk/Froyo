@@ -12,10 +12,10 @@ const generalColors = {
     GREEN_DARK: '#4AA786',
     GREEN: '#41CA99',
     GREEN_LIGHT: '#0DCBB',
-    GREEN_LIGHTER: '#C0EDDD',
+    GREEN_LIGHTER: '#BEEADA',
     // Reds
     ERROR_RED: '#FB1C1C',
-    DISLIKE_RED: '#CA5A41',
+    DISLIKE_RED: '#C1EFDF',
 };
 
 const themeColors = {

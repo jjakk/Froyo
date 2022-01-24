@@ -15,11 +15,14 @@ import ErrorMessage from '../../components/messages/ErrorMessage';
 // Constants
 import { colors } from '../../constants/constants';
 // Context
+import { useSettings } from '../../context/SettingsContext';
 import { useContent } from '../../context/ContentContext';
 // Icons
 import SendIcon from '../../../assets/icons/Send.svg';
 
 const PostCreateScreen = ({ navigation }) => {
+    const { state: { darkModeEnabled } } = useSettings();
+    const theme = darkModeEnabled ? 'dark' : 'light';
     const { createContent } = useContent();
     // Form feilds
     const [postText, setPostText] = useState('');
@@ -57,7 +60,14 @@ const PostCreateScreen = ({ navigation }) => {
             <NavigationEvents onDidFocus={clearError}/>
             <View style={styles.body}>
                 <Input
-                    style={styles.bodyText}
+                    style={[
+                        styles.textbox,
+                        themeStyles[theme].textbox
+                    ]}
+                    textStyle={
+                        themeStyles[theme].text
+                    }
+                    placeholderTextColor={darkModeEnabled ? colors.LIGHT_GREY : colors.GREY}
                     multiline={true}
                     placeholder='Type here...'
                     value={postText}
@@ -65,11 +75,11 @@ const PostCreateScreen = ({ navigation }) => {
                 />
                 <TouchableIcon
                     Icon={SendIcon}
-                    color={colors.GREEN}
+                    color={darkModeEnabled ? colors.GREEN_LIGHT : colors.GREEN}
                     onPress={handleSubmit}
                     size={30}
                     loading={loading}
-                    style={styles.sendButton}
+                    style={styles.submit}
                 />
             </View>
             <ErrorMessage message={error} />
@@ -79,21 +89,38 @@ const PostCreateScreen = ({ navigation }) => {
 
 const styles = StyleSheet.create({
     container: {
-        padding: 15
+        padding: 10
     },
     body: {
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
     },
-    sendButton: {
-        marginLeft: 20,
-    },
-    bodyText: {
+    textbox: {
         fontSize: 22,
         flex: 1,
+    },
+    submit: {
+        marginLeft: 20,
     }
 });
+
+const themeStyles = {
+    light: StyleSheet.create({
+        textbox: {
+            color: colors.LIGHT_DARK
+        }
+    }),
+    dark: StyleSheet.create({
+        textbox: {
+            borderColor: colors.dark.FIRST,
+            backgroundColor: colors.dark.SECOND
+        },
+        text: {
+            color: colors.WHITE
+        }
+    })
+};
 
 export default PostCreateScreen;
 

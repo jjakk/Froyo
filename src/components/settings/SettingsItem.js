@@ -77,14 +77,14 @@ const SettingsItem = ({ item }) => {
 
 const styles = StyleSheet.create({
     option: {
-        padding: 10,
+        padding: 15,
         marginTop: 5,
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center'
     },
     optionText: {
-        fontSize: 20
+        fontSize: 22
     },
     // Option types
     button: {

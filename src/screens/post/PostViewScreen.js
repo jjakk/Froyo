@@ -18,7 +18,6 @@ import { useSettings } from '../../context/SettingsContext';
 
 const PostViewScreen = ({ navigation }) => {
     const { state: { darkModeEnabled } } = useSettings();
-    const theme = darkModeEnabled ? 'dark' : 'light';
     const { getContent, getComments } = useContent();
     // Content
     const [post, setPost] = useState(navigation.getParam('post'));
@@ -55,7 +54,6 @@ const PostViewScreen = ({ navigation }) => {
         <ScreenContainer style={styles.container}>
                 <Header
                     navigation={navigation}
-                    style={themeStyles[theme].header}
                 />
                 <ScrollView
                     contentContainerStyle={styles.contentView}
@@ -95,18 +93,5 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
     }
 });
-
-const themeStyles = {
-    light: StyleSheet.create({
-        header: {
-            borderBottomWidth: 5
-        }
-    }),
-    dark: StyleSheet.create({
-        header: {
-            borderBottomWidth: 0
-        }
-    })
-};
 
 export default PostViewScreen;

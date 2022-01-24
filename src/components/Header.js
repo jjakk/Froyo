@@ -100,8 +100,8 @@ const themeStyles = {
     }),
     dark: StyleSheet.create({
         header: {
-            borderBottomColor: colors.dark.SECOND,
-            backgroundColor: colors.dark.THIRD,
+            borderBottomColor: colors.dark.FIRST,
+            backgroundColor: colors.dark.SECOND,
         },
         title: {
             color: colors.GREY,

@@ -255,7 +255,7 @@ const themeStyles = {
     }),
     dark: StyleSheet.create({
         container: {
-            backgroundColor: colors.dark.THIRD,
+            backgroundColor: colors.dark.SECOND,
         },
         text: {
             color: colors.GREY

@@ -1,15 +1,29 @@
-import React, { useRef, useEffect } from "react";
-import { Animated, StyleSheet, Easing } from "react-native";
+import React, {
+    useRef,
+    useEffect
+} from "react";
+import {
+    Animated,
+    StyleSheet,
+    Easing
+} from "react-native";
+// Context
+import { useSettings } from '../../context/SettingsContext';
 // Icons
 import LoadingIcon from '../../../assets/animation-icons/loading.svg';
 // Constants
 import { colors } from '../../constants/constants';
 
 const LoadingAnimation = (props) => {
+    const { state: { darkModeEnabled } } = useSettings();
     const spinAnimation = useRef(new Animated.Value(0)).current;
     const {
-        size,
-        color,
+        size=50,
+        color=(
+            darkModeEnabled ? 
+                colors.GREEN_DARKER
+                : colors.GREEN_LIGHTER
+        ),
         style
     } = props;
 
@@ -53,11 +67,6 @@ const LoadingAnimation = (props) => {
         />
     </Animated.View>
   );
-};
-
-LoadingAnimation.defaultProps = {
-    size: 50,
-    color: colors.GREEN_LIGHTER
 };
 
 export default LoadingAnimation;

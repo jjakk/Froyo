@@ -25,21 +25,24 @@ export default () => {
     'Nunito-Bold': require('./assets/fonts/Nunito/Nunito-Bold.ttf'),
     'Nunito-Light': require('./assets/fonts/Nunito/Nunito-Light.ttf'),
   });
+  let theme = 'dark';
 
   return (
     loaded ? (
         <SafeAreaProvider
           initialMetrics={initialWindowMetrics}
-          //style={{backgroundColor: 'black'}}
+          style={{
+            backgroundColor: theme === 'light' ? 'white' : 'black'
+          }}
         >
           <MenuProvider>
             <UserProvider>
               <ContentProvider>
                 <SettingsProvider>
-                  <App
-                    //theme={'dark'}
-                    ref={(navigator) => { setNavigator(navigator) }}
-                  />
+                    <App
+                      theme={theme}
+                      ref={(navigator) => { setNavigator(navigator) }}
+                    />
                 </SettingsProvider>
               </ContentProvider>
             </UserProvider>

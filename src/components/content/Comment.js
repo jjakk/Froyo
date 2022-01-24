@@ -68,7 +68,12 @@ const Comment = (props) => {
                     onDelete={onDelete}
                     condensed
                 />
-                <Text style={styles.body}>{comment.text}</Text>
+                <Text style={[
+                    styles.body,
+                    themeStyles[theme].text
+                ]}>
+                    {comment.text}
+                </Text>
                 <View style={styles.actions}>
                     <MoreOptions
                         content={comment}
@@ -191,7 +196,7 @@ const themeStyles = {
             backgroundColor: colors.dark.SECOND,
         },
         text: {
-            color: colors.WHITE
+            color: colors.GREY
         }
     })
 };

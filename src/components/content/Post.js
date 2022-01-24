@@ -205,7 +205,7 @@ const themeStyles = {
             backgroundColor: colors.dark.SECOND,
         },
         text: {
-            color: colors.WHITE
+            color: colors.GREY
         }
     })
 };

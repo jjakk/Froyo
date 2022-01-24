@@ -14,8 +14,11 @@ import CommentList from '../../components/content/CommentList';
 import { colors } from '../../constants/constants';
 // Context
 import { useContent } from '../../context/ContentContext';
+import { useSettings } from '../../context/SettingsContext';
 
 const PostViewScreen = ({ navigation }) => {
+    const { state: { darkModeEnabled } } = useSettings();
+    const theme = darkModeEnabled ? 'dark' : 'light';
     const { getContent, getComments } = useContent();
     // Content
     const [post, setPost] = useState(navigation.getParam('post'));
@@ -50,13 +53,17 @@ const PostViewScreen = ({ navigation }) => {
 
     return (
         <ScreenContainer style={styles.container}>
-                <Header navigation={navigation} />
+                <Header
+                    navigation={navigation}
+                    style={themeStyles[theme].header}
+                />
                 <ScrollView
                     contentContainerStyle={styles.contentView}
                     refreshControl={
                         <RefreshControl
                             refreshing={refreshing}
                             onRefresh={onRefresh}
+                            tintColor={darkModeEnabled ? colors.GREY : colors.DARK_GREY}
                         />
                     }
                 >
@@ -80,8 +87,6 @@ const PostViewScreen = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
-    container: {
-    },
     post: {
         marginTop: 5
     },
@@ -90,5 +95,18 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
     }
 });
+
+const themeStyles = {
+    light: StyleSheet.create({
+        header: {
+            borderBottomWidth: 5
+        }
+    }),
+    dark: StyleSheet.create({
+        header: {
+            borderBottomWidth: 0
+        }
+    })
+};
 
 export default PostViewScreen;

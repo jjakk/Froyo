@@ -47,7 +47,7 @@ const Header = (props) => {
                     Icon={LeftIcon || BackIcon}
                     onPress={onBack}
                     size={size}
-                    color={darkModeEnabled ? colors.WHITE : colors.BLACK}
+                    color={darkModeEnabled ? colors.GREY : colors.BLACK}
                     {...LeftIconProps}
                 />
             }
@@ -68,7 +68,7 @@ const Header = (props) => {
                     <TouchableIcon
                         Icon={RightIcon}
                         size={size}
-                        color={darkModeEnabled ? colors.WHITE : colors.BLACK}
+                        color={darkModeEnabled ? colors.GREY : colors.BLACK}
                         {...RightIconProps}
                     />
                 ) : BlankIcon
@@ -104,7 +104,7 @@ const themeStyles = {
             backgroundColor: colors.dark.THIRD,
         },
         title: {
-            color: colors.WHITE,
+            color: colors.GREY,
         }
     })
 };

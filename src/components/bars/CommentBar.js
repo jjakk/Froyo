@@ -56,7 +56,7 @@ const CommentBar = (props) => {
                 onChangeText={setCommentText}
             />
             <TouchableOpacity onPress={onSubmit}>
-                <SendIcon style={styles.send} width={35} height={35} color={darkModeEnabled ? colors.GREEN_LIGHTER : colors.GREEN}/>
+                <SendIcon style={styles.send} width={35} height={35} color={darkModeEnabled ? colors.DARK_GREY : colors.GREEN}/>
             </TouchableOpacity>
         </View>
     );
@@ -96,7 +96,7 @@ const themeStyles = {
     }),
     dark: StyleSheet.create({
         bar: {
-            borderTopColor: colors.dark.FIRST,
+            borderTopWidth: 0,
             backgroundColor: colors.dark.SECOND
         },
         input: {

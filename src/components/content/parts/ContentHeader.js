@@ -124,12 +124,12 @@ const condensedStyles = StyleSheet.create({
 const themeStyles = {
     light: StyleSheet.create({
         text: {
-            color: colors.DARK_GREY
+            color: colors.LIGHT_BLACK
         },
     }),
     dark: StyleSheet.create({
         text: {
-            color: colors.WHITE
+            color: colors.GREY
         }
     })
 };

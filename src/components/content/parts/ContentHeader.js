@@ -8,10 +8,16 @@ import {
 // Components
 import { Text, Br } from '../../froyo-elements';
 import MoreOptions from './MoreOptions';
+// Context
+import { useSettings } from '../../../context/SettingsContext';
+// Constants
+import { colors } from '../../../constants/constants';
 // Helper functions
 import { calculateAge } from '../../../helperFunctions/age';
 
 const ContentHeader = (props) => {
+    const { state: { darkModeEnabled } } = useSettings();
+    const theme = darkModeEnabled ? 'dark' : 'light';
     const {
         content,
         onPress,
@@ -28,12 +34,17 @@ const ContentHeader = (props) => {
                             styles.profilePicture,
                             condensed ? condensedStyles.profilePicture : null
                         ]}
-                        source={require('../../../../assets/icons/guest.png')}
+                        source={darkModeEnabled ? (
+                            require('../../../../assets/icons/guest-light.png')
+                        ) : (
+                            require('../../../../assets/icons/guest.png')
+                        )}
                         resizeMode='contain'
                     />
                     <Text>
                         <Text style={[
                             styles.author,
+                            themeStyles[theme].text,
                             condensed ? condensedStyles.author : null
                         ]}>
                             {`${content.author.first_name} ${content.author.last_name}`}
@@ -45,7 +56,14 @@ const ContentHeader = (props) => {
                                 <Text> | </Text>
                             )
                         }
-                        <Text style={styles.age}>{ calculateAge(content.timestamp) || '' }</Text>
+                        <Text
+                            style={[
+                                styles.age,
+                                themeStyles[theme].text
+                            ]}
+                        >
+                            { calculateAge(content.timestamp) || '' }
+                        </Text>
                     </Text>
                 </View>
             </TouchableWithoutFeedback>
@@ -102,6 +120,19 @@ const condensedStyles = StyleSheet.create({
         fontSize: 18
     },
 });
+
+const themeStyles = {
+    light: StyleSheet.create({
+        text: {
+            color: colors.DARK_GREY
+        },
+    }),
+    dark: StyleSheet.create({
+        text: {
+            color: colors.WHITE
+        }
+    })
+};
 
 export default ContentHeader;
 

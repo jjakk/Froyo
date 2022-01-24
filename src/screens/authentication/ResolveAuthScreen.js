@@ -6,9 +6,13 @@ import {
     View
 } from 'react-native';
 import ScreenContainer from '../../components/ScreenContainer';
+// Icons
+import Logo from '../../../assets/icons/Froyo.svg';
 // Context
 import { useUser} from '../../context/UserContext';
 import { useSettings } from '../../context/SettingsContext';
+// Constants
+import { colors } from '../../constants/constants';
 
 const ResolveAuthScreen = () => {
     const { checkSignedIn } = useUser();
@@ -20,9 +24,11 @@ const ResolveAuthScreen = () => {
 
     return (
         <ScreenContainer style={styles.container}>
-            <View style={styles.animation}>
-                <Image style={styles.logo} source={require('../../../assets/logo/Logo-White.png')} />
-            </View>
+            <Logo
+                color={colors.WHITE}
+                width={78}
+                height={90}
+            />
         </ScreenContainer>
     );
 };
@@ -31,16 +37,8 @@ const styles = StyleSheet.create({
     container: {
         alignItems: 'center',
         justifyContent: 'center',
-        flexDirection: 'row',
-        backgroundColor: '#41CA99'
-    },
-    animation: {
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    logo: {
-        width: 78,
-        height: 90,
+        flexDirection: 'column',
+        backgroundColor: colors.GREEN,
     },
     bar: {
         marginTop: 25

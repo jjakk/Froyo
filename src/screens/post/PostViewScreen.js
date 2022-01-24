@@ -81,13 +81,11 @@ const PostViewScreen = ({ navigation }) => {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: colors.WHITE,
     },
     post: {
         marginTop: 5
     },
     contentView: {
-        backgroundColor: colors.LIGHT_GREY,
         flex: 1,
         justifyContent: 'flex-start',
     }

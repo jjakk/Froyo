@@ -6,12 +6,16 @@ import {
 import Header from '../components/Header';
 import ScreenContainer from '../components/ScreenContainer';
 import PostList from '../components/content/PostList';
+// Context
+import { useSettings } from '../context/SettingsContext';
 // Icons
 import GuestIcon from '../../assets/icons/Profile-Picture.svg'
+import GuestIconLight from '../../assets/icons/Profile-Picture-Light.svg'
 // Constants
 import { colors } from '../constants/constants';
 
 const FeedScreen = ({ navigation }) => {
+    const { state: { darkModeEnabled } } = useSettings();
     const postListRef = useRef();
     
     // Event handlers
@@ -30,7 +34,7 @@ const FeedScreen = ({ navigation }) => {
         >
             <Header
                 navigation={navigation}
-                LeftIcon={GuestIcon}
+                LeftIcon={darkModeEnabled ? GuestIconLight : GuestIcon}
                 LeftIconProps={{
                     onPress: onAccountView
                 }}

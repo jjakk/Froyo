@@ -6,13 +6,21 @@ import {
     KeyboardAvoidingView,
     Keyboard,
     Platform,
-    View
+    View,
+    StatusBar
 } from 'react-native';
 import { NavigationEvents } from 'react-navigation';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ErrorMessage from './messages/ErrorMessage';
+// Context
+import { useSettings } from '../context/SettingsContext';
+// Constants
+import { colors } from '../constants/constants';
 
 const ScreenContainer = (props) => {
+    const { state: { darkModeEnabled } } = useSettings();
+    const theme = darkModeEnabled ? 'dark' : 'light';
+
     // Props
     const {
         children,
@@ -29,21 +37,41 @@ const ScreenContainer = (props) => {
     };
 
     return (
-        <View style={[styles.container, style]}>
+        <View style={[
+            styles.container,
+            themeStyles[theme].container,
+            style
+        ]}>
             <SafeAreaView
                 {...restOfProps}
-                style={[styles.container, style]}
+                style={[
+                    styles.container,
+                    themeStyles[theme].container,
+                    style
+                ]}
             >
                 <TouchableWithoutFeedback
-                    style={styles.container}
+                    style={[
+                        styles.container,
+                        themeStyles[theme].container,
+                        style
+                    ]}
                     onPress={Keyboard.dismiss}
                 >
                     <KeyboardAvoidingView
                         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
                         keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : 50}
-                        style={styles.container}
+                        style={[
+                            styles.container,
+                            themeStyles[theme].container,
+                            style
+                        ]}
                     >
                         <NavigationEvents onDidFocus={onDidFocus} />
+                        <StatusBar
+                            backgroundColor={darkModeEnabled ? colors.WHITE : colors.BLACK}
+                            barStyle={darkModeEnabled ? 'light-content' : 'dark-content'}
+                        />
                         {children}
                         <ErrorMessage
                             type='box'
@@ -60,7 +88,7 @@ const ScreenContainer = (props) => {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
+        flex: 1
     },
     error: {
         position: 'absolute',
@@ -68,5 +96,18 @@ const styles = StyleSheet.create({
         margin: 25
     }
 });
+
+const themeStyles = {
+    light: StyleSheet.create({
+        container: {
+            backgroundColor: colors.WHITE
+        }
+    }),
+    dark: StyleSheet.create({
+        container: {
+            backgroundColor: colors.dark.THIRD
+        }
+    })
+};
 
 export default ScreenContainer;

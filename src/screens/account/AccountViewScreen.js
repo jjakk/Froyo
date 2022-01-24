@@ -9,6 +9,7 @@ import PostList from '../../components/content/PostList';
 import UserProfile from '../../components/UserProfile';
 // Context
 import { useUser } from '../../context/UserContext';
+import { useSettings } from '../../context/SettingsContext';
 // Constants
 import { colors } from '../../constants/constants';
 // Icons
@@ -29,7 +30,6 @@ const AccountViewScreen = ({ navigation }) => {
 
     return(
         <ScreenContainer
-            style={styles.container}
             edges={['top']}
             onDidFocus={onRefresh}
         >
@@ -49,7 +49,6 @@ const AccountViewScreen = ({ navigation }) => {
                 HeaderComponent={(
                     <UserProfile
                         user={user}
-                        style={styles.userProfile}
                         onUserUpdate={onRefresh}
                     />
                 )}
@@ -63,15 +62,7 @@ AccountViewScreen.navigationOptions = {
 };
 
 const styles = StyleSheet.create({
-    container: {
-        backgroundColor: colors.WHITE
-    },
-    postList: {
-        backgroundColor: colors.LIGHT_GREY
-    },
-    userProfile: {
-        backgroundColor: colors.WHITE,
-    }
+    
 });
 
 export default AccountViewScreen;

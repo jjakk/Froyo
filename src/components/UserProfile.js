@@ -4,7 +4,8 @@ import React, {
     useEffect
 } from 'react';
 // Context
-import { Context as UserContext } from '../context/UserContext';
+import { useSettings } from '../context/SettingsContext';
+import { useUser } from '../context/UserContext';
 // Navigation
 import { navigate } from '../navigation/navigationRef';
 // Components
@@ -23,18 +24,21 @@ import { colors } from '../constants/constants';
 
 const UserProfile = (props) => {
     // Context
+    const { state: { darkModeEnabled } } = useSettings();
     const {
         signOut,
         follow,
         following,
         state: { user: signedInUser }
-    } = useContext(UserContext);
+    } = useUser();
     // Props
     const {
         style,
         user=signedInUser,
         onUserUpdate
     } = props;
+
+    const theme = darkModeEnabled ? 'dark' : 'light';
 
     // State
     // Whether the current user's following the user being viewed
@@ -61,30 +65,55 @@ const UserProfile = (props) => {
 
     return (
         <TouchableWithoutFeedback>
-            <View style={[styles.container, style]}>
+            <View style={[
+                styles.container,
+                themeStyles[theme].container,
+                style
+            ]}>
                 <View>
                     <View style={styles.header}>
-                        <Image style={styles.profilePicture} source={require('../../assets/icons/guest.png')} />
+                        <Image
+                            style={styles.profilePicture}
+                            source={
+                                darkModeEnabled ? (
+                                    require('../../assets/icons/guest-light.png')
+                                ) : (
+                                    require('../../assets/icons/guest.png')
+                                )
+                            }
+                        />
                         <View style={styles.headerText}>
                             <Text
-                                style={styles.name}
+                                style={[
+                                    styles.name,
+                                    themeStyles[theme].text
+                                ]}
                                 numberOfLines={1}
                                 adjustsFontSizeToFit={true}
                             >
                                 {user.first_name} {user.last_name}
                             </Text>
                             <Text
-                                style={styles.username}
+                                style={[
+                                    styles.username,
+                                    themeStyles[theme].text
+                                ]}
                                 numberOfLines={1}
                                 adjustsFontSizeToFit={true}
                             >
                                 {`@${user.username}`}
                             </Text>
                             <View style={styles.numbers}>
-                                <Text style={styles.followers}>
+                                <Text style={[
+                                    styles.followers,
+                                    themeStyles[theme].text
+                                ]}>
                                     {`${user.follower_count} Followers`}
                                 </Text>
-                                <Text style={styles.following}>
+                                <Text style={[
+                                    styles.following,
+                                    themeStyles[theme].text
+                                ]}>
                                     {`${user.followee_count} Following`}
                                 </Text>
                             </View>
@@ -155,7 +184,7 @@ const UserProfile = (props) => {
 const styles = StyleSheet.create({
     container: {
         flexDirection: 'column',
-        padding: 20
+        padding: 20,
     },
     // Profile
     header: {
@@ -214,5 +243,24 @@ const styles = StyleSheet.create({
         fontSize: 20
     },
 });
+
+const themeStyles = {
+    light: StyleSheet.create({
+        container: {
+            backgroundColor: colors.WHITE
+        },
+        text: {
+            color: colors.LIGHT_BLACK
+        }
+    }),
+    dark: StyleSheet.create({
+        container: {
+            backgroundColor: colors.dark.THIRD,
+        },
+        text: {
+            color: colors.WHITE
+        }
+    })
+};
 
 export default UserProfile;

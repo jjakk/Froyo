@@ -17,18 +17,21 @@ import { LoadingAnimation } from '../froyo-elements';
 import EmptyMessage from '../messages/EmptyMessage';
 import Post from './Post';
 // Context
-import { Context as UserContext } from '../../context/UserContext';
-import { Context as ContentContext } from '../../context/ContentContext';
+import { useSettings } from '../../context/SettingsContext';
+import { useUser } from '../../context/UserContext';
+import { useContent } from '../../context/ContentContext';
 // Constants
 import { colors } from '../../constants/constants';
 
 const PostList = (props, ref) => {
     // Context
-    const { state: { user: signedInUser } } = useContext(UserContext);
+    const { state: { darkModeEnabled } } = useSettings();
+    const theme = darkModeEnabled ? 'dark' : 'light';
+    const { state: { user: signedInUser } } = useUser();
     const {
         searchContent,
         getFeed
-    } = useContext(ContentContext);
+    } = useContent();
 
     // Props
     const {
@@ -83,7 +86,11 @@ const PostList = (props, ref) => {
     }, []);
 
     return (
-        <View style={[styles.container, style]}>
+        <View style={[
+            styles.container,
+            themeStyles[theme].container,
+            style
+        ]}>
             <FlatList
                 data={posts}
                 keyExtractor={(item) => item.id}
@@ -135,13 +142,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         flexDirection: 'row',
         width: '100%',
-        flex: 1
-    },
-    posts: {
-        paddingTop: 5,
         flex: 1,
-        backgroundColor: colors.LIGHT_GREY,
-        width: '100%'
+        backgroundColor: colors.LIGHT_GREY
     },
     emptyMessage: {
         marginTop: 50
@@ -151,5 +153,18 @@ const styles = StyleSheet.create({
         marginTop: 50
     }
 });
+
+const themeStyles = {
+    light: StyleSheet.create({
+        container: {
+            backgroundColor: colors.LIGHT_GREY,
+        }
+    }),
+    dark: StyleSheet.create({
+        container: {
+            backgroundColor: colors.dark.THIRD,
+        }
+    })
+};
 
 export default forwardRef(PostList);

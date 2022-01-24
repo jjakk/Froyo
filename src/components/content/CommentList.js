@@ -1,6 +1,7 @@
 // This componet takes in a list of comments and renders them
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
+import { colors } from '../../constants/constants';
 import { Text } from '../froyo-elements';
 import Comment from './Comment';
 
@@ -37,7 +38,8 @@ const CommentList = (props) => {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1
+        flex: 1,
+        backgroundColor: colors.LIGHT_GREY
     },
     noComments: {
         fontSize: 28,

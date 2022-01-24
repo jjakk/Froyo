@@ -1,7 +1,4 @@
-import React, {
-    useState,
-    useContext
-} from 'react';
+import React, { useState } from 'react';
 import {
     View,
     StyleSheet,
@@ -17,8 +14,9 @@ import {
 import ContentHeader from './parts/ContentHeader';
 import LikenessBar from './parts/LikenessBar';
 // Contexts
-import { Context as UserContext } from '../../context/UserContext';
-import { Context as ContentContext } from '../../context/ContentContext';
+import { useSettings } from '../../context/SettingsContext';
+import { useUser } from '../../context/UserContext';
+import { useContent } from '../../context/ContentContext';
 // Icons
 import LikeIconFill from '../../../assets/icons/Like-Fill.svg';
 import DislikeIconFill from '../../../assets/icons/Dislike-Fill.svg';
@@ -42,8 +40,10 @@ import {
 // onPress -> function: the function to call when the post is tapped on
 
 const Post = (props) => {
-    const { state: { user } } = useContext(UserContext);
-    const { likeContent, dislikeContent } = useContext(ContentContext);
+    const { state: { darkModeEnabled } } = useSettings();
+    const theme = darkModeEnabled ? 'dark' : 'light';
+    const { state: { user } } = useUser();
+    const { likeContent, dislikeContent } = useContent();
     
     const {
         clickable,
@@ -79,14 +79,21 @@ const Post = (props) => {
                     : null
             }
         >
-            <View style={[styles.post, style]}>
+            <View style={[
+                styles.post,
+                themeStyles[theme].post,
+                style
+            ]}>
                 <ContentHeader
                     content={post}
                     onPress={onHeaderPress}
                     onDelete={onDelete}
                 />
                 <View style={styles.body}>
-                    <Text style={styles.text}>{post.text}</Text>
+                    <Text style={[
+                        styles.text,
+                        themeStyles[theme].text
+                    ]}>{post.text}</Text>
                 </View>
                 <View style={styles.actions}>
                     {/* Like & dislike buttons */}
@@ -148,7 +155,6 @@ const Post = (props) => {
 
 const styles = StyleSheet.create({
     post: {
-        backgroundColor: 'white',
         marginTop: 5,
     },
     // Post body
@@ -184,5 +190,24 @@ const styles = StyleSheet.create({
         marginBottom: 15
     }
 });
+
+const themeStyles = {
+    light: StyleSheet.create({
+        post: {
+            backgroundColor: colors.WHITE,
+        },
+        text: {
+            color: colors.DARK_GREY
+        }
+    }),
+    dark: StyleSheet.create({
+        post: {
+            backgroundColor: colors.dark.SECOND,
+        },
+        text: {
+            color: colors.WHITE
+        }
+    })
+};
 
 export default Post;

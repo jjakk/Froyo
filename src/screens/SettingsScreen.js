@@ -44,7 +44,6 @@ const SettingsScreen = ({ navigation }) => {
 
     return (
         <ScreenContainer
-            style={styles.container}
             edges={['top']}
         >
             <Header
@@ -57,9 +56,7 @@ const SettingsScreen = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
-    container: {
-        backgroundColor: colors.WHITE
-    }
+
 });
 
 export default SettingsScreen;

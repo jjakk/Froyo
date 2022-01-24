@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import {
     View,
     TouchableWithoutFeedback,
@@ -16,8 +16,9 @@ import ContentHeader from './parts/ContentHeader';
 import MoreOptions from './parts/MoreOptions';
 import LikenessBar from './parts/LikenessBar';
 // Context
-import { Context as UserContext } from '../../context/UserContext';
-import { Context as ContentContext } from '../../context/ContentContext';
+import { useSettings } from '../../context/SettingsContext';
+import { useUser} from '../../context/UserContext';
+import { useContent } from '../../context/ContentContext';
 // Constants
 import { colors, sizes } from '../../constants/constants';
 // Icons
@@ -28,8 +29,10 @@ import LikeIconOutline from '../../../assets/icons/Like-Outline.svg';
 import DislikeIconOutline from '../../../assets/icons/Dislike-Outline.svg';
 
 const Comment = (props) => {
-    const { state: { user } } = useContext(UserContext); 
-    const { likeContent, dislikeContent } = useContext(ContentContext);
+    const { state: { darkModeEnabled } } = useSettings();
+    const theme = darkModeEnabled ? 'dark' : 'light';
+    const { state: { user } } = useUser(); 
+    const { likeContent, dislikeContent } = useContent();
     
     const {
         style,
@@ -54,7 +57,11 @@ const Comment = (props) => {
 
     return (
         <TouchableWithoutFeedback>
-            <View style={[styles.comment, style]}>
+            <View style={[
+                styles.comment,
+                themeStyles[theme].comment,
+                style
+            ]}>
                 <ContentHeader
                     content={comment}
                     onPress={onHeaderPress}
@@ -122,7 +129,6 @@ const Comment = (props) => {
 
 const styles = StyleSheet.create({
     comment: {
-        backgroundColor: 'white',
         marginTop: 5,
     },
     body: {
@@ -170,5 +176,24 @@ const styles = StyleSheet.create({
         marginTop: 5
     }
 });
+
+const themeStyles = {
+    light: StyleSheet.create({
+        comment: {
+            backgroundColor: colors.WHITE,
+        },
+        text: {
+            color: colors.DARK_GREY
+        }
+    }),
+    dark: StyleSheet.create({
+        comment: {
+            backgroundColor: colors.dark.SECOND,
+        },
+        text: {
+            color: colors.WHITE
+        }
+    })
+};
 
 export default Comment

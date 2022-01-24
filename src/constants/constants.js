@@ -15,7 +15,7 @@ const generalColors = {
     GREEN_LIGHTER: '#BEEADA',
     // Reds
     ERROR_RED: '#FB1C1C',
-    DISLIKE_RED: '#C1EFDF',
+    DISLIKE_RED: '#CA5A41',
 };
 
 const themeColors = {

@@ -25,13 +25,15 @@ const CommentBar = (props) => {
     } = props;
 
     const onSubmit = async () => {
-        const content = {
-            text: commentText,
-            parent_id
-        };
-        await createContent('comment', content);
-        setCommentText('');
-        onCreateComment();
+        if(commentText.length > 0) {
+            const content = {
+                text: commentText,
+                parent_id
+            };
+            await createContent('comment', content);
+            setCommentText('');
+            onCreateComment();
+        }
     };
 
     return (
@@ -54,7 +56,7 @@ const CommentBar = (props) => {
                 onChangeText={setCommentText}
             />
             <TouchableOpacity onPress={onSubmit}>
-                <SendIcon style={styles.send} width={35} height={35} color={colors.GREEN}/>
+                <SendIcon style={styles.send} width={35} height={35} color={darkModeEnabled ? colors.GREEN_LIGHTER : colors.GREEN}/>
             </TouchableOpacity>
         </View>
     );

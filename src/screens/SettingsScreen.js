@@ -15,7 +15,8 @@ import confirmAlert from '../helperFunctions/confirmAlert'
 const SettingsScreen = ({ navigation }) => {
     const { deleteUser } = useUser();
     const { setDarkModeEnable, state: { darkModeEnabled } } = useSettings();
-    
+    const [dummy, setDummy] = React.useState('');
+
     const settings = [
         {
             title: 'Dark Mode',
@@ -23,6 +24,14 @@ const SettingsScreen = ({ navigation }) => {
             value: darkModeEnabled,
             onToggle: () => {
                 setDarkModeEnable(!darkModeEnabled);
+            }
+        },
+        {
+            title: 'Dummy',
+            type: 'toggle',
+            value: dummy,
+            onToggle: () => {
+                setDummy(!dummy);
             }
         },
         {

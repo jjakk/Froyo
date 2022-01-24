@@ -15,8 +15,6 @@ import { Provider as UserProvider } from './src/context/UserContext';
 import { Provider as ContentProvider } from './src/context/ContentContext';
 import { Provider as SettingsProvider } from './src/context/SettingsContext';
 
-
-
 const App = createAppContainer(appNavigator);
 
 export default () => {
@@ -30,12 +28,18 @@ export default () => {
 
   return (
     loaded ? (
-        <SafeAreaProvider initialMetrics={initialWindowMetrics}>
+        <SafeAreaProvider
+          initialMetrics={initialWindowMetrics}
+          //style={{backgroundColor: 'black'}}
+        >
           <MenuProvider>
             <UserProvider>
               <ContentProvider>
                 <SettingsProvider>
-                  <App ref={(navigator) => { setNavigator(navigator) }} />
+                  <App
+                    //theme={'dark'}
+                    ref={(navigator) => { setNavigator(navigator) }}
+                  />
                 </SettingsProvider>
               </ContentProvider>
             </UserProvider>

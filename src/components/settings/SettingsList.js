@@ -5,10 +5,14 @@ import {
     FlatList
 } from 'react-native';
 import SettingsItem from './SettingsItem';
+// Context
+import { useSettings } from '../../context/SettingsContext';
 // Constants
 import { colors } from '../../constants/constants';
 
 const SettingsList = ({ settings }) => {
+    const { state: { darkModeEnabled } } = useSettings();
+    const theme = darkModeEnabled ? 'dark' : 'light';
 
     return (
         <FlatList
@@ -17,7 +21,10 @@ const SettingsList = ({ settings }) => {
             renderItem={({ item }) => (
                 <SettingsItem item={item} />
             )}
-            style={styles.options}
+            style={[
+                styles.options,
+                themeStyles[theme].options
+            ]}
         />
     );
 };
@@ -25,8 +32,20 @@ const SettingsList = ({ settings }) => {
 const styles = StyleSheet.create({
     options: {
         flex: 1,
-        backgroundColor: colors.LIGHT_GREY
     },
 });
+
+const themeStyles = {
+    light: StyleSheet.create({
+        options: {
+            backgroundColor: colors.LIGHT_GREY
+        }
+    }),
+    dark: StyleSheet.create({
+        options: {
+            backgroundColor: colors.SECOND
+        }
+    })
+};
 
 export default SettingsList;

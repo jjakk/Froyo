@@ -99,6 +99,7 @@ const PostList = (props, ref) => {
                 refreshControl={
                     refreshable ? (
                         <RefreshControl
+                            tintColor={darkModeEnabled ? colors.WHITE : colors.LIGHT_BLACK}
                             refreshing={refreshing}
                             onRefresh={onRefresh}
                         />

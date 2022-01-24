@@ -53,9 +53,7 @@ const FeedScreen = ({ navigation }) => {
 
 const styles = StyleSheet.create({
     header: {
-        padding: 10,
-        borderBottomColor: colors.GREY,
-        borderBottomWidth: 1,
+        padding: 10
     }
 });
 

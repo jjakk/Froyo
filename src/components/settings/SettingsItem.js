@@ -9,17 +9,24 @@ import {
     Text,
     Switch
 } from '../froyo-elements';
+// Context
+import { useSettings } from '../../context/SettingsContext';
 // Constants
 import { colors } from '../../constants/constants';
 
 const SettingsItem = ({ item }) => {
+    const { state: { darkModeEnabled } } = useSettings();
+    const theme = darkModeEnabled ? 'dark' : 'light';
     let RenderItem = () => (<></>);
 
     switch (item.type) {
         case 'toggle':
             RenderItem = () => (
                 <>
-                    <Text style={styles.optionText}>
+                    <Text style={[
+                        styles.optionText,
+                        themeStyles[theme].optionText
+                    ]}>
                         {item.title}
                     </Text>
                     <Switch
@@ -31,7 +38,10 @@ const SettingsItem = ({ item }) => {
         case 'dropdown':
             RenderItem = () => (
                 <>
-                    <Text style={styles.optionText}>
+                    <Text style={[
+                        styles.optionText,
+                        themeStyles[theme].optionText
+                    ]}>
                         {item.title}
                     </Text>
                 </>
@@ -40,10 +50,14 @@ const SettingsItem = ({ item }) => {
         case 'button':
             RenderItem = () => (
                 <TouchableOpacity style={styles.button} onPress={item.onPress}>
-                    <Text style={[styles.optionText, styles.buttonText, {
-                        color: item.color,
-                        fontSize: 22
-                    }]}>
+                    <Text style={[
+                        styles.optionText,
+                        themeStyles[theme].optionText,
+                        styles.buttonText, {
+                            color: item.color,
+                            fontSize: 22
+                        }
+                    ]}>
                         {item.title}
                     </Text>
                 </TouchableOpacity>
@@ -52,7 +66,10 @@ const SettingsItem = ({ item }) => {
     }
 
     return (
-        <View style={styles.option}>
+        <View style={[
+            styles.option,
+            themeStyles[theme].option
+        ]}>
             <RenderItem />
         </View>
     );
@@ -60,7 +77,6 @@ const SettingsItem = ({ item }) => {
 
 const styles = StyleSheet.create({
     option: {
-        backgroundColor: colors.WHITE,
         padding: 10,
         marginBottom: 2,
         flexDirection: 'row',
@@ -81,5 +97,24 @@ const styles = StyleSheet.create({
         fontFamily: 'Nunito-SemiBold',
     }
 });
+
+const themeStyles = {
+    light: StyleSheet.create({
+        option: {
+            backgroundColor: colors.WHITE,
+        },
+        optionText: {
+            color: colors.BLACK
+        }
+    }),
+    dark: StyleSheet.create({
+        option: {
+            backgroundColor: colors.dark.SECOND,
+        },
+        optionText: {
+            color: colors.WHITE
+        }
+    })
+};
 
 export default SettingsItem;

@@ -42,6 +42,10 @@ const ScreenContainer = (props) => {
             themeStyles[theme].container,
             style
         ]}>
+            <StatusBar
+                backgroundColor={darkModeEnabled ? colors.dark.THIRD : colors.WHITE}
+                barStyle={darkModeEnabled ? 'light-content' : 'dark-content'}
+            />
             <SafeAreaView
                 {...restOfProps}
                 style={[
@@ -68,10 +72,6 @@ const ScreenContainer = (props) => {
                         ]}
                     >
                         <NavigationEvents onDidFocus={onDidFocus} />
-                        <StatusBar
-                            backgroundColor={darkModeEnabled ? colors.WHITE : colors.BLACK}
-                            barStyle={darkModeEnabled ? 'light-content' : 'dark-content'}
-                        />
                         {children}
                         <ErrorMessage
                             type='box'

@@ -1,11 +1,16 @@
-// This componet takes in a list of comments and renders them
 import React from 'react';
+// Components
 import { StyleSheet, View } from 'react-native';
-import { colors } from '../../constants/constants';
 import { Text } from '../froyo-elements';
 import Comment from './Comment';
+// Context
+import { useSettings } from '../../context/SettingsContext';
+// Constants
+import { colors } from '../../constants/constants';
 
 const CommentList = (props) => {
+    const { state: { darkModeEnabled } } = useSettings();
+    const theme = darkModeEnabled ? 'dark' : 'light';
     const {
         comments,
         loading,
@@ -13,7 +18,10 @@ const CommentList = (props) => {
     } = props;
 
     return (
-        <View style={styles.container}>
+        <View style={[
+            styles.container,
+            themeStyles[theme].container
+        ]}>
             {
                 !loading ? (
                     comments.length > 0 ? (
@@ -38,8 +46,7 @@ const CommentList = (props) => {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        backgroundColor: colors.LIGHT_GREY
+        flex: 1
     },
     noComments: {
         fontSize: 28,
@@ -48,5 +55,18 @@ const styles = StyleSheet.create({
         marginTop: 50
     },
 });
+
+const themeStyles = {
+    light: StyleSheet.create({
+        container: {
+            backgroundColor: colors.LIGHT_GREY
+        }
+    }),
+    dark: StyleSheet.create({
+        container: {
+            backgroundColor: colors.dark.THIRD
+        }
+    })
+};
 
 export default CommentList;

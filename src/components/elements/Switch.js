@@ -1,8 +1,18 @@
-import React, { useState, useRef } from 'react';
-import { StyleSheet, View, Animated, Easing, TouchableWithoutFeedback } from 'react-native';
+import React from 'react';
+// Components
+import {
+    StyleSheet,
+    View,
+    Animated,
+    TouchableWithoutFeedback
+} from 'react-native';
+// Context
+import { useSettings } from '../../context/SettingsContext';
+// Constants
 import { colors } from '../../constants/constants';
 
 const Switch = (props) => {
+    const { state: { darkModeEnabled } } = useSettings();
     const {
         value: isOn,
         onToggle,
@@ -12,10 +22,18 @@ const Switch = (props) => {
     return (
         <TouchableWithoutFeedback onPress={onToggle}>
             <View style={[styles.switch, {
-                backgroundColor: isOn ? colors.GREEN : colors.LIGHT_GREY
+                backgroundColor: darkModeEnabled ? (
+                    isOn ? colors.LIGHT_GREY : colors.dark.FIRST
+                ) : (
+                    isOn ? colors.GREEN : colors.LIGHT_GREY
+                )
             }, style]}>
                 <Animated.View style={[styles.circle, {
-                    backgroundColor: isOn ? colors.LIGHT_GREY : colors.GREEN,
+                    backgroundColor: darkModeEnabled ? (
+                        isOn ? colors.dark.FIRST : colors.LIGHT_GREY
+                    ) : (
+                        isOn ? colors.LIGHT_GREY : colors.GREEN
+                    ),
                     transform: [{
                         translateX: isOn ? 28 : 0,
                     }]

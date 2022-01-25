@@ -26,6 +26,8 @@ const ScreenContainer = (props) => {
         children,
         style,
         onDidFocus,
+        statusBarBackgroundColor=darkModeEnabled ? colors.dark.SECOND : colors.WHITE,
+        statusBarStyle=darkModeEnabled ? 'light-content' : 'dark-content',
         ...restOfProps
     } = props;
 
@@ -43,8 +45,8 @@ const ScreenContainer = (props) => {
             style
         ]}>
             <StatusBar
-                backgroundColor={darkModeEnabled ? colors.dark.SECOND : colors.WHITE}
-                barStyle={darkModeEnabled ? 'light-content' : 'dark-content'}
+                backgroundColor={statusBarBackgroundColor}
+                barStyle={statusBarStyle}
             />
             <SafeAreaView
                 {...restOfProps}

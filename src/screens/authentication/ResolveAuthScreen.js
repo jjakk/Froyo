@@ -23,7 +23,11 @@ const ResolveAuthScreen = () => {
     }, []);
 
     return (
-        <ScreenContainer style={styles.container}>
+        <ScreenContainer
+            style={styles.container}
+            statusBarBackgroundColor={colors.GREEN}
+            statusBarStyle={'dark-content'}
+        >
             <Logo
                 color={colors.WHITE}
                 width={78}

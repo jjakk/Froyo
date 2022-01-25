@@ -17,7 +17,8 @@ import { useContent } from '../../context/ContentContext';
 import { useSettings } from '../../context/SettingsContext';
 
 const PostViewScreen = ({ navigation }) => {
-    const { state: { darkModeEnabled } } = useSettings();
+    const { state: { theme } } = useSettings();
+    const darkModeEnabled = theme === 'dark';
     const { getContent, getComments } = useContent();
     // Content
     const [post, setPost] = useState(navigation.getParam('post'));

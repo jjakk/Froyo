@@ -113,7 +113,7 @@ const signOut = (dispatch) => async () => {
     // Remove the user's authentication token from storage
     await AsyncStorage.removeItem('token');
     // Remove the user's theme preference from storage
-    await AsyncStorage.removeItem('darkModeEnabled');
+    await AsyncStorage.removeItem('theme');
     dispatch({ type: 'sign_out' });
     navigate('ResolveAuth');
 };

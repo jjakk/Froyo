@@ -25,8 +25,8 @@ import { colors } from '../../constants/constants';
 
 const PostList = (props, ref) => {
     // Context
-    const { state: { darkModeEnabled } } = useSettings();
-    const theme = darkModeEnabled ? 'dark' : 'light';
+    const { state: { theme } } = useSettings();
+    const darkModeEnabled = theme === 'dark' ;
     const { state: { user: signedInUser } } = useUser();
     const {
         searchContent,

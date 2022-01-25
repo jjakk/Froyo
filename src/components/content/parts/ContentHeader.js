@@ -14,7 +14,8 @@ import { useSettings } from '../../../context/SettingsContext';
 import { calculateAge } from '../../../helperFunctions/age';
 
 const ContentHeader = (props) => {
-    const { state: { darkModeEnabled } } = useSettings();
+    const { state: { theme } } = useSettings();
+    const darkModeEnabled = theme === 'dark';
     const {
         content,
         onPress,

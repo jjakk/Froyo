@@ -24,7 +24,8 @@ import { colors } from '../constants/constants';
 
 const UserProfile = (props) => {
     // Context
-    const { state: { darkModeEnabled } } = useSettings();
+    const { state: { theme } } = useSettings();
+    const darkModeEnabled = theme === 'dark';
     const {
         signOut,
         follow,
@@ -37,8 +38,6 @@ const UserProfile = (props) => {
         user=signedInUser,
         onUserUpdate
     } = props;
-
-    const theme = darkModeEnabled ? 'dark' : 'light';
 
     // State
     // Whether the current user's following the user being viewed

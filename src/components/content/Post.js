@@ -40,8 +40,8 @@ import {
 // onPress -> function: the function to call when the post is tapped on
 
 const Post = (props) => {
-    const { state: { darkModeEnabled } } = useSettings();
-    const theme = darkModeEnabled ? 'dark' : 'light';
+    const { state: { theme } } = useSettings();
+    const darkModeEnabled = theme === 'dark' ;
     const { state: { user } } = useUser();
     const { likeContent, dislikeContent } = useContent();
     

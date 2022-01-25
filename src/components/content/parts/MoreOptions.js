@@ -1,23 +1,19 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import {
     View,
-    StyleSheet
+    StyleSheet,
+    Platform
 } from 'react-native';
-import {
-    Menu,
-    MenuOptions,
-    MenuOption,
-    MenuTrigger,
-} from 'react-native-popup-menu';
+import OptionsMenu from "react-native-option-menu";
 // Navigation
-import { navigate, pop } from '../../../navigation/navigationRef';
+import { navigate } from '../../../navigation/navigationRef';
 // Components
 import { Text } from '../../froyo-elements';
 // Helper functions
 import confirmAlert from '../../../helperFunctions/confirmAlert';
 // Contexts
-import { Context as UserContext } from '../../../context/UserContext';
-import { Context as ContentContext } from '../../../context/ContentContext';
+import { useUser } from '../../../context/UserContext';
+import { useContent } from '../../../context/ContentContext';
 // Icons
 import MoreOptionsIcon from '../../../../assets/icons/MoreSettings.svg';
 import TrashIcon from '../../../../assets/icons/Trash.svg';
@@ -30,14 +26,13 @@ import {
 } from '../../../constants/constants';
 
 const MoreOptions = (props) => {
-    const { state: { user } } = useContext(UserContext);
-    const { deleteContent } = useContext(ContentContext);
+    const { state: { user } } = useUser();
+    const { deleteContent } = useContent();
     const {
         content,
-        onDelete,
-        style
+        onDelete
     } = props;
-    const contentType = !content.parent_id ? 'post' : 'comment';
+    const contentType = !content.parent_id ? 'Post' : 'Comment';
 
     // Default functions for edit button
     const onEdit = () => {
@@ -57,81 +52,50 @@ const MoreOptions = (props) => {
     };
 
     // More options menu items
-    const moreOptions = [
+    const options = [
         // Only show these options if it's your own content
         ...(content.author.id === user.id ? [
-            {
-                label: 'Delete',
-                onSelect: onDeletePrompt,
-                style: styles.deleteButton,
-                Icon: TrashIcon,
-                color: '#FB1C1C'
-            },
             {
                 label: 'Edit',
                 onSelect: onEdit,
                 Icon: PenIcon,
                 color: 'black'
+            },
+            {
+                label: 'Delete',
+                onSelect: onDeletePrompt,
+                Icon: TrashIcon,
+                color: '#FB1C1C'
             }
-        ]: [])
+        ]: []),
         // The rest of the options go below
+        {
+            label: 'Cancel',
+            colors: colors.LIGHT_BLACK
+        }
     ];
 
+    const optionLabels = options.map(option => option.label);
+    const optionHandlers = options.map(option => option.onSelect);
+
+    const MoreIcon = (
+        <MoreOptionsIcon
+            width={sizes.ACTION_ICON_SMALLER}
+            height={sizes.ACTION_ICON_SMALLER}
+            color={colors.LIGHT_BLACK}
+        />
+    );
+
     return (
-        <Menu style={style}>
-            <MenuTrigger>
-                <MoreOptionsIcon
-                    name='options-vertical'
-                    height={sizes.ACTION_ICON_SMALLER}
-                    width={sizes.ACTION_ICON_SMALLER}
-                    color={colors.DARK_GREY}
-                />
-            </MenuTrigger>
-            <MenuOptions style={styles.moreOptions}>
-                {
-                    moreOptions.map(option => (
-                        <MenuOption key={option.label} onSelect={option.onSelect}>
-                            <View style={styles.optionView}>
-                                {
-                                    option.Icon ? (
-                                        <option.Icon
-                                            width={sizes.OPTIONS_ICON}
-                                            height={sizes.OPTIONS_ICON}
-                                            color={option.color || 'black'}
-                                        />
-                                    ) : null
-                                }
-                                <Text style={
-                                    [
-                                        {
-                                            color: option.color || 'black'
-                                        },
-                                        option.style,
-                                        styles.optionText
-                                    ]
-                                }>{option.label}</Text>
-                            </View>
-                        </MenuOption>
-                    ))
-                }
-            </MenuOptions>
-        </Menu>
+        options.length > 1 ? (
+            <OptionsMenu
+                customButton={MoreIcon}
+                destructiveIndex={optionLabels.indexOf('Delete')}
+                options={optionLabels}
+                actions={optionHandlers}
+            />
+        ) : MoreIcon
     );
 };
-
-const styles = StyleSheet.create({
-    // More options menu
-    moreOptions: {
-        margin: 10
-    },
-    optionView: {
-        flexDirection: 'row',
-        alignItems: 'center'
-    },
-    optionText: {
-        fontSize: 20,
-        marginLeft: 10
-    }
-});
 
 export default MoreOptions;

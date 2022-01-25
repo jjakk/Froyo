@@ -12,7 +12,8 @@ import { useSettings } from '../../context/SettingsContext';
 import { colors } from '../../constants/constants';
 
 const Switch = (props) => {
-    const { state: { darkModeEnabled } } = useSettings();
+    const { state: { theme } } = useSettings();
+    const darkModeEnabled = theme === 'dark' ;
     const {
         value: isOn,
         onToggle,

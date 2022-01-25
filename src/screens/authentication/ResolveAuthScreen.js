@@ -16,7 +16,7 @@ import { colors } from '../../constants/constants';
 
 const ResolveAuthScreen = () => {
     const { checkSignedIn } = useUser();
-    const { getSettings, state: { darkModeEnabled } } = useSettings();
+    const { getSettings } = useSettings();
     useEffect(() => {
         getSettings();
         checkSignedIn();

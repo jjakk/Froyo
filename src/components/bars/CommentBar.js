@@ -14,8 +14,8 @@ import { colors } from '../../constants/constants';
 // ParentId -> string: ID of the content that's being commented one
 // onCreateComment -> function: callback function to be called when the comment is created
 const CommentBar = (props) => {
-    const { state: { darkModeEnabled } } = useSettings();
-    const theme = darkModeEnabled ? 'dark' : 'light';
+    const { state: { theme } } = useSettings();
+    const darkModeEnabled = theme === 'dark' ;
     const { createContent } = useContent();
     const [commentText, setCommentText] = useState('');
     const {

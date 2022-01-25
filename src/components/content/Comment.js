@@ -29,8 +29,8 @@ import LikeIconOutline from '../../../assets/icons/Like-Outline.svg';
 import DislikeIconOutline from '../../../assets/icons/Dislike-Outline.svg';
 
 const Comment = (props) => {
-    const { state: { darkModeEnabled } } = useSettings();
-    const theme = darkModeEnabled ? 'dark' : 'light';
+    const { state: { theme } } = useSettings();
+    const darkModeEnabled = theme === 'dark' ;
     const { state: { user } } = useUser(); 
     const { likeContent, dislikeContent } = useContent();
     

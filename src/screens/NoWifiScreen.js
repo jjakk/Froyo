@@ -11,7 +11,7 @@ import NoWifiIcon from '../../assets/icons/NoWifi.svg';
 import { colors } from '../constants/constants';
 
 const NoWifiScreen = ({ navigation }) => {
-    const { state: { darkModeEnabled } } = useSettings();
+    const { state: { theme } } = useSettings();
 
     const onReconnect = () => {
         navigation.navigate('ResolveAuth');

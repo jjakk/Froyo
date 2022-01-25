@@ -5,7 +5,6 @@ import {
   SafeAreaProvider,
   initialWindowMetrics
 } from 'react-native-safe-area-context';
-import { MenuProvider } from 'react-native-popup-menu';
 import { useFonts } from 'expo-font';
 // Navigation
 import { setNavigator } from './src/navigation/navigationRef';
@@ -35,18 +34,16 @@ export default () => {
             //backgroundColor: theme === 'light' ? 'white' : 'black'
           }}
         >
-          <MenuProvider>
-            <UserProvider>
-              <ContentProvider>
-                <SettingsProvider>
-                    <App
-                      //theme={theme}
-                      ref={(navigator) => { setNavigator(navigator) }}
-                    />
-                </SettingsProvider>
-              </ContentProvider>
-            </UserProvider>
-          </MenuProvider>
+          <UserProvider>
+            <ContentProvider>
+              <SettingsProvider>
+                  <App
+                    //theme={theme}
+                    ref={(navigator) => { setNavigator(navigator) }}
+                  />
+              </SettingsProvider>
+            </ContentProvider>
+          </UserProvider>
         </SafeAreaProvider>
       ) : null
   );

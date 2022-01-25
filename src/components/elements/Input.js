@@ -11,8 +11,8 @@ import { colors } from '../../constants/constants';
 import { useSettings } from '../../context/SettingsContext';
 
 const Input = (props) => {
-    const { state: { darkModeEnabled } } = useSettings();
-    const theme = darkModeEnabled ? 'dark' : 'light';
+    const { state: { theme } } = useSettings();
+    const darkModeEnabled = theme === 'dark' ;
     const { style, textStyle, icon } = props;
 
     return (
@@ -73,7 +73,7 @@ const themeStyles = {
     }),
     dark: StyleSheet.create({
         container: {
-            borderColor: colors.dark.FIRST
+            borderColor: colors.DARK_GREY
         },
         text: {
             color: colors.LIGHT_GREY

@@ -15,7 +15,8 @@ import LoadingIcon from '../../../assets/animation-icons/loading.svg';
 import { colors } from '../../constants/constants';
 
 const LoadingAnimation = (props) => {
-    const { state: { darkModeEnabled } } = useSettings();
+    const { state: { theme } } = useSettings();
+    const darkModeEnabled = theme === 'dark';
     const spinAnimation = useRef(new Animated.Value(0)).current;
     const {
         size=50,

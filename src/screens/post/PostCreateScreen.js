@@ -21,7 +21,8 @@ import { useContent } from '../../context/ContentContext';
 import SendIcon from '../../../assets/icons/Send.svg';
 
 const PostCreateScreen = ({ navigation }) => {
-    const { state: { darkModeEnabled } } = useSettings();
+    const { state: { theme } } = useSettings();
+    const darkModeEnabled = theme === 'dark';
     const { createContent } = useContent();
     // Form feilds
     const [postText, setPostText] = useState('');

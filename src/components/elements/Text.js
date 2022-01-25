@@ -1,16 +1,18 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
 // Components
-import { Text as DefaultText } from 'react-native-elements';
+import { Text as DefaultText } from 'react-native';
 // Constants
 import { colors } from '../../constants/constants';
 // Context
 import { useSettings } from '../../context/SettingsContext';
 
 const Text = (props) => {
-    const { state: { darkModeEnabled } } = useSettings();
-    const theme = darkModeEnabled ? 'dark' : 'light';
-    const { children } = props;
+    const { state: { theme } } = useSettings();
+    const {
+        children,
+        style
+    } = props;
 
     return (
         <DefaultText
@@ -18,7 +20,7 @@ const Text = (props) => {
             style={[
                 styles.text,
                 themeStyles[theme].text,
-                props.style
+                style
             ]}
         >
             {children}

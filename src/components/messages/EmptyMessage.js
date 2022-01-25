@@ -8,7 +8,8 @@ import { useSettings } from '../../context/SettingsContext';
 import { colors } from '../../constants/constants';
 
 const EmptyMessage = ({ style, subheaderText }) => {
-    const { state: { darkModeEnabled } } = useSettings();
+    const { state: { theme } } = useSettings();
+    const darkModeEnabled = theme === 'dark';
 
     return (
         <View style={[styles.container, style]}>

@@ -11,8 +11,8 @@ import { useSettings } from '../../context/SettingsContext';
 import { colors } from '../../constants/constants';
 
 const SettingsList = ({ settings }) => {
-    const { state: { darkModeEnabled } } = useSettings();
-    const theme = darkModeEnabled ? 'dark' : 'light';
+    const { state: { theme } } = useSettings();
+    const darkModeEnabled = theme === 'dark' ;
 
     return (
         <FlatList

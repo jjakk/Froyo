@@ -10,8 +10,8 @@ import BackIcon from '../../assets/icons/Back.svg';
 import { colors, sizes } from '../constants/constants';
 
 const Header = (props) => {
-    const { state: { darkModeEnabled } } = useSettings();
-    const theme = darkModeEnabled ? 'dark' : 'light';
+    const { state: { theme } } = useSettings();
+    const darkModeEnabled = theme === 'dark' ;
     const {
         navigation,
         style,

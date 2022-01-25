@@ -5,38 +5,37 @@ import createDataContext from './createDataContext';
 // Handle setting state
 const settingsReducer = (state, action) => {
     switch(action.type){
-        case 'set_dark_mode':
-            return { ...state, darkModeEnabled: action.payload };
+        case 'set_theme':
+            return { ...state, theme: action.payload };
         default:
             return state;
     }
 };
 
 // Set dark mode to on (true) or off (false)
-const setDarkModeEnable = (dispatch) => async (darkModeEnabled) => {
-    await AsyncStorage.setItem('darkModeEnabled', darkModeEnabled.toString());
-    dispatch({ type: 'set_dark_mode', payload: darkModeEnabled });
+const setTheme = (dispatch) => async (theme) => {
+    await AsyncStorage.setItem('theme', theme);
+    dispatch({ type: 'set_theme', payload: theme });
 };
 
 // Attach all settings options to context state
 const getSettings = (dispatch) => async () => {
-    let darkModeEnabled = await AsyncStorage.getItem('darkModeEnabled');
-    if (darkModeEnabled) {
-        darkModeEnabled = darkModeEnabled.toLowerCase() === 'true' ? true : false;
-        dispatch({ type: 'set_dark_mode', payload: darkModeEnabled });
+    let theme = await AsyncStorage.getItem('theme');
+    if (theme) {
+        dispatch({ type: 'set_theme', payload: theme });
     }
     else {
-        dispatch({ type: 'set_dark_mode', payload: false });
+        dispatch({ type: 'set_theme', payload: 'light' });
     }
 };
 
 export const { Provider, Context } = createDataContext(
     settingsReducer,
     {
-        setDarkModeEnable,
+        setTheme,
         getSettings
     }, {
-        darkModeEnabled: false
+        theme: 'light'
     }
 );
 

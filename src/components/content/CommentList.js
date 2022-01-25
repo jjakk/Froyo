@@ -33,16 +33,10 @@ const CommentList = (props) => {
                             />
                         ))
                     ) : (
-                        <Text style={[
-                            styles.noComments,
-                            themeStyles[theme].text
-                        ]}>No comments</Text>
+                        <Text style={styles.noComments}>No comments</Text>
                     )
                 ) : (
-                    <Text style={[
-                        styles.noComments,
-                        themeStyles[theme].text
-                    ]}>Loading</Text>
+                    <Text style={styles.noComments}>Loading</Text>
                 )
                 
             }
@@ -66,17 +60,11 @@ const themeStyles = {
     light: StyleSheet.create({
         container: {
             backgroundColor: colors.LIGHT_GREY
-        },
-        text: {
-            color: colors.LIGHT_BLACK
         }
     }),
     dark: StyleSheet.create({
         container: {
             backgroundColor: colors.dark.THIRD
-        },
-        text: {
-            color: colors.GREY
         }
     })
 };

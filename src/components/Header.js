@@ -54,10 +54,7 @@ const Header = (props) => {
             {
                 title ? (
                     <Text
-                        style={[
-                            styles.title,
-                            themeStyles[theme].title
-                        ]}
+                        style={styles.title}
                     >
                         {title}
                     </Text>
@@ -102,9 +99,6 @@ const themeStyles = {
         header: {
             borderBottomColor: colors.dark.FIRST,
             backgroundColor: colors.dark.SECOND,
-        },
-        title: {
-            color: colors.GREY,
         }
     })
 };

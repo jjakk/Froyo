@@ -68,10 +68,7 @@ const Comment = (props) => {
                     onDelete={onDelete}
                     condensed
                 />
-                <Text style={[
-                    styles.body,
-                    themeStyles[theme].text
-                ]}>
+                <Text style={styles.body}>
                     {comment.text}
                 </Text>
                 <View style={styles.actions}>
@@ -186,17 +183,11 @@ const themeStyles = {
     light: StyleSheet.create({
         comment: {
             backgroundColor: colors.WHITE,
-        },
-        text: {
-            color: colors.DARK_GREY
         }
     }),
     dark: StyleSheet.create({
         comment: {
             backgroundColor: colors.dark.SECOND,
-        },
-        text: {
-            color: colors.GREY
         }
     })
 };

@@ -1,8 +1,18 @@
 import React from 'react';
-import { TextInput, View, StyleSheet } from 'react-native';
+// Components
+import {
+    TextInput,
+    View,
+    StyleSheet
+} from 'react-native';
+// Constants
 import { colors } from '../../constants/constants';
+// Context
+import { useSettings } from '../../context/SettingsContext';
 
 const Input = (props) => {
+    const { state: { darkModeEnabled } } = useSettings();
+    const theme = darkModeEnabled ? 'dark' : 'light';
     const { style, textStyle, icon } = props;
 
     return (
@@ -16,8 +26,12 @@ const Input = (props) => {
             }
             <TextInput
                 {...props}
-                selectionColor={colors.DARK_GREY}
-                style={[styles.text, textStyle]}
+                selectionColor={darkModeEnabled ? colors.DARK_GREY : colors.WHITE}
+                style={[
+                    styles.text,
+                    themeStyles[theme].text,
+                    textStyle
+                ]}
             />
         </View>
     );
@@ -43,6 +57,19 @@ const styles = StyleSheet.create({
         opacity: 0.5
     }
 });
+
+const themeStyles = {
+    light: StyleSheet.create({
+        text: {
+            color: colors.LIGHT_BLACK
+        }
+    }),
+    dark: StyleSheet.create({
+        text: {
+            color: colors.LIGHT_GREY
+        }
+    })
+};
 
 export default Input;
 

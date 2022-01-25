@@ -12,7 +12,6 @@ import { colors } from '../constants/constants';
 
 const NoWifiScreen = ({ navigation }) => {
     const { state: { darkModeEnabled } } = useSettings();
-    const theme = darkModeEnabled ? 'dark' : 'light';
 
     const onReconnect = () => {
         navigation.navigate('ResolveAuth');
@@ -26,11 +25,10 @@ const NoWifiScreen = ({ navigation }) => {
                         style={styles.icon}
                         width={50}
                         height={50}
-                        color={darkModeEnabled ? colors.WHITE : colors.BLACK}
+                        color={darkModeEnabled ? colors.GREY : colors.BLACK}
                     />
                     <Text style={[
-                        styles.text,
-                        themeStyles[theme].text
+                        styles.text
                     ]}>No Wifi</Text>
                 </View>
                 <Button
@@ -72,18 +70,5 @@ const styles = StyleSheet.create({
         width: 200
     }
 });
-
-const themeStyles = {
-    light: StyleSheet.create({
-        text: {
-            color: colors.BLACK
-        }
-    }),
-    dark: StyleSheet.create({
-        text: {
-            color: colors.WHITE
-        }
-    })
-};
 
 export default NoWifiScreen;

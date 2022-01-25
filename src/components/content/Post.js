@@ -90,10 +90,7 @@ const Post = (props) => {
                     onDelete={onDelete}
                 />
                 <View style={styles.body}>
-                    <Text style={[
-                        styles.text,
-                        themeStyles[theme].text
-                    ]}>{post.text}</Text>
+                    <Text style={styles.text}>{post.text}</Text>
                 </View>
                 <View style={styles.actions}>
                     {/* Like & dislike buttons */}
@@ -195,17 +192,11 @@ const themeStyles = {
     light: StyleSheet.create({
         post: {
             backgroundColor: colors.WHITE,
-        },
-        text: {
-            color: colors.DARK_GREY
         }
     }),
     dark: StyleSheet.create({
         post: {
             backgroundColor: colors.dark.SECOND,
-        },
-        text: {
-            color: colors.GREY
         }
     })
 };

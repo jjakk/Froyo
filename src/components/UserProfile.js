@@ -85,8 +85,7 @@ const UserProfile = (props) => {
                         <View style={styles.headerText}>
                             <Text
                                 style={[
-                                    styles.name,
-                                    themeStyles[theme].text
+                                    styles.name
                                 ]}
                                 numberOfLines={1}
                                 adjustsFontSizeToFit={true}
@@ -248,17 +247,11 @@ const themeStyles = {
     light: StyleSheet.create({
         container: {
             backgroundColor: colors.WHITE
-        },
-        text: {
-            color: colors.LIGHT_BLACK
         }
     }),
     dark: StyleSheet.create({
         container: {
             backgroundColor: colors.dark.SECOND,
-        },
-        text: {
-            color: colors.GREY
         }
     })
 };

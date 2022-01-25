@@ -10,14 +10,11 @@ import { Text, Br } from '../../froyo-elements';
 import MoreOptions from './MoreOptions';
 // Context
 import { useSettings } from '../../../context/SettingsContext';
-// Constants
-import { colors } from '../../../constants/constants';
 // Helper functions
 import { calculateAge } from '../../../helperFunctions/age';
 
 const ContentHeader = (props) => {
     const { state: { darkModeEnabled } } = useSettings();
-    const theme = darkModeEnabled ? 'dark' : 'light';
     const {
         content,
         onPress,
@@ -44,7 +41,6 @@ const ContentHeader = (props) => {
                     <Text>
                         <Text style={[
                             styles.author,
-                            themeStyles[theme].text,
                             condensed ? condensedStyles.author : null
                         ]}>
                             {`${content.author.first_name} ${content.author.last_name}`}
@@ -57,10 +53,7 @@ const ContentHeader = (props) => {
                             )
                         }
                         <Text
-                            style={[
-                                styles.age,
-                                themeStyles[theme].text
-                            ]}
+                            style={styles.age}
                         >
                             { calculateAge(content.timestamp) || '' }
                         </Text>
@@ -120,19 +113,6 @@ const condensedStyles = StyleSheet.create({
         fontSize: 18
     },
 });
-
-const themeStyles = {
-    light: StyleSheet.create({
-        text: {
-            color: colors.LIGHT_BLACK
-        },
-    }),
-    dark: StyleSheet.create({
-        text: {
-            color: colors.GREY
-        }
-    })
-};
 
 export default ContentHeader;
 

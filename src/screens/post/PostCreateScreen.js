@@ -64,9 +64,6 @@ const PostCreateScreen = ({ navigation }) => {
                         styles.textbox,
                         themeStyles[theme].textbox
                     ]}
-                    textStyle={
-                        themeStyles[theme].text
-                    }
                     placeholderTextColor={darkModeEnabled ? colors.LIGHT_GREY : colors.GREY}
                     multiline={true}
                     placeholder='Type here...'
@@ -115,9 +112,6 @@ const themeStyles = {
         textbox: {
             borderColor: colors.dark.FIRST,
             backgroundColor: colors.dark.SECOND
-        },
-        text: {
-            color: colors.WHITE
         }
     })
 };

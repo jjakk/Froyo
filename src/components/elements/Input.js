@@ -16,7 +16,11 @@ const Input = (props) => {
     const { style, textStyle, icon } = props;
 
     return (
-        <View style={[styles.container, style]}>
+        <View style={[
+            styles.container,
+            themeStyles[theme].container,
+            style
+        ]}>
             {
                 (icon ? (
                     <View style={styles.icon}>
@@ -26,7 +30,8 @@ const Input = (props) => {
             }
             <TextInput
                 {...props}
-                selectionColor={darkModeEnabled ? colors.DARK_GREY : colors.WHITE}
+                selectionColor={darkModeEnabled ? colors.WHITE : colors.DARK_GREY}
+                placeholderTextColor={colors.DARK_GREY}
                 style={[
                     styles.text,
                     themeStyles[theme].text,
@@ -42,7 +47,6 @@ const styles = StyleSheet.create({
         padding: 15,
         borderWidth: 1,
         borderRadius: 15,
-        borderColor: colors.GREY,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center'
@@ -60,11 +64,17 @@ const styles = StyleSheet.create({
 
 const themeStyles = {
     light: StyleSheet.create({
+        container: {
+            borderColor: colors.GREY
+        },
         text: {
             color: colors.LIGHT_BLACK
         }
     }),
     dark: StyleSheet.create({
+        container: {
+            borderColor: colors.dark.FIRST
+        },
         text: {
             color: colors.LIGHT_GREY
         }

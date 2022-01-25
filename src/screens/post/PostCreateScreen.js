@@ -22,7 +22,6 @@ import SendIcon from '../../../assets/icons/Send.svg';
 
 const PostCreateScreen = ({ navigation }) => {
     const { state: { darkModeEnabled } } = useSettings();
-    const theme = darkModeEnabled ? 'dark' : 'light';
     const { createContent } = useContent();
     // Form feilds
     const [postText, setPostText] = useState('');
@@ -61,10 +60,8 @@ const PostCreateScreen = ({ navigation }) => {
             <View style={styles.body}>
                 <Input
                     style={[
-                        styles.textbox,
-                        themeStyles[theme].textbox
+                        styles.textbox
                     ]}
-                    placeholderTextColor={darkModeEnabled ? colors.LIGHT_GREY : colors.GREY}
                     multiline={true}
                     placeholder='Type here...'
                     value={postText}
@@ -101,20 +98,6 @@ const styles = StyleSheet.create({
         marginLeft: 20,
     }
 });
-
-const themeStyles = {
-    light: StyleSheet.create({
-        textbox: {
-            color: colors.LIGHT_DARK
-        }
-    }),
-    dark: StyleSheet.create({
-        textbox: {
-            borderColor: colors.dark.FIRST,
-            backgroundColor: colors.dark.SECOND
-        }
-    })
-};
 
 export default PostCreateScreen;
 

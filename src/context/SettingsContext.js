@@ -21,9 +21,13 @@ const setDarkModeEnable = (dispatch) => async (darkModeEnabled) => {
 // Attach all settings options to context state
 const getSettings = (dispatch) => async () => {
     let darkModeEnabled = await AsyncStorage.getItem('darkModeEnabled');
-    // Str -> Bool
-    darkModeEnabled = darkModeEnabled.toLowerCase() === 'true' ? true : false;
-    dispatch({ type: 'set_dark_mode', payload: darkModeEnabled });
+    if (darkModeEnabled) {
+        darkModeEnabled = darkModeEnabled.toLowerCase() === 'true' ? true : false;
+        dispatch({ type: 'set_dark_mode', payload: darkModeEnabled });
+    }
+    else {
+        dispatch({ type: 'set_dark_mode', payload: false });
+    }
 };
 
 export const { Provider, Context } = createDataContext(

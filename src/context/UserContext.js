@@ -110,9 +110,12 @@ const signUp = (dispatch) => async (info, callback) => {
 
 // Clear token from AsyncStorage
 const signOut = (dispatch) => async () => {
+    // Remove the user's authentication token from storage
     await AsyncStorage.removeItem('token');
+    // Remove the user's theme preference from storage
+    await AsyncStorage.removeItem('darkModeEnabled');
     dispatch({ type: 'sign_out' });
-    navigate('Welcome');
+    navigate('ResolveAuth');
 };
 
 // Delete a user from the database and sign out

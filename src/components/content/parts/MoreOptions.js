@@ -12,6 +12,7 @@ import { Text } from '../../froyo-elements';
 // Helper functions
 import confirmAlert from '../../../helperFunctions/confirmAlert';
 // Contexts
+import { useSettings } from '../../../context/SettingsContext';
 import { useUser } from '../../../context/UserContext';
 import { useContent } from '../../../context/ContentContext';
 // Icons
@@ -26,6 +27,7 @@ import {
 } from '../../../constants/constants';
 
 const MoreOptions = (props) => {
+    const { state: { theme } } = useSettings();
     const { state: { user } } = useUser();
     const { deleteContent } = useContent();
     const {
@@ -82,7 +84,7 @@ const MoreOptions = (props) => {
         <MoreOptionsIcon
             width={sizes.ACTION_ICON_SMALLER}
             height={sizes.ACTION_ICON_SMALLER}
-            color={colors.LIGHT_BLACK}
+            color={colors[theme === 'dark' ? 'GREY' : 'LIGHT_BLACK']}
         />
     );
 

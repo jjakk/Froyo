@@ -8,11 +8,16 @@ import {
     Input,
     TouchableIcon
 } from '../froyo-elements';
+// Context
+import { useSettings } from '../../context/SettingsContext';
 // Icons
 import SearchIcon from '../../../assets/icons/Search.svg';
 import CloseIcon from '../../../assets/icons/Close.svg'
+// Constants
+import { colors } from '../../constants/constants';
 
 const SearchBar = (props) => {
+    const { state: { theme } } = useSettings();
     const [text, setText] = useState('');
     const {
         onSearch,
@@ -32,7 +37,10 @@ const SearchBar = (props) => {
 
     return (
         <View>
-            <View style={styles.container}>
+            <View style={[
+                styles.container,
+                themeStyles[theme].container
+            ]}>
                 <Input
                     style={styles.text}
                     onChangeText={setText}
@@ -40,7 +48,7 @@ const SearchBar = (props) => {
                     placeholder='Search'
                     icon={(
                         <SearchIcon
-                            color='black'
+                            color={colors[theme === 'dark' ? 'GREY' : 'LIGHT_BLACK']}
                             width={25}
                             height={25}
                         />
@@ -52,6 +60,7 @@ const SearchBar = (props) => {
                         <TouchableIcon
                             Icon={CloseIcon}
                             size={20}
+                            color={colors[theme === 'dark' ? 'GREY' : 'LIGHT_BLACK']}
                             style={styles.clear}
                             onPress={clearText}
                         />
@@ -68,7 +77,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         borderWidth: 0,
-        backgroundColor: 'white',
         borderRadius: 50,
         margin: 25
     },
@@ -82,6 +90,19 @@ const styles = StyleSheet.create({
         opacity: 0.5
     }
 });
+
+const themeStyles = {
+    light: StyleSheet.create({
+        container: {
+            backgroundColor: colors.WHITE
+        }
+    }),
+    dark: StyleSheet.create({
+        container: {
+            backgroundColor: colors.dark.FIRST
+        }
+    })
+};
 
 export default SearchBar;
 

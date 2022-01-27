@@ -2,7 +2,7 @@ import _ from 'denodeify';
 import React from 'react';
 import { useFonts } from 'expo-font';
 // Navigation
-import AppNavigator from './src/navigation/appNavigator';
+import AppNavigator from './src/navigation/AppNavigator';
 // Theme
 import { AppearanceProvider, useColorScheme } from 'react-native-appearance';
 // Context

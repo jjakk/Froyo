@@ -1,22 +1,16 @@
 import _ from 'denodeify';
 import React from 'react';
-import { createAppContainer } from 'react-navigation';
-import {
-  SafeAreaProvider,
-  initialWindowMetrics
-} from 'react-native-safe-area-context';
 import { useFonts } from 'expo-font';
 // Navigation
-import { setNavigator } from './src/navigation/navigationRef';
-import appNavigator from './src/navigation/appNavigator';
+import AppNavigator from './src/navigation/appNavigator';
+// Theme
+import { AppearanceProvider, useColorScheme } from 'react-native-appearance';
 // Context
 import { Provider as UserProvider } from './src/context/UserContext';
 import { Provider as ContentProvider } from './src/context/ContentContext';
 import { Provider as SettingsProvider } from './src/context/SettingsContext';
 
-const App = createAppContainer(appNavigator);
-
-export default () => {
+const App = () => {
   // Import custom fonts
   const [loaded] = useFonts({
     'Nunito': require('./assets/fonts/Nunito/Nunito-Regular.ttf'),
@@ -24,27 +18,21 @@ export default () => {
     'Nunito-Bold': require('./assets/fonts/Nunito/Nunito-Bold.ttf'),
     'Nunito-Light': require('./assets/fonts/Nunito/Nunito-Light.ttf'),
   });
-  //let theme = 'dark';
+  const theme = 'dark'//useColorScheme();
 
   return (
     loaded ? (
-        <SafeAreaProvider
-          initialMetrics={initialWindowMetrics}
-          style={{
-            //backgroundColor: theme === 'light' ? 'white' : 'black'
-          }}
-        >
-          <UserProvider>
-            <ContentProvider>
-              <SettingsProvider>
-                  <App
-                    //theme={theme}
-                    ref={(navigator) => { setNavigator(navigator) }}
-                  />
-              </SettingsProvider>
-            </ContentProvider>
-          </UserProvider>
-        </SafeAreaProvider>
+      <AppearanceProvider>
+        <UserProvider>
+          <ContentProvider>
+            <SettingsProvider>
+              <AppNavigator/>
+            </SettingsProvider>
+          </ContentProvider>
+        </UserProvider>
+      </AppearanceProvider>
       ) : null
   );
 }
+
+export default App;

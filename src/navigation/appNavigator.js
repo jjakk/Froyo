@@ -1,7 +1,14 @@
 import React from 'react';
-import { createSwitchNavigator } from 'react-navigation';
+import { createSwitchNavigator, createAppContainer } from 'react-navigation';
 import { createStackNavigator, TransitionPresets } from 'react-navigation-stack';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
+// SafeAreaProvider
+import {
+    SafeAreaProvider,
+    initialWindowMetrics
+} from 'react-native-safe-area-context';
+// Set Navigator
+import { setNavigator } from './navigationRef';
 // Screens
 import WelcomeScreen from '../screens/WelcomeScreen';
 import FeedScreen from '../screens/FeedScreen';
@@ -22,10 +29,14 @@ import SettingsScreen from '../screens/SettingsScreen';
 import PostCreateScreen from '../screens/post/PostCreateScreen';
 import PostEditScreen from '../screens/post/PostEditScreen';
 import PostViewScreen from '../screens/post/PostViewScreen';
+// Context
+import { useSettings } from '../context/SettingsContext';
 // Icons
 import PlusCircleIcon from '../../assets/icons/Plus-Circle.svg';
 import HomeIcon from '../../assets/icons/Home.svg';
 import SearchIcon from '../../assets/icons/Search.svg';
+// Constants
+import { colors } from '../constants/constants';
 
 
 const signUpNavigator = createStackNavigator({
@@ -130,5 +141,24 @@ const appNavigator = createSwitchNavigator({
     mainFlow: mainNavigator
 });
 
-export default appNavigator;
+const AppContainer = createAppContainer(appNavigator);
+const AppNavigator = () => {
+    const { state: { theme } } = useSettings();
+
+    return (
+        <SafeAreaProvider
+            initialMetrics={initialWindowMetrics}
+            style={{
+                backgroundColor: theme === 'light' ? colors.WHITE : colors.dark.THIRD,
+            }}
+        >
+            <AppContainer
+                theme={theme}
+                ref={(navigator) => { setNavigator(navigator) }}
+            />
+        </SafeAreaProvider>
+    );
+};
+
+export default AppNavigator;
 

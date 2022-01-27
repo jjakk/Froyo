@@ -47,7 +47,7 @@
     },
     "androidNavigationBar": {
       "barStyle": "light-content",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#707070"
    }
   }
 }

@@ -26,8 +26,16 @@ const ScreenContainer = (props) => {
         children,
         style,
         onDidFocus,
-        statusBarBackgroundColor=darkModeEnabled ? colors.dark.SECOND : colors.WHITE,
-        statusBarStyle=darkModeEnabled ? 'light-content' : 'dark-content',
+        statusBarBackgroundColor=(
+            darkModeEnabled
+                ? colors.dark.SECOND
+                : colors.WHITE
+        ),
+        statusBarStyle=(
+            darkModeEnabled
+                ? 'light-content'
+                : 'dark-content'
+        ),
         ...restOfProps
     } = props;
 

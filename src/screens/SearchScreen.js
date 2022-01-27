@@ -1,10 +1,9 @@
 import React, { useState, useRef } from 'react';
+import { StyleSheet } from 'react-native';
 // Components
 import ScreenContainer from '../components/ScreenContainer';
 import SearchBar from '../components/bars/SearchBar';
 import PostList from '../components/content/PostList';
-// Constants
-import { colors } from '../constants/constants'
 
 const SearchScreen = () => {
     const [searchText, setSearchText] = useState('');

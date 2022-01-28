@@ -10,11 +10,9 @@ import PostList from '../components/content/PostList';
 import { useSettings } from '../context/SettingsContext';
 // Icons
 import GuestIcon from '../../assets/icons/Profile-Picture.svg'
-import GuestIconLight from '../../assets/icons/Profile-Picture-Light.svg'
 
 const FeedScreen = ({ navigation }) => {
     const { state: { theme } } = useSettings();
-    const darkModeEnabled = theme === 'dark';
     const postListRef = useRef();
     
     // Event handlers
@@ -33,7 +31,7 @@ const FeedScreen = ({ navigation }) => {
         >
             <Header
                 navigation={navigation}
-                LeftIcon={darkModeEnabled ? GuestIconLight : GuestIcon}
+                LeftIcon={GuestIcon}
                 LeftIconProps={{
                     onPress: onAccountView
                 }}

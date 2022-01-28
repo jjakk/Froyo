@@ -15,7 +15,6 @@ import { calculateAge } from '../../../helperFunctions/age';
 
 const ContentHeader = (props) => {
     const { state: { theme } } = useSettings();
-    const darkModeEnabled = theme === 'dark';
     const {
         content,
         onPress,
@@ -32,11 +31,7 @@ const ContentHeader = (props) => {
                             styles.profilePicture,
                             condensed ? condensedStyles.profilePicture : null
                         ]}
-                        source={darkModeEnabled ? (
-                            require('../../../../assets/icons/guest-light.png')
-                        ) : (
-                            require('../../../../assets/icons/guest.png')
-                        )}
+                        source={require('../../../../assets/icons/guest.png')}
                         resizeMode='contain'
                     />
                     <Text>

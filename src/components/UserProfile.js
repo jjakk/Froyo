@@ -25,7 +25,6 @@ import { colors } from '../constants/constants';
 const UserProfile = (props) => {
     // Context
     const { state: { theme } } = useSettings();
-    const darkModeEnabled = theme === 'dark';
     const {
         signOut,
         follow,
@@ -73,13 +72,7 @@ const UserProfile = (props) => {
                     <View style={styles.header}>
                         <Image
                             style={styles.profilePicture}
-                            source={
-                                darkModeEnabled ? (
-                                    require('../../assets/icons/guest-light.png')
-                                ) : (
-                                    require('../../assets/icons/guest.png')
-                                )
-                            }
+                            source={require('../../assets/icons/guest.png')}
                         />
                         <View style={styles.headerText}>
                             <Text

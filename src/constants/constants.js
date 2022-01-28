@@ -29,7 +29,7 @@ const themeColors = {
         FIRST: '#363636',
         SECOND: '#222222',
         THIRD: '#1B1B1B',
-        FOURTH: '#0A0A0A',
+        FOURTH: '#151515',
         ERROR: '#C97D7D'
     }
 };

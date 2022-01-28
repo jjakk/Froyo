@@ -97,7 +97,7 @@ const themeStyles = {
     dark: StyleSheet.create({
         bar: {
             borderTopWidth: 0,
-            backgroundColor: colors.dark.SECOND
+            backgroundColor: colors.dark.THIRD
         },
         input: {
             backgroundColor: colors.dark.FIRST

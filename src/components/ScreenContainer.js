@@ -28,7 +28,7 @@ const ScreenContainer = (props) => {
         onDidFocus,
         statusBarBackgroundColor=(
             darkModeEnabled
-                ? colors.dark.SECOND
+                ? colors.dark.THIRD
                 : colors.WHITE
         ),
         statusBarStyle=(
@@ -115,7 +115,7 @@ const themeStyles = {
     }),
     dark: StyleSheet.create({
         container: {
-            backgroundColor: colors.dark.SECOND
+            backgroundColor: colors.dark.THIRD
         }
     })
 };

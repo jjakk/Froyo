@@ -195,7 +195,7 @@ const themeStyles = {
     }),
     dark: StyleSheet.create({
         post: {
-            backgroundColor: colors.dark.SECOND,
+            backgroundColor: colors.dark.THIRD,
         }
     })
 };

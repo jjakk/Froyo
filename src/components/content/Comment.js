@@ -187,7 +187,7 @@ const themeStyles = {
     }),
     dark: StyleSheet.create({
         comment: {
-            backgroundColor: colors.dark.SECOND,
+            backgroundColor: colors.dark.THIRD,
         }
     })
 };

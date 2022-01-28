@@ -74,7 +74,6 @@ const Header = (props) => {
 
 const styles = StyleSheet.create({
     header: {
-        borderBottomWidth: 2,
         padding: 20,
         flexDirection: 'row',
         justifyContent: 'space-between',
@@ -89,14 +88,12 @@ const styles = StyleSheet.create({
 const themeStyles = {
     light: StyleSheet.create({
         header: {
-            borderBottomColor: colors.light.FIRST,
             backgroundColor: colors.WHITE
         }
     }),
     dark: StyleSheet.create({
         header: {
-            borderBottomColor: colors.dark.FIRST,
-            backgroundColor: colors.dark.SECOND,
+            backgroundColor: colors.dark.THIRD,
         }
     })
 };

@@ -99,7 +99,7 @@ const themeStyles = {
     }),
     dark: StyleSheet.create({
         container: {
-            backgroundColor: colors.dark.FIRST
+            backgroundColor: colors.dark.SECOND
         }
     })
 };

@@ -173,12 +173,13 @@ const styles = StyleSheet.create({
     container: {
         flexDirection: 'column',
         padding: 20,
+        marginTop: 5
     },
     // Profile
     header: {
         flexDirection: 'row',
         alignItems: 'center',
-        marginBottom: 0
+        marginBottom: 0,
     },
     headerText: {
         marginLeft: 15
@@ -240,7 +241,7 @@ const themeStyles = {
     }),
     dark: StyleSheet.create({
         container: {
-            backgroundColor: colors.dark.SECOND,
+            backgroundColor: colors.dark.THIRD,
         }
     })
 };

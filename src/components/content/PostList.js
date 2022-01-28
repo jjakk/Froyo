@@ -155,7 +155,7 @@ const themeStyles = {
     }),
     dark: StyleSheet.create({
         container: {
-            backgroundColor: colors.dark.THIRD,
+            backgroundColor: colors.dark.FOURTH,
         }
     })
 };

@@ -16,7 +16,7 @@ import { colors } from '../../constants/constants';
 
 const SettingsItem = ({ item }) => {
     const { state: { theme } } = useSettings();
-    const darkModeEnabled = theme === 'dark' ;
+
     let RenderItem = () => (<></>);
 
     switch (item.type) {

@@ -11,9 +11,16 @@ import { colors } from '../../constants/constants';
 import { useSettings } from '../../context/SettingsContext';
 
 const Input = (props) => {
+    // Context
     const { state: { theme } } = useSettings();
     const darkModeEnabled = theme === 'dark' ;
-    const { style, textStyle, icon } = props;
+
+    // Props
+    const {
+        style,
+        textStyle,
+        icon
+    } = props;
 
     return (
         <View style={[

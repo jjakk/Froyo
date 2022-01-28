@@ -15,9 +15,12 @@ import { useContent } from '../../context/ContentContext';
 import { colors } from '../../constants/constants';
 
 const CommentList = (props) => {
+    // Context
     const { state: { theme } } = useSettings();
-    const darkModeEnabled = theme === 'dark';
     const { getComments } = useContent();
+    const darkModeEnabled = theme === 'dark';
+
+    // Props
     const {
         onDeleteComment,
         onPullDownRefresh,
@@ -26,6 +29,7 @@ const CommentList = (props) => {
     } = props;
     const parentType = parent.parent_id ? 'comment' : 'post';
 
+    // State
     const [comments, setComments] = useState([]);
     const [loading, setLoading] = useState(true);
     const [refreshing, setRefreshing] = useState(false);

@@ -14,15 +14,20 @@ import { colors } from '../../constants/constants';
 // ParentId -> string: ID of the content that's being commented one
 // onCreateComment -> function: callback function to be called when the comment is created
 const CommentBar = (props) => {
+    // Context
     const { state: { theme } } = useSettings();
-    const darkModeEnabled = theme === 'dark' ;
     const { createContent } = useContent();
-    const [commentText, setCommentText] = useState('');
+    const darkModeEnabled = theme === 'dark' ;
+    
+    // Props
     const {
         style,
         parent_id,
         onCreateComment
     } = props;
+    
+    // State
+    const [commentText, setCommentText] = useState('');
 
     const onSubmit = async () => {
         if(commentText.length > 0) {

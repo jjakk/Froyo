@@ -10,8 +10,10 @@ import CloseIcon from '../../../assets/icons/Close.svg';
 import { colors } from '../../constants/constants';
 
 const ErrorMessage = (props) => {
+    // Context
     const { state: { theme } } = useSettings();
-    const darkModeEnabled = theme === 'dark' ;
+
+    // Props
     const {
         message,
         style,

@@ -12,6 +12,7 @@ import { colors } from '../constants/constants';
 
 const NoWifiScreen = ({ navigation }) => {
     const { state: { theme } } = useSettings();
+    const darkModeEnabled = theme === 'dark' ;
 
     const onReconnect = () => {
         navigation.navigate('ResolveAuth');

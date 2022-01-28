@@ -29,17 +29,20 @@ import LikeIconOutline from '../../../assets/icons/Like-Outline.svg';
 import DislikeIconOutline from '../../../assets/icons/Dislike-Outline.svg';
 
 const Comment = (props) => {
+    // Context
     const { state: { theme } } = useSettings();
-    const darkModeEnabled = theme === 'dark' ;
     const { state: { user } } = useUser(); 
     const { likeContent, dislikeContent } = useContent();
+    const darkModeEnabled = theme === 'dark' ;
     
+    // Props
     const {
         style,
         comment: passedComment,
         onDelete,
     } = props;
 
+    // State
     const [comment, setComment] = useState(passedComment);
 
     // Event handlers

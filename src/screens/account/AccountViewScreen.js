@@ -17,7 +17,7 @@ const AccountViewScreen = ({ navigation }) => {
         navigation.navigate('Settings');
     };
 
-    // Get user information onload and onrefresh
+    // Get user information & posts onload and onrefresh
     const onRefresh = async () => {
         if(user) setUser(await getUser(user.id));
     }

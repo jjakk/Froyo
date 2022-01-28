@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 // Components
 import {
     StyleSheet,
@@ -10,15 +10,10 @@ import Header from '../../components/Header';
 import CommentBar from '../../components/bars/CommentBar';
 import Post from '../../components/content/Post';
 import CommentList from '../../components/content/CommentList';
-// Constants
-import { colors } from '../../constants/constants';
 // Context
 import { useContent } from '../../context/ContentContext';
-import { useSettings } from '../../context/SettingsContext';
 
 const PostViewScreen = ({ navigation }) => {
-    const { state: { theme } } = useSettings();
-    const darkModeEnabled = theme === 'dark';
     const { getContent } = useContent();
     // Content
     const [post, setPost] = useState(navigation.getParam('post'));

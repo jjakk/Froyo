@@ -8,8 +8,11 @@ import { useSettings } from '../../context/SettingsContext';
 import { colors } from '../../constants/constants';
 
 const Button = (props) => {
+    // Context
     const { state: { theme } } = useSettings();
     const darkModeEnabled = theme === 'dark';
+
+    // Props
     const {
         buttonStyle,
         titleStyle,
@@ -21,7 +24,6 @@ const Button = (props) => {
         type,
         pill
     } = props;
-    // All buttons are white in dark mode
     const textColor = type === 'secondary' ? color : (
         darkModeEnabled ? colors.light.FOURTH : colors.WHITE
     );

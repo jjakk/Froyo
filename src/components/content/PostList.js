@@ -1,8 +1,6 @@
 // This componet takes in a list of posts and renders them
 import React, {
     useState,
-    useContext,
-    useEffect,
     useImperativeHandle,
     forwardRef
 } from 'react';
@@ -13,6 +11,7 @@ import {
     FlatList,
     RefreshControl
 } from 'react-native';
+import { NavigationEvents } from 'react-navigation';
 import { LoadingAnimation } from '../froyo-elements';
 import EmptyMessage from '../messages/EmptyMessage';
 import Post from './Post';
@@ -26,12 +25,12 @@ import { colors } from '../../constants/constants';
 const PostList = (props, ref) => {
     // Context
     const { state: { theme } } = useSettings();
-    const darkModeEnabled = theme === 'dark' ;
     const { state: { user: signedInUser } } = useUser();
     const {
         searchContent,
         getFeed
     } = useContent();
+    const darkModeEnabled = theme === 'dark' ;
 
     // Props
     const {
@@ -74,16 +73,10 @@ const PostList = (props, ref) => {
 
     const onRefresh = async () => {
         setRefreshing(true);
-        await reloadContent(true);
+        await reloadContent();
         if (onPullDownRefresh) await onPullDownRefresh();
         setRefreshing(false);
     };
-
-    useEffect(() => {
-        (async function(){
-            await reloadContent();
-        })()
-    }, []);
 
     return (
         <View style={[
@@ -91,8 +84,9 @@ const PostList = (props, ref) => {
             themeStyles[theme].container,
             style
         ]}>
+            <NavigationEvents onDidFocus={reloadContent} />
             <FlatList
-                data={posts}
+                data={loading ? [] : posts}
                 keyExtractor={(item) => item.id}
                 ListHeaderComponent={HeaderComponent}
                 showsVerticalScrollIndicator={false}

@@ -8,8 +8,11 @@ import { useSettings } from '../../context/SettingsContext';
 import { colors } from '../../constants/constants';
 
 const TouchableIcon = (props) => {
+    // Context
     const { state: { theme } } = useSettings();
     const darkModeEnabled = theme === 'dark' ;
+
+    // Props
     const {
         Icon,
         size,

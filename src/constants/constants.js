@@ -48,6 +48,8 @@ const constants = {
         ACTION_ICON_SMALLER: 22.5,
         // Width & height for icons in the more options menu
         OPTIONS_ICON: 20,
+        // Icons for bottom tab bar
+        TAB_ICON: 35,
     }
 };
 

@@ -36,7 +36,7 @@ import PlusCircleIcon from '../../assets/icons/Plus-Circle.svg';
 import HomeIcon from '../../assets/icons/Home.svg';
 import SearchIcon from '../../assets/icons/Search.svg';
 // Constants
-import { colors } from '../constants/constants';
+import { sizes, colors } from '../constants/constants';
 
 
 const signUpNavigator = createStackNavigator({
@@ -64,15 +64,23 @@ const tabNavigator = createBottomTabNavigator({
         screen: FeedScreen,
         navigationOptions: {
             tabBarIcon: (({ tintColor }) => (
-                <HomeIcon color={tintColor} height={35} width={35}/>
-            ))
+                    <HomeIcon
+                        color={tintColor}
+                        height={sizes.TAB_ICON}
+                        width={sizes.TAB_ICON}
+                    />
+                ))
         }
     },
     Create: {
         screen: PostCreateScreen,
         navigationOptions: {
             tabBarIcon: (({ tintColor }) => (
-                <PlusCircleIcon color={tintColor} height={35} width={35}/>
+                <PlusCircleIcon
+                    color={tintColor}
+                    height={sizes.TAB_ICON}
+                    width={sizes.TAB_ICON}
+                />
             ))
         }
     },
@@ -80,14 +88,18 @@ const tabNavigator = createBottomTabNavigator({
         screen: SearchScreen,
         navigationOptions: {
             tabBarIcon: (({ tintColor }) => (
-                <SearchIcon color={tintColor} height={35} width={35}/>
+                <SearchIcon
+                    color={tintColor}
+                    height={sizes.TAB_ICON}
+                    width={sizes.TAB_ICON}
+                />
             ))
         }
     },
     }, {
     tabBarOptions: {
         showLabel: false,
-        activeTintColor: '#41CA99',
+        activeTintColor: colors.GREEN,
         style: {
             height: 60
         }

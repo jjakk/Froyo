@@ -72,6 +72,7 @@ const UserProfile = (props) => {
                     <View style={styles.header}>
                         <Image
                             style={styles.profilePicture}
+                            resizeMode='contain'
                             source={require('../../assets/icons/guest.png')}
                         />
                         <View style={styles.headerText}>

@@ -1,12 +1,20 @@
 import React from 'react';
+// Components
 import { TouchableOpacity, StyleSheet } from 'react-native';
 import LoadingAnimation from './LoadingAnimation';
+// Context
+import { useSettings } from '../../context/SettingsContext';
 
 const TouchableIcon = (props) => {
+    const { state: { theme } } = useSettings();
+    const darkModeEnabled = theme === 'dark' ;
     const {
         Icon,
         size,
-        color,
+        color=(darkModeEnabled
+            ? colors.GREY
+            : colors.DARK_BLACK
+        ),
         style,
         onPress,
         loading,
@@ -43,7 +51,6 @@ const styles = StyleSheet.create({
 
 TouchableIcon.defaultProps = {
     size: 25,
-    color: 'black',
 };
 
 export default TouchableIcon;

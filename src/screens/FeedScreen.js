@@ -6,13 +6,10 @@ import {
 import Header from '../components/Header';
 import ScreenContainer from '../components/ScreenContainer';
 import PostList from '../components/content/PostList';
-// Context
-import { useSettings } from '../context/SettingsContext';
 // Icons
 import GuestIcon from '../../assets/icons/Profile-Picture.svg'
 
 const FeedScreen = ({ navigation }) => {
-    const { state: { theme } } = useSettings();
     const postListRef = useRef();
     
     // Event handlers

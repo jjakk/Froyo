@@ -8,13 +8,10 @@ import {
 // Components
 import { Text, Br } from '../../froyo-elements';
 import MoreOptions from './MoreOptions';
-// Context
-import { useSettings } from '../../../context/SettingsContext';
 // Helper functions
 import { calculateAge } from '../../../helperFunctions/age';
 
 const ContentHeader = (props) => {
-    const { state: { theme } } = useSettings();
     const {
         content,
         onPress,

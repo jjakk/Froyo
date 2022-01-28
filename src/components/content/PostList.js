@@ -113,25 +113,17 @@ const PostList = (props, ref) => {
                     />
                 )}
                 ListEmptyComponent={() => (
-                    <>
-                    {
-                        loading ? (
-                            <>
-                            {
-                                <LoadingAnimation
-                                    size={50}
-                                    style={styles.postLoading}
-                                />
-                            }
-                            </>
-                        ) : (
-                            <EmptyMessage
-                                style={styles.emptyMessage}
-                                subheaderText={emptyMessage}
-                            />
-                        )
-                    }
-                    </>
+                    loading ? (
+                        <LoadingAnimation
+                            size={50}
+                            style={styles.postLoading}
+                        />
+                    ) : (
+                        <EmptyMessage
+                            style={styles.emptyMessage}
+                            subheaderText={emptyMessage}
+                        />
+                    )
                 )}
             />
         </View>

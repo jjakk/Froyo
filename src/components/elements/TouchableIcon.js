@@ -4,6 +4,8 @@ import { TouchableOpacity, StyleSheet } from 'react-native';
 import LoadingAnimation from './LoadingAnimation';
 // Context
 import { useSettings } from '../../context/SettingsContext';
+// Constants
+import { colors } from '../../constants/constants';
 
 const TouchableIcon = (props) => {
     const { state: { theme } } = useSettings();
@@ -13,7 +15,7 @@ const TouchableIcon = (props) => {
         size,
         color=(darkModeEnabled
             ? colors.GREY
-            : colors.DARK_BLACK
+            : colors.LIGHT_BLACK
         ),
         style,
         onPress,

@@ -41,7 +41,6 @@ import {
 
 const Post = (props) => {
     const { state: { theme } } = useSettings();
-    const darkModeEnabled = theme === 'dark' ;
     const { state: { user } } = useUser();
     const { likeContent, dislikeContent } = useContent();
     

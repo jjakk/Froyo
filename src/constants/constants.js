@@ -8,11 +8,11 @@ const generalColors = {
     LIGHT_BLACK: '#2b2b2b',
     BLACK: '#000000',
     // Greens
-    GREEN_DARKER: '#0F8158',
-    GREEN_DARK: '#4AA786',
+    DARKER_GREEN: '#0F8158',
+    DARK_GREEN: '#4AA786',
     GREEN: '#41CA99',
-    GREEN_LIGHT: '#0DCBB',
-    GREEN_LIGHTER: '#BEEADA',
+    LIGHT_GREEN: '#80DCBB',
+    LIGHTER_GREEN: '#BEEADA',
     // Reds
     ERROR_RED: '#FB1C1C',
     DISLIKE_RED: '#CA5A41',

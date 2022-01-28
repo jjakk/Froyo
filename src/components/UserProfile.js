@@ -130,8 +130,6 @@ const UserProfile = (props) => {
                         <View style={styles.actionButtonContainer}>
                             <Button
                                 title='Edit profile'
-                                color={colors.GREEN}
-                                textColor='white'
                                 pill
                                 buttonStyle={styles.actionButton}
                                 titleStyle={styles.actionButtonText}
@@ -142,8 +140,6 @@ const UserProfile = (props) => {
                         <View  style={styles.actionButtonContainer}>
                             <Button
                                 title='Sign out'
-                                color={colors.GREEN}
-                                textColor={colors.GREEN}
                                 type='secondary'
                                 pill
                                 buttonStyle={styles.actionButton}

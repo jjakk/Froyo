@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
 const themeStyles = {
     light: StyleSheet.create({
         header: {
-            borderBottomColor: colors.LIGHT_GREY,
+            borderBottomColor: colors.light.FIRST,
             backgroundColor: colors.WHITE
         }
     }),

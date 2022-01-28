@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
         padding: 15,
         paddingHorizontal: 30,
         borderRadius: 10,
-        borderColor: colors.GREY,
+        borderColor: colors.light.SECOND,
         borderWidth: 2,
     },
     boxText: {

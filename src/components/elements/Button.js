@@ -1,45 +1,50 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
+// Components
 import { Button as DefaultButton } from 'react-native-elements';
+// Context
+import { useSettings } from '../../context/SettingsContext';
+// Constants
+import { colors } from '../../constants/constants';
 
 const Button = (props) => {
-    const { color, textColor, type, textAlign, pill } = props;
-
-    const styles = StyleSheet.create({
-        button: {
-            borderRadius: pill ? 30 : 15,
-            padding: 10,
-            borderWidth: 1,
-            backgroundColor: (
-                (type === 'secondary')
-                    ? 'transparent'
-                    : color
-
-            ),
-            borderColor: (
-                (type !== 'secondary')
-                    ? 'transparent'
-                    : color
-            ),
-            justifyContent: (textAlign === 'left' ? 'flex-start' : 'center')
-        },
-        title: {
-            fontFamily: 'Nunito',
-            fontSize: 24,
-            color: (textColor || 'white'),
-        }
-    });
+    const { state: { theme } } = useSettings();
+    const darkModeEnabled = theme === 'dark';
+    const {
+        buttonStyle,
+        titleStyle,
+        color=(
+            darkModeEnabled
+                ? colors.LIGHT_GREEN
+                : colors.GREEN
+        ),
+        type,
+        pill
+    } = props;
+    // All buttons are white in dark mode
+    const textColor = type === 'secondary' ? color : (
+        darkModeEnabled ? colors.light.FOURTH : colors.WHITE
+    );
 
     return (
         <DefaultButton
             {...props}
             buttonStyle={[
                 styles.button,
-                props.buttonStyle
+                {
+                    backgroundColor: color,
+                    borderColor: color,
+                    borderRadius: pill ? 30 : 15,
+                },
+                typeStyles[type].button,
+                buttonStyle
             ]}
             titleStyle={[
                 styles.title,
-                props.titleStyle
+                {
+                    color: textColor
+                },
+                titleStyle
             ]}
             loadingProps={{
                 color: textColor,
@@ -49,7 +54,32 @@ const Button = (props) => {
     );
 };
 
+const styles = StyleSheet.create({
+    button: {
+        padding: 10,
+        borderWidth: 1
+    },
+    title: {
+        fontFamily: 'Nunito',
+        fontSize: 24
+    }
+});
+
+const typeStyles = {
+    primary: StyleSheet.create({
+        button: {
+            borderColor: 'transparent'
+        }
+    }),
+    secondary: StyleSheet.create({
+        button: {
+            backgroundColor: 'transparent'
+        }
+    })
+};
+
 Button.defaultProps = {
+    type: 'primary',
     pill: false
 };
 

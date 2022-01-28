@@ -54,7 +54,7 @@ const DatePicker = (props) => {
                     toggleShow();
                 }}
                 title={dob ? parseDate(date) : 'Date of birth'}
-                color={colors.GREY}
+                color={colors.light.SECOND}
                 textColor={dob ? 'black' : 'rgba(0,0,0,0.3)'}
                 type='secondary'
                 textAlign='left'

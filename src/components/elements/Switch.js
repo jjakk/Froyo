@@ -24,16 +24,16 @@ const Switch = (props) => {
         <TouchableWithoutFeedback onPress={onToggle}>
             <View style={[styles.switch, {
                 backgroundColor: darkModeEnabled ? (
-                    isOn ? colors.LIGHT_GREY : colors.dark.FIRST
+                    isOn ? colors.light.FIRST : colors.dark.FIRST
                 ) : (
-                    isOn ? colors.GREEN : colors.LIGHT_GREY
+                    isOn ? colors.GREEN : colors.light.FIRST
                 )
             }, style]}>
                 <Animated.View style={[styles.circle, {
                     backgroundColor: darkModeEnabled ? (
-                        isOn ? colors.dark.FIRST : colors.LIGHT_GREY
+                        isOn ? colors.dark.FIRST : colors.light.FIRST
                     ) : (
-                        isOn ? colors.LIGHT_GREY : colors.GREEN
+                        isOn ? colors.light.FIRST : colors.GREEN
                     ),
                     transform: [{
                         translateX: isOn ? 28 : 0,

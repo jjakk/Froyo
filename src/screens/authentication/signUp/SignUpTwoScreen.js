@@ -86,8 +86,6 @@ const SignUpTwoScreen = ({ navigation }) => {
                 />
                 <Button
                     title='Sign up'
-                    color='#41CA99'
-                    textColor='white'
                     type='primary'
                     loading={loading}
                     buttonStyle={styles.submit}

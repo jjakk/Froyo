@@ -74,8 +74,6 @@ const SignUpScreenOne = ({ navigation }) => {
                 />
                 <Button
                     title='Continue'
-                    color='#41CA99'
-                    textColor='white'
                     type='primary'
                     loading={loading}
                     buttonStyle={styles.submit}

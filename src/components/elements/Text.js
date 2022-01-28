@@ -38,12 +38,12 @@ const styles = StyleSheet.create({
 const themeStyles = {
     light: StyleSheet.create({
         text: {
-            color: colors.LIGHT_BLACK
+            color: colors.light.FOURTH
         }
     }),
     dark: StyleSheet.create({
         text: {
-            color: colors.GREY
+            color: colors.light.SECOND
         }
     })
 };

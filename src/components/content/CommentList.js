@@ -58,7 +58,7 @@ const CommentList = (props) => {
                 showsVerticalScrollIndicator={false}
                 refreshControl={
                     <RefreshControl
-                        tintColor={darkModeEnabled ? colors.WHITE : colors.LIGHT_BLACK}
+                        tintColor={darkModeEnabled ? colors.WHITE : colors.light.FOURTH}
                         refreshing={refreshing}
                         onRefresh={onRefresh}
                     />
@@ -96,7 +96,7 @@ const styles = StyleSheet.create({
 const themeStyles = {
     light: StyleSheet.create({
         container: {
-            backgroundColor: colors.LIGHT_GREY
+            backgroundColor: colors.light.FIRST
         }
     }),
     dark: StyleSheet.create({

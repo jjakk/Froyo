@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Image, StyleSheet, SafeAreaView, StatusBar } from 'react-native';
 import { Button, Text } from '../components/froyo-elements';
 import { LinearGradient } from 'expo-linear-gradient';
+import { colors } from '../constants/constants';
 
 const WelcomeScreen = ({ navigation }) => {
 
@@ -37,6 +38,7 @@ const WelcomeScreen = ({ navigation }) => {
                         textColor='#41CA99'
                         type='primary'
                         buttonStyle={styles.primary}
+                        titleStyle={styles.primaryText}
                         onPress={handleRefSignIn}
                     />
                     <Button
@@ -88,6 +90,9 @@ const styles = StyleSheet.create({
     primary: {
         width: 300,
         marginBottom: 25
+    },
+    primaryText: {
+        color: colors.GREEN,
     },
     secondary: {
         width: 300

@@ -23,8 +23,6 @@ const ResetPasswordScreen = ({ navigation }) => {
                     buttonStyle={styles.submit}
                     title='Reset'
                     type='primary'
-                    color='#41CA99'
-                    textColor='white'
                 />
             </View>
         </ScreenContainer>

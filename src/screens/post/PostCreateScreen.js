@@ -70,7 +70,7 @@ const PostCreateScreen = ({ navigation }) => {
                 />
                 <TouchableIcon
                     Icon={SendIcon}
-                    color={darkModeEnabled ? colors.DARK_GREY : colors.GREEN}
+                    color={darkModeEnabled ? colors.light.THIRD : colors.GREEN}
                     onPress={handleSubmit}
                     size={30}
                     loading={loading}

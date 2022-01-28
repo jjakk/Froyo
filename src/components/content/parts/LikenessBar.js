@@ -15,7 +15,7 @@ const LikenessBar = (props) => {
             borderTopLeftRadius: 5,
             borderTopRightRadius: 5,
             height: 5,
-            backgroundColor: colors.GREY,
+            backgroundColor: colors.light.SECOND,
             flexDirection: 'row',
             overflow: 'hidden'
         },

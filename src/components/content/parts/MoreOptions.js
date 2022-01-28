@@ -73,7 +73,7 @@ const MoreOptions = (props) => {
         // The rest of the options go below
         {
             label: 'Cancel',
-            colors: colors.LIGHT_BLACK
+            colors: colors.light.FOURTH
         }
     ];
 

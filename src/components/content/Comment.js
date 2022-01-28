@@ -83,7 +83,7 @@ const Comment = (props) => {
                                 style={styles.replyIcon}
                                 width={sizes.ACTION_ICON_SMALLER}
                                 height={sizes.ACTION_ICON_SMALLER}
-                                color={colors.DARK_GREY}
+                                color={colors.light.THIRD}
                             />
                             <Text style={styles.replyText}>Reply</Text>
                     </TouchableOpacity>
@@ -99,7 +99,7 @@ const Comment = (props) => {
                                 }
                                 color={
                                     comment.liking
-                                    ? colors.GREEN : colors.DARK_GREY
+                                    ? colors.GREEN : colors.light.THIRD
                                 }
                             />
                             {/* Disike Button */}
@@ -113,7 +113,7 @@ const Comment = (props) => {
                                 }
                                 color={
                                     comment.disliking
-                                    ? colors.DISLIKE_RED : colors.DARK_GREY
+                                    ? colors.DISLIKE_RED : colors.light.THIRD
                                 }
                             />
                         </View>
@@ -159,7 +159,7 @@ const styles = StyleSheet.create({
     replyText: {
         fontSize: 20,
         marginLeft: 5,
-        color: colors.DARK_GREY
+        color: colors.light.THIRD
     },
     // Like/Dislike
     likenessContainer: {

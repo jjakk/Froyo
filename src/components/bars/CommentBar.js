@@ -51,12 +51,12 @@ const CommentBar = (props) => {
                     themeStyles[theme].inputText
                 }
                 placeholder='Comment...'
-                placeholderTextColor={darkModeEnabled ? colors.LIGHT_GREY : colors.GREY}
+                placeholderTextColor={darkModeEnabled ? colors.light.FIRST : colors.light.SECOND}
                 value={commentText}
                 onChangeText={setCommentText}
             />
             <TouchableOpacity onPress={onSubmit}>
-                <SendIcon style={styles.send} width={35} height={35} color={darkModeEnabled ? colors.DARK_GREY : colors.GREEN}/>
+                <SendIcon style={styles.send} width={35} height={35} color={darkModeEnabled ? colors.light.THIRD : colors.GREEN}/>
             </TouchableOpacity>
         </View>
     );
@@ -91,7 +91,7 @@ const themeStyles = {
             backgroundColor: colors.light.FIRST
         },
         inputText: {
-            color: colors.LIGHT_BLACK
+            color: colors.light.FOURTH
         }
     }),
     dark: StyleSheet.create({
@@ -103,7 +103,7 @@ const themeStyles = {
             backgroundColor: colors.dark.FIRST
         },
         inputText: {
-            color: colors.LIGHT_GREY
+            color: colors.light.FIRST
         }
     })
 };

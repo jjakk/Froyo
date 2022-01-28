@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
 const themeStyles = {
     light: StyleSheet.create({
         options: {
-            backgroundColor: colors.LIGHT_GREY
+            backgroundColor: colors.light.FIRST
         }
     }),
     dark: StyleSheet.create({

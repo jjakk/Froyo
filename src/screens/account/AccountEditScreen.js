@@ -96,8 +96,6 @@ const AccountEditScreen = ({ navigation }) => {
                 </View>
                 <Button
                     title='Save'
-                    color='#41CA99'
-                    textColor='white'
                     loading={loading}
                     buttonStyle={styles.submit}
                     onPress={handleSubmit}

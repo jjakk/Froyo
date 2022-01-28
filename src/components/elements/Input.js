@@ -30,8 +30,8 @@ const Input = (props) => {
             }
             <TextInput
                 {...props}
-                selectionColor={darkModeEnabled ? colors.WHITE : colors.DARK_GREY}
-                placeholderTextColor={colors.DARK_GREY}
+                selectionColor={darkModeEnabled ? colors.WHITE : colors.light.THIRD}
+                placeholderTextColor={colors.light.THIRD}
                 style={[
                     styles.text,
                     themeStyles[theme].text,
@@ -65,18 +65,18 @@ const styles = StyleSheet.create({
 const themeStyles = {
     light: StyleSheet.create({
         container: {
-            borderColor: colors.GREY
+            borderColor: colors.light.SECOND
         },
         text: {
-            color: colors.LIGHT_BLACK
+            color: colors.light.FOURTH
         }
     }),
     dark: StyleSheet.create({
         container: {
-            borderColor: colors.DARK_GREY
+            borderColor: colors.dark.FIRST
         },
         text: {
-            color: colors.LIGHT_GREY
+            color: colors.light.FIRST
         }
     })
 };

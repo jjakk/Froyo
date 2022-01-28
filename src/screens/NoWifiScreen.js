@@ -25,7 +25,7 @@ const NoWifiScreen = ({ navigation }) => {
                         style={styles.icon}
                         width={50}
                         height={50}
-                        color={darkModeEnabled ? colors.GREY : colors.BLACK}
+                        color={darkModeEnabled ? colors.light.SECOND : colors.BLACK}
                     />
                     <Text style={[
                         styles.text
@@ -33,7 +33,6 @@ const NoWifiScreen = ({ navigation }) => {
                 </View>
                 <Button
                     title='Reconnect'
-                    color={colors.GREEN}
                     buttonStyle={styles.button}
                     onPress={onReconnect}
                 />

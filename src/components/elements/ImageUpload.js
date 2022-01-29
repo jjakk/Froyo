@@ -3,17 +3,22 @@ import * as ImagePicker from 'expo-image-picker';
 // Components
 import {
     StyleSheet,
-    Image,
+    ImageBackground,
     View,
     TouchableOpacity
 } from 'react-native';
-import Text from './Text';
+import TouchableIcon from './TouchableIcon';
+// Icons
+import CloseIcon from '../../../assets/icons/Close.svg';
+// Constants
+import { colors } from '../../constants/constants';
   
 const ImageUpload = (props) => {
     // Props
     const {
         onUpload,
-        style
+        style,
+        PlaceholderComponent
     } = props;
 
     // State
@@ -35,18 +40,24 @@ const ImageUpload = (props) => {
 
     return (
         <TouchableOpacity onPress={pickImage}>
-            <View style={[styles.upload, style]}>
+            <View style={[styles.container, style]}>
                 {
                     image ? (
-                        <Image
+                        <ImageBackground
                             source={{ uri: image }}
-                            style={{ flex: 1 }}
-                        />
-                    ) : (
-                        <Text style={styles.text}>
-                            Upload an image
-                        </Text>
-                    )
+                            style={styles.image}
+                        >
+                            <View>
+                                <TouchableIcon
+                                    Icon={CloseIcon}
+                                    size={20}
+                                    onPress={() => setImage(null)}
+                                    color={colors.WHITE}
+                                    style={styles.close}
+                                />
+                            </View>
+                        </ImageBackground>
+                    ) : PlaceholderComponent
                 }
             </View>
         </TouchableOpacity>
@@ -54,14 +65,17 @@ const ImageUpload = (props) => {
 };
 
 const styles = StyleSheet.create({
-    upload: {
-        borderColor: 'grey',
-        justifyContent: 'center',
-        borderWidth: 1,
-        height: 250,
+    container: {
+        overflow: 'hidden',
     },
-    text: {
-        alignSelf: 'center'
+    image: {
+        flex: 1
+    },
+    close: {
+        alignSelf: 'flex-end',
+        marginTop: 25,
+        marginRight: 25,
+        opacity: 0.75
     }
 });
 

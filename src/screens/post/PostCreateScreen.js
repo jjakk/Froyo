@@ -8,7 +8,8 @@ import {
 import {
     Input,
     TouchableIcon,
-    ImageUpload
+    ImageUpload,
+    Text
 } from '../../components/froyo-elements';
 import { NavigationEvents } from 'react-navigation';
 import ScreenContainer from '../../components/ScreenContainer';
@@ -20,6 +21,7 @@ import { useSettings } from '../../context/SettingsContext';
 import { useContent } from '../../context/ContentContext';
 // Icons
 import SendIcon from '../../../assets/icons/Send.svg';
+import PlusIcon from '../../../assets/icons/Plus.svg';
 
 const PostCreateScreen = ({ navigation }) => {
     // Context
@@ -81,7 +83,20 @@ const PostCreateScreen = ({ navigation }) => {
                 />
             </View>
             <ImageUpload
-                style={styles.imageUpload}
+                style={[
+                    styles.imageUpload,
+                    themeStyles[theme].imageUpload
+                ]}
+                PlaceholderComponent={(
+                    <View style={styles.imageUploadPlaceholder}>
+                        <PlusIcon
+                            color={darkModeEnabled ? colors.light.SECOND : colors.dark.SECOND}
+                        />
+                        <Text>
+                            Add an image
+                        </Text>
+                    </View>
+                )}
                 onUpload={setImage}
             />
             <ErrorMessage message={error} />
@@ -104,11 +119,31 @@ const styles = StyleSheet.create({
     },
     imageUpload: {
         marginTop: 25,
+        height: 250,
+        borderRadius: 25,
+    },
+    imageUploadPlaceholder: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     submit: {
         marginLeft: 20,
     }
 });
+
+const themeStyles = {
+    light: StyleSheet.create({
+        imageUpload: {
+            backgroundColor: colors.light.FIRST
+        }
+    }),
+    dark: StyleSheet.create({
+        imageUpload: {
+            backgroundColor: colors.dark.SECOND
+        }
+    })
+};
 
 export default PostCreateScreen;
 

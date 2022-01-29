@@ -8,6 +8,7 @@ import DatePicker from './elements/DatePicker';
 import TouchableIcon from './elements/TouchableIcon';
 import LoadingAnimation from './elements/LoadingAnimation';
 import Switch from './elements/Switch';
+import ImageUpload from './elements/ImageUpload';
 
 module.exports = {
   Button,
@@ -19,7 +20,8 @@ module.exports = {
   DatePicker,
   TouchableIcon,
   LoadingAnimation,
-  Switch
+  Switch,
+  ImageUpload
 };
 
 

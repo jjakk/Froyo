@@ -7,7 +7,8 @@ import {
 } from 'react-native';
 import {
     Input,
-    TouchableIcon
+    TouchableIcon,
+    ImageUpload
 } from '../../components/froyo-elements';
 import { NavigationEvents } from 'react-navigation';
 import ScreenContainer from '../../components/ScreenContainer';
@@ -30,6 +31,7 @@ const PostCreateScreen = ({ navigation }) => {
     const [postText, setPostText] = useState('');
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
+    const [image, setImage] = useState(null);
 
     // Event Handlers
     const handleSubmit = async () => {
@@ -78,6 +80,10 @@ const PostCreateScreen = ({ navigation }) => {
                     style={styles.submit}
                 />
             </View>
+            <ImageUpload
+                style={styles.imageUpload}
+                onUpload={setImage}
+            />
             <ErrorMessage message={error} />
         </ScreenContainer>
     );
@@ -95,6 +101,9 @@ const styles = StyleSheet.create({
     textbox: {
         fontSize: 22,
         flex: 1,
+    },
+    imageUpload: {
+        marginTop: 25,
     },
     submit: {
         marginLeft: 20,

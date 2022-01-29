@@ -42,7 +42,7 @@ const themeStyles = {
     }),
     dark: StyleSheet.create({
         options: {
-            backgroundColor: colors.dark.THIRD
+            backgroundColor: colors.dark.FOURTH
         }
     })
 };

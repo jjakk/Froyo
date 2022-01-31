@@ -116,6 +116,7 @@ const styles = StyleSheet.create({
     textbox: {
         fontSize: 22,
         flex: 1,
+        maxHeight: 250,
     },
     imageUpload: {
         marginTop: 25,

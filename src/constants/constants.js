@@ -2,9 +2,9 @@
 const generalColors = {
     // Black, Grey, & White
     WHITE: '#FFFFFF',
-    LIGHT_GREY: '#F2F2F2',
-    GREY: '#C0C0C0',
-    DARK_GREY: '#707070',
+    LIGHT_GRAY: '#F2F2F2',
+    GRAY: '#C0C0C0',
+    DARK_GRAY: '#707070',
     LIGHT_BLACK: '#2b2b2b',
     BLACK: '#000000',
     // Greens
@@ -20,9 +20,9 @@ const generalColors = {
 
 const themeColors = {
     light: {
-        FIRST: generalColors.LIGHT_GREY,
-        SECOND: generalColors.GREY,
-        THIRD: generalColors.DARK_GREY,
+        FIRST: generalColors.LIGHT_GRAY,
+        SECOND: generalColors.GRAY,
+        THIRD: generalColors.DARK_GRAY,
         FOURTH: generalColors.LIGHT_BLACK
     },
     dark: {

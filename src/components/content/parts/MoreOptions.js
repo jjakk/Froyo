@@ -84,7 +84,7 @@ const MoreOptions = (props) => {
         <MoreOptionsIcon
             width={sizes.ACTION_ICON_SMALLER}
             height={sizes.ACTION_ICON_SMALLER}
-            color={colors[theme === 'dark' ? 'GREY' : 'LIGHT_BLACK']}
+            color={colors[theme === 'dark' ? 'GRAY' : 'LIGHT_BLACK']}
         />
     );
 

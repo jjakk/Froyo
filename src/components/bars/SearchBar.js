@@ -48,7 +48,7 @@ const SearchBar = (props) => {
                     placeholder='Search'
                     icon={(
                         <SearchIcon
-                            color={colors[theme === 'dark' ? 'GREY' : 'LIGHT_BLACK']}
+                            color={colors[theme === 'dark' ? 'GRAY' : 'LIGHT_BLACK']}
                             width={25}
                             height={25}
                         />
@@ -60,7 +60,7 @@ const SearchBar = (props) => {
                         <TouchableIcon
                             Icon={CloseIcon}
                             size={20}
-                            color={colors[theme === 'dark' ? 'GREY' : 'LIGHT_BLACK']}
+                            color={colors[theme === 'dark' ? 'GRAY' : 'LIGHT_BLACK']}
                             style={styles.clear}
                             onPress={clearText}
                         />

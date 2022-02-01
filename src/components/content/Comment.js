@@ -38,7 +38,7 @@ const Comment = (props) => {
     // Props
     const {
         style,
-        comment: passedComment,
+        data: passedComment,
         onDelete,
     } = props;
 

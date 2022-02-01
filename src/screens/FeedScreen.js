@@ -38,7 +38,6 @@ const FeedScreen = ({ navigation }) => {
             <PostList
                 type='Feed'
                 emptyMessage='Follow people to populate your feed'
-                style={styles.postList}
                 ref={postListRef}
             />
         </ScreenContainer>

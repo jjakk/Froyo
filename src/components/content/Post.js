@@ -45,10 +45,10 @@ const Post = (props) => {
     const { likeContent, dislikeContent } = useContent();
     
     const {
-        clickable,
         style,
-        post: passedPost,
-        onDelete
+        data: passedPost,
+        onDelete,
+        clickable=true
     } = props;
 
     const [post, setPost] = useState(passedPost);

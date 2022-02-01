@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import { Text } from '../froyo-elements';
 import Comment from './Comment';
+import ContentList from './ContentList';
 // Context
 import { useSettings } from '../../context/SettingsContext';
 import { useContent } from '../../context/ContentContext';
@@ -25,7 +26,8 @@ const CommentList = (props) => {
         onDeleteComment,
         onPullDownRefresh,
         parent,
-        HeaderComponent
+        refreshable=true,
+        ...otherProps
     } = props;
     const parentType = parent.parent_id ? 'comment' : 'post';
 
@@ -56,9 +58,8 @@ const CommentList = (props) => {
             themeStyles[theme].container
         ]}>
             <FlatList
-                data={comments}
+                data={loading ? [] : comments}
                 keyExtractor={(item) => item.id}
-                ListHeaderComponent={HeaderComponent}
                 showsVerticalScrollIndicator={false}
                 refreshControl={
                     <RefreshControl
@@ -71,7 +72,7 @@ const CommentList = (props) => {
                 }
                 renderItem={({ item }) => (
                     <Comment
-                        comment={item}
+                        data={item}
                         onDelete={onDeleteComment}
                     />
                 )}
@@ -82,6 +83,7 @@ const CommentList = (props) => {
                         <Text style={styles.noComments}>No comments</Text>
                     )
                 )}
+                {...otherProps}
             />
         </View>
     );

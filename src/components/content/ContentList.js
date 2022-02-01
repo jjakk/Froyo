@@ -1,9 +1,4 @@
-// This componet takes in a list of posts and renders them
-import React, {
-    useState,
-    useImperativeHandle,
-    forwardRef
-} from 'react';
+import React, { useState, useEffect } from 'react';
 // Components
 import {
     StyleSheet,
@@ -11,10 +6,8 @@ import {
     FlatList,
     RefreshControl
 } from 'react-native';
-import { NavigationEvents } from 'react-navigation';
 import { LoadingAnimation } from '../froyo-elements';
-import EmptyMessage from '../messages/EmptyMessage';
-import Post from './Post';
+import { NavigationEvents } from 'react-navigation';
 // Context
 import { useSettings } from '../../context/SettingsContext';
 import { useUser } from '../../context/UserContext';
@@ -22,61 +15,50 @@ import { useContent } from '../../context/ContentContext';
 // Constants
 import { colors } from '../../constants/constants';
 
-const PostList = (props, ref) => {
+const ContentList = (props) => {
     // Context
     const { state: { theme } } = useSettings();
-    const { state: { user: signedInUser } } = useUser();
     const {
+        getComments,
         searchContent,
         getFeed
     } = useContent();
-    const darkModeEnabled = theme === 'dark' ;
+    const { state: { user: signedInUser } } = useUser();
+    const darkModeEnabled = theme === 'dark';
 
     // Props
     const {
-        type,
-        emptyMessage,
+        contentType,
+        parent,
         style,
         onPullDownRefresh,
-        user=signedInUser,
+        RenderComponent,
+        HeaderComponent,
         refreshable=true,
         ...otherProps
     } = props;
+    const parentType = parent.parent_id ? 'comment' : 'post';
 
     // State
     const [refreshing, setRefreshing] = useState(false);
     const [loading, setLoading] = useState(true);
-    const [posts, setPosts] = useState([]);
+    const [contents, setContents] = useState([]);
 
-    // Reference
-    useImperativeHandle(ref, () => ({
-        reloadContent: reloadContent
-    }))
-
-    // Function to retrieve user info & posts
-    const reloadContent = async (searchValue='') => {
-        setLoading(true);
-        // Retrieve posts
-        switch (type) {
-            case 'AccountView':
-                setPosts(await searchContent('post', { author_id: user.id }));
-                break;
-            case 'Feed':
-                setPosts(await getFeed());
-                break;
-            case 'Search':
-                setPosts(await searchContent('post', { text: searchValue }));
-                break;
-        }
-        setLoading(false);
-    };
-
+    // Content refreshing
     const onRefresh = async () => {
         setRefreshing(true);
-        await reloadContent();
         if (onPullDownRefresh) await onPullDownRefresh();
         setRefreshing(false);
-    };
+    }
+
+    // Comment refresh logic
+    useEffect(() => {
+        (async function(){
+            setLoading(true);
+            setContents(await getComments(parentType, parent.id));
+            setLoading(false);
+        })();
+    }, [parent]);
 
     return (
         <View style={[
@@ -84,10 +66,11 @@ const PostList = (props, ref) => {
             themeStyles[theme].container,
             style
         ]}>
-            <NavigationEvents onDidFocus={reloadContent} />
+            <NavigationEvents onDidFocus={onPullDownRefresh} />
             <FlatList
-                data={loading ? [] : posts}
+                data={loading ? [] : contents}
                 keyExtractor={(item) => item.id}
+                ListHeaderComponent={HeaderComponent}
                 showsVerticalScrollIndicator={false}
                 refreshControl={
                     refreshable ? (
@@ -101,9 +84,9 @@ const PostList = (props, ref) => {
                     ) : null
                 }
                 renderItem={({ item }) => (
-                    <Post
+                    <RenderComponent
                         data={item}
-                        onDelete={reloadContent}
+                        onDelete={onPullDownRefresh}
                     />
                 )}
                 ListEmptyComponent={() => (
@@ -131,27 +114,20 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         width: '100%',
         flex: 1,
-    },
-    emptyMessage: {
-        marginTop: 50
-    },
-    postLoading: {
-        alignSelf: 'center',
-        marginTop: 50
     }
 });
 
 const themeStyles = {
     light: StyleSheet.create({
         container: {
-            backgroundColor: colors.light.FIRST,
+            backgroundColor: colors.light.FIRST
         }
     }),
     dark: StyleSheet.create({
         container: {
-            backgroundColor: colors.dark.FOURTH,
+            backgroundColor: colors.dark.FOURTH
         }
     })
 };
 
-export default forwardRef(PostList);
+export default ContentList;

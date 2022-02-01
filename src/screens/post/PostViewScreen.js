@@ -32,9 +32,9 @@ const PostViewScreen = ({ navigation }) => {
                     parent={post}
                     onDeleteComment={refreshPost}
                     onPullDownRefresh={refreshPost}
-                    HeaderComponent={(
+                    ListHeaderComponent={(
                         <Post
-                            post={post}
+                            data={post}
                             clickable={false}
                             onDelete={navigation.pop}
                         />

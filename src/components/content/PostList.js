@@ -50,7 +50,9 @@ const PostList = (props, ref) => {
 
     // Reference
     useImperativeHandle(ref, () => ({
-        reloadContent: reloadContent
+        reloadContent: async (searchValue) => {
+            await reloadContent(searchValue)
+        }
     }))
 
     // Function to retrieve user info & posts
@@ -78,13 +80,17 @@ const PostList = (props, ref) => {
         setRefreshing(false);
     };
 
+    const onDidFocus = async () => {
+        reloadContent();
+    };
+
     return (
         <View style={[
             styles.container,
             themeStyles[theme].container,
             style
         ]}>
-            <NavigationEvents onDidFocus={reloadContent} />
+            <NavigationEvents onDidFocus={onDidFocus} />
             <FlatList
                 data={loading ? [] : posts}
                 keyExtractor={(item) => item.id}

@@ -87,6 +87,7 @@ const PostCreateScreen = ({ navigation }) => {
                     styles.imageUpload,
                     themeStyles[theme].imageUpload
                 ]}
+                uploadedStyle={styles.imageUploaded}
                 PlaceholderComponent={(
                     <View style={styles.imageUploadPlaceholder}>
                         <PlusIcon
@@ -120,8 +121,12 @@ const styles = StyleSheet.create({
     },
     imageUpload: {
         marginTop: 25,
-        height: 250,
-        borderRadius: 25,
+        height: 100,
+        borderRadius: 15,
+    },
+    imageUploaded: {
+        height: 300,
+        borderRadius: 5
     },
     imageUploadPlaceholder: {
         flex: 1,

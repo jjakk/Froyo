@@ -7,7 +7,6 @@ import {
     View,
     TouchableOpacity
 } from 'react-native';
-import TouchableIcon from './TouchableIcon';
 // Icons
 import CloseIcon from '../../../assets/icons/Close.svg';
 // Constants
@@ -18,6 +17,7 @@ const ImageUpload = (props) => {
     const {
         onUpload,
         style,
+        uploadedStyle,
         PlaceholderComponent
     } = props;
 
@@ -40,22 +40,26 @@ const ImageUpload = (props) => {
 
     return (
         <TouchableOpacity onPress={pickImage}>
-            <View style={[styles.container, style]}>
+            <View style={[
+                styles.container,
+                style,
+                image ? uploadedStyle : null
+            ]}>
                 {
                     image ? (
                         <ImageBackground
                             source={{ uri: image }}
                             style={styles.image}
                         >
-                            <View>
-                                <TouchableIcon
-                                    Icon={CloseIcon}
-                                    size={20}
-                                    onPress={() => setImage(null)}
-                                    color={colors.WHITE}
-                                    style={styles.close}
-                                />
-                            </View>
+                            <TouchableOpacity onPress={() => setImage(null)}>
+                                <View style={styles.close}>
+                                    <CloseIcon
+                                        width={20}
+                                        height={20}
+                                        color={colors.WHITE}
+                                    />
+                                </View>
+                            </TouchableOpacity>
                         </ImageBackground>
                     ) : PlaceholderComponent
                 }
@@ -73,9 +77,12 @@ const styles = StyleSheet.create({
     },
     close: {
         alignSelf: 'flex-end',
-        marginTop: 25,
-        marginRight: 25,
-        opacity: 0.75
+        marginTop: 15,
+        marginRight: 15,
+        opacity: 0.5,
+        backgroundColor: 'black',
+        padding: 10,
+        borderRadius: 25,
     }
 });
 

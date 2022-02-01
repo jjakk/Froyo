@@ -51,6 +51,10 @@ const ContentList = (props) => {
         setRefreshing(false);
     }
 
+    const onDidFocus = async () => {
+        await onPullDownRefresh();
+    };
+
     // Comment refresh logic
     useEffect(() => {
         (async function(){
@@ -66,7 +70,7 @@ const ContentList = (props) => {
             themeStyles[theme].container,
             style
         ]}>
-            <NavigationEvents onDidFocus={onPullDownRefresh} />
+            <NavigationEvents onDidFocus={onDidFocus} />
             <FlatList
                 data={loading ? [] : contents}
                 keyExtractor={(item) => item.id}

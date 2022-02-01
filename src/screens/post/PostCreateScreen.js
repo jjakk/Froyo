@@ -83,10 +83,7 @@ const PostCreateScreen = ({ navigation }) => {
                 />
             </View>
             <ImageUpload
-                style={[
-                    styles.imageUpload,
-                    themeStyles[theme].imageUpload
-                ]}
+                style={styles.imageUpload}
                 uploadedStyle={styles.imageUploaded}
                 PlaceholderComponent={(
                     <View style={styles.imageUploadPlaceholder}>
@@ -114,18 +111,22 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
+    // Text input
     textbox: {
         fontSize: 22,
         flex: 1,
         maxHeight: 250,
     },
+    // Image upload
     imageUpload: {
         marginTop: 25,
         height: 100,
+        borderWidth: 1,
         borderRadius: 15,
     },
     imageUploaded: {
         height: 300,
+        borderWidth: 0,
         borderRadius: 5
     },
     imageUploadPlaceholder: {
@@ -137,19 +138,6 @@ const styles = StyleSheet.create({
         marginLeft: 20,
     }
 });
-
-const themeStyles = {
-    light: StyleSheet.create({
-        imageUpload: {
-            backgroundColor: colors.light.FIRST
-        }
-    }),
-    dark: StyleSheet.create({
-        imageUpload: {
-            backgroundColor: colors.dark.SECOND
-        }
-    })
-};
 
 export default PostCreateScreen;
 

@@ -12,9 +12,9 @@ const contentReducer = (state, action) => {
 
 // Create a post or comment
 const createContent = () => async (contentType, info) => {
-    contentType += 's';
     const { text } = info;
     if (!text) throw { message: `${contentType} body is required` };
+    contentType += 's';
     await froyoApi.post(`/${contentType}`, info);
 };
 

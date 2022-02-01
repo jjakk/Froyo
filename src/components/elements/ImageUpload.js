@@ -7,12 +7,18 @@ import {
     View,
     TouchableOpacity
 } from 'react-native';
+// Context
+import { useSettings } from '../../context/SettingsContext';
 // Icons
 import CloseIcon from '../../../assets/icons/Close.svg';
 // Constants
 import { colors } from '../../constants/constants';
   
 const ImageUpload = (props) => {
+    // Context
+    const { state: { theme } } = useSettings();
+    const darkModeEnabled = theme === 'dark';
+
     // Props
     const {
         onUpload,
@@ -42,6 +48,7 @@ const ImageUpload = (props) => {
         <TouchableOpacity onPress={pickImage}>
             <View style={[
                 styles.container,
+                themeStyles[theme].imageUpload,
                 style,
                 image ? uploadedStyle : null
             ]}>
@@ -54,8 +61,8 @@ const ImageUpload = (props) => {
                             <TouchableOpacity onPress={() => setImage(null)}>
                                 <View style={styles.close}>
                                     <CloseIcon
-                                        width={20}
-                                        height={20}
+                                        width={15}
+                                        height={15}
                                         color={colors.WHITE}
                                     />
                                 </View>
@@ -80,11 +87,26 @@ const styles = StyleSheet.create({
         marginTop: 15,
         marginRight: 15,
         opacity: 0.5,
-        backgroundColor: 'black',
+        backgroundColor: colors.LIGHT_BLACK,
         padding: 10,
         borderRadius: 25,
     }
 });
+
+const themeStyles = {
+    light: StyleSheet.create({
+        imageUpload: {
+            backgroundColor: colors.light.FIRST,
+            borderColor: colors.light.SECOND
+        }
+    }),
+    dark: StyleSheet.create({
+        imageUpload: {
+            backgroundColor: colors.dark.SECOND,
+            borderColor: colors.dark.FIRST
+        }
+    })
+};
 
 export default ImageUpload;
 

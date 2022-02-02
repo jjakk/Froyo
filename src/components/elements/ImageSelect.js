@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import * as ImagePicker from 'expo-image-picker';
 // Components
 import {
@@ -17,18 +17,16 @@ import { colors } from '../../constants/constants';
 const ImageUpload = (props) => {
     // Context
     const { state: { theme } } = useSettings();
-    const darkModeEnabled = theme === 'dark';
 
     // Props
     const {
-        onUpload,
+        image,
+        setImage,
+        onDelete,
         style,
         uploadedStyle,
         PlaceholderComponent
     } = props;
-
-    // State
-    const [image, setImage] = useState(null);
 
     const pickImage = async () => {
         let result = await ImagePicker.launchImageLibraryAsync({
@@ -40,7 +38,6 @@ const ImageUpload = (props) => {
 
         if (!result.cancelled) {
             setImage(result.uri);
-            onUpload(result.uri);
         }
     };
 
@@ -58,7 +55,10 @@ const ImageUpload = (props) => {
                             source={{ uri: image }}
                             style={styles.image}
                         >
-                            <TouchableOpacity onPress={() => setImage(null)}>
+                            <TouchableOpacity onPress={() => {
+                                setImage(null);
+                                onDelete();
+                            }}>
                                 <View style={styles.close}>
                                     <CloseIcon
                                         width={15}

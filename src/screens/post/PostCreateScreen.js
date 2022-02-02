@@ -7,13 +7,12 @@ import {
 } from 'react-native';
 import {
     Input,
-    TouchableIcon,
-    ImageUpload,
-    Text
+    TouchableIcon
 } from '../../components/froyo-elements';
 import { NavigationEvents } from 'react-navigation';
 import ScreenContainer from '../../components/ScreenContainer';
 import ErrorMessage from '../../components/messages/ErrorMessage';
+import ImageUpload from '../../components/ImageUpload';
 // Constants
 import { colors } from '../../constants/constants';
 // Context
@@ -21,7 +20,6 @@ import { useSettings } from '../../context/SettingsContext';
 import { useContent } from '../../context/ContentContext';
 // Icons
 import SendIcon from '../../../assets/icons/Send.svg';
-import PlusIcon from '../../../assets/icons/Plus.svg';
 
 const PostCreateScreen = ({ navigation }) => {
     // Context
@@ -33,11 +31,12 @@ const PostCreateScreen = ({ navigation }) => {
     const [postText, setPostText] = useState('');
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
-    const [image, setImage] = useState(null);
+    const [images, setImages] = useState([]);
 
     // Event Handlers
     const handleSubmit = async () => {
         try{
+            console.log(images);
             Keyboard.dismiss()
             setLoading(true);
             await createContent('post', { text: postText });
@@ -61,7 +60,10 @@ const PostCreateScreen = ({ navigation }) => {
     }, [postText]);
 
     return (
-        <ScreenContainer style={styles.container}>
+        <ScreenContainer
+            edges={['top']}
+            style={styles.container}
+        >
             <NavigationEvents onDidFocus={clearError}/>
             <View style={styles.body}>
                 <Input
@@ -84,18 +86,7 @@ const PostCreateScreen = ({ navigation }) => {
             </View>
             <ImageUpload
                 style={styles.imageUpload}
-                uploadedStyle={styles.imageUploaded}
-                PlaceholderComponent={(
-                    <View style={styles.imageUploadPlaceholder}>
-                        <PlusIcon
-                            color={darkModeEnabled ? colors.light.SECOND : colors.dark.SECOND}
-                        />
-                        <Text>
-                            Add an image
-                        </Text>
-                    </View>
-                )}
-                onUpload={setImage}
+                onUpload={setImages}
             />
             <ErrorMessage message={error} />
         </ScreenContainer>
@@ -103,10 +94,8 @@ const PostCreateScreen = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
-    container: {
-        padding: 10
-    },
     body: {
+        padding: 25,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
@@ -119,24 +108,12 @@ const styles = StyleSheet.create({
     },
     // Image upload
     imageUpload: {
-        marginTop: 25,
-        height: 100,
-        borderWidth: 1,
-        borderRadius: 15,
-    },
-    imageUploaded: {
-        height: 300,
-        borderWidth: 0,
-        borderRadius: 5
-    },
-    imageUploadPlaceholder: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
+        padding: 25,
+        paddingTop: 0
     },
     submit: {
         marginLeft: 20,
-    }
+    },
 });
 
 export default PostCreateScreen;

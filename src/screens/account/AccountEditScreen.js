@@ -11,6 +11,7 @@ import {
 } from '../../components/froyo-elements';
 import ScreenContainer from '../../components/ScreenContainer';
 import Header from '../../components/Header';
+// Icons
 import UploadIcon from '../../../assets/icons/Upload.svg';
 // Context
 import { useUser } from '../../context/UserContext';

@@ -23,14 +23,16 @@ const ImageUpload = (props) => {
 
     // Props
     const {
-        style
+        style,
+        onUpload
     } = props;
 
     // State
-    const [images, setImages] = useState([null]);
+    const [images, setImages] = useState([]);
 
-    const onUpload = (image) => {
+    const onImageSelect = (image) => {
         setImages([image, ...images]);
+        onUpload([image, ...images]);
     }
 
     const onDelete = (index) => {
@@ -38,15 +40,16 @@ const ImageUpload = (props) => {
             ...images.slice(0, index),
             ...images.slice(index + 1)
         ]);
+        onUpload([
+            ...images.slice(0, index),
+            ...images.slice(index + 1)
+        ]);
     };
 
     return (
         <FlatList
-            style={[
-                styles.list,
-                style
-            ]}
-            data={images}
+            style={style}
+            data={images.length < 10 ? [...images, null] : images}
             keyExtractor={(item, index) => index.toString()}
             renderItem={({ index }) => (
                 <>
@@ -56,17 +59,17 @@ const ImageUpload = (props) => {
                     ]}
                     uploadedStyle={styles.imageUploaded}
                     PlaceholderComponent={(
-                        <View style={styles.imageUploadPlaceholder}>
+                        <View style={styles.placeholder}>
                             <PlusIcon
                                 color={darkModeEnabled ? colors.light.SECOND : colors.dark.SECOND}
                             />
-                            <Text>
+                            <Text style={styles.placeholderText}>
                                 Add an image
                             </Text>
                         </View>
                     )}
                     image={images[index]}
-                    setImage={onUpload}
+                    setImage={onImageSelect}
                     onDelete={() => onDelete(index)}
                 />
                 </>
@@ -76,9 +79,6 @@ const ImageUpload = (props) => {
 };
 
 const styles = StyleSheet.create({
-    list: {
-        flex: 1,
-    },
     // Image upload
     imageUpload: {
         marginBottom: 25,
@@ -91,11 +91,15 @@ const styles = StyleSheet.create({
         borderWidth: 0,
         borderRadius: 5
     },
-    imageUploadPlaceholder: {
+    // Placeholder
+    placeholder: {
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
     },
+    placeholderText: {
+        marginTop: 5
+    }
 });
 
 export default ImageUpload;

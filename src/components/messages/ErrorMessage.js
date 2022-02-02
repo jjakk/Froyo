@@ -12,6 +12,7 @@ import { colors } from '../../constants/constants';
 const ErrorMessage = (props) => {
     // Context
     const { state: { theme } } = useSettings();
+    const darkModeEnabled = theme === 'dark';
 
     // Props
     const {
@@ -34,11 +35,16 @@ const ErrorMessage = (props) => {
                         ]}
                     >{message}</Text>
                 ) : type === 'box' ? (
-                    <View {...props} style={[styles.box, style]}>
+                    <View {...props} style={[
+                        styles.box,
+                        themeStyles[theme].box,
+                        style
+                    ]}>
                         <Text style={styles.boxText}>{message}</Text>
                         <TouchableIcon
                             Icon={CloseIcon}
                             size={20}
+                            color={darkModeEnabled ? colors.light.SECOND : colors.dark.FIRST}
                             onPress={clearError}
                         />
                     </View>
@@ -62,7 +68,6 @@ const styles = StyleSheet.create({
         alignSelf: 'center'
     },
     box: {
-        backgroundColor: 'white',
         opacity: 0.9,
         flexDirection: 'row',
         alignSelf: 'center',
@@ -70,9 +75,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         padding: 15,
         paddingHorizontal: 30,
-        borderRadius: 10,
-        borderColor: colors.light.SECOND,
-        borderWidth: 2,
+        borderRadius: 35,
+        borderWidth: 1
     },
     boxText: {
         fontSize: 24,
@@ -84,11 +88,19 @@ const themeStyles = {
     light: StyleSheet.create({
         text: {
             color: colors.ERROR_RED
+        },
+        box: {
+            backgroundColor: colors.light.FIRST,
+            borderColor: colors.light.SECOND
         }
     }),
     dark: StyleSheet.create({
         text: {
             color: colors.WHITE
+        },
+        box: {
+            backgroundColor: colors.dark.SECOND,
+            borderColor: colors.dark.FIRST
         }
     })
 };

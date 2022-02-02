@@ -36,10 +36,9 @@ const PostCreateScreen = ({ navigation }) => {
     // Event Handlers
     const handleSubmit = async () => {
         try{
-            console.log(images);
             Keyboard.dismiss()
             setLoading(true);
-            await createContent('post', { text: postText });
+            await createContent('post', { text: postText, images });
             setLoading(false);
             setPostText('');
             navigation.navigate('AccountView');
@@ -62,7 +61,6 @@ const PostCreateScreen = ({ navigation }) => {
     return (
         <ScreenContainer
             edges={['top']}
-            style={styles.container}
         >
             <NavigationEvents onDidFocus={clearError}/>
             <View style={styles.body}>
@@ -88,7 +86,10 @@ const PostCreateScreen = ({ navigation }) => {
                 style={styles.imageUpload}
                 onUpload={setImages}
             />
-            <ErrorMessage message={error} />
+            <ErrorMessage
+                style={styles.error}
+                message={error}
+            />
         </ScreenContainer>
     );
 };
@@ -114,6 +115,9 @@ const styles = StyleSheet.create({
     submit: {
         marginLeft: 20,
     },
+    error: {
+        margin: 25
+    }
 });
 
 export default PostCreateScreen;

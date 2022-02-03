@@ -31,8 +31,8 @@ const ImageUpload = (props) => {
     const [images, setImages] = useState([]);
 
     const onImageSelect = (image) => {
-        setImages([image, ...images]);
-        onUpload([image, ...images]);
+        setImages([...images, image]);
+        onUpload([...images, image]);
     }
 
     const onDelete = (index) => {
@@ -48,7 +48,10 @@ const ImageUpload = (props) => {
 
     return (
         <FlatList
-            style={style}
+            style={[
+                styles.container,
+                style
+            ]}
             data={images.length < 10 ? [...images, null] : images}
             keyExtractor={(item, index) => index.toString()}
             renderItem={({ index }) => (

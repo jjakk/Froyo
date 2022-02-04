@@ -5,12 +5,13 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 const BASE_URL = __DEV__ ? 'http://127.0.0.1:8000' : 'https://api.froyo.social';
 
 const formRequest = async (method, route, data={}) => {
+    if(route[0] !== '/') route = `/${route}`;
     method = method.toLowerCase();
     let formData = new FormData();
     const token = await AsyncStorage.getItem('token')
 
     // Append data to the formData if the method is POST
-    if (method === 'post') {
+    if (method !== 'get') {
         const dataKeys = Object.keys(data);
         for(let i = 0; i < dataKeys.length; i++){
             const key = dataKeys[i];
@@ -37,29 +38,18 @@ const formRequest = async (method, route, data={}) => {
         }
     }
 
-    fetch(`${BASE_URL}${route}`, {
+    const response = await fetch(`${BASE_URL}${route}`, {
         method: method,
         headers: {
             'Content-Type': 'multipart/form-data',
             'authorization': `Bearer ${token}`
         },
-        body: method === 'post' ? formData : null,
-    }).then(async(response) => {
-        return await response.json();
-    }).catch(err => {
-        console.log(err)
+        body: method !== 'get' ? formData : null,
     })
-};
+    const responseData = await response.text();
 
-(async function(){
-    console.log(await formRequest('get', '/posts', {
-        text: 'Hello World',
-        // images: [
-        //     'sdfsdf.png',
-        //     'sdfdsf.jpg'
-        // ]
-    }));
-})()
+    return responseData;
+};
 
 export default formRequest;
 

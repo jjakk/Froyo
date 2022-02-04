@@ -15,8 +15,13 @@ const contentReducer = (state, action) => {
 const createContent = () => async (contentType, info) => {
     const { text } = info;
     if (!text) throw { message: `${contentType} body is required` };
-    contentType += 's';
-    await froyoApi.post(`/${contentType}`, info);
+    // Use formRequest to handle file uploads (bandaid solution)
+    if (contentType === 'post') {
+        await formRequest('post', `/${contentType}s`, info)
+    }
+    else {
+        await froyoApi.post(`/${contentType}s`, info);
+    }
 };
 
 // Delete a post or comment by id

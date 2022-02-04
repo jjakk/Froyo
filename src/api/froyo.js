@@ -1,8 +1,10 @@
 import axios from 'axios';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
+const BASE_URL = __DEV__ ? 'http://127.0.0.1:8000' : 'https://api.froyo.social';
+
 const instance =  axios.create({
-    baseURL: 'https://api.froyo.social'
+    baseURL: BASE_URL
 });
 
 instance.interceptors.request.use(

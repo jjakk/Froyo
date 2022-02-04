@@ -175,6 +175,7 @@ const checkSignedIn = (dispatch) => async () => {
             navigate('NoWifi');
         }
         else{
+            await AsyncStorage.setItem('theme', 'light');
             navigate('Welcome');
         }
     }

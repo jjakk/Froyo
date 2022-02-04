@@ -1,8 +1,7 @@
 // Another API option that uses fetch intead of axios
 import FormData from 'form-data';
 import AsyncStorage from "@react-native-async-storage/async-storage";
-
-const BASE_URL = __DEV__ ? 'http://127.0.0.1:8000' : 'https://api.froyo.social';
+import { BASE_URL } from '../constants/constants';
 
 const formRequest = async (method, route, data={}) => {
     if(route[0] !== '/') route = `/${route}`;

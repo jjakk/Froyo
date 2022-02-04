@@ -50,7 +50,8 @@ const constants = {
         OPTIONS_ICON: 20,
         // Icons for bottom tab bar
         TAB_ICON: 35,
-    }
+    },
+    BASE_URL: 'https://api.froyo.social'
 };
 
 module.exports = constants;

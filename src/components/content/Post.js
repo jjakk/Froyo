@@ -88,6 +88,7 @@ const Post = (props) => {
                     post.images && (
                         <MultipleTouchable
                             onDoubleTap={onLike}
+                            onTripleTap={onDislike}
                         >
                             <Image
                                 source={{

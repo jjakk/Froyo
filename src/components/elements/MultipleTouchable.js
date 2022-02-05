@@ -9,16 +9,19 @@ const MultipleTouchable = (props) => {
     } = props;
 
     // State
-    const [lastPress, setLastPress] = useState(0);
+    const [secondPress, setSecondPress] = useState(0);
+    const [thirdPress, setThirdPress] = useState(0);
     
     const onPress = () => {
-        let delta = new Date().getTime() - lastPress;
+        let doubleDelta = new Date().getTime() - secondPress;
+        let tripleDelta = new Date().getTime() - thirdPress;
     
-        if(delta < 500) {
+        if (doubleDelta < 500) {
             onDoubleTap();
         }
     
-        setLastPress(new Date().getTime());
+        setSecondPress(new Date().getTime());
+        setThirdPress(new Date().getTime());
     };
 
     return (

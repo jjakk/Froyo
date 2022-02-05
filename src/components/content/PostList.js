@@ -92,7 +92,7 @@ const PostList = (props, ref) => {
         ]}>
             <NavigationEvents onDidFocus={onDidFocus} />
             <FlatList
-                data={loading ? [] : posts}
+                data={posts}
                 keyExtractor={(item) => item.id}
                 showsVerticalScrollIndicator={false}
                 refreshControl={

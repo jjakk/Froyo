@@ -87,7 +87,6 @@ const PostCreateScreen = ({ navigation }) => {
                 onUpload={setImages}
             />
             <ErrorMessage
-                style={styles.error}
                 message={error}
             />
         </ScreenContainer>
@@ -109,14 +108,11 @@ const styles = StyleSheet.create({
     },
     // Image upload
     imageUpload: {
-        padding: 25,
-        paddingTop: 0
+        paddingRight: 25,
+        paddingLeft: 25
     },
     submit: {
         marginLeft: 20,
-    },
-    error: {
-        margin: 25
     }
 });
 

@@ -47,50 +47,51 @@ const ImageUpload = (props) => {
     };
 
     return (
-        <FlatList
-            style={[
-                styles.container,
-                style
-            ]}
-            data={images.length < 10 ? [...images, null] : images}
-            keyExtractor={(item, index) => index.toString()}
-            renderItem={({ index }) => (
-                <>
-                <ImageSelect
-                    style={[
-                        styles.imageUpload
-                    ]}
-                    uploadedStyle={styles.imageUploaded}
-                    PlaceholderComponent={(
-                        <View style={styles.placeholder}>
-                            <PlusIcon
-                                color={darkModeEnabled ? colors.light.SECOND : colors.dark.SECOND}
-                            />
-                            <Text style={styles.placeholderText}>
-                                Add an image
-                            </Text>
-                        </View>
-                    )}
-                    image={images[index]}
-                    setImage={onImageSelect}
-                    onDelete={() => onDelete(index)}
-                />
-                </>
-            )}
-        />
+        <View style={[style, styles.container]}>
+            <FlatList
+                data={images.length < 10 ? [...images, null] : images}
+                keyExtractor={(item, index) => index.toString()}
+                renderItem={({ index }) => (
+                    <>
+                    <ImageSelect
+                        style={[
+                            styles.imageUpload
+                        ]}
+                        uploadedStyle={styles.imageUploaded}
+                        PlaceholderComponent={(
+                            <View style={styles.placeholder}>
+                                <PlusIcon
+                                    color={darkModeEnabled ? colors.light.SECOND : colors.dark.SECOND}
+                                />
+                                <Text style={styles.placeholderText}>
+                                    Add an image
+                                </Text>
+                            </View>
+                        )}
+                        image={images[index]}
+                        setImage={onImageSelect}
+                        onDelete={() => onDelete(index)}
+                    />
+                    </>
+                )}
+            />
+        </View>
     );
 };
 
 const styles = StyleSheet.create({
+    container: {
+        flexDirection: 'row'
+    },
     // Image upload
     imageUpload: {
-        marginBottom: 25,
         height: 100,
         borderWidth: 1,
         borderRadius: 15,
     },
     imageUploaded: {
         height: 300,
+        marginBottom: 25,
         borderWidth: 0,
         borderRadius: 5
     },

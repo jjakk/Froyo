@@ -17,7 +17,7 @@ const createContent = () => async (contentType, info) => {
     if (!text) throw { message: `${contentType} body is required` };
     // Use formRequest to handle file uploads (bandaid solution)
     if (contentType === 'post') {
-        await formRequest('post', `/${contentType}s`, info)
+        await formRequest('post', `/${contentType}s`, info);
     }
     else {
         await froyoApi.post(`/${contentType}s`, info);

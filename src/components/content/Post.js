@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import {
     View,
     StyleSheet,
+    Image,
+    Dimensions,
     TouchableWithoutFeedback
 } from 'react-native';
 // Navigation
@@ -28,7 +30,8 @@ import ShareIcon from '../../../assets/icons/Share.svg';
 // Constants
 import {
     colors,
-    sizes
+    sizes,
+    BASE_URL
 } from '../../constants/constants';
 
 // Post props & their meanings
@@ -88,6 +91,16 @@ const Post = (props) => {
                     onPress={onHeaderPress}
                     onDelete={onDelete}
                 />
+                {
+                    post.images && (
+                        <Image
+                            source={{
+                                uri: `${BASE_URL}/images/${post.images[0]}`
+                            }}
+                            style={styles.image}
+                        />
+                    )
+                }
                 <View style={styles.body}>
                     <Text style={styles.text}>{post.text}</Text>
                 </View>
@@ -152,6 +165,11 @@ const Post = (props) => {
 const styles = StyleSheet.create({
     post: {
         marginTop: 5,
+    },
+    // Post image
+    image: {
+        marginBottom: 15,
+        height: Dimensions.get('window').width
     },
     // Post body
     body: {

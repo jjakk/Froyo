@@ -11,7 +11,8 @@ import { navigate } from '../../navigation/navigationRef';
 // Components
 import {
     Text,
-    TouchableIcon
+    TouchableIcon,
+    MultipleTouchable
 } from '../froyo-elements';
 import ContentHeader from './parts/ContentHeader';
 import LikenessBar from './parts/LikenessBar';
@@ -25,7 +26,6 @@ import DislikeIconFill from '../../../assets/icons/Dislike-Fill.svg';
 import LikeIconOutline from '../../../assets/icons/Like-Outline.svg';
 import DislikeIconOutline from '../../../assets/icons/Dislike-Outline.svg';
 import CommentIcon from '../../../assets/icons/Comment.svg';
-import ShareIcon from '../../../assets/icons/Share.svg';
 
 // Constants
 import {
@@ -50,8 +50,7 @@ const Post = (props) => {
     const {
         style,
         data: passedPost,
-        onDelete,
-        clickable=true
+        onDelete
     } = props;
 
     const [post, setPost] = useState(passedPost);
@@ -74,13 +73,7 @@ const Post = (props) => {
     };
 
     return (
-        <TouchableWithoutFeedback
-            onPress={
-                clickable
-                    ? onPress
-                    : null
-            }
-        >
+        <TouchableWithoutFeedback>
             <View style={[
                 styles.post,
                 themeStyles[theme].post,
@@ -93,12 +86,16 @@ const Post = (props) => {
                 />
                 {
                     post.images && (
-                        <Image
-                            source={{
-                                uri: `${BASE_URL}/images/${post.images[0]}`
-                            }}
-                            style={styles.image}
-                        />
+                        <MultipleTouchable
+                            onDoubleTap={onLike}
+                        >
+                            <Image
+                                source={{
+                                    uri: `${BASE_URL}/images/${post.images[0]}`
+                                }}
+                                style={styles.image}
+                            />
+                        </MultipleTouchable>
                     )
                 }
                 <View style={styles.body}>
@@ -142,19 +139,12 @@ const Post = (props) => {
                             dislike_count={post.dislike_count}
                         />
                     </View>
-                    {/* Comment icon */}
-                    <CommentIcon
-                        width={sizes.ACTION_ICON}
-                        height={sizes.ACTION_ICON}
-                        style={styles.comment}
-                        color={colors.light.THIRD}
-                    />
-                    {/* Share button */}
                     <TouchableIcon
-                        Icon={ShareIcon}
+                        Icon={CommentIcon}
                         size={sizes.ACTION_ICON}
                         color={colors.light.THIRD}
-                        style={styles.share}
+                        onPress={onPress}
+                        style={styles.comment}
                     />
                 </View>
             </View>
@@ -179,7 +169,7 @@ const styles = StyleSheet.create({
     // Actions
     actions: {
         flexDirection: 'row',
-        justifyContent: 'space-between',
+        justifyContent: 'flex-start',
         margin: 15,
         marginTop: 0,
         marginBottom: 0,
@@ -196,11 +186,7 @@ const styles = StyleSheet.create({
         marginLeft: 5
     },
     comment: {
-        marginRight: 50,
-        marginBottom: 15
-    },
-    share: {
-        marginRight: 15,
+        marginLeft: 15,
         marginBottom: 15
     }
 });

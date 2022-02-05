@@ -35,7 +35,6 @@ const PostViewScreen = ({ navigation }) => {
                     ListHeaderComponent={(
                         <Post
                             data={post}
-                            clickable={false}
                             onDelete={navigation.pop}
                         />
                     )}

@@ -14,7 +14,7 @@ const MultipleTouchable = (props) => {
     const onPress = () => {
         let delta = new Date().getTime() - lastPress;
     
-        if(delta < 200) {
+        if(delta < 500) {
             onDoubleTap();
         }
     

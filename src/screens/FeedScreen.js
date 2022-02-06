@@ -8,6 +8,8 @@ import ScreenContainer from '../components/ScreenContainer';
 import PostList from '../components/content/PostList';
 // Icons
 import GuestIcon from '../../assets/icons/Profile-Picture.svg'
+import FroyoIcon from '../../assets/icons/Froyo.svg';
+import { colors } from '../constants/constants';
 
 const FeedScreen = ({ navigation }) => {
     const postListRef = useRef();
@@ -28,11 +30,11 @@ const FeedScreen = ({ navigation }) => {
         >
             <Header
                 navigation={navigation}
+                size={50}
                 LeftIcon={GuestIcon}
                 LeftIconProps={{
                     onPress: onAccountView
                 }}
-                size={50}
                 style={styles.header}
             />
             <PostList

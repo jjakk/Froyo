@@ -20,6 +20,8 @@ const Header = (props) => {
         size,
         RightIcon,
         RightIconProps,
+        MiddleIcon,
+        MiddleIconProps,
         LeftIcon,
         LeftIconProps,
         title
@@ -44,22 +46,28 @@ const Header = (props) => {
             themeStyles[theme].header,
             style
         ]}>
+            <TouchableIcon
+                Icon={LeftIcon || BackIcon}
+                onPress={onBack}
+                size={size}
+                {...LeftIconProps}
+            />
             {
-                <TouchableIcon
-                    Icon={LeftIcon || BackIcon}
-                    onPress={onBack}
-                    size={size}
-                    {...LeftIconProps}
-                />
-            }
-            {
-                title ? (
-                    <Text
-                        style={styles.title}
-                    >
-                        {title}
-                    </Text>
-                ) : null
+                MiddleIcon ? (
+                    <TouchableIcon
+                        Icon={MiddleIcon}
+                        size={size}
+                        {...MiddleIconProps}
+                    />
+                ) : (
+                    title && (
+                        <Text
+                            style={styles.title}
+                        >
+                            {title}
+                        </Text>
+                    )
+                )
             }
             {
                 RightIcon ? (

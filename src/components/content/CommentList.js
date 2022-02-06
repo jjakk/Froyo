@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
         fontSize: 28,
         alignSelf: 'center',
         opacity: 0.75,
-        marginTop: 50
+        margin: 50
     },
 });
 

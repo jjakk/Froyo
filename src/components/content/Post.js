@@ -12,7 +12,8 @@ import { navigate } from '../../navigation/navigationRef';
 import {
     Text,
     TouchableIcon,
-    MultipleTouchable
+    MultipleTouchable,
+    ImageList
 } from '../froyo-elements';
 import ContentHeader from './parts/ContentHeader';
 import LikenessBar from './parts/LikenessBar';

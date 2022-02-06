@@ -104,7 +104,10 @@ const PostCreateScreen = ({ navigation }) => {
                 onDelete={onImageDelete}
             />
             <ErrorMessage
+                type='box'
+                style={styles.error}
                 message={error}
+                clearError={clearError}
             />
         </ScreenContainer>
     );
@@ -125,11 +128,15 @@ const styles = StyleSheet.create({
     },
     // Image upload
     imageUpload: {
+        flex: 1,
         paddingRight: 25,
         paddingLeft: 25
     },
     submit: {
         marginLeft: 20,
+    },
+    error: {
+        bottom: 25
     }
 });
 

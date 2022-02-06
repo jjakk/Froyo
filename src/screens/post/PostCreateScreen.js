@@ -40,7 +40,9 @@ const PostCreateScreen = ({ navigation }) => {
             setLoading(true);
             await createContent('post', { text: postText, images });
             setLoading(false);
+            // Clear form data
             setPostText('');
+            setImages([]);
             navigation.navigate('AccountView');
         }
         catch (err) {
@@ -52,6 +54,19 @@ const PostCreateScreen = ({ navigation }) => {
     const clearError = async () => {
         if(error) setError('');
     };
+
+    // Image events
+    const onImageSelect = (image) => {
+        setImages([...images, image]);
+    }
+
+    const onImageDelete = (index) => {
+        setImages([
+            ...images.slice(0, index),
+            ...images.slice(index + 1)
+        ]);
+    };
+
 
     // Delete error message when you type in the post body
     useEffect(() => {
@@ -84,7 +99,9 @@ const PostCreateScreen = ({ navigation }) => {
             </View>
             <ImageUpload
                 style={styles.imageUpload}
-                onUpload={setImages}
+                images={images}
+                onImageSelect={onImageSelect}
+                onDelete={onImageDelete}
             />
             <ErrorMessage
                 message={error}

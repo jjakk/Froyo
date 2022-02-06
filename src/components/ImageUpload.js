@@ -24,27 +24,10 @@ const ImageUpload = (props) => {
     // Props
     const {
         style,
-        onUpload
+        images,
+        onImageSelect,
+        onDelete
     } = props;
-
-    // State
-    const [images, setImages] = useState([]);
-
-    const onImageSelect = (image) => {
-        setImages([...images, image]);
-        onUpload([...images, image]);
-    }
-
-    const onDelete = (index) => {
-        setImages([
-            ...images.slice(0, index),
-            ...images.slice(index + 1)
-        ]);
-        onUpload([
-            ...images.slice(0, index),
-            ...images.slice(index + 1)
-        ]);
-    };
 
     return (
         <View style={[style, styles.container]}>

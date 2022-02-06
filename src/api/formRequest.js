@@ -45,9 +45,20 @@ const formRequest = async (method, route, data={}) => {
         },
         body: method !== 'get' ? formData : null,
     })
+    
     const responseData = await response.text();
+    const statusCategory = parseInt(parseInt(response.status) / 100);
 
-    return responseData;
+    switch (statusCategory) {
+        case 2:
+            return responseData;
+        case 4:
+            throw { message: 'Bad Request' };
+        case 5:
+            throw { message: 'Server Error' };
+        default:
+            throw { message: 'Something went wrong' };
+    }
 };
 
 export default formRequest;

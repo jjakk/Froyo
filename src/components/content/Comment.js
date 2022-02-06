@@ -12,6 +12,10 @@ import {
     Text,
     TouchableIcon
 } from '../../components/froyo-elements';
+import {
+    LikeButton,
+    DislikeButton
+} from './parts/likeness-buttons';
 import ContentHeader from './parts/ContentHeader';
 import MoreOptions from './parts/MoreOptions';
 import LikenessBar from './parts/LikenessBar';
@@ -92,32 +96,14 @@ const Comment = (props) => {
                     </TouchableOpacity>
                     <View style={styles.likenessContainer}>
                         <View style={styles.likeness}>
-                            {/* Like Button */}
-                            <TouchableIcon
-                                size={sizes.ACTION_ICON}
+                            <LikeButton
                                 onPress={onLike}
-                                Icon={
-                                    comment.liking
-                                    ? LikeIconFill : LikeIconOutline
-                                }
-                                color={
-                                    comment.liking
-                                    ? colors.GREEN : colors.light.THIRD
-                                }
+                                content={comment}
                             />
-                            {/* Disike Button */}
-                            <TouchableIcon
-                                size={sizes.ACTION_ICON}
+                            <DislikeButton
                                 onPress={onDislike}
+                                content={comment}
                                 style={styles.dislike}
-                                Icon={
-                                    comment.disliking
-                                    ? DislikeIconFill : DislikeIconOutline
-                                }
-                                color={
-                                    comment.disliking
-                                    ? colors.DISLIKE_RED : colors.light.THIRD
-                                }
                             />
                         </View>
                         <LikenessBar

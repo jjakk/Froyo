@@ -22,7 +22,7 @@ const calculateAge = (dateOfUpload) => {
 }
 
 const plural = (amount) => {
-    return amount > 1 ? 's' : '';
+    return amount !== 1 ? 's' : '';
 }
 
 // Format the time since the post was uploaded (given miliseconds)

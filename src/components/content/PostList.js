@@ -136,7 +136,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         flexDirection: 'row',
         width: '100%',
-        flex: 1,
+        flex: 1
     },
     emptyMessage: {
         marginTop: 50

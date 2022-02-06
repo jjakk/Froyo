@@ -15,6 +15,10 @@ import {
     MultipleTouchable,
     ImageList
 } from '../froyo-elements';
+import {
+    LikeButton,
+    DislikeButton
+} from './parts/likeness-buttons';
 import ContentHeader from './parts/ContentHeader';
 import LikenessBar from './parts/LikenessBar';
 // Contexts
@@ -22,10 +26,6 @@ import { useSettings } from '../../context/SettingsContext';
 import { useUser } from '../../context/UserContext';
 import { useContent } from '../../context/ContentContext';
 // Icons
-import LikeIconFill from '../../../assets/icons/Like-Fill.svg';
-import DislikeIconFill from '../../../assets/icons/Dislike-Fill.svg';
-import LikeIconOutline from '../../../assets/icons/Like-Outline.svg';
-import DislikeIconOutline from '../../../assets/icons/Dislike-Outline.svg';
 import CommentIcon from '../../../assets/icons/Comment.svg';
 
 // Constants
@@ -104,35 +104,16 @@ const Post = (props) => {
                     <Text style={styles.text}>{post.text}</Text>
                 </View>
                 <View style={styles.actions}>
-                    {/* Like & dislike buttons */}
                     <View style={styles.likenessContainer}>
                         <View style={styles.likeness}>
-                            {/* Like Button */}
-                            <TouchableIcon
-                                size={sizes.ACTION_ICON}
+                            <LikeButton
                                 onPress={onLike}
-                                Icon={
-                                    post.liking
-                                    ? LikeIconFill : LikeIconOutline
-                                }
-                                color={
-                                    post.liking
-                                    ? colors.GREEN : colors.light.THIRD
-                                }
+                                content={post}
                             />
-                            {/* Disike Button */}
-                            <TouchableIcon
-                                size={sizes.ACTION_ICON}
+                            <DislikeButton
                                 onPress={onDislike}
+                                content={post}
                                 style={styles.dislike}
-                                Icon={
-                                    post.disliking
-                                    ? DislikeIconFill : DislikeIconOutline
-                                }
-                                color={
-                                    post.disliking
-                                    ? colors.DISLIKE_RED : colors.light.THIRD
-                                }
                             />
                         </View>
                         <LikenessBar
@@ -144,7 +125,6 @@ const Post = (props) => {
                     <TouchableIcon
                         Icon={CommentIcon}
                         size={sizes.ACTION_ICON}
-                        color={colors.light.THIRD}
                         onPress={onPress}
                         style={styles.comment}
                     />

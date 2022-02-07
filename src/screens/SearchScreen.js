@@ -14,6 +14,7 @@ const SearchScreen = () => {
     };
     
     const onClear = async () => {
+        console.log('cleared');
         await postListRef.current.reloadContent('');
     };
 
@@ -26,6 +27,7 @@ const SearchScreen = () => {
                 type='Search'
                 emptyMessage='No posts found'
                 refreshable={false}
+                onDelete={onSearch}
                 ListHeaderComponent={(
                     <SearchBar
                         onSearch={onSearch}

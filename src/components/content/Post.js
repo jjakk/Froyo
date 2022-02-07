@@ -78,12 +78,12 @@ const Post = (props) => {
         setPost(await dislikeContent('post', post.id));
     };
 
-    const onDoubleTap = () => {
-        likeRef.current.simulateTap();
-    };
-
     const onTripleTap = () => {
         dislikeRef.current.simulateTap();
+    };
+
+    const onDoubleTap = () => {
+        likeRef.current.simulateTap();
     };
 
     return (

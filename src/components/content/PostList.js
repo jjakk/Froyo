@@ -38,6 +38,7 @@ const PostList = (props, ref) => {
         emptyMessage,
         style,
         onPullDownRefresh,
+        onDelete,
         user=signedInUser,
         refreshable=true,
         ...otherProps
@@ -56,7 +57,7 @@ const PostList = (props, ref) => {
     }))
 
     // Function to retrieve user info & posts
-    const reloadContent = async (searchValue='') => {
+    const reloadContent = async (searchValue) => {
         setLoading(true);
         // Retrieve posts
         switch (type) {
@@ -67,7 +68,9 @@ const PostList = (props, ref) => {
                 setPosts(await getFeed());
                 break;
             case 'Search':
-                setPosts(await searchContent('post', { text: searchValue }));
+                if(searchValue !== undefined) {
+                    setPosts(await searchContent('post', { text: searchValue }));
+                }
                 break;
         }
         setLoading(false);
@@ -109,7 +112,7 @@ const PostList = (props, ref) => {
                 renderItem={({ item }) => (
                     <Post
                         data={item}
-                        onDelete={reloadContent}
+                        onDelete={onDelete || reloadContent}
                     />
                 )}
                 ListEmptyComponent={() => (

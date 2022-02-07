@@ -1,4 +1,8 @@
-import React, { useRef } from 'react';
+import React, {
+    useRef,
+    useImperativeHandle,
+    forwardRef
+} from 'react';
 import { Animated } from 'react-native';
 // Components
 import TouchableIcon from '../../elements/TouchableIcon';
@@ -10,10 +14,15 @@ import DislikeIconOutline from '../../../../assets/icons/Dislike-Outline.svg';
 // Constants
 import { colors, sizes } from '../../../constants/constants';
 
-const LikenessButton = (props) => {
+const LikenessButton = forwardRef((props, ref) => {
+    useImperativeHandle(ref, () => ({
+        action: () => {
+            handlePress();
+        }
+    }))
+
     // Props
     const {
-        content,
         onPress,
         style,
         fillColor,
@@ -21,7 +30,7 @@ const LikenessButton = (props) => {
         OutlineIcon,
         fillCondition,
         rotateClockwise,
-    } = props;    
+    } = props;
 
     // Determines whether to rotate clockwise or counterclockwise
     const maxRotation = 45 * (
@@ -29,58 +38,85 @@ const LikenessButton = (props) => {
     );
 
     // Animation Logic
-    const progress = useRef(new Animated.Value(0)).current;
+    const progress = {
+        timing: useRef(new Animated.Value(0)).current,
+        spring: useRef(new Animated.Value(0)).current
+    };
 
     // Press logic
     const handlePress = () => {
-        Animated.spring(progress, {
-            toValue: 1,
-            speed: 2,
-            useNativeDriver: true
-        }).start(() => {
-            progress.setValue(0);
+        // Fire animations
+        Animated.parallel([
+            Animated.spring(progress.spring, {
+                toValue: 1,
+                speed: 2,
+                useNativeDriver: true
+            }),
+            Animated.timing(progress.timing, {
+                toValue: 1,
+                duration: 1000,
+                useNativeDriver: true
+            })
+        ])
+        .start(() => {
+            progress.spring.setValue(0);
+            progress.timing.setValue(0);
         });
+        // Fire onPress prop function
         onPress();
     };
+
+    // Conditional props
+    const Icon = fillCondition ? FillIcon : OutlineIcon;
+    const rotation = progress.spring.interpolate({
+        inputRange: [0, 0.5, 1],
+        outputRange: [
+            '0deg',
+            `${maxRotation}deg`,
+            '0deg'
+        ]
+    });
+    const colorCycle = progress.timing.interpolate({
+        inputRange: [0, 1],
+        outputRange: ["rgb(90,210,244)" , "rgb(224,82,99)"]
+    });
+    const buttonColor = fillCondition
+        ? fillColor//colorCycle
+        : undefined
 
     return (
         <Animated.View
             style={{
                 transform: [{
-                    rotate: progress.interpolate({
-                        inputRange: [0, 0.5, 1],
-                        outputRange: [
-                            '0deg',
-                            `${maxRotation}deg`,
-                            '0deg'
-                        ]
-                    })
+                    rotate: rotation
                 }]
             }}
         >
             <TouchableIcon
                 size={sizes.ACTION_ICON}
-                style={style}
                 onPress={handlePress}
-                Icon={
-                    fillCondition
-                    ? FillIcon : OutlineIcon
-                }
-                color={
-                    fillCondition
-                    ? fillColor
-                    : undefined
-                }
+                Icon={Icon}
+                color={buttonColor}
+                style={style}
             />
         </Animated.View>
     );
-};
+});
 
-const LikeButton = (props) => {
+const LikeButton = (props, ref) => {
+    const likenessRef = useRef();
+
     // Props
     const {
         content
     } = props;
+
+    // Refs
+    useImperativeHandle(ref, () => ({
+        like: () => {
+            likenessRef.current.action();
+        }
+    }))
 
     return (
         <LikenessButton
@@ -90,11 +126,17 @@ const LikeButton = (props) => {
             FillIcon={LikeIconFill}
             OutlineIcon={LikeIconOutline}
             rotateClockwise={false}
+            ref={likenessRef}
         />
     );
 };
 
-const DislikeButton = (props) => {
+const DislikeButton = (props, ref) => {
+    // Refs
+    useImperativeHandle(ref, () => ({
+        dislike: () => {console.log('disliked');}
+    }))
+
     // Props
     const {
         content
@@ -113,6 +155,6 @@ const DislikeButton = (props) => {
 };
 
 module.exports = {
-    LikeButton,
-    DislikeButton
+    LikeButton: forwardRef(LikeButton),
+    DislikeButton: forwardRef(DislikeButton)
 };

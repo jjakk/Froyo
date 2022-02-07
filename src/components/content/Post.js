@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import {
     View,
     StyleSheet,
@@ -12,8 +12,7 @@ import { navigate } from '../../navigation/navigationRef';
 import {
     Text,
     TouchableIcon,
-    MultipleTouchable,
-    ImageList
+    MultipleTouchable
 } from '../froyo-elements';
 import {
     LikeButton,
@@ -44,10 +43,15 @@ import {
 // onPress -> function: the function to call when the post is tapped on
 
 const Post = (props) => {
+    // Refs
+    const likeRef = useRef();
+
+    // Context
     const { state: { theme } } = useSettings();
     const { state: { user } } = useUser();
     const { likeContent, dislikeContent } = useContent();
     
+    // Props
     const {
         style,
         data: passedPost,
@@ -73,6 +77,10 @@ const Post = (props) => {
         setPost(await dislikeContent('post', post.id));
     };
 
+    const onDoubleTap = () => {
+        likeRef.current.like();
+    };
+
     return (
         <TouchableWithoutFeedback>
             <View style={[
@@ -88,7 +96,7 @@ const Post = (props) => {
                 {
                     post.images && (
                         <MultipleTouchable
-                            onDoubleTap={onLike}
+                            onDoubleTap={onDoubleTap}
                             onTripleTap={onDislike}
                         >
                             <Image
@@ -109,6 +117,7 @@ const Post = (props) => {
                             <LikeButton
                                 onPress={onLike}
                                 content={post}
+                                ref={likeRef}
                             />
                             <DislikeButton
                                 onPress={onDislike}

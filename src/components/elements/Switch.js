@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useRef } from 'react';
 // Components
 import {
     StyleSheet,
     View,
     Animated,
-    TouchableWithoutFeedback
+    TouchableWithoutFeedback,
+    Easing
 } from 'react-native';
 // Context
 import { useSettings } from '../../context/SettingsContext';
@@ -23,23 +24,49 @@ const Switch = (props) => {
         style,
     } = props;
 
+    // Animation Logic
+    const progress = useRef(new Animated.Value(Number(isOn))).current;
+
+    // Conditional rendering
+    const backgroundColor = (
+        isOn ? (
+            darkModeEnabled
+                ? colors.LIGHT_GREEN
+                : colors.GREEN
+        ) : (
+            colors.light.SECOND
+        )
+    );
+    const circleColor = (
+        darkModeEnabled
+            ? colors.dark.FIRST
+            : colors.WHITE
+    );
+
+    // Event handlers
+    const onPress = () => {
+        Animated.timing(progress, {
+            toValue: Number(!isOn),
+            duration: 150,
+            useNativeDriver: true
+        }).start(() => {
+            progress.setValue(0);
+        });
+        onToggle();
+    };
+
     return (
-        <TouchableWithoutFeedback onPress={onToggle}>
+        <TouchableWithoutFeedback onPress={onPress}>
             <View style={[styles.switch, {
-                backgroundColor: darkModeEnabled ? (
-                    isOn ? colors.light.FIRST : colors.dark.FIRST
-                ) : (
-                    isOn ? colors.GREEN : colors.light.FIRST
-                )
+                backgroundColor: backgroundColor
             }, style]}>
                 <Animated.View style={[styles.circle, {
-                    backgroundColor: darkModeEnabled ? (
-                        isOn ? colors.dark.FIRST : colors.light.FIRST
-                    ) : (
-                        isOn ? colors.light.FIRST : colors.GREEN
-                    ),
+                    backgroundColor: circleColor,
                     transform: [{
-                        translateX: isOn ? 28 : 0,
+                        translateX: progress.interpolate({
+                            inputRange: [0, 1],
+                            outputRange: [0, 28]
+                        })
                     }]
                 }]} />
             </View>
@@ -51,12 +78,12 @@ const styles = StyleSheet.create({
     switch: {
         width: 64,
         height: 36,
-        padding: 5,
+        padding: 4,
         borderRadius: 999,
     },
     circle: {
-        width: 26,
-        height: 26,
+        width: 28,
+        height: 28,
         borderRadius: 999,
     },
 });

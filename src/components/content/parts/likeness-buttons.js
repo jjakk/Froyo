@@ -16,9 +16,7 @@ import { colors, sizes } from '../../../constants/constants';
 
 const LikenessButton = forwardRef((props, ref) => {
     useImperativeHandle(ref, () => ({
-        action: () => {
-            handlePress();
-        }
+        simulateTap: handlePress
     }))
 
     // Props
@@ -104,19 +102,16 @@ const LikenessButton = forwardRef((props, ref) => {
 });
 
 const LikeButton = (props, ref) => {
+    // Refs
     const likenessRef = useRef();
+    useImperativeHandle(ref, () => ({
+        simulateTap: likenessRef.current.simulateTap
+    }))
 
     // Props
     const {
         content
     } = props;
-
-    // Refs
-    useImperativeHandle(ref, () => ({
-        like: () => {
-            likenessRef.current.action();
-        }
-    }))
 
     return (
         <LikenessButton
@@ -133,8 +128,9 @@ const LikeButton = (props, ref) => {
 
 const DislikeButton = (props, ref) => {
     // Refs
+    const likenessRef = useRef();
     useImperativeHandle(ref, () => ({
-        dislike: () => {console.log('disliked');}
+        simulateTap: likenessRef.current.simulateTap
     }))
 
     // Props
@@ -150,6 +146,7 @@ const DislikeButton = (props, ref) => {
             FillIcon={DislikeIconFill}
             OutlineIcon={DislikeIconOutline}
             rotateClockwise={true}
+            ref={likenessRef}
         />
     );
 };

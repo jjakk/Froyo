@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+// Components
 import {
     View,
     StyleSheet,
@@ -6,13 +7,10 @@ import {
     Dimensions,
     TouchableWithoutFeedback
 } from 'react-native';
-// Navigation
-import { navigate } from '../../navigation/navigationRef';
-// Components
+import MultiTap from 'react-native-multitap';
 import {
     Text,
-    TouchableIcon,
-    MultipleTouchable
+    TouchableIcon
 } from '../froyo-elements';
 import {
     LikeButton,
@@ -20,6 +18,8 @@ import {
 } from './parts/likeness-buttons';
 import ContentHeader from './parts/ContentHeader';
 import LikenessBar from './parts/LikenessBar';
+// Navigation
+import { navigate } from '../../navigation/navigationRef';
 // Contexts
 import { useSettings } from '../../context/SettingsContext';
 import { useUser } from '../../context/UserContext';
@@ -45,6 +45,7 @@ import {
 const Post = (props) => {
     // Refs
     const likeRef = useRef();
+    const dislikeRef = useRef();
 
     // Context
     const { state: { theme } } = useSettings();
@@ -78,7 +79,11 @@ const Post = (props) => {
     };
 
     const onDoubleTap = () => {
-        likeRef.current.like();
+        likeRef.current.simulateTap();
+    };
+
+    const onTripleTap = () => {
+        dislikeRef.current.simulateTap();
     };
 
     return (
@@ -95,9 +100,9 @@ const Post = (props) => {
                 />
                 {
                     post.images && (
-                        <MultipleTouchable
+                        <MultiTap
+                            onTripleTap={onTripleTap}
                             onDoubleTap={onDoubleTap}
-                            onTripleTap={onDislike}
                         >
                             <Image
                                 source={{
@@ -105,7 +110,7 @@ const Post = (props) => {
                                 }}
                                 style={styles.image}
                             />
-                        </MultipleTouchable>
+                        </MultiTap>
                     )
                 }
                 <View style={styles.body}>
@@ -123,6 +128,7 @@ const Post = (props) => {
                                 onPress={onDislike}
                                 content={post}
                                 style={styles.dislike}
+                                ref={dislikeRef}
                             />
                         </View>
                         <LikenessBar

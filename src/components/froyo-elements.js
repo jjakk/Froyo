@@ -9,7 +9,6 @@ import TouchableIcon from './elements/TouchableIcon';
 import LoadingAnimation from './elements/LoadingAnimation';
 import Switch from './elements/Switch';
 import ImageSelect from './elements/ImageSelect';
-import MultipleTouchable from './elements/MultipleTouchable';
 import ImageList from './elements/ImageList';
 
 module.exports = {
@@ -24,7 +23,6 @@ module.exports = {
   LoadingAnimation,
   Switch,
   ImageSelect,
-  MultipleTouchable,
   ImageList
 };
 

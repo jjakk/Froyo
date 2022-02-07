@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useRef } from 'react';
+import { Animated } from 'react-native';
 // Components
 import TouchableIcon from '../../elements/TouchableIcon';
 // Icons
@@ -10,33 +11,74 @@ import DislikeIconOutline from '../../../../assets/icons/Dislike-Outline.svg';
 import { colors, sizes } from '../../../constants/constants';
 
 const LikenessButton = (props) => {
+    // Props
     const {
+        content,
         onPress,
         style,
         fillColor,
         FillIcon,
         OutlineIcon,
-        fillCondition
+        fillCondition,
+        rotateClockwise,
     } = props;
 
+    const maxRotation = 45 * (
+        fillCondition !== rotateClockwise
+            ? -1
+            : 1
+    );
+
+    // Animation Logic
+    const progress = useRef(new Animated.Value(0)).current;
+
+    // Press logic
+    const handlePress = () => {
+        Animated.spring(progress, {
+            toValue: 1,
+            speed: 2,
+            useNativeDriver: true
+        }).start(() => {
+            progress.setValue(0);
+        });
+        onPress();
+    };
+
     return (
-        <TouchableIcon
-            size={sizes.ACTION_ICON}
-            style={style}
-            onPress={onPress}
-            Icon={
-                fillCondition
-                ? FillIcon : OutlineIcon
-            }
-            color={
-                fillCondition
-                ? fillColor : undefined
-            }
-        />
+        <Animated.View
+            style={{
+                transform: [{
+                    rotate: progress.interpolate({
+                        inputRange: [0, 0.5, 1],
+                        outputRange: [
+                            '0deg',
+                            `${maxRotation}deg`,
+                            '0deg'
+                        ]
+                    })
+                }]
+            }}
+        >
+            <TouchableIcon
+                size={sizes.ACTION_ICON}
+                style={style}
+                onPress={handlePress}
+                Icon={
+                    fillCondition
+                    ? FillIcon : OutlineIcon
+                }
+                color={
+                    fillCondition
+                    ? fillColor
+                    : undefined
+                }
+            />
+        </Animated.View>
     );
 };
 
 const LikeButton = (props) => {
+    // Props
     const {
         content
     } = props;
@@ -48,11 +90,13 @@ const LikeButton = (props) => {
             fillColor={colors.GREEN}
             FillIcon={LikeIconFill}
             OutlineIcon={LikeIconOutline}
+            rotateClockwise={false}
         />
     );
 };
 
 const DislikeButton = (props) => {
+    // Props
     const {
         content
     } = props;
@@ -64,6 +108,7 @@ const DislikeButton = (props) => {
             fillColor={colors.DISLIKE_RED}
             FillIcon={DislikeIconFill}
             OutlineIcon={DislikeIconOutline}
+            rotateClockwise={true}
         />
     );
 };

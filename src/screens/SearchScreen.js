@@ -14,7 +14,6 @@ const SearchScreen = () => {
     };
     
     const onClear = async () => {
-        console.log('cleared');
         await postListRef.current.reloadContent('');
     };
 

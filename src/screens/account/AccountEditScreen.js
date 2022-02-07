@@ -3,11 +3,12 @@ import React, { useState } from 'react';
 import {
     StyleSheet,
     View,
-    Image,
+    ImageBackground
 } from 'react-native';
 import {
     Button,
-    Input
+    Input,
+    ImageSelect,
 } from '../../components/froyo-elements';
 import ScreenContainer from '../../components/ScreenContainer';
 import Header from '../../components/Header';
@@ -15,6 +16,8 @@ import Header from '../../components/Header';
 import UploadIcon from '../../../assets/icons/Upload.svg';
 // Context
 import { useUser } from '../../context/UserContext';
+// Constants
+import { BASE_URL, colors } from '../../constants/constants';
 
 const AccountEditScreen = ({ navigation }) => {
     const { updateUser, state: { user } } = useUser();
@@ -23,8 +26,23 @@ const AccountEditScreen = ({ navigation }) => {
     const [lastName, setLastName] = useState(user.last_name);
     const [username, setUsername] = useState(user.username);
     const [description, setDescription] = useState(user.description);
+    const [image, setImage] = useState(null);
     // Status states
     const [loading, setLoading] = useState(false);
+
+    // Conditional rendering
+    const profilePictureSource = (
+        image
+            ? {
+                uri: image
+            } : (
+                user.profile_picture_bucket_key
+                ? {
+                    uri: `${BASE_URL}/images/${user.profile_picture_bucket_key}`
+                }
+                : require('../../../assets/icons/guest.png')
+            )
+    );
 
     const handleSubmit = () => {
         setLoading(true);
@@ -53,14 +71,18 @@ const AccountEditScreen = ({ navigation }) => {
         <ScreenContainer>
             <Header navigation={navigation} />
             <View style={styles.form}>
-                <View style={styles.profilePictureUpload}>
-                    <Image
-                        source={require('../../../assets/icons/guest.png')}
-                        style={styles.profilePicture}
+                <ImageBackground
+                    source={profilePictureSource}
+                    style={styles.profilePicture}
+                    imageStyle={styles.profilePictureImage}
+                >
+                    <View style={styles.filter}/>
+                    <UploadIcon
+                        width={35}
+                        height={35}
+                        color={colors.LIGHT_BLACK}
                     />
-                    <View style={styles.filter}></View>
-                    <UploadIcon width={35} height={35} style={styles.uploadIcon} />
-                </View>
+                </ImageBackground>
                 <View style={styles.fields}>
                     <View style={[styles.field, styles.nameInputs]}>
                         <View style={styles.nameInputContainer}>
@@ -129,29 +151,26 @@ const styles = StyleSheet.create({
         marginTop: 10
     },
     // Profile Picture Upload Button
-    profilePictureUpload: {
+    profilePicture: {
         marginTop: 30,
         justifyContent: 'center',
         alignItems: 'center',
         alignSelf: 'center',
         width: 100,
-        height: 100,
+        height: 100
     },
-    profilePicture: {
-        width: 100,
-        height: 100,
-        position: 'absolute'
+    profilePictureImage: {
+        borderRadius: 100
     },
     filter: {
         width: 100,
         height: 100,
-        backgroundColor: 'white',
+        backgroundColor: colors.GRAY,
+        borderRadius: 100,
+        alignItems: 'center',
+        justifyContent: 'center',
         position: 'absolute',
-        borderRadius: 999999,
-        opacity: 0.75
-    },
-    uploadIcon: {
-        opacity: 0.9
+        opacity: 0.5
     },
     // Input Fields
     // Name

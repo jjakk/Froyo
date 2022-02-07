@@ -6,13 +6,11 @@ import PostList from '../../components/content/PostList';
 import UserProfile from '../../components/UserProfile';
 // Context
 import { useUser } from '../../context/UserContext';
-import { useContent } from '../../context/ContentContext';
 // Icons
 import GearIcon from '../../../assets/icons/Gear.svg';
 
 const AccountViewScreen = ({ navigation }) => {
     const { getUser, state: { user: signedInUser } } = useUser();
-    const { searchContent } = useContent();
     const [user, setUser] = useState(navigation.getParam('user') || signedInUser);
 
     const onSettings = () => {

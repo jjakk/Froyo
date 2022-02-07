@@ -31,7 +31,7 @@ const LikenessButton = forwardRef((props, ref) => {
     } = props;
 
     // Determines whether to rotate clockwise or counterclockwise
-    const maxRotation = 45 * (
+    const maxRotation = 30 * (
         (-1) ** Number(fillCondition !== rotateClockwise)
     );
 
@@ -47,7 +47,7 @@ const LikenessButton = forwardRef((props, ref) => {
         Animated.parallel([
             Animated.spring(progress.spring, {
                 toValue: 1,
-                speed: 2,
+                speed: 1.25,
                 useNativeDriver: true
             }),
             Animated.timing(progress.timing, {
@@ -66,14 +66,6 @@ const LikenessButton = forwardRef((props, ref) => {
 
     // Conditional props
     const Icon = fillCondition ? FillIcon : OutlineIcon;
-    const rotation = progress.spring.interpolate({
-        inputRange: [0, 0.5, 1],
-        outputRange: [
-            '0deg',
-            `${maxRotation}deg`,
-            '0deg'
-        ]
-    });
     const colorCycle = progress.timing.interpolate({
         inputRange: [0, 1],
         outputRange: ["rgb(90,210,244)" , "rgb(224,82,99)"]
@@ -86,12 +78,24 @@ const LikenessButton = forwardRef((props, ref) => {
         <Animated.View
             style={{
                 transform: [{
-                    rotate: rotation
+                    rotate: progress.spring.interpolate({
+                        inputRange: [0, 0.5, 1],
+                        outputRange: [
+                            '0deg',
+                            `${maxRotation}deg`,
+                            '0deg'
+                        ]
+                    })
+                    
+                }, {
+                    scale: progress.spring.interpolate({
+                        inputRange: [0, 0.5, 1],
+                        outputRange: [1, 1.1, 1]
+                    })
                 }]
             }}
         >
             <TouchableIcon
-                size={sizes.ACTION_ICON}
                 onPress={handlePress}
                 Icon={Icon}
                 color={buttonColor}

@@ -21,12 +21,11 @@ const LikenessButton = (props) => {
         OutlineIcon,
         fillCondition,
         rotateClockwise,
-    } = props;
+    } = props;    
 
+    // Determines whether to rotate clockwise or counterclockwise
     const maxRotation = 45 * (
-        fillCondition !== rotateClockwise
-            ? -1
-            : 1
+        (-1) ** Number(fillCondition !== rotateClockwise)
     );
 
     // Animation Logic

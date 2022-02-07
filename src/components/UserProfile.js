@@ -20,7 +20,7 @@ import {
     Text
 } from './froyo-elements';
 // Constants
-import { colors } from '../constants/constants';
+import { BASE_URL, colors } from '../constants/constants';
 
 const UserProfile = (props) => {
     // Context
@@ -37,6 +37,15 @@ const UserProfile = (props) => {
         user=signedInUser,
         onUserUpdate
     } = props;
+    
+    // Conditional rendering
+    const profilePictureSource = (
+        user.profile_picture_bucket_key
+        ? {
+            uri: `${BASE_URL}/images/${user.profile_picture_bucket_key}`
+        }
+        : require('../../assets/icons/guest.png')
+    );
 
     // State
     // Whether the current user's following the user being viewed
@@ -72,8 +81,8 @@ const UserProfile = (props) => {
                     <View style={styles.header}>
                         <Image
                             style={styles.profilePicture}
-                            resizeMode='contain'
-                            source={require('../../assets/icons/guest.png')}
+                            resizeMode='cover'
+                            source={profilePictureSource}
                         />
                         <View style={styles.headerText}>
                             <Text
@@ -186,7 +195,8 @@ const styles = StyleSheet.create({
     },
     profilePicture: {
         width: 100,
-        height: 100
+        height: 100,
+        borderRadius: 100
     },
     name: {
         fontSize: 30,

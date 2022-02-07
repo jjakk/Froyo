@@ -1,5 +1,6 @@
 import { useContext } from 'react';
 import createDataContext from './createDataContext';
+// API
 import froyoApi from '../api/froyo';
 import formRequest from '../api/formRequest';
 
@@ -15,7 +16,7 @@ const contentReducer = (state, action) => {
 const createContent = () => async (contentType, info) => {
     const { text } = info;
     if (!text) throw { message: `${contentType} body is required` };
-    // Use formRequest to handle file uploads (bandaid solution)
+    // Only use formRequest to handle file uploads (bandaid solution)
     if (contentType === 'post') {
         await formRequest('post', `/${contentType}s`, info);
     }

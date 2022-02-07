@@ -10,6 +10,8 @@ import { Text, Br } from '../../froyo-elements';
 import MoreOptions from './MoreOptions';
 // Helper functions
 import { calculateAge } from '../../../helperFunctions/age';
+// Constants
+import { BASE_URL } from '../../../constants/constants';
 
 const ContentHeader = (props) => {
     const {
@@ -18,6 +20,15 @@ const ContentHeader = (props) => {
         onDelete,
         condensed
     } = props;
+
+    // Conditional rendering
+    const profilePictureSource = (
+        content.author.profile_picture_bucket_key
+        ? {
+            uri: `${BASE_URL}/images/${content.author.profile_picture_bucket_key}`
+        }
+        : require('../../../../assets/icons/guest.png')
+    );
 
     return (
         <View style={styles.header}>
@@ -28,8 +39,8 @@ const ContentHeader = (props) => {
                             styles.profilePicture,
                             condensed ? condensedStyles.profilePicture : null
                         ]}
-                        source={require('../../../../assets/icons/guest.png')}
-                        resizeMode='contain'
+                        source={profilePictureSource}
+                        resizeMode='cover'
                     />
                     <Text>
                         <Text style={[
@@ -82,6 +93,7 @@ const styles = StyleSheet.create({
     profilePicture: {
         width: 50,
         height: 50,
+        borderRadius: 50,
         marginRight: 15
     },
     author: {

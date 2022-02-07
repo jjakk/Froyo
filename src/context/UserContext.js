@@ -1,8 +1,11 @@
 import { useContext } from 'react';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import createDataContext from './createDataContext';
-import froyoApi from '../api/froyo';
 import { navigate } from '../navigation/navigationRef';
+// API
+import froyoApi from '../api/froyo';
+import formRequest from '../api/formRequest';
+// Helpers
 import { ageInYears } from '../helperFunctions/age';
 
 // Handle setting state
@@ -149,6 +152,8 @@ const updateUser = () => async (info) => {
         case username:
             return callback('Must enter a username');
     }
+
+    /* use formRequest */
     await froyoApi.put('/users', {
         first_name: firstName,
         last_name: lastName,

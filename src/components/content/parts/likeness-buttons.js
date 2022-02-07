@@ -36,29 +36,18 @@ const LikenessButton = forwardRef((props, ref) => {
     );
 
     // Animation Logic
-    const progress = {
-        timing: useRef(new Animated.Value(0)).current,
-        spring: useRef(new Animated.Value(0)).current
-    };
+    const progress = useRef(new Animated.Value(0)).current;
 
     // Press logic
     const handlePress = () => {
         // Fire animations
-        Animated.parallel([
-            Animated.spring(progress.spring, {
-                toValue: 1,
-                speed: 1.25,
-                useNativeDriver: true
-            }),
-            Animated.timing(progress.timing, {
-                toValue: 1,
-                duration: 1000,
-                useNativeDriver: true
-            })
-        ])
+        Animated.spring(progress, {
+            toValue: 1,
+            speed: 1.25,
+            useNativeDriver: true
+        })
         .start(() => {
-            progress.spring.setValue(0);
-            progress.timing.setValue(0);
+            progress.setValue(0);
         });
         // Fire onPress prop function
         onPress();
@@ -66,19 +55,15 @@ const LikenessButton = forwardRef((props, ref) => {
 
     // Conditional props
     const Icon = fillCondition ? FillIcon : OutlineIcon;
-    const colorCycle = progress.timing.interpolate({
-        inputRange: [0, 1],
-        outputRange: ["rgb(90,210,244)" , "rgb(224,82,99)"]
-    });
     const buttonColor = fillCondition
-        ? fillColor//colorCycle
+        ? fillColor
         : undefined
 
     return (
         <Animated.View
             style={{
                 transform: [{
-                    rotate: progress.spring.interpolate({
+                    rotate: progress.interpolate({
                         inputRange: [0, 0.5, 1],
                         outputRange: [
                             '0deg',
@@ -88,11 +73,15 @@ const LikenessButton = forwardRef((props, ref) => {
                     })
                     
                 }, {
-                    scale: progress.spring.interpolate({
+                    scale: progress.interpolate({
                         inputRange: [0, 0.5, 1],
                         outputRange: [1, 1.1, 1]
                     })
-                }]
+                }],
+                opacity: progress.interpolate({
+                    inputRange: [0, 0.1, 1],
+                    outputRange: [1, 0, 1]
+                })
             }}
         >
             <TouchableIcon

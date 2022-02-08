@@ -1,4 +1,7 @@
-import React, { useState } from 'react';
+import React, {
+    useState,
+    useEffect
+} from 'react';
 import {
     View,
     TouchableWithoutFeedback,
@@ -8,10 +11,7 @@ import {
 // Navigation
 import { navigate } from '../../navigation/navigationRef';
 // Components
-import {
-    Text,
-    TouchableIcon
-} from '../../components/froyo-elements';
+import { Text } from '../../components/froyo-elements';
 import {
     LikeButton,
     DislikeButton
@@ -27,17 +27,12 @@ import { useContent } from '../../context/ContentContext';
 import { colors, sizes } from '../../constants/constants';
 // Icons
 import ReplyIcon from '../../../assets/icons/Reply.svg';
-import LikeIconFill from '../../../assets/icons/Like-Fill.svg';
-import DislikeIconFill from '../../../assets/icons/Dislike-Fill.svg';
-import LikeIconOutline from '../../../assets/icons/Like-Outline.svg';
-import DislikeIconOutline from '../../../assets/icons/Dislike-Outline.svg';
 
 const Comment = (props) => {
     // Context
     const { state: { theme } } = useSettings();
     const { state: { user } } = useUser(); 
     const { likeContent, dislikeContent } = useContent();
-    const darkModeEnabled = theme === 'dark' ;
     
     // Props
     const {
@@ -61,6 +56,11 @@ const Comment = (props) => {
     const onDislike = async () => {
         setComment(await dislikeContent('comment', comment.id));
     };
+
+    // Update comment when passed comment changes
+    useEffect(() => {
+        setComment(passedComment);
+    }, [passedComment]);
 
     return (
         <TouchableWithoutFeedback>

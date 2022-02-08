@@ -8,7 +8,6 @@ import {
 } from 'react-native';
 import { Text } from '../froyo-elements';
 import Comment from './Comment';
-import ContentList from './ContentList';
 // Context
 import { useSettings } from '../../context/SettingsContext';
 import { useContent } from '../../context/ContentContext';

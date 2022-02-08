@@ -146,11 +146,11 @@ const updateUser = () => async (info) => {
     // Check all required fields are filled
     switch(''){
         case firstName:
-            return callback('Must enter a first name');
+            throw { message: 'Must enter a first name'};
         case lastName:
-            return callback('Must enter a last name');
+            throw { message: 'Must enter a last name'};
         case username:
-            return callback('Must enter a username');
+            throw { message: 'Must enter a username'};
     }
 
     /* use formRequest */

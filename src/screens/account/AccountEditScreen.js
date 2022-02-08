@@ -12,6 +12,7 @@ import {
 } from '../../components/froyo-elements';
 import ScreenContainer from '../../components/ScreenContainer';
 import Header from '../../components/Header';
+import ErrorMessage from '../../components/messages/ErrorMessage'
 // Icons
 import UploadIcon from '../../../assets/icons/Upload.svg';
 // Context
@@ -29,6 +30,7 @@ const AccountEditScreen = ({ navigation }) => {
     const [image, setImage] = useState(null);
     // Status states
     const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
 
     // Conditional rendering
     const profilePictureSource = (
@@ -44,27 +46,31 @@ const AccountEditScreen = ({ navigation }) => {
             )
     );
 
-    const handleSubmit = () => {
-        setLoading(true);
-        // Code to catch submitting no changes
-        /*if (
-            firstName === user.first_name &&
-            lastName === user.last_name &&
-            username === user.username &&
-            description === user.description
-        ){
+    const handleSubmit = async () => {
+        try{
+            setLoading(true);
+            if (
+                firstName === user.first_name &&
+                lastName === user.last_name &&
+                username === user.username &&
+                description === user.description
+            ){
+                throw { message: 'No changes made' };
+            }
+            await updateUser({
+                firstName,
+                lastName,
+                username,
+                description
+            });
+            navigation.pop();
+        }
+        catch(err){
+            setError(err.message);
+        }
+        finally {
             setLoading(false);
-            throw Error({ message: 'No changes' });
-            return;
-        }*/
-        updateUser({
-            firstName,
-            lastName,
-            username,
-            description
-        });
-        setLoading(false);
-        navigation.pop();
+        }
     };
 
     return(
@@ -123,6 +129,10 @@ const AccountEditScreen = ({ navigation }) => {
                     buttonStyle={styles.submit}
                     onPress={handleSubmit}
                 />
+                <ErrorMessage
+                    message={error}
+                    onClose={setError}
+                />
             </View>
         </ScreenContainer>
     );
@@ -146,6 +156,7 @@ const styles = StyleSheet.create({
     },
     submit: {
         margin: 25,
+        marginBottom: 10
     },
     errorMessage: {
         marginTop: 10

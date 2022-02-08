@@ -6,10 +6,12 @@ import {
 import Header from '../components/Header';
 import ScreenContainer from '../components/ScreenContainer';
 import PostList from '../components/content/PostList';
+// Icons
+import FroyoIcon from '../../assets/icons/Froyo.svg';
 // Context
 import { useUser } from '../context/UserContext';
 // Constants
-import { BASE_URL } from '../constants/constants';
+import { BASE_URL, colors } from '../constants/constants';
 
 const FeedScreen = ({ navigation }) => {
     // Context

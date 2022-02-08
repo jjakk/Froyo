@@ -1,4 +1,8 @@
-import React, { useState, useRef } from 'react';
+import React, {
+    useState,
+    useEffect,
+    useRef
+} from 'react';
 // Components
 import {
     View,
@@ -85,6 +89,11 @@ const Post = (props) => {
     const onDoubleTap = () => {
         likeRef.current.simulateTap();
     };
+
+    // Update post data when passed post changes
+    useEffect(() => {
+        setPost(passedPost);
+    }, [passedPost]);
 
     return (
         <TouchableWithoutFeedback>

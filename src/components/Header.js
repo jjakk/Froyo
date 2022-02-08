@@ -1,7 +1,15 @@
 import React from 'react';
 // Components
-import { StyleSheet, View } from 'react-native';
-import { Text, TouchableIcon } from './froyo-elements';
+import {
+    StyleSheet,
+    View,
+    TouchableOpacity,
+    Image
+} from 'react-native';
+import {
+    Text,
+    TouchableIcon
+} from './froyo-elements';
 // Context
 import { useSettings } from '../context/SettingsContext';
 // Icons
@@ -22,7 +30,8 @@ const Header = (props) => {
         RightIconProps,
         MiddleIcon,
         MiddleIconProps,
-        LeftIcon,
+        LeftIcon=BackIcon,
+        LeftIconImageOverride,
         LeftIconProps,
         title
     } = props;
@@ -46,12 +55,31 @@ const Header = (props) => {
             themeStyles[theme].header,
             style
         ]}>
-            <TouchableIcon
-                Icon={LeftIcon || BackIcon}
-                onPress={onBack}
-                size={size}
-                {...LeftIconProps}
-            />
+            
+            {
+                LeftIconImageOverride ? (
+                    <TouchableOpacity
+                        onPress={onBack}
+                        {...LeftIconProps}
+                    >
+                        <Image
+                            source={LeftIconImageOverride}
+                            style={{
+                                width: size,
+                                height: size,
+                                borderRadius: size
+                            }}
+                        />
+                    </TouchableOpacity>
+                ) : (
+                    <TouchableIcon
+                        Icon={LeftIcon}
+                        size={size}
+                        onPress={onBack}
+                        {...LeftIconProps}
+                    />
+                )
+            }
             {
                 MiddleIcon ? (
                     <TouchableIcon

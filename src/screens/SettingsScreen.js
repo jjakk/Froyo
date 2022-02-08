@@ -15,8 +15,6 @@ import confirmAlert from '../helperFunctions/confirmAlert'
 const SettingsScreen = ({ navigation }) => {
     const { deleteUser } = useUser();
     const { setTheme, state: { theme } } = useSettings();
-    const [thing, setThing] = React.useState(false);
-    const [otherThing, setOtherThing] = React.useState(false);
 
     const settings = [
         {

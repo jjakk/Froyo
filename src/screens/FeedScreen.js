@@ -6,14 +6,26 @@ import {
 import Header from '../components/Header';
 import ScreenContainer from '../components/ScreenContainer';
 import PostList from '../components/content/PostList';
-// Icons
-import GuestIcon from '../../assets/icons/Profile-Picture.svg'
-import FroyoIcon from '../../assets/icons/Froyo.svg';
-import { colors } from '../constants/constants';
+// Context
+import { useUser } from '../context/UserContext';
+// Constants
+import { BASE_URL } from '../constants/constants';
 
 const FeedScreen = ({ navigation }) => {
+    // Context
+    const { state: { user } } = useUser();
+    // Ref
     const postListRef = useRef();
     
+    // Conditional rendering
+    const profilePictureSource = (
+        user.profile_picture_bucket_key
+        ? {
+            uri: `${BASE_URL}/images/${user.profile_picture_bucket_key}`
+        }
+        : require('../../assets/icons/guest.png')
+    );
+
     // Event handlers
     const onAccountView = () => {
         navigation.navigate('AccountView');
@@ -30,8 +42,8 @@ const FeedScreen = ({ navigation }) => {
         >
             <Header
                 navigation={navigation}
-                size={50}
-                LeftIcon={GuestIcon}
+                size={45}
+                LeftIconImageOverride={profilePictureSource}
                 LeftIconProps={{
                     onPress: onAccountView
                 }}
@@ -48,7 +60,7 @@ const FeedScreen = ({ navigation }) => {
 
 const styles = StyleSheet.create({
     header: {
-        padding: 10,
+        padding: 15,
         borderBottomWidth: 0
     }
 });

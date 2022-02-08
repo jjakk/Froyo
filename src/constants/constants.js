@@ -51,7 +51,7 @@ const constants = {
         // Icons for bottom tab bar
         TAB_ICON: 35,
     },
-    BASE_URL: 'https://api.froyo.social'
+    BASE_URL: 'http://127.0.0.1:8000'//'https://api.froyo.social'
 };
 
 module.exports = constants;

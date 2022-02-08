@@ -7,15 +7,15 @@ const formRequest = async (method, route, data={}) => {
     if(route[0] !== '/') route = `/${route}`;
     method = method.toLowerCase();
     let formData = new FormData();
-    const token = await AsyncStorage.getItem('token')
+    const token = await AsyncStorage.getItem('token');
 
     // Append data to the formData if the method is POST
     if (method !== 'get') {
         const dataKeys = Object.keys(data);
         for(let i = 0; i < dataKeys.length; i++){
             const key = dataKeys[i];
-            const value = data[key];
-            if (typeof(value) === 'object') {
+            let value = data[key];
+            if (Array.isArray(value)) {
                 for(let j = 0; j < value.length; j++){
                     let currentValue = value[j];
                     // Format for image uploads
@@ -32,6 +32,16 @@ const formRequest = async (method, route, data={}) => {
                 }
             }
             else {
+                // Format for image uploads
+                if(key === 'image' && data[key] !== null){
+                    let uriParts = value.split('.');
+                    let fileType = uriParts[uriParts.length - 1];
+                    value = {
+                        uri: value,
+                        name: `image.${fileType}`,
+                        type: `image/${fileType}`,
+                    };
+                }
                 formData.append(key, value);
             }
         }

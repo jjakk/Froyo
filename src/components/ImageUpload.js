@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import {
     FlatList,
     View,
+    ImageBackground,
+    TouchableOpacity,
     StyleSheet
 } from 'react-native';
 import {
@@ -15,6 +17,7 @@ import { useSettings } from '../context/SettingsContext';
 import { colors } from '../constants/constants';
 // Icons
 import PlusIcon from '../../assets/icons/Plus.svg';
+import CloseIcon from '../../assets/icons/Close.svg';
 
 const ImageUpload = (props) => {
     // Context
@@ -35,27 +38,43 @@ const ImageUpload = (props) => {
                 data={images.length < 10 ? [...images, null] : images}
                 keyExtractor={(item, index) => index.toString()}
                 renderItem={({ index }) => (
-                    <>
                     <ImageSelect
                         style={[
-                            styles.imageUpload
+                            styles.imageUpload,
+                            themeStyles[theme].imageUpload
                         ]}
                         uploadedStyle={styles.imageUploaded}
-                        PlaceholderComponent={(
-                            <View style={styles.placeholder}>
-                                <PlusIcon
-                                    color={darkModeEnabled ? colors.light.SECOND : colors.dark.SECOND}
-                                />
-                                <Text style={styles.placeholderText}>
-                                    Add an image
-                                </Text>
-                            </View>
+                        UploadedComponent={(img) => (
+                            <ImageBackground
+                                source={{ uri: img }}
+                                style={styles.image}
+                            >
+                                <TouchableOpacity onPress={() => {
+                                    onDelete(index)
+                                }}>
+                                    <View style={styles.close}>
+                                        <CloseIcon
+                                            width={15}
+                                            height={15}
+                                            color={colors.WHITE}
+                                        />
+                                    </View>
+                                </TouchableOpacity>
+                            </ImageBackground>
                         )}
                         image={images[index]}
                         setImage={onImageSelect}
                         onDelete={() => onDelete(index)}
-                    />
-                    </>
+                    >
+                        <View style={styles.placeholder}>
+                            <PlusIcon
+                                color={darkModeEnabled ? colors.light.SECOND : colors.dark.SECOND}
+                            />
+                            <Text style={styles.placeholderText}>
+                                Add an image
+                            </Text>
+                        </View>
+                    </ImageSelect>
                 )}
             />
         </View>
@@ -86,7 +105,35 @@ const styles = StyleSheet.create({
     },
     placeholderText: {
         marginTop: 5
+    },
+    // Image upload
+    image: {
+        flex: 1
+    },
+    close: {
+        alignSelf: 'flex-end',
+        marginTop: 15,
+        marginRight: 15,
+        opacity: 0.5,
+        backgroundColor: colors.LIGHT_BLACK,
+        padding: 10,
+        borderRadius: 25,
     }
 });
+
+const themeStyles = {
+    light: StyleSheet.create({
+        imageUpload: {
+            backgroundColor: colors.light.FIRST,
+            borderColor: colors.light.SECOND
+        }
+    }),
+    dark: StyleSheet.create({
+        imageUpload: {
+            backgroundColor: colors.dark.SECOND,
+            borderColor: colors.dark.FIRST
+        }
+    })
+};
 
 export default ImageUpload;

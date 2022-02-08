@@ -53,7 +53,8 @@ const AccountEditScreen = ({ navigation }) => {
                 firstName === user.first_name &&
                 lastName === user.last_name &&
                 username === user.username &&
-                description === user.description
+                description === user.description &&
+                image === null
             ){
                 throw { message: 'No changes made' };
             }
@@ -61,7 +62,8 @@ const AccountEditScreen = ({ navigation }) => {
                 firstName,
                 lastName,
                 username,
-                description
+                description,
+                image
             });
             navigation.pop();
         }
@@ -77,18 +79,26 @@ const AccountEditScreen = ({ navigation }) => {
         <ScreenContainer>
             <Header navigation={navigation} />
             <View style={styles.form}>
-                <ImageBackground
-                    source={profilePictureSource}
-                    style={styles.profilePicture}
-                    imageStyle={styles.profilePictureImage}
+                <ImageSelect
+                    style={styles.imageSelect}
+                    aspectRatio={[1, 1]}
+                    imageQuality={0.1}
+                    image={image}
+                    setImage={setImage}
                 >
-                    <View style={styles.filter}/>
-                    <UploadIcon
-                        width={35}
-                        height={35}
-                        color={colors.LIGHT_BLACK}
-                    />
-                </ImageBackground>
+                    <ImageBackground
+                        source={profilePictureSource}
+                        style={styles.profilePicture}
+                        imageStyle={styles.profilePictureImage}
+                    >
+                        <View style={styles.filter}/>
+                        <UploadIcon
+                            width={35}
+                            height={35}
+                            color={colors.LIGHT_BLACK}
+                        />
+                    </ImageBackground>
+                </ImageSelect>
                 <View style={styles.fields}>
                     <View style={[styles.field, styles.nameInputs]}>
                         <View style={styles.nameInputContainer}>
@@ -126,7 +136,7 @@ const AccountEditScreen = ({ navigation }) => {
                 <Button
                     title='Save'
                     loading={loading}
-                    buttonStyle={styles.submit}
+                    containerStyle={styles.submit}
                     onPress={handleSubmit}
                 />
                 <ErrorMessage
@@ -141,7 +151,7 @@ const AccountEditScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
     form: {
         marginTop: 0,
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     label: {
         fontSize: 28,
@@ -162,8 +172,11 @@ const styles = StyleSheet.create({
         marginTop: 10
     },
     // Profile Picture Upload Button
+    imageSelect: {
+        alignSelf: 'center',
+        borderRadius: 100
+    },
     profilePicture: {
-        marginTop: 30,
         justifyContent: 'center',
         alignItems: 'center',
         alignSelf: 'center',

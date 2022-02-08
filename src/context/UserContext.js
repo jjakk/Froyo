@@ -136,13 +136,15 @@ const getUser = () => async (id) => {
 };
 
 // Update a user's information
-const updateUser = () => async (info) => {
+const updateUser = (dispatch) => async (info) => {
     const {
         firstName,
         lastName,
         username,
-        description
+        description,
+        image
     } = info;
+    
     // Check all required fields are filled
     switch(''){
         case firstName:
@@ -153,13 +155,16 @@ const updateUser = () => async (info) => {
             throw { message: 'Must enter a username'};
     }
 
-    /* use formRequest */
-    await froyoApi.put('/users', {
+    await formRequest('put', '/users', {
         first_name: firstName,
         last_name: lastName,
         username,
-        description
+        description,
+        image
     });
+    const { data: userId } = await froyoApi.get('/');
+    const { data: user } = await froyoApi.get(`/users/${userId}`);
+    dispatch({ type: 'set_user_info', payload: user });
 };
 
 // Goes to either your feed or welcome page depending on whether you are logged in

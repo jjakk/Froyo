@@ -10,6 +10,7 @@ const PostCreateScreen = (props) => {
             edges={['top']}
         >
             <PostForm
+                type='create'
                 {...props}
             />
         </ScreenContainer>

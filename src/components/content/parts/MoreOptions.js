@@ -38,7 +38,9 @@ const MoreOptions = (props) => {
 
     // Default functions for edit button
     const onEdit = () => {
-        navigate(`${contentType}Edit`);
+        navigate(`${contentType}Edit`, {
+            data: content
+        });
     };
     
     // Show delete confirmation, and delete if confirmed

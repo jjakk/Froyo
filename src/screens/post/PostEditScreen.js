@@ -1,14 +1,23 @@
 import React from 'react';
 // Components
-import { Text } from '../../components/froyo-elements';
 import ScreenContainer from '../../components/ScreenContainer';
+import PostForm from '../../components/content/forms/PostForm';
 
-const PostEditScreen = () => {
+const PostEditScreen = (props) => {
+    const postData = props.navigation.getParam('data');
+
     return (
-        <ScreenContainer>
-            <Text>PostEditScreen</Text>
+        <ScreenContainer
+            edges={['top']}
+        >
+            <PostForm
+                data={postData}
+                type='edit'
+                {...props}
+            />
         </ScreenContainer>
     );
 };
 
 export default PostEditScreen;
+

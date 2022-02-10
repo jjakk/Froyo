@@ -13,34 +13,54 @@ import {
 import ErrorMessage from '../../messages/ErrorMessage';
 import ImageUpload from '../../ImageUpload';
 // Constants
-import { colors } from '../../../constants/constants';
+import { BASE_URL, colors } from '../../../constants/constants';
 // Icons
 import SendIcon from '../../../../assets/icons/Send.svg';
 // Context
 import { useSettings } from '../../../context/SettingsContext';
 import { useContent } from '../../../context/ContentContext';
 
-const PostForm = ({ navigation }) => {
+const PostForm = (props) => {
     // Context
     const { state: { theme } } = useSettings();
     const { createContent } = useContent();
     const darkModeEnabled = theme === 'dark';
 
+    // Props
+    const {
+        navigation,
+        data: {
+            text: passedText,
+            images: unformatedPassedImages
+        },
+        type
+    } = props;
+    const passedImages = unformatedPassedImages
+        ? unformatedPassedImages.map(img => `${BASE_URL}/images/${img}`)
+        : null
+
     // State
-    const [postText, setPostText] = useState('');
+    const [text, setText] = useState(passedText || '');
+    const [images, setImages] = useState(passedImages || []);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
-    const [images, setImages] = useState([]);
 
     // Event Handlers
     const handleSubmit = async () => {
         try{
             Keyboard.dismiss()
             setLoading(true);
-            await createContent('post', { text: postText, images });
+            switch(type){
+                case 'create':
+                    await createContent('post', { text: postText, images });
+                    break;
+                case 'edit':
+                    await updateContent('post', { text: postText, images });
+                    break;
+            }  
             setLoading(false);
             // Clear form data
-            setPostText('');
+            setText('');
             setImages([]);
             navigation.navigate('AccountView');
         }
@@ -70,7 +90,7 @@ const PostForm = ({ navigation }) => {
     // Delete error message when you type in the post body
     useEffect(() => {
         clearError();
-    }, [postText]);
+    }, [text]);
 
     return (
         <View style={styles.container}>
@@ -82,8 +102,8 @@ const PostForm = ({ navigation }) => {
                     ]}
                     multiline={true}
                     placeholder='Type here...'
-                    value={postText}
-                    onChangeText={setPostText}
+                    value={text}
+                    onChangeText={setText}
                 />
                 <TouchableIcon
                     Icon={SendIcon}
@@ -139,5 +159,12 @@ const styles = StyleSheet.create({
         bottom: 25
     }
 });
+
+PostForm.defaultProps = {
+    data: {
+        text: null,
+        images: null
+    }
+};
 
 export default PostForm;

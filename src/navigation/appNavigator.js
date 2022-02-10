@@ -51,8 +51,6 @@ const signUpNavigator = createStackNavigator({
 
 const homeNavigator = createStackNavigator({
         Feed: FeedScreen,
-        AccountView: AccountViewScreen,
-        AccountEdit: AccountEditScreen
     }, {
         headerMode: 'none',
         defaultNavigationOptions: {
@@ -63,7 +61,7 @@ const homeNavigator = createStackNavigator({
 
 const tabNavigator = createBottomTabNavigator({
     Feed: {
-        screen: homeNavigator,
+        screen: FeedScreen,
         navigationOptions: {
             tabBarIcon: (({ tintColor }) => (
                     <HomeIcon
@@ -111,6 +109,9 @@ const tabNavigator = createBottomTabNavigator({
 
 const mainNavigator = createStackNavigator({
         tabFlow: tabNavigator,
+        // Account Screens
+        AccountEdit: AccountEditScreen,
+        AccountView: AccountViewScreen,
         // Settings Screen
         Settings: SettingsScreen,
         // Post Screens

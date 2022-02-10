@@ -52,10 +52,10 @@ const PostForm = (props) => {
             setLoading(true);
             switch(type){
                 case 'create':
-                    await createContent('post', { text: postText, images });
+                    await createContent('post', { text, images });
                     break;
                 case 'edit':
-                    await updateContent('post', { text: postText, images });
+                    await updateContent('post', { text, images });
                     break;
             }  
             setLoading(false);

@@ -58,7 +58,6 @@ const PostForm = (props) => {
                     await updateContent('post', { text, images });
                     break;
             }  
-            setLoading(false);
             // Clear form data
             setText('');
             setImages([]);
@@ -66,6 +65,8 @@ const PostForm = (props) => {
         }
         catch (err) {
             setError(err.message);
+        }
+        finally {
             setLoading(false);
         }
     };

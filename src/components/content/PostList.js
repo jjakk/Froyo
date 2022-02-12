@@ -98,6 +98,7 @@ const PostList = (props, ref) => {
                 data={posts}
                 keyExtractor={(item) => item.id}
                 showsVerticalScrollIndicator={false}
+                initialNumToRender={5}
                 refreshControl={
                     refreshable ? (
                         <RefreshControl

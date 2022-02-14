@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
     StyleSheet,
     View,
@@ -7,13 +7,23 @@ import {
     Dimensions,
     TouchableWithoutFeedback
 } from 'react-native';
-import { BASE_URL } from '../../constants/constants';
+import { BASE_URL, colors } from '../../constants/constants';
 
 const ImageList = (props) => {
     const {
         style,
         data: keys
     } = props;
+
+    const [currentIndex, setCurrentIndex] = useState(0);
+
+    const onScroll = (event) => {
+        const offset = event.nativeEvent.contentOffset.x/Dimensions.get('window').width;
+        const index = Math.round(offset);
+        if(currentIndex !== index) {
+            setCurrentIndex(index);
+        }
+    };
 
     return keys.length === 1
     ? (
@@ -29,9 +39,11 @@ const ImageList = (props) => {
         <View style={[styles.container, style]}>
             <ScrollView
                 snapToInterval={Dimensions.get('window').width}
-                decelerationRate="fast"
+                decelerationRate='fast'
                 horizontal
                 showsHorizontalScrollIndicator={false}
+                onScroll={onScroll}
+                scrollEventThrottle={64}
             >
                 {
                     keys.map((key, index) => (
@@ -48,6 +60,19 @@ const ImageList = (props) => {
                     ))
                 }
             </ScrollView>
+            <View style={styles.indexIndicator}>
+            {
+                keys.map((key, index) => (
+                    <View
+                        key={index}
+                        style={[
+                            styles.dot,
+                            index === currentIndex && styles.activeDot
+                        ]}
+                    />
+                ))
+            }
+            </View>
         </View>
     );
 };
@@ -60,6 +85,23 @@ const styles = StyleSheet.create({
         width: Dimensions.get('window').width,
         height: Dimensions.get('window').width,
         resizeMode: 'cover'
+    },
+    indexIndicator: {
+        position: 'absolute',
+        flexDirection: 'row',
+        alignSelf: 'center',
+        bottom: 10,
+    },
+    dot: {
+        width: 10,
+        height: 10,
+        borderRadius: 5,
+        margin: 2,
+        borderWidth: 1,
+        borderColor: colors.WHITE
+    },
+    activeDot: {
+        backgroundColor: colors.WHITE
     }
 });
 

@@ -7,14 +7,13 @@ import React, {
 import {
     View,
     StyleSheet,
-    Image,
-    Dimensions,
     TouchableWithoutFeedback
 } from 'react-native';
 import MultiTap from 'react-native-multitap';
 import {
     Text,
-    TouchableIcon
+    TouchableIcon,
+    ImageList
 } from '../froyo-elements';
 import {
     LikeButton,
@@ -113,12 +112,16 @@ const Post = (props) => {
                             onTripleTap={onTripleTap}
                             onDoubleTap={onDoubleTap}
                         >
-                            <Image
+                            <ImageList
+                                data={post.images}
+                                style={styles.images}
+                            />
+                            {/*<Image
                                 source={{
                                     uri: `${BASE_URL}/images/${post.images[0]}`
                                 }}
                                 style={styles.image}
-                            />
+                            />*/}
                         </MultiTap>
                     )
                 }
@@ -163,9 +166,8 @@ const styles = StyleSheet.create({
         marginTop: 5,
     },
     // Post image
-    image: {
-        marginBottom: 15,
-        height: Dimensions.get('window').width
+    images: {
+        marginBottom: 15
     },
     // Post body
     body: {

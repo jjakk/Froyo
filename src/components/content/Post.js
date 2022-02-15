@@ -116,12 +116,6 @@ const Post = (props) => {
                                 data={post.images}
                                 style={styles.images}
                             />
-                            {/*<Image
-                                source={{
-                                    uri: `${BASE_URL}/images/${post.images[0]}`
-                                }}
-                                style={styles.image}
-                            />*/}
                         </MultiTap>
                     )
                 }

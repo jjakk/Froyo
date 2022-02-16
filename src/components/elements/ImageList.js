@@ -16,6 +16,7 @@ const ImageList = (props) => {
     } = props;
 
     const [currentIndex, setCurrentIndex] = useState(0);
+    const [showIndicator, setShowIndicator] = useState(true);
 
     const onScroll = (event) => {
         const offset = event.nativeEvent.contentOffset.x/Dimensions.get('window').width;
@@ -60,7 +61,12 @@ const ImageList = (props) => {
                     ))
                 }
             </ScrollView>
-            <View style={styles.indexIndicator}>
+            <View style={[
+                styles.indexIndicator,
+                {
+                    opacity: showIndicator ? 1 : 0
+                }
+            ]}>
             {
                 keys.map((key, index) => (
                     <View

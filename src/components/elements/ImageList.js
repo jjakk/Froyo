@@ -16,7 +16,6 @@ const ImageList = (props) => {
     } = props;
 
     const [currentIndex, setCurrentIndex] = useState(0);
-    const [showIndicator, setShowIndicator] = useState(true);
 
     const onScroll = (event) => {
         const offset = event.nativeEvent.contentOffset.x/Dimensions.get('window').width;

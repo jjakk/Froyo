@@ -60,12 +60,7 @@ const ImageList = (props) => {
                     ))
                 }
             </ScrollView>
-            <View style={[
-                styles.indexIndicator,
-                {
-                    opacity: showIndicator ? 1 : 0
-                }
-            ]}>
+            <View style={ styles.indexIndicator}>
             {
                 keys.map((key, index) => (
                     <View

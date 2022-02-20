@@ -181,8 +181,7 @@ const UserProfile = (props) => {
 const styles = StyleSheet.create({
     container: {
         flexDirection: 'column',
-        padding: 20,
-        marginTop: 5
+        padding: 20
     },
     // Profile
     header: {

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 // Components
 import ScreenContainer from '../../components/ScreenContainer';
 import Header from '../../components/Header';

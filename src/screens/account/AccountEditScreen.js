@@ -150,7 +150,7 @@ const AccountEditScreen = ({ navigation }) => {
 
 const styles = StyleSheet.create({
     form: {
-        marginTop: 0,
+        marginTop: 25,
         justifyContent: 'center',
     },
     label: {

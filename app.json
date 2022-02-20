@@ -17,7 +17,8 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.protosapps.froyo"
     },
     "android": {
       "adaptiveIcon": {
@@ -48,6 +49,6 @@
     "androidNavigationBar": {
       "barStyle": "light-content",
       "backgroundColor": "#2A2A2A"
-   }
+    }
   }
 }

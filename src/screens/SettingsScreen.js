@@ -1,6 +1,5 @@
 import React from 'react';
 // Components
-import { StyleSheet } from 'react-native';
 import SettingsOptions from '../components/settings/SettingsList';;
 import ScreenContainer from '../components/ScreenContainer';
 import Header from '../components/Header';
@@ -48,19 +47,12 @@ const SettingsScreen = ({ navigation }) => {
         >
             <Header
                 navigation={navigation}
-                style={styles.header}
                 title='Settings'
             />
             <SettingsOptions settings={settings} />
         </ScreenContainer>
     );
 };
-
-const styles = StyleSheet.create({
-    header: {
-        borderBottomWidth: 0,
-    }
-});
 
 export default SettingsScreen;
 

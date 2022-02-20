@@ -181,13 +181,13 @@ const UserProfile = (props) => {
 const styles = StyleSheet.create({
     container: {
         flexDirection: 'column',
-        padding: 20
+        padding: 20,
+        borderBottomWidth: 1
     },
     // Profile
     header: {
         flexDirection: 'row',
-        alignItems: 'center',
-        marginBottom: 0,
+        alignItems: 'center'
     },
     headerText: {
         marginLeft: 15
@@ -245,12 +245,14 @@ const styles = StyleSheet.create({
 const themeStyles = {
     light: StyleSheet.create({
         container: {
-            backgroundColor: colors.WHITE
+            backgroundColor: colors.WHITE,
+            borderBottomColor: colors.light.FIRST
         }
     }),
     dark: StyleSheet.create({
         container: {
             backgroundColor: colors.dark.THIRD,
+            borderBottomColor: colors.dark.FIRST
         }
     })
 };

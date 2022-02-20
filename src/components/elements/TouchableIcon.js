@@ -18,7 +18,7 @@ const TouchableIcon = (props) => {
         size,
         color=(darkModeEnabled
             ? colors.light.THIRD
-            : colors.dark.FOURTH
+            : colors.light.FOURTH
         ),
         style,
         onPress,

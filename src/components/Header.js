@@ -132,6 +132,8 @@ const themeStyles = {
     dark: StyleSheet.create({
         header: {
             backgroundColor: colors.dark.THIRD,
+            borderBottomWidth: 1,
+            borderBottomColor: colors.dark.FIRST
         }
     })
 };

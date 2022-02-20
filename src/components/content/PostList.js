@@ -1,6 +1,7 @@
 // This componet takes in a list of posts and renders them
 import React, {
     useState,
+    useRef,
     useImperativeHandle,
     forwardRef
 } from 'react';
@@ -23,6 +24,8 @@ import { useContent } from '../../context/ContentContext';
 import { colors } from '../../constants/constants';
 
 const PostList = (props, ref) => {
+    // Refs
+    const scrollRef = useRef();
     // Context
     const { state: { theme } } = useSettings();
     const { state: { user: signedInUser } } = useUser();
@@ -53,6 +56,12 @@ const PostList = (props, ref) => {
     useImperativeHandle(ref, () => ({
         reloadContent: async (searchValue) => {
             await reloadContent(searchValue)
+        },
+        scrollToTop: () => {
+            scrollRef.current.scrollToOffset({
+                offset: 0,
+                animated: true,
+            });
         }
     }))
 
@@ -129,6 +138,7 @@ const PostList = (props, ref) => {
                         />
                     )
                 )}
+                ref={scrollRef}
                 {...otherProps}
             />
         </View>

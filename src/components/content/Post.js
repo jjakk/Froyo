@@ -157,7 +157,7 @@ const Post = (props) => {
 
 const styles = StyleSheet.create({
     post: {
-        marginTop: 5,
+        marginBottom: 5,
     },
     // Post image
     images: {

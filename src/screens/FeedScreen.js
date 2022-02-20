@@ -8,6 +8,7 @@ import ScreenContainer from '../components/ScreenContainer';
 import PostList from '../components/content/PostList';
 // Icons
 import FroyoIcon from '../../assets/icons/Froyo.svg';
+import ChatIcon from '../../assets/icons/Chat.svg';
 // Context
 import { useUser } from '../context/UserContext';
 // Constants
@@ -33,6 +34,10 @@ const FeedScreen = ({ navigation }) => {
         navigation.navigate('AccountView');
     };
 
+    const onScrollToTop = () => {
+        postListRef.current.scrollToTop();
+    };
+
     const onDidFocus = () => {
         postListRef.current.reloadContent();
     };
@@ -44,11 +49,17 @@ const FeedScreen = ({ navigation }) => {
         >
             <Header
                 navigation={navigation}
-                size={45}
+                size={35}
                 LeftIconImageOverride={profilePictureSource}
                 LeftIconProps={{
                     onPress: onAccountView
                 }}
+                MiddleIcon={FroyoIcon}
+                MiddleIconProps={{
+                    color: colors.GREEN,
+                    onPress: onScrollToTop
+                }}
+                RightIcon={ChatIcon}
                 style={styles.header}
             />
             <PostList
@@ -63,7 +74,6 @@ const FeedScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
     header: {
         padding: 15,
-        borderBottomWidth: 0
     }
 });
 

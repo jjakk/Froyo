@@ -14,6 +14,7 @@ const NoWifiScreen = ({ navigation }) => {
     const { state: { theme } } = useSettings();
     const darkModeEnabled = theme === 'dark' ;
 
+    // Event handlers
     const onReconnect = () => {
         navigation.navigate('ResolveAuth');
     }

@@ -5,7 +5,6 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { colors } from '../constants/constants';
 
 const WelcomeScreen = ({ navigation }) => {
-
     // Event Handlers
     const handleRefSignIn = () => {
         navigation.navigate('SignIn')

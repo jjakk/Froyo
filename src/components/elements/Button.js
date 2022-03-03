@@ -22,7 +22,8 @@ const Button = (props) => {
                 : colors.GREEN
         ),
         type,
-        pill
+        pill,
+        disabled
     } = props;
     const textColor = type === 'secondary' ? color : (
         darkModeEnabled ? colors.light.FOURTH : colors.WHITE
@@ -37,6 +38,7 @@ const Button = (props) => {
                     backgroundColor: color,
                     borderColor: color,
                     borderRadius: pill ? 30 : 15,
+                    opacity: disabled ? 0.5 : 1
                 },
                 typeStyles[type].button,
                 buttonStyle

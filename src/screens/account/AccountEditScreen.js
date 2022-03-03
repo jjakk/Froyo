@@ -32,6 +32,14 @@ const AccountEditScreen = ({ navigation }) => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
+    const formUnchanged = (
+        firstName === user.first_name &&
+        lastName === user.last_name &&
+        username === user.username &&
+        description === user.description &&
+        image === null
+    );
+
     // Conditional rendering
     const profilePictureSource = (
         image
@@ -49,15 +57,6 @@ const AccountEditScreen = ({ navigation }) => {
     const handleSubmit = async () => {
         try{
             setLoading(true);
-            if (
-                firstName === user.first_name &&
-                lastName === user.last_name &&
-                username === user.username &&
-                description === user.description &&
-                image === null
-            ){
-                throw { message: 'No changes made' };
-            }
             await updateUser({
                 firstName,
                 lastName,
@@ -136,6 +135,7 @@ const AccountEditScreen = ({ navigation }) => {
                 <Button
                     title='Save'
                     loading={loading}
+                    disabled={formUnchanged}
                     containerStyle={styles.submit}
                     onPress={handleSubmit}
                 />

@@ -167,6 +167,10 @@ const updateUser = (dispatch) => async (info) => {
     dispatch({ type: 'set_user_info', payload: user });
 };
 
+const resetPassword = () => async (email) => {
+    await froyoApi.put('/auth/resetPassword', { email });
+};
+
 // Goes to either your feed or welcome page depending on whether you are logged in
 const checkSignedIn = (dispatch) => async () => {
     try{
@@ -213,8 +217,9 @@ export const { Provider, Context } = createDataContext(
         deleteUser,
         getUser,
         updateUser,
+        resetPassword,
         follow,
-        following
+        following,
     }, { user: {} }
 );
 

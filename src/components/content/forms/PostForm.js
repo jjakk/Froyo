@@ -124,8 +124,8 @@ const PostForm = (props) => {
             <ErrorMessage
                 type='box'
                 style={styles.error}
-                message={error}
-                clearError={clearError}
+                error={error}
+                setError={setError}
             />
         </View>
     );

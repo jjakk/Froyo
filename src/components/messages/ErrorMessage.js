@@ -16,11 +16,15 @@ const ErrorMessage = (props) => {
 
     // Props
     const {
-        message,
+        error: message,
+        setError: setMessage,
         style,
-        type,
-        clearError
+        type
     } = props;
+
+    const onClear = () => {
+        setMessage('');
+    };
 
     if(message){
         return (
@@ -45,7 +49,7 @@ const ErrorMessage = (props) => {
                             Icon={CloseIcon}
                             size={20}
                             color={darkModeEnabled ? colors.light.SECOND : colors.dark.FIRST}
-                            onPress={clearError}
+                            onPress={onClear}
                         />
                     </View>
                 ) : null

@@ -42,10 +42,6 @@ const ScreenContainer = (props) => {
     // Error handling
     const [error, setError] = useState('');
 
-    const clearError = () => {
-        setError('');
-    };
-
     return (
         <View style={[
             styles.container,
@@ -85,8 +81,8 @@ const ScreenContainer = (props) => {
                         {children}
                         <ErrorMessage
                             type='box'
-                            message={error}
-                            clearError={clearError}
+                            error={error}
+                            setError={setError}
                             style={styles.error}
                         />
                     </KeyboardAvoidingView>

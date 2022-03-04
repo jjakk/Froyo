@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+// Components
 import {
     StyleSheet,
     View,
@@ -7,9 +8,16 @@ import {
     Dimensions,
     TouchableWithoutFeedback
 } from 'react-native';
+// Context
+import { useSettings } from '../../context/SettingsContext';
+// Constants
 import { BASE_URL, colors } from '../../constants/constants';
 
 const ImageList = (props) => {
+    // Context
+    const { state: { theme } } = useSettings();
+
+    // Props
     const {
         style,
         data: keys
@@ -67,6 +75,7 @@ const ImageList = (props) => {
                         key={index}
                         style={[
                             styles.dot,
+                            themeStyles[theme].dot,
                             index === currentIndex && styles.activeDot
                         ]}
                     />
@@ -87,22 +96,34 @@ const styles = StyleSheet.create({
         resizeMode: 'cover'
     },
     indexIndicator: {
-        position: 'absolute',
         flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
         alignSelf: 'center',
-        bottom: 10,
+        marginTop: 15
     },
     dot: {
-        width: 10,
-        height: 10,
+        width: 7.5,
+        height: 7.5,
         borderRadius: 5,
-        margin: 2,
-        borderWidth: 1,
-        borderColor: colors.WHITE
+        margin: 2
     },
     activeDot: {
-        backgroundColor: colors.WHITE
+        backgroundColor: colors.GREEN
     }
 });
+
+const themeStyles = {
+    light: StyleSheet.create({
+        dot: {
+            backgroundColor: colors.GRAY
+        }
+    }),
+    dark: StyleSheet.create({
+        dot: {
+            backgroundColor: colors.DARK_GRAY
+        }
+    })
+};
 
 export default ImageList;

@@ -59,8 +59,8 @@ const FeedScreen = ({ navigation }) => {
                     color: colors.GREEN,
                     onPress: onScrollToTop
                 }}
-                RightIcon={ChatIcon}
-                style={styles.header}
+                /*RightIcon={ChatIcon}
+                style={styles.header}*/
             />
             <PostList
                 type='Feed'

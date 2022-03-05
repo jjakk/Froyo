@@ -27,7 +27,7 @@ const WelcomeScreen = ({ navigation }) => {
                     />
                     <Text>
                         <Text style={styles.title}>Froyo</Text>
-                        <Text style={styles.subTitle}>{'\n'}The minimalist{'\n'}social network</Text>
+                        <Text style={styles.subTitle}>{'\n'}The Minimalist{'\n'}Social Network</Text>
                     </Text>
                 </View>
                 <View style={styles.authOptions}>

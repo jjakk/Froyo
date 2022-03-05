@@ -21,15 +21,22 @@ const ResetPasswordScreen = ({ navigation }) => {
 
     // State
     const [email, setEmail] = useState('');
-    const [error, setError] = useState('')
+    const [success, setSuccess] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState('');
 
     const onSubmit = async () => {
         try {
             setError('');
+            setLoading(true);
             await resetPassword(email);
+            setSuccess(true);
         }
         catch (err) {
             setError(err.response.data || err.message);
+        }
+        finally {
+            setLoading(false);
         }
     };
 
@@ -37,23 +44,36 @@ const ResetPasswordScreen = ({ navigation }) => {
         <ScreenContainer>
             <Header navigation={navigation} />
             <View style={styles.form}>
-                <Text style={styles.header}>Reset Password</Text>
-                <Input
-                    style={styles.input}
-                    placeholder='Email'
-                    value={email}
-                    onChangeText={setEmail}
-                />
-                <Button
-                    buttonStyle={styles.submit}
-                    title='Reset'
-                    type='primary'
-                    onPress={onSubmit}
-                />
-                <ErrorMessage
-                    error={error}
-                    setError={setError}
-                />
+                {
+                    success ? (
+                        <Text style={styles.confirmation}>
+                            ✉️
+                            {'\n'}
+                            Password reset email sent!
+                        </Text>
+                    ) : (
+                        <>
+                        <Text style={styles.header}>Reset Password</Text>
+                        <Input
+                            style={styles.input}
+                            placeholder='Email'
+                            value={email}
+                            onChangeText={setEmail}
+                        />
+                        <Button
+                            buttonStyle={styles.submit}
+                            title='Reset'
+                            type='primary'
+                            loading={loading}
+                            onPress={onSubmit}
+                        />
+                        <ErrorMessage
+                            error={error}
+                            setError={setError}
+                        />
+                        </>
+                    )
+                }
             </View>
         </ScreenContainer>
     );
@@ -74,6 +94,7 @@ const styles = StyleSheet.create({
     header: {
         fontSize: 36,
         marginBottom: 10,
+        textAlign: 'center'
     },
     input: {
         width: 300,
@@ -82,6 +103,11 @@ const styles = StyleSheet.create({
     submit: {
         width: 300,
         margin: 10
+    },
+    confirmation: {
+        textAlign: 'center',
+        width: 300,
+        fontSize: 36,
     },
     back: {
         margin: 25

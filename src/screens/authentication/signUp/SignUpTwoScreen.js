@@ -92,7 +92,7 @@ const SignUpTwoScreen = ({ navigation }) => {
                     containerStyle={styles.submitContainer}
                     onPress={handleSubmit}
                 />
-                <ErrorMessage message={error} />
+                <ErrorMessage error={error} />
             </View>
         </ScreenContainer>
     );

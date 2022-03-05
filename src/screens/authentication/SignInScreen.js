@@ -76,7 +76,7 @@ const SignInScreen = ({ navigation }) => {
                     >
                         Sign up
                     </Link>
-                    <ErrorMessage message={error} />
+                    <ErrorMessage error={error} />
                 </View>
             </View>
         </ScreenContainer>

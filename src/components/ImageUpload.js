@@ -88,7 +88,6 @@ const styles = StyleSheet.create({
     // Image upload
     imageUpload: {
         height: 100,
-        borderWidth: 1,
         borderRadius: 15,
     },
     imageUploaded: {
@@ -125,13 +124,11 @@ const themeStyles = {
     light: StyleSheet.create({
         imageUpload: {
             backgroundColor: colors.light.FIRST,
-            borderColor: colors.light.SECOND
         }
     }),
     dark: StyleSheet.create({
         imageUpload: {
-            backgroundColor: colors.dark.SECOND,
-            borderColor: colors.dark.FIRST
+            backgroundColor: colors.dark.FIRST,
         }
     })
 };

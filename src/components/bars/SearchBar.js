@@ -85,8 +85,7 @@ const styles = StyleSheet.create({
     },
     text: {
         flex: 1,
-        borderRadius: 0, 
-        borderWidth: 0
+        backgroundColor: 'transparent'
     },
     clear: {
         marginRight: 20,
@@ -102,7 +101,7 @@ const themeStyles = {
     }),
     dark: StyleSheet.create({
         container: {
-            backgroundColor: colors.dark.SECOND
+            backgroundColor: colors.dark.FIRST
         }
     })
 };

@@ -52,7 +52,6 @@ const Input = (props) => {
 const styles = StyleSheet.create({
     container: {
         padding: 15,
-        borderWidth: 1,
         borderRadius: 15,
         flexDirection: 'row',
         alignItems: 'center',
@@ -72,7 +71,7 @@ const styles = StyleSheet.create({
 const themeStyles = {
     light: StyleSheet.create({
         container: {
-            borderColor: colors.light.SECOND
+            backgroundColor: colors.light.FIRST
         },
         text: {
             color: colors.light.FOURTH
@@ -80,7 +79,7 @@ const themeStyles = {
     }),
     dark: StyleSheet.create({
         container: {
-            borderColor: colors.dark.FIRST
+            backgroundColor: colors.dark.FIRST
         },
         text: {
             color: colors.light.FIRST

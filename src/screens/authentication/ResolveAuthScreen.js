@@ -43,9 +43,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         flexDirection: 'column',
         backgroundColor: colors.GREEN,
-    },
-    bar: {
-        marginTop: 25
     }
 });
 

@@ -61,7 +61,7 @@ const Button = (props) => {
 const styles = StyleSheet.create({
     button: {
         padding: 10,
-        borderWidth: 1
+        borderWidth: 2
     },
     title: {
         fontFamily: 'Nunito',

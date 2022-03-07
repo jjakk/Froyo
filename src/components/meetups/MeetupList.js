@@ -20,21 +20,7 @@ const MeetupList = (props) => {
         emptyMessage
     } = props;
 
-    const meetups = [
-        {
-            id: '1',
-            title: 'Meetup 1',
-            description: 'This is the first meetup',
-            date: '2020-01-01',
-            time: '12:00',
-            location: 'Somewhere',
-            author: {
-                id: 1,
-                first_name: 'John',
-                last_name: 'Doe'
-            }
-        }
-    ];
+    const meetups = [];
 
     return (
         <View style={[

@@ -145,7 +145,7 @@ const UserProfile = (props) => {
                                 onPress={onEditProfile}
                             />
                         </View>
-                        <View style={styles.gap}></View>
+                        <View style={styles.gap}/>
                         <View  style={styles.actionButtonContainer}>
                             <Button
                                 title='Sign out'

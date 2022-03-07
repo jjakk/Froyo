@@ -19,7 +19,6 @@ const SearchScreen = () => {
 
     return (
         <ScreenContainer
-            edges={['top']}
             onDidFocus={onSearch}
         >
             <PostList

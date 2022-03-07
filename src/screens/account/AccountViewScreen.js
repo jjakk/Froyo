@@ -24,7 +24,6 @@ const AccountViewScreen = ({ navigation }) => {
     
     return(
         <ScreenContainer
-            edges={['top']}
             onDidFocus={onRefresh}
         >
             <Header

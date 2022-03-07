@@ -54,6 +54,7 @@ const ScreenContainer = (props) => {
             />
             <SafeAreaView
                 {...restOfProps}
+                edges={['top']}
                 style={[
                     styles.container,
                     themeStyles[theme].container,

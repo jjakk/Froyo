@@ -1,0 +1,99 @@
+import React from 'react';
+// Components
+import { View, FlatList, StyleSheet } from 'react-native';
+import { LoadingAnimation } from '../froyo-elements';
+import EmptyMessage from '../messages/EmptyMessage';
+import Meetup from './Meetup';
+// Context
+import { useSettings } from '../../context/SettingsContext';
+import { useMeetup } from '../../context/MeetupContext';
+// Constants
+import { colors } from '../../constants/constants';
+
+const MeetupList = (props) => {
+    // Context
+    const { state: { theme } } = useSettings();
+
+    // Props
+    const {
+        loading,
+        emptyMessage
+    } = props;
+
+    const meetups = [
+        {
+            id: '1',
+            title: 'Meetup 1',
+            description: 'This is the first meetup',
+            date: '2020-01-01',
+            time: '12:00',
+            location: 'Somewhere',
+            author: {
+                id: 1,
+                first_name: 'John',
+                last_name: 'Doe'
+            }
+        }
+    ];
+
+    return (
+        <View style={[
+            styles.container,
+            themeStyles[theme].container
+        ]}>
+            <FlatList
+                data={meetups}
+                showsVerticalScrollIndicator={false}
+                keyExtractor={(item) => item.id}
+                renderItem={({ item }) => (
+                    <Meetup
+                        data={item}
+                    />
+                )}
+                ListEmptyComponent={() => (
+                    loading ? (
+                        <LoadingAnimation
+                            size={50}
+                            style={styles.meetupsLoading}
+                        />
+                    ) : (
+                        <EmptyMessage
+                            style={styles.emptyMessage}
+                            subheaderText={emptyMessage}
+                        />
+                    )
+                )}
+            />
+        </View>
+    );
+};
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1
+    },
+    emptyMessage: {
+        alignSelf: 'center',
+        marginTop: 35,
+        width: 300
+    },
+    meetupsLoading: {
+        alignSelf: 'center',
+        marginTop: 50
+    }
+});
+
+const themeStyles = {
+    light: StyleSheet.create({
+        container: {
+            backgroundColor: colors.light.FIRST
+        }
+    }),
+    dark: StyleSheet.create({
+        container: {
+            backgroundColor: colors.dark.FOURTH
+        }
+    })
+};
+
+export default MeetupList;

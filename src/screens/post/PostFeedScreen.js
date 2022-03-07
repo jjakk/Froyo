@@ -49,7 +49,6 @@ const FeedScreen = ({ navigation }) => {
 
     return (
         <ScreenContainer
-            edges={['top']}
             onDidFocus={onDidFocus}
         >
             <Header

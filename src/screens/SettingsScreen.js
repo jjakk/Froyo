@@ -42,9 +42,7 @@ const SettingsScreen = ({ navigation }) => {
     ];
 
     return (
-        <ScreenContainer
-            edges={['top']}
-        >
+        <ScreenContainer>
             <Header
                 navigation={navigation}
                 title='Settings'

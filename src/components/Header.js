@@ -30,6 +30,7 @@ const Header = (props) => {
         RightIconProps,
         MiddleIcon,
         MiddleIconProps,
+        hideLeftIcon=false,
         LeftIcon=BackIcon,
         LeftIconImageOverride,
         LeftIconProps,
@@ -57,27 +58,29 @@ const Header = (props) => {
         ]}>
             
             {
-                LeftIconImageOverride ? (
-                    <TouchableOpacity
-                        onPress={onBack}
-                        {...LeftIconProps}
-                    >
-                        <Image
-                            source={LeftIconImageOverride}
-                            style={{
-                                width: size,
-                                height: size,
-                                borderRadius: size
-                            }}
+                hideLeftIcon ? BlankIcon : (
+                    LeftIconImageOverride ? (
+                        <TouchableOpacity
+                            onPress={onBack}
+                            {...LeftIconProps}
+                        >
+                            <Image
+                                source={LeftIconImageOverride}
+                                style={{
+                                    width: size,
+                                    height: size,
+                                    borderRadius: size
+                                }}
+                            />
+                        </TouchableOpacity>
+                    ) : (
+                        <TouchableIcon
+                            Icon={LeftIcon}
+                            size={size}
+                            onPress={onBack}
+                            {...LeftIconProps}
                         />
-                    </TouchableOpacity>
-                ) : (
-                    <TouchableIcon
-                        Icon={LeftIcon}
-                        size={size}
-                        onPress={onBack}
-                        {...LeftIconProps}
-                    />
+                    )
                 )
             }
             {

@@ -7,9 +7,7 @@ const PostEditScreen = (props) => {
     const postData = props.navigation.getParam('data');
 
     return (
-        <ScreenContainer
-            edges={['top']}
-        >
+        <ScreenContainer>
             <PostForm
                 data={postData}
                 type='edit'

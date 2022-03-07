@@ -27,11 +27,13 @@ const styles = StyleSheet.create({
         textAlign: 'center'
     },
     header: {
-        fontSize: 24,
+        fontSize: 26,
         marginBottom: 10
     },
     subheader: {
-        fontSize: 18
+        opacity: 0.7,
+        fontSize: 18,
+        lineHeight: 36
     }
 });
 

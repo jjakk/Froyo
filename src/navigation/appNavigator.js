@@ -11,7 +11,6 @@ import {
 import { setNavigator } from './navigationRef';
 // Screens
 import WelcomeScreen from '../screens/WelcomeScreen';
-import FeedScreen from '../screens/FeedScreen';
 import SearchScreen from '../screens/SearchScreen';
 import NoWifiScreen from '../screens/NoWifiScreen';
 // Authentication Screens
@@ -26,19 +25,22 @@ import AccountEditScreen from '../screens/account/AccountEditScreen';
 // Settings Screen
 import SettingsScreen from '../screens/SettingsScreen';
 // Post Screens
+import PostFeedScreen from '../screens/post/PostFeedScreen';
 import PostCreateScreen from '../screens/post/PostCreateScreen';
 import PostEditScreen from '../screens/post/PostEditScreen';
 import PostViewScreen from '../screens/post/PostViewScreen';
+// Meetup Screens
+import MeetupFeedScreen from '../screens/meetup/MeetupFeedScreen';
 // Context
 import { useSettings } from '../context/SettingsContext';
 // Icons
-import PlusCircleIcon from '../../assets/icons/Plus-Circle.svg';
+import MeetupIcon from '../../assets/icons/Meetup.svg';
 import HomeIcon from '../../assets/icons/Home.svg';
 import SearchIcon from '../../assets/icons/Search.svg';
 // Constants
 import { sizes, colors } from '../constants/constants';
 
-
+// This navigator organized the two sign up screens
 const signUpNavigator = createStackNavigator({
         SignUpOne: SignUpOneScreen,
         SignUpTwo: SignUpTwoScreen
@@ -49,37 +51,28 @@ const signUpNavigator = createStackNavigator({
     },
 });
 
-const homeNavigator = createStackNavigator({
-        Feed: FeedScreen,
-    }, {
-        headerMode: 'none',
-        defaultNavigationOptions: {
-            ...TransitionPresets.SlideFromRightIOS,
-        },
-});
-
-
+// This navigator organizes the bottom tab bar
 const tabNavigator = createBottomTabNavigator({
     Feed: {
-        screen: FeedScreen,
+        screen: PostFeedScreen,
         navigationOptions: {
             tabBarIcon: (({ tintColor }) => (
                     <HomeIcon
                         color={tintColor}
                         height={sizes.TAB_ICON}
-                        width={sizes.TAB_ICON}
+                        width={sizes.TAB_ICON*2}
                     />
                 ))
         }
     },
-    Create: {
-        screen: PostCreateScreen,
+    MeetupFeed: {
+        screen: MeetupFeedScreen,
         navigationOptions: {
             tabBarIcon: (({ tintColor }) => (
-                <PlusCircleIcon
+                <MeetupIcon
                     color={tintColor}
                     height={sizes.TAB_ICON}
-                    width={sizes.TAB_ICON}
+                    width={sizes.TAB_ICON*2}
                 />
             ))
         }
@@ -91,7 +84,7 @@ const tabNavigator = createBottomTabNavigator({
                 <SearchIcon
                     color={tintColor}
                     height={sizes.TAB_ICON}
-                    width={sizes.TAB_ICON}
+                    width={sizes.TAB_ICON*2}
                 />
             ))
         }
@@ -107,6 +100,7 @@ const tabNavigator = createBottomTabNavigator({
     initialRouteName: 'Feed'
 });
 
+// This navigator connects the tabFlow to the other screens
 const mainNavigator = createStackNavigator({
         tabFlow: tabNavigator,
         // Account Screens
@@ -118,6 +112,10 @@ const mainNavigator = createStackNavigator({
         PostCreate: PostCreateScreen,
         PostView: PostViewScreen,
         PostEdit: PostEditScreen,
+        // Meetup Screens
+        MeetupChat: (() => null),
+        MeetupGallery: (() => null),
+        MeetupSettings: (() => null),
     },
     {
         headerMode: 'none',
@@ -127,6 +125,7 @@ const mainNavigator = createStackNavigator({
     }
 );
 
+// The navigator organizes the authentication screens
 const authNavigator = createStackNavigator({
     SignIn: SignInScreen,
     SignUp: {
@@ -143,6 +142,7 @@ const authNavigator = createStackNavigator({
     }
 });
 
+// This is the root navigator
 const appNavigator = createSwitchNavigator({
     // Miscellaneous (external) screens
     ResolveAuth: ResolveAuthScreen,

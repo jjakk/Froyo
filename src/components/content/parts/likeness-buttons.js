@@ -12,7 +12,7 @@ import DislikeIconFill from '../../../../assets/icons/Dislike-Fill.svg';
 import LikeIconOutline from '../../../../assets/icons/Like-Outline.svg';
 import DislikeIconOutline from '../../../../assets/icons/Dislike-Outline.svg';
 // Constants
-import { colors, sizes } from '../../../constants/constants';
+import { colors } from '../../../constants/constants';
 
 const LikenessButton = forwardRef((props, ref) => {
     useImperativeHandle(ref, () => ({

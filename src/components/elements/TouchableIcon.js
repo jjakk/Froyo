@@ -40,9 +40,8 @@ const TouchableIcon = (props) => {
             </Touchable>
         ) : (
             <LoadingAnimation
-                style={styles.loading}
+                style={[styles.loading, style]}
                 size={size}
-                style={style}
             />
         )
     );

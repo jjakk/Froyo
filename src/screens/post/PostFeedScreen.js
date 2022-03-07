@@ -1,18 +1,19 @@
 import React, { useRef } from 'react';
 // Components
 import {
-    StyleSheet,
+    StyleSheet
 } from 'react-native';
-import Header from '../components/Header';
-import ScreenContainer from '../components/ScreenContainer';
-import PostList from '../components/content/PostList';
+import CreateButton from '../../components/CreateButton';
+import Header from '../../components/Header';
+import ScreenContainer from '../../components/ScreenContainer';
+import PostList from '../../components/content/PostList';
 // Icons
-import FroyoIcon from '../../assets/icons/Froyo.svg';
-import ChatIcon from '../../assets/icons/Chat.svg';
+import FroyoIcon from '../../../assets/icons/Froyo.svg';
+import ChatIcon from '../../../assets/icons/Chat.svg';
 // Context
-import { useUser } from '../context/UserContext';
+import { useUser } from '../../context/UserContext';
 // Constants
-import { BASE_URL, colors } from '../constants/constants';
+import { BASE_URL, colors } from '../../constants/constants';
 
 const FeedScreen = ({ navigation }) => {
     // Context
@@ -26,12 +27,16 @@ const FeedScreen = ({ navigation }) => {
         ? {
             uri: `${BASE_URL}/images/${user.profile_picture_bucket_key}`
         }
-        : require('../../assets/icons/guest.png')
+        : require('../../../assets/icons/guest.png')
     );
 
     // Event handlers
     const onAccountView = () => {
         navigation.navigate('AccountView');
+    };
+
+    const onCreatePost = () => {
+        navigation.navigate('PostCreate');
     };
 
     const onScrollToTop = () => {
@@ -67,6 +72,10 @@ const FeedScreen = ({ navigation }) => {
                 emptyMessage='Follow people to populate your feed'
                 ref={postListRef}
             />
+            <CreateButton
+                onPress={onCreatePost}
+                style={styles.createPost}
+            />
         </ScreenContainer>
     );
 };
@@ -74,6 +83,11 @@ const FeedScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
     header: {
         padding: 15,
+    },
+    createPost: {
+        position: 'absolute',
+        bottom: 10,
+        right: 10,
     }
 });
 

@@ -92,7 +92,8 @@ const styles = StyleSheet.create({
     overlay: {
         width: 350,
         height: 225,
-        borderRadius: 15
+        borderRadius: 15,
+        backgroundColor: colors.GRAY
     }
 });
 

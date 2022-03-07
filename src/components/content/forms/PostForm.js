@@ -61,7 +61,7 @@ const PostForm = (props) => {
             // Clear form data
             setText('');
             setImages([]);
-            navigation.navigate('AccountView');
+            navigation.pop();
         }
         catch (err) {
             setError(err.message);

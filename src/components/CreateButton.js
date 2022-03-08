@@ -1,6 +1,8 @@
 import React from 'react';
+// Components
 import { TouchableWithoutFeedback } from 'react-native';
 import { TouchableIcon } from './froyo-elements';
+// Icons
 import CreateIcon from '../../assets/icons/Create.svg';
 
 const CreateButton = (props) => {

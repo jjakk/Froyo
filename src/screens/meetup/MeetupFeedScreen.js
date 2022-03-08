@@ -35,7 +35,7 @@ const MeetupFeedScreen = () => {
                 }}
             />
             <MeetupList
-                emptyMessage="No one in your network's hosting an event at the moment"
+                emptyMessage="No one in your network's hosting a meetup at the moment"
             />
         </ScreenContainer>
     );

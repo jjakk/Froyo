@@ -10,6 +10,7 @@ import { useSettings } from '../context/SettingsContext';
 import { colors } from '../constants/constants';
 // Helper functions
 import confirmAlert from '../helperFunctions/confirmAlert'
+import { Alert } from 'react-native';
 
 const SettingsScreen = ({ navigation }) => {
     const { deleteUser } = useUser();

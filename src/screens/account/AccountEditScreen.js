@@ -3,7 +3,8 @@ import React, { useState } from 'react';
 import {
     StyleSheet,
     View,
-    ImageBackground
+    ImageBackground,
+    Alert
 } from 'react-native';
 import {
     Button,
@@ -12,7 +13,6 @@ import {
 } from '../../components/froyo-elements';
 import ScreenContainer from '../../components/ScreenContainer';
 import Header from '../../components/Header';
-import ErrorMessage from '../../components/messages/ErrorMessage'
 // Icons
 import UploadIcon from '../../../assets/icons/Upload.svg';
 // Context
@@ -30,7 +30,6 @@ const AccountEditScreen = ({ navigation }) => {
     const [image, setImage] = useState(null);
     // Status states
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
 
     const formUnchanged = (
         firstName === user.first_name &&
@@ -67,7 +66,7 @@ const AccountEditScreen = ({ navigation }) => {
             navigation.pop();
         }
         catch(err){
-            setError(err.message);
+            Alert.alert(err.message);
         }
         finally {
             setLoading(false);
@@ -138,10 +137,6 @@ const AccountEditScreen = ({ navigation }) => {
                     disabled={formUnchanged}
                     containerStyle={styles.submit}
                     onPress={handleSubmit}
-                />
-                <ErrorMessage
-                    message={error}
-                    onClose={setError}
                 />
             </View>
         </ScreenContainer>

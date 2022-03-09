@@ -3,14 +3,14 @@ import React, { useState, useEffect } from 'react';
 import {
     StyleSheet,
     Keyboard,
-    View
+    View,
+    Alert
 } from 'react-native';
 import { NavigationEvents } from 'react-navigation';
 import {
     Input,
     TouchableIcon
 } from '../../froyo-elements';
-import ErrorMessage from '../../messages/ErrorMessage';
 import ImageUpload from '../../ImageUpload';
 // Constants
 import { BASE_URL, colors } from '../../../constants/constants';
@@ -43,7 +43,6 @@ const PostForm = (props) => {
     const [text, setText] = useState(passedText || '');
     const [images, setImages] = useState(passedImages || []);
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState('');
 
     // Event Handlers
     const handleSubmit = async () => {
@@ -64,15 +63,11 @@ const PostForm = (props) => {
             navigation.pop();
         }
         catch (err) {
-            setError(err.message);
+            Alert.alert(err.message);
         }
         finally {
             setLoading(false);
         }
-    };
-
-    const clearError = async () => {
-        if(error) setError('');
     };
 
     // Image events
@@ -88,14 +83,9 @@ const PostForm = (props) => {
     };
 
 
-    // Delete error message when you type in the post body
-    useEffect(() => {
-        clearError();
-    }, [text]);
-
     return (
         <View style={styles.container}>
-            <NavigationEvents onDidFocus={clearError}/>
+            <NavigationEvents/>
             <View style={styles.body}>
                 <Input
                     style={[
@@ -120,12 +110,6 @@ const PostForm = (props) => {
                 images={images}
                 onImageSelect={onImageSelect}
                 onDelete={onImageDelete}
-            />
-            <ErrorMessage
-                type='box'
-                style={styles.error}
-                error={error}
-                setError={setError}
             />
         </View>
     );

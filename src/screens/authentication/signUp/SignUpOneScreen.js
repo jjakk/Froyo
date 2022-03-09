@@ -3,7 +3,8 @@ import React, { useState } from 'react';
 import {
     View,
     Keyboard,
-    StyleSheet
+    StyleSheet,
+    Alert
 } from 'react-native';
 import {
     Text,
@@ -13,7 +14,6 @@ import {
     DatePicker
 } from '../../../components/froyo-elements';
 import ScreenContainer from '../../../components/ScreenContainer';
-import ErrorMessage from '../../../components/messages/ErrorMessage';
 // Context
 import { useUser } from '../../../context/UserContext';
 
@@ -25,26 +25,28 @@ const SignUpScreenOne = ({ navigation }) => {
     const [dob, setDob] = useState('');
     // Status states
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState('');
 
     // Event Handlers
-    const handleSubmit = () => {
-        setLoading(true);
-        Keyboard.dismiss();
-        setError('');
-        continueSignUp({ email, username, dob }, (err) => {
+    const handleSubmit = async () => {
+        let formSuccess = false;
+        try {
+            setLoading(true);
+            Keyboard.dismiss();
+            await continueSignUp({ email, username, dob });
+            formSuccess = true;
+        }
+        catch (err) {
+            Alert.alert(err.message);
+        }
+        finally {
             setLoading(false);
-            if (err) {
-                setError(err);
-            }
-            else {
+            if (formSuccess) {
                 navigation.navigate('SignUpTwo', { email, username, dob });
             }
-        });
+        }
     }
     
     const handleRefSignIn = () => {
-        setError('');
         navigation.navigate('SignIn')
     };
 
@@ -88,7 +90,6 @@ const SignUpScreenOne = ({ navigation }) => {
                     >
                         Sign in
                     </Link>
-                    <ErrorMessage error={error} />
                 </View>
             </View>
         </ScreenContainer>

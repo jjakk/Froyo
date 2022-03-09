@@ -23,91 +23,91 @@ const userReducer = (state, action) => {
 };
 
 // Sign in with email and password
-const signIn = (dispatch) => async ({ email, password }, callback) => {
-    try{
-        // Check that all fields are complete first
-        switch(''){
-            case email:
-                return callback('Must provide an email');
-            case password:
-                return callback('Must provide a password');
-        }
+const signIn = (dispatch) => async ({ email, password }) => {
+    // Check that all fields are complete first
+    switch(''){
+        case email:
+            throw new Error('Must provide an email');
+        case password:
+            throw new Error('Must provide a password');
+    }
+    try {
         // Get authentication token from API
         const { headers: { authorization } } = await froyoApi.post('/auth/login', { email, password });
         const token = authorization.replace('Bearer ', '');
         await AsyncStorage.setItem('token', token);
         dispatch({ type: 'sign_in', payload: token });
-        callback();
     }
-    catch(err){
-        callback(err.response.data);
+    catch (err) {
+        throw Error(err.response.data)
     }
 };
 
 // Verify that the information from the first page of sign up is valid
-const continueSignUp = () => async ({ email, username, dob }, callback) => {
-    try{
-        // Check all feilds are filled
-        switch(''){
-            case email:
-                return callback('Email is required');
-            case username:
-                return callback('Username is required');
-            case dob:
-                return callback('Date of Birth is required');
-        }
+const continueSignUp = () => async ({ email, username, dob }) => {
+    // Check all feilds are filled
+    switch(''){
+        case email:
+            throw new Error('Email is required');
+        case username:
+            throw new Error('Username is required');
+        case dob:
+            throw new Error('Date of Birth is required');
+    }
 
-        // Check user is old enough
-        if(ageInYears(dob) < 13){
-            return callback('You must be 13 years or older to sign up');
-        }
+    // Check user is old enough
+    if(ageInYears(dob) < 13){
+        throw new Error('You must be 13 years or older to sign up');
+    }
 
+    try {
         // Check server if email, and username are valid
         await froyoApi.get(`/auth/validEmail/${email}`);
         await froyoApi.get(`/auth/validUsername/${username}`);
-        callback();
     }
-    catch(err){
-        callback(err.response.data);
+    catch (err) {
+        throw Error(err.response.data)
     }
 };
 
 // Create an account & sign in
-const signUp = (dispatch) => async (info, callback) => {
+const signUp = (dispatch) => async (info) => {
+    const {
+        email,
+        username,
+        dob,
+        first_name,
+        last_name,
+        password,
+        passwordConfirm
+    } = info;
+
+    // Check all feilds are filled
+    switch(''){
+        case first_name:
+            throw new Error('Must enter a first name');
+        case last_name:
+            throw new Error('Must enter a last name');
+        case password:
+            throw new Error('Must enter a password');
+        case passwordConfirm:
+            throw new Error('Must confirm password');
+    }
+
+    // Make sure passwords match
+    if(password !== passwordConfirm){
+        throw new Error('Passwords must match');
+    }
+
     try{
-        const {
-            email,
-            username,
-            dob,
-            first_name,
-            last_name,
-            password,
-            passwordConfirm
-        } = info;
-        // Check all feilds are filled
-        switch(''){
-            case first_name:
-                return callback('Must enter a first name');
-            case last_name:
-                return callback('Must enter a last name');
-            case password:
-                return callback('Must enter a password');
-            case passwordConfirm:
-                return callback('Must confirm password');
-        }
-        // Make sure passwords match
-        if(password !== passwordConfirm){
-            return callback('Passwords must match');
-        }
         // Create the user and store their authentication token
         const { headers: { authorization } } = await froyoApi.post('/users/', { email, username, dob, first_name, last_name, password });
         const token = authorization.replace('Bearer ', '');
         await AsyncStorage.setItem('token', token);
-        dispatch({ type: 'sign_in', payload: token});
-        callback();
+        dispatch({ type: 'sign_in', payload: token}); 
     }
-    catch(err){
-        callback(err.response.data);
+    catch (err) {
+        throw Error(err.response.data)
     }
 };
 
@@ -146,11 +146,11 @@ const updateUser = (dispatch) => async (info) => {
     // Check all required fields are filled
     switch(''){
         case firstName:
-            throw { message: 'Must enter a first name'};
+            throw new Error('Must enter a first name');
         case lastName:
-            throw { message: 'Must enter a last name'};
+            throw new Error('Must enter a last name');
         case username:
-            throw { message: 'Must enter a username'};
+            throw new Error('Must enter a username');
     }
 
     await formRequest('put', '/users', {

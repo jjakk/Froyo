@@ -11,7 +11,6 @@ import {
 } from 'react-native';
 import { NavigationEvents } from 'react-navigation';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import ErrorMessage from './messages/ErrorMessage';
 // Context
 import { useSettings } from '../context/SettingsContext';
 // Constants
@@ -80,12 +79,6 @@ const ScreenContainer = (props) => {
                     >
                         <NavigationEvents onDidFocus={onDidFocus} />
                         {children}
-                        <ErrorMessage
-                            type='box'
-                            error={error}
-                            setError={setError}
-                            style={styles.error}
-                        />
                     </KeyboardAvoidingView>
                 </TouchableWithoutFeedback>
             </SafeAreaView>

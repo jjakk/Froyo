@@ -3,7 +3,8 @@ import React, { useState } from 'react';
 import {
     View,
     StyleSheet,
-    Keyboard
+    Keyboard,
+    Alert
 } from 'react-native';
 import {
     Button,
@@ -11,7 +12,6 @@ import {
     Input,
     Link
 } from '../../components/froyo-elements';
-import ErrorMessage from '../../components/messages/ErrorMessage';
 import ScreenContainer from '../../components/ScreenContainer';
 // Context
 import { useUser } from '../../context/UserContext';
@@ -23,26 +23,28 @@ const SignInScreen = ({ navigation }) => {
     const [password, setPassword] = useState('');
     // Status states
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState('');
 
     // Event handlers
-    const handleSubmit = () => {
-        setError('');
-        Keyboard.dismiss()
-        setLoading(true);
-        signIn({ email, password }, (err) => {
+    const handleSubmit = async () => {
+        let formSuccess = false;
+        try {
+            Keyboard.dismiss()
+            setLoading(true);
+            await signIn({ email, password });
+            formSuccess = true;
+        }
+        catch (err) {
+            Alert.alert(err.message);
+        }
+        finally {
             setLoading(false);
-            if (err) {
-                setError(err);
-            }
-            else{
+            if (formSuccess) {
                 navigation.navigate('ResolveAuth');
             }
-        });
+        }
     };
 
     const handleRefSignUp = () => {
-        setError('');
         navigation.navigate('SignUp')
     };
 
@@ -76,7 +78,6 @@ const SignInScreen = ({ navigation }) => {
                     >
                         Sign up
                     </Link>
-                    <ErrorMessage error={error} />
                 </View>
             </View>
         </ScreenContainer>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 // Components
 import {
+    Alert,
     StyleSheet,
     View,
 } from 'react-native';
@@ -11,7 +12,6 @@ import {
 } from './../../components/froyo-elements';
 import Header from '../../components/Header';
 import ScreenContainer from '../../components/ScreenContainer';
-import ErrorMessage from '../../components/messages/ErrorMessage';
 // Context
 import { useUser } from '../../context/UserContext';
 
@@ -27,13 +27,12 @@ const ResetPasswordScreen = ({ navigation }) => {
 
     const onSubmit = async () => {
         try {
-            setError('');
             setLoading(true);
             await resetPassword(email);
             setSuccess(true);
         }
         catch (err) {
-            setError(err.response.data || err.message);
+            Alert.alert(err.response.data || err.message);
         }
         finally {
             setLoading(false);
@@ -53,24 +52,20 @@ const ResetPasswordScreen = ({ navigation }) => {
                         </Text>
                     ) : (
                         <>
-                        <Text style={styles.header}>Reset Password</Text>
-                        <Input
-                            style={styles.input}
-                            placeholder='Email'
-                            value={email}
-                            onChangeText={setEmail}
-                        />
-                        <Button
-                            buttonStyle={styles.submit}
-                            title='Reset'
-                            type='primary'
-                            loading={loading}
-                            onPress={onSubmit}
-                        />
-                        <ErrorMessage
-                            error={error}
-                            setError={setError}
-                        />
+                            <Text style={styles.header}>Reset Password</Text>
+                            <Input
+                                style={styles.input}
+                                placeholder='Email'
+                                value={email}
+                                onChangeText={setEmail}
+                            />
+                            <Button
+                                buttonStyle={styles.submit}
+                                title='Reset'
+                                type='primary'
+                                loading={loading}
+                                onPress={onSubmit}
+                            />
                         </>
                     )
                 }

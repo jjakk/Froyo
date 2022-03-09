@@ -4,6 +4,7 @@ import {
     View,
     Keyboard,
     StyleSheet,
+    Alert,
 } from 'react-native';
 import {
     Text,
@@ -12,7 +13,6 @@ import {
 } from '../../../components/froyo-elements';
 import Header from '../../../components/Header';
 import ScreenContainer from '../../../components/ScreenContainer';
-import ErrorMessage from '../../../components/messages//ErrorMessage';
 // Context
 import { useUser } from '../../../context/UserContext';
 
@@ -28,31 +28,34 @@ const SignUpTwoScreen = ({ navigation }) => {
     const [passwordConfirm, setPasswordConfirm] = useState('');
     // Status states
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState('');
     // Context values & functions
     const { signUp} = useUser();
 
-    const handleSubmit = () => {
-        setLoading(true);
-        setError('');
-        Keyboard.dismiss();
-        signUp({
-            email,
-            username,
-            dob,
-            first_name: firstName,
-            last_name: lastName,
-            password,
-            passwordConfirm
-        }, (err) => {
+    const handleSubmit = async () => {
+        let formSuccess = false;
+        try {
+            setLoading(true);
+            Keyboard.dismiss();
+            await signUp({
+                email,
+                username,
+                dob,
+                first_name: firstName,
+                last_name: lastName,
+                password,
+                passwordConfirm
+            });
+            formSuccess = true;
+        }
+        catch (err) {
+            Alert.alert(err.message);
+        }
+        finally {
             setLoading(false);
-            if (err) {
-                setError(err);
-            }
-            else {
+            if (formSuccess) {
                 navigation.navigate('ResolveAuth');
             }
-        });
+        }
     };
 
     return (
@@ -92,7 +95,6 @@ const SignUpTwoScreen = ({ navigation }) => {
                     containerStyle={styles.submitContainer}
                     onPress={handleSubmit}
                 />
-                <ErrorMessage error={error} />
             </View>
         </ScreenContainer>
     );

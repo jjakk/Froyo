@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import DateTimePicker from '@react-native-community/datetimepicker';
-import { View, Platform, StyleSheet, TouchableWithoutFeedback } from 'react-native';
+import { Appearance, View, Platform, StyleSheet, TouchableWithoutFeedback } from 'react-native';
 import { Overlay } from 'react-native-elements';
 import { colors } from '../../constants/constants';
 import Button from './Button';
@@ -9,6 +9,7 @@ const DatePicker = (props) => {
     const [date, setDate] = useState(new Date(new Date().toJSON().slice(0,10).replace(/-/g,'/')));
     const [show, setShow] = useState(false);
     const { dob, setDob } = props;
+    const systemDarkModeEnabled = Appearance.getColorScheme() === 'dark';
     // check if date has been touched yet
     const didMountRef = useRef(false);
 
@@ -65,7 +66,14 @@ const DatePicker = (props) => {
             {
                 Platform.OS === 'ios' ? (
                     <Overlay
-                        overlayStyle={styles.overlay}
+                        overlayStyle={[
+                            styles.overlay,
+                            systemDarkModeEnabled ? {
+                                backgroundColor: colors.dark.FOURTH
+                            } : {
+                                backgroundColor: colors.light.FIRST
+                            }
+                        ]}
                         isVisible={show}
                         onBackdropPress={toggleShow}
                     >
@@ -92,8 +100,7 @@ const styles = StyleSheet.create({
     overlay: {
         width: 350,
         height: 225,
-        borderRadius: 15,
-        backgroundColor: colors.GRAY
+        borderRadius: 15
     }
 });
 

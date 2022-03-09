@@ -1,6 +1,5 @@
 import React, {
     useState,
-    useContext,
     useEffect
 } from 'react';
 // Context
@@ -59,6 +58,11 @@ const UserProfile = (props) => {
     // Event handlers
     const onEditProfile = () => {
         navigate('AccountEdit');
+    };
+
+    const onSignOut = async () => {
+        await signOut();
+        navigate('ResolveAuth');
     };
 
     // Get following status whenever the user state changes (If viewing another user's profile)
@@ -153,7 +157,7 @@ const UserProfile = (props) => {
                                 pill
                                 buttonStyle={styles.actionButton}
                                 titleStyle={styles.actionButtonText}
-                                onPress={signOut}
+                                onPress={onSignOut}
                             />
                         </View>
                         </>

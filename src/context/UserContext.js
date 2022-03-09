@@ -118,7 +118,6 @@ const signOut = (dispatch) => async () => {
     // Remove the user's theme preference from storage
     await AsyncStorage.removeItem('theme');
     dispatch({ type: 'sign_out' });
-    navigate('ResolveAuth');
 };
 
 // Delete a user from the database and sign out

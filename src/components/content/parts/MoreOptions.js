@@ -1,5 +1,5 @@
 import React from 'react';
-import { Appearance } from 'react-native';
+import { Alert, Appearance } from 'react-native';
 import OptionsMenu from "react-native-option-menu";
 // Navigation
 import { navigate } from '../../../navigation/navigationRef';
@@ -32,9 +32,14 @@ const MoreOptions = (props) => {
 
     // Default functions for edit button
     const onEdit = () => {
-        navigate(`${contentType}Edit`, {
-            data: content
-        });
+        if (contentType === 'Post') {
+            Alert.alert('Post editing has not been implemented yet');
+        }
+        else {
+            navigate(`${contentType}Edit`, {
+                data: content
+            });
+        }
     };
     
     // Show delete confirmation, and delete if confirmed

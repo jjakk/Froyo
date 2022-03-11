@@ -65,7 +65,7 @@ const Comment = (props) => {
 
     const onCollapse = () => {
         if (!collapsed) {
-            Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium)
+            Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
             setCollapsed(true);
         }
     };

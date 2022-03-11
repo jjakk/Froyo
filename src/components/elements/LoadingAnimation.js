@@ -3,12 +3,11 @@ import React, {
     useEffect
 } from "react";
 import {
+    Appearance,
     Animated,
     StyleSheet,
     Easing
 } from "react-native";
-// Context
-import { useSettings } from '../../context/SettingsContext';
 // Icons
 import LoadingIcon from '../../../assets/animation-icons/loading.svg';
 // Constants
@@ -16,7 +15,7 @@ import { colors } from '../../constants/constants';
 
 const LoadingAnimation = (props) => {
     // Context
-    const { state: { theme } } = useSettings();
+    const theme = Appearance.getColorScheme();
     const darkModeEnabled = theme === 'dark';
 
     // Refs

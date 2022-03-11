@@ -1,15 +1,16 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import {
+    Appearance,
+    StyleSheet
+} from 'react-native';
 // Components
 import { Button as DefaultButton } from 'react-native-elements';
-// Context
-import { useSettings } from '../../context/SettingsContext';
 // Constants
 import { colors } from '../../constants/constants';
 
 const Button = (props) => {
     // Context
-    const { state: { theme } } = useSettings();
+    const theme = Appearance.getColorScheme();
     const darkModeEnabled = theme === 'dark';
 
     // Props

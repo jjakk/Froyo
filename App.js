@@ -1,12 +1,11 @@
-import _ from 'denodeify';
-import React from 'react';
+import React, { useReducer, useEffect } from 'react';
+import { Appearance } from 'react-native';
 import { useFonts } from 'expo-font';
 // Navigation
 import AppNavigator from './src/navigation/AppNavigator';
 // Context
 import { Provider as UserProvider } from './src/context/UserContext';
 import { Provider as ContentProvider } from './src/context/ContentContext';
-import { Provider as SettingsProvider } from './src/context/SettingsContext';
 
 const App = () => {
   // Import custom fonts
@@ -16,14 +15,24 @@ const App = () => {
     'Nunito-Bold': require('./assets/fonts/Nunito/Nunito-Bold.ttf'),
     'Nunito-Light': require('./assets/fonts/Nunito/Nunito-Light.ttf'),
   });
+  
+  // Reload all components when theme changes
+  const [ignored, forceUpdate] = useReducer(x => x + 1, 0);
+  const onThemeChange = () => {
+      forceUpdate();
+  };
+  useEffect(() => {
+      Appearance.addChangeListener(onThemeChange);
+      return () => {
+          Appearance.removeChangeListener(onThemeChange)
+      };
+  }, []);
 
   return (
     loaded ? (
       <UserProvider>
         <ContentProvider>
-          <SettingsProvider>
             <AppNavigator/>
-          </SettingsProvider>
         </ContentProvider>
       </UserProvider>
       ) : null

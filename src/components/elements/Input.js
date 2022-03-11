@@ -1,18 +1,17 @@
 import React from 'react';
 // Components
 import {
+    Appearance,
+    StyleSheet,
     TextInput,
-    View,
-    StyleSheet
+    View
 } from 'react-native';
 // Constants
 import { colors } from '../../constants/constants';
-// Context
-import { useSettings } from '../../context/SettingsContext';
 
 const Input = (props) => {
     // Context
-    const { state: { theme } } = useSettings();
+    const theme = Appearance.getColorScheme();
     const darkModeEnabled = theme === 'dark' ;
 
     // Props

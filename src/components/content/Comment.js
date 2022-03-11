@@ -3,6 +3,7 @@ import React, {
     useEffect
 } from 'react';
 import {
+    Appearance,
     View,
     TouchableWithoutFeedback,
     StyleSheet,
@@ -20,7 +21,6 @@ import ContentHeader from './parts/ContentHeader';
 import MoreOptions from './parts/MoreOptions';
 import LikenessBar from './parts/LikenessBar';
 // Context
-import { useSettings } from '../../context/SettingsContext';
 import { useUser} from '../../context/UserContext';
 import { useContent } from '../../context/ContentContext';
 // Constants
@@ -30,7 +30,7 @@ import ReplyIcon from '../../../assets/icons/Reply.svg';
 
 const Comment = (props) => {
     // Context
-    const { state: { theme } } = useSettings();
+    const theme = Appearance.getColorScheme();
     const { state: { user } } = useUser(); 
     const { likeContent, dislikeContent } = useContent();
     

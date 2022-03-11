@@ -1,28 +1,53 @@
 import React from 'react';
+import {
+    Appearance,
+    Alert,
+    Platform
+} from 'react-native';
+import * as Linking from 'expo-linking';
 // Components
 import SettingsOptions from '../components/settings/SettingsList';;
 import ScreenContainer from '../components/ScreenContainer';
 import Header from '../components/Header';
 // Context
 import { useUser } from '../context/UserContext';
-import { useSettings } from '../context/SettingsContext';
 // Constants
 import { colors } from '../constants/constants';
 // Helper functions
 import confirmAlert from '../helperFunctions/confirmAlert'
-import { Alert } from 'react-native';
 
 const SettingsScreen = ({ navigation }) => {
     const { deleteUser } = useUser();
-    const { setTheme, state: { theme } } = useSettings();
+    const theme = Appearance.getColorScheme();
 
     const settings = [
         {
-            title: 'Dark Mode',
-            type: 'toggle',
+            title: 'Change Theme',
+            type: 'button',
             value: theme === 'dark',
-            onToggle: () => {
-                setTheme(theme !== 'dark' ? 'dark' : 'light');
+            onPress: () => {
+                const message = `To change the theme you must change your system theme in settings ${Platform.OS === 'ios' ? ' under "Display & Brightness"' : ''}`
+                const confirmCallback = Platform.OS === 'ios'
+                ? () => {
+                    Linking.openURL('App-prefs:root=DISPLAY&path=APPEARANCE_OPTIONS')
+                } : () => {
+                    Linking.openSettings();
+                }
+                Alert.alert(
+                    message,
+                    null,
+                    [
+                        {
+                            text: 'Cancel',
+                            style: 'cancel'
+                            
+                        },
+                        {
+                            text: 'Open Settings',
+                            onPress: confirmCallback
+                        }
+                    ]
+                );
             }
         },
         {

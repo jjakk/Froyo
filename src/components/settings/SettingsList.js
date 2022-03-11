@@ -1,17 +1,16 @@
 import React from 'react';
 // Components
 import {
+    Appearance,
     StyleSheet,
     FlatList
 } from 'react-native';
 import SettingsItem from './SettingsItem';
-// Context
-import { useSettings } from '../../context/SettingsContext';
 // Constants
 import { colors } from '../../constants/constants';
 
 const SettingsList = ({ settings }) => {
-    const { state: { theme } } = useSettings();
+    const theme = Appearance.getColorScheme();
 
     return (
         <FlatList

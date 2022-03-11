@@ -5,6 +5,7 @@ import React, {
 } from 'react';
 // Components
 import {
+    Appearance,
     View,
     StyleSheet,
     TouchableWithoutFeedback
@@ -24,7 +25,6 @@ import LikenessBar from './parts/LikenessBar';
 // Navigation
 import { navigate } from '../../navigation/navigationRef';
 // Contexts
-import { useSettings } from '../../context/SettingsContext';
 import { useUser } from '../../context/UserContext';
 import { useContent } from '../../context/ContentContext';
 // Icons
@@ -51,7 +51,7 @@ const Post = (props) => {
     const dislikeRef = useRef();
 
     // Context
-    const { state: { theme } } = useSettings();
+    const theme = Appearance.getColorScheme();
     const { state: { user } } = useUser();
     const { likeContent, dislikeContent } = useContent();
     

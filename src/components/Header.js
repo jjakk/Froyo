@@ -1,6 +1,7 @@
 import React from 'react';
 // Components
 import {
+    Appearance,
     StyleSheet,
     View,
     TouchableOpacity,
@@ -10,8 +11,6 @@ import {
     Text,
     TouchableIcon
 } from './froyo-elements';
-// Context
-import { useSettings } from '../context/SettingsContext';
 // Icons
 import BackIcon from '../../assets/icons/Back.svg';
 // Constants
@@ -19,7 +18,7 @@ import { colors, sizes } from '../constants/constants';
 
 const Header = (props) => {
     // Context
-    const { state: { theme } } = useSettings();
+    const theme = Appearance.getColorScheme();
 
     // Props
     const {

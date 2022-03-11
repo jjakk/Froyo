@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 // Components
 import {
+    Appearance,
     StyleSheet,
     Keyboard,
     View,
@@ -17,12 +18,11 @@ import { BASE_URL, colors } from '../../../constants/constants';
 // Icons
 import SendIcon from '../../../../assets/icons/Send.svg';
 // Context
-import { useSettings } from '../../../context/SettingsContext';
 import { useContent } from '../../../context/ContentContext';
 
 const PostForm = (props) => {
     // Context
-    const { state: { theme } } = useSettings();
+    const theme = Appearance.getColorScheme();
     const { createContent } = useContent();
     const darkModeEnabled = theme === 'dark';
 

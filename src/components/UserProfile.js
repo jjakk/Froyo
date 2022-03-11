@@ -3,12 +3,12 @@ import React, {
     useEffect
 } from 'react';
 // Context
-import { useSettings } from '../context/SettingsContext';
 import { useUser } from '../context/UserContext';
 // Navigation
 import { navigate } from '../navigation/navigationRef';
 // Components
 import {
+    Appearance,
     StyleSheet,
     View,
     Image,
@@ -23,7 +23,7 @@ import { BASE_URL, colors } from '../constants/constants';
 
 const UserProfile = (props) => {
     // Context
-    const { state: { theme } } = useSettings();
+    const theme = Appearance.getColorScheme();
     const {
         signOut,
         follow,

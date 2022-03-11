@@ -1,6 +1,7 @@
 import React from 'react';
 // Components
 import {
+    Appearance,
     View,
     StyleSheet,
     TouchableOpacity
@@ -9,13 +10,11 @@ import {
     Text,
     Switch
 } from '../froyo-elements';
-// Context
-import { useSettings } from '../../context/SettingsContext';
 // Constants
 import { colors } from '../../constants/constants';
 
 const SettingsItem = ({ item }) => {
-    const { state: { theme } } = useSettings();
+    const theme = Appearance.getColorScheme();
 
     let RenderItem = () => (<></>);
 
@@ -53,10 +52,8 @@ const SettingsItem = ({ item }) => {
                     <Text style={[
                         styles.optionText,
                         themeStyles[theme].optionText,
-                        styles.buttonText, {
-                            color: item.color,
-                            fontSize: 22
-                        }
+                        styles.buttonText,
+                        item.color ? { color: item.color } : {}
                     ]}>
                         {item.title}
                     </Text>

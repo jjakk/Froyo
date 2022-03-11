@@ -1,24 +1,19 @@
 import React, { useEffect } from 'react';
 // Components
 import {
-    Image,
-    StyleSheet,
-    View
+    StyleSheet
 } from 'react-native';
 import ScreenContainer from '../../components/ScreenContainer';
 // Icons
 import Logo from '../../../assets/icons/Froyo.svg';
 // Context
 import { useUser} from '../../context/UserContext';
-import { useSettings } from '../../context/SettingsContext';
 // Constants
 import { colors } from '../../constants/constants';
 
 const ResolveAuthScreen = () => {
     const { checkSignedIn } = useUser();
-    const { getSettings } = useSettings();
     useEffect(() => {
-        getSettings();
         checkSignedIn();
     }, []);
 

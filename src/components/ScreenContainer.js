@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 // Components
 import {
+    Appearance,
     StyleSheet,
     TouchableWithoutFeedback,
     KeyboardAvoidingView,
@@ -11,13 +12,11 @@ import {
 } from 'react-native';
 import { NavigationEvents } from 'react-navigation';
 import { SafeAreaView } from 'react-native-safe-area-context';
-// Context
-import { useSettings } from '../context/SettingsContext';
 // Constants
 import { colors } from '../constants/constants';
 
 const ScreenContainer = (props) => {
-    const { state: { theme } } = useSettings();
+    const theme = Appearance.getColorScheme();
     const darkModeEnabled = theme === 'dark' ;
 
     // Props
@@ -37,9 +36,6 @@ const ScreenContainer = (props) => {
         ),
         ...restOfProps
     } = props;
-
-    // Error handling
-    const [error, setError] = useState('');
 
     return (
         <View style={[

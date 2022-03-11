@@ -1,15 +1,17 @@
 import React from 'react';
 // Components
-import { TouchableOpacity, StyleSheet } from 'react-native';
+import {
+    Appearance,
+    StyleSheet,
+    TouchableOpacity
+} from 'react-native';
 import LoadingAnimation from './LoadingAnimation';
-// Context
-import { useSettings } from '../../context/SettingsContext';
 // Constants
 import { colors } from '../../constants/constants';
 
 const TouchableIcon = (props) => {
     // Context
-    const { state: { theme } } = useSettings();
+    const theme = Appearance.getColorScheme();
     const darkModeEnabled = theme === 'dark' ;
 
     // Props

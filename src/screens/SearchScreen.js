@@ -1,17 +1,15 @@
 import React, { useState, useRef } from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Appearance } from 'react-native';
 // Components
 import ScreenContainer from '../components/ScreenContainer';
 import SearchBar from '../components/bars/SearchBar';
 import PostList from '../components/content/PostList';
-// Context
-import { useSettings } from '../context/SettingsContext';
 // Constants
 import { colors } from '../constants/constants';
 
 const SearchScreen = () => {
     // Context
-    const { state: { theme } } = useSettings();
+    const theme = Appearance.getColorScheme();
 
     // State
     const [searchText, setSearchText] = useState('');

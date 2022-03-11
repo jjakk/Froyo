@@ -1,18 +1,17 @@
 import React from 'react';
 // Components
-import { View, FlatList, StyleSheet } from 'react-native';
+import { Appearance, StyleSheet, View, FlatList } from 'react-native';
 import { LoadingAnimation } from '../froyo-elements';
 import EmptyMessage from '../messages/EmptyMessage';
 import Meetup from './Meetup';
 // Context
-import { useSettings } from '../../context/SettingsContext';
 import { useMeetup } from '../../context/MeetupContext';
 // Constants
 import { colors } from '../../constants/constants';
 
 const MeetupList = (props) => {
     // Context
-    const { state: { theme } } = useSettings();
+    const theme = Appearance.getColorScheme();
 
     // Props
     const {

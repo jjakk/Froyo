@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
-import { StyleSheet, TouchableOpacity } from 'react-native';
+import {
+    Appearance,
+    StyleSheet,
+    TouchableOpacity
+} from 'react-native';
 import { View } from 'react-native';
 // Components
 import { Input } from '../froyo-elements';
 // Context
-import { useSettings } from '../../context/SettingsContext';
 import { useContent } from '../../context/ContentContext';
 // Icons
 import SendIcon from '../../../assets/icons/Send.svg';
@@ -15,7 +18,7 @@ import { colors } from '../../constants/constants';
 // onCreateComment -> function: callback function to be called when the comment is created
 const CommentBar = (props) => {
     // Context
-    const { state: { theme } } = useSettings();
+    const theme = Appearance.getColorScheme();
     const { createContent } = useContent();
     const darkModeEnabled = theme === 'dark' ;
     

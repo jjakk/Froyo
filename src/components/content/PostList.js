@@ -7,6 +7,7 @@ import React, {
 } from 'react';
 // Components
 import {
+    Appearance,
     StyleSheet,
     View,
     FlatList,
@@ -17,7 +18,6 @@ import { LoadingAnimation } from '../froyo-elements';
 import EmptyMessage from '../messages/EmptyMessage';
 import Post from './Post';
 // Context
-import { useSettings } from '../../context/SettingsContext';
 import { useUser } from '../../context/UserContext';
 import { useContent } from '../../context/ContentContext';
 // Constants
@@ -27,7 +27,7 @@ const PostList = (props, ref) => {
     // Refs
     const scrollRef = useRef();
     // Context
-    const { state: { theme } } = useSettings();
+    const theme = Appearance.getColorScheme();
     const { state: { user: signedInUser } } = useUser();
     const {
         searchContent,

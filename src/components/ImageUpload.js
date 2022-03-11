@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 // Componenets
 import {
+    Appearance,
     FlatList,
     View,
     ImageBackground,
@@ -11,8 +12,6 @@ import {
     Text,
     ImageSelect
 } from './froyo-elements';
-// Context
-import { useSettings } from '../context/SettingsContext';
 // Constants
 import { colors } from '../constants/constants';
 // Icons
@@ -21,7 +20,7 @@ import CloseIcon from '../../assets/icons/Close.svg';
 
 const ImageUpload = (props) => {
     // Context
-    const { state: { theme } } = useSettings();
+    const theme = Appearance.getColorScheme();
     const darkModeEnabled = theme === 'dark';
 
     // Props

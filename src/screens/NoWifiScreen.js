@@ -1,17 +1,15 @@
 import React from 'react';
 // Components
-import { StyleSheet, View } from 'react-native';
+import { Appearance, StyleSheet, View } from 'react-native';
 import { Text, Button } from '../components/froyo-elements';
 import ScreenContainer from '../components/ScreenContainer';
-// Context
-import { useSettings } from '../context/SettingsContext';
 // Icons
 import NoWifiIcon from '../../assets/icons/NoWifi.svg';
 // Constants
 import { colors } from '../constants/constants';
 
 const NoWifiScreen = ({ navigation }) => {
-    const { state: { theme } } = useSettings();
+    const theme = Appearance.getColorScheme();
     const darkModeEnabled = theme === 'dark' ;
 
     // Event handlers

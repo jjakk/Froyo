@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 // Components
 import {
+    Appearance,
     StyleSheet,
     View,
     ScrollView,
@@ -8,14 +9,12 @@ import {
     Dimensions,
     TouchableWithoutFeedback
 } from 'react-native';
-// Context
-import { useSettings } from '../../context/SettingsContext';
 // Constants
 import { BASE_URL, colors } from '../../constants/constants';
 
 const ImageList = (props) => {
     // Context
-    const { state: { theme } } = useSettings();
+    const theme = Appearance.getColorScheme();
 
     // Props
     const {

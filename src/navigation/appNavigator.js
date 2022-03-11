@@ -1,4 +1,5 @@
 import React from 'react';
+import { Appearance } from 'react-native';
 import { createSwitchNavigator, createAppContainer } from 'react-navigation';
 import { createStackNavigator, TransitionPresets } from 'react-navigation-stack';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
@@ -31,8 +32,6 @@ import PostEditScreen from '../screens/post/PostEditScreen';
 import PostViewScreen from '../screens/post/PostViewScreen';
 // Meetup Screens
 import MeetupFeedScreen from '../screens/meetup/MeetupFeedScreen';
-// Context
-import { useSettings } from '../context/SettingsContext';
 // Icons
 import MeetupIcon from '../../assets/icons/Meetup.svg';
 import HomeIcon from '../../assets/icons/Home.svg';
@@ -155,13 +154,13 @@ const appNavigator = createSwitchNavigator({
 
 const AppContainer = createAppContainer(appNavigator);
 const AppNavigator = () => {
-    const { state: { theme } } = useSettings();
+    const theme = Appearance.getColorScheme();
 
     return (
         <SafeAreaProvider
             initialMetrics={initialWindowMetrics}
             style={{
-                backgroundColor: theme === 'light' ? colors.WHITE : colors.dark.THIRD,
+                backgroundColor: theme === 'dark' ? colors.dark.THIRD : colors.WHITE,
             }}
         >
             <AppContainer

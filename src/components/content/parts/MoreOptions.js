@@ -1,18 +1,11 @@
 import React from 'react';
-import {
-    View,
-    StyleSheet,
-    Platform
-} from 'react-native';
+import { Appearance } from 'react-native';
 import OptionsMenu from "react-native-option-menu";
 // Navigation
 import { navigate } from '../../../navigation/navigationRef';
-// Components
-import { Text } from '../../froyo-elements';
 // Helper functions
 import confirmAlert from '../../../helperFunctions/confirmAlert';
 // Contexts
-import { useSettings } from '../../../context/SettingsContext';
 import { useUser } from '../../../context/UserContext';
 import { useContent } from '../../../context/ContentContext';
 // Icons
@@ -27,7 +20,7 @@ import {
 } from '../../../constants/constants';
 
 const MoreOptions = (props) => {
-    const { state: { theme } } = useSettings();
+    const theme = Appearance.getColorScheme();
     const { state: { user } } = useUser();
     const { deleteContent } = useContent();
     const {

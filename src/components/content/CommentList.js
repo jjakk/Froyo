@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 // Components
 import {
+    Appearance,
     StyleSheet,
     View,
     FlatList,
@@ -9,14 +10,13 @@ import {
 import { Text } from '../froyo-elements';
 import Comment from './Comment';
 // Context
-import { useSettings } from '../../context/SettingsContext';
 import { useContent } from '../../context/ContentContext';
 // Constants
 import { colors } from '../../constants/constants';
 
 const CommentList = (props) => {
     // Context
-    const { state: { theme } } = useSettings();
+    const theme = Appearance.getColorScheme();
     const { getComments } = useContent();
     const darkModeEnabled = theme === 'dark';
 

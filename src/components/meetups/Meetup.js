@@ -1,9 +1,13 @@
 import React from 'react';
 // Components
-import { View, Image, StyleSheet, TouchableWithoutFeedback } from 'react-native';
+import {
+    Appearance,
+    StyleSheet,
+    View,
+    Image,
+    TouchableWithoutFeedback
+} from 'react-native';
 import { Text, TouchableIcon, Button } from '../froyo-elements';
-// Context
-import { useSettings } from '../../context/SettingsContext';
 // Icons
 import MoreSettingsIcon from '../../../assets/icons/MoreSettings.svg';
 import LocationIcon from '../../../assets/icons/Location.svg';
@@ -12,7 +16,7 @@ import { colors, BASE_URL } from '../../constants/constants';
 
 const Meetup = (props) => {
     // Context
-    const { state: { theme } } = useSettings();
+    const theme = Appearance.getColorScheme();
     const darkModeEnabled = theme === 'dark' ;
 
     // Props

@@ -1,14 +1,15 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import {
+    Appearance,
+    StyleSheet
+} from 'react-native';
 // Components
 import { Text as DefaultText } from 'react-native';
 // Constants
 import { colors } from '../../constants/constants';
-// Context
-import { useSettings } from '../../context/SettingsContext';
 
 const Text = (props) => {
-    const { state: { theme } } = useSettings();
+    const theme = Appearance.getColorScheme();
     const {
         children,
         style

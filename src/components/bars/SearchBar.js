@@ -4,6 +4,7 @@ import React, {
 } from 'react';
 // Components
 import {
+    Appearance,
     View,
     StyleSheet
 } from 'react-native';
@@ -11,8 +12,6 @@ import {
     Input,
     TouchableIcon
 } from '../froyo-elements';
-// Context
-import { useSettings } from '../../context/SettingsContext';
 // Icons
 import SearchIcon from '../../../assets/icons/Search.svg';
 import CloseIcon from '../../../assets/icons/Close.svg'
@@ -20,7 +19,7 @@ import CloseIcon from '../../../assets/icons/Close.svg'
 import { colors } from '../../constants/constants';
 
 const SearchBar = (props) => {
-    const { state: { theme } } = useSettings();
+    const theme = Appearance.getColorScheme();
     const [text, setText] = useState('');
     const {
         onSearch,

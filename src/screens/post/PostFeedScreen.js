@@ -9,7 +9,6 @@ import ScreenContainer from '../../components/ScreenContainer';
 import PostList from '../../components/content/PostList';
 // Icons
 import FroyoIcon from '../../../assets/icons/Froyo.svg';
-import ChatIcon from '../../../assets/icons/Chat.svg';
 // Context
 import { useUser } from '../../context/UserContext';
 // Constants
@@ -63,8 +62,6 @@ const FeedScreen = ({ navigation }) => {
                     color: colors.GREEN,
                     onPress: onScrollToTop
                 }}
-                /*RightIcon={ChatIcon}
-                style={styles.header}*/
             />
             <PostList
                 type='Feed'

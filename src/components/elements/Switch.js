@@ -1,20 +1,18 @@
 import React, { useRef } from 'react';
 // Components
 import {
+    Appearance,
     StyleSheet,
     View,
     Animated,
-    TouchableWithoutFeedback,
-    Easing
+    TouchableWithoutFeedback
 } from 'react-native';
-// Context
-import { useSettings } from '../../context/SettingsContext';
 // Constants
 import { colors } from '../../constants/constants';
 
 const Switch = (props) => {
     // Context
-    const { state: { theme } } = useSettings();
+    const theme = Appearance.getColorScheme();
     const darkModeEnabled = theme === 'dark' ;
 
     // Props

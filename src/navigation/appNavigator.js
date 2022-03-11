@@ -31,6 +31,7 @@ import PostCreateScreen from '../screens/post/PostCreateScreen';
 import PostEditScreen from '../screens/post/PostEditScreen';
 import PostViewScreen from '../screens/post/PostViewScreen';
 // Comment Screens
+import CommentCreateScreen from '../screens/comment/CommentCreateScreen';
 import CommentEditScreen from '../screens/comment/CommentEditScreen';
 // Meetup Screens
 import MeetupFeedScreen from '../screens/meetup/MeetupFeedScreen';
@@ -114,6 +115,7 @@ const mainNavigator = createStackNavigator({
         PostView: PostViewScreen,
         PostEdit: PostEditScreen,
         // Comment Screens
+        CommentCreate: CommentCreateScreen,
         CommentEdit: CommentEditScreen,
         // Meetup Screens
         MeetupChat: (() => null),

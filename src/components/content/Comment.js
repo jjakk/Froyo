@@ -57,6 +57,10 @@ const Comment = (props) => {
         setComment(await dislikeContent('comment', comment.id));
     };
 
+    const onReply = () => {
+        navigate('CommentCreate', { parentId: comment.id });
+    };
+
     // Update comment when passed comment changes
     useEffect(() => {
         setComment(passedComment);
@@ -85,7 +89,10 @@ const Comment = (props) => {
                         style={styles.moreOptions}
                     />
                     {/* Reply button */}
-                    <TouchableOpacity style={styles.reply}>
+                    <TouchableOpacity
+                        onPress={onReply}
+                        style={styles.reply}
+                    >
                             <ReplyIcon
                                 style={styles.replyIcon}
                                 width={sizes.ACTION_ICON_SMALLER}

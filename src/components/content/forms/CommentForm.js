@@ -15,13 +15,17 @@ import { useContent } from '../../../context/ContentContext';
 
 const CommentForm = (props) => {
     // Context
-    const { updateContent } = useContent();
+    const {
+        createContent,
+        updateContent
+    } = useContent();
 
     // Props
     const {
         navigation,
         data: {
             id,
+            parent_id,
             text: passedText
         }
     } = props;
@@ -35,7 +39,14 @@ const CommentForm = (props) => {
         try{
             Keyboard.dismiss()
             setLoading(true);
-            await updateContent('comment', id, { text });
+            // Update comment if an ID is given
+            if (id) {
+                await updateContent('comment', id, { text });
+            }
+            // Create a new comment if a parentId is given
+            else if (parent_id){
+                await createContent('comment', { parent_id, text });
+            }
             navigation.pop();
         }
         catch (err) {

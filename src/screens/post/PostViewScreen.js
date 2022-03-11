@@ -26,7 +26,6 @@ const PostViewScreen = ({ navigation }) => {
     return (
         <ScreenContainer
             style={styles.container}
-            onDidFocus={refreshPost}
             edges={['top', 'bottom']}
         >
                 <Header

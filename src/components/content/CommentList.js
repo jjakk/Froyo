@@ -44,6 +44,15 @@ const CommentList = (props) => {
         })();
     }, [parent]);
 
+    const commentRender = ({ item }) => {
+        return (
+            <Comment
+                data={item}
+                onDelete={onDeleteComment}
+            />
+        );
+    };
+
     // Event Handlers
     const onRefresh = async () => {
         setRefreshing(true);
@@ -69,12 +78,7 @@ const CommentList = (props) => {
                         onRefresh={onRefresh}
                     />
                 }
-                renderItem={({ item }) => (
-                    <Comment
-                        data={item}
-                        onDelete={onDeleteComment}
-                    />
-                )}
+                renderItem={commentRender}
                 ListEmptyComponent={() => (
                     loading ? (
                         <Text style={styles.noComments}>Loading</Text>

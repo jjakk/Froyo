@@ -1,5 +1,6 @@
 import React from 'react';
-import { Alert, Appearance } from 'react-native';
+import { View, Alert, Appearance } from 'react-native';
+import { TouchableIcon } from '../../froyo-elements';
 import OptionsMenu from "react-native-option-menu";
 // Navigation
 import { navigate } from '../../../navigation/navigationRef';
@@ -82,11 +83,10 @@ const MoreOptions = (props) => {
     const optionHandlers = options.map(option => option.onSelect);
 
     const MoreIcon = (
-        <MoreOptionsIcon
-            width={sizes.ACTION_ICON_SMALLER}
-            height={sizes.ACTION_ICON_SMALLER}
-            color={colors[theme === 'dark' ? 'GRAY' : 'LIGHT_BLACK']}
-            style={style}
+        <TouchableIcon
+            Icon={MoreOptionsIcon}
+            size={sizes.ACTION_ICON_SMALLER}
+            TouchableComponent={View}
         />
     );
 

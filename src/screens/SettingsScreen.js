@@ -26,17 +26,11 @@ const SettingsScreen = ({ navigation }) => {
             type: 'button',
             value: theme === 'dark',
             onPress: () => {
-                const message = `To change the theme you must change your system theme in settings ${Platform.OS === 'ios' ? ' under "Display & Brightness"' : ''}`
-                const confirmCallback = Platform.OS === 'ios'
-                ? () => {
-                    Linking.openURL('App-prefs:root=DISPLAY&path=APPEARANCE_OPTIONS')
-                } : () => {
-                    Linking.openSettings();
-                }
+                const message = `To change the theme you must change your system theme${Platform.OS === 'ios' ? ' in settings under "Display & Brightness"' : ''}`;
                 Alert.alert(
                     message,
                     null,
-                    [
+                    Platform.OS === 'ios' ? [
                         {
                             text: 'Cancel',
                             style: 'cancel'
@@ -44,9 +38,11 @@ const SettingsScreen = ({ navigation }) => {
                         },
                         {
                             text: 'Open Settings',
-                            onPress: confirmCallback
+                            onPress: () => {
+                                Linking.openURL('App-prefs:root=DISPLAY&path=APPEARANCE_OPTIONS')
+                            }
                         }
-                    ]
+                    ] : null
                 );
             }
         },

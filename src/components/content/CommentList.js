@@ -56,7 +56,7 @@ const CommentList = (props) => {
                             marginTop: 5
                         } : {
                             marginTop: 1,
-                            borderColor: darkModeEnabled ? colors.dark.FIRST : colors.light.FOURTH,
+                            borderColor: darkModeEnabled ? colors.dark.FIRST : colors.light.SECOND,
                             borderLeftWidth: 1
                         }
                     }

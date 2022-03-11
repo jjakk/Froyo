@@ -75,13 +75,13 @@ const SettingsItem = ({ item }) => {
 const styles = StyleSheet.create({
     option: {
         padding: 15,
-        marginBottom: 5,
+        marginBottom: 1,
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center'
     },
     optionText: {
-        fontSize: 22
+        fontSize: 22,
     },
     // Option types
     button: {
@@ -101,7 +101,7 @@ const themeStyles = {
             backgroundColor: colors.WHITE,
         },
         optionText: {
-            color: colors.BLACK
+            color: colors.dark.SECOND
         }
     }),
     dark: StyleSheet.create({
@@ -109,7 +109,7 @@ const themeStyles = {
             backgroundColor: colors.dark.THIRD,
         },
         optionText: {
-            color: colors.WHITE
+            color: colors.light.SECOND
         }
     })
 };

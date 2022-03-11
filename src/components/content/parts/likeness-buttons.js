@@ -23,6 +23,7 @@ const LikenessButton = forwardRef((props, ref) => {
     const {
         onPress,
         style,
+        size,
         fillColor,
         FillIcon,
         OutlineIcon,
@@ -89,6 +90,7 @@ const LikenessButton = forwardRef((props, ref) => {
                 Icon={Icon}
                 color={buttonColor}
                 style={style}
+                size={size}
             />
         </Animated.View>
     );

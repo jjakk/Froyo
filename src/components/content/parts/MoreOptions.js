@@ -25,7 +25,8 @@ const MoreOptions = (props) => {
     const { deleteContent } = useContent();
     const {
         content,
-        onDelete
+        onDelete,
+        style
     } = props;
     const contentType = !content.parent_id ? 'Post' : 'Comment';
 
@@ -80,6 +81,7 @@ const MoreOptions = (props) => {
             width={sizes.ACTION_ICON_SMALLER}
             height={sizes.ACTION_ICON_SMALLER}
             color={colors[theme === 'dark' ? 'GRAY' : 'LIGHT_BLACK']}
+            style={style}
         />
     );
 

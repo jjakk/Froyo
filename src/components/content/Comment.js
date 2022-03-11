@@ -69,7 +69,6 @@ const Comment = (props) => {
     return (
         <TouchableWithoutFeedback>
             <View style={[
-                styles.comment,
                 themeStyles[theme].comment,
                 style
             ]}>
@@ -86,9 +85,7 @@ const Comment = (props) => {
                     <MoreOptions
                         content={comment}
                         onDelete={onDelete}
-                        style={styles.moreOptions}
                     />
-                    {/* Reply button */}
                     <TouchableOpacity
                         onPress={onReply}
                         style={styles.reply}
@@ -106,11 +103,13 @@ const Comment = (props) => {
                             <LikeButton
                                 onPress={onLike}
                                 content={comment}
+                                size={sizes.ACTION_ICON_SMALLER}
                             />
                             <DislikeButton
                                 onPress={onDislike}
                                 content={comment}
                                 style={styles.dislike}
+                                size={sizes.ACTION_ICON_SMALLER}
                             />
                         </View>
                         <LikenessBar
@@ -126,9 +125,6 @@ const Comment = (props) => {
 }
 
 const styles = StyleSheet.create({
-    comment: {
-        marginTop: 5,
-    },
     body: {
         fontSize: 18,
         margin: 15,
@@ -140,34 +136,27 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignSelf: 'flex-end',
         alignItems: 'center',
-    },
-    // More Options
-    moreOptions: {
-        marginBottom: 10
+        justifyContent: 'center',
     },
     // Reply
     reply: {
         flexDirection: 'row',
         alignItems: 'center',
-        marginLeft: 15,
-        marginBottom: 10
+        marginHorizontal: 5,
     },
     replyText: {
-        fontSize: 20,
+        fontSize: 16,
         marginLeft: 5,
         color: colors.light.THIRD
     },
     // Like/Dislike
     likenessContainer: {
-        marginLeft: 15,
-        marginRight: 15
+        marginRight: 5,
     },
     likeness: {
         flexDirection: 'row',
         alignItems: 'center',
-        marginLeft: 15,
-        marginRight: 15,
-        marginBottom: 10
+        margin: 10
     },
     dislike: {
         marginLeft: 5,

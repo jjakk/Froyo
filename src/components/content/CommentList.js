@@ -29,6 +29,7 @@ const CommentList = (props) => {
         ...otherProps
     } = props;
     const parentType = parent.parent_id ? 'comment' : 'post';
+    const rootContent = !parent.parent_id;
 
     // State
     const [comments, setComments] = useState([]);
@@ -46,10 +47,34 @@ const CommentList = (props) => {
 
     const commentRender = ({ item }) => {
         return (
-            <Comment
-                data={item}
-                onDelete={onDeleteComment}
-            />
+            <>
+                <Comment
+                    data={item}
+                    onDelete={onDeleteComment}
+                    style={
+                        rootContent ? {
+                            marginTop: 5
+                        } : {
+                            marginTop: 1,
+                            borderColor: darkModeEnabled ? colors.dark.FIRST : colors.light.FOURTH,
+                            borderLeftWidth: 1
+                        }
+                    }
+                />
+                {
+                    item.comments && (
+                        <CommentList
+                            onDeleteComment={onDeleteComment}
+                            onPullDownRefresh={onPullDownRefresh}
+                            parent={item}
+                            refreshable={refreshable}
+                            style={{
+                                marginLeft: 5
+                            }}
+                        />
+                    )
+                }
+            </>
         );
     };
 
@@ -80,11 +105,13 @@ const CommentList = (props) => {
                 }
                 renderItem={commentRender}
                 ListEmptyComponent={() => (
-                    loading ? (
-                        <Text style={styles.noComments}>Loading</Text>
-                    ) : (
-                        <Text style={styles.noComments}>No comments</Text>
-                    )
+                    rootContent ? (
+                        loading ? (
+                            <Text style={styles.noComments}>Loading</Text>
+                        ) : (
+                            <Text style={styles.noComments}>No comments</Text>
+                        )
+                    ) : null
                 )}
                 {...otherProps}
             />

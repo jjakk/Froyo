@@ -11,7 +11,6 @@ const CommentEditScreen = (props) => {
     } = props;
 
     const parentId = navigation.getParam('parentId');
-    console.log(parentId);
 
     return (
         <ScreenContainer>

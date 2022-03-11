@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 // Components
 import {
     StyleSheet,
@@ -8,15 +8,19 @@ import {
 } from 'react-native';
 import {
     Input,
-    Button
+    Button,
+    Text
 } from '../../froyo-elements';
 // Context
 import { useContent } from '../../../context/ContentContext';
+// Constants
+import { colors } from '../../../constants/constants';
 
 const CommentForm = (props) => {
     // Context
     const {
         createContent,
+        getContent,
         updateContent
     } = useContent();
 
@@ -32,6 +36,7 @@ const CommentForm = (props) => {
 
     // State
     const [text, setText] = useState(passedText);
+    const [parent, setParent] = useState(null);
     const [loading, setLoading] = useState(false);
     const formUnchanged = passedText === text;
 
@@ -57,8 +62,25 @@ const CommentForm = (props) => {
         }
     };
 
+    useEffect(() => {
+        (async function(){
+            if (parent_id) {
+                setParent(await getContent('comment', parent_id));
+            }
+        })()
+    }, []);
+
     return (
         <View style={styles.container}>
+            {
+                parent && (
+                    <>
+                        <Text style={styles.parentText}>
+                            {parent.text}
+                        </Text>
+                    </>
+                )
+            }
             <Input
                 multiline
                 placeholder='Type here...'
@@ -80,6 +102,10 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         padding: 25
+    },
+    parentText: {
+        fontSize: 20,
+        marginBottom: 25
     },
     submit: {
         marginTop: 25

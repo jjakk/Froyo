@@ -5,6 +5,7 @@ import {
 } from 'react-native';
 // Components
 import { Text as DefaultText } from 'react-native';
+import Hyperlink from 'react-native-hyperlink';
 // Constants
 import { colors } from '../../constants/constants';
 
@@ -16,16 +17,21 @@ const Text = (props) => {
     } = props;
 
     return (
-        <DefaultText
-            {...props}
-            style={[
-                styles.text,
-                themeStyles[theme].text,
-                style
-            ]}
+        <Hyperlink
+            linkDefault
+            linkStyle={styles.hyperlink}
         >
-            {children}
-        </DefaultText>
+            <DefaultText
+                {...props}
+                style={[
+                    styles.text,
+                    themeStyles[theme].text,
+                    style
+                ]}
+            >
+                {children}
+            </DefaultText>
+        </Hyperlink>
     );
 };
 
@@ -33,6 +39,9 @@ const styles = StyleSheet.create({
     text: {
         fontFamily: 'Nunito',
         fontSize: 18
+    },
+    hyperlink: {
+        textDecorationLine: 'underline'
     }
 });
 

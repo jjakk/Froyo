@@ -9,6 +9,7 @@ import {
     StyleSheet,
     TouchableOpacity
 } from 'react-native';
+import * as Haptics from 'expo-haptics';
 // Navigation
 import { navigate } from '../../navigation/navigationRef';
 // Components
@@ -43,6 +44,7 @@ const Comment = (props) => {
 
     // State
     const [comment, setComment] = useState(passedComment);
+    const [collapsed, setCollapsed] = useState(false);
 
     // Event handlers
     const onHeaderPress = () => {
@@ -61,15 +63,35 @@ const Comment = (props) => {
         navigate('CommentCreate', { parentId: comment.id });
     };
 
+    const onCollapse = () => {
+        if (!collapsed) {
+            Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium)
+            setCollapsed(true);
+        }
+    };
+
+    const onUncollapse = () => {
+        if (collapsed) {
+            setCollapsed(false);
+        }
+    };
+
     // Update comment when passed comment changes
     useEffect(() => {
         setComment(passedComment);
     }, [passedComment]);
 
     return (
-        <TouchableWithoutFeedback>
+        <TouchableWithoutFeedback
+            onPress={onUncollapse}
+            onLongPress={onCollapse}
+        >
             <View style={[
                 themeStyles[theme].comment,
+                collapsed ? {
+                    height: 50,
+                    opacity: 0.75,
+                } : {},
                 style
             ]}>
                 <ContentHeader
@@ -78,18 +100,21 @@ const Comment = (props) => {
                     onDelete={onDelete}
                     condensed
                 />
-                <Text style={styles.body}>
-                    {comment.text}
-                </Text>
-                <View style={styles.actions}>
-                    <MoreOptions
-                        content={comment}
-                        onDelete={onDelete}
-                    />
-                    <TouchableOpacity
-                        onPress={onReply}
-                        style={styles.reply}
-                    >
+                {
+                    !collapsed && (
+                        <>
+                        <Text style={styles.body}>
+                            {comment.text}
+                        </Text>
+                        <View style={styles.actions}>
+                            <MoreOptions
+                                content={comment}
+                                onDelete={onDelete}
+                            />
+                            <TouchableOpacity
+                                onPress={onReply}
+                                style={styles.reply}
+                            >
                             <ReplyIcon
                                 style={styles.replyIcon}
                                 width={sizes.ACTION_ICON_SMALLER}
@@ -97,28 +122,31 @@ const Comment = (props) => {
                                 color={colors.light.THIRD}
                             />
                             <Text style={styles.replyText}>Reply</Text>
-                    </TouchableOpacity>
-                    <View style={styles.likenessContainer}>
-                        <View style={styles.likeness}>
-                            <LikeButton
-                                onPress={onLike}
-                                content={comment}
-                                size={sizes.ACTION_ICON_SMALLER}
-                            />
-                            <DislikeButton
-                                onPress={onDislike}
-                                content={comment}
-                                style={styles.dislike}
-                                size={sizes.ACTION_ICON_SMALLER}
-                            />
+                            </TouchableOpacity>
+                            <View style={styles.likenessContainer}>
+                                <View style={styles.likeness}>
+                                    <LikeButton
+                                        onPress={onLike}
+                                        content={comment}
+                                        size={sizes.ACTION_ICON_SMALLER}
+                                    />
+                                    <DislikeButton
+                                        onPress={onDislike}
+                                        content={comment}
+                                        style={styles.dislike}
+                                        size={sizes.ACTION_ICON_SMALLER}
+                                    />
+                                </View>
+                                <LikenessBar
+                                    show={comment.author.id === user.id}
+                                    like_count={comment.like_count}
+                                    dislike_count={comment.dislike_count}
+                                />
+                            </View>
                         </View>
-                        <LikenessBar
-                            show={comment.author.id === user.id}
-                            like_count={comment.like_count}
-                            dislike_count={comment.dislike_count}
-                        />
-                    </View>
-                </View>
+                        </>
+                    )
+                }
             </View>
         </TouchableWithoutFeedback>
     );

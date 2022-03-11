@@ -62,6 +62,7 @@ const CommentBar = (props) => {
                 textStyle={
                     themeStyles[theme].inputText
                 }
+                multiline
                 placeholder='Comment...'
                 placeholderTextColor={darkModeEnabled ? colors.light.FIRST : colors.light.SECOND}
                 value={commentText}
@@ -76,7 +77,6 @@ const CommentBar = (props) => {
 
 const styles = StyleSheet.create({
     bar: {
-        height: 100,
         width: '100%',
         padding: 20,
         flexDirection: 'row',
@@ -86,6 +86,7 @@ const styles = StyleSheet.create({
     },
     input: {
         borderWidth: 0,
+        maxHeight: 250,
         flex: 1
     },
     send: {

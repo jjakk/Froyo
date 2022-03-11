@@ -91,7 +91,7 @@ const PostForm = (props) => {
                     style={[
                         styles.textbox
                     ]}
-                    multiline={true}
+                    multiline
                     placeholder='Type here...'
                     value={text}
                     onChangeText={setText}

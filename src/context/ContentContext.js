@@ -32,6 +32,25 @@ const createContent = () => async (contentType, info) => {
     }
 };
 
+const updateContent = () => async (contentType, id, info) => {
+    const {
+        text
+    } = info;
+    if (!text || text.length < 1) throw new Error(`${capitalize(contentType)} body is required`);
+    try{
+        // Only use formRequest to handle file uploads (bandaid solution)
+        if (contentType === 'post') {
+            await formRequest('put', `/${contentType}s/${id}`, info);
+        }
+        else {
+            await froyoApi.put(`/${contentType}s/${id}`, info);
+        }
+    }
+    catch (err) {
+        throw new Error(err.response.data);
+    }
+};
+
 // Delete a post or comment by id
 const deleteContent = () => async (contentType, contentId) => {
     await froyoApi.delete(`/${contentType}s/${contentId}`);
@@ -81,6 +100,7 @@ export const { Provider, Context } = createDataContext(
     contentReducer,
     {
         createContent,
+        updateContent,
         deleteContent,
         getContent,
         searchContent,

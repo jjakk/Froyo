@@ -88,9 +88,7 @@ const PostForm = (props) => {
             <NavigationEvents/>
             <View style={styles.body}>
                 <Input
-                    style={[
-                        styles.textbox
-                    ]}
+                    style={styles.textbox}
                     multiline
                     placeholder='Type here...'
                     value={text}

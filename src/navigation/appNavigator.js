@@ -30,6 +30,8 @@ import PostFeedScreen from '../screens/post/PostFeedScreen';
 import PostCreateScreen from '../screens/post/PostCreateScreen';
 import PostEditScreen from '../screens/post/PostEditScreen';
 import PostViewScreen from '../screens/post/PostViewScreen';
+// Comment Screens
+import CommentEditScreen from '../screens/comment/CommentEditScreen';
 // Meetup Screens
 import MeetupFeedScreen from '../screens/meetup/MeetupFeedScreen';
 // Icons
@@ -111,6 +113,8 @@ const mainNavigator = createStackNavigator({
         PostCreate: PostCreateScreen,
         PostView: PostViewScreen,
         PostEdit: PostEditScreen,
+        // Comment Screens
+        CommentEdit: CommentEditScreen,
         // Meetup Screens
         MeetupChat: (() => null),
         MeetupGallery: (() => null),

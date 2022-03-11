@@ -14,6 +14,7 @@ const PostCreateScreen = (props) => {
         >
             <Header
                 navigation={navigation}
+                title='Post'
             />
             <PostForm
                 type='create'

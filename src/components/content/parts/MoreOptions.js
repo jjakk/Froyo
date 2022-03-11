@@ -4,7 +4,7 @@ import OptionsMenu from "react-native-option-menu";
 // Navigation
 import { navigate } from '../../../navigation/navigationRef';
 // Helper functions
-import confirmAlert from '../../../helperFunctions/confirmAlert';
+import confirmAlert from '../../../helpers/confirmAlert';
 // Contexts
 import { useUser } from '../../../context/UserContext';
 import { useContent } from '../../../context/ContentContext';

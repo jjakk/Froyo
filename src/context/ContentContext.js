@@ -3,6 +3,8 @@ import createDataContext from './createDataContext';
 // API
 import froyoApi from '../api/froyo';
 import formRequest from '../api/formRequest';
+// Helper functions
+import { capitalize } from '../helpers/str';
 
 // Handle setting state
 const contentReducer = (state, action) => {
@@ -15,7 +17,7 @@ const contentReducer = (state, action) => {
 // Create a post or comment
 const createContent = () => async (contentType, info) => {
     const { text } = info;
-    if (!text || text.length < 1) throw new Error(`${contentType} body is required`);
+    if (!text || text.length < 1) throw new Error(`${capitalize(contentType)} body is required`);
     try{
         // Only use formRequest to handle file uploads (bandaid solution)
         if (contentType === 'post') {

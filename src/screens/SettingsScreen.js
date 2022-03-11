@@ -14,7 +14,7 @@ import { useUser } from '../context/UserContext';
 // Constants
 import { colors } from '../constants/constants';
 // Helper functions
-import confirmAlert from '../helperFunctions/confirmAlert'
+import confirmAlert from '../helpers/confirmAlert'
 
 const SettingsScreen = ({ navigation }) => {
     const { deleteUser } = useUser();

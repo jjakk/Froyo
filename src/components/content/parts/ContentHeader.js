@@ -9,7 +9,7 @@ import {
 import { Text, Br } from '../../froyo-elements';
 import MoreOptions from './MoreOptions';
 // Helper functions
-import { calculateAge } from '../../../helperFunctions/age';
+import { calculateAge } from '../../../helpers/age';
 // Constants
 import { BASE_URL } from '../../../constants/constants';
 

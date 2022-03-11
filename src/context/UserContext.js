@@ -6,7 +6,7 @@ import { navigate } from '../navigation/navigationRef';
 import froyoApi from '../api/froyo';
 import formRequest from '../api/formRequest';
 // Helpers
-import { ageInYears } from '../helperFunctions/age';
+import { ageInYears } from '../helpers/age';
 
 // Handle setting state
 const userReducer = (state, action) => {

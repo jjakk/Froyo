@@ -24,7 +24,10 @@ const PostViewScreen = ({ navigation }) => {
     };
 
     return (
-        <ScreenContainer style={styles.container}>
+        <ScreenContainer
+            style={styles.container}
+            edges={['top', 'bottom']}
+        >
                 <Header
                     navigation={navigation}
                 />
@@ -35,6 +38,7 @@ const PostViewScreen = ({ navigation }) => {
                     ListHeaderComponent={(
                         <Post
                             data={post}
+                            style={styles.post}
                             onDelete={navigation.pop}
                         />
                     )}
@@ -49,7 +53,7 @@ const PostViewScreen = ({ navigation }) => {
 
 const styles = StyleSheet.create({
     post: {
-        marginTop: 5
+        marginBottom: 0
     }
 });
 

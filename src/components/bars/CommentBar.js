@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import {
+    Alert,
     Appearance,
     StyleSheet,
     TouchableOpacity
@@ -33,7 +34,7 @@ const CommentBar = (props) => {
     const [commentText, setCommentText] = useState('');
 
     const onSubmit = async () => {
-        if(commentText.length > 0) {
+        try {
             const content = {
                 text: commentText,
                 parent_id
@@ -41,6 +42,9 @@ const CommentBar = (props) => {
             await createContent('comment', content);
             setCommentText('');
             onCreateComment();
+        }
+        catch (err) {
+            Alert.alert(err.message);
         }
     };
 

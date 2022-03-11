@@ -48,13 +48,13 @@ const ScreenContainer = (props) => {
                 barStyle={statusBarStyle}
             />
             <SafeAreaView
-                {...restOfProps}
                 edges={['top']}
                 style={[
                     styles.container,
                     themeStyles[theme].container,
                     style
                 ]}
+                {...restOfProps}
             >
                 <TouchableWithoutFeedback
                     style={[

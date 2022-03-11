@@ -15,13 +15,18 @@ const contentReducer = (state, action) => {
 // Create a post or comment
 const createContent = () => async (contentType, info) => {
     const { text } = info;
-    if (!text) throw { message: `${contentType} body is required` };
-    // Only use formRequest to handle file uploads (bandaid solution)
-    if (contentType === 'post') {
-        await formRequest('post', `/${contentType}s`, info);
+    if (!text || text.length < 1) throw new Error(`${contentType} body is required`);
+    try{
+        // Only use formRequest to handle file uploads (bandaid solution)
+        if (contentType === 'post') {
+            await formRequest('post', `/${contentType}s`, info);
+        }
+        else {
+            await froyoApi.post(`/${contentType}s`, info);
+        }
     }
-    else {
-        await froyoApi.post(`/${contentType}s`, info);
+    catch (err) {
+        throw new Error(err.response.data);
     }
 };
 

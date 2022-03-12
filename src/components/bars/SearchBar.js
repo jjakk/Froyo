@@ -16,26 +16,22 @@ import {
 import SearchIcon from '../../../assets/icons/Search.svg';
 import CloseIcon from '../../../assets/icons/Close.svg'
 // Constants
-import { colors } from '../../constants/constants';
+import { colors, sizes } from '../../constants/constants';
 
 const SearchBar = (props) => {
     const theme = Appearance.getColorScheme();
-    /*const [text, setText] = useState('');
+    const [text, setText] = useState('');
     const {
         onSearch,
-        onClear,
-        setSearchText
     } = props;
 
     const clearText = async () => {
         setText('');
-        setSearchText('');
-        onClear();
     };
 
-    useEffect(() => {
-        setSearchText(text);
-    }, [text]);*/
+    const onSubmit = () => {
+        onSearch(text);
+    }
 
     return (
         <View>
@@ -45,28 +41,28 @@ const SearchBar = (props) => {
             ]}>
                 <Input
                     style={styles.text}
-                    //onChangeText={setText}
-                    //value={text}
+                    onChangeText={setText}
+                    value={text}
                     placeholder='Search'
                     icon={(
                         <SearchIcon
                             color={colors[theme === 'dark' ? 'GRAY' : 'LIGHT_BLACK']}
-                            width={25}
-                            height={25}
+                            width={sizes.ACTION_ICON_SMALL}
+                            height={sizes.ACTION_ICON_SMALL}
                         />
                     )}
-                    //onSubmitEditing={onSearch}
+                    onSubmitEditing={onSubmit}
                 />
                 {
-                    /*text !== '' ? (
+                    text !== '' ? (
                         <TouchableIcon
                             Icon={CloseIcon}
                             size={20}
                             color={colors[theme === 'dark' ? 'GRAY' : 'LIGHT_BLACK']}
                             style={styles.clear}
-                            //onPress={clearText}
+                            onPress={clearText}
                         />
-                    ) : null*/
+                    ) : null
                 }
             </View>
         </View>

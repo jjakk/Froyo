@@ -132,6 +132,13 @@ const getUser = () => async (id) => {
     return user;
 };
 
+const searchUser = () => async (query) => {
+    const { data: users } = await froyoApi.get(`/users`, {
+        params: query
+    });
+    return users;
+};
+
 // Update a user's information
 const updateUser = (dispatch) => async (info) => {
     const {
@@ -213,6 +220,7 @@ export const { Provider, Context } = createDataContext(
         signOut,
         deleteUser,
         getUser,
+        searchUser,
         updateUser,
         resetPassword,
         follow,

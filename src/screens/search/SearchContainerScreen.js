@@ -11,34 +11,29 @@ const SearchContainerScreen = (props) => {
     // Theme
     const theme = Appearance.getColorScheme();
 
-    // State
-    const [searchText, setSearchText] = useState('');
+    // Props
+    const {
+        navigation
+    } = props;
 
-    // Refs
-    /*const postListRef = useRef();
-
-    const onSearch = async () => {
-        await postListRef.current.reloadContent(searchText);
+    const onSearch = (query) => {
+        navigation.navigate('SearchUsers', { query })
+        navigation.navigate('SearchPosts', { query })
     };
-    
-    const onClear = async () => {
-        await postListRef.current.reloadContent('');
-    };*/
 
     return (
         <ScreenContainer
-            //onDidFocus={onSearch}
             style={[
                 styles.container,
                 themeStyles[theme].container
             ]}
         >
             <SearchBar
-                //onSearch={onSearch}
-                //onClear={onClear}
-                //setSearchText={setSearchText}
+                onSearch={onSearch}
             />
-            <MaterialTopTabBar {...props} />
+            <MaterialTopTabBar
+                {...props}
+            />
         </ScreenContainer>
     );
 };

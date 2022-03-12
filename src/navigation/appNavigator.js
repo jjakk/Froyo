@@ -58,13 +58,13 @@ const signUpNavigator = createStackNavigator({
 });
 
 const searchNavigator = createMaterialTopTabNavigator({
-        Posts: {
+        SearchPosts: {
             screen: SearchPostScreen,
             navigationOptions: {
                 tabBarLabel: 'Posts'
             },
         },
-        Users: {
+        SearchUsers: {
             screen: SearchUserScreen,
             navigationOptions: {
                 tabBarLabel: 'Users'

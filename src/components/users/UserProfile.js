@@ -3,9 +3,9 @@ import React, {
     useEffect
 } from 'react';
 // Context
-import { useUser } from '../context/UserContext';
+import { useUser } from '../../context/UserContext';
 // Navigation
-import { navigate } from '../navigation/navigationRef';
+import { navigate } from '../../navigation/navigationRef';
 // Components
 import {
     Appearance,
@@ -17,19 +17,22 @@ import {
 import {
     Button,
     Text
-} from './froyo-elements';
+} from '../froyo-elements';
 // Constants
-import { BASE_URL, colors } from '../constants/constants';
+import { BASE_URL, colors } from '../../constants/constants';
 
 const UserProfile = (props) => {
     // Context
-    const theme = Appearance.getColorScheme();
     const {
         signOut,
         follow,
         following,
         state: { user: signedInUser }
     } = useUser();
+
+    // Theme
+    const theme = Appearance.getColorScheme();
+
     // Props
     const {
         style,
@@ -43,7 +46,7 @@ const UserProfile = (props) => {
         ? {
             uri: `${BASE_URL}/images/${user.profile_picture_bucket_key}`
         }
-        : require('../../assets/icons/guest.png')
+        : require('../../../assets/icons/guest.png')
     );
 
     // State

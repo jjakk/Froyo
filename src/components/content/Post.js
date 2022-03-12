@@ -51,9 +51,11 @@ const Post = (props) => {
     const dislikeRef = useRef();
 
     // Context
-    const theme = Appearance.getColorScheme();
     const { state: { user } } = useUser();
     const { likeContent, dislikeContent } = useContent();
+
+    // Theme
+    const theme = Appearance.getColorScheme();
     
     // Props
     const {

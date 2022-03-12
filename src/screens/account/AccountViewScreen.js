@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import ScreenContainer from '../../components/ScreenContainer';
 import Header from '../../components/Header';
 import PostList from '../../components/content/PostList';
-import UserProfile from '../../components/UserProfile';
+import UserProfile from '../../components/users/UserProfile';
 // Context
 import { useUser } from '../../context/UserContext';
 // Icons

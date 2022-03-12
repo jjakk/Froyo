@@ -3,14 +3,19 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Text } from '../froyo-elements';
 
-const EmptyMessage = ({ style, subheaderText }) => {
+const EmptyMessage = (props) => {
+    const {
+        headerText='Nothing to show',
+        subheaderText,
+        style
+    } = props;
 
     return (
         <View style={[styles.container, style]}>
             <Text style={[
                 styles.text,
                 styles.header
-            ]}>Nothing to show</Text>
+            ]}>{headerText}</Text>
             <Text style={[
                 styles.text,
                 styles.subheader

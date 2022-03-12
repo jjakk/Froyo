@@ -9,7 +9,7 @@ import { Button as DefaultButton } from 'react-native-elements';
 import { colors } from '../../constants/constants';
 
 const Button = (props) => {
-    // Context
+    // Theme
     const theme = Appearance.getColorScheme();
     const darkModeEnabled = theme === 'dark';
 

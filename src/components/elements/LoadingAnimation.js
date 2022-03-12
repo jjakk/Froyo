@@ -14,7 +14,7 @@ import LoadingIcon from '../../../assets/animation-icons/loading.svg';
 import { colors } from '../../constants/constants';
 
 const LoadingAnimation = (props) => {
-    // Context
+    // Theme
     const theme = Appearance.getColorScheme();
     const darkModeEnabled = theme === 'dark';
 

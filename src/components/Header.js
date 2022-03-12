@@ -17,7 +17,6 @@ import BackIcon from '../../assets/icons/Back.svg';
 import { colors, sizes } from '../constants/constants';
 
 const Header = (props) => {
-    // Context
     const theme = Appearance.getColorScheme();
 
     // Props

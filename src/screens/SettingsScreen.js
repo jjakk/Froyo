@@ -17,7 +17,10 @@ import { colors } from '../constants/constants';
 import confirmAlert from '../helpers/confirmAlert'
 
 const SettingsScreen = ({ navigation }) => {
+    // Context
     const { deleteUser } = useUser();
+
+    // Theme
     const theme = Appearance.getColorScheme();
 
     const settings = [

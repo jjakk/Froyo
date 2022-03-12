@@ -10,7 +10,7 @@ import {
 import { colors } from '../../constants/constants';
 
 const Input = (props) => {
-    // Context
+    // Theme
     const theme = Appearance.getColorScheme();
     const darkModeEnabled = theme === 'dark' ;
 

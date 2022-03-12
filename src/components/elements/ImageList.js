@@ -13,7 +13,7 @@ import {
 import { BASE_URL, colors } from '../../constants/constants';
 
 const ImageList = (props) => {
-    // Context
+    // Theme
     const theme = Appearance.getColorScheme();
 
     // Props

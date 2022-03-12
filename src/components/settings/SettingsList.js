@@ -10,6 +10,7 @@ import SettingsItem from './SettingsItem';
 import { colors } from '../../constants/constants';
 
 const SettingsList = ({ settings }) => {
+    // Theme
     const theme = Appearance.getColorScheme();
 
     return (

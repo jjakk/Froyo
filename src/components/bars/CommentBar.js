@@ -19,9 +19,11 @@ import { colors } from '../../constants/constants';
 // onCreateComment -> function: callback function to be called when the comment is created
 const CommentBar = (props) => {
     // Context
-    const theme = Appearance.getColorScheme();
     const { createContent } = useContent();
     const darkModeEnabled = theme === 'dark' ;
+
+    // Theme
+    const theme = Appearance.getColorScheme();
     
     // Props
     const {

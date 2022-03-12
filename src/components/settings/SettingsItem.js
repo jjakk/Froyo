@@ -14,6 +14,7 @@ import {
 import { colors } from '../../constants/constants';
 
 const SettingsItem = ({ item }) => {
+    // Theme
     const theme = Appearance.getColorScheme();
 
     let RenderItem = () => (<></>);

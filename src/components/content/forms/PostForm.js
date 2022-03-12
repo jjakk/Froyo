@@ -22,8 +22,10 @@ import { useContent } from '../../../context/ContentContext';
 
 const PostForm = (props) => {
     // Context
-    const theme = Appearance.getColorScheme();
     const { createContent } = useContent();
+
+    // Theme
+    const theme = Appearance.getColorScheme();
     const darkModeEnabled = theme === 'dark';
 
     // Props

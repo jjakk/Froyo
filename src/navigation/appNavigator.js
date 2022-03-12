@@ -3,6 +3,7 @@ import { Appearance } from 'react-native';
 import { createSwitchNavigator, createAppContainer } from 'react-navigation';
 import { createStackNavigator, TransitionPresets } from 'react-navigation-stack';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
+import { createMaterialTopTabNavigator } from 'react-navigation-tabs';
 // SafeAreaProvider
 import {
     SafeAreaProvider,
@@ -10,10 +11,13 @@ import {
 } from 'react-native-safe-area-context';
 // Set Navigator
 import { setNavigator } from './navigationRef';
-// Screens
+// Miscellaneous Screens
 import WelcomeScreen from '../screens/WelcomeScreen';
-import SearchScreen from '../screens/SearchScreen';
 import NoWifiScreen from '../screens/NoWifiScreen';
+// Search Screens
+import SearchContainerScreen from '../screens/search/SearchContainerScreen';
+import SearchPostScreen from '../screens/search/SearchPostScreen';
+import SearchUserScreen from '../screens/search/SearchUserScreen';
 // Authentication Screens
 import ResolveAuthScreen from '../screens/authentication/ResolveAuthScreen';
 import SignInScreen from '../screens/authentication/SignInScreen';
@@ -53,6 +57,40 @@ const signUpNavigator = createStackNavigator({
     },
 });
 
+const searchNavigator = createMaterialTopTabNavigator({
+        Posts: {
+            screen: SearchPostScreen,
+            navigationOptions: {
+                tabBarLabel: 'Posts'
+            },
+        },
+        Users: {
+            screen: SearchUserScreen,
+            navigationOptions: {
+                tabBarLabel: 'Users'
+            },
+        },
+    }, {
+        tabBarOptions: {
+            activeTintColor: colors.GREEN,
+            inactiveTintColor: colors.DARK_GRAY,
+            upperCaseLabel: false,
+            style: {
+                backgroundColor: 'transparent',
+                marginHorizontal: 25
+            },
+            labelStyle: {
+                fontSize: 18,
+                fontFamily: 'Nunito'
+            },
+            indicatorStyle: {
+                backgroundColor: colors.GREEN,
+                borderRadius: 1
+            }
+        },
+        tabBarComponent: SearchContainerScreen
+    });
+
 // This navigator organizes the bottom tab bar
 const tabNavigator = createBottomTabNavigator({
     Feed: {
@@ -80,7 +118,7 @@ const tabNavigator = createBottomTabNavigator({
         }
     },
     Search: {
-        screen: SearchScreen,
+        screen: searchNavigator,
         navigationOptions: {
             tabBarIcon: (({ tintColor }) => (
                 <SearchIcon
@@ -90,8 +128,8 @@ const tabNavigator = createBottomTabNavigator({
                 />
             ))
         }
-    },
-    }, {
+    }
+}, {
     tabBarOptions: {
         showLabel: false,
         activeTintColor: colors.GREEN,
@@ -160,6 +198,7 @@ const appNavigator = createSwitchNavigator({
 
 const AppContainer = createAppContainer(appNavigator);
 const AppNavigator = () => {
+    // Theme
     const theme = Appearance.getColorScheme();
 
     return (

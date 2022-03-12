@@ -10,7 +10,10 @@ import Hyperlink from 'react-native-hyperlink';
 import { colors } from '../../constants/constants';
 
 const Text = (props) => {
+    // Theme
     const theme = Appearance.getColorScheme();
+    
+    // Props
     const {
         children,
         style

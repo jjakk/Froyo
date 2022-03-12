@@ -15,7 +15,7 @@ import LocationIcon from '../../../assets/icons/Location.svg';
 import { colors, BASE_URL } from '../../constants/constants';
 
 const Meetup = (props) => {
-    // Context
+    // Theme
     const theme = Appearance.getColorScheme();
     const darkModeEnabled = theme === 'dark' ;
 

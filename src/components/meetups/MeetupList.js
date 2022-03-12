@@ -10,7 +10,7 @@ import { useMeetup } from '../../context/MeetupContext';
 import { colors } from '../../constants/constants';
 
 const MeetupList = (props) => {
-    // Context
+    // Theme
     const theme = Appearance.getColorScheme();
 
     // Props

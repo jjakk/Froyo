@@ -11,7 +11,7 @@ import {
 import { colors } from '../../constants/constants';
 
 const Switch = (props) => {
-    // Context
+    // Theme
     const theme = Appearance.getColorScheme();
     const darkModeEnabled = theme === 'dark' ;
 

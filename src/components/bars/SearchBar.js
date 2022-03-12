@@ -20,7 +20,7 @@ import { colors } from '../../constants/constants';
 
 const SearchBar = (props) => {
     const theme = Appearance.getColorScheme();
-    const [text, setText] = useState('');
+    /*const [text, setText] = useState('');
     const {
         onSearch,
         onClear,
@@ -35,7 +35,7 @@ const SearchBar = (props) => {
 
     useEffect(() => {
         setSearchText(text);
-    }, [text]);
+    }, [text]);*/
 
     return (
         <View>
@@ -45,8 +45,8 @@ const SearchBar = (props) => {
             ]}>
                 <Input
                     style={styles.text}
-                    onChangeText={setText}
-                    value={text}
+                    //onChangeText={setText}
+                    //value={text}
                     placeholder='Search'
                     icon={(
                         <SearchIcon
@@ -55,18 +55,18 @@ const SearchBar = (props) => {
                             height={25}
                         />
                     )}
-                    onSubmitEditing={onSearch}
+                    //onSubmitEditing={onSearch}
                 />
                 {
-                    text !== '' ? (
+                    /*text !== '' ? (
                         <TouchableIcon
                             Icon={CloseIcon}
                             size={20}
                             color={colors[theme === 'dark' ? 'GRAY' : 'LIGHT_BLACK']}
                             style={styles.clear}
-                            onPress={clearText}
+                            //onPress={clearText}
                         />
-                    ) : null
+                    ) : null*/
                 }
             </View>
         </View>

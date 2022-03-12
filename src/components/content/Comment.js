@@ -31,9 +31,11 @@ import ReplyIcon from '../../../assets/icons/Reply.svg';
 
 const Comment = (props) => {
     // Context
-    const theme = Appearance.getColorScheme();
     const { state: { user } } = useUser(); 
     const { likeContent, dislikeContent } = useContent();
+
+    // Theme
+    const theme = Appearance.getColorScheme();
     
     // Props
     const {

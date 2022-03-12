@@ -10,7 +10,7 @@ import LoadingAnimation from './LoadingAnimation';
 import { colors } from '../../constants/constants';
 
 const TouchableIcon = (props) => {
-    // Context
+    // Theme
     const theme = Appearance.getColorScheme();
     const darkModeEnabled = theme === 'dark' ;
 

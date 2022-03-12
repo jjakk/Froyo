@@ -26,13 +26,16 @@ import { colors } from '../../constants/constants';
 const PostList = (props, ref) => {
     // Refs
     const scrollRef = useRef();
+
     // Context
-    const theme = Appearance.getColorScheme();
     const { state: { user: signedInUser } } = useUser();
     const {
         searchContent,
         getFeed
     } = useContent();
+
+    // Theme
+    const theme = Appearance.getColorScheme();
     const darkModeEnabled = theme === 'dark' ;
 
     // Props

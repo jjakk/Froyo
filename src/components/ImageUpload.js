@@ -19,7 +19,6 @@ import PlusIcon from '../../assets/icons/Plus.svg';
 import CloseIcon from '../../assets/icons/Close.svg';
 
 const ImageUpload = (props) => {
-    // Context
     const theme = Appearance.getColorScheme();
     const darkModeEnabled = theme === 'dark';
 

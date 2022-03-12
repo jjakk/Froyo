@@ -9,6 +9,7 @@ import NoWifiIcon from '../../assets/icons/NoWifi.svg';
 import { colors } from '../constants/constants';
 
 const NoWifiScreen = ({ navigation }) => {
+    // Theme
     const theme = Appearance.getColorScheme();
     const darkModeEnabled = theme === 'dark' ;
 

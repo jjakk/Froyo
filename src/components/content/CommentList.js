@@ -16,8 +16,10 @@ import { colors } from '../../constants/constants';
 
 const CommentList = (props) => {
     // Context
-    const theme = Appearance.getColorScheme();
     const { getComments } = useContent();
+
+    // Theme
+    const theme = Appearance.getColorScheme();
     const darkModeEnabled = theme === 'dark';
 
     // Props

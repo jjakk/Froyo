@@ -22,13 +22,11 @@ const SearchPostScreen = (props) => {
 
     useEffect(() => {
         (async function(){
-            if(query) {
-                try {
-                    setResults(await searchContent('post', { text: query }));
-                }
-                catch(err) {
-                    Alert.alert(err.response.data);
-                }
+            try {
+                setResults(await searchContent('post', { text: query }));
+            }
+            catch(err) {
+                Alert.alert(err.response.data);
             }
         })()
     }, [query]);

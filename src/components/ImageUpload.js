@@ -61,6 +61,7 @@ const ImageUpload = (props) => {
                             </ImageBackground>
                         )}
                         image={images[index]}
+                        allowsEditing={false}
                         setImage={onImageSelect}
                         onDelete={() => onDelete(index)}
                     >

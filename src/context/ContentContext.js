@@ -28,7 +28,7 @@ const createContent = () => async (contentType, info) => {
         }
     }
     catch (err) {
-        throw new Error(err.response.data);
+        throw new Error(err.message);
     }
 };
 
@@ -47,7 +47,8 @@ const updateContent = () => async (contentType, id, info) => {
         }
     }
     catch (err) {
-        throw new Error(err.response.data);
+        console.log(err)
+        throw new Error(err.message);
     }
 };
 

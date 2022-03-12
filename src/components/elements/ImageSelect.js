@@ -18,18 +18,19 @@ const ImageUpload = (props) => {
         aspectRatio,
         UploadedComponent,
         children,
-        imageQuality
+        imageQuality,
+        allowsEditing=true
     } = props;
 
     const pickImage = async () => {
         let imageConfig = {
             mediaTypes: ImagePicker.MediaTypeOptions.All,
-            quality: imageQuality || 0.5,
+            quality: imageQuality,
         };
         if (aspectRatio) {
             imageConfig = {
                 ...imageConfig,
-                allowsEditing: true,
+                allowsEditing: allowsEditing,
                 aspect: aspectRatio,
             }
         }

@@ -156,8 +156,7 @@ const styles = StyleSheet.create({
     body: {
         fontSize: 18,
         margin: 15,
-        marginTop: 0,
-        marginBottom: 5
+        marginVertical: 0
     },
     // Action bar
     actions: {

@@ -122,7 +122,6 @@ const CommentList = (props) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        marginBottom: 5,
     },
     noComments: {
         fontSize: 28,

@@ -35,6 +35,7 @@ const PostViewScreen = ({ navigation }) => {
                     parent={post}
                     onDeleteComment={refreshPost}
                     onPullDownRefresh={refreshPost}
+                    style={styles.commentList}
                     ListHeaderComponent={(
                         <Post
                             data={post}
@@ -54,6 +55,9 @@ const PostViewScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
     post: {
         marginBottom: 0
+    },
+    commentList: {
+        marginBottom: 5
     }
 });
 

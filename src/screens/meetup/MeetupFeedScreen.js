@@ -24,6 +24,35 @@ const MeetupFeedScreen = () => {
         );
     };
 
+    const dummyMeetups = [
+        {
+            id: '1',
+            title: 'Amphibian Society Gala',
+            joined: true,
+            description: 'Join us for the classiest evening at Rural Drinkery and witness the grand opening of the all new Urban Eatery food truck.',
+            date: new Date(Date.now()),
+            time: '7:30 PM',
+            location: '3400 Lancaster Av.',
+            author: {
+                first_name: 'John',
+                last_name: 'Doe',
+            }
+        },
+        {
+            id: '2',
+            title: 'Some Other Event',
+            joined: false,
+            description: null,
+            date: new Date(Date.now()),
+            time: '12:00 PM',
+            location: '123 something st.',
+            author: {
+                first_name: 'Bob',
+                last_name: 'Smith',
+            }
+        }
+    ];
+
     return (
         <ScreenContainer>
             <Header
@@ -35,6 +64,7 @@ const MeetupFeedScreen = () => {
                 }}
             />
             <MeetupList
+                data={[]}
                 emptyMessage="No one in your network's hosting a meetup at the moment"
             />
         </ScreenContainer>

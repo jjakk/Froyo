@@ -74,8 +74,14 @@ const Meetup = (props) => {
                         }
                         style={styles.locationIcon}
                     />
+                    <Text style={styles.locationText}>
+                        {location}
+                    </Text>
+                    <Text style={styles.atSymbol}>
+                        @
+                    </Text>
                     <Text>
-                        {location} @{date.getMonth()}/{date.getDate()}/{date.getFullYear()}
+                        {date.getMonth()}/{date.getDate()}/{date.getFullYear()}
                     </Text>
                     <View style={[
                         styles.dateDivider,
@@ -108,7 +114,7 @@ const Meetup = (props) => {
                                     title='Leave'
                                     type='secondary'
                                     pill
-                                    color={colors.DISLIKE_RED}
+                                    color={colors.LEAVE_RED}
                                 />
                             </View>
                         </View>
@@ -128,17 +134,18 @@ const Meetup = (props) => {
 
 const styles = StyleSheet.create({
     container: {
-        padding: 15
+        padding: 15,
+        marginBottom: 5,
     },
     header: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        marginBottom: 10
+        marginBottom: 15
     },
     title: {
         fontSize: 26,
         flex: 1,
-        marginBottom: 5
+        marginBottom: 10
     },
     // Author stuff
     author: {
@@ -159,7 +166,14 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     locationIcon: {
-        marginRight: 5
+        marginRight: 5,
+        opacity: 0.75
+    },
+    locationText: {
+        textDecorationLine: 'underline',
+    },
+    atSymbol: {
+        marginHorizontal: 5
     },
     dateDivider: {
         borderRadius: 2,
@@ -170,12 +184,12 @@ const styles = StyleSheet.create({
     // Description
     description: {
         marginTop: 10,
-        marginBottom: 10
+        marginBottom: 0
     },
     // Actions
     actions: {
         flex: 1,
-        marginVertical: 10,
+        marginVertical: 15,
     },
     joinButton: {
         flex: 1,

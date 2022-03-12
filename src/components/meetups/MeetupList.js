@@ -16,10 +16,9 @@ const MeetupList = (props) => {
     // Props
     const {
         loading,
+        data: meetups,
         emptyMessage
     } = props;
-
-    const meetups = [];
 
     return (
         <View style={[

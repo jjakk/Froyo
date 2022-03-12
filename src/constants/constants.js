@@ -16,6 +16,7 @@ const generalColors = {
     // Reds
     ERROR_RED: '#FB1C1C',
     DISLIKE_RED: '#CA5A41',
+    LEAVE_RED: '#CA7664',
 };
 
 const themeColors = {

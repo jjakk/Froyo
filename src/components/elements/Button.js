@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
     },
     title: {
         fontFamily: 'Nunito',
-        fontSize: 24
+        fontSize: 22
     }
 });
 

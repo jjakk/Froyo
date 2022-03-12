@@ -64,9 +64,11 @@ const CommentForm = (props) => {
 
     useEffect(() => {
         (async function(){
-            if (parent_id) {
+            // Try getting parent comment if parent is a comment
+            try {
                 setParent(await getContent('comment', parent_id));
             }
+            catch (err) {}
         })()
     }, []);
 

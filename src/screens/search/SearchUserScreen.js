@@ -3,6 +3,8 @@ import React, { useState, useEffect } from 'react';
 import UserList from '../../components/users/UserList';
 // Context
 import { useUser } from '../../context/UserContext';
+// Navigation
+import { NavigationEvents } from 'react-navigation';
 
 const SearchUserScreen = (props) => {
     // Context
@@ -17,25 +19,37 @@ const SearchUserScreen = (props) => {
     const [results, setResults] = useState([]);
 
     // Navigation params
-    const query = navigation.getParam('query');
+    const query = navigation.getParam('searchQuery');
+
+    const refreshUsers = async () => {
+        if (query) {
+            try {
+                setResults(await searchUser({ text: query }));
+            }
+            catch(err) {
+                Alert.alert(err.response.data);
+            }
+        }
+        else {
+            setResults([]);
+        }
+    };
 
     useEffect(() => {
         (async function(){
-            if(query) {
-                try {
-                    setResults(await searchUser({ text: query }));
-                }
-                catch(err) {
-                    Alert.alert(err.response.data);
-                }
-            }
+            await refreshUsers();
         })()
     }, [query]);
 
     return (
-        <UserList
-            users={results}
-        />
+        <>
+            <NavigationEvents
+                onDidFocus={refreshUsers}
+            />
+            <UserList
+                users={results}
+            />
+        </>
     );
 };
 

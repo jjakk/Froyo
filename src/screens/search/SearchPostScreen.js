@@ -4,6 +4,8 @@ import { Alert } from 'react-native';
 import PostList from '../../components/content/PostList';
 // Context
 import { useContent } from '../../context/ContentContext';
+// Navigation
+import { NavigationEvents } from 'react-navigation';
 
 const SearchPostScreen = (props) => {
     // Context
@@ -18,33 +20,41 @@ const SearchPostScreen = (props) => {
     const [results, setResults] = useState([]);
 
     // Navigation params
-    const query = navigation.getParam('query');
+    const query = navigation.getParam('searchQuery');
+
+    const refreshPosts = async () => {
+        try {
+            if (query) {
+                setResults(await searchContent('post', { text: query }));
+            }
+            else {
+                setResults([]);
+            }
+        }
+        catch(err) {
+            Alert.alert(err.response.data);
+        }
+    };
 
     useEffect(() => {
         (async function(){
-            try {
-                if (query) {
-                    setResults(await searchContent('post', { text: query }));
-                }
-                else {
-                    setResults([]);
-                }
-            }
-            catch(err) {
-                Alert.alert(err.response.data);
-            }
+            await refreshPosts();
         })()
     }, [query]);
 
     return (
-        <PostList
-            type='Search'
-            emptyMessage='No posts found'
-            refreshable={false}
-            data={results}
-            //onDelete={onSearch}
-            //ref={postListRef}
-        />
+        <>
+            <NavigationEvents
+                onDidFocus={refreshPosts}
+            />
+            <PostList
+                type='Search'
+                emptyMessage='No posts found'
+                refreshable={false}
+                data={results}
+                onDelete={refreshPosts}
+            />
+        </>
     );
 };
 

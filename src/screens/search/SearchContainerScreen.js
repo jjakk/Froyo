@@ -16,9 +16,9 @@ const SearchContainerScreen = (props) => {
         navigation
     } = props;
 
-    const onSearch = (query) => {
-        navigation.navigate('SearchUsers', { query })
-        navigation.navigate('SearchPosts', { query })
+    const onSearch = (searchQuery) => {
+        navigation.navigate('SearchUsers', { searchQuery })
+        navigation.navigate('SearchPosts', { searchQuery })
     };
 
     return (

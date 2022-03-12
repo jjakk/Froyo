@@ -14,7 +14,9 @@ const generalColors = {
     LIGHT_GREEN: '#80DCBB',
     LIGHTER_GREEN: '#BEEADA',
     // Reds
+    ERROR_RED: '#FB1C1C',
     DISLIKE_RED: '#CA5A41',
+    LEAVE_RED: '#CA7664',
 };
 
 const themeColors = {
@@ -22,15 +24,14 @@ const themeColors = {
         FIRST: generalColors.LIGHT_GRAY,
         SECOND: generalColors.GRAY,
         THIRD: generalColors.DARK_GRAY,
-        FOURTH: generalColors.LIGHT_BLACK,
-        RED: '#E86245'
+        FOURTH: generalColors.LIGHT_BLACK
     },
     dark: {
         FIRST: '#363636',
         SECOND: '#222222',
         THIRD: '#1B1B1B',
         FOURTH: '#151515',
-        RED: '#CA7664'
+        ERROR: '#C97D7D'
     }
 };
 

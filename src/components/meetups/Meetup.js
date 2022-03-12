@@ -114,7 +114,7 @@ const Meetup = (props) => {
                                     title='Leave'
                                     type='secondary'
                                     pill
-                                    color={colors.LEAVE_RED}
+                                    color={colors[theme].RED}
                                 />
                             </View>
                         </View>

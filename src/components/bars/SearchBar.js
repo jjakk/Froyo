@@ -27,6 +27,7 @@ const SearchBar = (props) => {
 
     const clearText = async () => {
         setText('');
+        onSearch('');
     };
 
     const onSubmit = () => {

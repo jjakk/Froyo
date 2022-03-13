@@ -210,6 +210,12 @@ const following = () => async (userA, userB) => {
     return following;
 };
 
+// Get followers and those folowing a user
+const getConnections = () => async (userId) => {
+    const { data: connections } = await froyoApi.get(`/users/${userId}/connections`);
+    return connections;
+};
+
 export const { Provider, Context } = createDataContext(
     userReducer,
     {
@@ -225,6 +231,7 @@ export const { Provider, Context } = createDataContext(
         resetPassword,
         follow,
         following,
+        getConnections
     }, { user: {} }
 );
 

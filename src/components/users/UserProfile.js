@@ -28,6 +28,7 @@ const UserProfile = (props) => {
         signOut,
         follow,
         following,
+        getConnections,
         state: { user: signedInUser }
     } = useUser();
 
@@ -60,6 +61,11 @@ const UserProfile = (props) => {
     };
 
     // Event handlers
+    const onGetConnections = async () => {
+        const connections = await getConnections(user.id);
+        navigate('Connections', { connections });
+    };
+
     const onEditProfile = () => {
         navigate('AccountEdit');
     };
@@ -112,7 +118,9 @@ const UserProfile = (props) => {
                             >
                                 {`@${user.username}`}
                             </Text>
-                            <TouchableOpacity>
+                            <TouchableOpacity
+                                onPress={onGetConnections}
+                            >
                                 <Text style={[
                                     styles.numbers,
                                     themeStyles[theme].text

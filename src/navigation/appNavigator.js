@@ -27,6 +27,10 @@ import ResetPasswordScreen from '../screens/authentication/ResetPasswordScreen';
 // Acccount Screens
 import AccountViewScreen from '../screens/account/AccountViewScreen';
 import AccountEditScreen from '../screens/account/AccountEditScreen';
+// Connection Screens
+import FollowersScreen from '../screens/connection/FollowersScreen';
+import FollowingScreen from '../screens/connection/FollowingScreen';
+import ConnectionsContainer from '../screens/connection/ConnectionsContainer';
 // Settings Screen
 import SettingsScreen from '../screens/SettingsScreen';
 // Post Screens
@@ -89,7 +93,7 @@ const searchNavigator = createMaterialTopTabNavigator({
             }
         },
         tabBarComponent: SearchContainerScreen
-    });
+});
 
 // This navigator organizes the bottom tab bar
 const tabNavigator = createBottomTabNavigator({
@@ -140,12 +144,48 @@ const tabNavigator = createBottomTabNavigator({
     initialRouteName: 'Feed'
 });
 
+const connectionNavigator = createMaterialTopTabNavigator({
+    Followers: {
+        screen: FollowersScreen,
+        navigationOptions: {
+            tabBarLabel: 'Followers'
+        },
+    },
+    Following: {
+        screen: FollowingScreen,
+        navigationOptions: {
+            tabBarLabel: 'Following'
+        },
+    },
+}, {
+    tabBarOptions: {
+        activeTintColor: colors.GREEN,
+        inactiveTintColor: colors.DARK_GRAY,
+        upperCaseLabel: false,
+        style: {
+            backgroundColor: 'transparent',
+            marginHorizontal: 25
+        },
+        labelStyle: {
+            fontSize: 18,
+            fontFamily: 'Nunito'
+        },
+        indicatorStyle: {
+            backgroundColor: colors.GREEN,
+            borderRadius: 1
+        }
+    },
+    tabBarComponent: ConnectionsContainer
+});
+
 // This navigator connects the tabFlow to the other screens
 const mainNavigator = createStackNavigator({
         tabFlow: tabNavigator,
         // Account Screens
         AccountEdit: AccountEditScreen,
         AccountView: AccountViewScreen,
+        // Connections Screen
+        Connections: connectionNavigator,
         // Settings Screen
         Settings: SettingsScreen,
         // Post Screens

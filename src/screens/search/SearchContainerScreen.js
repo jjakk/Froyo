@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React from 'react';
 import { StyleSheet, Appearance } from 'react-native';
 // Components
 import { MaterialTopTabBar } from 'react-navigation-tabs';

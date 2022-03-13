@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 // Components
 import ScreenContainer from '../../components/ScreenContainer';
 import Header from '../../components/Header';
@@ -21,6 +21,10 @@ const AccountViewScreen = ({ navigation }) => {
     const onRefresh = async () => {
         setUser(await getUser(user.id));
     }
+
+    useEffect(() => {
+        onRefresh();
+    }, [navigation.getParam('user')]);
     
     return(
         <ScreenContainer

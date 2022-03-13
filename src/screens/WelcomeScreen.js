@@ -25,10 +25,10 @@ const WelcomeScreen = ({ navigation }) => {
                         source={require('../../assets/logo/Logo-White.png')}
                         style={styles.logo}
                     />
-                    <Text>
+                    <View style={styles.text}>
                         <Text style={styles.title}>Froyo</Text>
-                        <Text style={styles.subTitle}>{'\n'}The Minimalist{'\n'}Social Network</Text>
-                    </Text>
+                        <Text style={styles.subTitle}>The Minimalist{'\n'}Social Network</Text>
+                    </View>
                 </View>
                 <View style={styles.authOptions}>
                     <Button
@@ -71,6 +71,9 @@ const styles = StyleSheet.create({
         width: 82,
         height: 91,
         marginRight: 15
+    },
+    text: {
+        flexDirection: 'column'
     },
     title: {
         color: 'white',

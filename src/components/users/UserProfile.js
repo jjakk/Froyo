@@ -12,6 +12,7 @@ import {
     StyleSheet,
     View,
     Image,
+    TouchableOpacity,
     TouchableWithoutFeedback
 } from 'react-native';
 import {
@@ -111,20 +112,14 @@ const UserProfile = (props) => {
                             >
                                 {`@${user.username}`}
                             </Text>
-                            <View style={styles.numbers}>
+                            <TouchableOpacity>
                                 <Text style={[
-                                    styles.followers,
+                                    styles.numbers,
                                     themeStyles[theme].text
                                 ]}>
-                                    {`${user.follower_count} Followers`}
+                                    {`${user.follower_count} Followers`}  {`${user.followee_count} Following`}
                                 </Text>
-                                <Text style={[
-                                    styles.following,
-                                    themeStyles[theme].text
-                                ]}>
-                                    {`${user.followee_count} Following`}
-                                </Text>
-                            </View>
+                            </TouchableOpacity>
                         </View>
                     </View>
                     {
@@ -216,14 +211,8 @@ const styles = StyleSheet.create({
     numbers: {
         flexDirection: 'row',
         alignItems: 'center',
-        marginBottom: 5
-    },
-    followers: {
-        fontSize: 18
-    },
-    following: {
         fontSize: 18,
-        marginLeft: 10
+        marginBottom: 5
     },
     // Description
     description: {

@@ -43,7 +43,7 @@ const MeetupFeedScreen = () => {
             title: 'Some Other Event',
             joined: false,
             description: null,
-            date: new Date(Date.now()),
+            date: new Date(Date.now()+999999999),
             time: '12:00 PM',
             location: '123 something st.',
             author: {

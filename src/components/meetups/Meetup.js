@@ -44,6 +44,20 @@ const Meetup = (props) => {
         : require('../../../assets/icons/guest.png')
     );
 
+    // Set date text to Today, Tomorrow or the date (in format MM/DD/YYYY)
+    const formatedDate = `${date.getMonth()}/${date.getDate()}/${date.getFullYear()}`;
+    const dateText = (
+        date.getMonth() === (new Date()).getMonth()
+        && date.getFullYear() === (new Date()).getFullYear()
+            ? (
+                date.getDate() === (new Date()).getDate()
+                    ? 'Today'
+                    : date.getDate() === (new Date()).getDate() + 1
+                        ? 'Tomorrow'
+                        :  formatedDate
+            ) : formatedDate
+    );
+
     return (
         <TouchableWithoutFeedback>
             <View style={[
@@ -64,32 +78,33 @@ const Meetup = (props) => {
                     />
                 </View>
                 <View style={styles.details}>
-                    <LocationIcon
-                        width={20}
-                        height={20}
-                        color={
-                            darkModeEnabled
-                            ? colors.light.FIRST
-                            : colors.dark.FIRST
-                        }
-                        style={styles.locationIcon}
-                    />
-                    <Text style={styles.locationText}>
-                        {location}
-                    </Text>
-                    <Text style={styles.atSymbol}>
-                        @
-                    </Text>
-                    <Text>
-                        {date.getMonth()}/{date.getDate()}/{date.getFullYear()}
-                    </Text>
-                    <View style={[
-                        styles.dateDivider,
-                        themeStyles[theme].dateDivider
-                    ]} />
-                    <Text>
-                        {time}
-                    </Text>
+                    <View style={styles.location}>
+                        <LocationIcon
+                            width={20}
+                            height={20}
+                            color={
+                                darkModeEnabled
+                                ? colors.light.FIRST
+                                : colors.dark.FIRST
+                            }
+                        />
+                        <Text style={styles.locationText}>
+                            {location}
+                        </Text>
+                    </View>
+                    <View style={styles.time}>
+                        <Text>@</Text>
+                        <Text style={styles.dateText}>
+                            {dateText}
+                        </Text>
+                        <View style={[
+                            styles.dateDivider,
+                            themeStyles[theme].dateDivider
+                        ]} />
+                        <Text>
+                            {time}
+                        </Text>
+                    </View>
                 </View>
                 {
                     description && (
@@ -162,18 +177,24 @@ const styles = StyleSheet.create({
     },
     // Details
     details: {
-        flexDirection: 'row',
-        alignItems: 'center'
+        flexDirection: 'column'
     },
-    locationIcon: {
-        marginRight: 5,
-        opacity: 0.75
+    location: {
+        opacity: 0.75,
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginBottom: 10
     },
     locationText: {
         textDecorationLine: 'underline',
+        marginLeft: 5
     },
-    atSymbol: {
-        marginHorizontal: 5
+    time: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    dateText: {
+        marginLeft: 5
     },
     dateDivider: {
         borderRadius: 2,

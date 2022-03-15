@@ -86,10 +86,10 @@ const Post = (props) => {
     };
 
     const onDoubleTap = () => {
-        // Show like animtion and like post if you're not already liking it
+        // Like post and show like animtion on double tap if you're not already liking it
         if (!post.liking) {
-            likeAnimationRef.current.fire();
             onLike();
+            likeAnimationRef.current.fire();
         }
     };
 

@@ -64,7 +64,7 @@ const MeetupFeedScreen = () => {
                 }}
             />
             <MeetupList
-                data={dummyMeetups}
+                data={[]}
                 emptyMessage="No one in your network's hosting a meetup at the moment"
             />
         </ScreenContainer>

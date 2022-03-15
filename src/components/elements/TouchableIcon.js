@@ -5,7 +5,7 @@ import {
     StyleSheet,
     TouchableOpacity
 } from 'react-native';
-import LoadingAnimation from './LoadingAnimation';
+import LoadingAnimation from '../animations/LoadingAnimation';
 // Constants
 import { colors } from '../../constants/constants';
 

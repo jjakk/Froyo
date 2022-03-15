@@ -14,7 +14,7 @@ import {
     RefreshControl
 } from 'react-native';
 import { NavigationEvents } from 'react-navigation';
-import { LoadingAnimation } from '../froyo-elements';
+import LoadingAnimation from '../animations/LoadingAnimation';
 import EmptyMessage from '../messages/EmptyMessage';
 import Post from './Post';
 // Context

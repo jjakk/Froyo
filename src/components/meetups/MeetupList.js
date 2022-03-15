@@ -1,7 +1,7 @@
 import React from 'react';
 // Components
 import { Appearance, StyleSheet, View, FlatList } from 'react-native';
-import { LoadingAnimation } from '../froyo-elements';
+import LoadingAnimation from '../animations/LoadingAnimation';
 import EmptyMessage from '../messages/EmptyMessage';
 import Meetup from './Meetup';
 // Context

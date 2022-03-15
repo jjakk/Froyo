@@ -6,7 +6,6 @@ import Spacer from './elements/Spacer';
 import Br from './elements/Br';
 import DatePicker from './elements/DatePicker';
 import TouchableIcon from './elements/TouchableIcon';
-import LoadingAnimation from './elements/LoadingAnimation';
 import Switch from './elements/Switch';
 import ImageSelect from './elements/ImageSelect';
 import ImageList from './elements/ImageList';
@@ -20,7 +19,6 @@ module.exports = {
   Br,
   DatePicker,
   TouchableIcon,
-  LoadingAnimation,
   Switch,
   ImageSelect,
   ImageList

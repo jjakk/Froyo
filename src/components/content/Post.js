@@ -22,6 +22,7 @@ import {
 } from './parts/likeness-buttons';
 import ContentHeader from './parts/ContentHeader';
 import LikenessBar from './parts/LikenessBar';
+import LikeAnimation from '../../components/animations/LikeAnimation';
 // Navigation
 import { navigate } from '../../navigation/navigationRef';
 // Contexts
@@ -49,6 +50,7 @@ const Post = (props) => {
     // Refs
     const likeRef = useRef();
     const dislikeRef = useRef();
+    const likeAnimationRef = useRef();
 
     // Context
     const { state: { user } } = useUser();
@@ -83,12 +85,12 @@ const Post = (props) => {
         setPost(await dislikeContent('post', post.id));
     };
 
-    const onTripleTap = () => {
-        dislikeRef.current.simulateTap();
-    };
-
     const onDoubleTap = () => {
-        likeRef.current.simulateTap();
+        // Show like animtion and like post if you're not already liking it
+        if (!post.liking) {
+            likeAnimationRef.current.fire();
+            onLike();
+        }
     };
 
     // Update post data when passed post changes
@@ -111,12 +113,16 @@ const Post = (props) => {
                 {
                     post.images && (
                         <MultiTap
-                            onTripleTap={onTripleTap}
                             onDoubleTap={onDoubleTap}
+                            style={styles.imageContainer}
                         >
                             <ImageList
                                 data={post.images}
                                 style={styles.images}
+                            />
+                            <LikeAnimation
+                                style={styles.likeAnimation}
+                                ref={likeAnimationRef}
                             />
                         </MultiTap>
                     )
@@ -192,6 +198,13 @@ const styles = StyleSheet.create({
     comment: {
         marginLeft: 15,
         marginBottom: 15
+    },
+    imageContainer: {
+        justifyContent: 'center'
+    },
+    likeAnimation: {
+        position: 'absolute',
+        alignSelf: 'center',
     }
 });
 

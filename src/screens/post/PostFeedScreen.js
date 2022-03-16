@@ -67,7 +67,7 @@ const FeedScreen = ({ navigation }) => {
 
     useEffect(() => {
         retrieveFeed();
-    });
+    }, []);
 
     return (
         <ScreenContainer

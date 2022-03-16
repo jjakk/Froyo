@@ -99,20 +99,14 @@ const Post = (props) => {
     // Update post data when passed post changes
     useEffect(() => {
         setPost(passedPost);
-    }, [passedPost]);
 
-    const LoadingComponent = (
-        <View style={[
-            styles.post,
-            styles.loadingContainer,
-            themeStyles[theme].post,
-            style
-        ]}>
-            <Text style={styles.loadingText}>Loading</Text>
-        </View>
-    );
+        return () => {
+            // Cleanup
+            setPost(null);
+        };
+    }, []);
 
-    return loading ? LoadingComponent : (
+    return !loading ? (
         <TouchableWithoutFeedback>
             <View style={[
                 styles.post,
@@ -174,7 +168,7 @@ const Post = (props) => {
                 </View>
             </View>
         </TouchableWithoutFeedback>
-    );
+    ) : null;
 };
 
 const styles = StyleSheet.create({
@@ -219,15 +213,6 @@ const styles = StyleSheet.create({
     likeAnimation: {
         position: 'absolute',
         alignSelf: 'center',
-    },
-    // Loading Component
-    loadingContainer: {
-        paddingVertical: 15,
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
-    loadingText: {
-        fontSize: 28
     }
 });
 

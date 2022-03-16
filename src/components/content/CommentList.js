@@ -53,6 +53,8 @@ const CommentList = (props) => {
             if(mounted) setLoading(false);
         });
         return () => {
+            // Cleanup
+            setComments([]);
             mounted = false;
         };
     }, [parent]);
@@ -89,44 +91,48 @@ const CommentList = (props) => {
         );
     };
 
+    const LoadingComponent = (
+        <Text style={styles.noComments}>Loading</Text>
+    );
+
     return (
         <View style={[
             styles.container,
             themeStyles[theme].container
         ]}>
-            <FlatList
-                data={comments}
-                keyExtractor={(item) => item.id}
-                showsVerticalScrollIndicator={false}
-                refreshControl={
-                    <RefreshControl
-                        tintColor={colors.GREEN}
-                        colors={[colors.GREEN]}
-                        progressBackgroundColor={
-                            darkModeEnabled
-                            ? colors.light.FOURTH
-                            : colors.WHITE
+            {
+                loading ? LoadingComponent : (
+                    <FlatList
+                        data={comments}
+                        keyExtractor={(item) => item.id}
+                        showsVerticalScrollIndicator={false}
+                        refreshControl={
+                            <RefreshControl
+                                tintColor={colors.GREEN}
+                                colors={[colors.GREEN]}
+                                progressBackgroundColor={
+                                    darkModeEnabled
+                                    ? colors.light.FOURTH
+                                    : colors.WHITE
+                                }
+                                refreshing={refreshing}
+                                onRefresh={async () => {
+                                    setRefreshing(true);
+                                    await onRefresh();
+                                    setRefreshing(false);
+                                }}
+                            />
                         }
-                        refreshing={refreshing}
-                        onRefresh={async () => {
-                            setRefreshing(true);
-                            await onRefresh();
-                            setRefreshing(false);
-                        }}
+                        renderItem={commentRender}
+                        ListEmptyComponent={() => (
+                            rootContent ? (
+                                <Text style={styles.noComments}>No comments</Text>
+                            ) : null
+                        )}
+                        {...otherProps}
                     />
-                }
-                renderItem={commentRender}
-                ListEmptyComponent={() => (
-                    rootContent ? (
-                        loading ? (
-                            <Text style={styles.noComments}>Loading</Text>
-                        ) : (
-                            <Text style={styles.noComments}>No comments</Text>
-                        )
-                    ) : null
-                )}
-                {...otherProps}
-            />
+                )
+            }
         </View>
     );
 };

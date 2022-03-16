@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 // Components
 import {
     StyleSheet,
@@ -16,12 +16,19 @@ import { useContent } from '../../context/ContentContext';
 const PostViewScreen = ({ navigation }) => {
     const { getContent } = useContent();
     // Content
-    const [post, setPost] = useState(navigation.getParam('post'));
+    const passedPost = navigation.getParam('post');
+    const [post, setPost] = useState(passedPost);
 
     // Refresh post information (get new comments)
     const refreshPost = async () => {
-        setPost(await getContent('post', post.id));
+        setPost(await getContent('post', passedPost.id));
     };
+
+    useEffect(() => {
+        (async function(){
+            await refreshPost();
+        })();
+    }, [passedPost]);
 
     return (
         <ScreenContainer

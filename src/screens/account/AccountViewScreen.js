@@ -10,8 +10,14 @@ import { useUser } from '../../context/UserContext';
 import GearIcon from '../../../assets/icons/Gear.svg';
 
 const AccountViewScreen = ({ navigation }) => {
-    const { getUser, state: { user: signedInUser } } = useUser();
-    const [user, setUser] = useState(navigation.getParam('user') || signedInUser);
+    const {
+        getUser,
+        state: {
+            user: signedInUser
+        }
+    } = useUser();
+    const passedUser = navigation.getParam('user');
+    const [user, setUser] = useState(passedUser || signedInUser);
 
     const onSettings = () => {
         navigation.navigate('Settings');
@@ -19,12 +25,14 @@ const AccountViewScreen = ({ navigation }) => {
 
     // Get user information & posts onload and onrefresh
     const onRefresh = async () => {
-        setUser(await getUser(user.id));
+        setUser(await getUser((passedUser || signedInUser).id));
     }
 
     useEffect(() => {
-        onRefresh();
-    }, [navigation.getParam('user')]);
+        (async function(){
+            await onRefresh();
+        })();
+    }, [passedUser]);
     
     return(
         <ScreenContainer

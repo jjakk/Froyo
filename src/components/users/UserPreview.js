@@ -42,9 +42,8 @@ const UserPreview = (props) => {
     );
 
     // Event handlers
-
     const onPress = () => {
-        navigate('AccountView', { user })
+        navigate('AccountView', { user });
     };
 
     return (

@@ -1,4 +1,8 @@
-import React, { useRef } from 'react';
+import React, {
+    useEffect,
+    useRef,
+    useState
+} from 'react';
 // Components
 import {
     StyleSheet,
@@ -12,14 +16,21 @@ import PostList from '../../components/content/PostList';
 import FroyoIcon from '../../../assets/icons/Froyo.svg';
 // Context
 import { useUser } from '../../context/UserContext';
+import { useContent } from '../../context/ContentContext';
 // Constants
 import { BASE_URL, colors, sizes } from '../../constants/constants';
 
 const FeedScreen = ({ navigation }) => {
     // Context
     const { state: { user } } = useUser();
+    const { getFeed } = useContent();
+
     // Ref
     const postListRef = useRef();
+
+    // State
+    const [posts, setPosts] = useState([]);
+    const [loading, setLoading] = useState(true);
     
     // Conditional rendering
     const profilePictureSource = (
@@ -47,16 +58,16 @@ const FeedScreen = ({ navigation }) => {
         postListRef.current.reloadContent();
     };
 
-    const ProfileButton = () => (
-        <Image
-            source={LeftIconImageOverride}
-            style={{
-                width: size,
-                height: size,
-                borderRadius: size
-            }}
-        />
-    );
+    // Network Requests
+    const retrieveFeed = async () => {
+        setLoading(true);
+        setPosts(await getFeed());
+        setLoading(false);
+    };
+
+    useEffect(() => {
+        retrieveFeed();
+    });
 
     return (
         <ScreenContainer
@@ -83,8 +94,10 @@ const FeedScreen = ({ navigation }) => {
                 }}
             />
             <PostList
-                type='Feed'
                 emptyMessage='Follow people to populate your feed'
+                loading={loading}
+                onRefresh={retrieveFeed}
+                data={posts}
                 ref={postListRef}
             />
             <CreateButton

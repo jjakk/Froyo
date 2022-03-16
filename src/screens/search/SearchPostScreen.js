@@ -18,41 +18,43 @@ const SearchPostScreen = (props) => {
 
     // State
     const [results, setResults] = useState([]);
+    const [loading, setLoading] = useState(false);
 
     // Navigation params
     const query = navigation.getParam('searchQuery');
 
-    const refreshPosts = async () => {
+    const retreivePosts = async () => {
         try {
-            if (query) {
-                setResults(await searchContent('post', { text: query }));
-            }
-            else {
-                setResults([]);
-            }
+            setLoading(true);
+            setResults(
+                !query
+                    ? []
+                    : await searchContent('post', { text: query })
+            );
         }
         catch(err) {
             Alert.alert(err.response.data);
         }
+        finally {
+            setLoading(false);
+        }
     };
 
     useEffect(() => {
-        (async function(){
-            await refreshPosts();
-        })()
+        retreivePosts();
     }, [query]);
 
     return (
         <>
             <NavigationEvents
-                onDidFocus={refreshPosts}
+                onDidFocus={retreivePosts}
             />
             <PostList
-                type='Search'
                 emptyMessage='No posts found'
-                refreshable={false}
                 data={results}
-                onDelete={refreshPosts}
+                refreshable={false}
+                loading={loading}
+                onRefresh={retreivePosts}
             />
         </>
     );

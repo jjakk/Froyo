@@ -19,7 +19,6 @@ import EmptyMessage from '../messages/EmptyMessage';
 import Post from './Post';
 // Context
 import { useUser } from '../../context/UserContext';
-import { useContent } from '../../context/ContentContext';
 // Constants
 import { colors } from '../../constants/constants';
 
@@ -29,10 +28,6 @@ const PostList = (props, ref) => {
 
     // Context
     const { state: { user: signedInUser } } = useUser();
-    const {
-        searchContent,
-        getFeed
-    } = useContent();
 
     // Theme
     const theme = Appearance.getColorScheme();
@@ -40,11 +35,11 @@ const PostList = (props, ref) => {
 
     // Props
     const {
-        type,
+        data: posts,
+        loading,
         emptyMessage,
         style,
-        onPullDownRefresh,
-        onDelete,
+        onRefresh,
         user=signedInUser,
         refreshable=true,
         ...otherProps
@@ -52,13 +47,11 @@ const PostList = (props, ref) => {
 
     // State
     const [refreshing, setRefreshing] = useState(false);
-    const [loading, setLoading] = useState(true);
-    const [posts, setPosts] = useState([]);
 
     // Reference
     useImperativeHandle(ref, () => ({
-        reloadContent: async (searchValue) => {
-            await reloadContent(searchValue)
+        reloadContent: async () => {
+            await onRefresh()
         },
         scrollToTop: () => {
             scrollRef.current.scrollToOffset({
@@ -68,44 +61,13 @@ const PostList = (props, ref) => {
         }
     }))
 
-    // Function to retrieve user info & posts
-    const reloadContent = async (searchValue) => {
-        setLoading(true);
-        // Retrieve posts
-        switch (type) {
-            case 'AccountView':
-                setPosts(await searchContent('post', { author_id: user.id }));
-                break;
-            case 'Feed':
-                setPosts(await getFeed());
-                break;
-            case 'Search':
-                if(searchValue !== undefined) {
-                    setPosts(await searchContent('post', { text: searchValue }));
-                }
-                break;
-        }
-        setLoading(false);
-    };
-
-    const onRefresh = async () => {
-        setRefreshing(true);
-        await reloadContent();
-        if (onPullDownRefresh) await onPullDownRefresh();
-        setRefreshing(false);
-    };
-
-    const onDidFocus = async () => {
-        reloadContent();
-    };
-
     return (
         <View style={[
             styles.container,
             themeStyles[theme].container,
             style
         ]}>
-            <NavigationEvents onDidFocus={onDidFocus} />
+            <NavigationEvents onDidFocus={onRefresh} />
             <FlatList
                 data={posts}
                 keyExtractor={(item) => item.id}
@@ -118,14 +80,18 @@ const PostList = (props, ref) => {
                             colors={[colors.GREEN]}
                             progressBackgroundColor={darkModeEnabled ? colors.light.FOURTH : colors.WHITE}
                             refreshing={refreshing}
-                            onRefresh={onRefresh}
+                            onRefresh={async () => {
+                                setRefreshing(true);
+                                await onRefresh();
+                                setRefreshing(false);
+                            }}
                         />
                     ) : null
                 }
                 renderItem={({ item }) => (
                     <Post
                         data={item}
-                        onDelete={onDelete || reloadContent}
+                        onDelete={onRefresh}
                     />
                 )}
                 ListEmptyComponent={() => (

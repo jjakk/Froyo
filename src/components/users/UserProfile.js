@@ -13,7 +13,8 @@ import {
     View,
     Image,
     TouchableOpacity,
-    TouchableWithoutFeedback
+    TouchableWithoutFeedback,
+    Alert
 } from 'react-native';
 import {
     Button,
@@ -38,8 +39,9 @@ const UserProfile = (props) => {
     // Props
     const {
         style,
-        user=signedInUser,
-        onUserUpdate
+        onRefresh,
+        loading,
+        user=signedInUser
     } = props;
     
     // Conditional rendering
@@ -57,7 +59,7 @@ const UserProfile = (props) => {
 
     const onFollow = async () => {
         await follow(user.id);
-        onUserUpdate();
+        onRefresh();
     };
 
     // Event handlers
@@ -77,12 +79,18 @@ const UserProfile = (props) => {
 
     // Get following status whenever the user state changes (If viewing another user's profile)
     useEffect(() => {
-        (async function(){
-            if (user.id !== signedInUser.id) {
-                setFollowingUser(await following(signedInUser.id, user.id));
-            }
-        })();
+        if(user.id !== signedInUser.id) {
+            following(signedInUser.id, user.id)
+            .then(setFollowingUser)
+            .catch((error) => {
+                Alert.alert(error.message);
+            });
+        }
     }, [user]);
+
+    useEffect(() => {
+
+    }, [loading]);
 
     return (
         <TouchableWithoutFeedback>
@@ -150,7 +158,6 @@ const UserProfile = (props) => {
                             <Button
                                 title='Edit profile'
                                 pill
-                                buttonStyle={styles.actionButton}
                                 titleStyle={styles.actionButtonText}
                                 onPress={onEditProfile}
                             />
@@ -161,7 +168,6 @@ const UserProfile = (props) => {
                                 title='Sign out'
                                 type='secondary'
                                 pill
-                                buttonStyle={styles.actionButton}
                                 titleStyle={styles.actionButtonText}
                                 onPress={onSignOut}
                             />
@@ -171,13 +177,17 @@ const UserProfile = (props) => {
                         <View  style={styles.actionButtonContainer}>
                             <Button
                                 title={followingUser ? 'Unfollow' : 'Follow'}
+                                loading={loading}
                                 color={colors.GREEN}
                                 textColor={followingUser ? colors.GREEN : colors.WHITE}
-                                type={followingUser ? 'secondary' : 'primary'}
+                                type={
+                                    loading ? 'primary'
+                                        : followingUser
+                                            ? 'secondary' : 'primary'
+                                }
                                 pill
-                                buttonStyle={styles.actionButton}
                                 titleStyle={styles.actionButtonText}
-                                onPress={onFollow}
+                                onPress={loading ? ()=>{} : onFollow}
                             />
                         </View>
                     )
@@ -236,13 +246,14 @@ const styles = StyleSheet.create({
         marginTop: 15
     },
     actionButtonContainer: {
-        flex: 1,
+        flex: 1
     },
     gap: {
         width: 25,
     },
     actionButtonText: {
-        fontSize: 20
+        fontSize: 20,
+        paddingHorizontal: 10
     },
 });
 

@@ -1,4 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, {
+    useState,
+    useEffect
+} from 'react';
+import { Alert } from 'react-native';
 // Components
 import UserList from '../../components/users/UserList';
 // Context
@@ -17,37 +21,40 @@ const SearchUserScreen = (props) => {
 
     // State
     const [results, setResults] = useState([]);
+    const [loading, setLoading] = useState(false);
 
     // Navigation params
     const query = navigation.getParam('searchQuery');
 
-    const refreshUsers = async () => {
-        if (query) {
-            try {
-                setResults(await searchUser({ text: query }));
-            }
-            catch(err) {
-                Alert.alert(err.response.data);
-            }
+    const retreiveUsers = async () => {
+        try {
+            setLoading(true);
+            setResults(
+                !query
+                    ? []
+                    : await searchUser({ text: query })
+                );
         }
-        else {
-            setResults([]);
+        catch(err) {
+            Alert.alert(err.response.data);
+        }
+        finally {
+            setLoading(false);
         }
     };
 
     useEffect(() => {
-        (async function(){
-            await refreshUsers();
-        })()
+        retreiveUsers();
     }, [query]);
 
     return (
         <>
             <NavigationEvents
-                onDidFocus={refreshUsers}
+                onDidFocus={retreiveUsers}
             />
             <UserList
                 users={results}
+                loading={loading}
             />
         </>
     );

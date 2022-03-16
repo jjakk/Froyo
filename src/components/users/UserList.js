@@ -7,6 +7,7 @@ import {
     View
 } from 'react-native';
 import EmptyMessage from '../messages/EmptyMessage';
+import LoadingAnimation from '../animations/LoadingAnimation';
 import UserPreview from './UserPreview';
 // Constants
 import { colors } from '../../constants/constants';
@@ -18,7 +19,8 @@ const UserList = (props) => {
     // Props
     const {
         users,
-        style
+        style,
+        loading
     } = props;
 
     return (
@@ -36,10 +38,17 @@ const UserList = (props) => {
                     <UserPreview user={item} />
                 )}
                 ListEmptyComponent={() => (
-                    <EmptyMessage
-                        subheaderText='No users found'
-                        style={styles.emptyMessage}
-                    />
+                    loading ? (
+                        <LoadingAnimation
+                            size={50}
+                            style={styles.postLoading}
+                        />
+                    ) : (
+                        <EmptyMessage
+                            subheaderText='No users found'
+                            style={styles.emptyMessage}
+                        />
+                    )
                 )}
             />
         </View>
@@ -50,6 +59,9 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
+    },
+    postLoading: {
+        marginTop: 50
     },
     emptyMessage: {
         marginTop: 50

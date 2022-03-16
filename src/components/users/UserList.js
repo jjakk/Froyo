@@ -40,13 +40,12 @@ const UserList = (props) => {
                 ListEmptyComponent={() => (
                     loading ? (
                         <LoadingAnimation
-                            size={50}
-                            style={styles.postLoading}
+                            style={styles.noUsers}
                         />
                     ) : (
                         <EmptyMessage
                             subheaderText='No users found'
-                            style={styles.emptyMessage}
+                            style={styles.noUsers}
                         />
                     )
                 )}
@@ -60,10 +59,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
     },
-    postLoading: {
-        marginTop: 50
-    },
-    emptyMessage: {
+    noUsers: {
         marginTop: 50
     }
 });

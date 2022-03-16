@@ -22,7 +22,7 @@ import {
 } from './parts/likeness-buttons';
 import ContentHeader from './parts/ContentHeader';
 import LikenessBar from './parts/LikenessBar';
-import LikeAnimation from '../../components/animations/LikeAnimation';
+import LikeAnimation from '../animations/LikeAnimation';
 // Navigation
 import { navigate } from '../../navigation/navigationRef';
 // Contexts
@@ -34,8 +34,7 @@ import CommentIcon from '../../../assets/icons/Comment.svg';
 // Constants
 import {
     colors,
-    sizes,
-    BASE_URL
+    sizes
 } from '../../constants/constants';
 
 // Post props & their meanings
@@ -61,6 +60,7 @@ const Post = (props) => {
     
     // Props
     const {
+        commentsButtonDisabled=false,
         style,
         data: passedPost,
         onDelete,
@@ -74,8 +74,10 @@ const Post = (props) => {
         navigate('AccountView', { user: post.author });
     };
 
-    const onPress = () => {
-        navigate('PostView', { post });
+    const onViewPost = () => {
+        if (!commentsButtonDisabled) {
+            navigate('PostView', { post });
+        }
     };
 
     const onLike = async () => {
@@ -99,7 +101,18 @@ const Post = (props) => {
         setPost(passedPost);
     }, [passedPost]);
 
-    return !loading ? (
+    const LoadingComponent = (
+        <View style={[
+            styles.post,
+            styles.loadingContainer,
+            themeStyles[theme].post,
+            style
+        ]}>
+            <Text style={styles.loadingText}>Loading</Text>
+        </View>
+    );
+
+    return loading ? LoadingComponent : (
         <TouchableWithoutFeedback>
             <View style={[
                 styles.post,
@@ -155,13 +168,13 @@ const Post = (props) => {
                     <TouchableIcon
                         Icon={CommentIcon}
                         size={sizes.ACTION_ICON}
-                        onPress={onPress}
+                        onPress={onViewPost}
                         style={styles.comment}
                     />
                 </View>
             </View>
         </TouchableWithoutFeedback>
-    ) : null;
+    );
 };
 
 const styles = StyleSheet.create({
@@ -206,6 +219,15 @@ const styles = StyleSheet.create({
     likeAnimation: {
         position: 'absolute',
         alignSelf: 'center',
+    },
+    // Loading Component
+    loadingContainer: {
+        paddingVertical: 15,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    loadingText: {
+        fontSize: 28
     }
 });
 

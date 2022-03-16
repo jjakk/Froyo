@@ -55,6 +55,7 @@ const PostViewScreen = ({ navigation }) => {
                             loading={loading}
                             style={styles.post}
                             onDelete={navigation.pop}
+                            commentsButtonDisabled
                         />
                     )}
                 />

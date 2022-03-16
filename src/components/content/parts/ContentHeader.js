@@ -42,17 +42,17 @@ const ContentHeader = (props) => {
                         source={profilePictureSource}
                         resizeMode='cover'
                     />
-                    <Text>
-                        <Text style={[
+                    <View
+                        style={[
                             styles.author,
                             condensed ? condensedStyles.author : null
-                        ]}>
+                        ]}
+                    >
+                        <Text>
                             {`${content.author.first_name} ${content.author.last_name}`}
                         </Text>
                         {
-                            !condensed ? (
-                                <Br/>
-                            ) : (
+                            condensed && (
                                 <Text> | </Text>
                             )
                         }
@@ -61,7 +61,7 @@ const ContentHeader = (props) => {
                         >
                             { calculateAge(content.timestamp) || '' }
                         </Text>
-                    </Text>
+                    </View>
                 </View>
             </TouchableWithoutFeedback>
             {
@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
     userInfo: {
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     profilePicture: {
         width: 50,
@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
         marginRight: 15
     },
     author: {
-        fontSize: 22
+        fontSize: 22,
     },
     age: {
         fontSize: 14
@@ -115,7 +115,10 @@ const condensedStyles = StyleSheet.create({
         marginRight: 10
     },
     author: {
-        fontSize: 18
+        fontSize: 18,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
     },
 });
 

@@ -97,7 +97,6 @@ const PostList = (props, ref) => {
                 ListEmptyComponent={() => (
                     loading ? (
                         <LoadingAnimation
-                            size={50}
                             style={styles.postLoading}
                         />
                     ) : (

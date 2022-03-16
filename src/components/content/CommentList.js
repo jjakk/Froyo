@@ -95,7 +95,7 @@ const CommentList = (props) => {
             themeStyles[theme].container
         ]}>
             <FlatList
-                data={loading ? [] : comments}
+                data={comments}
                 keyExtractor={(item) => item.id}
                 showsVerticalScrollIndicator={false}
                 refreshControl={

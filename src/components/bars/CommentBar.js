@@ -3,11 +3,13 @@ import {
     Alert,
     Appearance,
     StyleSheet,
-    TouchableOpacity
 } from 'react-native';
 import { View } from 'react-native';
 // Components
-import { Input } from '../froyo-elements';
+import {
+    Input,
+    TouchableIcon
+} from '../froyo-elements';
 // Context
 import { useContent } from '../../context/ContentContext';
 // Icons
@@ -18,12 +20,12 @@ import { colors } from '../../constants/constants';
 // ParentId -> string: ID of the content that's being commented one
 // onCreateComment -> function: callback function to be called when the comment is created
 const CommentBar = (props) => {
-    // Context
-    const { createContent } = useContent();
-    const darkModeEnabled = theme === 'dark' ;
-
     // Theme
     const theme = Appearance.getColorScheme();
+    const darkModeEnabled = theme === 'dark' ;
+
+    // Context
+    const { createContent } = useContent();
     
     // Props
     const {
@@ -70,9 +72,13 @@ const CommentBar = (props) => {
                 value={commentText}
                 onChangeText={setCommentText}
             />
-            <TouchableOpacity onPress={onSubmit}>
-                <SendIcon style={styles.send} width={35} height={35} color={darkModeEnabled ? colors.light.THIRD : colors.GREEN}/>
-            </TouchableOpacity>
+            <TouchableIcon
+                Icon={SendIcon}
+                style={styles.send}
+                size={35}
+                color={darkModeEnabled ? colors.light.THIRD : colors.GREEN}
+                onPress={onSubmit}
+            />
         </View>
     );
 };

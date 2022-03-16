@@ -75,7 +75,7 @@ const AccountEditScreen = ({ navigation }) => {
 
     return(
         <ScreenContainer>
-            <Header navigation={navigation} />
+            <Header/>
             <View style={styles.form}>
                 <ImageSelect
                     style={styles.imageSelect}

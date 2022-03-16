@@ -51,7 +51,6 @@ const FeedScreen = ({ navigation }) => {
             onDidFocus={onDidFocus}
         >
             <Header
-                navigation={navigation}
                 size={35}
                 LeftIconImageOverride={profilePictureSource}
                 LeftIconProps={{

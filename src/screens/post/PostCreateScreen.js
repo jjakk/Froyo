@@ -13,7 +13,6 @@ const PostCreateScreen = (props) => {
         <ScreenContainer
         >
             <Header
-                navigation={navigation}
                 title='Post'
             />
             <PostForm

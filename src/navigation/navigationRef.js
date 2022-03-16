@@ -14,3 +14,9 @@ export const navigate = (routeName, params) => {
         })
     );
 };
+
+export const navigateBack = () => {
+    navigator.dispatch(
+        NavigationActions.back()
+    );
+};

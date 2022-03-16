@@ -35,9 +35,7 @@ const PostViewScreen = ({ navigation }) => {
             style={styles.container}
             edges={['top', 'bottom']}
         >
-                <Header
-                    navigation={navigation}
-                />
+                <Header/>
                 <CommentList
                     parent={post}
                     onDeleteComment={refreshPost}

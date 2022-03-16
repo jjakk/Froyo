@@ -23,7 +23,6 @@ const ResetPasswordScreen = ({ navigation }) => {
     const [email, setEmail] = useState('');
     const [success, setSuccess] = useState(false);
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState('');
 
     const onSubmit = async () => {
         try {
@@ -41,7 +40,7 @@ const ResetPasswordScreen = ({ navigation }) => {
 
     return (
         <ScreenContainer>
-            <Header navigation={navigation} />
+            <Header/>
             <View style={styles.form}>
                 {
                     success ? (

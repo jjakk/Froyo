@@ -16,7 +16,6 @@ const CommentEditScreen = (props) => {
     return (
         <ScreenContainer>
             <Header
-                navigation={navigation}
                 title='Comment'
             />
             <CommentForm

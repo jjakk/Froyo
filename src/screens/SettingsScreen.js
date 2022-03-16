@@ -69,7 +69,6 @@ const SettingsScreen = ({ navigation }) => {
     return (
         <ScreenContainer>
             <Header
-                navigation={navigation}
                 title='Settings'
             />
             <SettingsOptions settings={settings} />

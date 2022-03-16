@@ -39,7 +39,6 @@ const AccountViewScreen = ({ navigation }) => {
             onDidFocus={onRefresh}
         >
             <Header
-                navigation={navigation}
                 RightIcon={user.id === signedInUser.id ? GearIcon : null}
                 RightIconProps={{
                     onPress: onSettings

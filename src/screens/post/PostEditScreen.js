@@ -16,7 +16,6 @@ const PostEditScreen = (props) => {
     return (
         <ScreenContainer>
             <Header
-                navigation={navigation}
                 title='Comment'
             />
             <PostForm

@@ -11,6 +11,8 @@ import {
     Text,
     TouchableIcon
 } from './froyo-elements';
+// Navigation
+import { navigateBack } from '../navigation/navigationRef';
 // Icons
 import BackIcon from '../../assets/icons/Back.svg';
 // Constants
@@ -21,7 +23,6 @@ const Header = (props) => {
 
     // Props
     const {
-        navigation,
         style,
         size,
         RightIcon,
@@ -34,10 +35,6 @@ const Header = (props) => {
         LeftIconProps,
         title
     } = props;
-
-    const onBack = () => {
-        navigation.pop();
-    };
 
     const BlankIcon = (
         <View
@@ -59,7 +56,7 @@ const Header = (props) => {
                 hideLeftIcon ? BlankIcon : (
                     LeftIconImageOverride ? (
                         <TouchableOpacity
-                            onPress={onBack}
+                            onPress={navigateBack}
                             {...LeftIconProps}
                         >
                             <Image
@@ -75,7 +72,7 @@ const Header = (props) => {
                         <TouchableIcon
                             Icon={LeftIcon}
                             size={size}
-                            onPress={onBack}
+                            onPress={navigateBack}
                             {...LeftIconProps}
                         />
                     )

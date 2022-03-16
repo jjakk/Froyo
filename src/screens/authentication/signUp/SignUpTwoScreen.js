@@ -60,7 +60,7 @@ const SignUpTwoScreen = ({ navigation }) => {
 
     return (
         <ScreenContainer>
-            <Header navigation={navigation} />
+            <Header/>
             <View style={styles.auth}>
                 <Text style={styles.header}>Sign up</Text>
                 <Input

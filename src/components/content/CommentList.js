@@ -25,8 +25,7 @@ const CommentList = (props) => {
 
     // Props
     const {
-        onDeleteComment,
-        onPullDownRefresh,
+        onRefresh,
         parent,
         refreshable=true,
         ...otherProps
@@ -44,8 +43,8 @@ const CommentList = (props) => {
         let mounted = true;
         setLoading(true);
         getComments(parentType, parent.id)
-        .then(comments => {
-            setComments(comments);
+        .then(retreivedComments => {
+            setComments(retreivedComments);
         })
         .catch(err => {
             Alert.alert(err.message);
@@ -63,7 +62,7 @@ const CommentList = (props) => {
             <>
                 <Comment
                     data={item}
-                    onDelete={onDeleteComment}
+                    onDelete={onRefresh}
                     style={
                         rootContent ? {
                             marginTop: 5
@@ -77,8 +76,7 @@ const CommentList = (props) => {
                 {
                     item.comments && (
                         <CommentList
-                            onDeleteComment={onDeleteComment}
-                            onPullDownRefresh={onPullDownRefresh}
+                            onDeleteComment={onRefresh}
                             parent={item}
                             refreshable={refreshable}
                             style={{
@@ -89,13 +87,6 @@ const CommentList = (props) => {
                 }
             </>
         );
-    };
-
-    // Event Handlers
-    const onRefresh = async () => {
-        setRefreshing(true);
-        await onPullDownRefresh();
-        setRefreshing(false);
     };
 
     return (
@@ -111,9 +102,17 @@ const CommentList = (props) => {
                     <RefreshControl
                         tintColor={colors.GREEN}
                         colors={[colors.GREEN]}
-                        progressBackgroundColor={darkModeEnabled ? colors.light.FOURTH : colors.WHITE}
+                        progressBackgroundColor={
+                            darkModeEnabled
+                            ? colors.light.FOURTH
+                            : colors.WHITE
+                        }
                         refreshing={refreshing}
-                        onRefresh={onRefresh}
+                        onRefresh={async () => {
+                            setRefreshing(true);
+                            await onRefresh();
+                            setRefreshing(false);
+                        }}
                     />
                 }
                 renderItem={commentRender}

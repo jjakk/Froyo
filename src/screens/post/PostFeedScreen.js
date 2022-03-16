@@ -74,16 +74,7 @@ const FeedScreen = ({ navigation }) => {
             onDidFocus={onDidFocus}
         >
             <Header
-                LeftIcon={() => (
-                    <Image
-                        source={profilePictureSource}
-                        style={{
-                            width: sizes.HEADER_ICON_SIZE,
-                            height: sizes.HEADER_ICON_SIZE,
-                            borderRadius: 35
-                        }}
-                    />
-                )}
+                LeftIconImage={profilePictureSource}
                 LeftIconProps={{
                     onPress: onAccountView
                 }}

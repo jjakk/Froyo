@@ -18,16 +18,24 @@ const PostViewScreen = ({ navigation }) => {
     // Content
     const passedPost = navigation.getParam('post');
     const [post, setPost] = useState(passedPost);
+    const [loading, setLoading] = useState(false);
 
     // Refresh post information (get new comments)
-    const refreshPost = async () => {
-        setPost(await getContent('post', passedPost.id));
+    const retreivePost = async () => {
+        try {
+            setLoading(true);
+            setPost(await getContent('post', passedPost.id));
+        }
+        catch(err) {
+            Alert.alert(err.response.data);
+        }
+        finally {
+            setLoading(false);
+        }
     };
 
     useEffect(() => {
-        (async function(){
-            await refreshPost();
-        })();
+        retreivePost();
     }, [passedPost]);
 
     return (
@@ -38,12 +46,13 @@ const PostViewScreen = ({ navigation }) => {
                 <Header/>
                 <CommentList
                     parent={post}
-                    onDeleteComment={refreshPost}
-                    onPullDownRefresh={refreshPost}
+                    loading={loading}
+                    onRefresh={retreivePost}
                     style={styles.commentList}
                     ListHeaderComponent={(
                         <Post
                             data={post}
+                            loading={loading}
                             style={styles.post}
                             onDelete={navigation.pop}
                         />
@@ -51,7 +60,7 @@ const PostViewScreen = ({ navigation }) => {
                 />
                 <CommentBar
                     parent_id={post.id}
-                    onCreateComment={refreshPost}
+                    onCreateComment={retreivePost}
                 />
         </ScreenContainer>
     );

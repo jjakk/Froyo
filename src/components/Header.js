@@ -3,7 +3,9 @@ import React from 'react';
 import {
     Appearance,
     StyleSheet,
-    View
+    View,
+    TouchableOpacity,
+    Image,
 } from 'react-native';
 import {
     Text,
@@ -31,6 +33,7 @@ const Header = (props) => {
         MiddleIcon,
         MiddleIconProps,
         LeftIcon=BackIcon,
+        LeftIconImage,
         LeftIconProps
     } = props;
 
@@ -50,14 +53,30 @@ const Header = (props) => {
             style
         ]}>
             {
-                hideLeftIcon ? IconFiller : (
-                    <TouchableIcon
-                        Icon={LeftIcon}
-                        onPress={navigateBack}
-                        size={iconSize}
-                        {...LeftIconProps}
-                    />
-                )
+                hideLeftIcon ? IconFiller
+                    : LeftIconImage
+                        ? (
+                            <TouchableOpacity
+                                {...LeftIconProps}
+                            >
+                                <Image
+                                    source={LeftIconImage}
+                                    style={{
+                                        width: iconSize,
+                                        height: iconSize,
+                                        borderRadius: iconSize
+                                    }}
+                                />
+                            </TouchableOpacity>
+                        )
+                        : (
+                            <TouchableIcon
+                                Icon={LeftIcon}
+                                onPress={navigateBack}
+                                size={iconSize}
+                                {...LeftIconProps}
+                            />
+                        )
             }
             {
                 MiddleIcon ? (

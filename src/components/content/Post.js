@@ -63,7 +63,8 @@ const Post = (props) => {
     const {
         style,
         data: passedPost,
-        onDelete
+        onDelete,
+        loading
     } = props;
 
     const [post, setPost] = useState(passedPost);
@@ -98,7 +99,7 @@ const Post = (props) => {
         setPost(passedPost);
     }, [passedPost]);
 
-    return (
+    return !loading ? (
         <TouchableWithoutFeedback>
             <View style={[
                 styles.post,
@@ -160,7 +161,7 @@ const Post = (props) => {
                 </View>
             </View>
         </TouchableWithoutFeedback>
-    );
+    ) : null;
 };
 
 const styles = StyleSheet.create({

@@ -5,7 +5,8 @@ import {
     StyleSheet,
     View,
     FlatList,
-    RefreshControl
+    RefreshControl,
+    Alert
 } from 'react-native';
 import { Text } from '../froyo-elements';
 import Comment from './Comment';
@@ -31,7 +32,7 @@ const CommentList = (props) => {
         ...otherProps
     } = props;
     const parentType = parent.parent_id ? 'comment' : 'post';
-    const rootContent = !parent.parent_id;
+    const rootContent = parentType === 'post';
 
     // State
     const [comments, setComments] = useState([]);
@@ -40,11 +41,21 @@ const CommentList = (props) => {
 
     // Update comments when post is refreshed
     useEffect(() => {
-        (async function(){
-            setLoading(true);
-            setComments(await getComments(parentType, parent.id));
-            setLoading(false);
-        })();
+        let mounted = true;
+        setLoading(true);
+        getComments(parentType, parent.id)
+        .then(comments => {
+            setComments(comments);
+        })
+        .catch(err => {
+            Alert.alert(err.message);
+        })
+        .finally(() => {
+            if(mounted) setLoading(false);
+        });
+        return () => {
+            mounted = false;
+        };
     }, [parent]);
 
     const commentRender = ({ item }) => {

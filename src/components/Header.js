@@ -3,9 +3,7 @@ import React from 'react';
 import {
     Appearance,
     StyleSheet,
-    View,
-    TouchableOpacity,
-    Image
+    View
 } from 'react-native';
 import {
     Text,
@@ -21,26 +19,26 @@ import { colors, sizes } from '../constants/constants';
 const Header = (props) => {
     const theme = Appearance.getColorScheme();
 
-    // Props
-    const {
+     // Props
+     const {
         style,
-        size,
+        title,
+        iconSize=sizes.HEADER_ICON_SIZE,
+        hideLeftIcon=false,
+        // Component props
         RightIcon,
         RightIconProps,
         MiddleIcon,
         MiddleIconProps,
-        hideLeftIcon=false,
         LeftIcon=BackIcon,
-        LeftIconImageOverride,
-        LeftIconProps,
-        title
+        LeftIconProps
     } = props;
 
-    const BlankIcon = (
+    const IconFiller = (
         <View
             style={{
-                width: size,
-                height: size
+                width: iconSize,
+                height: iconSize
             }}
         />
     );
@@ -51,38 +49,21 @@ const Header = (props) => {
             themeStyles[theme].header,
             style
         ]}>
-            
             {
-                hideLeftIcon ? BlankIcon : (
-                    LeftIconImageOverride ? (
-                        <TouchableOpacity
-                            onPress={navigateBack}
-                            {...LeftIconProps}
-                        >
-                            <Image
-                                source={LeftIconImageOverride}
-                                style={{
-                                    width: size,
-                                    height: size,
-                                    borderRadius: size
-                                }}
-                            />
-                        </TouchableOpacity>
-                    ) : (
-                        <TouchableIcon
-                            Icon={LeftIcon}
-                            size={size}
-                            onPress={navigateBack}
-                            {...LeftIconProps}
-                        />
-                    )
+                hideLeftIcon ? IconFiller : (
+                    <TouchableIcon
+                        Icon={LeftIcon}
+                        onPress={navigateBack}
+                        size={iconSize}
+                        {...LeftIconProps}
+                    />
                 )
             }
             {
                 MiddleIcon ? (
                     <TouchableIcon
                         Icon={MiddleIcon}
-                        size={size}
+                        size={iconSize}
                         {...MiddleIconProps}
                     />
                 ) : (
@@ -99,10 +80,10 @@ const Header = (props) => {
                 RightIcon ? (
                     <TouchableIcon
                         Icon={RightIcon}
-                        size={size}
+                        size={iconSize}
                         {...RightIconProps}
                     />
-                ) : BlankIcon
+                ) : IconFiller
             }
         </View>
     );

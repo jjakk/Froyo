@@ -41,7 +41,7 @@ const constants = {
         ...generalColors
     },
     sizes: {
-        HEADER_ICON_SIZE: 30,
+        HEADER_ICON_SIZE: 35,
         // Width & height for like, dislike, comment, and share icons
         ACTION_ICON: 27.5,
         ACTION_ICON_SMALL: 25,

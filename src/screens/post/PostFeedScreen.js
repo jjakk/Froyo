@@ -1,7 +1,8 @@
 import React, { useRef } from 'react';
 // Components
 import {
-    StyleSheet
+    StyleSheet,
+    Image
 } from 'react-native';
 import CreateButton from '../../components/CreateButton';
 import Header from '../../components/Header';
@@ -12,7 +13,7 @@ import FroyoIcon from '../../../assets/icons/Froyo.svg';
 // Context
 import { useUser } from '../../context/UserContext';
 // Constants
-import { BASE_URL, colors } from '../../constants/constants';
+import { BASE_URL, colors, sizes } from '../../constants/constants';
 
 const FeedScreen = ({ navigation }) => {
     // Context
@@ -46,13 +47,32 @@ const FeedScreen = ({ navigation }) => {
         postListRef.current.reloadContent();
     };
 
+    const ProfileButton = () => (
+        <Image
+            source={LeftIconImageOverride}
+            style={{
+                width: size,
+                height: size,
+                borderRadius: size
+            }}
+        />
+    );
+
     return (
         <ScreenContainer
             onDidFocus={onDidFocus}
         >
             <Header
-                size={35}
-                LeftIconImageOverride={profilePictureSource}
+                LeftIcon={() => (
+                    <Image
+                        source={profilePictureSource}
+                        style={{
+                            width: sizes.HEADER_ICON_SIZE,
+                            height: sizes.HEADER_ICON_SIZE,
+                            borderRadius: 35
+                        }}
+                    />
+                )}
                 LeftIconProps={{
                     onPress: onAccountView
                 }}

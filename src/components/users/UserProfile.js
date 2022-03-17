@@ -88,10 +88,6 @@ const UserProfile = (props) => {
         }
     }, [user]);
 
-    useEffect(() => {
-
-    }, [loading]);
-
     return (
         <TouchableWithoutFeedback>
             <View style={[
@@ -179,7 +175,6 @@ const UserProfile = (props) => {
                                 title={followingUser ? 'Unfollow' : 'Follow'}
                                 loading={loading}
                                 color={colors.GREEN}
-                                textColor={followingUser ? colors.GREEN : colors.WHITE}
                                 type={
                                     loading ? 'primary'
                                         : followingUser

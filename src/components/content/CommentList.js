@@ -42,18 +42,19 @@ const CommentList = (props) => {
     useEffect(() => {
         let mounted = true;
         setLoading(true);
+        
         getComments(parentType, parent.id)
         .then(retreivedComments => {
-            setComments(retreivedComments);
+            if(mounted) setComments(retreivedComments);
         })
         .catch(err => {
-            Alert.alert(err.message);
+            if(mounted) Alert.alert(err.message);
         })
         .finally(() => {
             if(mounted) setLoading(false);
         });
+
         return () => {
-            // Cleanup
             setComments([]);
             mounted = false;
         };
@@ -91,48 +92,44 @@ const CommentList = (props) => {
         );
     };
 
-    const LoadingComponent = (
-        <Text style={styles.noComments}>Loading</Text>
-    );
-
     return (
         <View style={[
             styles.container,
             themeStyles[theme].container
         ]}>
-            {
-                loading ? LoadingComponent : (
-                    <FlatList
-                        data={comments}
-                        keyExtractor={(item) => item.id}
-                        showsVerticalScrollIndicator={false}
-                        refreshControl={
-                            <RefreshControl
-                                tintColor={colors.GREEN}
-                                colors={[colors.GREEN]}
-                                progressBackgroundColor={
-                                    darkModeEnabled
-                                    ? colors.light.FOURTH
-                                    : colors.WHITE
-                                }
-                                refreshing={refreshing}
-                                onRefresh={async () => {
-                                    setRefreshing(true);
-                                    await onRefresh();
-                                    setRefreshing(false);
-                                }}
-                            />
+            <FlatList
+                data={comments}
+                keyExtractor={(item) => item.id}
+                showsVerticalScrollIndicator={false}
+                refreshControl={
+                    <RefreshControl
+                        tintColor={colors.GREEN}
+                        colors={[colors.GREEN]}
+                        progressBackgroundColor={
+                            darkModeEnabled
+                            ? colors.light.FOURTH
+                            : colors.WHITE
                         }
-                        renderItem={commentRender}
-                        ListEmptyComponent={() => (
-                            rootContent ? (
-                                <Text style={styles.noComments}>No comments</Text>
-                            ) : null
-                        )}
-                        {...otherProps}
+                        refreshing={refreshing}
+                        onRefresh={async () => {
+                            setRefreshing(true);
+                            await onRefresh();
+                            setRefreshing(false);
+                        }}
                     />
-                )
-            }
+                }
+                renderItem={commentRender}
+                ListEmptyComponent={() => (
+                    rootContent ? (
+                        loading ? (
+                            <Text style={styles.noComments}>Loading</Text>
+                        ) : (
+                            <Text style={styles.noComments}>No comments</Text>
+                        )
+                    ) : null
+                )}
+                {...otherProps}
+            />
         </View>
     );
 };

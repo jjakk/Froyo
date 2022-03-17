@@ -30,7 +30,6 @@ import { useUser } from '../../context/UserContext';
 import { useContent } from '../../context/ContentContext';
 // Icons
 import CommentIcon from '../../../assets/icons/Comment.svg';
-
 // Constants
 import {
     colors,
@@ -104,9 +103,9 @@ const Post = (props) => {
             // Cleanup
             setPost(null);
         };
-    }, []);
+    }, [passedPost]);
 
-    return !loading ? (
+    return (
         <TouchableWithoutFeedback>
             <View style={[
                 styles.post,
@@ -117,6 +116,9 @@ const Post = (props) => {
                     content={post}
                     onPress={onHeaderPress}
                     onDelete={onDelete}
+                    style={{
+                        opacity: loading ? 0 : 1
+                    }}
                 />
                 {
                     post.images && (
@@ -135,7 +137,13 @@ const Post = (props) => {
                         </MultiTap>
                     )
                 }
-                <View style={styles.body}>
+                <View
+                    style={[
+                        styles.body,
+                        {
+                            opacity: loading ? 0 : 1
+                        }
+                    ]}>
                     <Text style={styles.text}>{post.text}</Text>
                 </View>
                 <View style={styles.actions}>
@@ -168,7 +176,7 @@ const Post = (props) => {
                 </View>
             </View>
         </TouchableWithoutFeedback>
-    ) : null;
+    );
 };
 
 const styles = StyleSheet.create({

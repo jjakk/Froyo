@@ -43,12 +43,18 @@ const AccountViewScreen = ({ navigation }) => {
     }
 
     useEffect(() => {
-        retreiveUser();
+        retreiveUser()
     }, [passedUser]);
     
+    const onWillBlur = () => {
+        setUser(passedUser);
+        setPosts([]);
+        setLoading(true);
+    };
+
     return(
         <ScreenContainer
-            onDidFocus={retreiveUser}
+            onWillBlur={onWillBlur}
         >
             <Header
                 RightIcon={

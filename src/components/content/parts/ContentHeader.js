@@ -18,7 +18,8 @@ const ContentHeader = (props) => {
         content,
         onPress,
         onDelete,
-        condensed
+        condensed,
+        style
     } = props;
 
     // Conditional rendering
@@ -31,7 +32,7 @@ const ContentHeader = (props) => {
     );
 
     return (
-        <View style={styles.header}>
+        <View style={[styles.header, style]}>
             <TouchableWithoutFeedback onPress={onPress}>
                 <View style={styles.userInfo}>
                     <Image

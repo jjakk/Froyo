@@ -62,8 +62,7 @@ const Post = (props) => {
         commentsButtonDisabled=false,
         style,
         data: passedPost,
-        onDelete,
-        loading
+        onDelete
     } = props;
 
     const [post, setPost] = useState(passedPost);
@@ -98,11 +97,6 @@ const Post = (props) => {
     // Update post data when passed post changes
     useEffect(() => {
         setPost(passedPost);
-
-        return () => {
-            // Cleanup
-            setPost(null);
-        };
     }, [passedPost]);
 
     return (
@@ -116,9 +110,6 @@ const Post = (props) => {
                     content={post}
                     onPress={onHeaderPress}
                     onDelete={onDelete}
-                    style={{
-                        opacity: loading ? 0 : 1
-                    }}
                 />
                 {
                     post.images && (
@@ -138,12 +129,7 @@ const Post = (props) => {
                     )
                 }
                 <View
-                    style={[
-                        styles.body,
-                        {
-                            opacity: loading ? 0 : 1
-                        }
-                    ]}>
+                    style={styles.body}>
                     <Text style={styles.text}>{post.text}</Text>
                 </View>
                 <View style={styles.actions}>

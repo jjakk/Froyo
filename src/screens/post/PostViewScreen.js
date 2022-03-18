@@ -35,7 +35,7 @@ const PostViewScreen = ({ navigation }) => {
     };
 
     useEffect(() => {
-        retreivePost();
+        setPost(passedPost);
     }, [passedPost]);
 
     return (

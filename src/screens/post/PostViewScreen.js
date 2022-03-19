@@ -42,6 +42,7 @@ const PostViewScreen = ({ navigation }) => {
         <ScreenContainer
             style={styles.container}
             edges={['top', 'bottom']}
+            onDidFocus={retreivePost}
         >
                 <Header/>
                 <CommentList

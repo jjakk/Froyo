@@ -30,6 +30,14 @@ const AccountViewScreen = ({ navigation }) => {
     const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(true);
 
+    const emptyMessage = (
+        `${
+        user.id === signedInUser.id
+            ? "you haven't"
+            : "This users hasn't"
+        } posted anything yet`
+    );
+
     const onSettings = () => {
         navigation.navigate('Settings');
     };
@@ -66,7 +74,7 @@ const AccountViewScreen = ({ navigation }) => {
                 }}
             />
             <PostList
-                emptyMessage="You haven't posted anything yet"
+                emptyMessage={emptyMessage}
                 data={posts}
                 loading={loading}
                 onRefresh={retreiveUser}

@@ -98,7 +98,7 @@ const PostForm = (props) => {
                 />
                 <TouchableIcon
                     Icon={SendIcon}
-                    color={darkModeEnabled ? colors.light.THIRD : colors.GREEN}
+                    color={darkModeEnabled ? colors.light.THIRD : colors.primary.MAIN}
                     onPress={handleSubmit}
                     size={30}
                     loading={loading}

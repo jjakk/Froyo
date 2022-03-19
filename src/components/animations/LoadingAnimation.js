@@ -26,8 +26,8 @@ const LoadingAnimation = (props) => {
         size=50,
         color=(
             darkModeEnabled ? 
-                colors.DARKER_GREEN
-                : colors.LIGHTER_GREEN
+                colors.primary.DARKER
+                : colors.primary.LIGHTER
         ),
         style
     } = props;

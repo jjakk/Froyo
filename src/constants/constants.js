@@ -26,32 +26,32 @@ const flavorColors = {
         LIGHTER: generalColors.LIGHTER_GREEN
     },
     coffee: {
-        DARKER: '#A67A37',
-        DARK: '#BA9357',
-        MAIN: '#BC9E70',
-        LIGHT: '#D8B682',
-        LIGHTER: '#F0D3A5'
+        DARKER: '#9C5706',
+        DARK: '#AE6B1D',
+        MAIN: '#CA8B41',
+        LIGHT: '#DCA564',
+        LIGHTER: '#E9C08F'
     },
     strawberry: {
-        DARKER: '#B2403E',
-        DARK: '#C36D6C',
-        MAIN: '#C89493',
-        LIGHT: '#E1B8B7',
-        LIGHTER: '#F2D2D1'
+        DARKER: '#9B0F06',
+        DARK: '#B5261D',
+        MAIN: '#CA4941',
+        LIGHT: '#D97C76',
+        LIGHTER: '#E7AFAB'
     },
     blueberry: {
         DARKER: '#257C98',
-        DARK: '#549AB0',
-        MAIN: '#85B0BE',
-        LIGHT: '#ADCDD8',
-        LIGHTER: '#CDE4EC'
+        DARK: '#1979BE',
+        MAIN: '#4190CA',
+        LIGHT: '#82B7DE',
+        LIGHTER: '#ABD1ED'
     },
     mango: {
-        DARKER: '#B29122',
-        DARK: '#CBAC43',
-        MAIN: '#DFC56E',
-        LIGHT: '#E4D294',
-        LIGHTER: '#ECE1BA'
+        DARKER: '#B09F05',
+        DARK: '#BFAE16',
+        MAIN: '#CABC41',
+        LIGHT: '#D8CE77',
+        LIGHTER: '#E8E2AD'
     }
 };
 

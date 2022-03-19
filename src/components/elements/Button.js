@@ -19,8 +19,8 @@ const Button = (props) => {
         titleStyle,
         color=(
             darkModeEnabled
-                ? colors.LIGHT_GREEN
-                : colors.GREEN
+                ? colors.primary.LIGHT
+                : colors.primary.MAIN
         ),
         type,
         pill,

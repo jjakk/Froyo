@@ -76,7 +76,7 @@ const searchNavigator = createMaterialTopTabNavigator({
         },
     }, {
         tabBarOptions: {
-            activeTintColor: colors.GREEN,
+            activeTintColor: colors.primary.MAIN,
             inactiveTintColor: colors.DARK_GRAY,
             upperCaseLabel: false,
             style: {
@@ -88,7 +88,7 @@ const searchNavigator = createMaterialTopTabNavigator({
                 fontFamily: 'Nunito'
             },
             indicatorStyle: {
-                backgroundColor: colors.GREEN,
+                backgroundColor: colors.primary.MAIN,
                 borderRadius: 1
             }
         },
@@ -136,7 +136,7 @@ const tabNavigator = createBottomTabNavigator({
 }, {
     tabBarOptions: {
         showLabel: false,
-        activeTintColor: colors.GREEN,
+        activeTintColor: colors.primary.MAIN,
         style: {
             height: 60
         }
@@ -159,7 +159,7 @@ const connectionNavigator = createMaterialTopTabNavigator({
     },
 }, {
     tabBarOptions: {
-        activeTintColor: colors.GREEN,
+        activeTintColor: colors.primary.MAIN,
         inactiveTintColor: colors.DARK_GRAY,
         upperCaseLabel: false,
         style: {
@@ -171,7 +171,7 @@ const connectionNavigator = createMaterialTopTabNavigator({
             fontFamily: 'Nunito'
         },
         indicatorStyle: {
-            backgroundColor: colors.GREEN,
+            backgroundColor: colors.primary.MAIN,
             borderRadius: 1
         }
     },

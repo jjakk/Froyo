@@ -108,7 +108,7 @@ const styles = StyleSheet.create({
         margin: 2
     },
     activeDot: {
-        backgroundColor: colors.GREEN
+        backgroundColor: colors.primary.MAIN
     }
 });
 

@@ -17,6 +17,44 @@ const generalColors = {
     DISLIKE_RED: '#CA5A41',
 };
 
+const flavorColors = {
+    mint: {
+        DARKER: generalColors.DARKER_GREEN,
+        DARK: generalColors.DARK_GREEN,
+        MAIN: generalColors.GREEN,
+        LIGHT: generalColors.LIGHT_GREEN,
+        LIGHTER: generalColors.LIGHTER_GREEN
+    },
+    coffee: {
+        DARKER: '#A67A37',
+        DARK: '#BA9357',
+        MAIN: '#BC9E70',
+        LIGHT: '#D8B682',
+        LIGHTER: '#F0D3A5'
+    },
+    strawberry: {
+        DARKER: '#B2403E',
+        DARK: '#C36D6C',
+        MAIN: '#C89493',
+        LIGHT: '#E1B8B7',
+        LIGHTER: '#F2D2D1'
+    },
+    blueberry: {
+        DARKER: '#257C98',
+        DARK: '#549AB0',
+        MAIN: '#85B0BE',
+        LIGHT: '#ADCDD8',
+        LIGHTER: '#CDE4EC'
+    },
+    mango: {
+        DARKER: '#B29122',
+        DARK: '#CBAC43',
+        MAIN: '#DFC56E',
+        LIGHT: '#E4D294',
+        LIGHTER: '#ECE1BA'
+    }
+};
+
 const themeColors = {
     light: {
         FIRST: generalColors.LIGHT_GRAY,
@@ -38,6 +76,7 @@ const constants = {
     colors: {
         light: themeColors.light,
         dark: themeColors.dark,
+        primary: flavorColors.mint,
         ...generalColors
     },
     sizes: {

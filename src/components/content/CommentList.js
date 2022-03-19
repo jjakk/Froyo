@@ -31,6 +31,7 @@ const CommentList = (props) => {
         ...otherProps
     } = props;
     const parentType = parent.parent_id ? 'comment' : 'post';
+    // rootContent determines if this is the comment list containg all the other sub-comment lists
     const rootContent = parentType === 'post';
 
     // State
@@ -79,9 +80,9 @@ const CommentList = (props) => {
                 {
                     item.comments && (
                         <CommentList
-                            onDeleteComment={onRefresh}
+                            onRefresh={onRefresh}
                             parent={item}
-                            refreshable={refreshable}
+                            refreshable={false}
                             style={{
                                 marginLeft: 5
                             }}

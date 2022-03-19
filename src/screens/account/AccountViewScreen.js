@@ -51,19 +51,11 @@ const AccountViewScreen = ({ navigation }) => {
     }
 
     useEffect(() => {
-        retreiveUser()
-    }, [passedUser]);
-    
-    const onWillBlur = () => {
         setUser(passedUser);
-        setPosts([]);
-        setLoading(true);
-    };
+    }, [passedUser]);
 
     return(
-        <ScreenContainer
-            onWillBlur={onWillBlur}
-        >
+        <ScreenContainer>
             <Header
                 RightIcon={
                     user.id === signedInUser.id
@@ -82,7 +74,7 @@ const AccountViewScreen = ({ navigation }) => {
                     <UserProfile
                         user={user}
                         loading={loading}
-                        onRefresh={retreiveUser}
+                        onFollowToggle={retreiveUser}
                     />
                 )}
             />

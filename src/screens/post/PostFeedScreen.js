@@ -80,7 +80,7 @@ const FeedScreen = ({ navigation }) => {
                 }}
                 MiddleIcon={FroyoIcon}
                 MiddleIconProps={{
-                    color: colors.GREEN,
+                    color: colors.primary.MAIN,
                     onPress: onScrollToTop
                 }}
             />

@@ -39,9 +39,9 @@ const UserProfile = (props) => {
     // Props
     const {
         style,
-        onRefresh,
+        onFollowToggle,
         loading,
-        user=signedInUser
+        user
     } = props;
     
     // Conditional rendering
@@ -59,7 +59,7 @@ const UserProfile = (props) => {
 
     const onFollow = async () => {
         await follow(user.id);
-        onRefresh();
+        onFollowToggle();
     };
 
     // Event handlers
@@ -174,7 +174,6 @@ const UserProfile = (props) => {
                             <Button
                                 title={followingUser ? 'Unfollow' : 'Follow'}
                                 loading={loading}
-                                color={colors.GREEN}
                                 type={
                                     loading ? 'primary'
                                         : followingUser

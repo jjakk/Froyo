@@ -29,8 +29,8 @@ const Switch = (props) => {
     const backgroundColor = (
         isOn ? (
             darkModeEnabled
-                ? colors.LIGHT_GREEN
-                : colors.GREEN
+                ? colors.primary.LIGHT
+                : colors.primary.MAIN
         ) : (
             colors.light.SECOND
         )

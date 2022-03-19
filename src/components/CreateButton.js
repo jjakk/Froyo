@@ -4,6 +4,8 @@ import { TouchableWithoutFeedback } from 'react-native';
 import { TouchableIcon } from './froyo-elements';
 // Icons
 import CreateIcon from '../../assets/icons/Create.svg';
+// Constants
+import { colors } from '../constants/constants';
 
 const CreateButton = (props) => {
     // Props
@@ -19,6 +21,7 @@ const CreateButton = (props) => {
             onPress={onPress}
             size={75}
             style={style}
+            color={colors.primary.MAIN}
         />
     );
 };

@@ -17,6 +17,23 @@ const generalColors = {
     DISLIKE_RED: '#CA5A41',
 };
 
+const themeColors = {
+    light: {
+        FIRST: generalColors.LIGHT_GRAY,
+        SECOND: generalColors.GRAY,
+        THIRD: generalColors.DARK_GRAY,
+        FOURTH: generalColors.LIGHT_BLACK,
+        RED: '#E86245'
+    },
+    dark: {
+        FIRST: '#363636',
+        SECOND: '#222222',
+        THIRD: '#1B1B1B',
+        FOURTH: '#151515',
+        RED: '#CA7664'
+    }
+};
+
 const flavorColors = {
     mint: {
         DARKER: generalColors.DARKER_GREEN,
@@ -52,23 +69,22 @@ const flavorColors = {
         MAIN: '#CABC41',
         LIGHT: '#D8CE77',
         LIGHTER: '#E8E2AD'
-    }
-};
-
-const themeColors = {
-    light: {
-        FIRST: generalColors.LIGHT_GRAY,
-        SECOND: generalColors.GRAY,
-        THIRD: generalColors.DARK_GRAY,
-        FOURTH: generalColors.LIGHT_BLACK,
-        RED: '#E86245'
     },
-    dark: {
-        FIRST: '#363636',
-        SECOND: '#222222',
-        THIRD: '#1B1B1B',
-        FOURTH: '#151515',
-        RED: '#CA7664'
+    chocolateChip: {
+        light: {
+            DARKER: themeColors.dark.FOURTH,
+            DARK: themeColors.dark.THIRD,
+            MAIN: themeColors.dark.SECOND,
+            LIGHT: themeColors.dark.FIRST,
+            LIGHTER: generalColors.WHITE
+        },
+        dark: {
+            DARKER: themeColors.light.FOURTH,
+            DARK: themeColors.light.THIRD,
+            MAIN: themeColors.light.SECOND,
+            LIGHT: themeColors.light.FIRST,
+            LIGHTER: generalColors.BLACK
+        },
     }
 };
 

@@ -104,8 +104,8 @@ const CommentList = (props) => {
                 showsVerticalScrollIndicator={false}
                 refreshControl={
                     <RefreshControl
-                        tintColor={colors.GREEN}
-                        colors={[colors.GREEN]}
+                        tintColor={colors.primary.MAIN}
+                        colors={[colors.primary.MAIN]}
                         progressBackgroundColor={
                             darkModeEnabled
                             ? colors.light.FOURTH

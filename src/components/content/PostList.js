@@ -76,8 +76,8 @@ const PostList = (props, ref) => {
                 refreshControl={
                     refreshable ? (
                         <RefreshControl
-                            tintColor={colors.GREEN}
-                            colors={[colors.GREEN]}
+                            tintColor={colors.primary.MAIN}
+                            colors={[colors.primary.MAIN]}
                             progressBackgroundColor={darkModeEnabled ? colors.light.FOURTH : colors.WHITE}
                             refreshing={refreshing}
                             onRefresh={async () => {

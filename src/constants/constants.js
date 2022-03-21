@@ -72,18 +72,18 @@ const flavorColors = {
     },
     chocolateChip: {
         light: {
-            DARKER: themeColors.dark.FOURTH,
-            DARK: themeColors.dark.THIRD,
-            MAIN: themeColors.dark.SECOND,
-            LIGHT: themeColors.dark.FIRST,
-            LIGHTER: generalColors.WHITE
+            DARKER: '#1A1A1A',
+            DARK: '#303030',
+            MAIN: '#494949',
+            LIGHT: '#666666',
+            LIGHTER: '#838383'
         },
         dark: {
-            DARKER: themeColors.light.FOURTH,
-            DARK: themeColors.light.THIRD,
-            MAIN: themeColors.light.SECOND,
-            LIGHT: themeColors.light.FIRST,
-            LIGHTER: generalColors.BLACK
+            DARKER: '#AEAEAE',
+            DARK: '#CECECE',
+            MAIN: '#E8E8E8',
+            LIGHT: '#F1F1F1',
+            LIGHTER: '#FAFAFA'
         },
     }
 };

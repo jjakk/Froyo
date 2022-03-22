@@ -76,7 +76,7 @@ const CommentBar = (props) => {
                 Icon={SendIcon}
                 style={styles.send}
                 size={35}
-                color={darkModeEnabled ? colors.light.THIRD : colors.primary.MAIN}
+                color={colors.primary.MAIN}
                 onPress={onSubmit}
             />
         </View>

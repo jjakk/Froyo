@@ -18,7 +18,7 @@ import FroyoIcon from '../../../assets/icons/Froyo.svg';
 import { useUser } from '../../context/UserContext';
 import { useContent } from '../../context/ContentContext';
 // Constants
-import { BASE_URL, colors, sizes } from '../../constants/constants';
+import { BASE_URL, colors } from '../../constants/constants';
 
 const FeedScreen = ({ navigation }) => {
     // Context

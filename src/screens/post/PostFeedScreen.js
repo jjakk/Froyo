@@ -50,8 +50,9 @@ const FeedScreen = ({ navigation }) => {
         navigation.navigate('PostCreate');
     };
 
-    const onScrollToTop = () => {
+    const onScrollToTop = async () => {
         postListRef.current.scrollToTop();
+        await retrieveFeed();
     };
 
     const onDidFocus = () => {

@@ -66,6 +66,7 @@ const FeedScreen = ({ navigation }) => {
         setLoading(false);
     };
 
+    // Get feed initially
     useEffect(() => {
         retrieveFeed();
     }, []);

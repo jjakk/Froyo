@@ -5,8 +5,7 @@ import React, {
 } from 'react';
 // Components
 import {
-    StyleSheet,
-    Image
+    StyleSheet
 } from 'react-native';
 import CreateButton from '../../components/CreateButton';
 import Header from '../../components/Header';
@@ -59,7 +58,7 @@ const FeedScreen = ({ navigation }) => {
         postListRef.current.reloadContent();
     };
 
-    // Network Requests
+    // Retreive newsfeed from API and set state accordingly
     const retrieveFeed = async () => {
         setLoading(true);
         setPosts(await getFeed());

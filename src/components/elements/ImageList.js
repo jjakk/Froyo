@@ -4,8 +4,8 @@ import {
     Appearance,
     StyleSheet,
     View,
-    ScrollView,
     Image,
+    ScrollView,
     Dimensions,
     TouchableWithoutFeedback
 } from 'react-native';

@@ -72,11 +72,6 @@ const UserProfile = (props) => {
         navigate('AccountEdit');
     };
 
-    const onSignOut = async () => {
-        await signOut();
-        navigate('ResolveAuth');
-    };
-
     // Get following status whenever the user state changes (If viewing another user's profile)
     useEffect(() => {
         if(user.id !== signedInUser.id) {
@@ -165,7 +160,7 @@ const UserProfile = (props) => {
                                 type='secondary'
                                 pill
                                 titleStyle={styles.actionButtonText}
-                                onPress={onSignOut}
+                                onPress={signOut}
                             />
                         </View>
                         </>

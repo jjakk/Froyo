@@ -26,7 +26,7 @@ const AccountEditScreen = ({ navigation }) => {
     const [firstName, setFirstName] = useState(user.first_name);
     const [lastName, setLastName] = useState(user.last_name);
     const [username, setUsername] = useState(user.username);
-    const [description, setDescription] = useState(user.description);
+    const [description, setDescription] = useState(user.description || '');
     const [image, setImage] = useState(null);
     // Status states
     const [loading, setLoading] = useState(false);

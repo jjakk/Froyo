@@ -124,7 +124,7 @@ const UserProfile = (props) => {
                                     styles.numbers,
                                     themeStyles[theme].text
                                 ]}>
-                                    {`${user.follower_count} Followers`}  {`${user.followee_count} Following`}
+                                    {`${user.follower_count} Follower${user.follower_count === 1 ? '' : 's'}`}  {`${user.followee_count} Following`}
                                 </Text>
                             </TouchableOpacity>
                         </View>

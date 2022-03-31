@@ -30,7 +30,9 @@ const UserProfile = (props) => {
         follow,
         following,
         getConnections,
-        state: { user: signedInUser }
+        state: {
+            user: signedInUser
+        }
     } = useUser();
 
     // Theme

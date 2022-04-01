@@ -62,8 +62,8 @@ const continueSignUp = () => async ({ email, username, dob }) => {
 
     try {
         // Check server if email, and username are valid
-        await froyoApi.get(`/auth/validEmail/${email}`);
-        await froyoApi.get(`/auth/validUsername/${username}`);
+        await froyoApi.get(`/auth/validateParameter/email/${email}`);
+        await froyoApi.get(`/auth/validateParameter/username/${username}`);
     }
     catch (err) {
         throw Error(err.response.data)
@@ -190,11 +190,11 @@ const checkSignedIn = (dispatch) => async () => {
         }
     }
     catch(err){
+        console.log(err);
         if(err+'' === 'Error: Network Error'){
             navigate('NoWifi');
         }
         else{
-            await AsyncStorage.setItem('theme', 'light');
             navigate('Welcome');
         }
     }

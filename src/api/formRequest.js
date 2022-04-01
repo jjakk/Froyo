@@ -63,9 +63,9 @@ const formRequest = async (method, route, data={}) => {
         case 2:
             return responseData;
         case 4:
-            throw { message: 'Bad Request' };
+            throw { message: responseData || 'Bad Request' };
         case 5:
-            throw { message: 'Server Error' };
+            throw { message: responseData || 'Server Error' };
         default:
             throw { message: 'Something went wrong' };
     }

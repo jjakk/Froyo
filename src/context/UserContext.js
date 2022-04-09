@@ -66,7 +66,7 @@ const continueSignUp = () => async ({ email, username, dob }) => {
         await froyoApi.get(`/auth/validateParameter/username/${username}`);
     }
     catch (err) {
-        throw Error(err.response.data)
+        throw Error(err.response.data);
     }
 };
 

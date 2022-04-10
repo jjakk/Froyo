@@ -33,14 +33,9 @@ const MoreOptions = (props) => {
 
     // Default functions for edit button
     const onEdit = () => {
-        if (contentType === 'Post') {
-            Alert.alert('Post editing has not been implemented yet');
-        }
-        else {
-            navigate(`${contentType}Edit`, {
-                data: content
-            });
-        }
+        navigate(`${contentType}Edit`, {
+            data: content
+        });
     };
     
     // Show delete confirmation, and delete if confirmed

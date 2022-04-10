@@ -22,21 +22,22 @@ import { useContent } from '../../../context/ContentContext';
 
 const PostForm = (props) => {
     // Context
-    const { createContent } = useContent();
-
-    // Theme
-    const theme = Appearance.getColorScheme();
-    const darkModeEnabled = theme === 'dark';
+    const {
+        createContent,
+        updateContent
+    } = useContent();
 
     // Props
     const {
         navigation,
-        data: {
-            text: passedText,
-            images: unformatedPassedImages
-        },
+        data,
         type
     } = props;
+    const {
+        text: passedText,
+        images: unformatedPassedImages
+    } = data;
+
     const passedImages = unformatedPassedImages
         ? unformatedPassedImages.map(img => `${BASE_URL}/images/${img}`)
         : null
@@ -56,7 +57,7 @@ const PostForm = (props) => {
                     await createContent('post', { text, images });
                     break;
                 case 'edit':
-                    await updateContent('post', { text, images });
+                    await updateContent('post', data.id, { text, images });
                     break;
             }  
             // Clear form data

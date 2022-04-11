@@ -69,22 +69,6 @@ const flavorColors = {
         MAIN: '#CABC41',
         LIGHT: '#D8CE77',
         LIGHTER: '#E8E2AD'
-    },
-    chocolateChip: {
-        light: {
-            DARKER: '#1A1A1A',
-            DARK: '#303030',
-            MAIN: '#494949',
-            LIGHT: '#666666',
-            LIGHTER: '#838383'
-        },
-        dark: {
-            DARKER: '#AEAEAE',
-            DARK: '#CECECE',
-            MAIN: '#E8E8E8',
-            LIGHT: '#F1F1F1',
-            LIGHTER: '#FAFAFA'
-        },
     }
 };
 

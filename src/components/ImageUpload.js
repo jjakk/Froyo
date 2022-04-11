@@ -34,6 +34,7 @@ const ImageUpload = (props) => {
         <View style={[style, styles.container]}>
             <FlatList
                 data={images.length < 10 ? [...images, null] : images}
+                showsVerticalScrollIndicator={false}
                 keyExtractor={(item, index) => index.toString()}
                 renderItem={({ index }) => (
                     <ImageSelect

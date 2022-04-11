@@ -26,8 +26,7 @@ const MoreOptions = (props) => {
     const { deleteContent } = useContent();
     const {
         content,
-        onDelete,
-        style
+        onDelete
     } = props;
     const contentType = !content.parent_id ? 'Post' : 'Comment';
 

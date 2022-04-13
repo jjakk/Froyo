@@ -6,8 +6,6 @@ import {
 // Acccount Screens
 import AccountViewScreen from '../../screens/account/AccountViewScreen';
 import AccountEditScreen from '../../screens/account/AccountEditScreen';
-// Settings Screen
-import SettingsScreen from '../../screens/SettingsScreen';
 // Post Screens
 import PostCreateScreen from '../../screens/post/PostCreateScreen';
 import PostEditScreen from '../../screens/post/PostEditScreen';
@@ -18,6 +16,7 @@ import CommentEditScreen from '../../screens/comment/CommentEditScreen';
 // Navigators
 import tabNavigator from './tabNavigator';
 import connectionNavigator from './connectionNavigator';
+import settingsNavigator from './/settingsNavigator';
 
 // This navigator connects the tabFlow to the other screens
 const mainNavigator = createStackNavigator(
@@ -28,8 +27,8 @@ const mainNavigator = createStackNavigator(
         AccountView: AccountViewScreen,
         // Connections Screen
         Connections: connectionNavigator,
-        // Settings Screen
-        Settings: SettingsScreen,
+        // Settings navigator
+        settingsFlow: settingsNavigator,
         // Post Screens
         PostCreate: PostCreateScreen,
         PostView: PostViewScreen,

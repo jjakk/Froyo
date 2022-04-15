@@ -1,7 +1,7 @@
 import React from 'react';
-import { View, Alert, Appearance } from 'react-native';
+import { View, } from 'react-native';
 import { TouchableIcon } from '../../froyo-elements';
-import OptionsMenu from "react-native-option-menu";
+import OptionsMenu from 'react-native-option-menu';
 // Navigation
 import { navigate } from '../../../navigation/navigationRef';
 // Helper functions
@@ -21,7 +21,6 @@ import {
 } from '../../../constants/constants';
 
 const MoreOptions = (props) => {
-    const theme = Appearance.getColorScheme();
     const { state: { user } } = useUser();
     const { deleteContent } = useContent();
     const {

@@ -10,12 +10,17 @@ import Header from '../../components/Header';
 import SettingsList from '../../components/settings/SettingsList';
 // Context
 import { useSettings } from '../../context/SettingsContext';
+// Helper functions
+import { capitalize } from '../../helpers/str';
+import { colors } from '../../constants/constants';
 
 const AppearanceSettingsScreen = () => {
     // Context
     const {
         setHideFeed,
+        setFlavor,
         state: {
+            flavor,
             hideFeed
         }
     } = useSettings();
@@ -47,7 +52,15 @@ const AppearanceSettingsScreen = () => {
         },
         {
             title: 'Flavor',
-            type: 'button',
+            type: 'dropdown',
+            value: capitalize(flavor),
+            color: colors.flavorColors[flavor].MAIN,
+            options: Object.keys(colors.flavorColors).map(fl => {
+                return {
+                    label: fl,
+                    onSelect: () => setFlavor(fl)
+                };
+            })
         },
         {
             title: 'Hide Feed',

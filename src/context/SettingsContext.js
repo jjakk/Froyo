@@ -43,18 +43,17 @@ const getSettings = (dispatch) => async () => {
 // Setters
 
 const setFlavor = (dispatch) => async (newFlavor) => {
-    await AsyncStorage.setItem('flavor', newFlavor);
-
     dispatch({
         type: 'setSettings',
         payload: {
-            flavor
+            flavor: newFlavor
         }
     });
+
+    await AsyncStorage.setItem('flavor', newFlavor);
 };
 
 const setHideFeed = (dispatch) => async (newHideFeed) => {
-    // Set new value to context
     dispatch({
         type: 'setSettings',
         payload: {
@@ -62,7 +61,6 @@ const setHideFeed = (dispatch) => async (newHideFeed) => {
         }
     });
 
-    // Save new valu to storage
     await AsyncStorage.setItem('hideFeed', JSON.stringify(newHideFeed));
 };
 

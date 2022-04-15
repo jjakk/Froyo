@@ -6,6 +6,7 @@ import {
     StyleSheet,
     TouchableOpacity
 } from 'react-native';
+import OptionsMenu from 'react-native-option-menu';
 import {
     Text,
     Switch
@@ -36,6 +37,18 @@ const SettingsItem = ({ item }) => {
             );
             break;
         case 'dropdown':
+            // More options menu items
+            const options = [
+                ...item.options,
+                {
+                    label: 'Cancel',
+                    colors: colors.light.FOURTH
+                }
+            ];
+
+            const optionLabels = options.map(option => option.label);
+            const optionHandlers = options.map(option => option.onSelect);
+            
             RenderItem = () => (
                 <>
                     <Text style={[
@@ -44,6 +57,21 @@ const SettingsItem = ({ item }) => {
                     ]}>
                         {item.title}
                     </Text>
+                    <OptionsMenu
+                        customButton={(
+                            <Text style={[
+                                styles.optionText,
+                                themeStyles[theme].optionText,
+                                item.color ? {
+                                    color: item.color
+                                } : {}
+                            ]}>
+                                {item.value}
+                            </Text>
+                        )}
+                        options={optionLabels}
+                        actions={optionHandlers}
+                    />
                 </>
             );
             break;
@@ -75,7 +103,6 @@ const SettingsItem = ({ item }) => {
 
 const styles = StyleSheet.create({
     option: {
-        padding: 15,
         marginBottom: 1,
         flexDirection: 'row',
         justifyContent: 'space-between',
@@ -83,13 +110,13 @@ const styles = StyleSheet.create({
     },
     optionText: {
         fontSize: 22,
+        padding: 15
     },
     // Option types
     button: {
         flex: 1,
         flexDirection: 'column',
         justifyContent: 'center',
-        alignItems: 'center'
     },
     buttonText: {
         fontFamily: 'Nunito-SemiBold',

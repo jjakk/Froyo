@@ -8,9 +8,17 @@ import * as Linking from 'expo-linking';
 import ScreenContainer from '../../components/ScreenContainer';
 import Header from '../../components/Header';
 import SettingsList from '../../components/settings/SettingsList';
+// Context
+import { useSettings } from '../../context/SettingsContext';
 
 const AppearanceSettingsScreen = () => {
-    const [hideFeed, setHideFeed] = React.useState(false);
+    // Context
+    const {
+        setHideFeed,
+        state: {
+            hideFeed
+        }
+    } = useSettings();
 
     const settings = [
         {

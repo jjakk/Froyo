@@ -7,13 +7,20 @@ import ScreenContainer from '../../components/ScreenContainer';
 // Icons
 import Logo from '../../../assets/icons/Froyo.svg';
 // Context
-import { useUser} from '../../context/UserContext';
+import { useUser } from '../../context/UserContext';
+import { useSettings} from '../../context/SettingsContext';
 // Constants
 import { colors } from '../../constants/constants';
 
 const ResolveAuthScreen = () => {
     const { checkSignedIn } = useUser();
+    const { getSettings } = useSettings();
+
     useEffect(() => {
+        // Get settings from storage and set to context
+        getSettings();
+
+        // Check if the user is signed in
         checkSignedIn();
     }, []);
 

@@ -6,6 +6,7 @@ import AppNavigator from './src/navigation/AppNavigator';
 // Context
 import { Provider as UserProvider } from './src/context/UserContext';
 import { Provider as ContentProvider } from './src/context/ContentContext';
+import { Provider as SettingsProvider } from './src/context/SettingsContext';
 
 const App = () => {
   // Import custom fonts
@@ -32,7 +33,9 @@ const App = () => {
     loaded ? (
       <UserProvider>
         <ContentProvider>
+          <SettingsProvider>
             <AppNavigator/>
+          </SettingsProvider>
         </ContentProvider>
       </UserProvider>
       ) : null

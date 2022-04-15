@@ -57,7 +57,7 @@ const AppearanceSettingsScreen = () => {
             color: colors.flavorColors[flavor].MAIN,
             options: Object.keys(colors.flavorColors).map(fl => {
                 return {
-                    label: fl,
+                    label: capitalize(fl),
                     onSelect: () => setFlavor(fl)
                 };
             })

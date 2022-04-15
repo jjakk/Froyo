@@ -8,12 +8,17 @@ import {
     StyleSheet,
     Easing
 } from "react-native";
+// Context
+import { useSettings } from '../../context/SettingsContext';
 // Icons
 import LoadingIcon from '../../../assets/animation-icons/loading.svg';
 // Constants
 import { colors } from '../../constants/constants';
 
 const LoadingAnimation = (props) => {
+    // Context
+    const { state: { primaryColors } } = useSettings();
+
     // Theme
     const theme = Appearance.getColorScheme();
     const darkModeEnabled = theme === 'dark';
@@ -25,9 +30,9 @@ const LoadingAnimation = (props) => {
     const {
         size=50,
         color=(
-            darkModeEnabled ? 
-                colors.primary.DARKER
-                : colors.primary.LIGHTER
+            darkModeEnabled
+                ? primaryColors.DARKER
+                : primaryColors.LIGHTER
         ),
         style
     } = props;

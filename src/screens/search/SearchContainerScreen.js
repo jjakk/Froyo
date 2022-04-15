@@ -4,10 +4,15 @@ import { StyleSheet, Appearance } from 'react-native';
 import { MaterialTopTabBar } from 'react-navigation-tabs';
 import ScreenContainer from '../../components/ScreenContainer';
 import SearchBar from '../../components/bars/SearchBar';
+// Context
+import { useSettings } from '../../context/SettingsContext';
 // Constants
 import { colors } from '../../constants/constants';
 
 const SearchContainerScreen = (props) => {
+    // Context
+    const { state: { primaryColors } } = useSettings();
+
     // Theme
     const theme = Appearance.getColorScheme();
 
@@ -33,6 +38,10 @@ const SearchContainerScreen = (props) => {
             />
             <MaterialTopTabBar
                 {...props}
+                activeTintColor={primaryColors.MAIN}
+                indicatorStyle={{
+                    backgroundColor: primaryColors.MAIN
+                }}
             />
         </ScreenContainer>
     );

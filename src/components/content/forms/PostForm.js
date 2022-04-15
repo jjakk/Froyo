@@ -19,6 +19,7 @@ import { BASE_URL, colors } from '../../../constants/constants';
 import SendIcon from '../../../../assets/icons/Send.svg';
 // Context
 import { useContent } from '../../../context/ContentContext';
+import { useSettings } from '../../../context/SettingsContext';
 
 const PostForm = (props) => {
     // Context
@@ -26,6 +27,7 @@ const PostForm = (props) => {
         createContent,
         updateContent
     } = useContent();
+    const { state: { primaryColors } } = useSettings();
 
     // Props
     const {
@@ -99,7 +101,7 @@ const PostForm = (props) => {
                 />
                 <TouchableIcon
                     Icon={SendIcon}
-                    color={colors.primary.MAIN}
+                    color={primaryColors.MAIN}
                     onPress={handleSubmit}
                     size={30}
                     loading={loading}

@@ -9,10 +9,15 @@ import {
     Dimensions,
     TouchableWithoutFeedback
 } from 'react-native';
+// Context
+import { useSettings } from '../../context/SettingsContext';
 // Constants
 import { BASE_URL, colors } from '../../constants/constants';
 
 const ImageList = (props) => {
+    // Context
+    const { state: { primaryColors } } = useSettings();
+
     // Theme
     const theme = Appearance.getColorScheme();
 
@@ -75,7 +80,9 @@ const ImageList = (props) => {
                         style={[
                             styles.dot,
                             themeStyles[theme].dot,
-                            index === currentIndex && styles.activeDot
+                            index === currentIndex && {
+                                backgroundColor: primaryColors.MAIN
+                            }
                         ]}
                     />
                 ))
@@ -106,9 +113,6 @@ const styles = StyleSheet.create({
         height: 7.5,
         borderRadius: 5,
         margin: 2
-    },
-    activeDot: {
-        backgroundColor: colors.primary.MAIN
     }
 });
 

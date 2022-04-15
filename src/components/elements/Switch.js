@@ -3,14 +3,18 @@ import React, { useRef } from 'react';
 import {
     Appearance,
     StyleSheet,
-    View,
     Animated,
     TouchableWithoutFeedback
 } from 'react-native';
+// Context
+import { useSettings } from '../../context/SettingsContext';
 // Constants
 import { colors } from '../../constants/constants';
 
 const Switch = (props) => {
+    // Context
+    const { state: { primaryColors } } = useSettings();
+
     // Theme
     const theme = Appearance.getColorScheme();
     const darkModeEnabled = theme === 'dark' ;
@@ -30,7 +34,7 @@ const Switch = (props) => {
         on: colors.light.FIRST,
         off: colors.dark.FIRST
     } : {
-        on: colors.primary.MAIN,
+        on: primaryColors.MAIN,
         off: colors.light.SECOND
     };
 

@@ -19,6 +19,7 @@ import EmptyMessage from '../messages/EmptyMessage';
 import Post from './Post';
 // Context
 import { useUser } from '../../context/UserContext';
+import { useSettings } from '../../context/SettingsContext';
 // Constants
 import { colors } from '../../constants/constants';
 
@@ -28,6 +29,7 @@ const PostList = (props, ref) => {
 
     // Context
     const { state: { user: signedInUser } } = useUser();
+    const { state: { primaryColors } } = useSettings();
 
     // Theme
     const theme = Appearance.getColorScheme();
@@ -76,8 +78,8 @@ const PostList = (props, ref) => {
                 refreshControl={
                     refreshable ? (
                         <RefreshControl
-                            tintColor={colors.primary.MAIN}
-                            colors={[colors.primary.MAIN]}
+                            tintColor={primaryColors.MAIN}
+                            colors={[primaryColors.MAIN]}
                             progressBackgroundColor={darkModeEnabled ? colors.light.FOURTH : colors.WHITE}
                             refreshing={refreshing}
                             onRefresh={async () => {

@@ -12,12 +12,14 @@ import { Text } from '../froyo-elements';
 import Comment from './Comment';
 // Context
 import { useContent } from '../../context/ContentContext';
+import { useSettings } from '../../context/SettingsContext';
 // Constants
 import { colors } from '../../constants/constants';
 
 const CommentList = (props) => {
     // Context
     const { getComments } = useContent();
+    const { state: { primaryColors } } = useSettings();
 
     // Theme
     const theme = Appearance.getColorScheme();
@@ -104,8 +106,8 @@ const CommentList = (props) => {
                 showsVerticalScrollIndicator={false}
                 refreshControl={
                     <RefreshControl
-                        tintColor={colors.primary.MAIN}
-                        colors={[colors.primary.MAIN]}
+                        tintColor={primaryColors.MAIN}
+                        colors={[primaryColors.MAIN]}
                         progressBackgroundColor={
                             darkModeEnabled
                             ? colors.light.FOURTH

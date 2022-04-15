@@ -16,13 +16,15 @@ import FroyoIcon from '../../../assets/icons/Froyo.svg';
 // Context
 import { useUser } from '../../context/UserContext';
 import { useContent } from '../../context/ContentContext';
+import { useSettings } from '../../context/SettingsContext';
 // Constants
-import { BASE_URL, colors } from '../../constants/constants';
+import { BASE_URL } from '../../constants/constants';
 
 const FeedScreen = ({ navigation }) => {
     // Context
     const { state: { user } } = useUser();
     const { getFeed } = useContent();
+    const { state: { primaryColors } } = useSettings();
 
     // Ref
     const postListRef = useRef();
@@ -81,7 +83,7 @@ const FeedScreen = ({ navigation }) => {
                 }}
                 MiddleIcon={FroyoIcon}
                 MiddleIconProps={{
-                    color: colors.primary.MAIN,
+                    color: primaryColors.MAIN,
                     onPress: onScrollToTop
                 }}
             />

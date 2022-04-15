@@ -20,7 +20,6 @@ const connectionNavigator = createMaterialTopTabNavigator({
     },
 }, {
     tabBarOptions: {
-        activeTintColor: colors.primary.MAIN,
         inactiveTintColor: colors.DARK_GRAY,
         upperCaseLabel: false,
         style: {
@@ -32,7 +31,6 @@ const connectionNavigator = createMaterialTopTabNavigator({
             fontFamily: 'Nunito'
         },
         indicatorStyle: {
-            backgroundColor: colors.primary.MAIN,
             borderRadius: 1
         }
     },

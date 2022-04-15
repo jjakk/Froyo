@@ -12,6 +12,7 @@ import {
 } from '../froyo-elements';
 // Context
 import { useContent } from '../../context/ContentContext';
+import { useSettings } from '../../context/SettingsContext';
 // Icons
 import SendIcon from '../../../assets/icons/Send.svg';
 // Constants
@@ -26,6 +27,7 @@ const CommentBar = (props) => {
 
     // Context
     const { createContent } = useContent();
+    const { state: { primaryColors } } = useSettings();
     
     // Props
     const {
@@ -76,7 +78,7 @@ const CommentBar = (props) => {
                 Icon={SendIcon}
                 style={styles.send}
                 size={35}
-                color={colors.primary.MAIN}
+                color={primaryColors.MAIN}
                 onPress={onSubmit}
             />
         </View>

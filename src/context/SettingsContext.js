@@ -1,6 +1,8 @@
 import { useContext } from 'react';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import createDataContext from './createDataContext';
+// Constants
+import { colors } from '../constants/constants';
 
 const DEFAULT_SETTINGS = {
     flavor: 'mint',
@@ -35,6 +37,7 @@ const getSettings = (dispatch) => async () => {
         type: 'setSettings',
         payload: {
             flavor,
+            primaryColors: colors.flavors[flavor],
             hideFeed
         }
     });
@@ -46,7 +49,8 @@ const setFlavor = (dispatch) => async (newFlavor) => {
     dispatch({
         type: 'setSettings',
         payload: {
-            flavor: newFlavor
+            flavor: newFlavor,
+            primaryColors: colors.flavors[newFlavor],
         }
     });
 

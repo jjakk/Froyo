@@ -5,10 +5,15 @@ import {
 } from 'react-native';
 // Components
 import { Button as DefaultButton } from 'react-native-elements';
+// Context
+import { useSettings } from '../../context/SettingsContext';
 // Constants
 import { colors } from '../../constants/constants';
 
 const Button = (props) => {
+    // Context
+    const { state: { primaryColors } } = useSettings();
+
     // Theme
     const theme = Appearance.getColorScheme();
     const darkModeEnabled = theme === 'dark';
@@ -19,8 +24,8 @@ const Button = (props) => {
         titleStyle,
         color=(
             darkModeEnabled
-                ? colors.primary.LIGHT
-                : colors.primary.MAIN
+                ? primaryColors.LIGHT
+                : primaryColors.MAIN
         ),
         type,
         pill,

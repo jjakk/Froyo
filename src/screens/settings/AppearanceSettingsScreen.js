@@ -54,8 +54,8 @@ const AppearanceSettingsScreen = () => {
             title: 'Flavor',
             type: 'dropdown',
             value: capitalize(flavor),
-            color: colors.flavorColors[flavor].MAIN,
-            options: Object.keys(colors.flavorColors).map(fl => {
+            color: colors.flavors[flavor].MAIN,
+            options: Object.keys(colors.flavors).map(fl => {
                 return {
                     label: capitalize(fl),
                     onSelect: () => setFlavor(fl)

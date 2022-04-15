@@ -1,4 +1,3 @@
-
 const generalColors = {
     // Black, Grey, & White
     WHITE: '#FFFFFF',
@@ -77,7 +76,7 @@ const constants = {
         light: themeColors.light,
         dark: themeColors.dark,
         primary: flavorColors.mint,
-        flavorColors: flavorColors,
+        flavors: flavorColors,
         ...generalColors
     },
     sizes: {

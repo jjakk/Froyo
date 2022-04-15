@@ -62,12 +62,13 @@ const AppearanceSettingsScreen = () => {
                 };
             })
         },
+        /*
         {
             title: 'Hide Feed',
             type: 'toggle',
             value: hideFeed,
             setValue: setHideFeed,
-        }
+        }*/
     ];
     
     return (

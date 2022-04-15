@@ -113,10 +113,11 @@ const signUp = (dispatch) => async (info) => {
 
 // Clear token from AsyncStorage
 const signOut = (dispatch) => async () => {
-    // Remove the user's authentication token from storage
-    await AsyncStorage.removeItem('token');
-    // Remove the user's theme preference from storage
-    await AsyncStorage.removeItem('theme');
+    // Remove all AsyncStorage items
+    const keys = await AsyncStorage.getAllKeys()
+    await AsyncStorage.multiRemove(keys);
+
+    // Clear the token from state
     dispatch({ type: 'sign_out' });
     navigate('ResolveAuth');
 };

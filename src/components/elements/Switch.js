@@ -26,32 +26,28 @@ const Switch = (props) => {
     const progress = useRef(new Animated.Value(Number(isOn))).current;
 
     // Conditional rendering
-    const backgroundColor = (
-        isOn ? (
-            darkModeEnabled
-                ? colors.light.FIRST
-                : colors.primary.MAIN
-        ) : (
-            darkModeEnabled
-                ? colors.dark.FIRST
-                : colors.light.SECOND
-        )
-    );
-    const circleColor = (
-        darkModeEnabled
-            ? (
-                isOn
-                    ? colors.dark.FIRST
-                    : colors.light.FIRST
-            ) : colors.WHITE
-    );
+    const backgroundColor = darkModeEnabled ? {
+        on: colors.light.FIRST,
+        off: colors.dark.FIRST
+    } : {
+        on: colors.primary.MAIN,
+        off: colors.light.SECOND
+    };
+
+    const circleColor = darkModeEnabled ? {
+        on: colors.dark.FIRST,
+        off: colors.light.FIRST
+    } : {
+        on: colors.WHITE,
+        off: colors.WHITE
+    };
 
     // Event handlers
     const onPress = () => {
         Animated.timing(progress, {
             toValue: Number(!isOn),
             duration: 150,
-            useNativeDriver: true
+            useNativeDriver: false
         }).start(() => {
             progress.setValue(0);
             setValue(!isOn);
@@ -60,11 +56,17 @@ const Switch = (props) => {
 
     return (
         <TouchableWithoutFeedback onPress={onPress}>
-            <View style={[styles.switch, {
-                backgroundColor: backgroundColor
+            <Animated.View style={[styles.switch, {
+                backgroundColor: progress.interpolate({
+                    inputRange: [0, 1],
+                    outputRange: [backgroundColor.off, backgroundColor.on]
+                })
             }, style]}>
                 <Animated.View style={[styles.circle, {
-                    backgroundColor: circleColor,
+                    backgroundColor: progress.interpolate({
+                        inputRange: [0, 1],
+                        outputRange: [circleColor.off, circleColor.on]
+                    }),
                     transform: [{
                         translateX: progress.interpolate({
                             inputRange: [0, 1],
@@ -72,7 +74,7 @@ const Switch = (props) => {
                         })
                     }]
                 }]} />
-            </View>
+            </Animated.View>
         </TouchableWithoutFeedback>
     );
 };

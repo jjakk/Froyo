@@ -10,7 +10,7 @@ import Header from '../../components/Header';
 import SettingsList from '../../components/settings/SettingsList';
 
 const AppearanceSettingsScreen = () => {
-    const [sdf, setSdf] = React.useState(false);
+    const [hideFeed, setHideFeed] = React.useState(false);
 
     const settings = [
         {
@@ -44,8 +44,8 @@ const AppearanceSettingsScreen = () => {
         {
             title: 'Hide Feed',
             type: 'toggle',
-            value: sdf,
-            setValue: setSdf,
+            value: hideFeed,
+            setValue: setHideFeed,
         }
     ];
     

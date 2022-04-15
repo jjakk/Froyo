@@ -18,7 +18,7 @@ const Switch = (props) => {
     // Props
     const {
         value: isOn,
-        onToggle,
+        setValue,
         style,
     } = props;
 
@@ -29,16 +29,21 @@ const Switch = (props) => {
     const backgroundColor = (
         isOn ? (
             darkModeEnabled
-                ? colors.primary.LIGHT
+                ? colors.light.FIRST
                 : colors.primary.MAIN
         ) : (
-            colors.light.SECOND
+            darkModeEnabled
+                ? colors.dark.FIRST
+                : colors.light.SECOND
         )
     );
     const circleColor = (
         darkModeEnabled
-            ? colors.dark.FIRST
-            : colors.WHITE
+            ? (
+                isOn
+                    ? colors.dark.FIRST
+                    : colors.light.FIRST
+            ) : colors.WHITE
     );
 
     // Event handlers
@@ -49,8 +54,8 @@ const Switch = (props) => {
             useNativeDriver: true
         }).start(() => {
             progress.setValue(0);
+            setValue(!isOn);
         });
-        onToggle();
     };
 
     return (

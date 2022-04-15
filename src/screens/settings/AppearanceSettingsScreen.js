@@ -10,6 +10,7 @@ import Header from '../../components/Header';
 import SettingsList from '../../components/settings/SettingsList';
 
 const AppearanceSettingsScreen = () => {
+    const [sdf, setSdf] = React.useState(false);
 
     const settings = [
         {
@@ -39,6 +40,12 @@ const AppearanceSettingsScreen = () => {
         {
             title: 'Flavor',
             type: 'button',
+        },
+        {
+            title: 'Hide Feed',
+            type: 'toggle',
+            value: sdf,
+            setValue: setSdf,
         }
     ];
     

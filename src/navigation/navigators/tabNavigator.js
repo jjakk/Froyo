@@ -70,7 +70,7 @@ const tabNavigator = createBottomTabNavigator({
             height: 60
         }
     },
-    initialRouteName: 'Feed'
+    initialRouteName: 'MeetupFeed'
 });
 
 export default tabNavigator;

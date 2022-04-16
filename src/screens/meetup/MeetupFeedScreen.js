@@ -4,25 +4,18 @@ import { Alert } from 'react-native';
 import ScreenContainer from '../../components/ScreenContainer';
 import Header from '../../components/Header';
 import MeetupList from '../../components/meetups/MeetupList';
+// Context
+import { useSettings } from '../../context/SettingsContext';
+import { useUser } from '../../context/UserContext';
 // Icons
 import Plus from '../../../assets/icons/Plus.svg';
+// Constants
+import { BASE_URL } from '../../constants/constants';
 
-const MeetupFeedScreen = () => {
-    const onCreateMeetup = () => {
-        Alert.alert(
-            'This feature has not been implemented yet.',
-            null,
-            [
-                {
-                    text: "Ok",
-                    style: "cancel"
-                }
-            ],
-            {
-                cancelable: true
-            }
-        );
-    };
+const MeetupFeedScreen = ({ navigation }) => {
+    // Context
+    const { state: { hideFeed } } = useSettings();
+    const { state: { user } } = useUser();
 
     const dummyMeetups = [
         {
@@ -53,11 +46,45 @@ const MeetupFeedScreen = () => {
         }
     ];
 
+    // Conditional rendering
+    const profilePictureSource = (
+        user.profile_picture_bucket_key
+        ? {
+            uri: `${BASE_URL}/images/${user.profile_picture_bucket_key}`
+        }
+        : require('../../../assets/icons/guest.png')
+    );
+
+    // Event handlers
+    const onAccountView = () => {
+        navigation.navigate('AccountView');
+    };
+
+    const onCreateMeetup = () => {
+        Alert.alert(
+            'This feature has not been implemented yet.',
+            null,
+            [
+                {
+                    text: "Ok",
+                    style: "cancel"
+                }
+            ],
+            {
+                cancelable: true
+            }
+        );
+    };
+
     return (
         <ScreenContainer>
             <Header
                 title='Meetups'
-                hideLeftIcon
+                hideLeftIcon={!hideFeed}
+                LeftIconImage={profilePictureSource}
+                LeftIconProps={{
+                    onPress: onAccountView
+                }}
                 RightIcon={Plus}
                 RightIconProps={{
                     onPress: onCreateMeetup

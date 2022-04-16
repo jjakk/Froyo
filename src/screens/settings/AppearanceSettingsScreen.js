@@ -68,7 +68,8 @@ const AppearanceSettingsScreen = () => {
             type: 'toggle',
             value: hideFeed,
             setValue: setHideFeed,
-        }*/
+        }
+        */
     ];
     
     return (

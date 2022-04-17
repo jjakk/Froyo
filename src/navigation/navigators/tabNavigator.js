@@ -25,20 +25,7 @@ const IconRender = ({ Icon, focused, tintColor }) => {
     );
 };
 
-// This navigator organizes the bottom tab bar
-const tabNavigator = createBottomTabNavigator({
-    Feed: {
-        screen: PostFeedScreen,
-        navigationOptions: {
-            tabBarIcon: (({ focused, tintColor }) => (
-                    <IconRender
-                        Icon={HomeIcon}
-                        focused={focused}
-                        tintColor={tintColor}
-                    />
-                ))
-        }
-    },
+const screens = {
     MeetupFeed: {
         screen: MeetupFeedScreen,
         navigationOptions: {
@@ -63,6 +50,23 @@ const tabNavigator = createBottomTabNavigator({
             ))
         }
     }
+};
+
+// This navigator organizes the bottom tab bar
+const tabNavigator = (hideFeed) => createBottomTabNavigator(hideFeed ? screens : {
+    Feed: {
+        screen: PostFeedScreen,
+        navigationOptions: {
+            tabBarIcon: (({ focused, tintColor }) => (
+                    <IconRender
+                        Icon={HomeIcon}
+                        focused={focused}
+                        tintColor={tintColor}
+                    />
+                ))
+        }
+    },
+    ...screens
 }, {
     tabBarOptions: {
         showLabel: false,

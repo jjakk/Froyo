@@ -79,7 +79,7 @@ const getComments = () => async (contentType, parentId) => {
     return comments;
 };
 
-// GET the user"s personal feed
+// GET the user's personal feed
 const getFeed = () => async () => {
     const { data: posts } = await froyoApi.get(`/feed`);
     return posts;

@@ -50,7 +50,7 @@ const MoreOptions = (props) => {
 
     // More options menu items
     const options = [
-        // Only show these options if it"s your own content
+        // Only show these options if it's your own content
         ...(content.author.id === user.id ? [
             {
                 label: "Edit",

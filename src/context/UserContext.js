@@ -128,7 +128,7 @@ const deleteUser = (dispatch) => async () => {
     signOut(dispatch)();
 };
 
-// Get a user"s information given their ID
+// Get a user's information given their ID
 const getUser = () => async (id) => {
     const { data: user } = await froyoApi.get(`/users/${id}`);
     return user;
@@ -141,7 +141,7 @@ const searchUser = () => async (query) => {
     return users;
 };
 
-// Update a user"s information
+// Update a user's information
 const updateUser = (dispatch) => async (info) => {
     const {
         firstName,

@@ -21,7 +21,7 @@ const SignUpTwoScreen = ({ navigation }) => {
     const email = navigation.getParam("email");
     const username = navigation.getParam("username");
     const dob = navigation.getParam("dob");
-    // This screen"s form params
+    // This screen's form params
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [password, setPassword] = useState("");

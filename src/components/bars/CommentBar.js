@@ -18,7 +18,7 @@ import SendIcon from "../../../assets/icons/Send.svg";
 // Constants
 import { colors } from "../../constants/constants";
 
-// ParentId -> string: ID of the content that"s being commented one
+// ParentId -> string: ID of the content that's being commented one
 // onCreateComment -> function: callback function to be called when the comment is created
 const CommentBar = (props) => {
     // Theme

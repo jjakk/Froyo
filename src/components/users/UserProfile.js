@@ -56,7 +56,7 @@ const UserProfile = (props) => {
     );
 
     // State
-    // Whether the current user"s following the user being viewed
+    // Whether the current user's following the user being viewed
     const [followingUser, setFollowingUser] = useState(false);
 
     const onFollow = async () => {
@@ -74,7 +74,7 @@ const UserProfile = (props) => {
         navigate("AccountEdit");
     };
 
-    // Get following status whenever the user state changes (If viewing another user"s profile)
+    // Get following status whenever the user state changes (If viewing another user's profile)
     useEffect(() => {
         if(user.id !== signedInUser.id) {
             following(signedInUser.id, user.id)

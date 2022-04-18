@@ -1,28 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 // Components
 import {
     View,
     Keyboard,
     StyleSheet,
     Alert
-} from 'react-native';
+} from "react-native";
 import {
     Text,
     Input,
     Link,
     Button,
     DatePicker
-} from '../../../components/froyo-elements';
-import ScreenContainer from '../../../components/ScreenContainer';
+} from "../../../components/froyo-elements";
+import ScreenContainer from "../../../components/ScreenContainer";
 // Context
-import { useUser } from '../../../context/UserContext';
+import { useUser } from "../../../context/UserContext";
 
 const SignUpScreenOne = ({ navigation }) => {
     const { continueSignUp } = useUser();
     // Form feilds
-    const [email, setEmail] = useState('');
-    const [username, setUsername] = useState('');
-    const [dob, setDob] = useState('');
+    const [email, setEmail] = useState("");
+    const [username, setUsername] = useState("");
+    const [dob, setDob] = useState("");
     // Status states
     const [loading, setLoading] = useState(false);
 
@@ -41,13 +41,13 @@ const SignUpScreenOne = ({ navigation }) => {
         finally {
             setLoading(false);
             if (formSuccess) {
-                navigation.navigate('SignUpTwo', { email, username, dob });
+                navigation.navigate("SignUpTwo", { email, username, dob });
             }
         }
     }
     
     const handleRefSignIn = () => {
-        navigation.navigate('SignIn')
+        navigation.navigate("SignIn")
     };
 
     return (
@@ -56,16 +56,16 @@ const SignUpScreenOne = ({ navigation }) => {
                 <Text style={styles.header}>Sign up</Text>
                 <Input
                     style={styles.input}
-                    placeholder='Email'
+                    placeholder="Email"
                     onChangeText={setEmail}
-                    autoCapitalize='none'
+                    autoCapitalize="none"
                     autoCorrect={false}
                 />
                 <Input
                     style={styles.input}
-                    placeholder='Username'
+                    placeholder="Username"
                     onChangeText={setUsername}
-                    autoCapitalize='none'
+                    autoCapitalize="none"
                     autoCorrect={false}
                 />
                 <DatePicker
@@ -75,8 +75,8 @@ const SignUpScreenOne = ({ navigation }) => {
                     setDob={setDob}
                 />
                 <Button
-                    title='Continue'
-                    type='primary'
+                    title="Continue"
+                    type="primary"
                     loading={loading}
                     buttonStyle={styles.submit}
                     containerStyle={styles.submitContainer}
@@ -85,7 +85,7 @@ const SignUpScreenOne = ({ navigation }) => {
                 <View style={styles.bottomText}>
                     <Text>Already have an account?</Text>
                     <Link
-                        color='#41CA99'
+                        color="#41CA99"
                         onPress={handleRefSignIn}
                     >
                         Sign in
@@ -105,8 +105,8 @@ const styles = StyleSheet.create({
         flex: 1
     },
     auth: {
-        alignItems: 'center',
-        justifyContent: 'center',
+        alignItems: "center",
+        justifyContent: "center",
         marginTop: 100
     },
     header: {
@@ -125,8 +125,8 @@ const styles = StyleSheet.create({
     },
     bottomText: {
         margin: 10,
-        alignItems: 'center',
-        justifyContent: 'center'
+        alignItems: "center",
+        justifyContent: "center"
     }
 });
 

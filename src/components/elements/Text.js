@@ -1,13 +1,13 @@
-import React from 'react';
+import React from "react";
 import {
     Appearance,
     StyleSheet
-} from 'react-native';
+} from "react-native";
 // Components
-import { Text as DefaultText } from 'react-native';
-import Hyperlink from 'react-native-hyperlink';
+import { Text as DefaultText } from "react-native";
+import Hyperlink from "react-native-hyperlink";
 // Constants
-import { colors } from '../../constants/constants';
+import { colors } from "../../constants/constants";
 
 const Text = (props) => {
     // Theme
@@ -40,11 +40,11 @@ const Text = (props) => {
 
 const styles = StyleSheet.create({
     text: {
-        fontFamily: 'Nunito',
+        fontFamily: "Nunito",
         fontSize: 18
     },
     hyperlink: {
-        textDecorationLine: 'underline'
+        textDecorationLine: "underline"
     }
 });
 

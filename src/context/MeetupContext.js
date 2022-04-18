@@ -1,8 +1,8 @@
-import { useContext } from 'react';
-import createDataContext from './createDataContext';
+import { useContext } from "react";
+import createDataContext from "./createDataContext";
 // API
-import froyoApi from '../api/froyo';
-import formRequest from '../api/formRequest';
+import froyoApi from "../api/froyo";
+import formRequest from "../api/formRequest";
 
 // Handle setting state
 const meetupReducer = (state, action) => {

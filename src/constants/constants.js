@@ -1,19 +1,19 @@
 const generalColors = {
     // Black, Grey, & White
-    WHITE: '#FFFFFF',
-    LIGHT_GRAY: '#F2F2F2',
-    GRAY: '#C0C0C0',
-    DARK_GRAY: '#707070',
-    LIGHT_BLACK: '#2b2b2b',
-    BLACK: '#000000',
+    WHITE: "#FFFFFF",
+    LIGHT_GRAY: "#F2F2F2",
+    GRAY: "#C0C0C0",
+    DARK_GRAY: "#707070",
+    LIGHT_BLACK: "#2b2b2b",
+    BLACK: "#000000",
     // Greens
-    DARKER_GREEN: '#0F8158',
-    DARK_GREEN: '#4AA786',
-    GREEN: '#41CA99',
-    LIGHT_GREEN: '#80DCBB',
-    LIGHTER_GREEN: '#BEEADA',
+    DARKER_GREEN: "#0F8158",
+    DARK_GREEN: "#4AA786",
+    GREEN: "#41CA99",
+    LIGHT_GREEN: "#80DCBB",
+    LIGHTER_GREEN: "#BEEADA",
     // Reds
-    DISLIKE_RED: '#CA5A41',
+    DISLIKE_RED: "#CA5A41",
 };
 
 const themeColors = {
@@ -22,14 +22,14 @@ const themeColors = {
         SECOND: generalColors.GRAY,
         THIRD: generalColors.DARK_GRAY,
         FOURTH: generalColors.LIGHT_BLACK,
-        RED: '#E86245'
+        RED: "#E86245"
     },
     dark: {
-        FIRST: '#363636',
-        SECOND: '#222222',
-        THIRD: '#1B1B1B',
-        FOURTH: '#151515',
-        RED: '#CA7664'
+        FIRST: "#363636",
+        SECOND: "#222222",
+        THIRD: "#1B1B1B",
+        FOURTH: "#151515",
+        RED: "#CA7664"
     }
 };
 
@@ -42,32 +42,32 @@ const flavorColors = {
         LIGHTER: generalColors.LIGHTER_GREEN
     },
     coffee: {
-        DARKER: '#9C5706',
-        DARK: '#AE6B1D',
-        MAIN: '#CA8B41',
-        LIGHT: '#DCA564',
-        LIGHTER: '#E9C08F'
+        DARKER: "#9C5706",
+        DARK: "#AE6B1D",
+        MAIN: "#CA8B41",
+        LIGHT: "#DCA564",
+        LIGHTER: "#E9C08F"
     },
     strawberry: {
-        DARKER: '#9B0F06',
-        DARK: '#B5261D',
-        MAIN: '#CA4941',
-        LIGHT: '#D97C76',
-        LIGHTER: '#E7AFAB'
+        DARKER: "#9B0F06",
+        DARK: "#B5261D",
+        MAIN: "#CA4941",
+        LIGHT: "#D97C76",
+        LIGHTER: "#E7AFAB"
     },
     blueberry: {
-        DARKER: '#257C98',
-        DARK: '#1979BE',
-        MAIN: '#4190CA',
-        LIGHT: '#82B7DE',
-        LIGHTER: '#ABD1ED'
+        DARKER: "#257C98",
+        DARK: "#1979BE",
+        MAIN: "#4190CA",
+        LIGHT: "#82B7DE",
+        LIGHTER: "#ABD1ED"
     },
     mango: {
-        DARKER: '#B09F05',
-        DARK: '#BFAE16',
-        MAIN: '#CABC41',
-        LIGHT: '#D8CE77',
-        LIGHTER: '#E8E2AD'
+        DARKER: "#B09F05",
+        DARK: "#BFAE16",
+        MAIN: "#CABC41",
+        LIGHT: "#D8CE77",
+        LIGHTER: "#E8E2AD"
     }
 };
 
@@ -90,7 +90,7 @@ const constants = {
         // Icons for bottom tab bar
         TAB_ICON: 35,
     },
-    BASE_URL: 'https://api.froyo.social'
+    BASE_URL: "https://api.froyo.social"
 };
 
 module.exports = constants;

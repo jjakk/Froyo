@@ -1,13 +1,13 @@
-import React from 'react';
-import { StyleSheet, Appearance } from 'react-native';
+import React from "react";
+import { StyleSheet, Appearance } from "react-native";
 // Components
-import { MaterialTopTabBar } from 'react-navigation-tabs';
-import ScreenContainer from '../../components/ScreenContainer';
-import SearchBar from '../../components/bars/SearchBar';
+import { MaterialTopTabBar } from "react-navigation-tabs";
+import ScreenContainer from "../../components/ScreenContainer";
+import SearchBar from "../../components/bars/SearchBar";
 // Context
-import { useSettings } from '../../context/SettingsContext';
+import { useSettings } from "../../context/SettingsContext";
 // Constants
-import { colors } from '../../constants/constants';
+import { colors } from "../../constants/constants";
 
 const SearchContainerScreen = (props) => {
     // Context
@@ -22,8 +22,8 @@ const SearchContainerScreen = (props) => {
     } = props;
 
     const onSearch = (searchQuery) => {
-        navigation.navigate('SearchUsers', { searchQuery })
-        navigation.navigate('SearchPosts', { searchQuery })
+        navigation.navigate("SearchUsers", { searchQuery })
+        navigation.navigate("SearchPosts", { searchQuery })
     };
 
     return (

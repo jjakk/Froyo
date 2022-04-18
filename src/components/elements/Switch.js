@@ -1,15 +1,15 @@
-import React, { useRef } from 'react';
+import React, { useRef } from "react";
 // Components
 import {
     Appearance,
     StyleSheet,
     Animated,
     TouchableWithoutFeedback
-} from 'react-native';
+} from "react-native";
 // Context
-import { useSettings } from '../../context/SettingsContext';
+import { useSettings } from "../../context/SettingsContext";
 // Constants
-import { colors } from '../../constants/constants';
+import { colors } from "../../constants/constants";
 
 const Switch = (props) => {
     // Context
@@ -17,7 +17,7 @@ const Switch = (props) => {
 
     // Theme
     const theme = Appearance.getColorScheme();
-    const darkModeEnabled = theme === 'dark' ;
+    const darkModeEnabled = theme === "dark" ;
 
     // Props
     const {

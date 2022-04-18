@@ -1,20 +1,20 @@
-import React, { useReducer, useEffect } from 'react';
-import { Appearance } from 'react-native';
-import { useFonts } from 'expo-font';
+import React, { useReducer, useEffect } from "react";
+import { Appearance } from "react-native";
+import { useFonts } from "expo-font";
 // Navigation
-import AppNavigator from './src/navigation/AppNavigator';
+import AppNavigator from "./src/navigation/AppNavigator";
 // Context
-import { Provider as UserProvider } from './src/context/UserContext';
-import { Provider as ContentProvider } from './src/context/ContentContext';
-import { Provider as SettingsProvider } from './src/context/SettingsContext';
+import { Provider as UserProvider } from "./src/context/UserContext";
+import { Provider as ContentProvider } from "./src/context/ContentContext";
+import { Provider as SettingsProvider } from "./src/context/SettingsContext";
 
 const App = () => {
   // Import custom fonts
   const [loaded] = useFonts({
-    'Nunito': require('./assets/fonts/Nunito/Nunito-Regular.ttf'),
-    'Nunito-SemiBold': require('./assets/fonts/Nunito/Nunito-SemiBold.ttf'),
-    'Nunito-Bold': require('./assets/fonts/Nunito/Nunito-Bold.ttf'),
-    'Nunito-Light': require('./assets/fonts/Nunito/Nunito-Light.ttf'),
+    "Nunito": require("./assets/fonts/Nunito/Nunito-Regular.ttf"),
+    "Nunito-SemiBold": require("./assets/fonts/Nunito/Nunito-SemiBold.ttf"),
+    "Nunito-Bold": require("./assets/fonts/Nunito/Nunito-Bold.ttf"),
+    "Nunito-Light": require("./assets/fonts/Nunito/Nunito-Light.ttf"),
   });
   
   // Reload all components when theme changes

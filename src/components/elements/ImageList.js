@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 // Components
 import {
     Appearance,
@@ -8,11 +8,11 @@ import {
     ScrollView,
     Dimensions,
     TouchableWithoutFeedback
-} from 'react-native';
+} from "react-native";
 // Context
-import { useSettings } from '../../context/SettingsContext';
+import { useSettings } from "../../context/SettingsContext";
 // Constants
-import { BASE_URL, colors } from '../../constants/constants';
+import { BASE_URL, colors } from "../../constants/constants";
 
 const ImageList = (props) => {
     // Context
@@ -30,7 +30,7 @@ const ImageList = (props) => {
     const [currentIndex, setCurrentIndex] = useState(0);
 
     const onScroll = (event) => {
-        const offset = event.nativeEvent.contentOffset.x/Dimensions.get('window').width;
+        const offset = event.nativeEvent.contentOffset.x/Dimensions.get("window").width;
         const index = Math.round(offset);
         if(currentIndex !== index) {
             setCurrentIndex(index);
@@ -50,8 +50,8 @@ const ImageList = (props) => {
     ) : (
         <View style={[styles.container, style]}>
             <ScrollView
-                snapToInterval={Dimensions.get('window').width}
-                decelerationRate='fast'
+                snapToInterval={Dimensions.get("window").width}
+                decelerationRate="fast"
                 horizontal
                 showsHorizontalScrollIndicator={false}
                 onScroll={onScroll}
@@ -97,15 +97,15 @@ const styles = StyleSheet.create({
         flex: 1
     },
     image: {
-        width: Dimensions.get('window').width,
-        height: Dimensions.get('window').width,
-        resizeMode: 'cover'
+        width: Dimensions.get("window").width,
+        height: Dimensions.get("window").width,
+        resizeMode: "cover"
     },
     indexIndicator: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center',
-        alignSelf: 'center',
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "center",
+        alignSelf: "center",
         marginTop: 15
     },
     dot: {

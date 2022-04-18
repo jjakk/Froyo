@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import { Alert } from 'react-native';
+import React, { useEffect, useState } from "react";
+import { Alert } from "react-native";
 // Components
-import PostList from '../../components/content/PostList';
+import PostList from "../../components/content/PostList";
 // Context
-import { useContent } from '../../context/ContentContext';
+import { useContent } from "../../context/ContentContext";
 // Navigation
-import { NavigationEvents } from 'react-navigation';
+import { NavigationEvents } from "react-navigation";
 
 const SearchPostScreen = (props) => {
     // Context
@@ -21,7 +21,7 @@ const SearchPostScreen = (props) => {
     const [loading, setLoading] = useState(false);
 
     // Navigation params
-    const query = navigation.getParam('searchQuery');
+    const query = navigation.getParam("searchQuery");
 
     const retreivePosts = async () => {
         try {
@@ -29,7 +29,7 @@ const SearchPostScreen = (props) => {
             setResults(
                 !query
                     ? []
-                    : await searchContent('post', { text: query })
+                    : await searchContent("post", { text: query })
             );
         }
         catch(err) {
@@ -50,7 +50,7 @@ const SearchPostScreen = (props) => {
                 onDidFocus={retreivePosts}
             />
             <PostList
-                emptyMessage='No posts found'
+                emptyMessage="No posts found"
                 data={results}
                 refreshable={false}
                 loading={loading}

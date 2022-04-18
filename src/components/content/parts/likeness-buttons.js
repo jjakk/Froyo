@@ -2,17 +2,17 @@ import React, {
     useRef,
     useImperativeHandle,
     forwardRef
-} from 'react';
-import { Animated } from 'react-native';
+} from "react";
+import { Animated } from "react-native";
 // Components
-import TouchableIcon from '../../elements/TouchableIcon';
+import TouchableIcon from "../../elements/TouchableIcon";
 // Icons
-import LikeIconFill from '../../../../assets/icons/Like-Fill.svg';
-import DislikeIconFill from '../../../../assets/icons/Dislike-Fill.svg';
-import LikeIconOutline from '../../../../assets/icons/Like-Outline.svg';
-import DislikeIconOutline from '../../../../assets/icons/Dislike-Outline.svg';
+import LikeIconFill from "../../../../assets/icons/Like-Fill.svg";
+import DislikeIconFill from "../../../../assets/icons/Dislike-Fill.svg";
+import LikeIconOutline from "../../../../assets/icons/Like-Outline.svg";
+import DislikeIconOutline from "../../../../assets/icons/Dislike-Outline.svg";
 // Constants
-import { colors } from '../../../constants/constants';
+import { colors } from "../../../constants/constants";
 
 const LikenessButton = forwardRef((props, ref) => {
     useImperativeHandle(ref, () => ({
@@ -67,9 +67,9 @@ const LikenessButton = forwardRef((props, ref) => {
                     rotate: progress.interpolate({
                         inputRange: [0, 0.5, 1],
                         outputRange: [
-                            '0deg',
+                            "0deg",
                             `${maxRotation}deg`,
-                            '0deg'
+                            "0deg"
                         ]
                     })
                     

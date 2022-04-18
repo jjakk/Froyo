@@ -1,20 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 // Components
 import {
     StyleSheet,
     Alert,
     Keyboard,
     View,
-} from 'react-native';
+} from "react-native";
 import {
     Input,
     Button,
     Text
-} from '../../froyo-elements';
+} from "../../froyo-elements";
 // Context
-import { useContent } from '../../../context/ContentContext';
+import { useContent } from "../../../context/ContentContext";
 // Constants
-import { colors } from '../../../constants/constants';
+import { colors } from "../../../constants/constants";
 
 const CommentForm = (props) => {
     // Context
@@ -46,11 +46,11 @@ const CommentForm = (props) => {
             setLoading(true);
             // Update comment if an ID is given
             if (id) {
-                await updateContent('comment', id, { text });
+                await updateContent("comment", id, { text });
             }
             // Create a new comment if a parentId is given
             else if (parent_id){
-                await createContent('comment', { parent_id, text });
+                await createContent("comment", { parent_id, text });
             }
             navigation.pop();
         }
@@ -66,7 +66,7 @@ const CommentForm = (props) => {
         (async function(){
             // Try getting parent comment if parent is a comment
             try {
-                setParent(await getContent('comment', parent_id));
+                setParent(await getContent("comment", parent_id));
             }
             catch (err) {}
         })()
@@ -85,12 +85,12 @@ const CommentForm = (props) => {
             }
             <Input
                 multiline
-                placeholder='Type here...'
+                placeholder="Type here..."
                 value={text}
                 onChangeText={setText}
             />
             <Button
-                title='Save'
+                title="Save"
                 onPress={onSubmit}
                 disabled={formUnchanged}
                 loading={loading}

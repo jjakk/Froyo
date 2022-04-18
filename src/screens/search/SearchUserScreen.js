@@ -1,14 +1,14 @@
 import React, {
     useState,
     useEffect
-} from 'react';
-import { Alert } from 'react-native';
+} from "react";
+import { Alert } from "react-native";
 // Components
-import UserList from '../../components/users/UserList';
+import UserList from "../../components/users/UserList";
 // Context
-import { useUser } from '../../context/UserContext';
+import { useUser } from "../../context/UserContext";
 // Navigation
-import { NavigationEvents } from 'react-navigation';
+import { NavigationEvents } from "react-navigation";
 
 const SearchUserScreen = (props) => {
     // Context
@@ -24,7 +24,7 @@ const SearchUserScreen = (props) => {
     const [loading, setLoading] = useState(false);
 
     // Navigation params
-    const query = navigation.getParam('searchQuery');
+    const query = navigation.getParam("searchQuery");
 
     const retreiveUsers = async () => {
         try {

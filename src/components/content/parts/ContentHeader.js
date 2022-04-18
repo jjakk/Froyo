@@ -1,17 +1,17 @@
-import React from 'react';
+import React from "react";
 import {
     TouchableWithoutFeedback,
     Image,
     View,
     StyleSheet
-} from 'react-native';
+} from "react-native";
 // Components
-import { Text, Br } from '../../froyo-elements';
-import MoreOptions from './MoreOptions';
+import { Text, Br } from "../../froyo-elements";
+import MoreOptions from "./MoreOptions";
 // Helper functions
-import { calculateAge } from '../../../helpers/age';
+import { calculateAge } from "../../../helpers/age";
 // Constants
-import { BASE_URL } from '../../../constants/constants';
+import { BASE_URL } from "../../../constants/constants";
 
 const ContentHeader = (props) => {
     const {
@@ -28,7 +28,7 @@ const ContentHeader = (props) => {
         ? {
             uri: `${BASE_URL}/images/${content.author.profile_picture_bucket_key}`
         }
-        : require('../../../../assets/icons/guest.png')
+        : require("../../../../assets/icons/guest.png")
     );
 
     return (
@@ -41,7 +41,7 @@ const ContentHeader = (props) => {
                             condensed ? condensedStyles.profilePicture : null
                         ]}
                         source={profilePictureSource}
-                        resizeMode='cover'
+                        resizeMode="cover"
                     />
                     <View
                         style={[
@@ -60,7 +60,7 @@ const ContentHeader = (props) => {
                         <Text
                             style={styles.age}
                         >
-                            { calculateAge(content.timestamp) || '' }
+                            { calculateAge(content.timestamp) || "" }
                         </Text>
                     </View>
                 </View>
@@ -82,14 +82,14 @@ const styles = StyleSheet.create({
     // Regular header
     header: {
         margin: 15,
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between',
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "space-between",
     },
     userInfo: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center',
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "center",
     },
     profilePicture: {
         width: 50,
@@ -117,9 +117,9 @@ const condensedStyles = StyleSheet.create({
     },
     author: {
         fontSize: 18,
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center',
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "center",
     },
 });
 

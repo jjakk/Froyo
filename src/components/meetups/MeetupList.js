@@ -1,13 +1,13 @@
-import React from 'react';
+import React from "react";
 // Components
-import { Appearance, StyleSheet, View, FlatList } from 'react-native';
-import LoadingAnimation from '../animations/LoadingAnimation';
-import EmptyMessage from '../messages/EmptyMessage';
-import Meetup from './Meetup';
+import { Appearance, StyleSheet, View, FlatList } from "react-native";
+import LoadingAnimation from "../animations/LoadingAnimation";
+import EmptyMessage from "../messages/EmptyMessage";
+import Meetup from "./Meetup";
 // Context
-import { useMeetup } from '../../context/MeetupContext';
+import { useMeetup } from "../../context/MeetupContext";
 // Constants
-import { colors } from '../../constants/constants';
+import { colors } from "../../constants/constants";
 
 const MeetupList = (props) => {
     // Theme
@@ -57,12 +57,12 @@ const styles = StyleSheet.create({
         flex: 1
     },
     emptyMessage: {
-        alignSelf: 'center',
+        alignSelf: "center",
         marginTop: 35,
         width: 300
     },
     meetupsLoading: {
-        alignSelf: 'center',
+        alignSelf: "center",
         marginTop: 50
     }
 });

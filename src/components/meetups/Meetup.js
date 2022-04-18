@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 // Components
 import {
     Appearance,
@@ -6,18 +6,18 @@ import {
     View,
     Image,
     TouchableWithoutFeedback
-} from 'react-native';
-import { Text, TouchableIcon, Button } from '../froyo-elements';
+} from "react-native";
+import { Text, TouchableIcon, Button } from "../froyo-elements";
 // Icons
-import MoreSettingsIcon from '../../../assets/icons/MoreSettings.svg';
-import LocationIcon from '../../../assets/icons/Location.svg';
+import MoreSettingsIcon from "../../../assets/icons/MoreSettings.svg";
+import LocationIcon from "../../../assets/icons/Location.svg";
 // Constants
-import { colors, BASE_URL } from '../../constants/constants';
+import { colors, BASE_URL } from "../../constants/constants";
 
 const Meetup = (props) => {
     // Theme
     const theme = Appearance.getColorScheme();
-    const darkModeEnabled = theme === 'dark' ;
+    const darkModeEnabled = theme === "dark" ;
 
     // Props
     const {
@@ -41,7 +41,7 @@ const Meetup = (props) => {
         ? {
             uri: `${BASE_URL}/images/${content.author.profile_picture_bucket_key}`
         }
-        : require('../../../assets/icons/guest.png')
+        : require("../../../assets/icons/guest.png")
     );
 
     // Set date text to Today, Tomorrow or the date (in format MM/DD/YYYY)
@@ -51,9 +51,9 @@ const Meetup = (props) => {
         && date.getFullYear() === (new Date()).getFullYear()
             ? (
                 date.getDate() === (new Date()).getDate()
-                    ? 'Today'
+                    ? "Today"
                     : date.getDate() === (new Date()).getDate() + 1
-                        ? 'Tomorrow'
+                        ? "Tomorrow"
                         :  formatedDate
             ) : formatedDate
     );
@@ -119,15 +119,15 @@ const Meetup = (props) => {
                         <View style={styles.joined}>
                             <View style={styles.actionButtonContainer}>
                                 <Button
-                                    title='Chat'
+                                    title="Chat"
                                     pill
                                 />
                             </View>
                             <View style={styles.gap} />
                             <View style={styles.actionButtonContainer}>
                                 <Button
-                                    title='Leave'
-                                    type='secondary'
+                                    title="Leave"
+                                    type="secondary"
                                     pill
                                     color={colors[theme].RED}
                                 />
@@ -135,7 +135,7 @@ const Meetup = (props) => {
                         </View>
                     ) : (
                         <Button
-                            title='Join'
+                            title="Join"
                             pill
                             buttonStyle={styles.joinButton}
                         />
@@ -153,8 +153,8 @@ const styles = StyleSheet.create({
         marginBottom: 5,
     },
     header: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
+        flexDirection: "row",
+        justifyContent: "space-between",
         marginBottom: 15
     },
     title: {
@@ -164,8 +164,8 @@ const styles = StyleSheet.create({
     },
     // Author stuff
     author: {
-        flexDirection: 'row',
-        alignItems: 'center'
+        flexDirection: "row",
+        alignItems: "center"
     },
     authorPicture: {
         height: 20,
@@ -177,21 +177,21 @@ const styles = StyleSheet.create({
     },
     // Details
     details: {
-        flexDirection: 'column'
+        flexDirection: "column"
     },
     location: {
         opacity: 0.75,
-        flexDirection: 'row',
-        alignItems: 'center',
+        flexDirection: "row",
+        alignItems: "center",
         marginBottom: 10
     },
     locationText: {
-        textDecorationLine: 'underline',
+        textDecorationLine: "underline",
         marginLeft: 5
     },
     time: {
-        flexDirection: 'row',
-        alignItems: 'center',
+        flexDirection: "row",
+        alignItems: "center",
     },
     dateText: {
         marginLeft: 5
@@ -216,8 +216,8 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     joined: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
+        flexDirection: "row",
+        justifyContent: "space-between",
     },
     actionButtonContainer: {
         flex: 1,

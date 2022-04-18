@@ -1,16 +1,16 @@
-import React from 'react';
+import React from "react";
 // Components
 import {
     Appearance,
     StyleSheet,
     FlatList,
     View
-} from 'react-native';
-import EmptyMessage from '../messages/EmptyMessage';
-import LoadingAnimation from '../animations/LoadingAnimation';
-import UserPreview from './UserPreview';
+} from "react-native";
+import EmptyMessage from "../messages/EmptyMessage";
+import LoadingAnimation from "../animations/LoadingAnimation";
+import UserPreview from "./UserPreview";
 // Constants
-import { colors } from '../../constants/constants';
+import { colors } from "../../constants/constants";
 
 const UserList = (props) => {
     // Theme
@@ -44,7 +44,7 @@ const UserList = (props) => {
                         />
                     ) : (
                         <EmptyMessage
-                            subheaderText='No users found'
+                            subheaderText="No users found"
                             style={styles.noUsers}
                         />
                     )
@@ -57,7 +57,7 @@ const UserList = (props) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
+        justifyContent: "center",
     },
     noUsers: {
         marginTop: 50

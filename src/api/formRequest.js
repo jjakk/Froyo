@@ -1,16 +1,16 @@
 // Another API option that uses fetch intead of axios
-import FormData from 'form-data';
+import FormData from "form-data";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { BASE_URL } from '../constants/constants';
+import { BASE_URL } from "../constants/constants";
 
 const formRequest = async (method, route, data={}) => {
-    if(route[0] !== '/') route = `/${route}`;
+    if(route[0] !== "/") route = `/${route}`;
     method = method.toLowerCase();
     let formData = new FormData();
-    const token = await AsyncStorage.getItem('token');
+    const token = await AsyncStorage.getItem("token");
 
     // Append data to the formData if the method is POST
-    if (method !== 'get') {
+    if (method !== "get") {
         const dataKeys = Object.keys(data);
         for(let i = 0; i < dataKeys.length; i++){
             const key = dataKeys[i];
@@ -19,8 +19,8 @@ const formRequest = async (method, route, data={}) => {
                 for(let j = 0; j < value.length; j++){
                     let currentValue = value[j];
                     // Format for image uploads
-                    if(key === 'images'){
-                        let uriParts = currentValue.split('.');
+                    if(key === "images"){
+                        let uriParts = currentValue.split(".");
                         let fileType = uriParts[uriParts.length - 1];
                         currentValue = {
                             uri: value[j],
@@ -33,8 +33,8 @@ const formRequest = async (method, route, data={}) => {
             }
             else {
                 // Format for image uploads
-                if(key === 'image' && data[key] !== null){
-                    let uriParts = value.split('.');
+                if(key === "image" && data[key] !== null){
+                    let uriParts = value.split(".");
                     let fileType = uriParts[uriParts.length - 1];
                     value = {
                         uri: value,
@@ -50,10 +50,10 @@ const formRequest = async (method, route, data={}) => {
     const response = await fetch(`${BASE_URL}${route}`, {
         method: method,
         headers: {
-            'Content-Type': 'multipart/form-data',
-            'authorization': `Bearer ${token}`
+            "Content-Type": "multipart/form-data",
+            "authorization": `Bearer ${token}`
         },
-        body: method !== 'get' ? formData : null,
+        body: method !== "get" ? formData : null,
     })
     
     const responseData = await response.text();
@@ -63,11 +63,11 @@ const formRequest = async (method, route, data={}) => {
         case 2:
             return responseData;
         case 4:
-            throw { message: responseData || 'Bad Request' };
+            throw { message: responseData || "Bad Request" };
         case 5:
-            throw { message: responseData || 'Server Error' };
+            throw { message: responseData || "Server Error" };
         default:
-            throw { message: 'Something went wrong' };
+            throw { message: "Something went wrong" };
     }
 };
 

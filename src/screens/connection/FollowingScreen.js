@@ -1,5 +1,5 @@
-import React from 'react';
-import UserList from '../../components/users/UserList';
+import React from "react";
+import UserList from "../../components/users/UserList";
 
 const FollowingScreen = (props) => {
     // Props
@@ -7,7 +7,7 @@ const FollowingScreen = (props) => {
         navigation
     } = props;
 
-    const { following } = navigation.getParam('connections');
+    const { following } = navigation.getParam("connections");
 
     return (
         <UserList

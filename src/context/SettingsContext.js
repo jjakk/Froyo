@@ -1,18 +1,18 @@
-import { useContext } from 'react';
+import { useContext } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import createDataContext from './createDataContext';
+import createDataContext from "./createDataContext";
 // Constants
-import { colors } from '../constants/constants';
+import { colors } from "../constants/constants";
 
 const DEFAULT_SETTINGS = {
-    flavor: 'mint',
+    flavor: "mint",
     hideFeed: false
 };
 
 // Handle setting state
 const settingsReducer = (state, action) => {
     switch(action.type){
-        case 'setSettings':
+        case "setSettings":
             return {
                 ...state,
                 ...action.payload
@@ -27,14 +27,14 @@ const settingsReducer = (state, action) => {
 // Gets settings from storage & sets context
 const getSettings = (dispatch) => async () => {
     // Flavor
-    let flavor = await AsyncStorage.getItem('flavor') || DEFAULT_SETTINGS.flavor;
+    let flavor = await AsyncStorage.getItem("flavor") || DEFAULT_SETTINGS.flavor;
 
     // Hide Feed
-    let hideFeed = JSON.parse(await AsyncStorage.getItem('hideFeed')) || DEFAULT_SETTINGS.hideFeed;
+    let hideFeed = JSON.parse(await AsyncStorage.getItem("hideFeed")) || DEFAULT_SETTINGS.hideFeed;
     
     // Set context
     dispatch({
-        type: 'setSettings',
+        type: "setSettings",
         payload: {
             flavor,
             primaryColors: colors.flavors[flavor],
@@ -47,25 +47,25 @@ const getSettings = (dispatch) => async () => {
 
 const setFlavor = (dispatch) => async (newFlavor) => {
     dispatch({
-        type: 'setSettings',
+        type: "setSettings",
         payload: {
             flavor: newFlavor,
             primaryColors: colors.flavors[newFlavor],
         }
     });
 
-    await AsyncStorage.setItem('flavor', newFlavor);
+    await AsyncStorage.setItem("flavor", newFlavor);
 };
 
 const setHideFeed = (dispatch) => async (newHideFeed) => {
     dispatch({
-        type: 'setSettings',
+        type: "setSettings",
         payload: {
             hideFeed: newHideFeed
         }
     });
 
-    await AsyncStorage.setItem('hideFeed', JSON.stringify(newHideFeed));
+    await AsyncStorage.setItem("hideFeed", JSON.stringify(newHideFeed));
 };
 
 export const { Provider, Context } = createDataContext(

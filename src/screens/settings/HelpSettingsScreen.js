@@ -1,19 +1,19 @@
-import React from 'react';
-import * as Linking from 'expo-linking';
-import { Alert } from 'react-native';
+import React from "react";
+import * as Linking from "expo-linking";
+import { Alert } from "react-native";
 // Components
-import ScreenContainer from '../../components/ScreenContainer';
-import Header from '../../components/Header';
-import SettingsList from '../../components/settings/SettingsList';
+import ScreenContainer from "../../components/ScreenContainer";
+import Header from "../../components/Header";
+import SettingsList from "../../components/settings/SettingsList";
 
 const HelpSettingsScreen = () => {
 
     const settings = [
         {
-            title: 'Contact Support',
-            type: 'button',
+            title: "Contact Support",
+            type: "button",
             onPress: () => {
-                Linking.openURL('mailto: support@protosapps.com')
+                Linking.openURL("mailto: support@protosapps.com")
                 .catch(err => {
                     Alert.alert("Couldn't open email client", null);
                 })
@@ -24,7 +24,7 @@ const HelpSettingsScreen = () => {
     return (
         <ScreenContainer>
             <Header
-                title='Help'
+                title="Help"
             />
             <SettingsList
                 settings={settings}

@@ -2,15 +2,15 @@ import React, {
     useRef,
     useImperativeHandle,
     forwardRef
-} from 'react';
+} from "react";
 import {
     Animated,
     StyleSheet
-} from 'react-native';
+} from "react-native";
 // Icons
-import LikeIcon from '../../../assets/icons/Like-Fill.svg';
+import LikeIcon from "../../../assets/icons/Like-Fill.svg";
 // Constants
-import { colors } from '../../constants/constants';
+import { colors } from "../../constants/constants";
 
 const LikeAnimation = (props, ref) => {
     // Refs
@@ -65,7 +65,7 @@ const LikeAnimation = (props, ref) => {
                     {
                         rotate: progress.interpolate({
                             inputRange: [0, 0.5, 1],
-                            outputRange: ['0deg', '30deg', '0deg']
+                            outputRange: ["0deg", "30deg", "0deg"]
                         })
                     }
                 ],

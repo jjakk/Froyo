@@ -1,21 +1,21 @@
-import React from 'react';
+import React from "react";
 // Components
-import { Appearance, StyleSheet, View } from 'react-native';
-import { Text, Button } from '../components/froyo-elements';
-import ScreenContainer from '../components/ScreenContainer';
+import { Appearance, StyleSheet, View } from "react-native";
+import { Text, Button } from "../components/froyo-elements";
+import ScreenContainer from "../components/ScreenContainer";
 // Icons
-import NoWifiIcon from '../../assets/icons/NoWifi.svg';
+import NoWifiIcon from "../../assets/icons/NoWifi.svg";
 // Constants
-import { colors } from '../constants/constants';
+import { colors } from "../constants/constants";
 
 const NoWifiScreen = ({ navigation }) => {
     // Theme
     const theme = Appearance.getColorScheme();
-    const darkModeEnabled = theme === 'dark' ;
+    const darkModeEnabled = theme === "dark" ;
 
     // Event handlers
     const onReconnect = () => {
-        navigation.navigate('ResolveAuth');
+        navigation.navigate("ResolveAuth");
     }
 
     return (
@@ -33,7 +33,7 @@ const NoWifiScreen = ({ navigation }) => {
                     ]}>No Wifi</Text>
                 </View>
                 <Button
-                    title='Reconnect'
+                    title="Reconnect"
                     buttonStyle={styles.button}
                     onPress={onReconnect}
                 />
@@ -44,24 +44,24 @@ const NoWifiScreen = ({ navigation }) => {
 
 const styles = StyleSheet.create({
     container: {
-        alignItems: 'center',
-        justifyContent: 'center',
-        flexDirection: 'row'
+        alignItems: "center",
+        justifyContent: "center",
+        flexDirection: "row"
     },
     main: {
-        alignItems: 'center',
-        justifyContent: 'center',
+        alignItems: "center",
+        justifyContent: "center",
         marginBottom: 200,
     },
     label: {
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
+        flexDirection: "row",
+        justifyContent: "center",
+        alignItems: "center",
         margin: 50
     },
     text: {
         fontSize: 32,
-        fontFamily: 'Nunito-SemiBold'
+        fontFamily: "Nunito-SemiBold"
     },
     icon: {
         marginRight: 15

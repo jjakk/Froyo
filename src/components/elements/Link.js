@@ -1,6 +1,6 @@
-import React from 'react';
-import { TouchableOpacity, StyleSheet } from 'react-native';
-import Text from './Text';
+import React from "react";
+import { TouchableOpacity, StyleSheet } from "react-native";
+import Text from "./Text";
 
 
 const Link = (props) => {

@@ -1,13 +1,13 @@
-import React from 'react';
+import React from "react";
 // Components
 import {
     Appearance,
     StyleSheet,
     FlatList
-} from 'react-native';
-import SettingsItem from './SettingsItem';
+} from "react-native";
+import SettingsItem from "./SettingsItem";
 // Constants
-import { colors } from '../../constants/constants';
+import { colors } from "../../constants/constants";
 
 const SettingsList = ({ settings }) => {
     // Theme

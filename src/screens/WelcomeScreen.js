@@ -1,49 +1,49 @@
-import React from 'react';
-import { View, Image, StyleSheet, SafeAreaView, StatusBar } from 'react-native';
-import { Button, Text } from '../components/froyo-elements';
-import { LinearGradient } from 'expo-linear-gradient';
-import { colors } from '../constants/constants';
+import React from "react";
+import { View, Image, StyleSheet, SafeAreaView, StatusBar } from "react-native";
+import { Button, Text } from "../components/froyo-elements";
+import { LinearGradient } from "expo-linear-gradient";
+import { colors } from "../constants/constants";
 
 const WelcomeScreen = ({ navigation }) => {
     // Event Handlers
     const handleRefSignIn = () => {
-        navigation.navigate('SignIn')
+        navigation.navigate("SignIn")
     };
     const handleRefSignUp = () => {
-        navigation.navigate('SignUp')
+        navigation.navigate("SignUp")
     };
 
     return (  
         <LinearGradient
-            colors={['#37B899', '#41CA78']}
+            colors={["#37B899", "#41CA78"]}
             style={styles.container}
         >
             <StatusBar backgroundColor="#37B899" barStyle="light-content" />
             <SafeAreaView style={styles.container}>
                 <View style={styles.header}>
                     <Image
-                        source={require('../../assets/logo/Logo-White.png')}
+                        source={require("../../assets/logo/Logo-White.png")}
                         style={styles.logo}
                     />
                     <View style={styles.text}>
                         <Text style={styles.title}>Froyo</Text>
-                        <Text style={styles.subTitle}>The Minimalist{'\n'}Social Network</Text>
+                        <Text style={styles.subTitle}>The Minimalist{"\n"}Social Network</Text>
                     </View>
                 </View>
                 <View style={styles.authOptions}>
                     <Button
-                        title='Sign in'
-                        color='white'
-                        textColor='#41CA99'
-                        type='primary'
+                        title="Sign in"
+                        color="white"
+                        textColor="#41CA99"
+                        type="primary"
                         buttonStyle={styles.primary}
                         titleStyle={styles.primaryText}
                         onPress={handleRefSignIn}
                     />
                     <Button
-                        title='Sign up'
-                        color='white'
-                        type='secondary'
+                        title="Sign up"
+                        color="white"
+                        type="secondary"
                         buttonStyle={styles.secondary}
                         onPress={handleRefSignUp}
                     />
@@ -57,14 +57,14 @@ const WelcomeScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: 'center',
-        justifyContent: 'space-between'
+        alignItems: "center",
+        justifyContent: "space-between"
     },
     // Header
     header: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center',
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "center",
         marginTop: 100,
     },
     logo: {
@@ -73,17 +73,17 @@ const styles = StyleSheet.create({
         marginRight: 15
     },
     text: {
-        flexDirection: 'column'
+        flexDirection: "column"
     },
     title: {
-        color: 'white',
+        color: "white",
         fontSize: 42,
-        fontFamily: 'Nunito-Bold'
+        fontFamily: "Nunito-Bold"
     },
     subTitle: {
-        color: 'rgba(255, 255, 255, 0.6)',
+        color: "rgba(255, 255, 255, 0.6)",
         fontSize: 18,
-        fontFamily: 'Nunito',
+        fontFamily: "Nunito",
     },
     // Authentication Options
     authOptions: {

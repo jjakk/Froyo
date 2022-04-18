@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 // Componenets
 import {
     Appearance,
@@ -7,20 +7,20 @@ import {
     ImageBackground,
     TouchableOpacity,
     StyleSheet
-} from 'react-native';
+} from "react-native";
 import {
     Text,
     ImageSelect
-} from './froyo-elements';
+} from "./froyo-elements";
 // Constants
-import { colors } from '../constants/constants';
+import { colors } from "../constants/constants";
 // Icons
-import PlusIcon from '../../assets/icons/Plus.svg';
-import CloseIcon from '../../assets/icons/Close.svg';
+import PlusIcon from "../../assets/icons/Plus.svg";
+import CloseIcon from "../../assets/icons/Close.svg";
 
 const ImageUpload = (props) => {
     const theme = Appearance.getColorScheme();
-    const darkModeEnabled = theme === 'dark';
+    const darkModeEnabled = theme === "dark";
 
     // Props
     const {
@@ -83,7 +83,7 @@ const ImageUpload = (props) => {
 
 const styles = StyleSheet.create({
     container: {
-        flexDirection: 'row'
+        flexDirection: "row"
     },
     // Image upload
     imageUpload: {
@@ -99,8 +99,8 @@ const styles = StyleSheet.create({
     // Placeholder
     placeholder: {
         flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
+        alignItems: "center",
+        justifyContent: "center",
     },
     placeholderText: {
         marginTop: 5
@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
         flex: 1
     },
     close: {
-        alignSelf: 'flex-end',
+        alignSelf: "flex-end",
         marginTop: 15,
         marginRight: 15,
         opacity: 0.5,

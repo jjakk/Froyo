@@ -1,11 +1,11 @@
 import React, {
     useState,
     useEffect
-} from 'react';
+} from "react";
 // Context
-import { useUser } from '../../context/UserContext';
+import { useUser } from "../../context/UserContext";
 // Navigation
-import { navigate } from '../../navigation/navigationRef';
+import { navigate } from "../../navigation/navigationRef";
 // Components
 import {
     Appearance,
@@ -15,13 +15,13 @@ import {
     TouchableOpacity,
     TouchableWithoutFeedback,
     Alert
-} from 'react-native';
+} from "react-native";
 import {
     Button,
     Text
-} from '../froyo-elements';
+} from "../froyo-elements";
 // Constants
-import { BASE_URL, colors } from '../../constants/constants';
+import { BASE_URL, colors } from "../../constants/constants";
 
 const UserProfile = (props) => {
     // Context
@@ -52,11 +52,11 @@ const UserProfile = (props) => {
         ? {
             uri: `${BASE_URL}/images/${user.profile_picture_bucket_key}`
         }
-        : require('../../../assets/icons/guest.png')
+        : require("../../../assets/icons/guest.png")
     );
 
     // State
-    // Whether the current user's following the user being viewed
+    // Whether the current user"s following the user being viewed
     const [followingUser, setFollowingUser] = useState(false);
 
     const onFollow = async () => {
@@ -67,14 +67,14 @@ const UserProfile = (props) => {
     // Event handlers
     const onGetConnections = async () => {
         const connections = await getConnections(user.id);
-        navigate('Connections', { connections });
+        navigate("Connections", { connections });
     };
 
     const onEditProfile = () => {
-        navigate('AccountEdit');
+        navigate("AccountEdit");
     };
 
-    // Get following status whenever the user state changes (If viewing another user's profile)
+    // Get following status whenever the user state changes (If viewing another user"s profile)
     useEffect(() => {
         if(user.id !== signedInUser.id) {
             following(signedInUser.id, user.id)
@@ -96,7 +96,7 @@ const UserProfile = (props) => {
                     <View style={styles.header}>
                         <Image
                             style={styles.profilePicture}
-                            resizeMode='cover'
+                            resizeMode="cover"
                             source={profilePictureSource}
                         />
                         <View style={styles.headerText}>
@@ -126,7 +126,7 @@ const UserProfile = (props) => {
                                     styles.numbers,
                                     themeStyles[theme].text
                                 ]}>
-                                    {`${user.follower_count} Follower${user.follower_count === 1 ? '' : 's'}`}  {`${user.followee_count} Following`}
+                                    {`${user.follower_count} Follower${user.follower_count === 1 ? "" : "s"}`}  {`${user.followee_count} Following`}
                                 </Text>
                             </TouchableOpacity>
                         </View>
@@ -149,7 +149,7 @@ const UserProfile = (props) => {
                         <>
                         <View style={styles.actionButtonContainer}>
                             <Button
-                                title='Edit profile'
+                                title="Edit profile"
                                 pill
                                 titleStyle={styles.actionButtonText}
                                 onPress={onEditProfile}
@@ -158,8 +158,8 @@ const UserProfile = (props) => {
                         <View style={styles.gap}/>
                         <View  style={styles.actionButtonContainer}>
                             <Button
-                                title='Sign out'
-                                type='secondary'
+                                title="Sign out"
+                                type="secondary"
                                 pill
                                 titleStyle={styles.actionButtonText}
                                 onPress={signOut}
@@ -169,12 +169,12 @@ const UserProfile = (props) => {
                     ) : (
                         <View  style={styles.actionButtonContainer}>
                             <Button
-                                title={followingUser ? 'Unfollow' : 'Follow'}
+                                title={followingUser ? "Unfollow" : "Follow"}
                                 loading={loading}
                                 type={
-                                    loading ? 'primary'
+                                    loading ? "primary"
                                         : followingUser
-                                            ? 'secondary' : 'primary'
+                                            ? "secondary" : "primary"
                                 }
                                 pill
                                 titleStyle={styles.actionButtonText}
@@ -191,14 +191,14 @@ const UserProfile = (props) => {
 
 const styles = StyleSheet.create({
     container: {
-        flexDirection: 'column',
+        flexDirection: "column",
         padding: 20,
         borderBottomWidth: 1
     },
     // Profile
     header: {
-        flexDirection: 'row',
-        alignItems: 'center'
+        flexDirection: "row",
+        alignItems: "center"
     },
     headerText: {
         marginLeft: 15
@@ -218,8 +218,8 @@ const styles = StyleSheet.create({
         opacity: 0.75
     },
     numbers: {
-        flexDirection: 'row',
-        alignItems: 'center',
+        flexDirection: "row",
+        alignItems: "center",
         fontSize: 18,
         marginBottom: 5
     },
@@ -231,9 +231,9 @@ const styles = StyleSheet.create({
     },
     // Actions
     action: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center',
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "center",
         marginTop: 15
     },
     actionButtonContainer: {

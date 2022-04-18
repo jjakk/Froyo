@@ -1,11 +1,11 @@
-import React from 'react';
+import React from "react";
 // Components
-import { View, StyleSheet } from 'react-native';
-import { Text } from '../froyo-elements';
+import { View, StyleSheet } from "react-native";
+import { Text } from "../froyo-elements";
 
 const EmptyMessage = (props) => {
     const {
-        headerText='Nothing to show',
+        headerText="Nothing to show",
         subheaderText,
         style
     } = props;
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
         opacity: 0.7
     },
     text: {
-        textAlign: 'center'
+        textAlign: "center"
     },
     header: {
         fontSize: 26,

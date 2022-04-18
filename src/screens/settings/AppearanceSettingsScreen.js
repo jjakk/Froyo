@@ -1,18 +1,18 @@
-import React from 'react';
+import React from "react";
 import {
     Alert,
     Platform
-} from 'react-native';
-import * as Linking from 'expo-linking';
+} from "react-native";
+import * as Linking from "expo-linking";
 // Components
-import ScreenContainer from '../../components/ScreenContainer';
-import Header from '../../components/Header';
-import SettingsList from '../../components/settings/SettingsList';
+import ScreenContainer from "../../components/ScreenContainer";
+import Header from "../../components/Header";
+import SettingsList from "../../components/settings/SettingsList";
 // Context
-import { useSettings } from '../../context/SettingsContext';
+import { useSettings } from "../../context/SettingsContext";
 // Helper functions
-import { capitalize } from '../../helpers/str';
-import { colors } from '../../constants/constants';
+import { capitalize } from "../../helpers/str";
+import { colors } from "../../constants/constants";
 
 const AppearanceSettingsScreen = () => {
     // Context
@@ -27,23 +27,23 @@ const AppearanceSettingsScreen = () => {
 
     const settings = [
         {
-            title: 'Dark Mode',
-            type: 'button',
+            title: "Dark Mode",
+            type: "button",
             onPress: () => {
-                const message = `To set dark mode you must change your system theme${Platform.OS === 'ios' ? ' in settings under "Display & Brightness"' : ''}`;
+                const message = `To set dark mode you must change your system theme${Platform.OS === "ios" ? ' in settings under "Display & Brightness"' : ""}`;
                 Alert.alert(
                     message,
                     null,
-                    Platform.OS === 'ios' ? [
+                    Platform.OS === "ios" ? [
                         {
-                            text: 'Cancel',
-                            style: 'cancel'
+                            text: "Cancel",
+                            style: "cancel"
                             
                         },
                         {
-                            text: 'Open Settings',
+                            text: "Open Settings",
                             onPress: () => {
-                                Linking.openURL('App-prefs:root=DISPLAY&path=APPEARANCE_OPTIONS')
+                                Linking.openURL("App-prefs:root=DISPLAY&path=APPEARANCE_OPTIONS")
                             }
                         }
                     ] : null
@@ -51,8 +51,8 @@ const AppearanceSettingsScreen = () => {
             }
         },
         {
-            title: 'Flavor',
-            type: 'dropdown',
+            title: "Flavor",
+            type: "dropdown",
             value: capitalize(flavor),
             color: colors.flavors[flavor].MAIN,
             options: Object.keys(colors.flavors).map(fl => {
@@ -63,8 +63,8 @@ const AppearanceSettingsScreen = () => {
             })
         },
         {
-            title: 'Hide Feed',
-            type: 'toggle',
+            title: "Hide Feed",
+            type: "toggle",
             value: hideFeed,
             setValue: setHideFeed,
         }
@@ -73,7 +73,7 @@ const AppearanceSettingsScreen = () => {
     return (
         <ScreenContainer>
             <Header
-                title='Appearance'
+                title="Appearance"
             />
             <SettingsList
                 settings={settings}

@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 // Components
-import ScreenContainer from '../../components/ScreenContainer';
-import Header from '../../components/Header';
-import PostList from '../../components/content/PostList';
-import UserProfile from '../../components/users/UserProfile';
+import ScreenContainer from "../../components/ScreenContainer";
+import Header from "../../components/Header";
+import PostList from "../../components/content/PostList";
+import UserProfile from "../../components/users/UserProfile";
 // Context
-import { useUser } from '../../context/UserContext';
-import { useContent } from '../../context/ContentContext';
+import { useUser } from "../../context/UserContext";
+import { useContent } from "../../context/ContentContext";
 // Icons
-import GearIcon from '../../../assets/icons/Gear.svg';
+import GearIcon from "../../../assets/icons/Gear.svg";
 
 const AccountViewScreen = ({ navigation }) => {
     // Context
@@ -23,7 +23,7 @@ const AccountViewScreen = ({ navigation }) => {
     } = useContent();
 
     // Navigation Params
-    const passedUser = navigation.getParam('user') || signedInUser;
+    const passedUser = navigation.getParam("user") || signedInUser;
 
     // State
     const [user, setUser] = useState(passedUser);
@@ -39,14 +39,14 @@ const AccountViewScreen = ({ navigation }) => {
     );
 
     const onSettings = () => {
-        navigation.navigate('Settings');
+        navigation.navigate("Settings");
     };
 
     // Get user information & posts onload and onrefresh
     const retreiveUser = async () => {
         setLoading(true);
         setUser(await getUser(passedUser.id));
-        setPosts(await searchContent('post', { author_id: user.id }));
+        setPosts(await searchContent("post", { author_id: user.id }));
         setLoading(false);
     }
 

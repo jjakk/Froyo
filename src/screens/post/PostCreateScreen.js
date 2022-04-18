@@ -1,8 +1,8 @@
-import React from 'react';
+import React from "react";
 // Components
-import ScreenContainer from '../../components/ScreenContainer';
-import Header from '../../components/Header';
-import PostForm from '../../components/content/forms/PostForm';
+import ScreenContainer from "../../components/ScreenContainer";
+import Header from "../../components/Header";
+import PostForm from "../../components/content/forms/PostForm";
 
 const PostCreateScreen = (props) => {
     const {
@@ -13,10 +13,10 @@ const PostCreateScreen = (props) => {
         <ScreenContainer
         >
             <Header
-                title='Post'
+                title="Post"
             />
             <PostForm
-                type='create'
+                type="create"
                 {...props}
             />
         </ScreenContainer>

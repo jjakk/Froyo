@@ -4,7 +4,7 @@ import React, {
     useRef,
     useImperativeHandle,
     forwardRef
-} from 'react';
+} from "react";
 // Components
 import {
     Appearance,
@@ -12,16 +12,16 @@ import {
     View,
     FlatList,
     RefreshControl
-} from 'react-native';
-import { NavigationEvents } from 'react-navigation';
-import LoadingAnimation from '../animations/LoadingAnimation';
-import EmptyMessage from '../messages/EmptyMessage';
-import Post from './Post';
+} from "react-native";
+import { NavigationEvents } from "react-navigation";
+import LoadingAnimation from "../animations/LoadingAnimation";
+import EmptyMessage from "../messages/EmptyMessage";
+import Post from "./Post";
 // Context
-import { useUser } from '../../context/UserContext';
-import { useSettings } from '../../context/SettingsContext';
+import { useUser } from "../../context/UserContext";
+import { useSettings } from "../../context/SettingsContext";
 // Constants
-import { colors } from '../../constants/constants';
+import { colors } from "../../constants/constants";
 
 const PostList = (props, ref) => {
     // Refs
@@ -33,7 +33,7 @@ const PostList = (props, ref) => {
 
     // Theme
     const theme = Appearance.getColorScheme();
-    const darkModeEnabled = theme === 'dark' ;
+    const darkModeEnabled = theme === "dark" ;
 
     // Props
     const {
@@ -117,16 +117,16 @@ const PostList = (props, ref) => {
 
 const styles = StyleSheet.create({
     container: {
-        justifyContent: 'center',
-        flexDirection: 'row',
-        width: '100%',
+        justifyContent: "center",
+        flexDirection: "row",
+        width: "100%",
         flex: 1
     },
     emptyMessage: {
         marginTop: 50
     },
     postLoading: {
-        alignSelf: 'center',
+        alignSelf: "center",
         marginTop: 50
     }
 });

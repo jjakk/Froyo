@@ -1,6 +1,6 @@
-import React from 'react';
-import { View, StyleSheet } from 'react-native';
-import { colors } from '../../../constants/constants';
+import React from "react";
+import { View, StyleSheet } from "react-native";
+import { colors } from "../../../constants/constants";
 
 const LikenessBar = (props) => {
     const {
@@ -16,8 +16,8 @@ const LikenessBar = (props) => {
             borderTopRightRadius: 5,
             height: 5,
             backgroundColor: colors.light.SECOND,
-            flexDirection: 'row',
-            overflow: 'hidden'
+            flexDirection: "row",
+            overflow: "hidden"
         },
         like: {
             backgroundColor: colors.GREEN,

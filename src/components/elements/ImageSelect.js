@@ -1,11 +1,11 @@
-import React from 'react';
-import * as ImagePicker from 'expo-image-picker';
+import React from "react";
+import * as ImagePicker from "expo-image-picker";
 // Components
 import {
     StyleSheet,
     View,
     TouchableOpacity
-} from 'react-native';
+} from "react-native";
   
 const ImageUpload = (props) => {
 
@@ -60,7 +60,7 @@ const ImageUpload = (props) => {
 
 const styles = StyleSheet.create({
     container: {
-        overflow: 'hidden',
+        overflow: "hidden",
     }
 });
 

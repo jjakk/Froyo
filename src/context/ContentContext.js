@@ -1,10 +1,10 @@
-import { useContext } from 'react';
-import createDataContext from './createDataContext';
+import { useContext } from "react";
+import createDataContext from "./createDataContext";
 // API
-import froyoApi from '../api/froyo';
-import formRequest from '../api/formRequest';
+import froyoApi from "../api/froyo";
+import formRequest from "../api/formRequest";
 // Helper functions
-import { capitalize } from '../helpers/str';
+import { capitalize } from "../helpers/str";
 
 // Handle setting state
 const contentReducer = (state, action) => {
@@ -20,8 +20,8 @@ const createContent = () => async (contentType, info) => {
     if (!text || text.length < 1) throw new Error(`${capitalize(contentType)} body is required`);
     try{
         // Only use formRequest to handle file uploads (bandaid solution)
-        if (contentType === 'post') {
-            await formRequest('post', `/${contentType}s`, info);
+        if (contentType === "post") {
+            await formRequest("post", `/${contentType}s`, info);
         }
         else {
             await froyoApi.post(`/${contentType}s`, info);
@@ -39,8 +39,8 @@ const updateContent = () => async (contentType, id, info) => {
     if (!text || text.length < 1) throw new Error(`${capitalize(contentType)} body is required`);
     try{
         // Only use formRequest to handle file uploads (bandaid solution)
-        if (contentType === 'post') {
-            await formRequest('put', `/${contentType}s/${id}`, info);
+        if (contentType === "post") {
+            await formRequest("put", `/${contentType}s/${id}`, info);
         }
         else {
             await froyoApi.put(`/${contentType}s/${id}`, info);
@@ -79,7 +79,7 @@ const getComments = () => async (contentType, parentId) => {
     return comments;
 };
 
-// GET the user's personal feed
+// GET the user"s personal feed
 const getFeed = () => async () => {
     const { data: posts } = await froyoApi.get(`/feed`);
     return posts;

@@ -1,33 +1,33 @@
 import React, {
     useState,
     useEffect
-} from 'react';
+} from "react";
 import {
     Appearance,
     View,
     TouchableWithoutFeedback,
     StyleSheet,
     TouchableOpacity
-} from 'react-native';
-import * as Haptics from 'expo-haptics';
+} from "react-native";
+import * as Haptics from "expo-haptics";
 // Navigation
-import { navigate } from '../../navigation/navigationRef';
+import { navigate } from "../../navigation/navigationRef";
 // Components
-import { Text } from '../../components/froyo-elements';
+import { Text } from "../../components/froyo-elements";
 import {
     LikeButton,
     DislikeButton
-} from './parts/likeness-buttons';
-import ContentHeader from './parts/ContentHeader';
-import MoreOptions from './parts/MoreOptions';
-import LikenessBar from './parts/LikenessBar';
+} from "./parts/likeness-buttons";
+import ContentHeader from "./parts/ContentHeader";
+import MoreOptions from "./parts/MoreOptions";
+import LikenessBar from "./parts/LikenessBar";
 // Context
-import { useUser} from '../../context/UserContext';
-import { useContent } from '../../context/ContentContext';
+import { useUser} from "../../context/UserContext";
+import { useContent } from "../../context/ContentContext";
 // Constants
-import { colors, sizes } from '../../constants/constants';
+import { colors, sizes } from "../../constants/constants";
 // Icons
-import ReplyIcon from '../../../assets/icons/Reply.svg';
+import ReplyIcon from "../../../assets/icons/Reply.svg";
 
 const Comment = (props) => {
     // Context
@@ -50,19 +50,19 @@ const Comment = (props) => {
 
     // Event handlers
     const onHeaderPress = () => {
-        navigate('AccountView', { user: comment.author });
+        navigate("AccountView", { user: comment.author });
     };
 
     const onLike = async () => {
-        setComment(await likeContent('comment', comment.id));
+        setComment(await likeContent("comment", comment.id));
     };
 
     const onDislike = async () => {
-        setComment(await dislikeContent('comment', comment.id));
+        setComment(await dislikeContent("comment", comment.id));
     };
 
     const onReply = () => {
-        navigate('CommentCreate', { parentId: comment.id });
+        navigate("CommentCreate", { parentId: comment.id });
     };
 
     const onCollapse = () => {
@@ -162,15 +162,15 @@ const styles = StyleSheet.create({
     },
     // Action bar
     actions: {
-        flexDirection: 'row',
-        alignSelf: 'flex-end',
-        alignItems: 'center',
-        justifyContent: 'center',
+        flexDirection: "row",
+        alignSelf: "flex-end",
+        alignItems: "center",
+        justifyContent: "center",
     },
     // Reply
     reply: {
-        flexDirection: 'row',
-        alignItems: 'center',
+        flexDirection: "row",
+        alignItems: "center",
         marginHorizontal: 5,
     },
     replyText: {
@@ -183,8 +183,8 @@ const styles = StyleSheet.create({
         marginRight: 5,
     },
     likeness: {
-        flexDirection: 'row',
-        alignItems: 'center',
+        flexDirection: "row",
+        alignItems: "center",
         margin: 10
     },
     dislike: {

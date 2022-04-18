@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 // Components
 import {
     Appearance,
@@ -6,20 +6,20 @@ import {
     Keyboard,
     View,
     Alert
-} from 'react-native';
-import { NavigationEvents } from 'react-navigation';
+} from "react-native";
+import { NavigationEvents } from "react-navigation";
 import {
     Input,
     TouchableIcon
-} from '../../froyo-elements';
-import ImageUpload from '../../ImageUpload';
+} from "../../froyo-elements";
+import ImageUpload from "../../ImageUpload";
 // Constants
-import { BASE_URL, colors } from '../../../constants/constants';
+import { BASE_URL, colors } from "../../../constants/constants";
 // Icons
-import SendIcon from '../../../../assets/icons/Send.svg';
+import SendIcon from "../../../../assets/icons/Send.svg";
 // Context
-import { useContent } from '../../../context/ContentContext';
-import { useSettings } from '../../../context/SettingsContext';
+import { useContent } from "../../../context/ContentContext";
+import { useSettings } from "../../../context/SettingsContext";
 
 const PostForm = (props) => {
     // Context
@@ -45,7 +45,7 @@ const PostForm = (props) => {
         : null
 
     // State
-    const [text, setText] = useState(passedText || '');
+    const [text, setText] = useState(passedText || "");
     const [images, setImages] = useState(passedImages || []);
     const [loading, setLoading] = useState(false);
 
@@ -55,15 +55,15 @@ const PostForm = (props) => {
             Keyboard.dismiss()
             setLoading(true);
             switch(type){
-                case 'create':
-                    await createContent('post', { text, images });
+                case "create":
+                    await createContent("post", { text, images });
                     break;
-                case 'edit':
-                    await updateContent('post', data.id, { text, images });
+                case "edit":
+                    await updateContent("post", data.id, { text, images });
                     break;
             }  
             // Clear form data
-            setText('');
+            setText("");
             setImages([]);
             navigation.pop();
         }
@@ -95,7 +95,7 @@ const PostForm = (props) => {
                 <Input
                     style={styles.textbox}
                     multiline
-                    placeholder='Type here...'
+                    placeholder="Type here..."
                     value={text}
                     onChangeText={setText}
                 />
@@ -124,9 +124,9 @@ const styles = StyleSheet.create({
     },
     body: {
         padding: 25,
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center',
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "center",
     },
     // Text input
     textbox: {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 // Components
 import {
     Appearance,
@@ -6,17 +6,17 @@ import {
     View,
     TouchableOpacity,
     Image,
-} from 'react-native';
+} from "react-native";
 import {
     Text,
     TouchableIcon
-} from './froyo-elements';
+} from "./froyo-elements";
 // Navigation
-import { navigateBack } from '../navigation/navigationRef';
+import { navigateBack } from "../navigation/navigationRef";
 // Icons
-import BackIcon from '../../assets/icons/Back.svg';
+import BackIcon from "../../assets/icons/Back.svg";
 // Constants
-import { colors, sizes } from '../constants/constants';
+import { colors, sizes } from "../constants/constants";
 
 const Header = (props) => {
     const theme = Appearance.getColorScheme();
@@ -112,13 +112,13 @@ const styles = StyleSheet.create({
     header: {
         padding: 20,
         borderBottomWidth: 1,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center'
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "center"
     },
     title: {
         fontSize: 28,
-        alignSelf: 'center',
+        alignSelf: "center",
     }
 });
 

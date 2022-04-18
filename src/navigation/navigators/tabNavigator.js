@@ -1,18 +1,18 @@
-import React from 'react';
-import { createBottomTabNavigator } from 'react-navigation-tabs';
+import React from "react";
+import { createBottomTabNavigator } from "react-navigation-tabs";
 // Screens
-import PostFeedScreen from '../../screens/post/PostFeedScreen';
-import MeetupFeedScreen from '../../screens/meetup/MeetupFeedScreen';
+import PostFeedScreen from "../../screens/post/PostFeedScreen";
+import MeetupFeedScreen from "../../screens/meetup/MeetupFeedScreen";
 // Navigators
-import searchNavigator from './searchNavigator';
+import searchNavigator from "./searchNavigator";
 // Context
-import { useSettings } from '../../context/SettingsContext';
+import { useSettings } from "../../context/SettingsContext";
 // Icons
-import MeetupIcon from '../../../assets/icons/Meetup.svg';
-import HomeIcon from '../../../assets/icons/Home.svg';
-import SearchIcon from '../../../assets/icons/Search.svg';
+import MeetupIcon from "../../../assets/icons/Meetup.svg";
+import HomeIcon from "../../../assets/icons/Home.svg";
+import SearchIcon from "../../../assets/icons/Search.svg";
 // Constants
-import { sizes } from '../../constants/constants';
+import { sizes } from "../../constants/constants";
 
 const IconRender = ({ Icon, focused, tintColor }) => {
     const { state: { primaryColors } } = useSettings();
@@ -74,7 +74,7 @@ const tabNavigator = (hideFeed) => createBottomTabNavigator(hideFeed ? screens :
             height: 60
         }
     },
-    initialRouteName: 'MeetupFeed'
+    initialRouteName: "MeetupFeed"
 });
 
 export default tabNavigator;

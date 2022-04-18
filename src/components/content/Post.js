@@ -2,39 +2,39 @@ import React, {
     useState,
     useEffect,
     useRef
-} from 'react';
+} from "react";
 // Components
 import {
     Appearance,
     View,
     StyleSheet,
     TouchableWithoutFeedback
-} from 'react-native';
-import MultiTap from 'react-native-multitap';
+} from "react-native";
+import MultiTap from "react-native-multitap";
 import {
     Text,
     TouchableIcon,
     ImageList
-} from '../froyo-elements';
+} from "../froyo-elements";
 import {
     LikeButton,
     DislikeButton
-} from './parts/likeness-buttons';
-import ContentHeader from './parts/ContentHeader';
-import LikenessBar from './parts/LikenessBar';
-import LikeAnimation from '../animations/LikeAnimation';
+} from "./parts/likeness-buttons";
+import ContentHeader from "./parts/ContentHeader";
+import LikenessBar from "./parts/LikenessBar";
+import LikeAnimation from "../animations/LikeAnimation";
 // Navigation
-import { navigate } from '../../navigation/navigationRef';
+import { navigate } from "../../navigation/navigationRef";
 // Contexts
-import { useUser } from '../../context/UserContext';
-import { useContent } from '../../context/ContentContext';
+import { useUser } from "../../context/UserContext";
+import { useContent } from "../../context/ContentContext";
 // Icons
-import CommentIcon from '../../../assets/icons/Comment.svg';
+import CommentIcon from "../../../assets/icons/Comment.svg";
 // Constants
 import {
     colors,
     sizes
-} from '../../constants/constants';
+} from "../../constants/constants";
 
 // Post props & their meanings
 // ___________________________
@@ -69,25 +69,25 @@ const Post = (props) => {
 
     // Event handlers
     const onHeaderPress = () => {
-        navigate('AccountView', { user: post.author });
+        navigate("AccountView", { user: post.author });
     };
 
     const onViewPost = () => {
         if (!commentsButtonDisabled) {
-            navigate('PostView', { post });
+            navigate("PostView", { post });
         }
     };
 
     const onLike = async () => {
-        setPost(await likeContent('post', post.id));
+        setPost(await likeContent("post", post.id));
     };
 
     const onDislike = async () => {
-        setPost(await dislikeContent('post', post.id));
+        setPost(await dislikeContent("post", post.id));
     };
 
     const onDoubleTap = () => {
-        // Like post and show like animtion on double tap if you're not already liking it
+        // Like post and show like animtion on double tap if you"re not already liking it
         if (!post.liking) {
             onLike();
             likeAnimationRef.current.fire();
@@ -180,15 +180,15 @@ const styles = StyleSheet.create({
     },
     // Actions
     actions: {
-        flexDirection: 'row',
-        justifyContent: 'flex-start',
+        flexDirection: "row",
+        justifyContent: "flex-start",
         margin: 15,
         marginTop: 0,
         marginBottom: 0,
-        alignItems: 'center'
+        alignItems: "center"
     },
     likeness: {
-        flexDirection: 'row',
+        flexDirection: "row",
         marginLeft: 15,
         marginRight: 15,
         marginBottom: 10
@@ -202,11 +202,11 @@ const styles = StyleSheet.create({
         marginBottom: 15
     },
     imageContainer: {
-        justifyContent: 'center'
+        justifyContent: "center"
     },
     likeAnimation: {
-        position: 'absolute',
-        alignSelf: 'center',
+        position: "absolute",
+        alignSelf: "center",
     }
 });
 

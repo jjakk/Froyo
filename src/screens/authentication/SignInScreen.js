@@ -1,26 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 // Components
 import {
     View,
     StyleSheet,
     Keyboard,
     Alert
-} from 'react-native';
+} from "react-native";
 import {
     Button,
     Text,
     Input,
     Link
-} from '../../components/froyo-elements';
-import ScreenContainer from '../../components/ScreenContainer';
+} from "../../components/froyo-elements";
+import ScreenContainer from "../../components/ScreenContainer";
 // Context
-import { useUser } from '../../context/UserContext';
+import { useUser } from "../../context/UserContext";
 
 const SignInScreen = ({ navigation }) => {
     const { signIn } = useUser();
     // Sign in feilds
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
     // Status states
     const [loading, setLoading] = useState(false);
 
@@ -39,13 +39,13 @@ const SignInScreen = ({ navigation }) => {
         finally {
             setLoading(false);
             if (formSuccess) {
-                navigation.navigate('ResolveAuth');
+                navigation.navigate("ResolveAuth");
             }
         }
     };
 
     const handleRefSignUp = () => {
-        navigation.navigate('SignUp')
+        navigation.navigate("SignUp")
     };
 
     return (
@@ -54,26 +54,26 @@ const SignInScreen = ({ navigation }) => {
                 <Text style={styles.header}>Sign in</Text>
                 <Input
                     style={styles.input}
-                    placeholder='Email'
+                    placeholder="Email"
                     autoCorrect={false}
-                    autoCapitalize='none'
+                    autoCapitalize="none"
                     onChangeText={setEmail}
                 />
                 <View>
-                    <Input style={styles.input} placeholder='Password' onChangeText={setPassword} secureTextEntry />
-                    <Link color='#41CA99' style={styles.forgotPassword} onPress={() => navigation.navigate('ResetPassword')}>Forgot password?</Link>
+                    <Input style={styles.input} placeholder="Password" onChangeText={setPassword} secureTextEntry />
+                    <Link color="#41CA99" style={styles.forgotPassword} onPress={() => navigation.navigate("ResetPassword")}>Forgot password?</Link>
                 </View>
                 <Button
-                    title='Sign in'
-                    type='primary'
+                    title="Sign in"
+                    type="primary"
                     loading={loading}
                     buttonStyle={styles.submit}
                     onPress={handleSubmit}
                 />
                 <View style={styles.bottomText}>
-                    <Text style={styles.linkLabel}>Don't have an account?</Text>
+                    <Text style={styles.linkLabel}>Don"t have an account?</Text>
                     <Link
-                        color='#41CA99'
+                        color="#41CA99"
                         onPress={handleRefSignUp}
                     >
                         Sign up
@@ -90,8 +90,8 @@ SignInScreen.navigationOptions = {
 
 const styles = StyleSheet.create({
     form: {
-        alignItems: 'center',
-        justifyContent: 'center',
+        alignItems: "center",
+        justifyContent: "center",
         marginTop: 100
     },
     header: {
@@ -115,8 +115,8 @@ const styles = StyleSheet.create({
     // Bottom text
     bottomText: {
         margin: 10,
-        alignItems: 'center',
-        justifyContent: 'center'
+        alignItems: "center",
+        justifyContent: "center"
     },
     linkLabel: {
         fontSize: 18

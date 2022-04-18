@@ -1,11 +1,11 @@
-import React from 'react';
+import React from "react";
 // Components
-import { TouchableWithoutFeedback } from 'react-native';
-import { TouchableIcon } from './froyo-elements';
+import { TouchableWithoutFeedback } from "react-native";
+import { TouchableIcon } from "./froyo-elements";
 // Icons
-import CreateIcon from '../../assets/icons/Create.svg';
+import CreateIcon from "../../assets/icons/Create.svg";
 // Context
-import { useSettings } from '../context/SettingsContext';
+import { useSettings } from "../context/SettingsContext";
 
 const CreateButton = (props) => {
     // Context

@@ -1,31 +1,31 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 // Components
 import {
     View,
     Keyboard,
     StyleSheet,
     Alert,
-} from 'react-native';
+} from "react-native";
 import {
     Text,
     Input,
     Button
-} from '../../../components/froyo-elements';
-import Header from '../../../components/Header';
-import ScreenContainer from '../../../components/ScreenContainer';
+} from "../../../components/froyo-elements";
+import Header from "../../../components/Header";
+import ScreenContainer from "../../../components/ScreenContainer";
 // Context
-import { useUser } from '../../../context/UserContext';
+import { useUser } from "../../../context/UserContext";
 
 const SignUpTwoScreen = ({ navigation }) => {
     // Form params from previous screen
-    const email = navigation.getParam('email');
-    const username = navigation.getParam('username');
-    const dob = navigation.getParam('dob');
-    // This screen's form params
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
-    const [password, setPassword] = useState('');
-    const [passwordConfirm, setPasswordConfirm] = useState('');
+    const email = navigation.getParam("email");
+    const username = navigation.getParam("username");
+    const dob = navigation.getParam("dob");
+    // This screen"s form params
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [password, setPassword] = useState("");
+    const [passwordConfirm, setPasswordConfirm] = useState("");
     // Status states
     const [loading, setLoading] = useState(false);
     // Context values & functions
@@ -53,7 +53,7 @@ const SignUpTwoScreen = ({ navigation }) => {
         finally {
             setLoading(false);
             if (formSuccess) {
-                navigation.navigate('ResolveAuth');
+                navigation.navigate("ResolveAuth");
             }
         }
     };
@@ -65,31 +65,31 @@ const SignUpTwoScreen = ({ navigation }) => {
                 <Text style={styles.header}>Sign up</Text>
                 <Input
                     style={styles.input}
-                    placeholder='First name'
+                    placeholder="First name"
                     autoCorrect={false}
                     onChangeText={setFirstName}
                 />
                 <Input
                     style={styles.input}
-                    placeholder='Last name'
+                    placeholder="Last name"
                     autoCorrect={false}
                     onChangeText={setLastName}
                 />
                 <Input
                     style={styles.input}
-                    placeholder='Password'
+                    placeholder="Password"
                     onChangeText={setPassword}
                     secureTextEntry
                 />
                 <Input
                     style={styles.input}
-                    placeholder='Confirm Password'
+                    placeholder="Confirm Password"
                     onChangeText={setPasswordConfirm}
                     secureTextEntry
                 />
                 <Button
-                    title='Sign up'
-                    type='primary'
+                    title="Sign up"
+                    type="primary"
                     loading={loading}
                     buttonStyle={styles.submit}
                     containerStyle={styles.submitContainer}
@@ -109,8 +109,8 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     auth: {
-        alignItems: 'center',
-        justifyContent: 'center',
+        alignItems: "center",
+        justifyContent: "center",
         marginTop: 25,
         paddingBottom: 250
     },
@@ -129,12 +129,12 @@ const styles = StyleSheet.create({
         margin: 10
     },
     error: {
-        color: '#FB1C1C',
+        color: "#FB1C1C",
         opacity: 0.5,
         marginTop: 25,
         fontSize: 22,
         width: 300,
-        textAlign: 'center'
+        textAlign: "center"
     },
     back: {
         margin: 25

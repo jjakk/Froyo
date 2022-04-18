@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 // Components
 import {
     StyleSheet,
@@ -6,14 +6,14 @@ import {
     View,
     Image,
     TouchableOpacity
-} from 'react-native';
+} from "react-native";
 import {
     Text
-} from '../froyo-elements';
+} from "../froyo-elements";
 // Constants
-import { BASE_URL, colors } from '../../constants/constants';
+import { BASE_URL, colors } from "../../constants/constants";
 // Navigation
-import { navigate } from '../../navigation/navigationRef';
+import { navigate } from "../../navigation/navigationRef";
 
 const UserPreview = (props) => {
     // Theme
@@ -38,12 +38,12 @@ const UserPreview = (props) => {
         ? {
             uri: `${BASE_URL}/images/${profile_picture_bucket_key}`
         }
-        : require('../../../assets/icons/guest.png')
+        : require("../../../assets/icons/guest.png")
     );
 
     // Event handlers
     const onPress = () => {
-        navigate('AccountView', { user });
+        navigate("AccountView", { user });
     };
 
     return (

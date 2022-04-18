@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 // Components
 import {
     Appearance,
@@ -9,15 +9,15 @@ import {
     Platform,
     View,
     StatusBar
-} from 'react-native';
-import { NavigationEvents } from 'react-navigation';
-import { SafeAreaView } from 'react-native-safe-area-context';
+} from "react-native";
+import { NavigationEvents } from "react-navigation";
+import { SafeAreaView } from "react-native-safe-area-context";
 // Constants
-import { colors } from '../constants/constants';
+import { colors } from "../constants/constants";
 
 const ScreenContainer = (props) => {
     const theme = Appearance.getColorScheme();
-    const darkModeEnabled = theme === 'dark' ;
+    const darkModeEnabled = theme === "dark" ;
 
     // Props
     const {
@@ -32,8 +32,8 @@ const ScreenContainer = (props) => {
         ),
         statusBarStyle=(
             darkModeEnabled
-                ? 'light-content'
-                : 'dark-content'
+                ? "light-content"
+                : "dark-content"
         ),
         ...restOfProps
     } = props;
@@ -49,7 +49,7 @@ const ScreenContainer = (props) => {
                 barStyle={statusBarStyle}
             />
             <SafeAreaView
-                edges={['top']}
+                edges={["top"]}
                 style={[
                     styles.container,
                     themeStyles[theme].container,
@@ -66,8 +66,8 @@ const ScreenContainer = (props) => {
                     onPress={Keyboard.dismiss}
                 >
                     <KeyboardAvoidingView
-                        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-                        keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : 50}
+                        behavior={Platform.OS === "ios" ? "padding" : "height"}
+                        keyboardVerticalOffset={Platform.OS === "ios" ? 0 : 50}
                         style={[
                             styles.container,
                             themeStyles[theme].container,
@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
         flex: 1
     },
     error: {
-        position: 'absolute',
+        position: "absolute",
         bottom: 0,
         margin: 25
     }

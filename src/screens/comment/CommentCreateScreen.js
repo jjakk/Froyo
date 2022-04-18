@@ -1,8 +1,8 @@
-import React from 'react';
+import React from "react";
 // Components
-import ScreenContainer from '../../components/ScreenContainer';
-import Header from '../../components/Header';
-import CommentForm from '../../components/content/forms/CommentForm';
+import ScreenContainer from "../../components/ScreenContainer";
+import Header from "../../components/Header";
+import CommentForm from "../../components/content/forms/CommentForm";
 
 const CommentEditScreen = (props) => {
     // Props
@@ -10,12 +10,12 @@ const CommentEditScreen = (props) => {
         navigation,
     } = props;
 
-    const parentId = navigation.getParam('parentId');
+    const parentId = navigation.getParam("parentId");
 
     return (
         <ScreenContainer>
             <Header
-                title='Comment'
+                title="Comment"
             />
             <CommentForm
                 data={{ parent_id: parentId }}

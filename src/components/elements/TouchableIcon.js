@@ -1,18 +1,18 @@
-import React from 'react';
+import React from "react";
 // Components
 import {
     Appearance,
     StyleSheet,
     TouchableOpacity
-} from 'react-native';
-import LoadingAnimation from '../animations/LoadingAnimation';
+} from "react-native";
+import LoadingAnimation from "../animations/LoadingAnimation";
 // Constants
-import { colors } from '../../constants/constants';
+import { colors } from "../../constants/constants";
 
 const TouchableIcon = (props) => {
     // Theme
     const theme = Appearance.getColorScheme();
-    const darkModeEnabled = theme === 'dark' ;
+    const darkModeEnabled = theme === "dark" ;
 
     // Props
     const {
@@ -51,7 +51,7 @@ const TouchableIcon = (props) => {
 
 const styles = StyleSheet.create({
     loading: {
-        alignSelf: 'center',
+        alignSelf: "center",
     }
 });
 

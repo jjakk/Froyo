@@ -1,12 +1,12 @@
 import {
     createStackNavigator,
     TransitionPresets
-} from 'react-navigation-stack';
+} from "react-navigation-stack";
 // Screens
-import SignInScreen from '../../screens/authentication/SignInScreen';
-import ResetPasswordScreen from '../../screens/authentication/ResetPasswordScreen';
+import SignInScreen from "../../screens/authentication/SignInScreen";
+import ResetPasswordScreen from "../../screens/authentication/ResetPasswordScreen";
 // Navigators
-import signUpNavigator from './signUpNavigator';
+import signUpNavigator from "./signUpNavigator";
 
 // The navigator organizes the authentication screens
 const authNavigator = createStackNavigator({
@@ -19,7 +19,7 @@ const authNavigator = createStackNavigator({
     },
     ResetPassword: ResetPasswordScreen
     }, {
-        headerMode: 'none',
+        headerMode: "none",
         defaultNavigationOptions: {
             ...TransitionPresets.SlideFromRightIOS,
     }

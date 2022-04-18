@@ -1,8 +1,8 @@
-import React from 'react';
+import React from "react";
 // Components
-import ScreenContainer from '../../components/ScreenContainer';
-import Header from '../../components/Header';
-import PostForm from '../../components/content/forms/PostForm';
+import ScreenContainer from "../../components/ScreenContainer";
+import Header from "../../components/Header";
+import PostForm from "../../components/content/forms/PostForm";
 
 const PostEditScreen = (props) => {
     // Props
@@ -11,16 +11,16 @@ const PostEditScreen = (props) => {
     } = props;
 
     // Navigation Data
-    const postData = navigation.getParam('data');
+    const postData = navigation.getParam("data");
 
     return (
         <ScreenContainer>
             <Header
-                title='Comment'
+                title="Comment"
             />
             <PostForm
                 data={postData}
-                type='edit'
+                type="edit"
                 {...props}
             />
         </ScreenContainer>

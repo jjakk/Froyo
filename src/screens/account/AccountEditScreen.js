@@ -1,24 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 // Components
 import {
     StyleSheet,
     View,
     ImageBackground,
     Alert
-} from 'react-native';
+} from "react-native";
 import {
     Button,
     Input,
     ImageSelect,
-} from '../../components/froyo-elements';
-import ScreenContainer from '../../components/ScreenContainer';
-import Header from '../../components/Header';
+} from "../../components/froyo-elements";
+import ScreenContainer from "../../components/ScreenContainer";
+import Header from "../../components/Header";
 // Icons
-import UploadIcon from '../../../assets/icons/Upload.svg';
+import UploadIcon from "../../../assets/icons/Upload.svg";
 // Context
-import { useUser } from '../../context/UserContext';
+import { useUser } from "../../context/UserContext";
 // Constants
-import { BASE_URL, colors } from '../../constants/constants';
+import { BASE_URL, colors } from "../../constants/constants";
 
 const AccountEditScreen = ({ navigation }) => {
     const { updateUser, state: { user } } = useUser();
@@ -26,7 +26,7 @@ const AccountEditScreen = ({ navigation }) => {
     const [firstName, setFirstName] = useState(user.first_name);
     const [lastName, setLastName] = useState(user.last_name);
     const [username, setUsername] = useState(user.username);
-    const [description, setDescription] = useState(user.description || '');
+    const [description, setDescription] = useState(user.description || "");
     const [image, setImage] = useState(null);
     // Status states
     const [loading, setLoading] = useState(false);
@@ -49,7 +49,7 @@ const AccountEditScreen = ({ navigation }) => {
                 ? {
                     uri: `${BASE_URL}/images/${user.profile_picture_bucket_key}`
                 }
-                : require('../../../assets/icons/guest.png')
+                : require("../../../assets/icons/guest.png")
             )
     );
 
@@ -101,7 +101,7 @@ const AccountEditScreen = ({ navigation }) => {
                     <View style={[styles.field, styles.nameInputs]}>
                         <View style={styles.nameInputContainer}>
                             <Input
-                                placeholder='First'
+                                placeholder="First"
                                 value={firstName}
                                 onChangeText={setFirstName}
                             />
@@ -109,7 +109,7 @@ const AccountEditScreen = ({ navigation }) => {
                         <View style={styles.gap}></View>
                         <View style={styles.nameInputContainer}>
                             <Input
-                                placeholder='Last'
+                                placeholder="Last"
                                 value={lastName}
                                 onChangeText={setLastName}
                             />
@@ -117,7 +117,7 @@ const AccountEditScreen = ({ navigation }) => {
                     </View>
                     <Input
                         style={styles.field}
-                        placeholder='Username'
+                        placeholder="Username"
                         value={username}
                         onChangeText={setUsername}
                     />
@@ -126,13 +126,13 @@ const AccountEditScreen = ({ navigation }) => {
                         textStyle={styles.descriptionText}
                         multiline
                         numberOfLines={4}
-                        placeholder='Description'
+                        placeholder="Description"
                         value={description}
                         onChangeText={setDescription}
                     />
                 </View>
                 <Button
-                    title='Save'
+                    title="Save"
                     loading={loading}
                     disabled={formUnchanged}
                     containerStyle={styles.submit}
@@ -146,7 +146,7 @@ const AccountEditScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
     form: {
         marginTop: 25,
-        justifyContent: 'center',
+        justifyContent: "center",
     },
     label: {
         fontSize: 28,
@@ -168,13 +168,13 @@ const styles = StyleSheet.create({
     },
     // Profile Picture Upload Button
     imageSelect: {
-        alignSelf: 'center',
+        alignSelf: "center",
         borderRadius: 100
     },
     profilePicture: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        alignSelf: 'center',
+        justifyContent: "center",
+        alignItems: "center",
+        alignSelf: "center",
         width: 100,
         height: 100
     },
@@ -186,17 +186,17 @@ const styles = StyleSheet.create({
         height: 100,
         backgroundColor: colors.GRAY,
         borderRadius: 100,
-        alignItems: 'center',
-        justifyContent: 'center',
-        position: 'absolute',
+        alignItems: "center",
+        justifyContent: "center",
+        position: "absolute",
         opacity: 0.5
     },
     // Input Fields
     // Name
     nameInputs: {
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
+        flexDirection: "row",
+        justifyContent: "center",
+        alignItems: "center",
     },
     nameInputContainer: {
         flex: 1
@@ -207,12 +207,12 @@ const styles = StyleSheet.create({
     // Description
     description: {
         height: 175,
-        textAlignVertical: 'top'
+        textAlignVertical: "top"
     },
     descriptionText: {
-        justifyContent: 'flex-start',
-        alignSelf: 'stretch',
-        textAlignVertical: 'top'
+        justifyContent: "flex-start",
+        alignSelf: "stretch",
+        textAlignVertical: "top"
     }
 });
 

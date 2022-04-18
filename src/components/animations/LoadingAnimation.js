@@ -9,11 +9,11 @@ import {
     Easing
 } from "react-native";
 // Context
-import { useSettings } from '../../context/SettingsContext';
+import { useSettings } from "../../context/SettingsContext";
 // Icons
-import LoadingIcon from '../../../assets/animation-icons/loading.svg';
+import LoadingIcon from "../../../assets/animation-icons/loading.svg";
 // Constants
-import { colors } from '../../constants/constants';
+import { colors } from "../../constants/constants";
 
 const LoadingAnimation = (props) => {
     // Context
@@ -21,7 +21,7 @@ const LoadingAnimation = (props) => {
 
     // Theme
     const theme = Appearance.getColorScheme();
-    const darkModeEnabled = theme === 'dark';
+    const darkModeEnabled = theme === "dark";
 
     // Refs
     const spinAnimation = useRef(new Animated.Value(0)).current;
@@ -53,7 +53,7 @@ const LoadingAnimation = (props) => {
 
   const spin = spinAnimation.interpolate({
     inputRange: [0, 1],
-    outputRange: ['0deg', '360deg']
+    outputRange: ["0deg", "360deg"]
   })
 
   const styles = StyleSheet.create({

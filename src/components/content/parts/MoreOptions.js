@@ -1,24 +1,24 @@
-import React from 'react';
-import { View, } from 'react-native';
-import { TouchableIcon } from '../../froyo-elements';
-import OptionsMenu from 'react-native-option-menu';
+import React from "react";
+import { View, } from "react-native";
+import { TouchableIcon } from "../../froyo-elements";
+import OptionsMenu from "react-native-option-menu";
 // Navigation
-import { navigate } from '../../../navigation/navigationRef';
+import { navigate } from "../../../navigation/navigationRef";
 // Helper functions
-import confirmAlert from '../../../helpers/confirmAlert';
+import confirmAlert from "../../../helpers/confirmAlert";
 // Contexts
-import { useUser } from '../../../context/UserContext';
-import { useContent } from '../../../context/ContentContext';
+import { useUser } from "../../../context/UserContext";
+import { useContent } from "../../../context/ContentContext";
 // Icons
-import MoreOptionsIcon from '../../../../assets/icons/MoreSettings.svg';
-import TrashIcon from '../../../../assets/icons/Trash.svg';
-import PenIcon from '../../../../assets/icons/Pen.svg';
+import MoreOptionsIcon from "../../../../assets/icons/MoreSettings.svg";
+import TrashIcon from "../../../../assets/icons/Trash.svg";
+import PenIcon from "../../../../assets/icons/Pen.svg";
 
 // Constants
 import {
     colors,
     sizes
-} from '../../../constants/constants';
+} from "../../../constants/constants";
 
 const MoreOptions = (props) => {
     const { state: { user } } = useUser();
@@ -27,7 +27,7 @@ const MoreOptions = (props) => {
         content,
         onDelete
     } = props;
-    const contentType = !content.parent_id ? 'Post' : 'Comment';
+    const contentType = !content.parent_id ? "Post" : "Comment";
 
     // Default functions for edit button
     const onEdit = () => {
@@ -50,24 +50,24 @@ const MoreOptions = (props) => {
 
     // More options menu items
     const options = [
-        // Only show these options if it's your own content
+        // Only show these options if it"s your own content
         ...(content.author.id === user.id ? [
             {
-                label: 'Edit',
+                label: "Edit",
                 onSelect: onEdit,
                 Icon: PenIcon,
-                color: 'black'
+                color: "black"
             },
             {
-                label: 'Delete',
+                label: "Delete",
                 onSelect: onDeletePrompt,
                 Icon: TrashIcon,
-                color: '#FB1C1C'
+                color: "#FB1C1C"
             }
         ]: []),
         // The rest of the options go below
         {
-            label: 'Cancel',
+            label: "Cancel",
             colors: colors.light.FOURTH
         }
     ];
@@ -87,7 +87,7 @@ const MoreOptions = (props) => {
         options.length > 1 ? (
             <OptionsMenu
                 customButton={MoreIcon}
-                destructiveIndex={optionLabels.indexOf('Delete')}
+                destructiveIndex={optionLabels.indexOf("Delete")}
                 options={optionLabels}
                 actions={optionHandlers}
             />

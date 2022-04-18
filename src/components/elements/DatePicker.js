@@ -1,15 +1,15 @@
-import React, { useEffect, useState, useRef } from 'react';
-import DateTimePicker from '@react-native-community/datetimepicker';
-import { Appearance, View, Platform, StyleSheet, TouchableWithoutFeedback } from 'react-native';
-import { Overlay } from 'react-native-elements';
-import { colors } from '../../constants/constants';
-import Button from './Button';
+import React, { useEffect, useState, useRef } from "react";
+import DateTimePicker from "@react-native-community/datetimepicker";
+import { Appearance, View, Platform, StyleSheet, TouchableWithoutFeedback } from "react-native";
+import { Overlay } from "react-native-elements";
+import { colors } from "../../constants/constants";
+import Button from "./Button";
 
 const DatePicker = (props) => {
-    const [date, setDate] = useState(new Date(new Date().toJSON().slice(0,10).replace(/-/g,'/')));
+    const [date, setDate] = useState(new Date(new Date().toJSON().slice(0,10).replace(/-/g,"/")));
     const [show, setShow] = useState(false);
     const { dob, setDob } = props;
-    const systemDarkModeEnabled = Appearance.getColorScheme() === 'dark';
+    const systemDarkModeEnabled = Appearance.getColorScheme() === "dark";
     // check if date has been touched yet
     const didMountRef = useRef(false);
 
@@ -24,7 +24,7 @@ const DatePicker = (props) => {
 
     const onChange = (event, selectedDate) => {
         const currentDate = selectedDate || date;
-        setShow(Platform.OS === 'ios');
+        setShow(Platform.OS === "ios");
         setDate(currentDate);
     };
 
@@ -40,11 +40,11 @@ const DatePicker = (props) => {
     };
 
     const dateProps = {
-        testID: 'dateTimePicker',
+        testID: "dateTimePicker",
         value: date,
-        mode: 'date',
+        mode: "date",
         is24Hour: true,
-        display: 'spinner',
+        display: "spinner",
         onChange: onChange
     };
 
@@ -54,17 +54,17 @@ const DatePicker = (props) => {
                 onPress={() => {
                     toggleShow();
                 }}
-                title={dob ? parseDate(date) : 'Date of birth'}
+                title={dob ? parseDate(date) : "Date of birth"}
                 color={colors.light.SECOND}
-                textColor={dob ? 'black' : 'rgba(0,0,0,0.3)'}
-                type='secondary'
-                textAlign='left'
+                textColor={dob ? "black" : "rgba(0,0,0,0.3)"}
+                type="secondary"
+                textAlign="left"
                 titleStyle={styles.buttonText}
                 TouchableComponent={TouchableWithoutFeedback}
                 {...props}
             />
             {
-                Platform.OS === 'ios' ? (
+                Platform.OS === "ios" ? (
                     <Overlay
                         overlayStyle={[
                             styles.overlay,

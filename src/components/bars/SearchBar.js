@@ -1,33 +1,33 @@
 import React, {
     useEffect,
     useState
-} from 'react';
+} from "react";
 // Components
 import {
     Appearance,
     View,
     StyleSheet
-} from 'react-native';
+} from "react-native";
 import {
     Input,
     TouchableIcon
-} from '../froyo-elements';
+} from "../froyo-elements";
 // Icons
-import SearchIcon from '../../../assets/icons/Search.svg';
-import CloseIcon from '../../../assets/icons/Close.svg'
+import SearchIcon from "../../../assets/icons/Search.svg";
+import CloseIcon from "../../../assets/icons/Close.svg"
 // Constants
-import { colors, sizes } from '../../constants/constants';
+import { colors, sizes } from "../../constants/constants";
 
 const SearchBar = (props) => {
     const theme = Appearance.getColorScheme();
-    const [text, setText] = useState('');
+    const [text, setText] = useState("");
     const {
         onSearch,
     } = props;
 
     const clearText = async () => {
-        setText('');
-        onSearch('');
+        setText("");
+        onSearch("");
     };
 
     const onSubmit = () => {
@@ -44,10 +44,10 @@ const SearchBar = (props) => {
                     style={styles.text}
                     onChangeText={setText}
                     value={text}
-                    placeholder='Search'
+                    placeholder="Search"
                     icon={(
                         <SearchIcon
-                            color={colors[theme === 'dark' ? 'GRAY' : 'LIGHT_BLACK']}
+                            color={colors[theme === "dark" ? "GRAY" : "LIGHT_BLACK"]}
                             width={sizes.ACTION_ICON_SMALL}
                             height={sizes.ACTION_ICON_SMALL}
                         />
@@ -55,11 +55,11 @@ const SearchBar = (props) => {
                     onSubmitEditing={onSubmit}
                 />
                 {
-                    text !== '' ? (
+                    text !== "" ? (
                         <TouchableIcon
                             Icon={CloseIcon}
                             size={20}
-                            color={colors[theme === 'dark' ? 'GRAY' : 'LIGHT_BLACK']}
+                            color={colors[theme === "dark" ? "GRAY" : "LIGHT_BLACK"]}
                             style={styles.clear}
                             onPress={clearText}
                         />
@@ -72,16 +72,16 @@ const SearchBar = (props) => {
 
 const styles = StyleSheet.create({
     container: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center',
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "center",
         borderWidth: 0,
         borderRadius: 50,
         margin: 25
     },
     text: {
         flex: 1,
-        backgroundColor: 'transparent'
+        backgroundColor: "transparent"
     },
     clear: {
         marginRight: 20,

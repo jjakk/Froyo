@@ -1,25 +1,25 @@
-import React from 'react';
-import { Appearance } from 'react-native';
-import { createSwitchNavigator, createAppContainer } from 'react-navigation';
+import React from "react";
+import { Appearance } from "react-native";
+import { createSwitchNavigator, createAppContainer } from "react-navigation";
 // SafeAreaProvider
 import {
     SafeAreaProvider,
     initialWindowMetrics
-} from 'react-native-safe-area-context';
+} from "react-native-safe-area-context";
 // Set Navigator
-import { setNavigator } from './navigationRef';
+import { setNavigator } from "./navigationRef";
 // Miscellaneous Screens
-import WelcomeScreen from '../screens/WelcomeScreen';
-import NoWifiScreen from '../screens/NoWifiScreen';
+import WelcomeScreen from "../screens/WelcomeScreen";
+import NoWifiScreen from "../screens/NoWifiScreen";
 // Authentication Screens
-import ResolveAuthScreen from '../screens/authentication/ResolveAuthScreen';
+import ResolveAuthScreen from "../screens/authentication/ResolveAuthScreen";
 // Navigators
-import mainNavigator from './navigators/mainNavigator';
-import authNavigator from './navigators/authNavigator';
+import mainNavigator from "./navigators/mainNavigator";
+import authNavigator from "./navigators/authNavigator";
 // Context
-import { useSettings } from '../context/SettingsContext';
+import { useSettings } from "../context/SettingsContext";
 // Constants
-import { colors } from '../constants/constants';
+import { colors } from "../constants/constants";
 
 // This is the root navigator
 const appNavigator = (hideFeed) => createSwitchNavigator({
@@ -46,7 +46,7 @@ const AppNavigator = () => {
         <SafeAreaProvider
             initialMetrics={initialWindowMetrics}
             style={{
-                backgroundColor: theme === 'dark' ? colors.dark.THIRD : colors.WHITE
+                backgroundColor: theme === "dark" ? colors.dark.THIRD : colors.WHITE
             }}
         >
             <AppContainer

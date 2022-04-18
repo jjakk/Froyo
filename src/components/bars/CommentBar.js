@@ -1,29 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
     Alert,
     Appearance,
     StyleSheet,
-} from 'react-native';
-import { View } from 'react-native';
+} from "react-native";
+import { View } from "react-native";
 // Components
 import {
     Input,
     TouchableIcon
-} from '../froyo-elements';
+} from "../froyo-elements";
 // Context
-import { useContent } from '../../context/ContentContext';
-import { useSettings } from '../../context/SettingsContext';
+import { useContent } from "../../context/ContentContext";
+import { useSettings } from "../../context/SettingsContext";
 // Icons
-import SendIcon from '../../../assets/icons/Send.svg';
+import SendIcon from "../../../assets/icons/Send.svg";
 // Constants
-import { colors } from '../../constants/constants';
+import { colors } from "../../constants/constants";
 
-// ParentId -> string: ID of the content that's being commented one
+// ParentId -> string: ID of the content that"s being commented one
 // onCreateComment -> function: callback function to be called when the comment is created
 const CommentBar = (props) => {
     // Theme
     const theme = Appearance.getColorScheme();
-    const darkModeEnabled = theme === 'dark' ;
+    const darkModeEnabled = theme === "dark" ;
 
     // Context
     const { createContent } = useContent();
@@ -37,7 +37,7 @@ const CommentBar = (props) => {
     } = props;
     
     // State
-    const [commentText, setCommentText] = useState('');
+    const [commentText, setCommentText] = useState("");
 
     const onSubmit = async () => {
         try {
@@ -45,8 +45,8 @@ const CommentBar = (props) => {
                 text: commentText,
                 parent_id
             };
-            await createContent('comment', content);
-            setCommentText('');
+            await createContent("comment", content);
+            setCommentText("");
             onCreateComment();
         }
         catch (err) {
@@ -69,7 +69,7 @@ const CommentBar = (props) => {
                     themeStyles[theme].inputText
                 }
                 multiline
-                placeholder='Comment...'
+                placeholder="Comment..."
                 placeholderTextColor={darkModeEnabled ? colors.light.FIRST : colors.light.SECOND}
                 value={commentText}
                 onChangeText={setCommentText}
@@ -87,11 +87,11 @@ const CommentBar = (props) => {
 
 const styles = StyleSheet.create({
     bar: {
-        width: '100%',
+        width: "100%",
         padding: 20,
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center',
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "center",
         borderTopWidth: 2
     },
     input: {

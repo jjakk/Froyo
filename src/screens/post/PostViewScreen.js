@@ -1,22 +1,22 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 // Components
 import {
     StyleSheet,
     ScrollView,
     RefreshControl
-} from 'react-native';
-import ScreenContainer from '../../components/ScreenContainer';
-import Header from '../../components/Header';
-import CommentBar from '../../components/bars/CommentBar';
-import Post from '../../components/content/Post';
-import CommentList from '../../components/content/CommentList';
+} from "react-native";
+import ScreenContainer from "../../components/ScreenContainer";
+import Header from "../../components/Header";
+import CommentBar from "../../components/bars/CommentBar";
+import Post from "../../components/content/Post";
+import CommentList from "../../components/content/CommentList";
 // Context
-import { useContent } from '../../context/ContentContext';
+import { useContent } from "../../context/ContentContext";
 
 const PostViewScreen = ({ navigation }) => {
     const { getContent } = useContent();
     // Content
-    const passedPost = navigation.getParam('post');
+    const passedPost = navigation.getParam("post");
     const [post, setPost] = useState(passedPost);
     const [loading, setLoading] = useState(false);
 
@@ -24,7 +24,7 @@ const PostViewScreen = ({ navigation }) => {
     const retreivePost = async () => {
         try {
             setLoading(true);
-            setPost(await getContent('post', passedPost.id));
+            setPost(await getContent("post", passedPost.id));
         }
         catch(err) {
             Alert.alert(err.response.data);
@@ -41,7 +41,7 @@ const PostViewScreen = ({ navigation }) => {
     return (
         <ScreenContainer
             style={styles.container}
-            edges={['top', 'bottom']}
+            edges={["top", "bottom"]}
             onDidFocus={retreivePost}
         >
                 <Header/>

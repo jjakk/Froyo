@@ -1,14 +1,14 @@
-import React from 'react';
+import React from "react";
 // Components
-import ScreenContainer from '../../components/ScreenContainer';
-import Header from '../../components/Header';
-import SettingsList from '../../components/settings/SettingsList';
+import ScreenContainer from "../../components/ScreenContainer";
+import Header from "../../components/Header";
+import SettingsList from "../../components/settings/SettingsList";
 // Context
-import { useUser } from '../../context/UserContext';
+import { useUser } from "../../context/UserContext";
 // Helper functions
-import confirmAlert from '../../helpers/confirmAlert';
+import confirmAlert from "../../helpers/confirmAlert";
 // Constants
-import { colors } from '../../constants/constants';
+import { colors } from "../../constants/constants";
 
 const AccountSettingsScreen = () => {
     // Context
@@ -16,8 +16,8 @@ const AccountSettingsScreen = () => {
 
     const settings = [
         {
-            title: 'Delete Account',
-            type: 'button',
+            title: "Delete Account",
+            type: "button",
             color: colors.DISLIKE_RED,
             onPress:() => {
                 confirmAlert(
@@ -35,7 +35,7 @@ const AccountSettingsScreen = () => {
     return (
         <ScreenContainer>
             <Header
-                title='Account'
+                title="Account"
             />
             <SettingsList
                 settings={settings}

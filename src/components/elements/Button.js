@@ -1,14 +1,14 @@
-import React from 'react';
+import React from "react";
 import {
     Appearance,
     StyleSheet
-} from 'react-native';
+} from "react-native";
 // Components
-import { Button as DefaultButton } from 'react-native-elements';
+import { Button as DefaultButton } from "react-native-elements";
 // Context
-import { useSettings } from '../../context/SettingsContext';
+import { useSettings } from "../../context/SettingsContext";
 // Constants
-import { colors } from '../../constants/constants';
+import { colors } from "../../constants/constants";
 
 const Button = (props) => {
     // Context
@@ -16,7 +16,7 @@ const Button = (props) => {
 
     // Theme
     const theme = Appearance.getColorScheme();
-    const darkModeEnabled = theme === 'dark';
+    const darkModeEnabled = theme === "dark";
 
     // Props
     const {
@@ -31,7 +31,7 @@ const Button = (props) => {
         pill,
         disabled
     } = props;
-    const textColor = type === 'secondary' ? color : (
+    const textColor = type === "secondary" ? color : (
         darkModeEnabled ? colors.light.FOURTH : colors.WHITE
     );
 
@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
         borderWidth: 2
     },
     title: {
-        fontFamily: 'Nunito',
+        fontFamily: "Nunito",
         fontSize: 22
     }
 });
@@ -78,18 +78,18 @@ const styles = StyleSheet.create({
 const typeStyles = {
     primary: StyleSheet.create({
         button: {
-            borderColor: 'transparent'
+            borderColor: "transparent"
         }
     }),
     secondary: StyleSheet.create({
         button: {
-            backgroundColor: 'transparent'
+            backgroundColor: "transparent"
         }
     })
 };
 
 Button.defaultProps = {
-    type: 'primary',
+    type: "primary",
     pill: false
 };
 

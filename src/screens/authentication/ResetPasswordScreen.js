@@ -1,26 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 // Components
 import {
     Alert,
     StyleSheet,
     View,
-} from 'react-native';
+} from "react-native";
 import {
     Input,
     Button,
     Text
-} from './../../components/froyo-elements';
-import Header from '../../components/Header';
-import ScreenContainer from '../../components/ScreenContainer';
+} from "./../../components/froyo-elements";
+import Header from "../../components/Header";
+import ScreenContainer from "../../components/ScreenContainer";
 // Context
-import { useUser } from '../../context/UserContext';
+import { useUser } from "../../context/UserContext";
 
 const ResetPasswordScreen = ({ navigation }) => {
     // Context
     const { resetPassword } = useUser();
 
     // State
-    const [email, setEmail] = useState('');
+    const [email, setEmail] = useState("");
     const [success, setSuccess] = useState(false);
     const [loading, setLoading] = useState(false);
 
@@ -46,7 +46,7 @@ const ResetPasswordScreen = ({ navigation }) => {
                     success ? (
                         <Text style={styles.confirmation}>
                             ✉️
-                            {'\n'}
+                            {"\n"}
                             Password reset email sent!
                         </Text>
                     ) : (
@@ -54,14 +54,14 @@ const ResetPasswordScreen = ({ navigation }) => {
                             <Text style={styles.header}>Reset Password</Text>
                             <Input
                                 style={styles.input}
-                                placeholder='Email'
+                                placeholder="Email"
                                 value={email}
                                 onChangeText={setEmail}
                             />
                             <Button
                                 buttonStyle={styles.submit}
-                                title='Reset'
-                                type='primary'
+                                title="Reset"
+                                type="primary"
                                 loading={loading}
                                 onPress={onSubmit}
                             />
@@ -82,13 +82,13 @@ const styles = StyleSheet.create({
         flex: 1
     },
     form: {
-        alignItems: 'center',
+        alignItems: "center",
         marginTop: 100
     },
     header: {
         fontSize: 36,
         marginBottom: 10,
-        textAlign: 'center'
+        textAlign: "center"
     },
     input: {
         width: 300,
@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
         margin: 10
     },
     confirmation: {
-        textAlign: 'center',
+        textAlign: "center",
         width: 300,
         fontSize: 36,
     },

@@ -1,18 +1,18 @@
-import React from 'react';
+import React from "react";
 // Components
 import {
     Appearance,
     StyleSheet,
     TextInput,
     View
-} from 'react-native';
+} from "react-native";
 // Constants
-import { colors } from '../../constants/constants';
+import { colors } from "../../constants/constants";
 
 const Input = (props) => {
     // Theme
     const theme = Appearance.getColorScheme();
-    const darkModeEnabled = theme === 'dark' ;
+    const darkModeEnabled = theme === "dark" ;
 
     // Props
     const {
@@ -52,12 +52,12 @@ const styles = StyleSheet.create({
     container: {
         padding: 15,
         borderRadius: 15,
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center'
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "center"
     },
     text: {
-        fontFamily: 'Nunito',
+        fontFamily: "Nunito",
         fontSize: 20,
         flex: 1
     },

@@ -1,18 +1,18 @@
-import React from 'react';
+import React from "react";
 // Components
 import {
     Appearance,
     View,
     StyleSheet,
     TouchableOpacity
-} from 'react-native';
-import OptionsMenu from 'react-native-option-menu';
+} from "react-native";
+import OptionsMenu from "react-native-option-menu";
 import {
     Text,
     Switch
-} from '../froyo-elements';
+} from "../froyo-elements";
 // Constants
-import { colors } from '../../constants/constants';
+import { colors } from "../../constants/constants";
 
 const SettingsItem = ({ item }) => {
     // Theme
@@ -21,7 +21,7 @@ const SettingsItem = ({ item }) => {
     let RenderItem = () => (<></>);
 
     switch (item.type) {
-        case 'toggle':
+        case "toggle":
             RenderItem = () => (
                 <>
                     <Text style={[
@@ -36,12 +36,12 @@ const SettingsItem = ({ item }) => {
                 </>
             );
             break;
-        case 'dropdown':
+        case "dropdown":
             // More options menu items
             const options = [
                 ...item.options,
                 {
-                    label: 'Cancel',
+                    label: "Cancel",
                     colors: colors.light.FOURTH
                 }
             ];
@@ -75,7 +75,7 @@ const SettingsItem = ({ item }) => {
                 </>
             );
             break;
-        case 'button':
+        case "button":
             RenderItem = () => (
                 <TouchableOpacity style={styles.button} onPress={item.onPress}>
                     <Text style={[
@@ -105,9 +105,9 @@ const styles = StyleSheet.create({
     option: {
         padding: 15,
         marginBottom: 1,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center'
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "center"
     },
     optionText: {
         fontSize: 22
@@ -115,11 +115,11 @@ const styles = StyleSheet.create({
     // Option types
     button: {
         flex: 1,
-        flexDirection: 'column',
-        justifyContent: 'center',
+        flexDirection: "column",
+        justifyContent: "center",
     },
     buttonText: {
-        fontFamily: 'Nunito-SemiBold',
+        fontFamily: "Nunito-SemiBold",
     }
 });
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 // Components
 import {
     Appearance,
@@ -7,14 +7,14 @@ import {
     FlatList,
     RefreshControl,
     Alert
-} from 'react-native';
-import { Text } from '../froyo-elements';
-import Comment from './Comment';
+} from "react-native";
+import { Text } from "../froyo-elements";
+import Comment from "./Comment";
 // Context
-import { useContent } from '../../context/ContentContext';
-import { useSettings } from '../../context/SettingsContext';
+import { useContent } from "../../context/ContentContext";
+import { useSettings } from "../../context/SettingsContext";
 // Constants
-import { colors } from '../../constants/constants';
+import { colors } from "../../constants/constants";
 
 const CommentList = (props) => {
     // Context
@@ -23,7 +23,7 @@ const CommentList = (props) => {
 
     // Theme
     const theme = Appearance.getColorScheme();
-    const darkModeEnabled = theme === 'dark';
+    const darkModeEnabled = theme === "dark";
 
     // Props
     const {
@@ -32,9 +32,9 @@ const CommentList = (props) => {
         refreshable=true,
         ...otherProps
     } = props;
-    const parentType = parent.parent_id ? 'comment' : 'post';
+    const parentType = parent.parent_id ? "comment" : "post";
     // rootContent determines if this is the comment list containg all the other sub-comment lists
-    const rootContent = parentType === 'post';
+    const rootContent = parentType === "post";
 
     // State
     const [comments, setComments] = useState([]);
@@ -143,7 +143,7 @@ const styles = StyleSheet.create({
     },
     noComments: {
         fontSize: 28,
-        alignSelf: 'center',
+        alignSelf: "center",
         opacity: 0.75,
         margin: 50
     },

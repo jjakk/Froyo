@@ -1,16 +1,10 @@
 import React from "react";
-import {
-    Appearance,
-} from "react-native";
 // Components
 import SettingsOptions from "../../components/settings/SettingsList";;
 import ScreenContainer from "../../components/ScreenContainer";
 import Header from "../../components/Header";
 
 const SettingsScreen = ({ navigation }) => {
-
-    // Theme
-    const theme = Appearance.getColorScheme();
 
     const settings = [
         {

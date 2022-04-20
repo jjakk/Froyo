@@ -9,7 +9,7 @@ import {
 import {
     Text,
     Input,
-    Link,
+    Hyperlink,
     Button,
     DatePicker
 } from "../../../components/froyo-elements";
@@ -84,12 +84,12 @@ const SignUpScreenOne = ({ navigation }) => {
                 />
                 <View style={styles.bottomText}>
                     <Text>Already have an account?</Text>
-                    <Link
-                        color="#41CA99"
+                    <Hyperlink
+                        style={{color: "#41CA99"}}
                         onPress={handleRefSignIn}
                     >
                         Sign in
-                    </Link>
+                    </Hyperlink>
                 </View>
             </View>
         </ScreenContainer>

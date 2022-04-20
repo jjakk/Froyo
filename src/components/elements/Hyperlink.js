@@ -3,24 +3,19 @@ import { TouchableOpacity, StyleSheet } from "react-native";
 import Text from "./Text";
 
 
-const Link = (props) => {
+const Hyperlink = (props) => {
     const {
         children,
-        style,
-        color
+        style
     } = props;
-    
-    const styles = StyleSheet.create({
-        text: {
-            color
-        }
-    });
 
     return(
         <TouchableOpacity {...props}>
-            <Text style={[styles.text, style]}>{children}</Text>
+            <Text style={style} >
+                {children}
+            </Text>
         </TouchableOpacity>
     );
 };
 
-export default Link;
+export default Hyperlink;

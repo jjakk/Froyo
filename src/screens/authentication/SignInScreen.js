@@ -10,7 +10,7 @@ import {
     Button,
     Text,
     Input,
-    Link
+    Hyperlink
 } from "../../components/froyo-elements";
 import ScreenContainer from "../../components/ScreenContainer";
 // Context
@@ -61,7 +61,12 @@ const SignInScreen = ({ navigation }) => {
                 />
                 <View>
                     <Input style={styles.input} placeholder="Password" onChangeText={setPassword} secureTextEntry />
-                    <Link color="#41CA99" style={styles.forgotPassword} onPress={() => navigation.navigate("ResetPassword")}>Forgot password?</Link>
+                    <Hyperlink
+                        style={styles.forgotPassword}
+                        onPress={() => navigation.navigate("ResetPassword")}
+                    >
+                            Forgot password?
+                    </Hyperlink>
                 </View>
                 <Button
                     title="Sign in"
@@ -72,12 +77,12 @@ const SignInScreen = ({ navigation }) => {
                 />
                 <View style={styles.bottomText}>
                     <Text style={styles.linkLabel}>Don"t have an account?</Text>
-                    <Link
-                        color="#41CA99"
+                    <Hyperlink
+                        style={{color: "#41CA99"}}
                         onPress={handleRefSignUp}
                     >
                         Sign up
-                    </Link>
+                    </Hyperlink>
                 </View>
             </View>
         </ScreenContainer>
@@ -105,7 +110,8 @@ const styles = StyleSheet.create({
         marginBottom: 10
     },
     forgotPassword: {
-        marginBottom: 5
+        marginBottom: 5,
+        color: "#41CA99"
     },
     submit: {
         width: 300,

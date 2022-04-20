@@ -1,6 +1,7 @@
 import Button from "./elements/Button";
 import Input from "./elements/Input";
-import Link from "./elements/Link";
+import OptionalInput from "./elements/OptionalInput";
+import Hyperlink from "./elements/Hyperlink";
 import Text from "./elements/Text";
 import Spacer from "./elements/Spacer";
 import Br from "./elements/Br";
@@ -13,7 +14,8 @@ import ImageList from "./elements/ImageList";
 module.exports = {
   Button,
   Input,
-  Link,
+  OptionalInput,
+  Hyperlink,
   Text,
   Spacer,
   Br,

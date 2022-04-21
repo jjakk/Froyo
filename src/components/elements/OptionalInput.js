@@ -26,13 +26,13 @@ const OptionalInput = (props) => {
                     <View style={styles.inputContainer}>
                         <Input
                             placeholder={placeholder}
-                            rightIcon={(
-                                <TouchableIcon
-                                    Icon={CloseCircleIcon}
-                                    size={30}
-                                    onPress={onToggle}
-                                />
-                            )}
+                            style={styles.input}
+                        />
+                        <TouchableIcon
+                            Icon={CloseCircleIcon}
+                            size={35}
+                            onPress={onToggle}
+                            style={styles.removeIcon}
                         />
                     </View>
                 ) : (
@@ -52,6 +52,12 @@ const styles = StyleSheet.create({
     inputContainer: {
         flexDirection: "row",
         alignItems: "center"
+    },
+    input: {
+        flex: 1,
+    },
+    removeIcon: {
+        marginLeft: 15
     },
     link: {
         textDecorationLine: "underline"

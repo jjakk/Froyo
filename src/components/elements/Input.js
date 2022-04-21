@@ -18,7 +18,8 @@ const Input = (props) => {
     const {
         style,
         textStyle,
-        icon
+        leftIcon,
+        rightIcon
     } = props;
 
     return (
@@ -28,9 +29,9 @@ const Input = (props) => {
             style
         ]}>
             {
-                (icon ? (
-                    <View style={styles.icon}>
-                        {icon}
+                (leftIcon ? (
+                    <View style={[styles.icon, styles.leftIcon]}>
+                        {leftIcon}
                     </View>
                 ) : null)
             }
@@ -44,6 +45,13 @@ const Input = (props) => {
                     textStyle
                 ]}
             />
+            {
+                (rightIcon ? (
+                    <View style={[styles.icon, styles.rightIcon]}>
+                        {rightIcon}
+                    </View>
+                ) : null)
+            }
         </View>
     );
 };
@@ -62,8 +70,13 @@ const styles = StyleSheet.create({
         flex: 1
     },
     icon: {
-        marginRight: 10,
         opacity: 0.5
+    },
+    leftIcon: {
+        marginRight: 10
+    },
+    rightIcon: {
+        marginLeft: 10
     }
 });
 

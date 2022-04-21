@@ -45,7 +45,7 @@ const SearchBar = (props) => {
                     onChangeText={setText}
                     value={text}
                     placeholder="Search"
-                    icon={(
+                    leftIcon={(
                         <SearchIcon
                             color={colors[theme === "dark" ? "GRAY" : "LIGHT_BLACK"]}
                             width={sizes.ACTION_ICON_SMALL}

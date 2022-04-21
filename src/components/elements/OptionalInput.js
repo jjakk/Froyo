@@ -1,26 +1,45 @@
-import React from "react";
+import React, { useState } from "react";
 // Components
 import { StyleSheet, View } from "react-native";
 import Hyperlink from "./Hyperlink";
 import Input from "./Input";
+import TouchableIcon from "./TouchableIcon";
+// Icons
+import CloseCircleIcon from "../../../assets/icons/Close-Circle.svg";
 
 const OptionalInput = (props) => {
-    const showInput = false;
+    const [showInput, setShowInput] = useState(false);
     const {
         label,
         placeholder,
         style
     } = props;
+    
+    const onToggle = () => {
+        setShowInput(!showInput);
+    };
 
     return (
         <View style={style}>
             {
                 showInput ? (
-                    <Input
-                        placeholder={placeholder}
-                    />
+                    <View style={styles.inputContainer}>
+                        <Input
+                            placeholder={placeholder}
+                            rightIcon={(
+                                <TouchableIcon
+                                    Icon={CloseCircleIcon}
+                                    size={30}
+                                    onPress={onToggle}
+                                />
+                            )}
+                        />
+                    </View>
                 ) : (
-                    <Hyperlink style={styles.link}>
+                    <Hyperlink
+                        style={styles.link}
+                        onPress={onToggle}
+                    >
                         {label}
                     </Hyperlink>
                 )
@@ -30,6 +49,10 @@ const OptionalInput = (props) => {
 };
 
 const styles = StyleSheet.create({
+    inputContainer: {
+        flexDirection: "row",
+        alignItems: "center"
+    },
     link: {
         textDecorationLine: "underline"
     }

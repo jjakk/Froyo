@@ -8,7 +8,10 @@ import Button from "./Button";
 const DatePicker = (props) => {
     const [date, setDate] = useState(new Date(new Date().toJSON().slice(0,10).replace(/-/g,"/")));
     const [show, setShow] = useState(false);
-    const { dob, setDob } = props;
+    const {
+        dob,
+        setDob
+    } = props;
     const systemDarkModeEnabled = Appearance.getColorScheme() === "dark";
     // check if date has been touched yet
     const didMountRef = useRef(false);

@@ -61,7 +61,7 @@ const MeetupFeedScreen = ({ navigation }) => {
     };
 
     const onCreateMeetup = () => {
-        navigation.navigate('MeetupCreate');
+        navigation.navigate("MeetupCreate");
         /*Alert.alert(
             "This feature has not been implemented yet.",
             null,

@@ -5,10 +5,12 @@ import ScreenContainer from "../../components/ScreenContainer";
 import Header from "../../components/Header";
 import {
     Button,
-    OptionalInput
+    OptionalInput,
+    DatePicker
 } from "../../components/froyo-elements";
 
 const MeetupCreateScreen = () => {
+    const [date, setDate] = useState("");
 
     return (
         <ScreenContainer>
@@ -28,8 +30,13 @@ const MeetupCreateScreen = () => {
                 />
                 <OptionalInput
                     label="Add a Location"
-                    placeholder="Location"
                     style={styles.input}
+                    Input={() => (
+                        <DatePicker
+                            date={date}
+                            setDate={setDate}
+                        />
+                    )}
                 />
                 <Button
                     title="Create"

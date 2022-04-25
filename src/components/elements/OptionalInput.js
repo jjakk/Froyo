@@ -12,7 +12,8 @@ const OptionalInput = (props) => {
     const {
         label,
         placeholder,
-        style
+        style,
+        Input=TextInput,
     } = props;
     
     const onToggle = () => {
@@ -24,7 +25,7 @@ const OptionalInput = (props) => {
             {
                 showInput ? (
                     <View style={styles.inputContainer}>
-                        <TextInput
+                        <Input
                             placeholder={placeholder}
                             style={styles.input}
                         />

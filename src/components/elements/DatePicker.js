@@ -9,10 +9,13 @@ const DatePicker = (props) => {
     const [date, setDate] = useState(new Date(new Date().toJSON().slice(0,10).replace(/-/g,"/")));
     const [show, setShow] = useState(false);
     const {
-        dob,
-        setDob
+        date: dob,
+        setDate: setDob,
+        placeholder="date",
+        style
     } = props;
-    const systemDarkModeEnabled = Appearance.getColorScheme() === "dark";
+    const theme = Appearance.getColorScheme();
+    const systemDarkModeEnabled = theme === "dark";
     // check if date has been touched yet
     const didMountRef = useRef(false);
 
@@ -52,17 +55,23 @@ const DatePicker = (props) => {
     };
 
     return (
-        <View>
+        <View style={[styles.container, style]}>
             <Button
                 onPress={() => {
                     toggleShow();
                 }}
-                title={dob ? parseDate(date) : "Date of birth"}
-                color={colors.light.SECOND}
-                textColor={dob ? "black" : "rgba(0,0,0,0.3)"}
-                type="secondary"
-                textAlign="left"
-                titleStyle={styles.buttonText}
+                title={dob ? parseDate(date) : placeholder}
+                color={colors[theme].FIRST}
+                titleStyle={[
+                    {
+                        color: colors.light[
+                            systemDarkModeEnabled
+                                ? "FIRST"
+                                : "FOURTH"
+                        ]
+                    },
+                    styles.buttonText
+                ]}
                 TouchableComponent={TouchableWithoutFeedback}
                 {...props}
             />
@@ -71,10 +80,10 @@ const DatePicker = (props) => {
                     <Overlay
                         overlayStyle={[
                             styles.overlay,
-                            systemDarkModeEnabled ? {
-                                backgroundColor: colors.dark.FOURTH
-                            } : {
-                                backgroundColor: colors.light.FIRST
+                            {
+                                backgroundColor: systemDarkModeEnabled
+                                    ? colors.dark.FOURTH
+                                    : colors.light.FIRST
                             }
                         ]}
                         isVisible={show}
@@ -96,6 +105,9 @@ const DatePicker = (props) => {
 };
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1
+    },
     buttonText: {
         fontSize: 20,
         margin: 5

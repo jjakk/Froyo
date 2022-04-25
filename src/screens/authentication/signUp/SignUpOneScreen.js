@@ -69,10 +69,11 @@ const SignUpScreenOne = ({ navigation }) => {
                     autoCorrect={false}
                 />
                 <DatePicker
+                    placeholder="Date of birth"
                     buttonStyle={{width: 300}}
                     containerStyle={styles.submitContainer}
-                    dob={dob}
-                    setDob={setDob}
+                    date={dob}
+                    setDate={setDob}
                 />
                 <Button
                     title="Continue"

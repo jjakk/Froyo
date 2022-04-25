@@ -3,13 +3,13 @@ import React from "react";
 import {
     Appearance,
     StyleSheet,
-    TextInput,
+    TextInput as DefaultTextInput,
     View
 } from "react-native";
 // Constants
 import { colors } from "../../constants/constants";
 
-const Input = (props) => {
+const TextInput = (props) => {
     // Theme
     const theme = Appearance.getColorScheme();
     const darkModeEnabled = theme === "dark" ;
@@ -35,7 +35,7 @@ const Input = (props) => {
                     </View>
                 ) : null)
             }
-            <TextInput
+            <DefaultTextInput
                 {...props}
                 selectionColor={darkModeEnabled ? colors.WHITE : colors.light.THIRD}
                 placeholderTextColor={colors.light.THIRD}
@@ -99,7 +99,7 @@ const themeStyles = {
     })
 };
 
-export default Input;
+export default TextInput;
 
 
 

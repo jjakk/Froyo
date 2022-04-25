@@ -6,7 +6,7 @@ import {
     View,
 } from "react-native";
 import {
-    Input,
+    TextInput,
     Button,
     Text
 } from "./../../components/froyo-elements";
@@ -52,7 +52,7 @@ const ResetPasswordScreen = ({ navigation }) => {
                     ) : (
                         <>
                             <Text style={styles.header}>Reset Password</Text>
-                            <Input
+                            <TextInput
                                 style={styles.input}
                                 placeholder="Email"
                                 value={email}

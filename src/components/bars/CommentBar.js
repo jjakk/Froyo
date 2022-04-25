@@ -7,7 +7,7 @@ import {
 import { View } from "react-native";
 // Components
 import {
-    Input,
+    TextInput,
     TouchableIcon
 } from "../froyo-elements";
 // Context
@@ -60,7 +60,7 @@ const CommentBar = (props) => {
             themeStyles[theme].bar,
             style
         ]}>
-            <Input
+            <TextInput
                 style={[
                     styles.input,
                     themeStyles[theme].input

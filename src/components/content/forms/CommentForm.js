@@ -7,7 +7,7 @@ import {
     View,
 } from "react-native";
 import {
-    Input,
+    TextInput,
     Button,
     Text
 } from "../../froyo-elements";
@@ -83,7 +83,7 @@ const CommentForm = (props) => {
                     </>
                 )
             }
-            <Input
+            <TextInput
                 multiline
                 placeholder="Type here..."
                 value={text}

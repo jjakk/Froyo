@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import {
     Text,
-    Input,
+    TextInput,
     Hyperlink,
     Button,
     DatePicker
@@ -54,14 +54,14 @@ const SignUpScreenOne = ({ navigation }) => {
         <ScreenContainer>
             <View style={styles.auth}>
                 <Text style={styles.header}>Sign up</Text>
-                <Input
+                <TextInput
                     style={styles.input}
                     placeholder="Email"
                     onChangeText={setEmail}
                     autoCapitalize="none"
                     autoCorrect={false}
                 />
-                <Input
+                <TextInput
                     style={styles.input}
                     placeholder="Username"
                     onChangeText={setUsername}

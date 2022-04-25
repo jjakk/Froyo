@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 // Components
 import {
-    Appearance,
     StyleSheet,
     Keyboard,
     View,
@@ -9,7 +8,7 @@ import {
 } from "react-native";
 import { NavigationEvents } from "react-navigation";
 import {
-    Input,
+    TextInput,
     TouchableIcon
 } from "../../froyo-elements";
 import ImageUpload from "../../ImageUpload";
@@ -92,7 +91,7 @@ const PostForm = (props) => {
         <View style={styles.container}>
             <NavigationEvents/>
             <View style={styles.body}>
-                <Input
+                <TextInput
                     style={styles.textbox}
                     multiline
                     placeholder="Type here..."

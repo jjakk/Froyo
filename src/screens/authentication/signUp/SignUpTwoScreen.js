@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import {
     Text,
-    Input,
+    TextInput,
     Button
 } from "../../../components/froyo-elements";
 import Header from "../../../components/Header";
@@ -63,25 +63,25 @@ const SignUpTwoScreen = ({ navigation }) => {
             <Header/>
             <View style={styles.auth}>
                 <Text style={styles.header}>Sign up</Text>
-                <Input
+                <TextInput
                     style={styles.input}
                     placeholder="First name"
                     autoCorrect={false}
                     onChangeText={setFirstName}
                 />
-                <Input
+                <TextInput
                     style={styles.input}
                     placeholder="Last name"
                     autoCorrect={false}
                     onChangeText={setLastName}
                 />
-                <Input
+                <TextInput
                     style={styles.input}
                     placeholder="Password"
                     onChangeText={setPassword}
                     secureTextEntry
                 />
-                <Input
+                <TextInput
                     style={styles.input}
                     placeholder="Confirm Password"
                     onChangeText={setPasswordConfirm}

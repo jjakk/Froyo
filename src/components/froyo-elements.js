@@ -1,5 +1,5 @@
 import Button from "./elements/Button";
-import Input from "./elements/Input";
+import TextInput from "./elements/TextInput";
 import OptionalInput from "./elements/OptionalInput";
 import Hyperlink from "./elements/Hyperlink";
 import Text from "./elements/Text";
@@ -13,7 +13,7 @@ import ImageList from "./elements/ImageList";
 
 module.exports = {
   Button,
-  Input,
+  TextInput,
   OptionalInput,
   Hyperlink,
   Text,

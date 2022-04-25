@@ -9,7 +9,7 @@ import {
 import {
     Button,
     Text,
-    Input,
+    TextInput,
     Hyperlink
 } from "../../components/froyo-elements";
 import ScreenContainer from "../../components/ScreenContainer";
@@ -52,7 +52,7 @@ const SignInScreen = ({ navigation }) => {
         <ScreenContainer>
             <View style={styles.form}>
                 <Text style={styles.header}>Sign in</Text>
-                <Input
+                <TextInput
                     style={styles.input}
                     placeholder="Email"
                     autoCorrect={false}
@@ -60,7 +60,7 @@ const SignInScreen = ({ navigation }) => {
                     onChangeText={setEmail}
                 />
                 <View>
-                    <Input style={styles.input} placeholder="Password" onChangeText={setPassword} secureTextEntry />
+                    <TextInput style={styles.input} placeholder="Password" onChangeText={setPassword} secureTextEntry />
                     <Hyperlink
                         style={styles.forgotPassword}
                         onPress={() => navigation.navigate("ResetPassword")}

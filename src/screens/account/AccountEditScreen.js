@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import {
     Button,
-    Input,
+    TextInput,
     ImageSelect,
 } from "../../components/froyo-elements";
 import ScreenContainer from "../../components/ScreenContainer";
@@ -100,7 +100,7 @@ const AccountEditScreen = ({ navigation }) => {
                 <View style={styles.fields}>
                     <View style={[styles.field, styles.nameInputs]}>
                         <View style={styles.nameInputContainer}>
-                            <Input
+                            <TextInput
                                 placeholder="First"
                                 value={firstName}
                                 onChangeText={setFirstName}
@@ -108,20 +108,20 @@ const AccountEditScreen = ({ navigation }) => {
                         </View>
                         <View style={styles.gap}></View>
                         <View style={styles.nameInputContainer}>
-                            <Input
+                            <TextInput
                                 placeholder="Last"
                                 value={lastName}
                                 onChangeText={setLastName}
                             />
                         </View>
                     </View>
-                    <Input
+                    <TextInput
                         style={styles.field}
                         placeholder="Username"
                         value={username}
                         onChangeText={setUsername}
                     />
-                    <Input
+                    <TextInput
                         style={[styles.field, styles.description]}
                         textStyle={styles.descriptionText}
                         multiline

@@ -9,7 +9,7 @@ import {
     StyleSheet
 } from "react-native";
 import {
-    Input,
+    TextInput,
     TouchableIcon
 } from "../froyo-elements";
 // Icons
@@ -40,7 +40,7 @@ const SearchBar = (props) => {
                 styles.container,
                 themeStyles[theme].container
             ]}>
-                <Input
+                <TextInput
                     style={styles.text}
                     onChangeText={setText}
                     value={text}

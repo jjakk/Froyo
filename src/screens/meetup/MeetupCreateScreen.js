@@ -5,7 +5,6 @@ import ScreenContainer from "../../components/ScreenContainer";
 import Header from "../../components/Header";
 import {
     Button,
-    Hyperlink,
     OptionalInput
 } from "../../components/froyo-elements";
 

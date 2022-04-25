@@ -2,7 +2,7 @@ import React, { useState } from "react";
 // Components
 import { StyleSheet, View } from "react-native";
 import Hyperlink from "./Hyperlink";
-import Input from "./Input";
+import TextInput from "./TextInput";
 import TouchableIcon from "./TouchableIcon";
 // Icons
 import CloseCircleIcon from "../../../assets/icons/Close-Circle.svg";
@@ -24,7 +24,7 @@ const OptionalInput = (props) => {
             {
                 showInput ? (
                     <View style={styles.inputContainer}>
-                        <Input
+                        <TextInput
                             placeholder={placeholder}
                             style={styles.input}
                         />

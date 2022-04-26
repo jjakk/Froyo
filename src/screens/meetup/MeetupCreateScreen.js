@@ -24,15 +24,16 @@ const MeetupCreateScreen = () => {
                     style={styles.input}
                 />
                 <OptionalInput
-                    label="Set an Expiration"
-                    placeholder="Expiration"
+                    label="Add a Location"
+                    placeholder="Location"
                     style={styles.input}
                 />
                 <OptionalInput
-                    label="Add a Location"
+                    label="Set an Expiration"
                     style={styles.input}
                     Input={() => (
                         <DatePicker
+                            placeholder="Expiration date"
                             date={date}
                             setDate={setDate}
                         />

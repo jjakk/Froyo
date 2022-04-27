@@ -47,10 +47,6 @@ const FeedScreen = ({ navigation }) => {
         navigation.navigate("AccountView");
     };
 
-    const onCreatePost = () => {
-        navigation.navigate("PostCreate");
-    };
-
     const onScrollToTop = async () => {
         postListRef.current.scrollToTop();
         await retrieveFeed();
@@ -95,7 +91,6 @@ const FeedScreen = ({ navigation }) => {
                 ref={postListRef}
             />
             <CreateButton
-                onPress={onCreatePost}
                 style={styles.createPost}
             />
         </ScreenContainer>

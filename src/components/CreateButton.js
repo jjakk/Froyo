@@ -6,6 +6,8 @@ import { TouchableIcon } from "./froyo-elements";
 import CreateIcon from "../../assets/icons/Create.svg";
 // Context
 import { useSettings } from "../context/SettingsContext";
+// Navigation
+import { navigate } from "../navigation/navigationRef";
 
 const CreateButton = (props) => {
     // Context
@@ -13,9 +15,12 @@ const CreateButton = (props) => {
 
     // Props
     const {
-        onPress,
         style,
     } = props;
+
+    const onPress = () => {
+        navigate("PostCreate");
+    };
 
     return (
         <TouchableIcon

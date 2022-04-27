@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
+import { StyleSheet } from "react-native";
 // Components
 import ScreenContainer from "../../components/ScreenContainer";
 import Header from "../../components/Header";
 import PostList from "../../components/content/PostList";
 import UserProfile from "../../components/users/UserProfile";
+import CreateButton from "../../components/CreateButton";
 // Context
 import { useUser } from "../../context/UserContext";
 import { useContent } from "../../context/ContentContext";
+import { useSettings } from "../../context/SettingsContext";
 // Icons
 import GearIcon from "../../../assets/icons/Gear.svg";
 
@@ -21,6 +24,11 @@ const AccountViewScreen = ({ navigation }) => {
     const {
         searchContent
     } = useContent();
+    const {
+        state: {
+            hideFeed
+        }
+    } = useSettings();
 
     // Navigation Params
     const passedUser = navigation.getParam("user") || signedInUser;
@@ -78,9 +86,24 @@ const AccountViewScreen = ({ navigation }) => {
                     />
                 )}
             />
+            {
+                hideFeed && (
+                    <CreateButton
+                        style={styles.createPost}
+                    />
+                )
+            }
         </ScreenContainer>
     );
 };
+
+const styles = StyleSheet.create({
+    createPost: {
+        position: "absolute",
+        bottom: 10,
+        right: 10,
+    }
+});
 
 AccountViewScreen.navigationOptions = {
     headerShown: false

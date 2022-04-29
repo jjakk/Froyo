@@ -11,7 +11,11 @@ import { navigate } from "../navigation/navigationRef";
 
 const CreateButton = (props) => {
     // Context
-    const { state: { primaryColors } } = useSettings();
+    const {
+        state: {
+            primaryColors
+        }
+    } = useSettings();
 
     // Props
     const {

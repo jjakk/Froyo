@@ -2,7 +2,7 @@ import React, { useReducer, useEffect } from "react";
 import { Appearance } from "react-native";
 import { useFonts } from "expo-font";
 // Navigation
-import AppNavigator from "./src/navigation/AppNavigator";
+import AppNavigator from "./src/navigation/appNavigator";
 // Context
 import { Provider as UserProvider } from "./src/context/UserContext";
 import { Provider as ContentProvider } from "./src/context/ContentContext";

@@ -191,7 +191,6 @@ const checkSignedIn = (dispatch) => async () => {
         }
     }
     catch(err){
-        console.log(err);
         if(err+"" === "Error: Network Error"){
             navigate("NoWifi");
         }

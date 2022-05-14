@@ -4,6 +4,7 @@ import { StyleSheet, View } from "react-native";
 import Hyperlink from "./Hyperlink";
 import TextInput from "./TextInput";
 import TouchableIcon from "./TouchableIcon";
+import Text from "./Text";
 // Icons
 import CloseCircleIcon from "../../../assets/icons/Close-Circle.svg";
 
@@ -14,6 +15,7 @@ const OptionalInput = (props) => {
         placeholder,
         style,
         Input=TextInput,
+        inputUnits
     } = props;
     
     const onToggle = () => {
@@ -29,6 +31,11 @@ const OptionalInput = (props) => {
                             placeholder={placeholder}
                             style={styles.input}
                         />
+                        {inputUnits && (
+                            <Text style={styles.inputUnits}>
+                                {inputUnits}
+                            </Text>
+                        )}
                         <TouchableIcon
                             Icon={CloseCircleIcon}
                             size={35}
@@ -56,6 +63,10 @@ const styles = StyleSheet.create({
     },
     input: {
         flex: 1,
+    },
+    inputUnits: {
+        marginLeft: 15,
+        fontSize: 24
     },
     removeIcon: {
         marginLeft: 15

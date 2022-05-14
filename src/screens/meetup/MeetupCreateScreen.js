@@ -1,16 +1,20 @@
 import React, { useState } from "react";
 // Components
 import { StyleSheet, View } from "react-native";
+import OptionsMenu from "react-native-option-menu";
 import ScreenContainer from "../../components/ScreenContainer";
 import Header from "../../components/Header";
 import {
     Button,
     OptionalInput,
-    DatePicker
+    TextInput
 } from "../../components/froyo-elements";
+import { colors } from "../../constants/constants";
 
 const MeetupCreateScreen = () => {
-    const [date, setDate] = useState("");
+    const [title, setTitle] = useState("");
+    const [location, setLocation] = useState("");
+    const [lifetime, setLifetime] = useState("");
 
     return (
         <ScreenContainer>
@@ -29,15 +33,10 @@ const MeetupCreateScreen = () => {
                     style={styles.input}
                 />
                 <OptionalInput
-                    label="Set an Expiration"
+                    label="Set Lifetime"
+                    placeholder="12"
+                    inputUnits="Hours"
                     style={styles.input}
-                    Input={() => (
-                        <DatePicker
-                            placeholder="Expiration date"
-                            date={date}
-                            setDate={setDate}
-                        />
-                    )}
                 />
                 <Button
                     title="Create"

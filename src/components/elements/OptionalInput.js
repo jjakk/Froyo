@@ -15,7 +15,9 @@ const OptionalInput = (props) => {
         placeholder,
         style,
         Input=TextInput,
-        inputUnits
+        inputUnits,
+        value,
+        onChangeText
     } = props;
     
     const onToggle = () => {
@@ -30,6 +32,8 @@ const OptionalInput = (props) => {
                         <Input
                             placeholder={placeholder}
                             style={styles.input}
+                            value={value}
+                            onChangeText={onChangeText}
                         />
                         {inputUnits && (
                             <Text style={styles.inputUnits}>

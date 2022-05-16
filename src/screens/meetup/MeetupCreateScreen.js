@@ -26,17 +26,23 @@ const MeetupCreateScreen = () => {
                     label="Add a Title"
                     placeholder="Title"
                     style={styles.input}
+                    value={title}
+                    onChangeText={setTitle}
                 />
                 <OptionalInput
                     label="Add a Location"
                     placeholder="Location"
                     style={styles.input}
+                    value={location}
+                    onChangeText={setLocation}
                 />
                 <OptionalInput
                     label="Set Lifetime"
                     placeholder="12"
                     inputUnits="Hours"
                     style={styles.input}
+                    value={lifetime}
+                    onChangeText={setLifetime}
                 />
                 <Button
                     title="Create"

@@ -1,15 +1,13 @@
 import React, { useState } from "react";
 // Components
 import { StyleSheet, View } from "react-native";
-import OptionsMenu from "react-native-option-menu";
 import ScreenContainer from "../../components/ScreenContainer";
 import Header from "../../components/Header";
 import {
     Button,
     OptionalInput,
-    TextInput
 } from "../../components/froyo-elements";
-import { colors } from "../../constants/constants";
+import { useMeetups } from "../../context/MeetupContext";
 
 const MeetupCreateScreen = () => {
     const [title, setTitle] = useState("");

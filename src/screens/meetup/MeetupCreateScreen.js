@@ -7,12 +7,19 @@ import {
     Button,
     OptionalInput,
 } from "../../components/froyo-elements";
-import { useMeetups } from "../../context/MeetupContext";
+import { useMeetup } from "../../context/MeetupContext";
 
 const MeetupCreateScreen = () => {
+    const {
+        createMeetup
+    } = useMeetup();
     const [title, setTitle] = useState("");
     const [location, setLocation] = useState("");
     const [lifetime, setLifetime] = useState("");
+
+    const onSubmit = () => {
+        createMeetup({ title, location, lifetime });
+    };
 
     return (
         <ScreenContainer>
@@ -44,6 +51,7 @@ const MeetupCreateScreen = () => {
                 />
                 <Button
                     title="Create"
+                    onPress={onSubmit}
                 />
             </View>
         </ScreenContainer>

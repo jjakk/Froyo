@@ -12,10 +12,15 @@ const meetupReducer = (state, action) => {
     }
 };
 
+// TODO
+const createMeetup = () => (info) => {
+    return;
+};
+
 export const { Provider, Context } = createDataContext(
     meetupReducer,
     {
-
+        createMeetup
     }, {}
 );
 

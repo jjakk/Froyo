@@ -7,6 +7,7 @@ import AppNavigator from "./src/navigation/appNavigator";
 import { Provider as UserProvider } from "./src/context/UserContext";
 import { Provider as ContentProvider } from "./src/context/ContentContext";
 import { Provider as SettingsProvider } from "./src/context/SettingsContext";
+import { Provider as MeetupProvider } from "./src/context/MeetupContext";
 
 const App = () => {
   // Import custom fonts
@@ -34,7 +35,9 @@ const App = () => {
       <UserProvider>
         <ContentProvider>
           <SettingsProvider>
-            <AppNavigator/>
+            <MeetupProvider>
+              <AppNavigator/>
+            </MeetupProvider>
           </SettingsProvider>
         </ContentProvider>
       </UserProvider>

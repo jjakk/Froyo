@@ -43,7 +43,7 @@ const MeetupCreateScreen = () => {
                 />
                 <OptionalInput
                     label="Set Lifetime"
-                    placeholder="12"
+                    placeholder="24"
                     inputUnits="Hours"
                     style={styles.input}
                     value={lifetime}

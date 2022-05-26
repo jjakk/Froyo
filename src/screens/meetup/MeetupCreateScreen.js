@@ -14,6 +14,7 @@ const MeetupCreateScreen = () => {
         createMeetup
     } = useMeetup();
     const [title, setTitle] = useState("");
+    const [description, setDescription] = useState("");
     const [location, setLocation] = useState("");
     const [lifetime, setLifetime] = useState("");
 
@@ -33,6 +34,13 @@ const MeetupCreateScreen = () => {
                     style={styles.input}
                     value={title}
                     onChangeText={setTitle}
+                />
+                <OptionalInput
+                    label="Add a Description"
+                    placeholder="Description"
+                    style={styles.input}
+                    value={description}
+                    onChangeText={setDescription}
                 />
                 <OptionalInput
                     label="Add a Location"

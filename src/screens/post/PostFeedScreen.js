@@ -13,6 +13,7 @@ import ScreenContainer from "../../components/ScreenContainer";
 import PostList from "../../components/content/PostList";
 // Icons
 import FroyoIcon from "../../../assets/icons/Froyo.svg";
+import ChatIcon from "../../../assets/icons/Chat.svg";
 // Context
 import { useUser } from "../../context/UserContext";
 import { useContent } from "../../context/ContentContext";
@@ -82,6 +83,7 @@ const FeedScreen = ({ navigation }) => {
                     color: primaryColors.MAIN,
                     onPress: onScrollToTop
                 }}
+                RightIcon={ChatIcon}
             />
             <PostList
                 emptyMessage="Follow people to populate your feed"

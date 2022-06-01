@@ -4,10 +4,10 @@
     "slug": "Froyo",
     "version": "0.2.2",
     "orientation": "portrait",
-    "icon": "./assets/logo/Logo-Background.png",
+    "icon": "./assets/logo-background.png",
     "userInterfaceStyle": "automatic",
     "splash": {
-      "image": "./assets/logo/Splash.png",
+      "image": "./assets/splash.png",
       "resizeMode": "cover",
       "backgroundColor": "#FFFFFF"
     },
@@ -23,13 +23,13 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/logo/Logo-Background.png",
+        "foregroundImage": "./assets/logo-background.png",
         "backgroundColor": "#FFFFFF"
       },
       "package": "com.protosapps.froyo"
     },
     "web": {
-      "favicon": "./assets/logo/Logo-Background.png"
+      "favicon": "./assets/logo-background.png"
     },
     "packagerOpts": {
       "config": "metro.config.js",

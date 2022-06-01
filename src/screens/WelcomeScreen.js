@@ -22,7 +22,7 @@ const WelcomeScreen = ({ navigation }) => {
             <SafeAreaView style={styles.container}>
                 <View style={styles.header}>
                     <Image
-                        source={require("../../assets/logo/Logo-White.png")}
+                        source={require("../../assets/logo-white.png")}
                         style={styles.logo}
                     />
                     <View style={styles.text}>

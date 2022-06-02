@@ -1,7 +1,14 @@
-<<<<<<< HEAD
-**/node_modules
-**/.DS_Store
-**/.expo
-=======
 node_modules/
->>>>>>> 1dc067594a42f3d197b2914d1164d741bcd37105
+.expo/
+dist/
+npm-debug.*
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
+web-build/
+
+# macOS
+.DS_Store

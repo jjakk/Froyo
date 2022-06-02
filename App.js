@@ -24,9 +24,9 @@ const App = () => {
       forceUpdate();
   };
   useEffect(() => {
-      Appearance.addChangeListener(onThemeChange);
+      const subscription = Appearance.addChangeListener(onThemeChange);
       return () => {
-          Appearance.removeChangeListener(onThemeChange)
+        subscription.remove();
       };
   }, []);
 

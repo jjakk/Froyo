@@ -1,5 +1,5 @@
 import React, { useReducer, useEffect } from "react";
-import { Appearance } from "react-native";
+import { Appearance, LogBox } from "react-native";
 import { useFonts } from "expo-font";
 // Navigation
 import AppNavigator from "./src/navigation/appNavigator";
@@ -8,6 +8,9 @@ import { Provider as UserProvider } from "./src/context/UserContext";
 import { Provider as ContentProvider } from "./src/context/ContentContext";
 import { Provider as SettingsProvider } from "./src/context/SettingsContext";
 import { Provider as MeetupProvider } from "./src/context/MeetupContext";
+
+// Don't worry about it
+LogBox.ignoreLogs(["EventEmitter.removeListener"]);
 
 const App = () => {
   // Import custom fonts

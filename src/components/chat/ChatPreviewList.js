@@ -14,6 +14,7 @@ const ChatPreviewList = (props) => {
             data={chats}
             renderItem={({ item }) => (
                 <ChatPreview
+                    id={item.id}
                     title={item.title}
                     subtitle={item.subtitle}
                     members={item.members}

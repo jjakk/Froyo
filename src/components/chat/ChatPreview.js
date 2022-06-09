@@ -8,6 +8,8 @@ import {
     Appearance
 } from "react-native";
 import { Text } from "../froyo-elements";
+// Navigation
+import { navigate } from "../../navigation/navigationRef";
 // Constants
 import { colors } from "../../constants/constants";
 
@@ -17,6 +19,7 @@ const ChatPreview = (props) => {
     
     // Props
     const {
+        id,
         title,
         subtitle,
         members
@@ -28,8 +31,15 @@ const ChatPreview = (props) => {
             : require("../../../assets/icons/guest.png")
     );
 
+    // Event handlers
+    const onOpenChat = () => {
+        /*navigate("ChatView", {
+            id
+        });*/
+    };
+
     return (
-        <TouchableOpacity>
+        <TouchableOpacity onPress={onOpenChat}>
             <View style={[styles.container, themeStyles[theme].container]}>
                 <Image
                     source={profilePictureSource}

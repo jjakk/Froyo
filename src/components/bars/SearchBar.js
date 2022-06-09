@@ -23,6 +23,8 @@ const SearchBar = (props) => {
     const [text, setText] = useState("");
     const {
         onSearch,
+        style,
+        placeholder="Search"
     } = props;
 
     const clearText = async () => {
@@ -38,13 +40,14 @@ const SearchBar = (props) => {
         <View>
             <View style={[
                 styles.container,
-                themeStyles[theme].container
+                themeStyles[theme].container,
+                style
             ]}>
                 <TextInput
                     style={styles.text}
                     onChangeText={setText}
                     value={text}
-                    placeholder="Search"
+                    placeholder={placeholder}
                     leftIcon={(
                         <SearchIcon
                             color={colors[theme === "dark" ? "GRAY" : "LIGHT_BLACK"]}
@@ -75,9 +78,8 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "center",
-        borderWidth: 0,
         borderRadius: 50,
-        margin: 25
+        borderWidth: 0
     },
     text: {
         flex: 1,
@@ -86,7 +88,7 @@ const styles = StyleSheet.create({
     clear: {
         marginRight: 20,
         opacity: 0.5
-    }
+    },
 });
 
 const themeStyles = {

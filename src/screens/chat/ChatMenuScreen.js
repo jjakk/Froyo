@@ -17,6 +17,7 @@ const ChatMenuScreen = (props) => {
 
     const dummy_chats = [
         {
+            id: "48739281",
             title:"Amphibian Society",
             subtitle:"The gala was awesome",
             members: [
@@ -25,6 +26,7 @@ const ChatMenuScreen = (props) => {
             ]
         },
         {
+            id: "685940392",
             title:"Bob",
             subtitle:"hello world",
             members: [
@@ -32,6 +34,7 @@ const ChatMenuScreen = (props) => {
             ]
         },
         {
+            id: "594837281",
             title:"Alice",
             subtitle:"world hello",
             members: [

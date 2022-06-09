@@ -35,6 +35,7 @@ const SearchContainerScreen = (props) => {
         >
             <SearchBar
                 onSearch={onSearch}
+                style={styles.searchBar}
             />
             <MaterialTopTabBar
                 {...props}
@@ -51,6 +52,9 @@ const styles = StyleSheet.create({
     container: {
         flex: 0
     },
+    searchBar: {
+        margin: 25
+    }
 });
 
 const themeStyles = {

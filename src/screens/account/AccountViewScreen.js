@@ -42,7 +42,7 @@ const AccountViewScreen = ({ navigation }) => {
         `${
         user.id === signedInUser.id
             ? "you haven't"
-            : "This users hasn't"
+            : "This user hasn't"
         } posted anything yet`
     );
 

@@ -20,6 +20,7 @@ const ChatPreviewList = (props) => {
                     members={item.members}
                 />
             )}
+            keyExtractor={(item) => item.id}
         />
     );
 };

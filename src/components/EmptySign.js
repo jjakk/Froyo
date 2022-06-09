@@ -1,9 +1,9 @@
 import React from "react";
 // Components
 import { View, StyleSheet } from "react-native";
-import { Text } from "../froyo-elements";
+import { Text } from "./froyo-elements";
 
-const EmptyMessage = (props) => {
+const EmptySign = (props) => {
     const {
         headerText="Nothing to show",
         subheaderText,
@@ -42,4 +42,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default EmptyMessage;
+export default EmptySign;

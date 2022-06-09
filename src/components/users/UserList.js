@@ -6,7 +6,7 @@ import {
     FlatList,
     View
 } from "react-native";
-import EmptyMessage from "../messages/EmptyMessage";
+import EmptySign from "../EmptySign";
 import LoadingAnimation from "../animations/LoadingAnimation";
 import UserPreview from "./UserPreview";
 // Constants
@@ -43,7 +43,7 @@ const UserList = (props) => {
                             style={styles.noUsers}
                         />
                     ) : (
-                        <EmptyMessage
+                        <EmptySign
                             subheaderText="No users found"
                             style={styles.noUsers}
                         />

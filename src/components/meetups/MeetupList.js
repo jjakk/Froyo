@@ -2,7 +2,7 @@ import React from "react";
 // Components
 import { Appearance, StyleSheet, View, FlatList } from "react-native";
 import LoadingAnimation from "../animations/LoadingAnimation";
-import EmptyMessage from "../messages/EmptyMessage";
+import EmptySign from "../EmptySign";
 import Meetup from "./Meetup";
 // Context
 import { useMeetup } from "../../context/MeetupContext";
@@ -41,7 +41,7 @@ const MeetupList = (props) => {
                             style={styles.meetupsLoading}
                         />
                     ) : (
-                        <EmptyMessage
+                        <EmptySign
                             style={styles.emptyMessage}
                             subheaderText={emptyMessage}
                         />

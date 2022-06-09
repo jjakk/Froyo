@@ -15,7 +15,7 @@ import {
 } from "react-native";
 import { NavigationEvents } from "react-navigation";
 import LoadingAnimation from "../animations/LoadingAnimation";
-import EmptyMessage from "../messages/EmptyMessage";
+import EmptySign from "../EmptySign";
 import Post from "./Post";
 // Context
 import { useUser } from "../../context/UserContext";
@@ -102,7 +102,7 @@ const PostList = (props, ref) => {
                             style={styles.postLoading}
                         />
                     ) : (
-                        <EmptyMessage
+                        <EmptySign
                             style={styles.emptyMessage}
                             subheaderText={emptyMessage}
                         />

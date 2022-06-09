@@ -1,0 +1,81 @@
+import React from "react";
+// Components
+import {
+    View,
+    Image,
+    TouchableOpacity,
+    StyleSheet,
+    Appearance
+} from "react-native";
+import { Text } from "../froyo-elements";
+// Constants
+import { colors } from "../../constants/constants";
+
+const ChatPreview = (props) => {
+    // Theme
+    const theme = Appearance.getColorScheme();
+    
+    // Props
+    const {
+        title,
+        subtitle,
+        members
+    } = props;
+
+    const profilePictureSource = (
+        members.length > 1 ?
+            require("../../../assets/icons/group.png")
+            : require("../../../assets/icons/guest.png")
+    );
+
+    return (
+        <TouchableOpacity>
+            <View style={[styles.container, themeStyles[theme].container]}>
+                <Image
+                    source={profilePictureSource}
+                    style={styles.profilePicture}
+                />
+                <View>
+                    <Text style={styles.title}>{title}</Text>
+                    <Text style={styles.subtitle}>{subtitle}</Text>
+                </View>
+            </View>
+        </TouchableOpacity>
+    );
+};
+
+const styles = StyleSheet.create({
+    container: {
+        padding: 15,
+        marginBottom: 5,
+        flexDirection: "row",
+        alignItems: "center",
+    },
+    profilePicture: {
+        width: 50,
+        height: 50,
+        marginRight: 15
+    },
+    title: {
+        fontSize: 24,
+    },
+    subtitle: {
+        opacity: 0.5,
+        fontSize: 16,
+    }
+});
+
+const themeStyles = {
+    light: StyleSheet.create({
+        container: {
+            backgroundColor: colors.light.FIRST,
+        }
+    }),
+    dark: StyleSheet.create({
+        container: {
+            backgroundColor: colors.dark.SECOND,
+        }
+    })
+};
+
+export default ChatPreview;

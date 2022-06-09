@@ -48,6 +48,10 @@ const FeedScreen = ({ navigation }) => {
         navigation.navigate("AccountView");
     };
 
+    const onOpenChat = () => {
+        navigation.navigate("ChatMenu");
+    };
+
     const onScrollToTop = async () => {
         postListRef.current.scrollToTop();
         await retrieveFeed();
@@ -84,6 +88,9 @@ const FeedScreen = ({ navigation }) => {
                     onPress: onScrollToTop
                 }}
                 RightIcon={ChatIcon}
+                RightIconProps={{
+                    onPress: onOpenChat
+                }}
             />
             <PostList
                 emptyMessage="Follow people to populate your feed"

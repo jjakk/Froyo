@@ -8,12 +8,17 @@ import {
     TouchableOpacity
 } from "react-native";
 import {
-    Text
+    Text,
+    Button,
+    TouchableIcon
 } from "../froyo-elements";
 // Constants
 import { BASE_URL, colors } from "../../constants/constants";
 // Navigation
 import { navigate } from "../../navigation/navigationRef";
+// Icons
+import PlusCircleIcon from "../../../assets/icons/Plus-Circle.svg";
+import CloseCircleIcon from "../../../assets/icons/Close-Circle.svg";
 
 const UserPreview = (props) => {
     // Theme
@@ -29,7 +34,7 @@ const UserPreview = (props) => {
     const {
         first_name,
         last_name,
-        profile_picture_bucket_key,
+        profile_picture_bucket_key
     } = user;
     
     // Conditional rendering
@@ -67,6 +72,24 @@ const UserPreview = (props) => {
                     </Text>
                 </Text>
             </TouchableOpacity>
+            <View style={styles.action}>
+                {/*
+                    (
+                        <>
+                            <TouchableIcon
+                                Icon={PlusCircleIcon}
+                                color={colors.GREEN}
+                                size={30}
+                            />
+                            <TouchableIcon
+                                Icon={CloseCircleIcon}
+                                color={colors.DISLIKE_RED}
+                                size={30}
+                            />
+                        </>
+                    )
+                */}
+            </View>
         </View>
     );
 };
@@ -75,7 +98,10 @@ const styles = StyleSheet.create({
     container: {
         padding: 15,
         flex: 1,
-        marginBottom: 5
+        marginBottom: 5,
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "space-between",
     },
     profilePicture: {
         width: 30,
@@ -85,6 +111,10 @@ const styles = StyleSheet.create({
     name: {
         marginLeft: 10,
         fontSize: 20
+    },
+    action: {
+        flexDirection: "row",
+        alignItems: "center"
     }
 });
 

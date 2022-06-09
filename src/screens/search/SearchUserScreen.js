@@ -33,7 +33,7 @@ const SearchUserScreen = (props) => {
                 !query
                     ? []
                     : await searchUser({ text: query })
-                );
+            );
         }
         catch(err) {
             Alert.alert(err.response.data);

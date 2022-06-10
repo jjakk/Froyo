@@ -36,12 +36,14 @@ const PostViewScreen = ({ navigation }) => {
     // Handle posting a comment
     const onCreateComment = async (text) => {
         try {
-            const content = {
-                text,
-                parent_id: post.id
-            };
-            await createContent("comment", content);
-            await retreivePost();
+            if(text){
+                const content = {
+                    text,
+                    parent_id: post.id
+                };
+                await createContent("comment", content);
+                await retreivePost();
+            }
         }
         catch (err) {
             Alert.alert(err.message);

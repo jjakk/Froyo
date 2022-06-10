@@ -4,6 +4,7 @@ import ScreenContainer from "../../components/ScreenContainer";
 import Header from "../../components/Header";
 import MessageList from "../../components/chat/messages/MessageList";
 import CommentBar from "../../components/bars/CommentBar";
+import { Alert } from "react-native";
 
 const ChatMainScreen = () => {
     const dummyMessages = [
@@ -35,6 +36,12 @@ const ChatMainScreen = () => {
             authorName: "Bob"
         }
     ];
+
+    const onSendMessage = (message) => {
+        if(message){
+            console.log(message);
+        }
+    }; 
     
     return (
         <ScreenContainer
@@ -47,6 +54,7 @@ const ChatMainScreen = () => {
                 messages={dummyMessages}
             />
             <CommentBar
+                onSubmit={onSendMessage}
             />
         </ScreenContainer>
     );

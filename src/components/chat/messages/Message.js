@@ -32,12 +32,13 @@ const Message = (props) => {
                 styles.bubble,
                 self ? {
                     alignSelf: "flex-end",
-                    backgroundColor: primaryColors.DARKER
+                    backgroundColor: primaryColors.DARK
                 } : themeStyles[theme].other
             ]}>
                 <Text style={[
                     styles.text,
-                    self ? styles.selfText : null
+                    themeStyles[theme].otherText,
+                    self ? styles.selfText : styles.otherText
                 ]}>{text}</Text>
             </View>
         </View>
@@ -67,12 +68,18 @@ const styles = StyleSheet.create({
 const themeStyles = {
     light: StyleSheet.create({
         other: {
-            backgroundColor: colors.light.FIRST
+            backgroundColor: colors.light.SECOND
+        },
+        otherText: {
+            color: colors.BLACK
         }
     }),
     dark: StyleSheet.create({
         other: {
             backgroundColor: colors.dark.FIRST
+        },
+        otherText: {
+            color: colors.WHITE
         }
     })
 };

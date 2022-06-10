@@ -1,9 +1,11 @@
 import React from "react";
 // Components
-import { FlatList, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
+import { FlatList } from "../../froyo-elements";
 import Message from "./Message";
 
 const MessageList = (props) => {
+
     // Props
     const {
         messages

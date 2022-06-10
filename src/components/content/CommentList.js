@@ -4,11 +4,10 @@ import {
     Appearance,
     StyleSheet,
     View,
-    FlatList,
     RefreshControl,
     Alert
 } from "react-native";
-import { Text } from "../froyo-elements";
+import { Text, FlatList } from "../froyo-elements";
 import Comment from "./Comment";
 // Context
 import { useContent } from "../../context/ContentContext";
@@ -96,10 +95,7 @@ const CommentList = (props) => {
     };
 
     return (
-        <View style={[
-            styles.container,
-            themeStyles[theme].container
-        ]}>
+        <View style={styles.container}>
             <FlatList
                 data={comments}
                 keyExtractor={(item) => item.id}
@@ -148,18 +144,5 @@ const styles = StyleSheet.create({
         margin: 50
     },
 });
-
-const themeStyles = {
-    light: StyleSheet.create({
-        container: {
-            backgroundColor: colors.light.FIRST
-        }
-    }),
-    dark: StyleSheet.create({
-        container: {
-            backgroundColor: colors.dark.FOURTH
-        }
-    })
-};
 
 export default CommentList;

@@ -1,13 +1,10 @@
 import React from "react";
 // Components
-import { Appearance, StyleSheet, View, FlatList } from "react-native";
+import { Appearance, StyleSheet, View } from "react-native";
+import { FlatList } from "../froyo-elements";
 import LoadingAnimation from "../animations/LoadingAnimation";
 import EmptySign from "../EmptySign";
 import Meetup from "./Meetup";
-// Context
-import { useMeetup } from "../../context/MeetupContext";
-// Constants
-import { colors } from "../../constants/constants";
 
 const MeetupList = (props) => {
     // Theme
@@ -21,10 +18,7 @@ const MeetupList = (props) => {
     } = props;
 
     return (
-        <View style={[
-            styles.container,
-            themeStyles[theme].container
-        ]}>
+        <View style={styles.container}>
             <FlatList
                 data={meetups}
                 showsVerticalScrollIndicator={false}
@@ -66,18 +60,5 @@ const styles = StyleSheet.create({
         marginTop: 50
     }
 });
-
-const themeStyles = {
-    light: StyleSheet.create({
-        container: {
-            backgroundColor: colors.light.FIRST
-        }
-    }),
-    dark: StyleSheet.create({
-        container: {
-            backgroundColor: colors.dark.FOURTH
-        }
-    })
-};
 
 export default MeetupList;

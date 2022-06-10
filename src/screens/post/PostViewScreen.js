@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 // Components
 import {
-    StyleSheet,
-    ScrollView,
-    RefreshControl
+    Alert,
+    StyleSheet
 } from "react-native";
 import ScreenContainer from "../../components/ScreenContainer";
 import Header from "../../components/Header";
@@ -14,13 +13,13 @@ import CommentList from "../../components/content/CommentList";
 import { useContent } from "../../context/ContentContext";
 
 const PostViewScreen = ({ navigation }) => {
-    const { getContent } = useContent();
+    const { getContent, createContent } = useContent();
     // Content
     const passedPost = navigation.getParam("post");
     const [post, setPost] = useState(passedPost);
     const [loading, setLoading] = useState(false);
 
-    // Refresh post information (get new comments)
+    // Refresh post information and get new comments
     const retreivePost = async () => {
         try {
             setLoading(true);
@@ -34,13 +33,27 @@ const PostViewScreen = ({ navigation }) => {
         }
     };
 
+    // Handle posting a comment
+    const onCreateComment = async (text) => {
+        try {
+            const content = {
+                text,
+                parent_id: post.id
+            };
+            await createContent("comment", content);
+            await retreivePost();
+        }
+        catch (err) {
+            Alert.alert(err.message);
+        }
+    };
+
     useEffect(() => {
         setPost(passedPost);
     }, [passedPost]);
 
     return (
         <ScreenContainer
-            style={styles.container}
             edges={["top", "bottom"]}
             onDidFocus={retreivePost}
         >
@@ -61,8 +74,7 @@ const PostViewScreen = ({ navigation }) => {
                     )}
                 />
                 <CommentBar
-                    parent_id={post.id}
-                    onCreateComment={retreivePost}
+                    onSubmit={onCreateComment}
                 />
         </ScreenContainer>
     );

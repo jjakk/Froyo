@@ -3,6 +3,7 @@ import React from "react";
 import ScreenContainer from "../../components/ScreenContainer";
 import Header from "../../components/Header";
 import MessageList from "../../components/chat/messages/MessageList";
+import CommentBar from "../../components/bars/CommentBar";
 
 const ChatMainScreen = () => {
     const dummyMessages = [
@@ -36,12 +37,16 @@ const ChatMainScreen = () => {
     ];
     
     return (
-        <ScreenContainer>
+        <ScreenContainer
+            edges={["top", "bottom"]}
+        >
             <Header
                 title={"Chat Name"}
             />
             <MessageList
                 messages={dummyMessages}
+            />
+            <CommentBar
             />
         </ScreenContainer>
     );

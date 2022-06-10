@@ -1,20 +1,15 @@
 import React from "react";
 // Components
 import {
-    Appearance,
     StyleSheet,
-    FlatList,
     View
 } from "react-native";
+import { FlatList } from "../froyo-elements";
 import EmptySign from "../EmptySign";
 import LoadingAnimation from "../animations/LoadingAnimation";
 import UserPreview from "./UserPreview";
-// Constants
-import { colors } from "../../constants/constants";
 
 const UserList = (props) => {
-    // Theme
-    const theme = Appearance.getColorScheme();
 
     // Props
     const {
@@ -27,7 +22,6 @@ const UserList = (props) => {
         <View
             style={[
                 styles.container,
-                themeStyles[theme].container,
                 style
             ]}
         >
@@ -63,18 +57,5 @@ const styles = StyleSheet.create({
         marginTop: 50
     }
 });
-
-const themeStyles = {
-    light: StyleSheet.create({
-        container: {
-            backgroundColor: colors.light.FIRST,
-        }
-    }),
-    dark: StyleSheet.create({
-        container: {
-            backgroundColor: colors.dark.FOURTH,
-        }
-    })
-};
 
 export default UserList;

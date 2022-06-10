@@ -57,7 +57,7 @@ const ChatPreview = (props) => {
 const styles = StyleSheet.create({
     container: {
         padding: 15,
-        marginBottom: 5,
+        marginBottom: 1,
         flexDirection: "row",
         alignItems: "center",
     },
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
 const themeStyles = {
     light: StyleSheet.create({
         container: {
-            backgroundColor: colors.light.FIRST,
+            backgroundColor: colors.WHITE,
         }
     }),
     dark: StyleSheet.create({

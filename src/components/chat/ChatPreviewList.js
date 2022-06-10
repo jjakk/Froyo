@@ -1,6 +1,6 @@
 import React from "react";
 // Components
-import { FlatList } from "react-native";
+import { FlatList } from "../froyo-elements";
 import ChatPreview from "./ChatPreview";
 
 const ChatPreviewList = (props) => {

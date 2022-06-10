@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import {
-    Alert,
     Appearance,
     StyleSheet,
 } from "react-native";
@@ -11,7 +10,6 @@ import {
     TouchableIcon
 } from "../froyo-elements";
 // Context
-import { useContent } from "../../context/ContentContext";
 import { useSettings } from "../../context/SettingsContext";
 // Icons
 import SendIcon from "../../../assets/icons/Send.svg";
@@ -26,32 +24,20 @@ const CommentBar = (props) => {
     const darkModeEnabled = theme === "dark" ;
 
     // Context
-    const { createContent } = useContent();
     const { state: { primaryColors } } = useSettings();
+
+    // State
+    const [commentText, setCommentText] = useState("");
     
     // Props
     const {
         style,
-        parent_id,
-        onCreateComment
+        onSubmit
     } = props;
-    
-    // State
-    const [commentText, setCommentText] = useState("");
 
-    const onSubmit = async () => {
-        try {
-            const content = {
-                text: commentText,
-                parent_id
-            };
-            await createContent("comment", content);
-            setCommentText("");
-            onCreateComment();
-        }
-        catch (err) {
-            Alert.alert(err.message);
-        }
+    const onSend = () => {
+        onSubmit(commentText);
+        setCommentText("");
     };
 
     return (
@@ -79,7 +65,7 @@ const CommentBar = (props) => {
                 style={styles.send}
                 size={35}
                 color={primaryColors.MAIN}
-                onPress={onSubmit}
+                onPress={onSend}
             />
         </View>
     );

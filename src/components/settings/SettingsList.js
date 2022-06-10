@@ -1,17 +1,10 @@
 import React from "react";
 // Components
-import {
-    Appearance,
-    StyleSheet,
-    FlatList
-} from "react-native";
+import { StyleSheet } from "react-native";
+import { FlatList } from "../froyo-elements";
 import SettingsItem from "./SettingsItem";
-// Constants
-import { colors } from "../../constants/constants";
 
 const SettingsList = ({ settings }) => {
-    // Theme
-    const theme = Appearance.getColorScheme();
 
     return (
         <FlatList
@@ -20,10 +13,7 @@ const SettingsList = ({ settings }) => {
             renderItem={({ item }) => (
                 <SettingsItem item={item} />
             )}
-            style={[
-                styles.options,
-                themeStyles[theme].options
-            ]}
+            style={styles.options}
         />
     );
 };
@@ -33,18 +23,5 @@ const styles = StyleSheet.create({
         flex: 1,
     },
 });
-
-const themeStyles = {
-    light: StyleSheet.create({
-        options: {
-            backgroundColor: colors.light.FIRST
-        }
-    }),
-    dark: StyleSheet.create({
-        options: {
-            backgroundColor: colors.dark.FOURTH
-        }
-    })
-};
 
 export default SettingsList;

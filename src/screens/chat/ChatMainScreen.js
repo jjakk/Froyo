@@ -15,6 +15,7 @@ const ChatMainScreen = () => {
             id: 2,
             text: "Message 2",
             self: false,
+            authorName: "Alice"
         },
         {
             id: 3,
@@ -30,6 +31,7 @@ const ChatMainScreen = () => {
             id: 5,
             text: "Message 5",
             self: false,
+            authorName: "Bob"
         }
     ];
     

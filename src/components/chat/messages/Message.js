@@ -17,7 +17,7 @@ const Message = (props) => {
         data: {
             text,
             self,
-            showAuthor
+            authorName
         }
     } = props;
 
@@ -25,7 +25,7 @@ const Message = (props) => {
         <View style={styles.container}>
             {
                 !self && (
-                    <Text style={styles.authorName}>Author Name</Text>
+                    <Text style={styles.authorName}>{authorName}</Text>
                 )
             }
             <View style={[

@@ -1,7 +1,10 @@
 import React from "react";
 
 const ChatEditScreen = () => {
-    return (<></>);
+    return (
+        <>
+        </>
+    );
 };
 
 export default ChatEditScreen;

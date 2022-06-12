@@ -40,6 +40,7 @@ const ChatMainScreen = () => {
     const onSendMessage = (message) => {
         if(message){
             console.log(message);
+            // Set message & update message list
         }
     }; 
     

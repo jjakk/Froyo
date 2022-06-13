@@ -21,6 +21,7 @@ const MessageList = (props) => {
                 />
             )}
             style={styles.container}
+            emptyMessage="No messages yet"
         />
     );
 };

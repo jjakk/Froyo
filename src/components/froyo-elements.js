@@ -10,7 +10,7 @@ import TouchableIcon from "./elements/TouchableIcon";
 import Switch from "./elements/Switch";
 import ImageSelect from "./elements/ImageSelect";
 import ImageList from "./elements/ImageList";
-import FlatList from "./elements/FlatList";
+import FlatList from "./elements/FlatList/FlatList";
 
 module.exports = {
   Button,

@@ -2,8 +2,6 @@ import React from "react";
 // Components
 import { Appearance, StyleSheet, View } from "react-native";
 import { FlatList } from "../froyo-elements";
-import LoadingAnimation from "../animations/LoadingAnimation";
-import EmptySign from "../EmptySign";
 import Meetup from "./Meetup";
 
 const MeetupList = (props) => {
@@ -28,19 +26,8 @@ const MeetupList = (props) => {
                         data={item}
                     />
                 )}
-                ListEmptyComponent={() => (
-                    loading ? (
-                        <LoadingAnimation
-                            size={50}
-                            style={styles.meetupsLoading}
-                        />
-                    ) : (
-                        <EmptySign
-                            style={styles.emptyMessage}
-                            subheaderText={emptyMessage}
-                        />
-                    )
-                )}
+                emptyMessage={emptyMessage}
+                loading={loading}
             />
         </View>
     );
@@ -49,11 +36,6 @@ const MeetupList = (props) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1
-    },
-    emptyMessage: {
-        alignSelf: "center",
-        marginTop: 35,
-        width: 300
     },
     meetupsLoading: {
         alignSelf: "center",

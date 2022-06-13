@@ -10,12 +10,10 @@ import {
     Appearance,
     StyleSheet,
     View,
-    FlatList,
     RefreshControl
 } from "react-native";
 import { NavigationEvents } from "react-navigation";
-import LoadingAnimation from "../animations/LoadingAnimation";
-import EmptySign from "../EmptySign";
+import { FlatList } from "../froyo-elements";
 import Post from "./Post";
 // Context
 import { useUser } from "../../context/UserContext";
@@ -96,18 +94,8 @@ const PostList = (props, ref) => {
                         onDelete={onRefresh}
                     />
                 )}
-                ListEmptyComponent={() => (
-                    loading ? (
-                        <LoadingAnimation
-                            style={styles.postLoading}
-                        />
-                    ) : (
-                        <EmptySign
-                            style={styles.emptyMessage}
-                            subheaderText={emptyMessage}
-                        />
-                    )
-                )}
+                emptyMessage={emptyMessage}
+                loading={loading}
                 ref={scrollRef}
                 {...otherProps}
             />
@@ -121,9 +109,6 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         width: "100%",
         flex: 1
-    },
-    emptyMessage: {
-        marginTop: 50
     },
     postLoading: {
         alignSelf: "center",

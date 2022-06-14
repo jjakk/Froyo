@@ -8,6 +8,8 @@ import {
     Appearance
 } from "react-native";
 import { Text } from "@froyo/elements";
+// Context
+import { useSettings } from "@froyo/settings-context";
 // Icons
 import {
     guestProfilePicture,
@@ -21,6 +23,9 @@ import { colors } from "@froyo/constants";
 const ChatPreview = (props) => {
     // Theme
     const theme = Appearance.getColorScheme();
+
+    // Context
+    const { state: { flavor } } = useSettings();
     
     // Props
     const {
@@ -32,8 +37,8 @@ const ChatPreview = (props) => {
 
     const profilePictureSource = (
         members.length > 2
-            ? groupProfilePicture
-            : guestProfilePicture
+            ? groupProfilePicture(flavor)
+            : guestProfilePicture(flavor)
     );
 
     // Event handlers

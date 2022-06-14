@@ -21,7 +21,12 @@ const FeedScreen = ({ navigation }) => {
     // Context
     const { state: { user } } = useUser();
     const { getFeed } = useContent();
-    const { state: { primaryColors } } = useSettings();
+    const {
+        state: {
+            primaryColors,
+            flavor
+        }
+    } = useSettings();
 
     // Ref
     const postListRef = useRef();
@@ -36,7 +41,7 @@ const FeedScreen = ({ navigation }) => {
         ? {
             uri: `${BASE_URL}/images/${user.profile_picture_bucket_key}`
         }
-        : guestProfilePicture
+        : guestProfilePicture(flavor)
     );
 
     // Event handlers

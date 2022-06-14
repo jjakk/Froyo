@@ -8,6 +8,8 @@ import {
     TouchableOpacity
 } from "react-native";
 import { Text } from "@froyo/elements";
+// Context
+import { useSettings } from "@froyo/settings-context";
 // Icons
 import { guestProfilePicture } from "@froyo/icons";
 // Constants
@@ -18,6 +20,9 @@ import { navigate } from "@froyo/navigation-ref";
 const UserPreview = (props) => {
     // Theme
     const theme = Appearance.getColorScheme();
+
+    // Context
+    const { state: { flavor } } = useSettings();
 
     // Props
     const {
@@ -38,7 +43,7 @@ const UserPreview = (props) => {
         ? {
             uri: `${BASE_URL}/images/${profile_picture_bucket_key}`
         }
-        : guestProfilePicture
+        : guestProfilePicture(flavor)
     );
 
     // Event handlers

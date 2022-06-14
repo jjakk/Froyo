@@ -16,11 +16,13 @@ import { ScreenContainer, Header } from "@froyo/fundamentals";
 import { UploadIcon, guestProfilePicture } from "@froyo/icons";
 // Context
 import { useUser } from "@froyo/user-context";
+import { useSettings } from "@froyo/settings-context";
 // Constants
 import { BASE_URL, colors } from "@froyo/constants";
 
 const AccountEditScreen = ({ navigation }) => {
     const { updateUser, state: { user } } = useUser();
+    const { state: { flavor } } = useSettings();
     // Form feilds
     const [firstName, setFirstName] = useState(user.first_name);
     const [lastName, setLastName] = useState(user.last_name);
@@ -48,7 +50,7 @@ const AccountEditScreen = ({ navigation }) => {
                 ? {
                     uri: `${BASE_URL}/images/${user.profile_picture_bucket_key}`
                 }
-                : guestProfilePicture
+                : guestProfilePicture(flavor)
             )
     );
 

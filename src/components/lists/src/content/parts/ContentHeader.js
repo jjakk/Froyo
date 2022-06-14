@@ -8,6 +8,8 @@ import {
 // Components
 import { Text } from "@froyo/elements";
 import MoreOptions from "./MoreOptions";
+// Context
+import { useSettings } from "@froyo/settings-context"
 // Icons
 import { guestProfilePicture } from "@froyo/icons";
 // Helper functions
@@ -16,6 +18,10 @@ import { calculateAge } from "@froyo/helpers";
 import { BASE_URL } from "@froyo/constants";
 
 const ContentHeader = (props) => {
+    // Context
+    const { state: { flavor } } = useSettings();
+
+    // Props
     const {
         content,
         onPress,
@@ -30,7 +36,7 @@ const ContentHeader = (props) => {
         ? {
             uri: `${BASE_URL}/images/${content.author.profile_picture_bucket_key}`
         }
-        : guestProfilePicture
+        : guestProfilePicture(flavor)
     );
 
     return (

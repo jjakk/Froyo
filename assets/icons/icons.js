@@ -46,6 +46,36 @@ module.exports = {
     SendIcon,
     CloseCircleIcon,
     LoadingIcon,
-    guestProfilePicture: () => require("./guest.png"),
-    groupProfilePicture: () => require("./group.png")
+    guestProfilePicture: (flavor) => {
+        switch(flavor){
+            case "mint":
+                return require("./defaults/guest/guest-mint.png");
+            case "coffee":
+                return require("./defaults/guest/guest-coffee.png");
+            case "strawberry":
+                return require("./defaults/guest/guest-strawberry.png");
+            case "blueberry":
+                return require("./defaults/guest/guest-blueberry.png");
+            case "mango":
+                return require("./defaults/guest/guest-mango.png");
+            default:
+                return require("./defaults/guest/guest-mint.png");
+        }
+    },
+    groupProfilePicture: (flavor) => {
+        switch(flavor){
+            case "mint":
+                return require("./defaults/group/group-mint.png");
+            case "coffee":
+                return require("./defaults/group/group-coffee.png");
+            case "strawberry":
+                return require("./defaults/group/group-strawberry.png");
+            case "blueberry":
+                return require("./defaults/group/group-blueberry.png");
+            case "mango":
+                return require("./defaults/group/group-mango.png");
+            default:
+                return require("./defaults/group/group-mint.png");
+        }
+    },
 };

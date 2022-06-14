@@ -4,6 +4,7 @@ import React, {
 } from "react";
 // Context
 import { useUser } from "@froyo/user-context";
+import { useSettings } from "@froyo/settings-context";
 // Navigation
 import { navigate } from "@froyo/navigation-ref";
 // Components
@@ -36,6 +37,7 @@ const UserProfile = (props) => {
             user: signedInUser
         }
     } = useUser();
+    const { state: { flavor } } = useSettings();
 
     // Theme
     const theme = Appearance.getColorScheme();
@@ -54,7 +56,7 @@ const UserProfile = (props) => {
         ? {
             uri: `${BASE_URL}/images/${user.profile_picture_bucket_key}`
         }
-        : guestProfilePicture
+        : guestProfilePicture(flavor)
     );
 
     // State

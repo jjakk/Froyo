@@ -40,7 +40,7 @@ const Meetup = (props) => {
         ? {
             uri: `${BASE_URL}/images/${content.author.profile_picture_bucket_key}`
         }
-        : guestProfilePicture
+        : guestProfilePicture()
     );
 
     // Set date text to Today, Tomorrow or the date (in format MM/DD/YYYY)

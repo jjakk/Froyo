@@ -15,7 +15,7 @@ const EmptySign = (props) => {
                 styles.text,
                 {
                     fontSize: (
-                        text.length > 20 ? 18 : 22
+                        text.length > 25 ? 18 : 22
                     )
                 }
             ]}>{text}</Text>

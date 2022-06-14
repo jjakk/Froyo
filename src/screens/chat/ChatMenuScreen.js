@@ -14,34 +14,6 @@ const ChatMenuScreen = (props) => {
         navigation.navigate("ChatCreate");
     };
 
-    const dummy_chats = [
-        {
-            id: "48739281",
-            title:"Amphibian Society",
-            subtitle:"The gala was awesome",
-            members: [
-                '123456789',
-                '584954894',
-            ]
-        },
-        {
-            id: "685940392",
-            title:"Bob",
-            subtitle:"hello world",
-            members: [
-                '123456789',
-            ]
-        },
-        {
-            id: "594837281",
-            title:"Alice",
-            subtitle:"world hello",
-            members: [
-                '584954894',
-            ]
-        }
-    ];
-
     return (
         <ScreenContainer>
             <Header
@@ -52,7 +24,7 @@ const ChatMenuScreen = (props) => {
                 }}
             />
             <ChatPreviewList
-                chats={dummy_chats}
+                chats={[]}
             />
         </ScreenContainer>
     );

@@ -2,9 +2,8 @@ import React from "react";
 import * as Linking from "expo-linking";
 import { Alert } from "react-native";
 // Components
-import ScreenContainer from "../../components/ScreenContainer";
-import Header from "../../components/Header";
-import SettingsList from "../../components/settings/SettingsList";
+import { ScreenContainer, Header } from "@froyo/fundamentals";
+import { SettingsList } from "@froyo/lists";
 
 const HelpSettingsScreen = () => {
 

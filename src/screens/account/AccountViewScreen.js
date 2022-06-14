@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet } from "react-native";
 // Components
-import ScreenContainer from "../../components/ScreenContainer";
-import Header from "../../components/Header";
-import PostList from "../../components/content/PostList";
-import UserProfile from "../../components/users/UserProfile";
-import CreateButton from "../../components/CreateButton";
+import { ScreenContainer, Header } from "@froyo/fundamentals";
+import { PostList } from "@froyo/lists";
+import { UserProfile, CreateButton } from "@froyo/single-use";
 // Context
-import { useUser } from "../../context/UserContext";
-import { useContent } from "../../context/ContentContext";
-import { useSettings } from "../../context/SettingsContext";
+import { useUser } from "@froyo/user-context";
+import { useContent } from "@froyo/content-context";
+import { useSettings } from "@froyo/settings-context";
 // Icons
 import GearIcon from "../../../assets/icons/Gear.svg";
 

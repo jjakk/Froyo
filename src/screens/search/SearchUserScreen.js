@@ -4,9 +4,9 @@ import React, {
 } from "react";
 import { Alert } from "react-native";
 // Components
-import UserList from "../../components/users/UserList";
+import { UserList } from "@froyo/lists";
 // Context
-import { useUser } from "../../context/UserContext";
+import { useUser } from "@froyo/user-context";
 // Navigation
 import { NavigationEvents } from "react-navigation";
 

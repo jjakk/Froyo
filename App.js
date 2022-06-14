@@ -4,10 +4,10 @@ import { useFonts } from "expo-font";
 // Navigation
 import AppNavigator from "./src/navigation/appNavigator";
 // Context
-import { Provider as UserProvider } from "./src/context/UserContext";
-import { Provider as ContentProvider } from "./src/context/ContentContext";
-import { Provider as SettingsProvider } from "./src/context/SettingsContext";
-import { Provider as MeetupProvider } from "./src/context/MeetupContext";
+import { Provider as UserProvider } from "@froyo/user-context";
+import { Provider as ContentProvider } from "@froyo/content-context";
+import { Provider as SettingsProvider } from "@froyo/settings-context";
+import { Provider as MeetupProvider } from "@froyo/meetup-context";
 
 // Don't worry about it
 LogBox.ignoreLogs(["EventEmitter.removeListener"]);

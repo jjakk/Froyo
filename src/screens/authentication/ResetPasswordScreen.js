@@ -9,11 +9,10 @@ import {
     TextInput,
     Button,
     Text
-} from "./../../components/froyo-elements";
-import Header from "../../components/Header";
-import ScreenContainer from "../../components/ScreenContainer";
+} from "@froyo/elements";
+import { ScreenContainer, Header } from "@froyo/fundamentals";
 // Context
-import { useUser } from "../../context/UserContext";
+import { useUser } from "@froyo/user-context";
 
 const ResetPasswordScreen = ({ navigation }) => {
     // Context

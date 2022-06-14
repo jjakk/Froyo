@@ -1,10 +1,8 @@
 import React from "react";
 // Components
-import ScreenContainer from "../../components/ScreenContainer";
-import Header from "../../components/Header";
-import MessageList from "../../components/chat/messages/MessageList";
-import CommentBar from "../../components/bars/CommentBar";
-import { Alert } from "react-native";
+import { ScreenContainer, Header } from "@froyo/fundamentals";
+import { MessageList } from "@froyo/lists";
+import { CommentBar } from "@froyo/bars";
 
 const ChatMainScreen = () => {
     const dummyMessages = [

@@ -1,6 +1,6 @@
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { BASE_URL } from "../constants/constants";
+import { BASE_URL } from "@froyo/constants";
 
 const instance =  axios.create({
     baseURL: BASE_URL

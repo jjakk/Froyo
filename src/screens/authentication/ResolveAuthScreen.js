@@ -1,16 +1,14 @@
 import React, { useEffect } from "react";
 // Components
-import {
-    StyleSheet
-} from "react-native";
-import ScreenContainer from "../../components/ScreenContainer";
+import { StyleSheet } from "react-native";
+import { ScreenContainer } from "@froyo/fundamentals";
 // Icons
 import Logo from "../../../assets/icons/Froyo.svg";
 // Context
-import { useUser } from "../../context/UserContext";
-import { useSettings} from "../../context/SettingsContext";
+import { useUser } from "@froyo/user-context";
+import { useSettings} from "@froyo/settings-context";
 // Constants
-import { colors } from "../../constants/constants";
+import { colors } from "@froyo/constants";
 
 const ResolveAuthScreen = () => {
     const { checkSignedIn } = useUser();

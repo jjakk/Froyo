@@ -6,13 +6,13 @@ import MeetupFeedScreen from "../../screens/meetup/MeetupFeedScreen";
 // Navigators
 import searchNavigator from "./searchNavigator";
 // Context
-import { useSettings } from "../../context/SettingsContext";
+import { useSettings } from "@froyo/settings-context";
 // Icons
 import MeetupIcon from "../../../assets/icons/Meetup.svg";
 import HomeIcon from "../../../assets/icons/Home.svg";
 import SearchIcon from "../../../assets/icons/Search.svg";
 // Constants
-import { sizes } from "../../constants/constants";
+import { sizes } from "@froyo/constants";
 
 const IconRender = ({ Icon, focused, tintColor }) => {
     const { state: { primaryColors } } = useSettings();

@@ -1,9 +1,8 @@
 import React from "react";
-import ScreenContainer from "../../components/ScreenContainer";
-import Header from "../../components/Header";
+import { ScreenContainer, Header } from "@froyo/fundamentals";
 import { MaterialTopTabBar } from "react-navigation-tabs";
 // Context
-import { useSettings } from "../../context/SettingsContext";
+import { useSettings } from "@froyo/settings-context";
 
 const ConnectionsContainer = (props) => {
     const { state: { primaryColors } } = useSettings();

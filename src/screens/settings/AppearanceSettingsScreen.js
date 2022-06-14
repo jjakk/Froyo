@@ -5,14 +5,13 @@ import {
 } from "react-native";
 import * as Linking from "expo-linking";
 // Components
-import ScreenContainer from "../../components/ScreenContainer";
-import Header from "../../components/Header";
-import SettingsList from "../../components/settings/SettingsList";
+import { ScreenContainer, Header } from "@froyo/fundamentals";
+import { SettingsList } from "@froyo/lists";
 // Context
-import { useSettings } from "../../context/SettingsContext";
+import { useSettings } from "@froyo/settings-context";
 // Helper functions
-import { capitalize } from "../../helpers/str";
-import { colors } from "../../constants/constants";
+import { capitalize } from "@froyo/helpers";
+import { colors } from "@froyo/constants";
 
 const AppearanceSettingsScreen = () => {
     // Context

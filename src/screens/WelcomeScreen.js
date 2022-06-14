@@ -1,8 +1,9 @@
 import React from "react";
 import { View, Image, StyleSheet, SafeAreaView, StatusBar } from "react-native";
-import { Button, Text } from "../components/froyo-elements";
+import { Button, Text } from "@froyo/elements";
 import { LinearGradient } from "expo-linear-gradient";
-import { colors } from "../constants/constants";
+// Constants
+import { colors } from "@froyo/constants";
 
 const WelcomeScreen = ({ navigation }) => {
     // Event Handlers

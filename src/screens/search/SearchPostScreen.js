@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Alert } from "react-native";
 // Components
-import PostList from "../../components/content/PostList";
+import { PostList } from "@froyo/lists";
 // Context
-import { useContent } from "../../context/ContentContext";
+import { useContent } from "@froyo/content-context";
 // Navigation
 import { NavigationEvents } from "react-navigation";
 

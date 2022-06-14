@@ -4,22 +4,19 @@ import React, {
     useState
 } from "react";
 // Components
-import {
-    StyleSheet
-} from "react-native";
-import CreateButton from "../../components/CreateButton";
-import Header from "../../components/Header";
-import ScreenContainer from "../../components/ScreenContainer";
-import PostList from "../../components/content/PostList";
+import { StyleSheet } from "react-native";
+import { CreateButton } from "@froyo/single-use";
+import { ScreenContainer, Header } from "@froyo/fundamentals";
+import { PostList } from "@froyo/lists";
 // Icons
 import FroyoIcon from "../../../assets/icons/Froyo.svg";
 import ChatIcon from "../../../assets/icons/Chat.svg";
 // Context
-import { useUser } from "../../context/UserContext";
-import { useContent } from "../../context/ContentContext";
-import { useSettings } from "../../context/SettingsContext";
+import { useUser } from "@froyo/user-context";
+import { useContent } from "@froyo/content-context";
+import { useSettings } from "@froyo/settings-context";
 // Constants
-import { BASE_URL } from "../../constants/constants";
+import { BASE_URL } from "@froyo/constants";
 
 const FeedScreen = ({ navigation }) => {
     // Context

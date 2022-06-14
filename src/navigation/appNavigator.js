@@ -7,7 +7,7 @@ import {
     initialWindowMetrics
 } from "react-native-safe-area-context";
 // Set Navigator
-import { setNavigator } from "./navigationRef";
+import { setNavigator } from "@froyo/navigation-ref";
 // Miscellaneous Screens
 import WelcomeScreen from "../screens/WelcomeScreen";
 import NoWifiScreen from "../screens/NoWifiScreen";
@@ -17,9 +17,9 @@ import ResolveAuthScreen from "../screens/authentication/ResolveAuthScreen";
 import mainNavigator from "./navigators/mainNavigator";
 import authNavigator from "./navigators/authNavigator";
 // Context
-import { useSettings } from "../context/SettingsContext";
+import { useSettings } from "@froyo/settings-context";
 // Constants
-import { colors } from "../constants/constants";
+import { colors } from "@froyo/constants";
 
 // This is the root navigator
 const appNavigator = (hideFeed) => createSwitchNavigator({

@@ -11,10 +11,10 @@ import {
     Text,
     TextInput,
     Hyperlink
-} from "../../components/froyo-elements";
-import ScreenContainer from "../../components/ScreenContainer";
+} from "@froyo/elements";
+import { ScreenContainer } from "@froyo/fundamentals";
 // Context
-import { useUser } from "../../context/UserContext";
+import { useUser } from "@froyo/user-context";
 
 const SignInScreen = ({ navigation }) => {
     const { signIn } = useUser();

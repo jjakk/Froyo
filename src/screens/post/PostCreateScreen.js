@@ -1,8 +1,7 @@
 import React from "react";
 // Components
-import ScreenContainer from "../../components/ScreenContainer";
-import Header from "../../components/Header";
-import PostForm from "../../components/content/forms/PostForm";
+import { ScreenContainer, Header } from "@froyo/fundamentals";
+import { PostForm } from "@froyo/forms";
 
 const PostCreateScreen = (props) => {
     const {

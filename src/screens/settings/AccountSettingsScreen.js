@@ -1,14 +1,13 @@
 import React from "react";
 // Components
-import ScreenContainer from "../../components/ScreenContainer";
-import Header from "../../components/Header";
-import SettingsList from "../../components/settings/SettingsList";
+import { ScreenContainer, Header } from "@froyo/fundamentals";
+import { SettingsList } from "@froyo/lists";
 // Context
-import { useUser } from "../../context/UserContext";
+import { useUser } from "@froyo/user-context";
 // Helper functions
-import confirmAlert from "../../helpers/confirmAlert";
+import confirmAlert from "@froyo/helpers";
 // Constants
-import { colors } from "../../constants/constants";
+import { colors } from "@froyo/constants";
 
 const AccountSettingsScreen = () => {
     // Context

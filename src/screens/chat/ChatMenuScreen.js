@@ -1,8 +1,7 @@
 import React from 'react';
 // Components
-import ScreenContainer from '../../components/ScreenContainer';
-import Header from '../../components/Header';
-import ChatPreviewList from '../../components/chat/ChatPreviewList';
+import { ScreenContainer, Header } from '@froyo/fundamentals';
+import { ChatPreviewList } from '@froyo/lists';
 // Icons
 import Plus from '../../../assets/icons/Plus.svg';
 

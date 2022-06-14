@@ -1,16 +1,15 @@
 import React from "react";
 import { Alert } from "react-native";
 // Components
-import ScreenContainer from "../../components/ScreenContainer";
-import Header from "../../components/Header";
-import MeetupList from "../../components/meetups/MeetupList";
+import { ScreenContainer, Header } from "@froyo/fundamentals";
+import { MeetupList } from "@froyo/lists";
 // Context
-import { useSettings } from "../../context/SettingsContext";
-import { useUser } from "../../context/UserContext";
+import { useSettings } from "@froyo/settings-context";
+import { useUser } from "@froyo/user-context";
 // Icons
 import Plus from "../../../assets/icons/Plus.svg";
 // Constants
-import { BASE_URL } from "../../constants/constants";
+import { BASE_URL } from "@froyo/constants";
 
 const MeetupFeedScreen = ({ navigation }) => {
     // Context

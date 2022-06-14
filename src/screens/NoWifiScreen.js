@@ -1,12 +1,12 @@
 import React from "react";
 // Components
 import { Appearance, StyleSheet, View } from "react-native";
-import { Text, Button } from "../components/froyo-elements";
-import ScreenContainer from "../components/ScreenContainer";
+import { Text, Button } from "@froyo/elements";
+import { ScreenContainer } from "@froyo/fundamentals";
 // Icons
 import NoWifiIcon from "../../assets/icons/NoWifi.svg";
 // Constants
-import { colors } from "../constants/constants";
+import { colors } from "@froyo/constants";
 
 const NoWifiScreen = ({ navigation }) => {
     // Theme

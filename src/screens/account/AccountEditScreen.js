@@ -10,15 +10,14 @@ import {
     Button,
     TextInput,
     ImageSelect,
-} from "../../components/froyo-elements";
-import ScreenContainer from "../../components/ScreenContainer";
-import Header from "../../components/Header";
+} from "@froyo/elements";
+import { ScreenContainer, Header } from "@froyo/fundamentals";
 // Icons
 import UploadIcon from "../../../assets/icons/Upload.svg";
 // Context
-import { useUser } from "../../context/UserContext";
+import { useUser } from "@froyo/user-context";
 // Constants
-import { BASE_URL, colors } from "../../constants/constants";
+import { BASE_URL, colors } from "@froyo/constants";
 
 const AccountEditScreen = ({ navigation }) => {
     const { updateUser, state: { user } } = useUser();

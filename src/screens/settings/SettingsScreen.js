@@ -1,8 +1,7 @@
 import React from "react";
 // Components
-import SettingsOptions from "../../components/settings/SettingsList";;
-import ScreenContainer from "../../components/ScreenContainer";
-import Header from "../../components/Header";
+import { SettingsList } from "@froyo/lists";
+import { ScreenContainer, Header } from "@froyo/fundamentals";
 
 const SettingsScreen = ({ navigation }) => {
 
@@ -29,7 +28,7 @@ const SettingsScreen = ({ navigation }) => {
             <Header
                 title="Settings"
             />
-            <SettingsOptions settings={settings} />
+            <SettingsList settings={settings} />
         </ScreenContainer>
     );
 };

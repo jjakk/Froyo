@@ -1,13 +1,9 @@
 import React, { useState } from "react";
 // Components
 import { StyleSheet, View } from "react-native";
-import ScreenContainer from "../../components/ScreenContainer";
-import Header from "../../components/Header";
-import {
-    Button,
-    OptionalInput,
-} from "../../components/froyo-elements";
-import { useMeetup } from "../../context/MeetupContext";
+import { ScreenContainer, Header } from "@froyo/fundamentals";
+import { Button, OptionalInput } from "@froyo/elements";
+import { useMeetup } from "@froyo/meetup-context";
 
 const MeetupCreateScreen = () => {
     const {

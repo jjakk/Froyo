@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 // Components
 import { View, StyleSheet } from "react-native";
-import ScreenContainer from "../../components/ScreenContainer";
-import Header from "../../components/Header";
-import SearchBar from "../../components/bars/SearchBar";
-import UserList from "../../components/users/UserList";
-import { TextInput, Button } from "../../components/froyo-elements";
+import { ScreenContainer, Header } from "@froyo/fundamentals";
+import { SearchBar } from "@froyo/bars";
+import { UserList } from "@froyo/lists";
+import { TextInput, Button } from "@froyo/elements";
 // Context
-import { useUser } from "../../context/UserContext";
+import { useUser } from "@froyo/user-context";
 
 const ChatCreateScreen = () => {
     // Context

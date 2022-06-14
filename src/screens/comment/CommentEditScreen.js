@@ -1,8 +1,7 @@
 import React from "react";
 // Components
-import ScreenContainer from "../../components/ScreenContainer";
-import Header from "../../components/Header";
-import CommentForm from "../../components/content/forms/CommentForm";
+import { ScreenContainer, Header } from "@froyo/fundamentals";
+import { CommentForm } from "@froyo/forms";
 
 const CommentEditScreen = (props) => {
     // Props

@@ -4,13 +4,12 @@ import {
     Alert,
     StyleSheet
 } from "react-native";
-import ScreenContainer from "../../components/ScreenContainer";
-import Header from "../../components/Header";
-import CommentBar from "../../components/bars/CommentBar";
-import Post from "../../components/content/Post";
-import CommentList from "../../components/content/CommentList";
+import { ScreenContainer, Header } from "@froyo/fundamentals";
+import { CommentBar } from "@froyo/bars";
+import { Post } from "../../components/lists/src/content/Post";
+import { CommentList } from "@froyo/lists";
 // Context
-import { useContent } from "../../context/ContentContext";
+import { useContent } from "@froyo/content-context";
 
 const PostViewScreen = ({ navigation }) => {
     const { getContent, createContent } = useContent();

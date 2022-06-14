@@ -2,12 +2,12 @@ import React from "react";
 import { StyleSheet, Appearance } from "react-native";
 // Components
 import { MaterialTopTabBar } from "react-navigation-tabs";
-import ScreenContainer from "../../components/ScreenContainer";
-import SearchBar from "../../components/bars/SearchBar";
+import { ScreenContainer } from "@froyo/fundamentals";
+import { SearchBar } from "@froyo/bars";
 // Context
-import { useSettings } from "../../context/SettingsContext";
+import { useSettings } from "@froyo/settings-context";
 // Constants
-import { colors } from "../../constants/constants";
+import { colors } from "@froyo/constants";
 
 const SearchContainerScreen = (props) => {
     // Context

@@ -7,10 +7,12 @@ import { Animated } from "react-native";
 // Components
 import { TouchableIcon } from "@froyo/elements";
 // Icons
-import LikeIconFill from "../../../../../../assets/icons/Like-Fill.svg";
-import DislikeIconFill from "../../../../../../assets/icons/Dislike-Fill.svg";
-import LikeIconOutline from "../../../../../../assets/icons/Like-Outline.svg";
-import DislikeIconOutline from "../../../../../../assets/icons/Dislike-Outline.svg";
+import {
+    LikeIconFill,
+    DislikeIconFill,
+    LikeIconOutline,
+    DislikeIconOutline
+} from "@froyo/icons";
 // Constants
 import { colors } from "@froyo/constants";
 

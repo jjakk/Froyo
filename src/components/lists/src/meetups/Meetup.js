@@ -9,8 +9,7 @@ import {
 } from "react-native";
 import { Text, TouchableIcon, Button } from "@froyo/elements";
 // Icons
-import MoreSettingsIcon from "../../../../../assets/icons/MoreSettings.svg";
-import LocationIcon from "../../../../../assets/icons/Location.svg";
+import { MoreOptionsIcon, LocationIcon } from "@froyo/icons";
 // Constants
 import { colors, BASE_URL } from "@froyo/constants";
 
@@ -74,7 +73,7 @@ const Meetup = (props) => {
                         </View> 
                     </View>
                     <TouchableIcon
-                        Icon={MoreSettingsIcon}
+                        Icon={MoreOptionsIcon}
                     />
                 </View>
                 <View style={styles.details}>

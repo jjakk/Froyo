@@ -10,9 +10,7 @@ import { confirmAlert } from "@froyo/helpers";
 import { useUser } from "@froyo/user-context";
 import { useContent } from "@froyo/content-context";
 // Icons
-import MoreOptionsIcon from "../../../../../../assets/icons/MoreSettings.svg";
-import TrashIcon from "../../../../../../assets/icons/Trash.svg";
-import PenIcon from "../../../../../../assets/icons/Pen.svg";
+import { MoreOptionsIcon } from "@froyo/icons";
 
 // Constants
 import {
@@ -55,13 +53,11 @@ const MoreOptions = (props) => {
             {
                 label: "Edit",
                 onSelect: onEdit,
-                Icon: PenIcon,
                 color: "black"
             },
             {
                 label: "Delete",
                 onSelect: onDeletePrompt,
-                Icon: TrashIcon,
                 color: "#FB1C1C"
             }
         ]: []),

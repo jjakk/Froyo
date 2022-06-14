@@ -13,7 +13,7 @@ import {
 } from "@froyo/elements";
 import { ScreenContainer, Header } from "@froyo/fundamentals";
 // Icons
-import UploadIcon from "../../../assets/icons/Upload.svg";
+import { UploadIcon } from "@froyo/icons";
 // Context
 import { useUser } from "@froyo/user-context";
 // Constants

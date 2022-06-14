@@ -6,7 +6,7 @@ import {
     StyleSheet
 } from "react-native";
 // Components
-import { Text, Br } from "@froyo/elements";
+import { Text } from "@froyo/elements";
 import MoreOptions from "./MoreOptions";
 // Helper functions
 import { calculateAge } from "@froyo/helpers";

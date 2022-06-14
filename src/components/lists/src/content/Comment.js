@@ -27,7 +27,7 @@ import { useContent } from "@froyo/content-context";
 // Constants
 import { colors, sizes } from "@froyo/constants";
 // Icons
-import ReplyIcon from "../../../../../assets/icons/Reply.svg";
+import { ReplyIcon } from "@froyo/icons";
 
 const Comment = (props) => {
     // Context

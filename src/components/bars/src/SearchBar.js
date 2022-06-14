@@ -13,8 +13,7 @@ import {
     TouchableIcon
 } from "@froyo/elements";
 // Icons
-import SearchIcon from "../../../../assets/icons/Search.svg";
-import CloseIcon from "../../../../assets/icons/Close.svg"
+import { SearchIcon, CloseIcon } from "@froyo/icons";
 // Constants
 import { colors, sizes } from "@froyo/constants";
 

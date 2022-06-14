@@ -29,20 +29,9 @@ import { navigate } from "@froyo/navigation-ref";
 import { useUser } from "@froyo/user-context";
 import { useContent } from "@froyo/content-context";
 // Icons
-import CommentIcon from "../../../../../assets/icons/Comment.svg";
+import { CommentIcon } from "@froyo/icons";
 // Constants
-import {
-    colors,
-    sizes
-} from "@froyo/constants";
-
-// Post props & their meanings
-// ___________________________
-// clickable -> boolean: whether clicking on the post should trigger onPress
-// style -> object: style for the post
-// data -> object: data for the post
-// onDelete -> function: the function to call when the delete button is pressed
-// onPress -> function: the function to call when the post is tapped on
+import { colors, sizes } from "@froyo/constants";
 
 const Post = (props) => {
     // Refs

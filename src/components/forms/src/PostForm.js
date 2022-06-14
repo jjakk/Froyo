@@ -15,7 +15,7 @@ import { ImageUpload } from "@froyo/single-use";
 // Constants
 import { BASE_URL } from "@froyo/constants";
 // Icons
-import SendIcon from "../../../../assets/icons/Send.svg";
+import { SendIcon } from "@froyo/icons";
 // Context
 import { useContent } from "@froyo/content-context";
 import { useSettings } from "@froyo/settings-context";

@@ -8,9 +8,7 @@ import searchNavigator from "./searchNavigator";
 // Context
 import { useSettings } from "@froyo/settings-context";
 // Icons
-import MeetupIcon from "../../../assets/icons/Meetup.svg";
-import HomeIcon from "../../../assets/icons/Home.svg";
-import SearchIcon from "../../../assets/icons/Search.svg";
+import { MeetupIcon, HomeIcon, SearchIcon } from "@froyo/icons";
 // Constants
 import { sizes } from "@froyo/constants";
 

@@ -8,15 +8,11 @@ import {
     TouchableOpacity,
     StyleSheet
 } from "react-native";
-import {
-    Text,
-    ImageSelect
-} from "@froyo/elements";
+import { Text, ImageSelect } from "@froyo/elements";
 // Constants
 import { colors } from "@froyo/constants";
 // Icons
-import PlusIcon from "../../../../assets/icons/Plus.svg";
-import CloseIcon from "../../../../assets/icons/Close.svg";
+import { PlusIcon, CloseIcon } from "@froyo/icons";
 
 const ImageUpload = (props) => {
     const theme = Appearance.getColorScheme();

@@ -14,7 +14,7 @@ import {
 // Navigation
 import { navigateBack } from "@froyo/navigation-ref";
 // Icons
-import BackIcon from "../../../../assets/icons/Back.svg";
+import { BackIcon } from "@froyo/icons";
 // Constants
 import { colors, sizes } from "@froyo/constants";
 

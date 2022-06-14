@@ -6,7 +6,7 @@ import {
 } from "react-native";
 import { ScreenContainer, Header } from "@froyo/fundamentals";
 import { CommentBar } from "@froyo/bars";
-import { Post } from "../../components/lists/src/content/Post";
+import Post from "../../components/lists/src/content/Post";
 import { CommentList } from "@froyo/lists";
 // Context
 import { useContent } from "@froyo/content-context";

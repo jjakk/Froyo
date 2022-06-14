@@ -6,7 +6,7 @@ import TextInput from "./TextInput";
 import TouchableIcon from "./TouchableIcon";
 import Text from "./Text";
 // Icons
-import CloseCircleIcon from "../../../../assets/icons/Close-Circle.svg";
+import { CloseCircleIcon } from "@froyo/icons";
 
 const OptionalInput = (props) => {
     const [showInput, setShowInput] = useState(false);

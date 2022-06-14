@@ -1,9 +1,9 @@
 import React from 'react';
 // Components
-import { ScreenContainer, Header } from '@froyo/fundamentals';
-import { ChatPreviewList } from '@froyo/lists';
+import { ScreenContainer, Header } from "@froyo/fundamentals";
+import { ChatPreviewList } from "@froyo/lists";
 // Icons
-import Plus from '../../../assets/icons/Plus.svg';
+import { PlusIcon } from "@froyo/icons";
 
 const ChatMenuScreen = (props) => {
     const {
@@ -46,7 +46,7 @@ const ChatMenuScreen = (props) => {
         <ScreenContainer>
             <Header
                 title="Chat"
-                RightIcon={Plus}
+                RightIcon={PlusIcon}
                 RightIconProps={{
                     onPress: onCreateChat
                 }}

@@ -9,8 +9,7 @@ import { CreateButton } from "@froyo/single-use";
 import { ScreenContainer, Header } from "@froyo/fundamentals";
 import { PostList } from "@froyo/lists";
 // Icons
-import FroyoIcon from "../../../assets/icons/Froyo.svg";
-import ChatIcon from "../../../assets/icons/Chat.svg";
+import { FroyoIcon, ChatIcon } from "@froyo/icons";
 // Context
 import { useUser } from "@froyo/user-context";
 import { useContent } from "@froyo/content-context";

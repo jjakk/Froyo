@@ -8,7 +8,7 @@ import {
     StyleSheet
 } from "react-native";
 // Icons
-import LikeIcon from "../../../../assets/icons/Like-Fill.svg";
+import { LikeIconFill } from "@froyo/icons";
 // Constants
 import { colors } from "@froyo/constants";
 
@@ -75,7 +75,7 @@ const LikeAnimation = (props, ref) => {
                 })
             }
         ]}>
-            <LikeIcon
+            <LikeIconFill
                 color={colors.GREEN}
                 width={100}
                 height={100}

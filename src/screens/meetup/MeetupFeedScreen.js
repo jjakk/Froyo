@@ -7,7 +7,7 @@ import { MeetupList } from "@froyo/lists";
 import { useSettings } from "@froyo/settings-context";
 import { useUser } from "@froyo/user-context";
 // Icons
-import Plus from "../../../assets/icons/Plus.svg";
+import { PlusIcon } from "@froyo/icons";
 // Constants
 import { BASE_URL } from "@froyo/constants";
 
@@ -85,7 +85,7 @@ const MeetupFeedScreen = ({ navigation }) => {
                 LeftIconProps={{
                     onPress: onAccountView
                 }}
-                RightIcon={Plus}
+                RightIcon={PlusIcon}
                 RightIconProps={{
                     onPress: onCreateMeetup
                 }}

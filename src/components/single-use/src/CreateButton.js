@@ -3,7 +3,7 @@ import React from "react";
 import { TouchableWithoutFeedback } from "react-native";
 import { TouchableIcon } from "@froyo/elements";
 // Icons
-import CreateIcon from "../../../../assets/icons/Create.svg";
+import { CreateIcon } from "@froyo/icons";
 // Context
 import { useSettings } from "@froyo/settings-context";
 // Navigation

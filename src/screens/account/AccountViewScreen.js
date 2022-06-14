@@ -9,7 +9,7 @@ import { useUser } from "@froyo/user-context";
 import { useContent } from "@froyo/content-context";
 import { useSettings } from "@froyo/settings-context";
 // Icons
-import GearIcon from "../../../assets/icons/Gear.svg";
+import { GearIcon } from "@froyo/icons";
 
 const AccountViewScreen = ({ navigation }) => {
     // Context

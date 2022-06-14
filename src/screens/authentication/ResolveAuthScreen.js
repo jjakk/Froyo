@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { StyleSheet } from "react-native";
 import { ScreenContainer } from "@froyo/fundamentals";
 // Icons
-import Logo from "../../../assets/icons/Froyo.svg";
+import { FroyoIcon } from "@froyo/icons";
 // Context
 import { useUser } from "@froyo/user-context";
 import { useSettings} from "@froyo/settings-context";
@@ -28,7 +28,7 @@ const ResolveAuthScreen = () => {
             statusBarBackgroundColor={colors.GREEN}
             statusBarStyle={"dark-content"}
         >
-            <Logo
+            <FroyoIcon
                 color={colors.WHITE}
                 width={78}
                 height={90}

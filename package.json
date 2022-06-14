@@ -16,6 +16,7 @@
     "@froyo/forms": "file:src/components/forms",
     "@froyo/fundamentals": "file:src/components/fundamentals",
     "@froyo/helpers": "file:src/helpers",
+    "@froyo/icons": "file:assets/icons",
     "@froyo/lists": "file:src/components/lists",
     "@froyo/meetup-context": "file:src/context/meetup-context",
     "@froyo/navigation-ref": "file:src/navigation/navigation-ref",

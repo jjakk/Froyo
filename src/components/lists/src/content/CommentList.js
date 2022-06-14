@@ -8,7 +8,7 @@ import {
     Alert
 } from "react-native";
 import { Text, FlatList } from "@froyo/elements";
-import Comment from "../content/Comment";
+import Comment from "./Comment";
 // Context
 import { useContent } from "@froyo/content-context";
 import { useSettings } from "@froyo/settings-context";

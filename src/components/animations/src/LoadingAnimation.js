@@ -11,7 +11,7 @@ import {
 // Context
 import { useSettings } from "@froyo/settings-context";
 // Icons
-import LoadingIcon from "../../../../assets/animation-icons/loading.svg";
+import { LoadingIcon } from "@froyo/icons";
 
 const LoadingAnimation = (props) => {
     // Context

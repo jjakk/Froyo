@@ -4,7 +4,7 @@ import { Appearance, StyleSheet, View } from "react-native";
 import { Text, Button } from "@froyo/elements";
 import { ScreenContainer } from "@froyo/fundamentals";
 // Icons
-import NoWifiIcon from "../../assets/icons/NoWifi.svg";
+import { NoWifiIcon } from "@froyo/icons";
 // Constants
 import { colors } from "@froyo/constants";
 

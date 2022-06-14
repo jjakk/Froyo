@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import { Text, TouchableIcon, Button } from "@froyo/elements";
 // Icons
-import { MoreOptionsIcon, LocationIcon } from "@froyo/icons";
+import { MoreOptionsIcon, LocationIcon, guestProfilePicture } from "@froyo/icons";
 // Constants
 import { colors, BASE_URL } from "@froyo/constants";
 
@@ -40,7 +40,7 @@ const Meetup = (props) => {
         ? {
             uri: `${BASE_URL}/images/${content.author.profile_picture_bucket_key}`
         }
-        : require("../../../../../assets/icons/guest.png")
+        : guestProfilePicture
     );
 
     // Set date text to Today, Tomorrow or the date (in format MM/DD/YYYY)

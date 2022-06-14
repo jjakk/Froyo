@@ -9,7 +9,7 @@ import { CreateButton } from "@froyo/single-use";
 import { ScreenContainer, Header } from "@froyo/fundamentals";
 import { PostList } from "@froyo/lists";
 // Icons
-import { FroyoIcon, ChatIcon } from "@froyo/icons";
+import { FroyoIcon, ChatIcon, guestProfilePicture } from "@froyo/icons";
 // Context
 import { useUser } from "@froyo/user-context";
 import { useContent } from "@froyo/content-context";
@@ -36,7 +36,7 @@ const FeedScreen = ({ navigation }) => {
         ? {
             uri: `${BASE_URL}/images/${user.profile_picture_bucket_key}`
         }
-        : require("../../../assets/icons/guest.png")
+        : guestProfilePicture
     );
 
     // Event handlers

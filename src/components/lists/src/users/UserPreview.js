@@ -7,11 +7,9 @@ import {
     Image,
     TouchableOpacity
 } from "react-native";
-import {
-    Text,
-    Button,
-    TouchableIcon
-} from "@froyo/elements";
+import { Text } from "@froyo/elements";
+// Icons
+import { guestProfilePicture } from "@froyo/icons";
 // Constants
 import { BASE_URL, colors } from "@froyo/constants";
 // Navigation
@@ -40,7 +38,7 @@ const UserPreview = (props) => {
         ? {
             uri: `${BASE_URL}/images/${profile_picture_bucket_key}`
         }
-        : require("../../../../../assets/icons/guest.png")
+        : guestProfilePicture
     );
 
     // Event handlers

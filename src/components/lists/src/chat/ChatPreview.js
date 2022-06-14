@@ -8,6 +8,11 @@ import {
     Appearance
 } from "react-native";
 import { Text } from "@froyo/elements";
+// Icons
+import {
+    guestProfilePicture,
+    groupProfilePicture
+} from "@froyo/icons";
 // Navigation
 import { navigate } from "@froyo/navigation-ref";
 // Constants
@@ -26,9 +31,9 @@ const ChatPreview = (props) => {
     } = props;
 
     const profilePictureSource = (
-        members.length > 1 ?
-            require("../../../../../assets/icons/group.png")
-            : require("../../../../../assets/icons/guest.png")
+        members.length > 2
+            ? groupProfilePicture
+            : guestProfilePicture
     );
 
     // Event handlers

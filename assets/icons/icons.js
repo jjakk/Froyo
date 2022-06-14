@@ -45,5 +45,7 @@ module.exports = {
     BackIcon,
     SendIcon,
     CloseCircleIcon,
-    LoadingIcon
+    LoadingIcon,
+    guestProfilePicture: () => require("./guest.png"),
+    groupProfilePicture: () => require("./group.png")
 };

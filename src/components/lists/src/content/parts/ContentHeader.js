@@ -8,6 +8,8 @@ import {
 // Components
 import { Text } from "@froyo/elements";
 import MoreOptions from "./MoreOptions";
+// Icons
+import { guestProfilePicture } from "@froyo/icons";
 // Helper functions
 import { calculateAge } from "@froyo/helpers";
 // Constants
@@ -28,7 +30,7 @@ const ContentHeader = (props) => {
         ? {
             uri: `${BASE_URL}/images/${content.author.profile_picture_bucket_key}`
         }
-        : require("../../../../../../assets/icons/guest.png")
+        : guestProfilePicture
     );
 
     return (

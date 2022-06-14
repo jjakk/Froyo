@@ -20,6 +20,8 @@ import {
     Button,
     Text
 } from "@froyo/elements";
+// Icons
+import { guestProfilePicture } from "@froyo/icons";
 // Constants
 import { BASE_URL, colors } from "@froyo/constants";
 
@@ -52,7 +54,7 @@ const UserProfile = (props) => {
         ? {
             uri: `${BASE_URL}/images/${user.profile_picture_bucket_key}`
         }
-        : require("../../../../assets/icons/guest.png")
+        : guestProfilePicture
     );
 
     // State

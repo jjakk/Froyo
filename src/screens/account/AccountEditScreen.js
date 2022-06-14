@@ -13,7 +13,7 @@ import {
 } from "@froyo/elements";
 import { ScreenContainer, Header } from "@froyo/fundamentals";
 // Icons
-import { UploadIcon } from "@froyo/icons";
+import { UploadIcon, guestProfilePicture } from "@froyo/icons";
 // Context
 import { useUser } from "@froyo/user-context";
 // Constants
@@ -48,7 +48,7 @@ const AccountEditScreen = ({ navigation }) => {
                 ? {
                     uri: `${BASE_URL}/images/${user.profile_picture_bucket_key}`
                 }
-                : require("../../../assets/icons/guest.png")
+                : guestProfilePicture
             )
     );
 

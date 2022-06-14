@@ -7,7 +7,7 @@ import { MeetupList } from "@froyo/lists";
 import { useSettings } from "@froyo/settings-context";
 import { useUser } from "@froyo/user-context";
 // Icons
-import { PlusIcon } from "@froyo/icons";
+import { PlusIcon, guestProfilePicture } from "@froyo/icons";
 // Constants
 import { BASE_URL } from "@froyo/constants";
 
@@ -51,7 +51,7 @@ const MeetupFeedScreen = ({ navigation }) => {
         ? {
             uri: `${BASE_URL}/images/${user.profile_picture_bucket_key}`
         }
-        : require("../../../assets/icons/guest.png")
+        : guestProfilePicture
     );
 
     // Event handlers

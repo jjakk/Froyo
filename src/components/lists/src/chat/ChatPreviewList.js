@@ -21,7 +21,7 @@ const ChatPreviewList = (props) => {
                 />
             )}
             keyExtractor={(item) => item.id}
-            emptyMessage="You don't have any chats"
+            emptyMessage="No active chats"
         />
     );
 };

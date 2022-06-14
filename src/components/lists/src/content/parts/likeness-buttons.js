@@ -6,6 +6,8 @@ import React, {
 import { Animated } from "react-native";
 // Components
 import { TouchableIcon } from "@froyo/elements";
+// Context
+import { useSettings } from "@froyo/settings-context"
 // Icons
 import {
     LikeIconFill,
@@ -105,6 +107,9 @@ const LikeButton = (props, ref) => {
         simulateTap: likenessRef.current.simulateTap
     }))
 
+    // Context
+    const { state: { primaryColors } } = useSettings();
+
     // Props
     const {
         content
@@ -114,7 +119,7 @@ const LikeButton = (props, ref) => {
         <LikenessButton
             {...props}
             fillCondition={content.liking}
-            fillColor={colors.GREEN}
+            fillColor={primaryColors.MAIN}
             FillIcon={LikeIconFill}
             OutlineIcon={LikeIconOutline}
             rotateClockwise={false}

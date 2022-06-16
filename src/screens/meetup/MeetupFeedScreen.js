@@ -9,7 +9,7 @@ import { useUser } from "@froyo/user-context";
 // Icons
 import { PlusIcon, guestProfilePicture } from "@froyo/icons";
 // Constants
-import { BASE_URL } from "@froyo/constants";
+import { API_ENDPOINT } from "@froyo/constants";
 
 const MeetupFeedScreen = ({ navigation }) => {
     // Context
@@ -20,7 +20,7 @@ const MeetupFeedScreen = ({ navigation }) => {
     const profilePictureSource = (
         user.profile_picture_bucket_key
         ? {
-            uri: `${BASE_URL}/images/${user.profile_picture_bucket_key}`
+            uri: `${API_ENDPOINT}/images/${user.profile_picture_bucket_key}`
         }
         : guestProfilePicture(flavor)
     );

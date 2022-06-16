@@ -15,7 +15,7 @@ import { useUser } from "@froyo/user-context";
 import { useContent } from "@froyo/content-context";
 import { useSettings } from "@froyo/settings-context";
 // Constants
-import { BASE_URL } from "@froyo/constants";
+import { API_ENDPOINT } from "@froyo/constants";
 
 const FeedScreen = ({ navigation }) => {
     // Context
@@ -39,7 +39,7 @@ const FeedScreen = ({ navigation }) => {
     const profilePictureSource = (
         user.profile_picture_bucket_key
         ? {
-            uri: `${BASE_URL}/images/${user.profile_picture_bucket_key}`
+            uri: `${API_ENDPOINT}/images/${user.profile_picture_bucket_key}`
         }
         : guestProfilePicture(flavor)
     );

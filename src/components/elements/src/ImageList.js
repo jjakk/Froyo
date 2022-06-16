@@ -12,7 +12,7 @@ import {
 // Context
 import { useSettings } from "@froyo/settings-context";
 // Constants
-import { BASE_URL, colors } from "@froyo/constants";
+import { API_ENDPOINT, colors } from "@froyo/constants";
 
 const ImageList = (props) => {
     // Context
@@ -42,7 +42,7 @@ const ImageList = (props) => {
         (
             <Image
                 source={{
-                    uri: `${BASE_URL}/images/${keys[0]}`
+                    uri: `${API_ENDPOINT}/images/${keys[0]}`
                 }}
                 style={[styles.container, styles.image, style]}
             />
@@ -64,7 +64,7 @@ const ImageList = (props) => {
                         >
                             <Image
                                 source={{
-                                    uri: `${BASE_URL}/images/${key}`
+                                    uri: `${API_ENDPOINT}/images/${key}`
                                 }}
                                 style={styles.image}
                             />

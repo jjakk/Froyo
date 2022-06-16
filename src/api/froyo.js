@@ -1,9 +1,9 @@
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { BASE_URL } from "@froyo/constants";
+import { API_ENDPOINT } from "@froyo/constants";
 
 const instance =  axios.create({
-    baseURL: BASE_URL
+    baseURL: API_ENDPOINT
 });
 
 instance.interceptors.request.use(

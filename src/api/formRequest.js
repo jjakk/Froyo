@@ -1,7 +1,7 @@
 // Another API option that uses fetch intead of axios
 import FormData from "form-data";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { BASE_URL } from "@froyo/constants";
+import { API_ENDPOINT } from "@froyo/constants";
 
 const formRequest = async (method, route, data={}) => {
     if(route[0] !== "/") route = `/${route}`;
@@ -47,7 +47,7 @@ const formRequest = async (method, route, data={}) => {
         }
     }
 
-    const response = await fetch(`${BASE_URL}${route}`, {
+    const response = await fetch(`${API_ENDPOINT}${route}`, {
         method: method,
         headers: {
             "Content-Type": "multipart/form-data",

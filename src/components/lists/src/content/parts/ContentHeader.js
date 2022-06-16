@@ -15,7 +15,7 @@ import { guestProfilePicture } from "@froyo/icons";
 // Helper functions
 import { calculateAge } from "@froyo/helpers";
 // Constants
-import { BASE_URL } from "@froyo/constants";
+import { API_ENDPOINT } from "@froyo/constants";
 
 const ContentHeader = (props) => {
     // Context
@@ -34,7 +34,7 @@ const ContentHeader = (props) => {
     const profilePictureSource = (
         content.author.profile_picture_bucket_key
         ? {
-            uri: `${BASE_URL}/images/${content.author.profile_picture_bucket_key}`
+            uri: `${API_ENDPOINT}/images/${content.author.profile_picture_bucket_key}`
         }
         : guestProfilePicture(flavor)
     );

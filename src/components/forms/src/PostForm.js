@@ -13,7 +13,7 @@ import {
 } from "@froyo/elements";
 import { ImageUpload } from "@froyo/single-use";
 // Constants
-import { BASE_URL } from "@froyo/constants";
+import { API_ENDPOINT } from "@froyo/constants";
 // Icons
 import { SendIcon } from "@froyo/icons";
 // Context
@@ -40,7 +40,7 @@ const PostForm = (props) => {
     } = data;
 
     const passedImages = unformatedPassedImages
-        ? unformatedPassedImages.map(img => `${BASE_URL}/images/${img}`)
+        ? unformatedPassedImages.map(img => `${API_ENDPOINT}/images/${img}`)
         : null
 
     // State

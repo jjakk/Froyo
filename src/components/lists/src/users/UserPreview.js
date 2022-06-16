@@ -13,7 +13,7 @@ import { useSettings } from "@froyo/settings-context";
 // Icons
 import { guestProfilePicture } from "@froyo/icons";
 // Constants
-import { BASE_URL, colors } from "@froyo/constants";
+import { API_ENDPOINT, colors } from "@froyo/constants";
 // Navigation
 import { navigate } from "@froyo/navigation-ref";
 
@@ -41,7 +41,7 @@ const UserPreview = (props) => {
     const profilePictureSource = (
         profile_picture_bucket_key
         ? {
-            uri: `${BASE_URL}/images/${profile_picture_bucket_key}`
+            uri: `${API_ENDPOINT}/images/${profile_picture_bucket_key}`
         }
         : guestProfilePicture(flavor)
     );

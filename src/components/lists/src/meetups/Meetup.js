@@ -11,7 +11,7 @@ import { Text, TouchableIcon, Button } from "@froyo/elements";
 // Icons
 import { MoreOptionsIcon, LocationIcon, guestProfilePicture } from "@froyo/icons";
 // Constants
-import { colors, BASE_URL } from "@froyo/constants";
+import { colors, API_ENDPOINT } from "@froyo/constants";
 
 const Meetup = (props) => {
     // Theme
@@ -38,7 +38,7 @@ const Meetup = (props) => {
     const authorProfilePicture = (
         author.profile_picture_bucket_key
         ? {
-            uri: `${BASE_URL}/images/${content.author.profile_picture_bucket_key}`
+            uri: `${API_ENDPOINT}/images/${content.author.profile_picture_bucket_key}`
         }
         : guestProfilePicture()
     );

@@ -24,7 +24,7 @@ import {
 // Icons
 import { guestProfilePicture } from "@froyo/icons";
 // Constants
-import { BASE_URL, colors } from "@froyo/constants";
+import { API_ENDPOINT, colors } from "@froyo/constants";
 
 const UserProfile = (props) => {
     // Context
@@ -54,7 +54,7 @@ const UserProfile = (props) => {
     const profilePictureSource = (
         user.profile_picture_bucket_key
         ? {
-            uri: `${BASE_URL}/images/${user.profile_picture_bucket_key}`
+            uri: `${API_ENDPOINT}/images/${user.profile_picture_bucket_key}`
         }
         : guestProfilePicture(flavor)
     );

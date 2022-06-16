@@ -18,7 +18,7 @@ import { UploadIcon, guestProfilePicture } from "@froyo/icons";
 import { useUser } from "@froyo/user-context";
 import { useSettings } from "@froyo/settings-context";
 // Constants
-import { BASE_URL, colors } from "@froyo/constants";
+import { API_ENDPOINT, colors } from "@froyo/constants";
 
 const AccountEditScreen = ({ navigation }) => {
     const { updateUser, state: { user } } = useUser();
@@ -48,7 +48,7 @@ const AccountEditScreen = ({ navigation }) => {
             } : (
                 user.profile_picture_bucket_key
                 ? {
-                    uri: `${BASE_URL}/images/${user.profile_picture_bucket_key}`
+                    uri: `${API_ENDPOINT}/images/${user.profile_picture_bucket_key}`
                 }
                 : guestProfilePicture(flavor)
             )

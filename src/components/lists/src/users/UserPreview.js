@@ -7,11 +7,15 @@ import {
     Image,
     TouchableOpacity
 } from "react-native";
-import { Text } from "@froyo/elements";
+import { Text, TouchableIcon } from "@froyo/elements";
 // Context
 import { useSettings } from "@froyo/settings-context";
 // Icons
-import { guestProfilePicture } from "@froyo/icons";
+import {
+    PlusCircleIcon,
+    CloseCircleIcon,
+    guestProfilePicture
+} from "@froyo/icons";
 // Constants
 import { API_ENDPOINT, colors } from "@froyo/constants";
 // Navigation
@@ -27,7 +31,9 @@ const UserPreview = (props) => {
     // Props
     const {
         user,
-        style
+        style,
+        selectable,
+        selected
     } = props;
 
     // User info
@@ -73,22 +79,27 @@ const UserPreview = (props) => {
                 </Text>
             </TouchableOpacity>
             <View style={styles.action}>
-                {/*
-                    (
-                        <>
-                            <TouchableIcon
-                                Icon={PlusCircleIcon}
-                                color={colors.GREEN}
-                                size={30}
-                            />
-                            <TouchableIcon
-                                Icon={CloseCircleIcon}
-                                color={colors.DISLIKE_RED}
-                                size={30}
-                            />
-                        </>
+                {
+                    selectable && (
+                        <View>
+                            {
+                                !selected ? (
+                                    <TouchableIcon
+                                        Icon={PlusCircleIcon}
+                                        color={colors.GREEN}
+                                        size={30}
+                                    />
+                                ) : (
+                                    <TouchableIcon
+                                        Icon={CloseCircleIcon}
+                                        color={colors.DISLIKE_RED}
+                                        size={30}
+                                    />
+                                )
+                            }
+                        </View>
                     )
-                */}
+                }
             </View>
         </View>
     );
@@ -106,7 +117,7 @@ const styles = StyleSheet.create({
     profilePicture: {
         width: 30,
         height: 30,
-        borderRadius: 50
+        borderRadius: 50,
     },
     name: {
         marginLeft: 10,

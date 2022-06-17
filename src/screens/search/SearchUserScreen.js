@@ -2,7 +2,7 @@ import React, {
     useState,
     useEffect
 } from "react";
-import { Alert } from "react-native";
+import { Alert, StyleSheet } from "react-native";
 // Components
 import { UserList } from "@froyo/lists";
 // Context
@@ -55,9 +55,16 @@ const SearchUserScreen = (props) => {
             <UserList
                 users={results}
                 loading={loading}
+                style={styles.userList}
             />
         </>
     );
 };
+
+const styles = StyleSheet.create({
+    userList: {
+        flex: 1
+    }
+});
 
 export default SearchUserScreen;

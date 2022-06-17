@@ -13,7 +13,8 @@ const UserList = (props) => {
     const {
         users,
         style,
-        loading
+        loading,
+        selectable
     } = props;
 
     return (
@@ -26,7 +27,7 @@ const UserList = (props) => {
             <FlatList
                 data={users}
                 renderItem={({ item }) => (
-                    <UserPreview user={item} />
+                    <UserPreview user={item} selectable={selectable} />
                 )}
                 emptyMessage="No users found"
                 loading={loading}
@@ -37,8 +38,7 @@ const UserList = (props) => {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        justifyContent: "center",
+        justifyContent: "center"
     }
 });
 

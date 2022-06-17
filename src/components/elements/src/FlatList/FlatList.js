@@ -55,7 +55,8 @@ const FlatList = (props, ref) => {
 const styles = StyleSheet.create({
     emptyComponent: {
         alignSelf: "center",
-        marginTop: 35
+        marginTop: 35,
+        marginBottom: 35
     }
 });
 

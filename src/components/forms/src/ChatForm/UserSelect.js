@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 // Components
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, Alert } from "react-native";
+import { Text } from "@froyo/elements";
 import { SearchBar } from "@froyo/bars";
 import { UserList } from "@froyo/lists";
 // Context
@@ -10,6 +11,7 @@ const UserSelect = () => {
     const { searchUser } = useUser();
 
     const [searchResults, setSearchResults] = useState([]);
+    const [members, setMembers] = useState([]);
     const [loading, setLoading] = useState(false);
 
     const onSearch = async (query) => {
@@ -29,26 +31,51 @@ const UserSelect = () => {
         }
     };
 
-    console.log(searchResults);
-
     return (
         <View>
             <SearchBar
                 placeholder="Members"
                 onSearch={onSearch}
-                style={styles.searchBar}
+                style={styles.element}
             />
+
             <UserList
                 users={searchResults}
                 loading={loading}
+                style={[
+                    styles.element,
+                    styles.userList
+                ]}
+                selectable
+            />
+            <Text style={[
+                styles.element,
+                styles.membersHeader
+            ]}>
+                Members
+            </Text>
+            <UserList
+                users={members}
+                style={[
+                    styles.element,
+                    styles.userList
+                ]}
+                selectable
             />
         </View>
     );
 };
 
 const styles = StyleSheet.create({
-    searchBar: {
+    element: {
         marginBottom: 25
+    },
+    membersHeader: {
+        fontSize: 22,
+        textDecorationLine: "underline"
+    },
+    userList: {
+        maxHeight: 150
     }
 });
 

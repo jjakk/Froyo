@@ -19,6 +19,7 @@ import CommentIcon from "./Comment.svg";
 import ReplyIcon from "./Reply.svg";
 import BackIcon from "./Back.svg";
 import SendIcon from "./Send.svg";
+import PlusCircleIcon from "./Plus-Circle.svg";
 import CloseCircleIcon from "./CloseCircle.svg";
 import LoadingIcon from "./animation/Loading.svg";
 
@@ -44,6 +45,7 @@ module.exports = {
     ReplyIcon,
     BackIcon,
     SendIcon,
+    PlusCircleIcon,
     CloseCircleIcon,
     LoadingIcon,
     guestProfilePicture: (flavor) => {

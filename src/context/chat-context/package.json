@@ -1,8 +1,8 @@
 {
-  "name": "@froyo/meetup-context",
+  "name": "@froyo/chat-context",
   "version": "1.0.0",
   "description": "",
-  "main": "MeetupContext.js",
+  "main": "ChatContext.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

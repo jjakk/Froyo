@@ -44,7 +44,7 @@ const ChatPreview = (props) => {
     // Event handlers
     const onOpenChat = () => {
         navigate("ChatMain", {
-            id
+            chatId: id
         });
     };
 

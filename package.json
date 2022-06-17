@@ -10,6 +10,7 @@
   "dependencies": {
     "@froyo/animations": "file:src/components/animations",
     "@froyo/bars": "file:src/components/bars",
+    "@froyo/chat-context": "file:src/context/chat-context",
     "@froyo/constants": "file:src/constants",
     "@froyo/content-context": "file:src/context/content-context",
     "@froyo/elements": "file:src/components/elements",
@@ -18,7 +19,6 @@
     "@froyo/helpers": "file:src/helpers",
     "@froyo/icons": "file:assets/icons",
     "@froyo/lists": "file:src/components/lists",
-    "@froyo/meetup-context": "file:src/context/meetup-context",
     "@froyo/navigation-ref": "file:src/navigation/navigation-ref",
     "@froyo/settings-context": "file:src/context/settings-context",
     "@froyo/singleuse": "file:src/components/singleUse",

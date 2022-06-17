@@ -4,6 +4,7 @@ import { View, Image, StyleSheet, Appearance } from "react-native";
 import { Text } from "@froyo/elements";
 // Context
 import { useSettings } from "@froyo/settings-context";
+import { useUser } from "@froyo/user-context";
 // Constants
 import { colors } from "@froyo/constants";
 
@@ -11,22 +12,24 @@ const Message = (props) => {
     // Theme
     const theme = Appearance.getColorScheme();
     const { state: { primaryColors } } = useSettings();
+    const { state: { user } } = useUser();
         
     // Props
     const {
         data: {
             text,
-            self,
-            authorName
+            author_id
         }
     } = props;
+
+    const self = author_id === user.id;
 
     return (
         <View style={styles.container}>
             {
-                !self && (
+                /*!self && (
                     <Text style={styles.authorName}>{authorName}</Text>
-                )
+                )*/
             }
             <View style={[
                 styles.bubble,
@@ -50,7 +53,8 @@ const styles = StyleSheet.create({
         padding: 15,
         marginBottom: 5,
         alignSelf: "flex-start",
-        borderRadius: 15
+        borderRadius: 15,
+        maxWidth: "80%"
     },
     text: {
         fontSize: 16,

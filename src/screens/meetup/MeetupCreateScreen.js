@@ -3,19 +3,15 @@ import React, { useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { ScreenContainer, Header } from "@froyo/fundamentals";
 import { Button, OptionalInput } from "@froyo/elements";
-import { useMeetup } from "@froyo/meetup-context";
 
 const MeetupCreateScreen = () => {
-    const {
-        createMeetup
-    } = useMeetup();
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [location, setLocation] = useState("");
     const [lifetime, setLifetime] = useState("");
 
     const onSubmit = () => {
-        createMeetup({ title, location, lifetime });
+        // create meetup
     };
 
     return (

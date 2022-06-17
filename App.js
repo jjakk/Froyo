@@ -6,8 +6,8 @@ import AppNavigator from "./src/navigation/appNavigator";
 // Context
 import { Provider as UserProvider } from "@froyo/user-context";
 import { Provider as ContentProvider } from "@froyo/content-context";
+import { Provider as ChatProvide } from "@froyo/chat-context";
 import { Provider as SettingsProvider } from "@froyo/settings-context";
-import { Provider as MeetupProvider } from "@froyo/meetup-context";
 
 const App = () => {
   // Import custom fonts
@@ -35,9 +35,9 @@ const App = () => {
       <UserProvider>
         <ContentProvider>
           <SettingsProvider>
-            <MeetupProvider>
+            <ChatProvide>
               <AppNavigator/>
-            </MeetupProvider>
+            </ChatProvide>
           </SettingsProvider>
         </ContentProvider>
       </UserProvider>

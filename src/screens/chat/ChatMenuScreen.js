@@ -45,6 +45,7 @@ const ChatMenuScreen = (props) => {
             />
             <ChatPreviewList
                 chats={chats}
+                loading={loading}
             />
         </ScreenContainer>
     );

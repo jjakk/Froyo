@@ -31,7 +31,6 @@ const ChatPreview = (props) => {
     const {
         id,
         title,
-        subtitle,
         members
     } = props;
 
@@ -56,8 +55,15 @@ const ChatPreview = (props) => {
                     style={styles.profilePicture}
                 />
                 <View>
-                    <Text style={styles.title}>{title}</Text>
-                    <Text style={styles.subtitle}>{subtitle}</Text>
+                    <Text style={styles.title}>
+                        {
+                            title ||
+                                members.length > 2
+                                    ? "Group Chat"
+                                    : "Chat"
+                        }
+                    </Text>
+                    <Text style={styles.subtitle}>{members.length} Members</Text>
                 </View>
             </View>
         </TouchableOpacity>

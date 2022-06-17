@@ -6,7 +6,8 @@ import ChatPreview from "../chat/ChatPreview";
 const ChatPreviewList = (props) => {
     // Props
     const {
-        chats
+        chats,
+        loading
     } = props;
 
     return (
@@ -19,6 +20,7 @@ const ChatPreviewList = (props) => {
             )}
             keyExtractor={(item) => item.id}
             emptyMessage="No active chats"
+            loading={loading}
         />
     );
 };

@@ -16,6 +16,10 @@ const FlatList = (props, ref) => {
         style,
         emptyMessage,
         loading,
+        keyExtractor=(
+            (item) => item.id
+        ),
+        RenderComponent,
         ...restOfProps
     } = props;
 
@@ -25,6 +29,12 @@ const FlatList = (props, ref) => {
                 themeStyles[theme].list,
                 style
             ]}
+            keyExtractor={keyExtractor}
+            renderItem={({ item }) => (
+                <RenderComponent
+                    {...item}
+                />
+            )}
             ListEmptyComponent={() => (
                 loading ? (
                     <LoadingAnimation

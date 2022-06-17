@@ -25,7 +25,6 @@ const UserList = (props) => {
         >
             <FlatList
                 data={users}
-                keyExtractor={(item) => item.id}
                 renderItem={({ item }) => (
                     <UserPreview user={item} />
                 )}

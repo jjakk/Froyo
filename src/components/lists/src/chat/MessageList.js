@@ -15,11 +15,7 @@ const MessageList = (props) => {
         <FlatList
             data={messages}
             keyExtractor={(item) => item.id}
-            renderItem={({ item }) => (
-                <Message
-                    data={item}
-                />
-            )}
+            RenderComponent={Message}
             style={styles.container}
             emptyMessage="No messages"
         />

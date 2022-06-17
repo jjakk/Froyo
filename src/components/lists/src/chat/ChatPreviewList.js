@@ -13,12 +13,7 @@ const ChatPreviewList = (props) => {
     return (
         <FlatList
             data={chats}
-            renderItem={({ item }) => (
-                <ChatPreview
-                    {...item}
-                />
-            )}
-            keyExtractor={(item) => item.id}
+            RenderComponent={ChatPreview}
             emptyMessage="No active chats"
             loading={loading}
         />

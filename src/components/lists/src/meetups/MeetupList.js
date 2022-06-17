@@ -20,12 +20,7 @@ const MeetupList = (props) => {
             <FlatList
                 data={meetups}
                 showsVerticalScrollIndicator={false}
-                keyExtractor={(item) => item.id}
-                renderItem={({ item }) => (
-                    <Meetup
-                        data={item}
-                    />
-                )}
+                RenderComponent={Meetup}
                 emptyMessage={emptyMessage}
                 loading={loading}
             />

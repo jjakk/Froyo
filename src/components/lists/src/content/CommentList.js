@@ -98,7 +98,6 @@ const CommentList = (props) => {
         <View style={styles.container}>
             <FlatList
                 data={comments}
-                keyExtractor={(item) => item.id}
                 showsVerticalScrollIndicator={false}
                 refreshControl={
                     <RefreshControl

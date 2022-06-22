@@ -9,6 +9,8 @@ import {
     Dimensions,
     TouchableWithoutFeedback
 } from "react-native";
+// Icons
+import { awsBucketImage } from "@froyo/icons";
 // Context
 import { useSettings } from "@froyo/settings-context";
 // Constants
@@ -41,9 +43,7 @@ const ImageList = (props) => {
     ? (
         (
             <Image
-                source={{
-                    uri: `${API_ENDPOINT}/images/${keys[0]}`
-                }}
+                source={awsBucketImage(keys[0])}
                 style={[styles.container, styles.image, style]}
             />
         )
@@ -63,9 +63,7 @@ const ImageList = (props) => {
                             key={index}
                         >
                             <Image
-                                source={{
-                                    uri: `${API_ENDPOINT}/images/${key}`
-                                }}
+                                source={awsBucketImage(key)}
                                 style={styles.image}
                             />
                         </TouchableWithoutFeedback>

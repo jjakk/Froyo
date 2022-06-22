@@ -7,9 +7,11 @@ import { MeetupList } from "@froyo/lists";
 import { useSettings } from "@froyo/settings-context";
 import { useUser } from "@froyo/user-context";
 // Icons
-import { PlusIcon, guestProfilePicture } from "@froyo/icons";
-// Constants
-import { API_ENDPOINT } from "@froyo/constants";
+import {
+    PlusIcon,
+    guestProfilePicture,
+    awsBucketImage
+} from "@froyo/icons";
 
 const MeetupFeedScreen = ({ navigation }) => {
     // Context
@@ -19,9 +21,7 @@ const MeetupFeedScreen = ({ navigation }) => {
     // Conditional rendering
     const profilePictureSource = (
         user.profile_picture_bucket_key
-        ? {
-            uri: `${API_ENDPOINT}/images/${user.profile_picture_bucket_key}`
-        }
+        ? awsBucketImage(user.profile_picture_bucket_key)
         : guestProfilePicture(flavor)
     );
 
@@ -33,7 +33,7 @@ const MeetupFeedScreen = ({ navigation }) => {
     const onCreateMeetup = () => {
         //navigation.navigate("MeetupCreate");
         Alert.alert(
-            "This feature has not been implemented yet.",
+            "Coming soon",
             null,
             [
                 {

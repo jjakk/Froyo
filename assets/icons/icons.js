@@ -1,3 +1,4 @@
+import { API_ENDPOINT } from "@froyo/constants";
 import FroyoIcon from "./Froyo.svg";
 import ChatIcon from "./Chat.svg";
 import PlusIcon from "./Plus.svg";
@@ -80,4 +81,9 @@ module.exports = {
                 return require("./defaults/group/group-mint.png");
         }
     },
+    awsBucketImage: (key) => {
+        return {
+            uri: `${API_ENDPOINT}/images/${key}`
+        };
+    }
 };

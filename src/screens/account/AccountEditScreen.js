@@ -13,12 +13,16 @@ import {
 } from "@froyo/elements";
 import { ScreenContainer, Header } from "@froyo/fundamentals";
 // Icons
-import { UploadIcon, guestProfilePicture } from "@froyo/icons";
+import {
+    UploadIcon,
+    guestProfilePicture,
+    awsBucketImage
+} from "@froyo/icons";
 // Context
 import { useUser } from "@froyo/user-context";
 import { useSettings } from "@froyo/settings-context";
 // Constants
-import { API_ENDPOINT, colors } from "@froyo/constants";
+import { colors } from "@froyo/constants";
 
 const AccountEditScreen = ({ navigation }) => {
     const { updateUser, state: { user } } = useUser();
@@ -47,9 +51,7 @@ const AccountEditScreen = ({ navigation }) => {
                 uri: image
             } : (
                 user.profile_picture_bucket_key
-                ? {
-                    uri: `${API_ENDPOINT}/images/${user.profile_picture_bucket_key}`
-                }
+                ? awsBucketImage(user.profile_picture_bucket_key)
                 : guestProfilePicture(flavor)
             )
     );

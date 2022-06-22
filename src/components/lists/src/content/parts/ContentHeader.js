@@ -11,11 +11,9 @@ import MoreOptions from "./MoreOptions";
 // Context
 import { useSettings } from "@froyo/settings-context"
 // Icons
-import { guestProfilePicture } from "@froyo/icons";
+import { guestProfilePicture, awsBucketImage } from "@froyo/icons";
 // Helper functions
 import { calculateAge } from "@froyo/helpers";
-// Constants
-import { API_ENDPOINT } from "@froyo/constants";
 
 const ContentHeader = (props) => {
     // Context
@@ -33,9 +31,7 @@ const ContentHeader = (props) => {
     // Conditional rendering
     const profilePictureSource = (
         content.author.profile_picture_bucket_key
-        ? {
-            uri: `${API_ENDPOINT}/images/${content.author.profile_picture_bucket_key}`
-        }
+        ? awsBucketImage(content.author.profile_picture_bucket_key)
         : guestProfilePicture(flavor)
     );
 

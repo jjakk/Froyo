@@ -9,9 +9,14 @@ import {
 } from "react-native";
 import { Text, TouchableIcon, Button } from "@froyo/elements";
 // Icons
-import { MoreOptionsIcon, LocationIcon, guestProfilePicture } from "@froyo/icons";
+import {
+    MoreOptionsIcon,
+    LocationIcon,
+    guestProfilePicture,
+    awsBucketImage
+} from "@froyo/icons";
 // Constants
-import { colors, API_ENDPOINT } from "@froyo/constants";
+import { colors } from "@froyo/constants";
 
 const Meetup = (props) => {
     // Theme
@@ -37,9 +42,7 @@ const Meetup = (props) => {
     // Conditional rendering
     const authorProfilePicture = (
         author.profile_picture_bucket_key
-        ? {
-            uri: `${API_ENDPOINT}/images/${content.author.profile_picture_bucket_key}`
-        }
+        ? awsBucketImage(content.author.profile_picture_bucket_key)
         : guestProfilePicture()
     );
 

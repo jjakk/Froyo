@@ -22,9 +22,9 @@ import {
     Text
 } from "@froyo/elements";
 // Icons
-import { guestProfilePicture } from "@froyo/icons";
+import { guestProfilePicture, awsBucketImage } from "@froyo/icons";
 // Constants
-import { API_ENDPOINT, colors } from "@froyo/constants";
+import { colors } from "@froyo/constants";
 
 const UserProfile = (props) => {
     // Context
@@ -53,9 +53,7 @@ const UserProfile = (props) => {
     // Conditional rendering
     const profilePictureSource = (
         user.profile_picture_bucket_key
-        ? {
-            uri: `${API_ENDPOINT}/images/${user.profile_picture_bucket_key}`
-        }
+        ? awsBucketImage(user.profile_picture_bucket_key)
         : guestProfilePicture(flavor)
     );
 

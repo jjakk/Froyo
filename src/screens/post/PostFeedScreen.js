@@ -9,13 +9,16 @@ import { CreateButton } from "@froyo/single-use";
 import { ScreenContainer, Header } from "@froyo/fundamentals";
 import { PostList } from "@froyo/lists";
 // Icons
-import { FroyoIcon, ChatIcon, guestProfilePicture } from "@froyo/icons";
+import {
+    FroyoIcon,
+    ChatIcon,
+    guestProfilePicture,
+    awsBucketImage
+} from "@froyo/icons";
 // Context
 import { useUser } from "@froyo/user-context";
 import { useContent } from "@froyo/content-context";
 import { useSettings } from "@froyo/settings-context";
-// Constants
-import { API_ENDPOINT } from "@froyo/constants";
 
 const FeedScreen = ({ navigation }) => {
     // Context
@@ -38,9 +41,7 @@ const FeedScreen = ({ navigation }) => {
     // Conditional rendering
     const profilePictureSource = (
         user.profile_picture_bucket_key
-        ? {
-            uri: `${API_ENDPOINT}/images/${user.profile_picture_bucket_key}`
-        }
+        ? awsBucketImage(user.profile_picture_bucket_key)
         : guestProfilePicture(flavor)
     );
 

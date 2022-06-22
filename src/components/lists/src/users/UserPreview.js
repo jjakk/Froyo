@@ -14,10 +14,11 @@ import { useSettings } from "@froyo/settings-context";
 import {
     PlusCircleIcon,
     CloseCircleIcon,
-    guestProfilePicture
+    guestProfilePicture,
+    awsBucketImage
 } from "@froyo/icons";
 // Constants
-import { API_ENDPOINT, colors } from "@froyo/constants";
+import { colors } from "@froyo/constants";
 // Navigation
 import { navigate } from "@froyo/navigation-ref";
 
@@ -46,9 +47,7 @@ const UserPreview = (props) => {
     // Conditional rendering
     const profilePictureSource = (
         profile_picture_bucket_key
-        ? {
-            uri: `${API_ENDPOINT}/images/${profile_picture_bucket_key}`
-        }
+        ? awsBucketImage(profile_picture_bucket_key)
         : guestProfilePicture(flavor)
     );
 

@@ -47,6 +47,7 @@ const FlatList = (props, ref) => {
                     />
                 )
             )}
+            ref={ref}
             {...restOfProps}
         />
     );

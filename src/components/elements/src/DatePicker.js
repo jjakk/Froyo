@@ -55,7 +55,7 @@ const DatePicker = (props) => {
     };
 
     return (
-        <View style={[styles.container, style]}>
+        <View style={style}>
             <Button
                 onPress={() => {
                     toggleShow();
@@ -105,9 +105,6 @@ const DatePicker = (props) => {
 };
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1
-    },
     buttonText: {
         fontSize: 20,
         margin: 5

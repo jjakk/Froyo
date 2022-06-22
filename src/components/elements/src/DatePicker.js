@@ -4,6 +4,7 @@ import { Appearance, View, Platform, StyleSheet, TouchableWithoutFeedback } from
 import { Overlay } from "react-native-elements";
 import { colors } from "@froyo/constants";
 import Button from "./Button";
+import Hyperlink from "./Hyperlink";
 
 const DatePicker = (props) => {
     const [date, setDate] = useState(new Date(new Date().toJSON().slice(0,10).replace(/-/g,"/")));
@@ -60,7 +61,11 @@ const DatePicker = (props) => {
                 onPress={() => {
                     toggleShow();
                 }}
-                title={dob ? parseDate(date) : placeholder}
+                title={
+                    dob
+                    ? `Birthday: ${parseDate(date)}`
+                    : placeholder
+                }
                 color={colors[theme].FIRST}
                 titleStyle={[
                     {
@@ -80,17 +85,21 @@ const DatePicker = (props) => {
                     <Overlay
                         overlayStyle={[
                             styles.overlay,
-                            {
-                                backgroundColor: systemDarkModeEnabled
-                                    ? colors.dark.FOURTH
-                                    : colors.light.FIRST
-                            }
+                            themeStyles[theme].overlay
                         ]}
                         isVisible={show}
                         onBackdropPress={toggleShow}
                     >
                         <DateTimePicker
                             {...dateProps}
+                            style={{
+                                width: 350,
+                            }}
+                        />
+                        <Button
+                            title="Set"
+                            onPress={toggleShow}
+                            style={styles.setButton}
                         />
                     </Overlay>
                 ) : show ?
@@ -110,10 +119,27 @@ const styles = StyleSheet.create({
         margin: 5
     },
     overlay: {
-        width: 350,
-        height: 225,
-        borderRadius: 15
+        borderRadius: 15,
+        padding: 10,
+    },
+    setButton: {
+        fontSize: 20,
+        textDecorationLine: "underline",
+        alignSelf: "stretch",
     }
 });
+
+const themeStyles = {
+    light: StyleSheet.create({
+        overlay: {
+            backgroundColor: colors.light.FIRST
+        }
+    }),
+    dark: StyleSheet.create({
+        overlay: {
+            backgroundColor: colors.dark.THIRD
+        }
+    })
+};
 
 export default DatePicker;

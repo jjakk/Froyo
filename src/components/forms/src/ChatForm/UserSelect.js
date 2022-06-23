@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
         textDecorationLine: "underline"
     },
     userList: {
-        maxHeight: 200
+        height: 200
     }
 });
 

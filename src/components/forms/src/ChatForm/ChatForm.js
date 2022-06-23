@@ -6,7 +6,8 @@ import UserSelect from "./UserSelect";
 
 const ChatForm = (props) => {
     const {
-        onSubmit
+        onSubmit,
+        loading
     } = props;
 
     // State
@@ -14,7 +15,10 @@ const ChatForm = (props) => {
     const [members, setMembers] = useState([]);
 
     const onCreate = () => {
-        onSubmit({ title, members });
+        onSubmit({
+            title,
+            members: members.map(user => user.id)
+        });
     };
 
     return (
@@ -31,6 +35,7 @@ const ChatForm = (props) => {
                 title="Create"
                 style={styles.formElement}
                 onPress={onCreate}
+                loading={loading}
             />
         </View>
     );

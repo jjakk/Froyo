@@ -40,12 +40,22 @@ const createMessage = () => async (chatId, text) => {
     }
 }
 
+const createChat = () => async (data) => {
+    try{
+        await froyoApi.post("/chats/", data);
+    }
+    catch (err) {
+        throw new Error(err.response.data);
+    }
+};
+
 export const { Provider, Context } = createDataContext(
     contentReducer,
     {
         getPersonalChats,
         getChatMessages,
-        createMessage
+        createMessage,
+        createChat
     }, {}
 );
 

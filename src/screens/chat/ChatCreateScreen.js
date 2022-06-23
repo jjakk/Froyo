@@ -1,12 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 // Components
+import { Alert } from "react-native";
 import { ScreenContainer, Header } from "@froyo/fundamentals";
 import { ChatForm } from "@froyo/forms";
+// Context
+import { useChat } from "@froyo/chat-context"
 
-const ChatCreateScreen = () => {
+const ChatCreateScreen = ({ navigation }) => {
+    const { createChat } = useChat();
 
-    const onSubmit = (data) => {
-        console.log(data);
+    const [loading, setLoading] = useState(false);
+
+    const onSubmit = async (data) => {
+        try{
+            setLoading(true);
+            await createChat(data);
+            navigation.goBack();
+        }
+        catch (err) {
+            Alert.alert(err.message);
+        }
+        finally{
+            setLoading(false);
+        }
     };
 
     return (
@@ -16,6 +32,7 @@ const ChatCreateScreen = () => {
             />
             <ChatForm
                 onSubmit={onSubmit}
+                loading={loading}
             />
         </ScreenContainer>
     );

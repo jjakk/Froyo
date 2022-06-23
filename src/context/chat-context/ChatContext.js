@@ -49,13 +49,24 @@ const createChat = () => async (data) => {
     }
 };
 
+const getChat = () => async (chatId) => {
+    try{
+        const { data: chat } = await froyoApi.get(`/chats/${chatId}`);
+        return chat;
+    }
+    catch (err) {
+        throw new Error(err.response.data);
+    }
+};
+
 export const { Provider, Context } = createDataContext(
     contentReducer,
     {
         getPersonalChats,
         getChatMessages,
         createMessage,
-        createChat
+        createChat,
+        getChat
     }, {}
 );
 

@@ -8,8 +8,13 @@ import { CommentBar } from "@froyo/bars";
 import { useChat } from "@froyo/chat-context";
 
 const ChatMainScreen = (props) => {
-    const { getChatMessages, createMessage } = useChat();
+    const {
+        getChat,
+        getChatMessages,
+        createMessage
+    } = useChat();
 
+    const [chat, setChat] = useState({});
     const [messages, setMessages] = useState([]);
     const [loading, setLoading] = useState([]);
 
@@ -45,7 +50,15 @@ const ChatMainScreen = (props) => {
     };
 
     useEffect(() => {
-        reloadMessages();
+        getChat(chatId).then(returnedChat => {
+            setChat(returnedChat);
+        })
+        .catch((err) => {
+            Alert.alert(err.message);
+        })
+        .finally(() => {
+            reloadMessages();
+        });
     }, []);
     
     return (
@@ -53,7 +66,7 @@ const ChatMainScreen = (props) => {
             edges={["top", "bottom"]}
         >
             <Header
-                title={"Chat Name"}
+                title={chat.title || "Chat Name"}
             />
             <MessageList
                 messages={messages}

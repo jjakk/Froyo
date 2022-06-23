@@ -57,10 +57,11 @@ const ChatPreview = (props) => {
                 <View>
                     <Text style={styles.title}>
                         {
-                            title ||
+                            title || (
                                 members.length > 2
                                     ? "Group Chat"
                                     : "Chat"
+                            )
                         }
                     </Text>
                     <Text style={styles.subtitle}>{members.length} Members</Text>

@@ -53,18 +53,15 @@ const MoreOptions = (props) => {
             {
                 label: "Edit",
                 onSelect: onEdit,
-                color: "black"
             },
             {
                 label: "Delete",
                 onSelect: onDeletePrompt,
-                color: "#FB1C1C"
             }
         ]: []),
         // The rest of the options go below
         {
             label: "Cancel",
-            colors: colors.light.FOURTH
         }
     ];
 

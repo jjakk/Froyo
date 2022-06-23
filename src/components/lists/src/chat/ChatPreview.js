@@ -1,24 +1,28 @@
 import React from "react";
 // Components
+import OptionsMenu from "react-native-option-menu";
 import {
     View,
     Image,
     TouchableOpacity,
     StyleSheet,
-    Appearance
+    Appearance,
+    Alert
 } from "react-native";
-import { Text } from "@froyo/elements";
+import { Text, TouchableIcon } from "@froyo/elements";
 // Context
 import { useSettings } from "@froyo/settings-context";
+import { useChat } from "@froyo/chat-context";
 // Icons
 import {
+    MoreOptionsIcon,
     guestProfilePicture,
     groupProfilePicture
 } from "@froyo/icons";
 // Navigation
 import { navigate } from "@froyo/navigation-ref";
 // Constants
-import { colors } from "@froyo/constants";
+import { colors, sizes } from "@froyo/constants";
 
 const ChatPreview = (props) => {
     // Theme
@@ -26,6 +30,7 @@ const ChatPreview = (props) => {
 
     // Context
     const { state: { flavor } } = useSettings();
+    const { deleteChat } = useChat();
     
     // Props
     const {
@@ -47,6 +52,53 @@ const ChatPreview = (props) => {
         });
     };
 
+    const onEdit = () => {
+        Alert.alert("Chat Editing Not Implemented");
+    };
+
+    const onDelete = async () => {
+        try{
+            await deleteChat(id);
+        }
+        catch (err) {
+            throw new Error(err.response.data);
+        }
+    };
+
+    const onDeletePrompt = () => {
+        Alert.alert(
+            "Are you sure you want to delete this chat?",
+            "This action cannot be undone.",
+            [
+                {
+                    text: "Cancel",
+                    style: "cancel"
+                },
+                {
+                    text: "Delete",
+                    style: "destructive",
+                    onPress: onDelete
+                }
+            ],
+        );
+    };
+
+    // More options menu items
+    const options = [
+        {
+            label: "Edit",
+            onSelect: onEdit,
+        }, {
+            label: "Delete",
+            onSelect: onDeletePrompt,
+        }, {
+            label: "Cancel",
+        }
+    ];
+
+    const optionLabels = options.map(option => option.label);
+    const optionHandlers = options.map(option => option.onSelect);
+
     return (
         <TouchableOpacity onPress={onOpenChat}>
             <View style={[styles.container, themeStyles[theme].container]}>
@@ -54,7 +106,7 @@ const ChatPreview = (props) => {
                     source={profilePictureSource}
                     style={styles.profilePicture}
                 />
-                <View>
+                <View style={styles.mainSection}>
                     <Text style={styles.title}>
                         {
                             title || (
@@ -66,6 +118,18 @@ const ChatPreview = (props) => {
                     </Text>
                     <Text style={styles.subtitle}>{members.length} Members</Text>
                 </View>
+                <OptionsMenu
+                    customButton={(
+                        <TouchableIcon
+                            Icon={MoreOptionsIcon}
+                            size={sizes.ACTION_ICON_SMALLER}
+                            TouchableComponent={View}
+                        />
+                    )}
+                    destructiveIndex={optionLabels.indexOf("Delete")}
+                    options={optionLabels}
+                    actions={optionHandlers}
+                />
             </View>
         </TouchableOpacity>
     );
@@ -82,6 +146,9 @@ const styles = StyleSheet.create({
         width: 50,
         height: 50,
         marginRight: 15
+    },
+    mainSection: {
+        flex: 1
     },
     title: {
         fontSize: 24,

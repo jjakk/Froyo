@@ -59,6 +59,15 @@ const getChat = () => async (chatId) => {
     }
 };
 
+const deleteChat = () => async (chatId) => {
+    try{
+        await froyoApi.delete(`/chats/${chatId}`);
+    }
+    catch (err) {
+        throw new Error(err.response.data);
+    }
+};
+
 export const { Provider, Context } = createDataContext(
     contentReducer,
     {
@@ -66,7 +75,8 @@ export const { Provider, Context } = createDataContext(
         getChatMessages,
         createMessage,
         createChat,
-        getChat
+        getChat,
+        deleteChat
     }, {}
 );
 

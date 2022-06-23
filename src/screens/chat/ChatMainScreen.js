@@ -74,6 +74,7 @@ const ChatMainScreen = (props) => {
             />
             <CommentBar
                 onSubmit={onSendMessage}
+                placeholder="Type a message..."
             />
         </ScreenContainer>
     );

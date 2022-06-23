@@ -30,6 +30,7 @@ const CommentBar = (props) => {
     // Props
     const {
         style,
+        placeholder="Comment...",
         onSubmit
     } = props;
 
@@ -53,7 +54,7 @@ const CommentBar = (props) => {
                     themeStyles[theme].inputText
                 }
                 multiline
-                placeholder="Comment..."
+                placeholder={placeholder}
                 placeholderTextColor={darkModeEnabled ? colors.light.FIRST : colors.light.SECOND}
                 value={commentText}
                 onChangeText={setCommentText}

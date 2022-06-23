@@ -14,7 +14,8 @@ const UserList = (props) => {
         users,
         style,
         loading,
-        selectable
+        selectedUsers,
+        onToggleUser
     } = props;
 
     return (
@@ -27,7 +28,16 @@ const UserList = (props) => {
             <FlatList
                 data={users}
                 renderItem={({ item }) => (
-                    <UserPreview user={item} selectable={selectable} />
+                    <UserPreview
+                        user={item}
+                        selectable={selectedUsers !== undefined}
+                        selected={
+                            selectedUsers !== undefined
+                                ? selectedUsers.map(user => user.id).includes(item.id)
+                                : false
+                        }
+                        onToggleUser={onToggleUser}
+                    />
                 )}
                 emptyMessage="No users found"
                 loading={loading}

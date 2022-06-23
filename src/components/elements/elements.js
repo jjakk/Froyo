@@ -11,6 +11,7 @@ import Switch from "./src/Switch";
 import ImageSelect from "./src/ImageSelect";
 import ImageList from "./src/ImageList";
 import FlatList from "./src/FlatList/FlatList";
+import Overlay from "./src/Overlay";
 
 module.exports = {
   Button,
@@ -25,5 +26,6 @@ module.exports = {
   Switch,
   ImageSelect,
   ImageList,
-  FlatList
+  FlatList,
+  Overlay
 };

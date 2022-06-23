@@ -1,10 +1,15 @@
 import React, { useEffect, useState, useRef } from "react";
 import DateTimePicker from "@react-native-community/datetimepicker";
-import { Appearance, View, Platform, StyleSheet, TouchableWithoutFeedback } from "react-native";
-import { Overlay } from "react-native-elements";
+import {
+    Appearance,
+    View,
+    Platform,
+    StyleSheet,
+    TouchableWithoutFeedback
+} from "react-native";
 import { colors } from "@froyo/constants";
 import Button from "./Button";
-import Hyperlink from "./Hyperlink";
+import Overlay from "./Overlay";
 
 const DatePicker = (props) => {
     const [date, setDate] = useState(new Date(new Date().toJSON().slice(0,10).replace(/-/g,"/")));
@@ -83,10 +88,7 @@ const DatePicker = (props) => {
             {
                 Platform.OS === "ios" ? (
                     <Overlay
-                        overlayStyle={[
-                            styles.overlay,
-                            themeStyles[theme].overlay
-                        ]}
+                        overlayStyle={styles.overlay}
                         isVisible={show}
                         onBackdropPress={toggleShow}
                     >
@@ -128,18 +130,5 @@ const styles = StyleSheet.create({
         alignSelf: "stretch",
     }
 });
-
-const themeStyles = {
-    light: StyleSheet.create({
-        overlay: {
-            backgroundColor: colors.light.FIRST
-        }
-    }),
-    dark: StyleSheet.create({
-        overlay: {
-            backgroundColor: colors.dark.THIRD
-        }
-    })
-};
 
 export default DatePicker;

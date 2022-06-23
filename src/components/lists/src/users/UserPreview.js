@@ -34,11 +34,13 @@ const UserPreview = (props) => {
         user,
         style,
         selectable,
-        selected
+        selected,
+        onToggleUser
     } = props;
 
     // User info
     const {
+        id,
         first_name,
         last_name,
         profile_picture_bucket_key
@@ -54,6 +56,10 @@ const UserPreview = (props) => {
     // Event handlers
     const onPress = () => {
         navigate("AccountView", { user });
+    };
+
+    const onToggleSelection = () => {
+        onToggleUser(id);
     };
 
     return (
@@ -86,12 +92,14 @@ const UserPreview = (props) => {
                                     <TouchableIcon
                                         Icon={PlusCircleIcon}
                                         color={colors.GREEN}
+                                        onPress={onToggleSelection}
                                         size={30}
                                     />
                                 ) : (
                                     <TouchableIcon
                                         Icon={CloseCircleIcon}
                                         color={colors.DISLIKE_RED}
+                                        onPress={onToggleSelection}
                                         size={30}
                                     />
                                 )

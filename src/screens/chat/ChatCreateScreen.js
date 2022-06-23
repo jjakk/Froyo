@@ -5,8 +5,8 @@ import { ChatForm } from "@froyo/forms";
 
 const ChatCreateScreen = () => {
 
-    const onSubmit = () => {
-
+    const onSubmit = (data) => {
+        console.log(data);
     };
 
     return (

@@ -99,7 +99,6 @@ const UserSelect = (props) => {
                 />
                 <Button
                     title="Set members"
-                    style={styles.element}
                     onPress={toggleShowSelection}
                 />
             </Overlay>

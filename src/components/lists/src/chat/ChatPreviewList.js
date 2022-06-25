@@ -7,7 +7,7 @@ const ChatPreviewList = (props) => {
     // Props
     const {
         chats,
-        loading
+        ...restOfProps
     } = props;
 
     return (
@@ -15,7 +15,7 @@ const ChatPreviewList = (props) => {
             data={chats}
             RenderComponent={ChatPreview}
             emptyMessage="No active chats"
-            loading={loading}
+            {...restOfProps}
         />
     );
 };

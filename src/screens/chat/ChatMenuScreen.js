@@ -22,7 +22,7 @@ const ChatMenuScreen = (props) => {
         navigation.navigate("ChatCreate");
     };
 
-    useEffect(() => {
+    const refreshChats = () => {
         getPersonalChats()
         .then(chats => {
             setChats(chats);
@@ -31,7 +31,10 @@ const ChatMenuScreen = (props) => {
         }).finally(() => {
             setLoading(false);
         });
-            
+    };
+
+    useEffect(() => {
+        refreshChats();
     }, []);
 
     return (

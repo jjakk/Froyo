@@ -104,7 +104,7 @@ const UserSelect = (props) => {
             </Overlay>
             <Button
                 title="Add Members"
-                style={styles.element}
+                buttonStyle={styles.element}
                 onPress={toggleShowSelection}
             />
         </View>

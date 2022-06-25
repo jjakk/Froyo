@@ -33,7 +33,7 @@ const ChatForm = (props) => {
             />
             <Button
                 title="Create"
-                style={styles.formElement}
+                buttonStyle={styles.formElement}
                 onPress={onCreate}
                 loading={loading}
             />

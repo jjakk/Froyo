@@ -26,7 +26,9 @@
         "foregroundImage": "./assets/logo-background.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.protosapps.froyo"
+      "package": "com.protosapps.froyo",
+      "permissions": [],
+      "versionCode": 2
     },
     "web": {
       "favicon": "./assets/logo-background.png"

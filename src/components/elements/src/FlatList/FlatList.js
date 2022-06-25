@@ -32,7 +32,7 @@ const FlatList = (props, ref) => {
             keyExtractor={keyExtractor}
             renderItem={({ item }) => (
                 <RenderComponent
-                    {...item}
+                    data={item}
                 />
             )}
             ListEmptyComponent={() => (
@@ -47,6 +47,7 @@ const FlatList = (props, ref) => {
                     />
                 )
             )}
+            loading={loading}
             ref={ref}
             {...restOfProps}
         />

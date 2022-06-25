@@ -33,31 +33,16 @@ const Meetup = (props) => {
         title,
         joined,
         description,
-        date,
-        time,
         location,
+        members,
         author
     } = data;
 
     // Conditional rendering
     const authorProfilePicture = (
         author.profile_picture_bucket_key
-        ? awsBucketImage(content.author.profile_picture_bucket_key)
+        ? awsBucketImage(author.profile_picture_bucket_key)
         : guestProfilePicture()
-    );
-
-    // Set date text to Today, Tomorrow or the date (in format MM/DD/YYYY)
-    const formatedDate = `${date.getMonth()}/${date.getDate()}/${date.getFullYear()}`;
-    const dateText = (
-        date.getMonth() === (new Date()).getMonth()
-        && date.getFullYear() === (new Date()).getFullYear()
-            ? (
-                date.getDate() === (new Date()).getDate()
-                    ? "Today"
-                    : date.getDate() === (new Date()).getDate() + 1
-                        ? "Tomorrow"
-                        :  formatedDate
-            ) : formatedDate
     );
 
     return (
@@ -74,40 +59,30 @@ const Meetup = (props) => {
                             <Image source={authorProfilePicture} style={styles.authorPicture} />
                             <Text style={styles.authorName}>{author.first_name} {author.last_name}</Text>
                         </View> 
+                        <Text style={styles.memberCount}>{members ? members.length : 0} Members</Text>
                     </View>
                     <TouchableIcon
                         Icon={MoreOptionsIcon}
                     />
                 </View>
-                <View style={styles.details}>
-                    <View style={styles.location}>
-                        <LocationIcon
-                            width={20}
-                            height={20}
-                            color={
-                                darkModeEnabled
-                                ? colors.light.FIRST
-                                : colors.dark.FIRST
-                            }
-                        />
-                        <Text style={styles.locationText}>
-                            {location}
-                        </Text>
-                    </View>
-                    <View style={styles.time}>
-                        <Text>@</Text>
-                        <Text style={styles.dateText}>
-                            {dateText}
-                        </Text>
-                        <View style={[
-                            styles.dateDivider,
-                            themeStyles[theme].dateDivider
-                        ]} />
-                        <Text>
-                            {time}
-                        </Text>
-                    </View>
-                </View>
+                {
+                    location && (
+                        <View style={styles.location}>
+                            <LocationIcon
+                                width={10}
+                                height={20}
+                                color={
+                                    darkModeEnabled
+                                    ? colors.light.FIRST
+                                    : colors.dark.FIRST
+                                }
+                            />
+                            <Text style={styles.locationText}>
+                                {location}
+                            </Text>
+                        </View>
+                    )
+                }
                 {
                     description && (
                         <Text style={styles.description}>
@@ -123,6 +98,7 @@ const Meetup = (props) => {
                                 <Button
                                     title="Chat"
                                     pill
+                                    titleStyle={styles.buttonText}
                                 />
                             </View>
                             <View style={styles.gap} />
@@ -132,6 +108,7 @@ const Meetup = (props) => {
                                     type="secondary"
                                     pill
                                     color={colors[theme].RED}
+                                    titleStyle={styles.buttonText}
                                 />
                             </View>
                         </View>
@@ -140,6 +117,7 @@ const Meetup = (props) => {
                             title="Join"
                             pill
                             buttonStyle={styles.joinButton}
+                            titleStyle={styles.buttonText}
                         />
                     )
                 }
@@ -157,7 +135,6 @@ const styles = StyleSheet.create({
     header: {
         flexDirection: "row",
         justifyContent: "space-between",
-        marginBottom: 15
     },
     title: {
         fontSize: 26,
@@ -172,12 +149,17 @@ const styles = StyleSheet.create({
     authorPicture: {
         height: 20,
         width: 20,
+        borderRadius: 20,
         marginRight: 10
     },
     authorName: {
         fontSize: 18
     },
     // Details
+    memberCount: {
+        fontSize: 14,
+        marginTop: 10
+    },
     details: {
         flexDirection: "column"
     },
@@ -185,24 +167,11 @@ const styles = StyleSheet.create({
         opacity: 0.75,
         flexDirection: "row",
         alignItems: "center",
-        marginBottom: 10
+        marginTop: 10,
     },
     locationText: {
-        textDecorationLine: "underline",
-        marginLeft: 5
-    },
-    time: {
-        flexDirection: "row",
-        alignItems: "center",
-    },
-    dateText: {
-        marginLeft: 5
-    },
-    dateDivider: {
-        borderRadius: 2,
-        width: 2,
-        height: 20,
-        marginHorizontal: 5,
+        marginLeft: 5,
+        fontSize: 16
     },
     // Description
     description: {
@@ -210,12 +179,15 @@ const styles = StyleSheet.create({
         marginBottom: 0
     },
     // Actions
+    buttonText: {
+        fontSize: 18,
+    },
     actions: {
         flex: 1,
         marginVertical: 15,
     },
     joinButton: {
-        flex: 1,
+        flex: 1
     },
     joined: {
         flexDirection: "row",

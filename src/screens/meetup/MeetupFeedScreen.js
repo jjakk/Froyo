@@ -47,6 +47,28 @@ const MeetupFeedScreen = ({ navigation }) => {
         );
     };
 
+    const DUMMY_MEETUPS = [
+        {
+            id: 1,
+            title: "Bowlin' with the bois",
+            members: Array(4),
+            author: user,
+            joined: true
+        },
+        {
+            id: 2,
+            title: "Movie night @ 8 🍿",
+            description: "It's morbin' time. Be there or be square",
+            location: "Race Lawn",
+            members: Array(8),
+            author: {
+                id: 2,
+                first_name: "John",
+                last_name: "Doe",
+            }
+        },
+    ];
+
     return (
         <ScreenContainer>
             <Header

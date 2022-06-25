@@ -4,7 +4,7 @@ import React, {
     useState
 } from "react";
 // Components
-import { StyleSheet } from "react-native";
+import { Alert, StyleSheet } from "react-native";
 import { CreateButton } from "@froyo/single-use";
 import { ScreenContainer, Header } from "@froyo/fundamentals";
 import { PostList } from "@froyo/lists";
@@ -51,7 +51,8 @@ const FeedScreen = ({ navigation }) => {
     };
 
     const onOpenChat = () => {
-        navigation.navigate("ChatMenu");
+        Alert.alert("Coming soon");
+        //navigation.navigate("ChatMenu");
     };
 
     const onScrollToTop = async () => {

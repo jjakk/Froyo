@@ -28,7 +28,7 @@ const WelcomeScreen = ({ navigation }) => {
                     />
                     <View style={styles.text}>
                         <Text style={styles.title}>Froyo</Text>
-                        <Text style={styles.subTitle}>The Minimalist{"\n"}Social Network</Text>
+                        <Text style={styles.subTitle}>The Diet{"\n"}Social Network</Text>
                     </View>
                 </View>
                 <View style={styles.authOptions}>

@@ -2,7 +2,7 @@
   "expo": {
     "name": "Froyo",
     "slug": "Froyo",
-    "version": "0.2.3",
+    "version": "0.2.4",
     "orientation": "portrait",
     "icon": "./assets/logo-background.png",
     "userInterfaceStyle": "automatic",
@@ -28,7 +28,7 @@
       },
       "package": "com.protosapps.froyo",
       "permissions": [],
-      "versionCode": 3
+      "versionCode": 4
     },
     "web": {
       "favicon": "./assets/logo-background.png"

@@ -28,7 +28,7 @@
       },
       "package": "com.protosapps.froyo",
       "permissions": [],
-      "versionCode": 2
+      "versionCode": 3
     },
     "web": {
       "favicon": "./assets/logo-background.png"

@@ -19,6 +19,7 @@ const Setting = ({ item }) => {
     const theme = Appearance.getColorScheme();
 
     let RenderItem = () => (<></>);
+    
     switch (item.type) {
         case "toggle":
             RenderItem = () => (

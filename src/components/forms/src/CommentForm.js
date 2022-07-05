@@ -5,6 +5,8 @@ import {
     Alert,
     Keyboard,
     View,
+    ScrollView,
+    Pressable
 } from "react-native";
 import {
     TextInput,
@@ -74,11 +76,15 @@ const CommentForm = (props) => {
         <View style={styles.container}>
             {
                 parent && (
-                    <>
-                        <Text style={styles.parentText}>
-                            {parent.text}
-                        </Text>
-                    </>
+                    <View style={styles.parentTextContainer}>
+                        <ScrollView>
+                            <Pressable>
+                                <Text style={styles.parentText}>
+                                    {parent.text}
+                                </Text>
+                            </Pressable>
+                        </ScrollView>
+                    </View>
                 )
             }
             <TextInput
@@ -86,6 +92,7 @@ const CommentForm = (props) => {
                 placeholder="Type here..."
                 value={text}
                 onChangeText={setText}
+                style={styles.textInput}
             />
             <Button
                 title="Save"
@@ -100,12 +107,17 @@ const CommentForm = (props) => {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
         padding: 25
     },
-    parentText: {
-        fontSize: 20,
+    parentTextContainer: {
+        maxHeight: 250,
         marginBottom: 25
+    },
+    parentText: {
+        fontSize: 20
+    },
+    textInput: {
+        maxHeight: 250
     },
     submit: {
         marginTop: 25

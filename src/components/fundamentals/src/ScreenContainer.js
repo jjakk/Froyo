@@ -24,7 +24,6 @@ const ScreenContainer = (props) => {
         children,
         style,
         onDidFocus,
-        onWillBlur,
         statusBarBackgroundColor=(
             darkModeEnabled
                 ? colors.dark.THIRD
@@ -76,7 +75,6 @@ const ScreenContainer = (props) => {
                     >
                         <NavigationEvents
                             onDidFocus={onDidFocus}
-                            onWillBlur={onWillBlur}
                         />
                         {children}
                     </KeyboardAvoidingView>

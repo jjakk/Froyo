@@ -51,6 +51,7 @@ const PostViewScreen = ({ navigation }) => {
 
     useEffect(() => {
         setPost(passedPost);
+        setLoading(false);
     }, [passedPost]);
 
     return (

@@ -58,10 +58,14 @@ const AccountViewScreen = ({ navigation }) => {
 
     useEffect(() => {
         setUser(passedUser);
+        setPosts([]);
+        setLoading(true);
     }, [passedUser]);
 
     return(
-        <ScreenContainer>
+        <ScreenContainer
+            onDidFocus={retreiveUser}
+        >
             <Header
                 RightIcon={
                     user.id === signedInUser.id

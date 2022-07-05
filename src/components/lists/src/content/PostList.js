@@ -51,7 +51,7 @@ const PostList = (props, ref) => {
     // Reference
     useImperativeHandle(ref, () => ({
         reloadContent: async () => {
-            await onRefresh()
+            await onRefresh();
         },
         scrollToTop: () => {
             scrollRef.current.scrollToOffset({
@@ -67,7 +67,6 @@ const PostList = (props, ref) => {
             themeStyles[theme].container,
             style
         ]}>
-            <NavigationEvents onDidFocus={onRefresh} />
             <FlatList
                 data={posts}
                 showsVerticalScrollIndicator={false}

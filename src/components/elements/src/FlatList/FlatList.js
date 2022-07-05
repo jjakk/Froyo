@@ -47,7 +47,6 @@ const FlatList = (props, ref) => {
                     />
                 )
             )}
-            loading={loading}
             ref={ref}
             {...restOfProps}
         />

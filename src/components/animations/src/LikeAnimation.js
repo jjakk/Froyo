@@ -7,12 +7,14 @@ import {
     Animated,
     StyleSheet
 } from "react-native";
+// Context
+import { useSettings } from "@froyo/settings-context";
 // Icons
 import { LikeIconFill } from "@froyo/icons";
-// Constants
-import { colors } from "@froyo/constants";
 
 const LikeAnimation = (props, ref) => {
+    const { state: { primaryColors } } = useSettings();
+
     // Refs
     const progress = useRef(new Animated.Value(0)).current;
     const opacity = useRef(new Animated.Value(0)).current;
@@ -76,7 +78,7 @@ const LikeAnimation = (props, ref) => {
             }
         ]}>
             <LikeIconFill
-                color={colors.GREEN}
+                color={primaryColors.MAIN}
                 width={100}
                 height={100}
                 style={[

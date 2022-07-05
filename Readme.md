@@ -1,2 +1,2 @@
 # Froyo
-The Minimalist Social Network
+The Diet Social Network

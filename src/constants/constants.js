@@ -90,7 +90,7 @@ const constants = {
         // Icons for bottom tab bar
         TAB_ICON: 35,
     },
-    API_ENDPOINT: "https://api.froyo.social"
+    API_ENDPOINT: "http://127.0.0.1:8000"//"https://api.froyo.social"
 };
 
 module.exports = constants;

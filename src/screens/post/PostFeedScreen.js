@@ -51,8 +51,8 @@ const FeedScreen = ({ navigation }) => {
     };
 
     const onOpenChat = () => {
-        Alert.alert("Coming soon");
-        //navigation.navigate("ChatMenu");
+        //Alert.alert("Coming soon");
+        navigation.navigate("ChatMenu");
     };
 
     const onScrollToTop = async () => {

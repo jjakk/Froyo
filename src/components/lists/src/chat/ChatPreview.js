@@ -34,10 +34,14 @@ const ChatPreview = (props) => {
     
     // Props
     const {
+        data
+    } = props;
+
+    const {
         id,
         title,
         members
-    } = props;
+    } = data;
 
     const profilePictureSource = (
         members.length > 2

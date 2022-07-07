@@ -7,7 +7,8 @@ import Message from "./Message";
 const MessageList = (props) => {
     // Props
     const {
-        messages
+        messages,
+        loading
     } = props;
 
     return (
@@ -17,6 +18,7 @@ const MessageList = (props) => {
             RenderComponent={Message}
             style={styles.container}
             emptyMessage="No messages"
+            loading={loading}
             inverted={messages.length > 0}
         />
     );

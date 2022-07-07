@@ -30,6 +30,7 @@ const ChatMainScreen = (props) => {
     const chatId = navigation.getParam("chatId");
 
     const reloadMessages = () => {
+        setLoading(true);
         getChatMessages(chatId)
         .then(msgs => {
             setMessages(msgs.reverse());
@@ -46,7 +47,8 @@ const ChatMainScreen = (props) => {
         if(message){
             createMessage(chatId, message)
             .then(msg => {
-                socket.emit("message", msg);
+                socket.emit("send-message", msg, chatId);
+                addMessage(msg);
             })
             .catch(err => {
                 Alert.alert(err.message);
@@ -54,12 +56,16 @@ const ChatMainScreen = (props) => {
         }
     };
 
+    const addMessage = (message) => {
+        setMessages([message, ...messages]);
+    };
+
     useEffect(() => {
         const socket = io(API_ENDPOINT);
         setSocket(socket);
 
         socket.on("connect", () => {
-            socket.emit('join-room', chatId);
+            socket.emit("join-room", chatId);
             
             getChat(chatId)
             .then(chat => {
@@ -70,9 +76,8 @@ const ChatMainScreen = (props) => {
                 Alert.alert(err.message);
             });
 
-            socket.on("message", (message) => {
-                console.log(`received message: ${message}`);
-                setMessages([message, ...messages]);
+            socket.on("receive-message", (msg) => {
+                reloadMessages();
             });
         });
 

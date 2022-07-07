@@ -34,7 +34,8 @@ const ChatPreview = (props) => {
     
     // Props
     const {
-        data
+        data,
+        onDelete
     } = props;
 
     const {
@@ -60,12 +61,13 @@ const ChatPreview = (props) => {
         Alert.alert("Chat Editing Not Implemented");
     };
 
-    const onDelete = async () => {
+    const onDeleteChat = async () => {
         try{
             await deleteChat(id);
+            await onDelete();
         }
         catch (err) {
-            throw new Error(err.response.data);
+            throw new Error(err.message);
         }
     };
 
@@ -81,7 +83,7 @@ const ChatPreview = (props) => {
                 {
                     text: "Delete",
                     style: "destructive",
-                    onPress: onDelete
+                    onPress: onDeleteChat
                 }
             ],
         );

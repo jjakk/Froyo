@@ -10,6 +10,7 @@ import {
 import { Text, TouchableIcon } from "@froyo/elements";
 // Context
 import { useSettings } from "@froyo/settings-context";
+import { useUser } from "@froyo/user-context";
 // Icons
 import {
     PlusCircleIcon,
@@ -28,6 +29,7 @@ const UserPreview = (props) => {
 
     // Context
     const { state: { flavor } } = useSettings();
+    const { state: { user: signedInUser } } = useUser();
 
     // Props
     const {
@@ -85,7 +87,7 @@ const UserPreview = (props) => {
             </TouchableOpacity>
             <View style={styles.action}>
                 {
-                    selectable && (
+                    (selectable && id !== signedInUser.id) && (
                         <View>
                             {
                                 !selected ? (

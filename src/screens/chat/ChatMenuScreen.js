@@ -38,7 +38,9 @@ const ChatMenuScreen = (props) => {
     }, []);
 
     return (
-        <ScreenContainer>
+        <ScreenContainer
+            onDidFocus={refreshChats}
+        >
             <Header
                 title="Chat"
                 RightIcon={PlusIcon}
@@ -49,6 +51,8 @@ const ChatMenuScreen = (props) => {
             <ChatPreviewList
                 chats={chats}
                 loading={loading}
+                refreshable
+                onRefresh={refreshChats}
             />
         </ScreenContainer>
     );

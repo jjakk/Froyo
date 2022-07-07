@@ -7,6 +7,7 @@ const ChatPreviewList = (props) => {
     // Props
     const {
         chats,
+        onRefresh,
         ...restOfProps
     } = props;
 
@@ -14,7 +15,15 @@ const ChatPreviewList = (props) => {
         <FlatList
             data={chats}
             RenderComponent={ChatPreview}
+            renderItem={({ item }) => (
+                <ChatPreview
+                    data={item}
+                    onDelete={onRefresh}
+                />
+            )}
             emptyMessage="No active chats"
+            refreshable
+            onRefresh={onRefresh}
             {...restOfProps}
         />
     );

@@ -8,7 +8,6 @@ import { FlatList } from "@froyo/elements";
 import UserPreview from "./UserPreview";
 
 const UserList = (props) => {
-
     // Props
     const {
         users,

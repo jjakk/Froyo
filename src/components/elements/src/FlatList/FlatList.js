@@ -1,17 +1,28 @@
-import React, { forwardRef } from "react";
+import React, { useState, forwardRef } from "react";
 // Components
 import {
     Appearance,
     StyleSheet,
+    RefreshControl,
     FlatList as DefaultFlatList
 } from "react-native";
 import { LoadingAnimation } from "@froyo/animations";
 import EmptySign from "./EmptySign";
+// Context
+import { useSettings } from "@froyo/settings-context";
 // Constants
 import { colors } from "@froyo/constants";
 
 const FlatList = (props, ref) => {
     const theme = Appearance.getColorScheme();
+    const darkModeEnabled = theme === "dark" ;
+
+    // Context
+    const { state: { primaryColors } } = useSettings();
+
+    // State
+    const [refreshing, setRefreshing] = useState(false);
+    
     const {
         style,
         emptyMessage,
@@ -20,6 +31,8 @@ const FlatList = (props, ref) => {
             (item) => item.id
         ),
         RenderComponent,
+        onRefresh,
+        refreshable,
         ...restOfProps
     } = props;
 
@@ -35,6 +48,21 @@ const FlatList = (props, ref) => {
                     data={item}
                 />
             )}
+            refreshControl={
+                refreshable ? (
+                    <RefreshControl
+                        tintColor={primaryColors.MAIN}
+                        colors={[primaryColors.MAIN]}
+                        progressBackgroundColor={darkModeEnabled ? colors.light.FOURTH : colors.WHITE}
+                        refreshing={refreshing}
+                        onRefresh={async () => {
+                            setRefreshing(true);
+                            await onRefresh();
+                            setRefreshing(false);
+                        }}
+                    />
+                ) : null
+            }
             ListEmptyComponent={() => (
                 loading ? (
                     <LoadingAnimation

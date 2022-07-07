@@ -5,7 +5,6 @@ import { FlatList } from "@froyo/elements";
 import Message from "./Message";
 
 const MessageList = (props) => {
-
     // Props
     const {
         messages
@@ -18,13 +17,14 @@ const MessageList = (props) => {
             RenderComponent={Message}
             style={styles.container}
             emptyMessage="No messages"
+            inverted={messages.length > 0}
         />
     );
 };
 
 const styles = StyleSheet.create({
     container: {
-        padding: 10
+        padding: 15
     }
 });
 

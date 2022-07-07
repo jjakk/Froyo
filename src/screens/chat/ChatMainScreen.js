@@ -21,6 +21,7 @@ const ChatMainScreen = (props) => {
     const [chat, setChat] = useState({});
     const [messages, setMessages] = useState([]);
     const [loading, setLoading] = useState([]);
+    const [socket, setSocket] = useState(null);
 
     const {
         navigation
@@ -31,7 +32,7 @@ const ChatMainScreen = (props) => {
     const reloadMessages = () => {
         getChatMessages(chatId)
         .then(msgs => {
-            setMessages(msgs);
+            setMessages(msgs.reverse());
         })
         .catch(err => {
             Alert.alert(err.message);
@@ -44,8 +45,8 @@ const ChatMainScreen = (props) => {
     const onSendMessage = (message) => {
         if(message){
             createMessage(chatId, message)
-            .then(() => {
-                reloadMessages();
+            .then(msg => {
+                socket.emit("message", msg);
             })
             .catch(err => {
                 Alert.alert(err.message);
@@ -55,8 +56,11 @@ const ChatMainScreen = (props) => {
 
     useEffect(() => {
         const socket = io(API_ENDPOINT);
+        setSocket(socket);
 
         socket.on("connect", () => {
+            socket.emit('join-room', chatId);
+            
             getChat(chatId)
             .then(chat => {
                 setChat(chat);
@@ -65,10 +69,11 @@ const ChatMainScreen = (props) => {
             .catch(err => {
                 Alert.alert(err.message);
             });
-        });
 
-        socket.on("message", (message) => {
-            setMessages([...messages, message]);
+            socket.on("message", (message) => {
+                console.log(`received message: ${message}`);
+                setMessages([message, ...messages]);
+            });
         });
 
         return () => {

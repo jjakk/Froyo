@@ -33,10 +33,11 @@ const getChatMessages = () => async (chatId) => {
 
 const createMessage = () => async (chatId, text) => {
     try{
-        await froyoApi.post(`/chats/${chatId}/messages`, { text });
+        const { data: message } = await froyoApi.post(`/chats/${chatId}/messages`, { text });
+        return message;
     }
     catch (err) {
-        throw new Error(err.response.data);
+        throw new Error(err.message);
     }
 }
 

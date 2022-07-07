@@ -1,6 +1,6 @@
 import React from "react";
 // Components
-import { View, Image, StyleSheet, Appearance } from "react-native";
+import { View, Pressable, StyleSheet, Appearance } from "react-native";
 import { Text } from "@froyo/elements";
 // Context
 import { useSettings } from "@froyo/settings-context";
@@ -25,7 +25,7 @@ const Message = (props) => {
     const self = author_id === user.id;
 
     return (
-        <View style={styles.container}>
+        <Pressable style={styles.container}>
             {
                 /*!self && (
                     <Text style={styles.authorName}>{authorName}</Text>
@@ -44,7 +44,7 @@ const Message = (props) => {
                     self ? styles.selfText : styles.otherText
                 ]}>{text}</Text>
             </View>
-        </View>
+        </Pressable>
     );
 };
 

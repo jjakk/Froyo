@@ -6,6 +6,10 @@ import { MessageList } from "@froyo/lists";
 import { CommentBar } from "@froyo/bars";
 // Context
 import { useChat } from "@froyo/chat-context";
+// Web Sockets
+import { io } from "socket.io-client";
+// Constants
+import { API_ENDPOINT } from "@froyo/constants";
 
 const ChatMainScreen = (props) => {
     const {
@@ -50,15 +54,26 @@ const ChatMainScreen = (props) => {
     };
 
     useEffect(() => {
-        getChat(chatId).then(returnedChat => {
-            setChat(returnedChat);
-        })
-        .catch((err) => {
-            Alert.alert(err.message);
-        })
-        .finally(() => {
-            reloadMessages();
+        const socket = io(API_ENDPOINT);
+
+        socket.on("connect", () => {
+            getChat(chatId)
+            .then(chat => {
+                setChat(chat);
+                reloadMessages();
+            })
+            .catch(err => {
+                Alert.alert(err.message);
+            });
         });
+
+        socket.on("message", (message) => {
+            setMessages([...messages, message]);
+        });
+
+        return () => {
+            socket.close();
+        }
     }, []);
     
     return (

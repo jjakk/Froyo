@@ -16,8 +16,10 @@ const Message = (props) => {
         
     // Props
     const {
-        text,
-        author_id
+        data: {
+            text,
+            author_id
+        }
     } = props;
 
     const self = author_id === user.id;

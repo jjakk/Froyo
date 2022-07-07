@@ -22,7 +22,7 @@ const Message = (props) => {
     const { state: { primaryColors } } = useSettings();
     const { getUser, state: { user: signedInUser } } = useUser();
 
-    const [user, setUser] = useState("");
+    const [user, setUser] = useState(null);
         
     // Props
     const {
@@ -51,7 +51,7 @@ const Message = (props) => {
     return (
         <Pressable style={styles.container}>
             {
-                !self && (
+                (!self && user) && (
                     <TouchableOpacity
                         onPress={goToUser}
                         style={styles.authorNameContainer}

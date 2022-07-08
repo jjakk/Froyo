@@ -50,7 +50,9 @@
     "react-navigation": "^4.4.4",
     "react-navigation-stack": "^2.10.4",
     "react-navigation-tabs": "^2.11.2",
-    "socket.io-client": "^4.5.1"
+    "socket.io-client": "^4.5.1",
+    "expo-notifications": "~0.15.4",
+    "expo-constants": "~13.1.1"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"

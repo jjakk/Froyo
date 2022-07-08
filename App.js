@@ -1,6 +1,9 @@
 import React, { useReducer, useEffect } from "react";
-import { Appearance } from "react-native";
+import { Alert, Appearance, Platform } from "react-native";
+// Expo
 import { useFonts } from "expo-font";
+import * as Notifications from 'expo-notifications';
+import Constants from 'expo-constants';
 // Navigation
 import AppNavigator from "./src/navigation/appNavigator";
 // Context
@@ -23,11 +26,39 @@ const App = () => {
   const onThemeChange = () => {
       forceUpdate();
   };
+
+  const registerForPushNotifications = async () => {
+    if(!Constants.isDevice){
+      Alert.alert("Push Notifications are not supported on device simulators");
+      return null;
+    }
+
+    const { status } = await Notifications.requestPermissionsAsync();
+    if (status !== "granted") {
+      Alert.alert("Permission for notifications was denied");
+      return null;
+    }
+
+    if(Platform.OS === "android"){
+      Notifications.setNotificationChannelAsync("default", {
+        name: "default",
+        importance: Notifications.AndroidImportance.MAX,
+      });
+    }
+
+    const { data: token } = await Notifications.getExpoPushTokenAsync();
+    return token;
+  };
+
   useEffect(() => {
-      const subscription = Appearance.addChangeListener(onThemeChange);
-      return () => {
-        subscription.remove();
-      };
+    const subscription = Appearance.addChangeListener(onThemeChange);
+    registerForPushNotifications().then(token => {
+      console.log(token);
+    });
+
+    return () => {
+      subscription.remove();
+    };
   }, []);
 
   return (

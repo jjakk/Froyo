@@ -15,9 +15,11 @@ import {
 import { ScreenContainer } from "@froyo/fundamentals";
 // Context
 import { useUser } from "@froyo/user-context";
+import { useNotification } from "@froyo/notification-context";
 
 const SignInScreen = ({ navigation }) => {
     const { signIn } = useUser();
+    const { state: { notificationToken } } = useNotification();
     // Sign in feilds
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -30,7 +32,7 @@ const SignInScreen = ({ navigation }) => {
         try {
             Keyboard.dismiss()
             setLoading(true);
-            await signIn({ email, password });
+            await signIn({ email, password, notificationToken });
             formSuccess = true;
         }
         catch (err) {

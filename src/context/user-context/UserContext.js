@@ -7,6 +7,7 @@ import froyoApi from "../../api/froyo";
 import formRequest from "../../api/formRequest";
 // Helpers
 import { ageInYears } from "@froyo/helpers";
+import { Alert } from "react-native";
 
 // Handle setting state
 const userReducer = (state, action) => {
@@ -23,7 +24,7 @@ const userReducer = (state, action) => {
 };
 
 // Sign in with email and password
-const signIn = (dispatch) => async ({ email, password }) => {
+const signIn = (dispatch) => async ({ email, password, notificationToken }) => {
     // Check that all fields are complete first
     switch(""){
         case email:
@@ -33,13 +34,13 @@ const signIn = (dispatch) => async ({ email, password }) => {
     }
     try {
         // Get authentication token from API
-        const { headers: { authorization } } = await froyoApi.post("/auth/login", { email, password });
+        const { headers: { authorization } } = await froyoApi.post("/auth/login", { email, password, notificationToken });
         const token = authorization.replace("Bearer ", "");
         await AsyncStorage.setItem("token", token);
         dispatch({ type: "sign_in", payload: token });
     }
     catch (err) {
-        throw Error(err.response.data)
+        throw Error(err.response.data);
     }
 };
 
@@ -79,7 +80,8 @@ const signUp = (dispatch) => async (info) => {
         first_name,
         last_name,
         password,
-        passwordConfirm
+        passwordConfirm,
+        notificationToken
     } = info;
 
     // Check all feilds are filled
@@ -101,7 +103,17 @@ const signUp = (dispatch) => async (info) => {
 
     try{
         // Create the user and store their authentication token
-        const { headers: { authorization } } = await froyoApi.post("/users/", { email, username, dob, first_name, last_name, password });
+        const {
+            headers: { authorization }
+        } = await froyoApi.post("/users/", {
+            email,
+            username,
+            dob,
+            first_name,
+            last_name,
+            password,
+            notificationToken
+        });
         const token = authorization.replace("Bearer ", "");
         await AsyncStorage.setItem("token", token);
         dispatch({ type: "sign_in", payload: token}); 
@@ -112,14 +124,21 @@ const signUp = (dispatch) => async (info) => {
 };
 
 // Clear token from AsyncStorage
-const signOut = (dispatch) => async () => {
-    // Remove all AsyncStorage items
-    const keys = await AsyncStorage.getAllKeys()
-    await AsyncStorage.multiRemove(keys);
+const signOut = (dispatch) => async (notificationToken) => {
+    try{
+        await froyoApi.post("/auth/logout", { notificationToken });
+        // Remove all AsyncStorage items
+        const keys = await AsyncStorage.getAllKeys()
+        await AsyncStorage.multiRemove(keys);
 
-    // Clear the token from state
-    dispatch({ type: "sign_out" });
-    navigate("ResolveAuth");
+        // Clear the token from state
+        dispatch({ type: "sign_out" });
+        navigate("ResolveAuth");
+    }
+    catch(err) {
+        console.log(err);
+        Alert.alert(err.response.data);
+    }
 };
 
 // Delete a user from the database and sign out

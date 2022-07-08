@@ -2,9 +2,6 @@ import React, {
     useState,
     useEffect
 } from "react";
-// Context
-import { useUser } from "@froyo/user-context";
-import { useSettings } from "@froyo/settings-context";
 // Navigation
 import { navigate } from "@froyo/navigation-ref";
 // Components
@@ -21,6 +18,10 @@ import {
     Button,
     Text
 } from "@froyo/elements";
+// Context
+import { useUser } from "@froyo/user-context";
+import { useSettings } from "@froyo/settings-context";
+import { useNotification } from "@froyo/notification-context";
 // Icons
 import { guestProfilePicture, awsBucketImage } from "@froyo/icons";
 // Constants
@@ -38,6 +39,7 @@ const UserProfile = (props) => {
         }
     } = useUser();
     const { state: { flavor } } = useSettings();
+    const { state: { notificationToken } } = useNotification();
 
     // Theme
     const theme = Appearance.getColorScheme();
@@ -64,6 +66,10 @@ const UserProfile = (props) => {
     const onFollow = async () => {
         await follow(user.id);
         onFollowToggle();
+    };
+
+    const onSignOut = async () => {
+        await signOut(notificationToken);
     };
 
     // Event handlers
@@ -164,7 +170,7 @@ const UserProfile = (props) => {
                                 type="secondary"
                                 pill
                                 titleStyle={styles.actionButtonText}
-                                onPress={signOut}
+                                onPress={onSignOut}
                             />
                         </View>
                         </>

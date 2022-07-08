@@ -1,4 +1,5 @@
 import React from "react";
+import { Alert } from "react-native";
 // Components
 import { ScreenContainer, Header } from "@froyo/fundamentals";
 import { SettingsList } from "@froyo/lists";
@@ -19,13 +20,20 @@ const AccountSettingsScreen = () => {
             type: "button",
             color: colors.DISLIKE_RED,
             onPress:() => {
-                confirmAlert(
-                    {
-                        title: "Are you sure you would like to delete your account?",
-                        subtitle: "\nThis action cannot be undone. Doing so will delete all of your posts and comments"
-                    }, async () => {
-                        await deleteUser();
-                    }
+
+                Alert.alert(
+                    "Are you sure you would like to delete your account?",
+                    "\nThis action cannot be undone. Doing so will delete all of your posts and comments",
+                    [
+                        {
+                            text: "No",
+                            style: "cancel"
+                        }, {
+                            text: "Yes",
+                            style: "destructive",
+                            onPress: deleteUser
+                        }
+                    ], { cancelable: true }
                 );
             }
         }

@@ -14,6 +14,7 @@ import {
 import { ScreenContainer, Header } from "@froyo/fundamentals";
 // Context
 import { useUser } from "@froyo/user-context";
+import { useNotification } from "@froyo/notification-context";
 
 const SignUpTwoScreen = ({ navigation }) => {
     // Form params from previous screen
@@ -28,7 +29,8 @@ const SignUpTwoScreen = ({ navigation }) => {
     // Status states
     const [loading, setLoading] = useState(false);
     // Context values & functions
-    const { signUp} = useUser();
+    const { signUp } = useUser();
+    const { state: { notificationToken } } = useNotification();
 
     const handleSubmit = async () => {
         let formSuccess = false;
@@ -42,7 +44,8 @@ const SignUpTwoScreen = ({ navigation }) => {
                 first_name: firstName,
                 last_name: lastName,
                 password,
-                passwordConfirm
+                passwordConfirm,
+                notificationToken
             });
             formSuccess = true;
         }

@@ -20,6 +20,7 @@ const MessageList = (props) => {
             emptyMessage="No messages"
             loading={loading}
             inverted={messages.length > 0}
+            showsVerticalScrollIndicator={false}
         />
     );
 };

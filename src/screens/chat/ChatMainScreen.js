@@ -91,7 +91,7 @@ const ChatMainScreen = (props) => {
             edges={["top", "bottom"]}
         >
             <Header
-                title={chat.title || "Chat Name"}
+                title={loading ? "loading" : (chat.title || "Chat")}
             />
             <MessageList
                 messages={messages}

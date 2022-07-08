@@ -1,5 +1,5 @@
-import React from "react";
-import { Appearance } from "react-native";
+import React, { useEffect } from "react";
+import { Alert, Appearance, Platform } from "react-native";
 import { createSwitchNavigator, createAppContainer } from "react-navigation";
 // SafeAreaProvider
 import {
@@ -18,6 +18,7 @@ import mainNavigator from "./navigators/mainNavigator";
 import authNavigator from "./navigators/authNavigator";
 // Context
 import { useSettings } from "@froyo/settings-context";
+import { useNotification } from "@froyo/notification-context";
 // Constants
 import { colors } from "@froyo/constants";
 
@@ -38,9 +39,14 @@ const WithoutFeedApp = createAppContainer(appNavigator(true));
 const AppNavigator = () => {
     // Context
     const { state: { hideFeed } } = useSettings();
+    const { setNotificationToken } = useNotification();
     // Theme
     const theme = Appearance.getColorScheme();
     const AppContainer = hideFeed ? WithoutFeedApp : WithFeedApp;
+
+    useEffect(() => {
+        setNotificationToken();
+    }, []);
 
     return (
         <SafeAreaProvider

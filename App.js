@@ -1,9 +1,7 @@
 import React, { useReducer, useEffect } from "react";
-import { Alert, Appearance, Platform } from "react-native";
+import { Appearance } from "react-native";
 // Expo
 import { useFonts } from "expo-font";
-import * as Notifications from 'expo-notifications';
-import Constants from 'expo-constants';
 // Navigation
 import AppNavigator from "./src/navigation/appNavigator";
 // Context
@@ -11,6 +9,7 @@ import { Provider as UserProvider } from "@froyo/user-context";
 import { Provider as ContentProvider } from "@froyo/content-context";
 import { Provider as ChatProvide } from "@froyo/chat-context";
 import { Provider as SettingsProvider } from "@froyo/settings-context";
+import { Provider as NotificationProvider } from "@froyo/notification-context";
 
 const App = () => {
   // Import custom fonts
@@ -27,34 +26,8 @@ const App = () => {
       forceUpdate();
   };
 
-  const registerForPushNotifications = async () => {
-    if(!Constants.isDevice){
-      Alert.alert("Push Notifications are not supported on device simulators");
-      return null;
-    }
-
-    const { status } = await Notifications.requestPermissionsAsync();
-    if (status !== "granted") {
-      Alert.alert("Permission for notifications was denied");
-      return null;
-    }
-
-    if(Platform.OS === "android"){
-      Notifications.setNotificationChannelAsync("default", {
-        name: "default",
-        importance: Notifications.AndroidImportance.MAX,
-      });
-    }
-
-    const { data: token } = await Notifications.getExpoPushTokenAsync();
-    return token;
-  };
-
   useEffect(() => {
     const subscription = Appearance.addChangeListener(onThemeChange);
-    registerForPushNotifications().then(token => {
-      console.log(token);
-    });
 
     return () => {
       subscription.remove();
@@ -67,7 +40,9 @@ const App = () => {
         <ContentProvider>
           <SettingsProvider>
             <ChatProvide>
-              <AppNavigator/>
+              <NotificationProvider>
+                <AppNavigator/>
+              </NotificationProvider>
             </ChatProvide>
           </SettingsProvider>
         </ContentProvider>

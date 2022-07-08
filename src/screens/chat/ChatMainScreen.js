@@ -6,6 +6,7 @@ import { MessageList } from "@froyo/lists";
 import { CommentBar } from "@froyo/bars";
 // Context
 import { useChat } from "@froyo/chat-context";
+import { useNotification } from "@froyo/notification-context";
 // Web Sockets
 import { io } from "socket.io-client";
 // Constants
@@ -17,6 +18,7 @@ const ChatMainScreen = (props) => {
         getChatMessages,
         createMessage
     } = useChat();
+    const { state: { notificationToken } } = useNotification();
 
     const [chat, setChat] = useState({});
     const [messages, setMessages] = useState([]);
@@ -72,7 +74,11 @@ const ChatMainScreen = (props) => {
     }, []);
 
     useEffect(() => {
-        const socket = io(API_ENDPOINT);
+        const socket = io(API_ENDPOINT, {
+            auth: {
+                notificationToken: notificationToken
+            }
+        });
         setSocket(socket);
 
         socket.on("connect", () => {

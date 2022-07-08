@@ -61,30 +61,32 @@ const ChatMainScreen = (props) => {
     };
 
     useEffect(() => {
+        getChat(chatId)
+        .then(chat => {
+            setChat(chat);
+            reloadMessages();
+        })
+        .catch(err => {
+            Alert.alert(err.message);
+        });
+    }, []);
+
+    useEffect(() => {
         const socket = io(API_ENDPOINT);
         setSocket(socket);
 
         socket.on("connect", () => {
             socket.emit("join-room", chatId);
-            
-            getChat(chatId)
-            .then(chat => {
-                setChat(chat);
-                reloadMessages();
-            })
-            .catch(err => {
-                Alert.alert(err.message);
-            });
 
             socket.on("receive-message", (msg) => {
-                reloadMessages();
+                addMessage(msg);
             });
         });
 
         return () => {
             socket.close();
         }
-    }, []);
+    }, [messages]);
     
     return (
         <ScreenContainer

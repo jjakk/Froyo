@@ -43,7 +43,7 @@ const AppNavigator = () => {
     // Context
     const { state: { hideFeed } } = useSettings();
     const { setNotificationToken } = useNotification();
-    const { setUnreadMessage } = useChat();
+    const { addUnreadChat } = useChat();
     // Theme
     const theme = Appearance.getColorScheme();
     const AppContainer = hideFeed ? WithoutFeedApp : WithFeedApp;
@@ -51,14 +51,19 @@ const AppNavigator = () => {
     useEffect(() => {
         setNotificationToken();
         const notificationForgroundListener = Notifications.addNotificationReceivedListener(notification => {
-            setUnreadMessage();
+            const notificationData = notification.request.content.data;
+            switch(notificationData.type){
+                case 'message':
+                    addUnreadChat(notificationData.message.chat_id);
+                    break;
+            }
         });
 
         const notificationTapListener = Notifications.addNotificationResponseReceivedListener(response => {
             const notificationData = response.notification.request.content.data;
             switch(notificationData.type){
                 case 'message':
-                    navigate('ChatMain', { chatId: notificationData.chatId });
+                    navigate('ChatMain', { chatId: notificationData.message.chat_id });
                     break;
             }
         });

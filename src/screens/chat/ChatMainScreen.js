@@ -16,7 +16,8 @@ const ChatMainScreen = (props) => {
     const {
         getChat,
         getChatMessages,
-        createMessage
+        createMessage,
+        removeUnreadChat
     } = useChat();
     const { state: { notificationToken } } = useNotification();
 
@@ -63,6 +64,7 @@ const ChatMainScreen = (props) => {
     };
 
     useEffect(() => {
+        removeUnreadChat(chatId);
         getChat(chatId)
         .then(chat => {
             setChat(chat);

@@ -26,7 +26,7 @@ const FeedScreen = ({ navigation }) => {
     const { state: { user } } = useUser();
     const { getFeed } = useContent();
     const { state: { primaryColors, flavor } } = useSettings();
-    const { clearUnreadMessage, state: { unreadMessage } } = useChat();
+    const { state: { unreadChats } } = useChat();
 
     // Ref
     const postListRef = useRef();
@@ -41,7 +41,7 @@ const FeedScreen = ({ navigation }) => {
         ? awsBucketImage(user.profile_picture_bucket_key)
         : guestProfilePicture(flavor)
     );
-    const ChatIcon = chatIcon(unreadMessage, flavor);
+    const ChatIcon = chatIcon(unreadChats, flavor);
 
     // Event handlers
     const onAccountView = () => {
@@ -50,7 +50,6 @@ const FeedScreen = ({ navigation }) => {
 
     const onOpenChat = () => {
         //Alert.alert("Coming soon");
-        clearUnreadMessage();
         navigation.navigate("ChatMenu");
     };
 

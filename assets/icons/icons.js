@@ -53,8 +53,8 @@ module.exports = {
     PlusCircleIcon,
     CloseCircleIcon,
     LoadingIcon,
-    chatIcon: (unread, flavor) => {
-        if(!unread) return ChatIcon;
+    chatIcon: (unreadChats, flavor) => {
+        if(unreadChats.length === 0) return ChatIcon;
         switch(flavor) {
             case "mint":
                 return ChatUnreadIconMint;

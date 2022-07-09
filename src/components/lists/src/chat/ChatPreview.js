@@ -112,20 +112,19 @@ const ChatPreview = (props) => {
     const optionHandlers = options.map(option => option.onSelect);
 
     useEffect(() => {
-        if(members.length > 2){
-            setChatTitle(title || "Group Chat");
-            return;
-        }
-        
-        for(const memberId of members){
-            if(memberId !== signedInUser.id){
-                getUser(memberId)
-                .then(user => {
-                    setChatTitle(`${user.first_name} ${user.last_name}`);
-                })
-                .catch(err => {
-                    Alert.alert(err);
-                });
+        if(title) setChatTitle(title);
+        else if(members.length > 2) setChatTitle(title || "Group Chat");
+        else{
+            for(const memberId of members){
+                if(memberId !== signedInUser.id){
+                    getUser(memberId)
+                    .then(user => {
+                        setChatTitle(`${user.first_name} ${user.last_name}`);
+                    })
+                    .catch(err => {
+                        Alert.alert(err);
+                    });
+                }
             }
         }
     }, []);

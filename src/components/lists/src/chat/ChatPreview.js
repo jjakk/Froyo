@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 // Components
 import OptionsMenu from "react-native-option-menu";
 import {
@@ -12,6 +12,7 @@ import {
 import { Text, TouchableIcon } from "@froyo/elements";
 // Context
 import { useSettings } from "@froyo/settings-context";
+import { useUser } from "@froyo/user-context";
 import { useChat } from "@froyo/chat-context";
 // Icons
 import {
@@ -30,7 +31,11 @@ const ChatPreview = (props) => {
 
     // Context
     const { state: { flavor } } = useSettings();
+    const { getUser, state: { user: signedInUser } } = useUser();
     const { deleteChat } = useChat();
+
+    // State
+    const [chatTitle, setChatTitle] = useState(null);
     
     // Props
     const {
@@ -59,7 +64,7 @@ const ChatPreview = (props) => {
     };
 
     const onEdit = () => {
-        Alert.alert("Chat Editing Not Implemented");
+        Alert.alert("Chat editing not implemented yet");
     };
 
     const onDeleteChat = async () => {
@@ -106,6 +111,25 @@ const ChatPreview = (props) => {
     const optionLabels = options.map(option => option.label);
     const optionHandlers = options.map(option => option.onSelect);
 
+    useEffect(() => {
+        if(members.length > 2){
+            setChatTitle(title || "Group Chat");
+            return;
+        }
+        
+        for(const memberId of members){
+            if(memberId !== signedInUser.id){
+                getUser(memberId)
+                .then(user => {
+                    setChatTitle(`${user.first_name} ${user.last_name}`);
+                })
+                .catch(err => {
+                    Alert.alert(err);
+                });
+            }
+        }
+    }, []);
+
     return (
         <TouchableOpacity onPress={onOpenChat}>
             <View style={[styles.container, themeStyles[theme].container]}>
@@ -116,13 +140,7 @@ const ChatPreview = (props) => {
                 <View style={styles.mainSection}>
                     <View style={styles.textContainer}>
                         <Text style={styles.title}>
-                            {
-                                title || (
-                                    members.length > 2
-                                        ? "Group Chat"
-                                        : "Chat"
-                                )
-                            }
+                            { chatTitle || "Loading" }
                         </Text>
                         {
                             unread && (

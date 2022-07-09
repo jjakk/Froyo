@@ -1,10 +1,13 @@
 import { useContext } from "react";
 import createDataContext from "../createDataContext";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 // API
 import froyoApi from "../../api/froyo";
 
 const contentReducer = (state, action) => {
     switch(action.type){
+        case 'set_unread_message':
+            return { ...state, unreadMessage: action.payload };
         default:
             return state;
     }
@@ -69,6 +72,14 @@ const deleteChat = () => async (chatId) => {
     }
 };
 
+const setUnreadMessage = (dispatch) => () => {
+    dispatch({ type: "set_unread_message", payload: true });
+};
+
+const clearUnreadMessage = (dispatch) => () => {
+    dispatch({ type: "set_unread_message", payload: false });
+};
+
 export const { Provider, Context } = createDataContext(
     contentReducer,
     {
@@ -77,8 +88,10 @@ export const { Provider, Context } = createDataContext(
         createMessage,
         createChat,
         getChat,
-        deleteChat
-    }, {}
+        deleteChat,
+        setUnreadMessage,
+        clearUnreadMessage
+    }, { unreadMessage: false }
 );
 
 export const useChat = () => useContext(Context);

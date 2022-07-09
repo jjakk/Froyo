@@ -21,6 +21,7 @@ import authNavigator from "./navigators/authNavigator";
 // Context
 import { useSettings } from "@froyo/settings-context";
 import { useNotification } from "@froyo/notification-context";
+import { useChat } from "@froyo/chat-context";
 // Constants
 import { colors } from "@froyo/constants";
 
@@ -42,6 +43,7 @@ const AppNavigator = () => {
     // Context
     const { state: { hideFeed } } = useSettings();
     const { setNotificationToken } = useNotification();
+    const { setUnreadMessage } = useChat();
     // Theme
     const theme = Appearance.getColorScheme();
     const AppContainer = hideFeed ? WithoutFeedApp : WithFeedApp;
@@ -49,8 +51,7 @@ const AppNavigator = () => {
     useEffect(() => {
         setNotificationToken();
         const notificationForgroundListener = Notifications.addNotificationReceivedListener(notification => {
-            //console.log('foreground');
-            //console.log(notification);
+            setUnreadMessage();
         });
 
         const notificationTapListener = Notifications.addNotificationResponseReceivedListener(response => {

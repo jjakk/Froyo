@@ -11,7 +11,7 @@ import { PostList } from "@froyo/lists";
 // Icons
 import {
     FroyoIcon,
-    ChatIcon,
+    chatIcon,
     guestProfilePicture,
     awsBucketImage
 } from "@froyo/icons";
@@ -19,17 +19,14 @@ import {
 import { useUser } from "@froyo/user-context";
 import { useContent } from "@froyo/content-context";
 import { useSettings } from "@froyo/settings-context";
+import { useChat } from "@froyo/chat-context";
 
 const FeedScreen = ({ navigation }) => {
     // Context
     const { state: { user } } = useUser();
     const { getFeed } = useContent();
-    const {
-        state: {
-            primaryColors,
-            flavor
-        }
-    } = useSettings();
+    const { state: { primaryColors, flavor } } = useSettings();
+    const { clearUnreadMessage, state: { unreadMessage } } = useChat();
 
     // Ref
     const postListRef = useRef();
@@ -45,6 +42,9 @@ const FeedScreen = ({ navigation }) => {
         : guestProfilePicture(flavor)
     );
 
+    console.log(unreadMessage);
+    const ChatIcon = chatIcon(unreadMessage, flavor);
+
     // Event handlers
     const onAccountView = () => {
         navigation.navigate("AccountView");
@@ -52,6 +52,7 @@ const FeedScreen = ({ navigation }) => {
 
     const onOpenChat = () => {
         //Alert.alert("Coming soon");
+        clearUnreadMessage();
         navigation.navigate("ChatMenu");
     };
 

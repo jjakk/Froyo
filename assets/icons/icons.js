@@ -1,6 +1,11 @@
 import { API_ENDPOINT } from "@froyo/constants";
 import FroyoIcon from "./Froyo.svg";
 import ChatIcon from "./Chat.svg";
+import ChatUnreadIconMint from "./ChatUnread-mint.svg";
+import ChatUnreadIconCoffee from "./ChatUnread-coffee.svg";
+import ChatUnreadIconStrawberry from "./ChatUnread-strawberry.svg";
+import ChatUnreadIconBlueberry from "./ChatUnread-blueberry.svg";
+import ChatUnreadIconMango from "./ChatUnread-mango.svg";
 import PlusIcon from "./Plus.svg";
 import GearIcon from "./Gear.svg";
 import UploadIcon from "./Upload.svg";
@@ -26,7 +31,6 @@ import LoadingIcon from "./animation/Loading.svg";
 
 module.exports = {
     FroyoIcon,
-    ChatIcon,
     PlusIcon,
     GearIcon,
     UploadIcon,
@@ -49,6 +53,23 @@ module.exports = {
     PlusCircleIcon,
     CloseCircleIcon,
     LoadingIcon,
+    chatIcon: (unread, flavor) => {
+        if(!unread) return ChatIcon;
+        switch(flavor) {
+            case "mint":
+                return ChatUnreadIconMint;
+            case "coffee":
+                return ChatUnreadIconCoffee;
+            case "strawberry":
+                return ChatUnreadIconStrawberry;
+            case "blueberry":
+                return ChatUnreadIconBlueberry;
+            case "mango":
+                return ChatUnreadIconMango;
+            default:
+                return ChatUnreadIconMint;
+        }
+    },
     guestProfilePicture: (flavor) => {
         switch(flavor){
             case "mint":

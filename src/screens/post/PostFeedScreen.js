@@ -41,8 +41,6 @@ const FeedScreen = ({ navigation }) => {
         ? awsBucketImage(user.profile_picture_bucket_key)
         : guestProfilePicture(flavor)
     );
-
-    console.log(unreadMessage);
     const ChatIcon = chatIcon(unreadMessage, flavor);
 
     // Event handlers

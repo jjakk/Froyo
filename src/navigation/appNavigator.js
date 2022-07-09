@@ -1,13 +1,15 @@
 import React, { useEffect } from "react";
-import { Alert, Appearance, Platform } from "react-native";
+import { Appearance } from "react-native";
 import { createSwitchNavigator, createAppContainer } from "react-navigation";
+// Expo
+import * as Notifications from 'expo-notifications';
 // SafeAreaProvider
 import {
     SafeAreaProvider,
     initialWindowMetrics
 } from "react-native-safe-area-context";
 // Set Navigator
-import { setNavigator } from "@froyo/navigation-ref";
+import { setNavigator, navigate } from "@froyo/navigation-ref";
 // Miscellaneous Screens
 import WelcomeScreen from "../screens/WelcomeScreen";
 import NoWifiScreen from "../screens/NoWifiScreen";
@@ -46,6 +48,24 @@ const AppNavigator = () => {
 
     useEffect(() => {
         setNotificationToken();
+        const notificationForgroundListener = Notifications.addNotificationReceivedListener(notification => {
+            //console.log('foreground');
+            //console.log(notification);
+        });
+
+        const notificationTapListener = Notifications.addNotificationResponseReceivedListener(response => {
+            const notificationData = response.notification.request.content.data;
+            switch(notificationData.type){
+                case 'message':
+                    navigate('ChatMain', { chatId: notificationData.chatId });
+                    break;
+            }
+        });
+
+        return () => {
+            Notifications.removeNotificationSubscription(notificationForgroundListener);
+            Notifications.removeNotificationSubscription(notificationTapListener);
+        };
     }, []);
 
     return (

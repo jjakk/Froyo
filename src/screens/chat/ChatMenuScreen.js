@@ -9,7 +9,7 @@ import { useChat } from "@froyo/chat-context";
 import { PlusIcon } from "@froyo/icons";
 
 const ChatMenuScreen = (props) => {
-    const { getPersonalChats } = useChat();
+    const { getPersonalChats, state: { unreadChats } } = useChat();
 
     const [loading, setLoading] = useState(true);
     const [chats, setChats] = useState(true);
@@ -50,6 +50,7 @@ const ChatMenuScreen = (props) => {
             />
             <ChatPreviewList
                 chats={chats}
+                unReadChats={unreadChats}
                 loading={loading}
                 refreshable
                 onRefresh={refreshChats}

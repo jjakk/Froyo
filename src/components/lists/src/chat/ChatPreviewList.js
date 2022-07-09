@@ -7,6 +7,7 @@ const ChatPreviewList = (props) => {
     // Props
     const {
         chats,
+        unReadChats,
         onRefresh,
         ...restOfProps
     } = props;
@@ -18,6 +19,7 @@ const ChatPreviewList = (props) => {
             renderItem={({ item }) => (
                 <ChatPreview
                     data={item}
+                    unread={unReadChats.includes(item.id)}
                     onDelete={onRefresh}
                 />
             )}

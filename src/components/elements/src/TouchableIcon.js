@@ -1,7 +1,6 @@
 import React from "react";
 // Components
 import {
-    Appearance,
     StyleSheet,
     TouchableOpacity
 } from "react-native";
@@ -10,18 +9,11 @@ import { LoadingAnimation } from "@froyo/animations";
 import { colors } from "@froyo/constants";
 
 const TouchableIcon = (props) => {
-    // Theme
-    const theme = Appearance.getColorScheme();
-    const darkModeEnabled = theme === "dark" ;
-
     // Props
     const {
         Icon,
         size,
-        color=(darkModeEnabled
-            ? colors.light.THIRD
-            : colors.light.FOURTH
-        ),
+        color=colors.light.THIRD,
         style,
         onPress,
         loading,

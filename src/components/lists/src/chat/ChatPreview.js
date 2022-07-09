@@ -35,6 +35,7 @@ const ChatPreview = (props) => {
     // Props
     const {
         data,
+        unread,
         onDelete
     } = props;
 
@@ -113,15 +114,22 @@ const ChatPreview = (props) => {
                     style={styles.profilePicture}
                 />
                 <View style={styles.mainSection}>
-                    <Text style={styles.title}>
+                    <View style={styles.textContainer}>
+                        <Text style={styles.title}>
+                            {
+                                title || (
+                                    members.length > 2
+                                        ? "Group Chat"
+                                        : "Chat"
+                                )
+                            }
+                        </Text>
                         {
-                            title || (
-                                members.length > 2
-                                    ? "Group Chat"
-                                    : "Chat"
+                            unread && (
+                                <View style={styles.unreadDot}/>
                             )
                         }
-                    </Text>
+                    </View>
                     <Text style={styles.subtitle}>{members.length} Members</Text>
                 </View>
                 <OptionsMenu
@@ -155,6 +163,17 @@ const styles = StyleSheet.create({
     },
     mainSection: {
         flex: 1
+    },
+    textContainer: {
+        flexDirection: "row",
+        alignItems: "center"
+    },
+    unreadDot: {
+        width: 10,
+        height: 10,
+        borderRadius: 10,
+        marginLeft: 10,
+        backgroundColor: colors.GRAY
     },
     title: {
         fontSize: 24,

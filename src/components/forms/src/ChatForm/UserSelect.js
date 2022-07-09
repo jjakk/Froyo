@@ -41,7 +41,7 @@ const UserSelect = (props) => {
     };
 
     const onToggleUser = (userId) => {
-        if(members.includes(userId)){
+        if(members.find(member=>member.id===userId)){
             setMembers(members.filter(user => user.id !== userId));
         }
         else {

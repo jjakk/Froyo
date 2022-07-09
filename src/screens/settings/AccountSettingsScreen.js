@@ -5,8 +5,6 @@ import { ScreenContainer, Header } from "@froyo/fundamentals";
 import { SettingsList } from "@froyo/lists";
 // Context
 import { useUser } from "@froyo/user-context";
-// Helper functions
-import confirmAlert from "@froyo/helpers";
 // Constants
 import { colors } from "@froyo/constants";
 

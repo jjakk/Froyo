@@ -23,7 +23,7 @@ const AccountSettingsScreen = () => {
 
                 Alert.alert(
                     "Are you sure you would like to delete your account?",
-                    "This action cannot be undone. Doing so will delete all of your posts and comments",
+                    "This action cannot be undone. Doing so will delete all content linked to your account.",
                     [
                         {
                             text: "No",

@@ -141,11 +141,7 @@ const ChatPreview = (props) => {
                         <Text style={styles.title}>
                             { chatTitle || "Loading" }
                         </Text>
-                        {
-                            unread && (
-                                <View style={styles.unreadDot}/>
-                            )
-                        }
+                        { unread && ( <View style={styles.unreadDot}/> ) }
                     </View>
                     <Text style={styles.subtitle}>{members.length} Members</Text>
                 </View>

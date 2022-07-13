@@ -15,7 +15,7 @@ const PostEditScreen = (props) => {
     return (
         <ScreenContainer>
             <Header
-                title="Comment"
+                title="Edit Post"
             />
             <PostForm
                 data={postData}

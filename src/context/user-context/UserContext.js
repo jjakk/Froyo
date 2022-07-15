@@ -40,7 +40,7 @@ const signIn = (dispatch) => async ({ email, password, notificationToken }) => {
         dispatch({ type: "sign_in", payload: token });
     }
     catch (err) {
-        throw Error(err.response.data);
+        throw Error(err.response.data || err.message);
     }
 };
 
@@ -67,7 +67,8 @@ const continueSignUp = () => async ({ email, username, dob }) => {
         await froyoApi.get(`/auth/validateParameter/username/${username}`);
     }
     catch (err) {
-        throw Error(err.message);
+        console.log(err);
+        throw Error(err.response.data || err.message);
     }
 };
 
@@ -119,7 +120,7 @@ const signUp = (dispatch) => async (info) => {
         dispatch({ type: "sign_in", payload: token}); 
     }
     catch (err) {
-        throw Error(err.message)
+        throw Error(err.response.data || err.message);
     }
 };
 

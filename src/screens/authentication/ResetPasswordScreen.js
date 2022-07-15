@@ -30,7 +30,7 @@ const ResetPasswordScreen = ({ navigation }) => {
             setSuccess(true);
         }
         catch (err) {
-            Alert.alert(err.response.data || err.message);
+            Alert.alert(err.message);
         }
         finally {
             setLoading(false);

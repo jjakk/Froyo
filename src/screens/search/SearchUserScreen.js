@@ -36,7 +36,7 @@ const SearchUserScreen = (props) => {
             );
         }
         catch(err) {
-            Alert.alert(err.response.data);
+            Alert.alert(err.message);
         }
         finally {
             setLoading(false);

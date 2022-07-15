@@ -31,7 +31,7 @@ const getPersonalChats = () => async () => {
         return chats;
     }
     catch (err) {
-        throw new Error(err.response.data);
+        throw new Error(err.message);
     }
 };
 
@@ -41,7 +41,7 @@ const getChatMessages = () => async (chatId) => {
         return messages;
     }
     catch (err) {
-        throw new Error(err.response.data);
+        throw new Error(err.mesage);
     }
 };
 
@@ -60,7 +60,7 @@ const createChat = () => async (data) => {
         await froyoApi.post("/chats/", data);
     }
     catch (err) {
-        throw new Error(err.response.data);
+        throw new Error(err.message);
     }
 };
 
@@ -70,7 +70,7 @@ const getChat = () => async (chatId) => {
         return chat;
     }
     catch (err) {
-        throw new Error(err.response.data);
+        throw new Error(err.message);
     }
 };
 
@@ -79,7 +79,7 @@ const deleteChat = () => async (chatId) => {
         await froyoApi.delete(`/chats/${chatId}`);
     }
     catch (err) {
-        throw new Error(err.response.data);
+        throw new Error(err.message);
     }
 };
 

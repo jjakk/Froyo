@@ -25,7 +25,7 @@ const PostViewScreen = ({ navigation }) => {
             setPost(await getContent("post", passedPost.id));
         }
         catch(err) {
-            Alert.alert(err.response.data);
+            Alert.alert(err.message);
         }
         finally {
             setLoading(false);

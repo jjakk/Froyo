@@ -137,8 +137,7 @@ const signOut = (dispatch) => async (notificationToken) => {
         navigate("ResolveAuth");
     }
     catch(err) {
-        console.log(err);
-        Alert.alert(err.message);
+        Alert.alert(err.response.data || err.message);
     }
 };
 

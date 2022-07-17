@@ -143,8 +143,13 @@ const signOut = (dispatch) => async (notificationToken) => {
 
 // Delete a user from the database and sign out
 const deleteUser = (dispatch) => async () => {
-    await froyoApi.delete("/users");
-    signOut(dispatch)();
+    try{
+        await froyoApi.delete("/users");
+        signOut(dispatch)();
+    }
+    catch(err){
+        throw Error(err.response.data || err.message);
+    }
 };
 
 // Get a user's information given their ID

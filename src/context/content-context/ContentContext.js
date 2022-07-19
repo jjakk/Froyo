@@ -47,8 +47,7 @@ const updateContent = () => async (contentType, id, info) => {
         }
     }
     catch (err) {
-        console.log(err)
-        throw new Error(err.message);
+        throw new Error(err.response.data || err.message);
     }
 };
 

@@ -28,7 +28,7 @@ const createContent = () => async (contentType, info) => {
         }
     }
     catch (err) {
-        throw new Error(err.message);
+        throw new Error(err.response.data || err.message);
     }
 };
 

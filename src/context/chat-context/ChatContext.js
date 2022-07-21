@@ -41,7 +41,7 @@ const getChatMessages = () => async (chatId) => {
         return messages;
     }
     catch (err) {
-        throw new Error(err.mesage);
+        throw new Error(err.response.data || err.mesage);
     }
 };
 

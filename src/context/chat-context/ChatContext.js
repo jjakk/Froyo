@@ -60,7 +60,7 @@ const createChat = () => async (data) => {
         await froyoApi.post("/chats/", data);
     }
     catch (err) {
-        throw new Error(err.message);
+        throw new Error(err.response.data || err.message);
     }
 };
 

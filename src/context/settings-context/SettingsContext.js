@@ -30,7 +30,8 @@ const getSettings = (dispatch) => async () => {
     let flavor = await AsyncStorage.getItem("flavor") || DEFAULT_SETTINGS.flavor;
 
     // Hide Feed
-    let hideFeed = JSON.parse(await AsyncStorage.getItem("hideFeed")) || DEFAULT_SETTINGS.hideFeed;
+    let hideFeed = JSON.parse(await AsyncStorage.getItem("hideFeed"));
+    if(hideFeed === null) hideFeed = DEFAULT_SETTINGS.hideFeed;
     
     // Set context
     dispatch({

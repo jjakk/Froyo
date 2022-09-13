@@ -74,6 +74,7 @@ const AccountViewScreen = ({ navigation }) => {
                 RightIconProps={{
                     onPress: onSettings
                 }}
+                title="Account"
             />
             <PostList
                 emptyMessage={emptyMessage}

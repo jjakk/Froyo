@@ -6,7 +6,7 @@ import { colors } from "@froyo/constants";
 
 const DEFAULT_SETTINGS = {
     flavor: "mint",
-    hideFeed: true
+    hideFeed: false
 };
 
 // Handle setting state

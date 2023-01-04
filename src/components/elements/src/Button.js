@@ -70,8 +70,8 @@ const styles = StyleSheet.create({
         borderWidth: 2
     },
     title: {
-        fontFamily: "Nunito",
-        fontSize: 22
+        fontFamily: "Nunito-SemiBold",
+        fontSize: 18
     }
 });
 

@@ -117,7 +117,6 @@ const DatePicker = (props) => {
 
 const styles = StyleSheet.create({
     buttonText: {
-        fontSize: 20,
         margin: 5
     },
     overlay: {

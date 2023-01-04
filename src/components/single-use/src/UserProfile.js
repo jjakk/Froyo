@@ -217,10 +217,10 @@ const styles = StyleSheet.create({
         borderRadius: 100
     },
     name: {
-        fontSize: 30,
+        fontSize: 26,
     },
     username: {
-        fontSize: 24,
+        fontSize: 22,
         marginBottom: 5,
         width: 225,
         opacity: 0.75
@@ -251,7 +251,6 @@ const styles = StyleSheet.create({
         width: 25,
     },
     actionButtonText: {
-        fontSize: 20,
         paddingHorizontal: 10
     },
 });

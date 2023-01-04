@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
     },
     text: {
         fontFamily: "Nunito",
-        fontSize: 20,
+        fontSize: 16,
         flex: 1
     },
     icon: {
